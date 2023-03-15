@@ -13,6 +13,10 @@ struct RoundedActionButton: View {
             .frame(height: 46)
             .frame(maxWidth: .infinity)
             .foregroundColor(Color("shootRed"))
+            .padding(.horizontal, 16)
+            .onTapGesture {
+                // 处理点击事件
+            }
     }
 }
 

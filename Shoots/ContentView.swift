@@ -12,10 +12,13 @@ struct ContentView: View {
         VStack {
             Ellipse()
                 .frame(width: 36, height: 36)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                
             HomeView()
         }
         .padding()
+        .onAppear {
+            // 首页新手引导的逻辑
+        }
     }
 }
 

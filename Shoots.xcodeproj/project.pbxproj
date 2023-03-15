@@ -17,6 +17,7 @@
 		4E5DE51A29C19680005495F0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DE51929C19680005495F0 /* HomeView.swift */; };
 		4E5DE51C29C1A4E8005495F0 /* RoundedActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DE51B29C1A4E8005495F0 /* RoundedActionButton.swift */; };
 		4E5DE51E29C1A5AC005495F0 /* NewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DE51D29C1A5AC005495F0 /* NewView.swift */; };
+		4EF0829429C1B024005F6FE8 /* UploadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF0829329C1B024005F6FE8 /* UploadingIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		4E5DE51929C19680005495F0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4E5DE51B29C1A4E8005495F0 /* RoundedActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedActionButton.swift; sourceTree = "<group>"; };
 		4E5DE51D29C1A5AC005495F0 /* NewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewView.swift; sourceTree = "<group>"; };
+		4EF0829329C1B024005F6FE8 /* UploadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadingIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				4E5DE51929C19680005495F0 /* HomeView.swift */,
 				4E5DE51B29C1A4E8005495F0 /* RoundedActionButton.swift */,
 				4E5DE51D29C1A5AC005495F0 /* NewView.swift */,
+				4EF0829329C1B024005F6FE8 /* UploadingIndicatorView.swift */,
 				4E195EE129C040C700E97522 /* Assets.xcassets */,
 				4E195EE329C040C700E97522 /* Shoots.entitlements */,
 				4E195EE429C040C700E97522 /* Preview Content */,
@@ -268,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EF0829429C1B024005F6FE8 /* UploadingIndicatorView.swift in Sources */,
 				4E195EE029C040C600E97522 /* ContentView.swift in Sources */,
 				4E5DE51A29C19680005495F0 /* HomeView.swift in Sources */,
 				4E195EDE29C040C600E97522 /* ShootsApp.swift in Sources */,
