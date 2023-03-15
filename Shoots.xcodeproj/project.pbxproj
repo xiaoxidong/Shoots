@@ -14,6 +14,9 @@
 		4E195EF029C040C800E97522 /* ShootsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EEF29C040C800E97522 /* ShootsTests.swift */; };
 		4E195EFA29C040C800E97522 /* ShootsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EF929C040C800E97522 /* ShootsUITests.swift */; };
 		4E195EFC29C040C800E97522 /* ShootsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */; };
+		4E5DE51A29C19680005495F0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DE51929C19680005495F0 /* HomeView.swift */; };
+		4E5DE51C29C1A4E8005495F0 /* RoundedActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DE51B29C1A4E8005495F0 /* RoundedActionButton.swift */; };
+		4E5DE51E29C1A5AC005495F0 /* NewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DE51D29C1A5AC005495F0 /* NewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		4E195EF529C040C800E97522 /* ShootsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShootsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E195EF929C040C800E97522 /* ShootsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsUITests.swift; sourceTree = "<group>"; };
 		4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4E5DE51929C19680005495F0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4E5DE51B29C1A4E8005495F0 /* RoundedActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedActionButton.swift; sourceTree = "<group>"; };
+		4E5DE51D29C1A5AC005495F0 /* NewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,9 @@
 			children = (
 				4E195EDD29C040C600E97522 /* ShootsApp.swift */,
 				4E195EDF29C040C600E97522 /* ContentView.swift */,
+				4E5DE51929C19680005495F0 /* HomeView.swift */,
+				4E5DE51B29C1A4E8005495F0 /* RoundedActionButton.swift */,
+				4E5DE51D29C1A5AC005495F0 /* NewView.swift */,
 				4E195EE129C040C700E97522 /* Assets.xcassets */,
 				4E195EE329C040C700E97522 /* Shoots.entitlements */,
 				4E195EE429C040C700E97522 /* Preview Content */,
@@ -260,7 +269,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E195EE029C040C600E97522 /* ContentView.swift in Sources */,
+				4E5DE51A29C19680005495F0 /* HomeView.swift in Sources */,
 				4E195EDE29C040C600E97522 /* ShootsApp.swift in Sources */,
+				4E5DE51E29C1A5AC005495F0 /* NewView.swift in Sources */,
+				4E5DE51C29C1A4E8005495F0 /* RoundedActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,10 +441,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -467,10 +479,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
