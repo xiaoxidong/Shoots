@@ -15,9 +15,21 @@
 		4E195EFA29C040C800E97522 /* ShootsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EF929C040C800E97522 /* ShootsUITests.swift */; };
 		4E195EFC29C040C800E97522 /* ShootsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */; };
 		4E5DE51A29C19680005495F0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DE51929C19680005495F0 /* HomeView.swift */; };
-		4E5DE51C29C1A4E8005495F0 /* RoundedActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DE51B29C1A4E8005495F0 /* RoundedActionButton.swift */; };
-		4E5DE51E29C1A5AC005495F0 /* NewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DE51D29C1A5AC005495F0 /* NewView.swift */; };
-		4EF0829429C1B024005F6FE8 /* UploadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF0829329C1B024005F6FE8 /* UploadingIndicatorView.swift */; };
+		4E9B1F6729C7EA4F00A772CE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B1F6629C7EA4F00A772CE /* DetailView.swift */; };
+		4EE49F7D29C877DC00B51F4B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F7C29C877DC00B51F4B /* HomeViewModel.swift */; };
+		4EE49F8029C8781500B51F4B /* Shoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F7F29C8781500B51F4B /* Shoot.swift */; };
+		4EE49F8329C878FB00B51F4B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F8229C878FB00B51F4B /* Application.swift */; };
+		4EE49F8529C8794F00B51F4B /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F8429C8794F00B51F4B /* Author.swift */; };
+		4EE49F8729C87B3E00B51F4B /* ShootsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F8629C87B3E00B51F4B /* ShootsData.swift */; };
+		4EE49F8929C87FFE00B51F4B /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F8829C87FFE00B51F4B /* Color+Extension.swift */; };
+		4EE49F8D29C8820F00B51F4B /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 4EE49F8C29C8820F00B51F4B /* WaterfallGrid */; };
+		4EE49F8F29C8831500B51F4B /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F8E29C8831500B51F4B /* ImageCardView.swift */; };
+		4EE49F9129C887B800B51F4B /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9029C887B800B51F4B /* AppView.swift */; };
+		4EE49F9329C88BA700B51F4B /* ActionTitleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9229C88BA700B51F4B /* ActionTitleButtonView.swift */; };
+		4EE49F9629C88E2B00B51F4B /* SwiftUIFlowLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 4EE49F9529C88E2B00B51F4B /* SwiftUIFlowLayout */; };
+		4EE49F9829C8943000B51F4B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9729C8943000B51F4B /* SearchView.swift */; };
+		4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9929C898CE00B51F4B /* SelfView.swift */; };
+		4EE49F9C29C898DB00B51F4B /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9B29C898DB00B51F4B /* UploadView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,9 +62,19 @@
 		4E195EF929C040C800E97522 /* ShootsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsUITests.swift; sourceTree = "<group>"; };
 		4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4E5DE51929C19680005495F0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		4E5DE51B29C1A4E8005495F0 /* RoundedActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedActionButton.swift; sourceTree = "<group>"; };
-		4E5DE51D29C1A5AC005495F0 /* NewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewView.swift; sourceTree = "<group>"; };
-		4EF0829329C1B024005F6FE8 /* UploadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadingIndicatorView.swift; sourceTree = "<group>"; };
+		4E9B1F6629C7EA4F00A772CE /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		4EE49F7C29C877DC00B51F4B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		4EE49F7F29C8781500B51F4B /* Shoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shoot.swift; sourceTree = "<group>"; };
+		4EE49F8229C878FB00B51F4B /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		4EE49F8429C8794F00B51F4B /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		4EE49F8629C87B3E00B51F4B /* ShootsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsData.swift; sourceTree = "<group>"; };
+		4EE49F8829C87FFE00B51F4B /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		4EE49F8E29C8831500B51F4B /* ImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
+		4EE49F9029C887B800B51F4B /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		4EE49F9229C88BA700B51F4B /* ActionTitleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTitleButtonView.swift; sourceTree = "<group>"; };
+		4EE49F9729C8943000B51F4B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		4EE49F9929C898CE00B51F4B /* SelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfView.swift; sourceTree = "<group>"; };
+		4EE49F9B29C898DB00B51F4B /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EE49F9629C88E2B00B51F4B /* SwiftUIFlowLayout in Frameworks */,
+				4EE49F8D29C8820F00B51F4B /* WaterfallGrid in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,12 +127,11 @@
 		4E195EDC29C040C600E97522 /* Shoots */ = {
 			isa = PBXGroup;
 			children = (
-				4E195EDD29C040C600E97522 /* ShootsApp.swift */,
-				4E195EDF29C040C600E97522 /* ContentView.swift */,
-				4E5DE51929C19680005495F0 /* HomeView.swift */,
-				4E5DE51B29C1A4E8005495F0 /* RoundedActionButton.swift */,
-				4E5DE51D29C1A5AC005495F0 /* NewView.swift */,
-				4EF0829329C1B024005F6FE8 /* UploadingIndicatorView.swift */,
+				4EE49F7B29C877C600B51F4B /* App */,
+				4EE49F7A29C877BC00B51F4B /* View */,
+				4EE49F7E29C877FF00B51F4B /* ViewModel */,
+				4EE49F8129C8783700B51F4B /* Model */,
+				4EE49F8A29C8804400B51F4B /* Extension */,
 				4E195EE129C040C700E97522 /* Assets.xcassets */,
 				4E195EE329C040C700E97522 /* Shoots.entitlements */,
 				4E195EE429C040C700E97522 /* Preview Content */,
@@ -141,6 +164,57 @@
 			path = ShootsUITests;
 			sourceTree = "<group>";
 		};
+		4EE49F7A29C877BC00B51F4B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E195EDF29C040C600E97522 /* ContentView.swift */,
+				4E5DE51929C19680005495F0 /* HomeView.swift */,
+				4EE49F8E29C8831500B51F4B /* ImageCardView.swift */,
+				4E9B1F6629C7EA4F00A772CE /* DetailView.swift */,
+				4EE49F9229C88BA700B51F4B /* ActionTitleButtonView.swift */,
+				4EE49F9029C887B800B51F4B /* AppView.swift */,
+				4EE49F9729C8943000B51F4B /* SearchView.swift */,
+				4EE49F9929C898CE00B51F4B /* SelfView.swift */,
+				4EE49F9B29C898DB00B51F4B /* UploadView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4EE49F7B29C877C600B51F4B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4E195EDD29C040C600E97522 /* ShootsApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4EE49F7E29C877FF00B51F4B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4EE49F7C29C877DC00B51F4B /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4EE49F8129C8783700B51F4B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4EE49F7F29C8781500B51F4B /* Shoot.swift */,
+				4EE49F8229C878FB00B51F4B /* Application.swift */,
+				4EE49F8429C8794F00B51F4B /* Author.swift */,
+				4EE49F8629C87B3E00B51F4B /* ShootsData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4EE49F8A29C8804400B51F4B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4EE49F8829C87FFE00B51F4B /* Color+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -157,6 +231,10 @@
 			dependencies = (
 			);
 			name = Shoots;
+			packageProductDependencies = (
+				4EE49F8C29C8820F00B51F4B /* WaterfallGrid */,
+				4EE49F9529C88E2B00B51F4B /* SwiftUIFlowLayout */,
+			);
 			productName = Shoots;
 			productReference = 4E195EDA29C040C600E97522 /* Shoots.app */;
 			productType = "com.apple.product-type.application";
@@ -229,6 +307,10 @@
 				Base,
 			);
 			mainGroup = 4E195ED129C040C600E97522;
+			packageReferences = (
+				4EE49F8B29C8820F00B51F4B /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
+				4EE49F9429C88E2B00B51F4B /* XCRemoteSwiftPackageReference "swiftui-flow-layout" */,
+			);
 			productRefGroup = 4E195EDB29C040C600E97522 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -271,12 +353,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EF0829429C1B024005F6FE8 /* UploadingIndicatorView.swift in Sources */,
 				4E195EE029C040C600E97522 /* ContentView.swift in Sources */,
+				4EE49F8929C87FFE00B51F4B /* Color+Extension.swift in Sources */,
 				4E5DE51A29C19680005495F0 /* HomeView.swift in Sources */,
+				4EE49F8729C87B3E00B51F4B /* ShootsData.swift in Sources */,
+				4EE49F8529C8794F00B51F4B /* Author.swift in Sources */,
+				4E9B1F6729C7EA4F00A772CE /* DetailView.swift in Sources */,
+				4EE49F8029C8781500B51F4B /* Shoot.swift in Sources */,
+				4EE49F7D29C877DC00B51F4B /* HomeViewModel.swift in Sources */,
+				4EE49F9129C887B800B51F4B /* AppView.swift in Sources */,
+				4EE49F9329C88BA700B51F4B /* ActionTitleButtonView.swift in Sources */,
+				4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */,
+				4EE49F9C29C898DB00B51F4B /* UploadView.swift in Sources */,
+				4EE49F9829C8943000B51F4B /* SearchView.swift in Sources */,
 				4E195EDE29C040C600E97522 /* ShootsApp.swift in Sources */,
-				4E5DE51E29C1A5AC005495F0 /* NewView.swift in Sources */,
-				4E5DE51C29C1A4E8005495F0 /* RoundedActionButton.swift in Sources */,
+				4EE49F8329C878FB00B51F4B /* Application.swift in Sources */,
+				4EE49F8F29C8831500B51F4B /* ImageCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,6 +720,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4EE49F8B29C8820F00B51F4B /* XCRemoteSwiftPackageReference "WaterfallGrid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/paololeonardi/WaterfallGrid";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		4EE49F9429C88E2B00B51F4B /* XCRemoteSwiftPackageReference "swiftui-flow-layout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/globulus/swiftui-flow-layout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4EE49F8C29C8820F00B51F4B /* WaterfallGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EE49F8B29C8820F00B51F4B /* XCRemoteSwiftPackageReference "WaterfallGrid" */;
+			productName = WaterfallGrid;
+		};
+		4EE49F9529C88E2B00B51F4B /* SwiftUIFlowLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EE49F9429C88E2B00B51F4B /* XCRemoteSwiftPackageReference "swiftui-flow-layout" */;
+			productName = SwiftUIFlowLayout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4E195ED229C040C600E97522 /* Project object */;
 }
