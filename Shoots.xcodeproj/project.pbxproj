@@ -16,6 +16,7 @@
 		4E195EFC29C040C800E97522 /* ShootsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */; };
 		4E5DE51A29C19680005495F0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DE51929C19680005495F0 /* HomeView.swift */; };
 		4E9B1F6729C7EA4F00A772CE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B1F6629C7EA4F00A772CE /* DetailView.swift */; };
+		4EE2131729C8A80C007FAC6F /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2131629C8A80C007FAC6F /* AlbumView.swift */; };
 		4EE49F7D29C877DC00B51F4B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F7C29C877DC00B51F4B /* HomeViewModel.swift */; };
 		4EE49F8029C8781500B51F4B /* Shoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F7F29C8781500B51F4B /* Shoot.swift */; };
 		4EE49F8329C878FB00B51F4B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F8229C878FB00B51F4B /* Application.swift */; };
@@ -30,6 +31,7 @@
 		4EE49F9829C8943000B51F4B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9729C8943000B51F4B /* SearchView.swift */; };
 		4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9929C898CE00B51F4B /* SelfView.swift */; };
 		4EE49F9C29C898DB00B51F4B /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9B29C898DB00B51F4B /* UploadView.swift */; };
+		4EE49FA329C89CAF00B51F4B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49FA229C89CAF00B51F4B /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,7 @@
 		4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4E5DE51929C19680005495F0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4E9B1F6629C7EA4F00A772CE /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		4EE2131629C8A80C007FAC6F /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		4EE49F7C29C877DC00B51F4B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4EE49F7F29C8781500B51F4B /* Shoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shoot.swift; sourceTree = "<group>"; };
 		4EE49F8229C878FB00B51F4B /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		4EE49F9729C8943000B51F4B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		4EE49F9929C898CE00B51F4B /* SelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfView.swift; sourceTree = "<group>"; };
 		4EE49F9B29C898DB00B51F4B /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
+		4EE49FA229C89CAF00B51F4B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,14 +172,12 @@
 			isa = PBXGroup;
 			children = (
 				4E195EDF29C040C600E97522 /* ContentView.swift */,
-				4E5DE51929C19680005495F0 /* HomeView.swift */,
-				4EE49F8E29C8831500B51F4B /* ImageCardView.swift */,
-				4E9B1F6629C7EA4F00A772CE /* DetailView.swift */,
-				4EE49F9229C88BA700B51F4B /* ActionTitleButtonView.swift */,
-				4EE49F9029C887B800B51F4B /* AppView.swift */,
-				4EE49F9729C8943000B51F4B /* SearchView.swift */,
-				4EE49F9929C898CE00B51F4B /* SelfView.swift */,
-				4EE49F9B29C898DB00B51F4B /* UploadView.swift */,
+				4EE49F9D29C89A0F00B51F4B /* Home */,
+				4EE49F9E29C89A1C00B51F4B /* Title */,
+				4EE49F9F29C89A2800B51F4B /* App */,
+				4EE49FA029C89A3A00B51F4B /* 个人中心 */,
+				4EE49FA129C89A4A00B51F4B /* 上传截图 */,
+				4EE49FA429C89CB700B51F4B /* Setting */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,6 +215,58 @@
 				4EE49F8829C87FFE00B51F4B /* Color+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		4EE49F9D29C89A0F00B51F4B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4E5DE51929C19680005495F0 /* HomeView.swift */,
+				4EE49F8E29C8831500B51F4B /* ImageCardView.swift */,
+				4EE49F9729C8943000B51F4B /* SearchView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4EE49F9E29C89A1C00B51F4B /* Title */ = {
+			isa = PBXGroup;
+			children = (
+				4E9B1F6629C7EA4F00A772CE /* DetailView.swift */,
+				4EE49F9229C88BA700B51F4B /* ActionTitleButtonView.swift */,
+			);
+			path = Title;
+			sourceTree = "<group>";
+		};
+		4EE49F9F29C89A2800B51F4B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4EE49F9029C887B800B51F4B /* AppView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4EE49FA029C89A3A00B51F4B /* 个人中心 */ = {
+			isa = PBXGroup;
+			children = (
+				4EE49F9929C898CE00B51F4B /* SelfView.swift */,
+				4EE2131629C8A80C007FAC6F /* AlbumView.swift */,
+			);
+			path = "个人中心";
+			sourceTree = "<group>";
+		};
+		4EE49FA129C89A4A00B51F4B /* 上传截图 */ = {
+			isa = PBXGroup;
+			children = (
+				4EE49F9B29C898DB00B51F4B /* UploadView.swift */,
+			);
+			path = "上传截图";
+			sourceTree = "<group>";
+		};
+		4EE49FA429C89CB700B51F4B /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				4EE49FA229C89CAF00B51F4B /* SettingView.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,8 +416,10 @@
 				4EE49F8029C8781500B51F4B /* Shoot.swift in Sources */,
 				4EE49F7D29C877DC00B51F4B /* HomeViewModel.swift in Sources */,
 				4EE49F9129C887B800B51F4B /* AppView.swift in Sources */,
+				4EE49FA329C89CAF00B51F4B /* SettingView.swift in Sources */,
 				4EE49F9329C88BA700B51F4B /* ActionTitleButtonView.swift in Sources */,
 				4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */,
+				4EE2131729C8A80C007FAC6F /* AlbumView.swift in Sources */,
 				4EE49F9C29C898DB00B51F4B /* UploadView.swift in Sources */,
 				4EE49F9829C8943000B51F4B /* SearchView.swift in Sources */,
 				4E195EDE29C040C600E97522 /* ShootsApp.swift in Sources */,
