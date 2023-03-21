@@ -14,4 +14,5 @@ struct Application: Identifiable, Codable {
     var type: String
     var info: String
     var url: String
+    var flows: [Flow] = []
 }

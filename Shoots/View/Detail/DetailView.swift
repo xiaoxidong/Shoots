@@ -17,6 +17,7 @@ struct DetailView: View {
             Image(shoot.imageUrl)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .padding(.top)
         }
         .overlay(alignment: .bottom) {
             infoView
@@ -45,7 +46,20 @@ struct DetailView: View {
                     Image("link")
                 }
             }.sheet(isPresented: $showApp) {
-                AppView()
+                NavigationView {
+                    AppView(app: shoot.app)
+                        .navigationTitle(shoot.app.name)
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                Button {
+                                    
+                                } label: {
+                                    Image(systemName: "square.and.arrow.up.fill")
+                                }.tint(.shootRed)
+                            }
+                        }
+                }
             }
 
             // 个人信息

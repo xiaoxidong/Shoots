@@ -12,7 +12,7 @@ struct ContentView: View {
     @State var searchText: String = ""
     var body: some View {
         NavigationView {
-            HomeView(homeVM: homeVM)
+            HomeView(homeVM: homeVM, searchText: $searchText)
                 .navigationTitle("Shoots")
                 .searchable(text: $searchText)
                 .toolbar {

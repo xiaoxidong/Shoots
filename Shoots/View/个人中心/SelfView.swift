@@ -36,28 +36,43 @@ struct SelfView: View {
         GridItem(.flexible(minimum: 100, maximum: 160), spacing: 26)
     ]
     
+    @State var tags: [String] = ["Feed", "Friends", "Settings", "Cards", "Live", "Maps", "Follwer", "Help", "Shop"]
+    @State var selected = "Feed"
     var tagView: some View {
         VStack {
             VStack {
                 HStack {
-                    Text("12 个收藏夹和 34 图片已上传")
-                        .font(.system(size: 15, weight: .medium))
-                        .foregroundColor(.shootGray)
-                    Spacer()
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 16) {
+                            ForEach(tags, id: \.self) { text in
+                                Button {
+                                    withAnimation(.spring()) {
+                                        selected = text
+                                    }
+                                } label: {
+                                    Text(text)
+                                        .font(.system(size: selected == text ? 17 : 15, weight: selected == text ? .bold : .medium))
+                                        .foregroundColor(selected == text ? .shootBlue : .shootBlack)
+                                        .padding(.bottom, 12)
+                                }
+                            }
+                        }.padding(.horizontal)
+                    }
                     Button {
                         withAnimation(.spring()) {
                             showTag.toggle()
                         }
                     } label: {
                         Image("grouped")
-                    }
+                            .padding(.bottom, 12)
+                    }.padding(.trailing)
                 }.padding(.top)
                 
                 Divider()
             }
             
             // 列表
-            
+            FeedView(shoots: homeData)
         }
     }
     
@@ -116,9 +131,10 @@ struct SelfView: View {
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 4)
                                     .foregroundColor(.white)
-                                    .background(Color.shootRed)
+                                    .background(Color.shootRed.opacity(0.9))
                                     .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
                                     .padding(6)
+                                    .offset(x: -4)
                             }
                             
                             Text("Instagram")
@@ -126,7 +142,6 @@ struct SelfView: View {
                                 .foregroundColor(.shootBlack)
                         }
                     }
-                    
                 }
             }
             

@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct SearchView: View {
+    @Binding var searchText: String
+    
     var body: some View {
         ScrollView {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 26) {
                     ForEach(apps) { app in
                         Button {
-                            
+                            searchText = app.name
                         } label: {
                             VStack {
                                 Image(app.image)
@@ -36,7 +38,7 @@ struct SearchView: View {
             VStack(spacing: 16) {
                 ForEach(1...100, id: \.self) { num in
                     Button {
-                        
+                        searchText = "关注"
                     } label: {
                         Group {
                             Text("关注")
@@ -58,6 +60,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView(searchText: .constant(""))
     }
 }
