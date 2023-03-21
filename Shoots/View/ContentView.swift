@@ -26,7 +26,7 @@ struct ContentView: View {
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink {
-                            SelfView()
+                            UploadView()
                         } label: {
                             Image("upload")
                         }

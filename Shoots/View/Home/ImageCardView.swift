@@ -22,15 +22,18 @@ struct ImageCardView: View {
             .onTapGesture {
                 showDetail.toggle()
             }
-            .onTapGesture(count: 2) {
-                if homeModel == 0 {
-                    homeModel = 1
-                } else if homeModel == 1 {
-                    homeModel = 2
-                } else {
-                    homeModel = 0
-                }
-            }
+            .highPriorityGesture (
+                TapGesture(count: 2)
+                    .onEnded {
+                        if homeModel == 0 {
+                            homeModel = 1
+                        } else if homeModel == 1 {
+                            homeModel = 2
+                        } else {
+                            homeModel = 0
+                        }
+                    }
+            )
     }
 }
 
