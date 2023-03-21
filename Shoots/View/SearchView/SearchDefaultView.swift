@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchView: View {
+struct SearchDefaultView: View {
     @Binding var searchText: String
     
     var body: some View {
@@ -58,8 +58,8 @@ struct SearchView: View {
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
+struct SearchDefaultView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(searchText: .constant(""))
+        SearchDefaultView(searchText: .constant(""))
     }
 }

@@ -12,6 +12,7 @@ struct DetailView: View {
     var shoot: Shoot
     
     @State var showDetail = false
+    @State var search: String? = nil
     var body: some View {
         ScrollView {
             Image(shoot.imageUrl)
@@ -28,6 +29,9 @@ struct DetailView: View {
             withAnimation(.spring()) {
                 showDetail.toggle()
             }
+        }
+        .fullScreenCover(item: $search) { search in
+            SearchView(searchText: search)
         }
     }
     
@@ -101,7 +105,8 @@ struct DetailView: View {
                        items: shoot.designType,
                        itemSpacing: 4) { text in
                 Button {
-                    
+//                    search = text
+                    search = "关注"
                 } label: {
                     HStack(spacing: 2) {
                         Image(systemName: "number")

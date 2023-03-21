@@ -19,7 +19,7 @@ struct HomeView: View {
             } else if searchText == "关注" {
                 FeedView(shoots: homeData)
             } else {
-                SearchView(searchText: $searchText)
+                SearchDefaultView(searchText: $searchText)
             }
         } else {
             FeedView(shoots: homeVM.shoots)
