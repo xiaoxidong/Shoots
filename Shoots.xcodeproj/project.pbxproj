@@ -14,6 +14,11 @@
 		4E195EF029C040C800E97522 /* ShootsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EEF29C040C800E97522 /* ShootsTests.swift */; };
 		4E195EFA29C040C800E97522 /* ShootsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EF929C040C800E97522 /* ShootsUITests.swift */; };
 		4E195EFC29C040C800E97522 /* ShootsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */; };
+		4E58F91B29CB2FF40087E902 /* CustomUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E58F91A29CB2FF40087E902 /* CustomUploadView.swift */; };
+		4E58F91D29CB37000087E902 /* DNALoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E58F91C29CB37000087E902 /* DNALoading.swift */; };
+		4E58F92029CB38CE0087E902 /* ShootEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E58F91F29CB38CE0087E902 /* ShootEmptyView.swift */; };
+		4E58F92229CB43A80087E902 /* SettingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E58F92129CB43A80087E902 /* SettingCellView.swift */; };
+		4E58F92429CB47930087E902 /* ProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E58F92329CB47930087E902 /* ProView.swift */; };
 		4E5DE51A29C19680005495F0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DE51929C19680005495F0 /* HomeView.swift */; };
 		4E99304029C9EBC400D99DA9 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99303F29C9EBC400D99DA9 /* FeedView.swift */; };
 		4E99304229C9F02000D99DA9 /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304129C9F02000D99DA9 /* FlowView.swift */; };
@@ -69,6 +74,11 @@
 		4E195EF529C040C800E97522 /* ShootsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShootsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E195EF929C040C800E97522 /* ShootsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsUITests.swift; sourceTree = "<group>"; };
 		4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4E58F91A29CB2FF40087E902 /* CustomUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUploadView.swift; sourceTree = "<group>"; };
+		4E58F91C29CB37000087E902 /* DNALoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNALoading.swift; sourceTree = "<group>"; };
+		4E58F91F29CB38CE0087E902 /* ShootEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootEmptyView.swift; sourceTree = "<group>"; };
+		4E58F92129CB43A80087E902 /* SettingCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCellView.swift; sourceTree = "<group>"; };
+		4E58F92329CB47930087E902 /* ProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProView.swift; sourceTree = "<group>"; };
 		4E5DE51929C19680005495F0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4E99303F29C9EBC400D99DA9 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		4E99304129C9F02000D99DA9 /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
@@ -180,6 +190,15 @@
 			path = ShootsUITests;
 			sourceTree = "<group>";
 		};
+		4E58F91E29CB372E0087E902 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				4E58F91C29CB37000087E902 /* DNALoading.swift */,
+				4E58F91F29CB38CE0087E902 /* ShootEmptyView.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
 		4E99304929C9FE3000D99DA9 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				4E99304C29CA075D00D99DA9 /* UploadView.swift */,
+				4E58F91A29CB2FF40087E902 /* CustomUploadView.swift */,
 			);
 			path = Upload;
 			sourceTree = "<group>";
@@ -208,6 +228,7 @@
 				4EE49F9F29C89A2800B51F4B /* App */,
 				4EE49FA029C89A3A00B51F4B /* 个人中心 */,
 				4EE49FA429C89CB700B51F4B /* Setting */,
+				4E58F91E29CB372E0087E902 /* Global */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -291,6 +312,8 @@
 			isa = PBXGroup;
 			children = (
 				4EE49FA229C89CAF00B51F4B /* SettingView.swift */,
+				4E58F92129CB43A80087E902 /* SettingCellView.swift */,
+				4E58F92329CB47930087E902 /* ProView.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -434,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E99304429C9F06300D99DA9 /* Flow.swift in Sources */,
+				4E58F92029CB38CE0087E902 /* ShootEmptyView.swift in Sources */,
 				4E99304D29CA075D00D99DA9 /* UploadView.swift in Sources */,
 				4E195EE029C040C600E97522 /* ContentView.swift in Sources */,
 				4E99304629C9F2CC00D99DA9 /* FolderCardView.swift in Sources */,
@@ -445,10 +469,14 @@
 				4EE49F8029C8781500B51F4B /* Shoot.swift in Sources */,
 				4EE49F7D29C877DC00B51F4B /* HomeViewModel.swift in Sources */,
 				4E99304029C9EBC400D99DA9 /* FeedView.swift in Sources */,
+				4E58F91D29CB37000087E902 /* DNALoading.swift in Sources */,
 				4EE49F9129C887B800B51F4B /* AppView.swift in Sources */,
 				4EE49FA329C89CAF00B51F4B /* SettingView.swift in Sources */,
+				4E58F91B29CB2FF40087E902 /* CustomUploadView.swift in Sources */,
+				4E58F92229CB43A80087E902 /* SettingCellView.swift in Sources */,
 				4E99304829C9FBCC00D99DA9 /* SearchView.swift in Sources */,
 				4EE49F9329C88BA700B51F4B /* ActionTitleButtonView.swift in Sources */,
+				4E58F92429CB47930087E902 /* ProView.swift in Sources */,
 				4E99304229C9F02000D99DA9 /* FlowView.swift in Sources */,
 				4E99304B29CA003100D99DA9 /* String+Extension.swift in Sources */,
 				4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */,

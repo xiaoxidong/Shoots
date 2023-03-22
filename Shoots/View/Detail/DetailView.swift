@@ -13,6 +13,7 @@ struct DetailView: View {
     
     @State var showDetail = false
     @State var search: String? = nil
+    @AppStorage("showDetailNew") var showDetailNew = true
     var body: some View {
         ScrollView {
             Image(shoot.imageUrl)
@@ -24,6 +25,31 @@ struct DetailView: View {
             infoView
                 .offset(y: showDetail ? 0 : 1000)
         }
+        .overlay(
+            Group {
+                Color.black.opacity(showDetailNew ? 0.4 : 0)
+                VStack(spacing: 16) {
+                    Image("doubleclick")
+                    Text("点击查看截图详情信息")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(.white)
+                    
+                    Button {
+                        withAnimation(.spring()) {
+                            showDetailNew.toggle()
+                        }
+                    } label: {
+                        Text("知道了")
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 56)
+                            .padding(.vertical, 12)
+                            .background(LinearGradient(colors: [.pink, .yellow], startPoint: .leading, endPoint: .trailing))
+                            .clipShape(Capsule())
+                    }.padding(.top)
+                }.opacity(showDetailNew ? 1 : 0)
+            }
+        )
         .ignoresSafeArea()
         .onTapGesture {
             withAnimation(.spring()) {

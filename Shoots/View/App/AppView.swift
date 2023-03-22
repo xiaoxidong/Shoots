@@ -65,6 +65,7 @@ struct AppView: View {
         }.padding(.horizontal)
     }
     
+    @State var flow: Flow? = nil
     var flowView: some View {
         VStack {
             Text("设计流")
@@ -76,15 +77,17 @@ struct AppView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(app.flows) { flow in
-                        NavigationLink {
-                            FlowView(flow: flow)
-                        } label: {
-                            FolderCardView(images: flow.images, name: flow.name)
-                        }
+                        FolderCardView(images: flow.images, name: flow.name)
+                            .onTapGesture {
+                                self.flow = flow
+                            }
                     }
                 }.padding(.horizontal)
             }
         }.padding(.top, 26)
+            .fullScreenCover(item: $flow) { flow in
+                FlowView(flow: flow)
+            }
     }
     
     var imagesView: some View {

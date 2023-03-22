@@ -12,15 +12,19 @@ struct FlowView: View {
     
     @Environment(\.dismiss) var dismiss
     @State var showDetail = false
+    var screen = UIScreen.main.bounds
     var body: some View {
         TabView {
             ForEach(flow.images, id: \.self) { image in
                 Image(image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                // 不设置的时候，左侧有个空白
+                    .frame(width: screen.width, height: screen.height)
             }
         }.tabViewStyle(.page)
             .navigationBarBackButtonHidden()
+            .statusBarHidden()
             .onTapGesture {
                 withAnimation(.spring()) {
                     showDetail.toggle()
