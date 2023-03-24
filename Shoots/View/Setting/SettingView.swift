@@ -23,11 +23,12 @@ struct SettingView: View {
     #if os(iOS)
     @State var result: Result<MFMailComposeResult, Error>? = nil
     #endif
-    
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
                 Group {
+                    Divider()
                     SettingCellView(image: "pro", text: "Shoots Pro") {
                         showPro.toggle()
                     }
@@ -117,6 +118,18 @@ struct SettingView: View {
             }
         }
         .navigationTitle("设置")
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 16, weight: .semibold))
+                        .tint(.shootBlue)
+                }
+            }
+        }
         .sheet(isPresented: $showPro) {
             ProView()
         }

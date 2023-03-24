@@ -152,6 +152,11 @@
 		4E5CF72529CD617000A4E0DE /* ModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF72429CD617000A4E0DE /* ModeView.swift */; };
 		4E5CF72729CD617900A4E0DE /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF72629CD617900A4E0DE /* IconView.swift */; };
 		4E5CF72929CD623600A4E0DE /* ShootColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF72829CD623600A4E0DE /* ShootColorScheme.swift */; };
+		4E5CF72B29CD67C800A4E0DE /* TitlePageControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF72A29CD67C800A4E0DE /* TitlePageControll.swift */; };
+		4E5CF74929CD69D800A4E0DE /* CHIPageControl in Frameworks */ = {isa = PBXBuildFile; productRef = 4E5CF74829CD69D800A4E0DE /* CHIPageControl */; };
+		4E5CF74B29CD748600A4E0DE /* ShootBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF74A29CD748600A4E0DE /* ShootBlurView.swift */; };
+		4E5CF74D29CD749100A4E0DE /* CombineSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF74C29CD749100A4E0DE /* CombineSelectView.swift */; };
+		4E5CF74F29CD784F00A4E0DE /* CombineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF74E29CD784F00A4E0DE /* CombineView.swift */; };
 		4E5DE51A29C19680005495F0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DE51929C19680005495F0 /* HomeView.swift */; };
 		4E99304029C9EBC400D99DA9 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99303F29C9EBC400D99DA9 /* FeedView.swift */; };
 		4E99304229C9F02000D99DA9 /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304129C9F02000D99DA9 /* FlowView.swift */; };
@@ -354,6 +359,10 @@
 		4E5CF72429CD617000A4E0DE /* ModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeView.swift; sourceTree = "<group>"; };
 		4E5CF72629CD617900A4E0DE /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		4E5CF72829CD623600A4E0DE /* ShootColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootColorScheme.swift; sourceTree = "<group>"; };
+		4E5CF72A29CD67C800A4E0DE /* TitlePageControll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePageControll.swift; sourceTree = "<group>"; };
+		4E5CF74A29CD748600A4E0DE /* ShootBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootBlurView.swift; sourceTree = "<group>"; };
+		4E5CF74C29CD749100A4E0DE /* CombineSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineSelectView.swift; sourceTree = "<group>"; };
+		4E5CF74E29CD784F00A4E0DE /* CombineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineView.swift; sourceTree = "<group>"; };
 		4E5DE51929C19680005495F0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4E99303F29C9EBC400D99DA9 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		4E99304129C9F02000D99DA9 /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
@@ -385,6 +394,7 @@
 			files = (
 				4EE49F9629C88E2B00B51F4B /* SwiftUIFlowLayout in Frameworks */,
 				4EE49F8D29C8820F00B51F4B /* WaterfallGrid in Frameworks */,
+				4E5CF74929CD69D800A4E0DE /* CHIPageControl in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -980,7 +990,11 @@
 			isa = PBXGroup;
 			children = (
 				4E99304C29CA075D00D99DA9 /* UploadView.swift */,
+				4E5CF74A29CD748600A4E0DE /* ShootBlurView.swift */,
+				4E5CF74C29CD749100A4E0DE /* CombineSelectView.swift */,
+				4E5CF74E29CD784F00A4E0DE /* CombineView.swift */,
 				4E58F91A29CB2FF40087E902 /* CustomUploadView.swift */,
+				4E5CF72A29CD67C800A4E0DE /* TitlePageControll.swift */,
 			);
 			path = Upload;
 			sourceTree = "<group>";
@@ -994,7 +1008,7 @@
 				4EE49F9E29C89A1C00B51F4B /* Detail */,
 				4E99304E29CA076200D99DA9 /* Upload */,
 				4EE49F9F29C89A2800B51F4B /* App */,
-				4EE49FA029C89A3A00B51F4B /* 个人中心 */,
+				4EE49FA029C89A3A00B51F4B /* Self */,
 				4EE49FA429C89CB700B51F4B /* Setting */,
 				4E58F91E29CB372E0087E902 /* Global */,
 			);
@@ -1069,13 +1083,13 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		4EE49FA029C89A3A00B51F4B /* 个人中心 */ = {
+		4EE49FA029C89A3A00B51F4B /* Self */ = {
 			isa = PBXGroup;
 			children = (
 				4EE49F9929C898CE00B51F4B /* SelfView.swift */,
 				4EE2131629C8A80C007FAC6F /* AlbumView.swift */,
 			);
-			path = "个人中心";
+			path = Self;
 			sourceTree = "<group>";
 		};
 		4EE49FA429C89CB700B51F4B /* Setting */ = {
@@ -1114,6 +1128,7 @@
 			packageProductDependencies = (
 				4EE49F8C29C8820F00B51F4B /* WaterfallGrid */,
 				4EE49F9529C88E2B00B51F4B /* SwiftUIFlowLayout */,
+				4E5CF74829CD69D800A4E0DE /* CHIPageControl */,
 			);
 			productName = Shoots;
 			productReference = 4E195EDA29C040C600E97522 /* Shoots.app */;
@@ -1190,6 +1205,7 @@
 			packageReferences = (
 				4EE49F8B29C8820F00B51F4B /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
 				4EE49F9429C88E2B00B51F4B /* XCRemoteSwiftPackageReference "swiftui-flow-layout" */,
+				4E5CF74729CD69D800A4E0DE /* XCRemoteSwiftPackageReference "CHIPageControl" */,
 			);
 			productRefGroup = 4E195EDB29C040C600E97522 /* Products */;
 			projectDirPath = "";
@@ -1267,6 +1283,7 @@
 				4E99304629C9F2CC00D99DA9 /* FolderCardView.swift in Sources */,
 				4E5CF6A529CD58D100A4E0DE /* ElegantVList.swift in Sources */,
 				4E5CF71029CD5AC000A4E0DE /* DotNetParserFormatter.swift in Sources */,
+				4E5CF74F29CD784F00A4E0DE /* CombineView.swift in Sources */,
 				4E5CF71F29CD606000A4E0DE /* MailView.swift in Sources */,
 				4E5CF6A829CD58D100A4E0DE /* ScrollDirection.swift in Sources */,
 				4E5CF68E29CD58D100A4E0DE /* View+blurEffectStyle.swift in Sources */,
@@ -1307,6 +1324,7 @@
 				4E5CF72729CD617900A4E0DE /* IconView.swift in Sources */,
 				4E5CF6BB29CD58D100A4E0DE /* Type.swift in Sources */,
 				4E5CF6AA29CD58D100A4E0DE /* ElegantPagesManager.swift in Sources */,
+				4E5CF74D29CD749100A4E0DE /* CombineSelectView.swift in Sources */,
 				4E5CF6BC29CD58D100A4E0DE /* Version.swift in Sources */,
 				4EE49F8029C8781500B51F4B /* Shoot.swift in Sources */,
 				4E5CF6B229CD58D100A4E0DE /* Shared.swift in Sources */,
@@ -1358,6 +1376,7 @@
 				4E5CF6B129CD58D100A4E0DE /* ElegantHPages.swift in Sources */,
 				4EE49F9329C88BA700B51F4B /* ActionTitleButtonView.swift in Sources */,
 				4E5CF69B29CD58D100A4E0DE /* SPAlertIconDoneView.swift in Sources */,
+				4E5CF72B29CD67C800A4E0DE /* TitlePageControll.swift in Sources */,
 				4E5CF6BE29CD58D100A4E0DE /* Size.swift in Sources */,
 				4E58F92429CB47930087E902 /* ProView.swift in Sources */,
 				4E5CF66F29CD58D100A4E0DE /* SKProduct+LocalizedPrice.swift in Sources */,
@@ -1367,6 +1386,7 @@
 				4E5CF70829CD5AC000A4E0DE /* TimePeriodChain.swift in Sources */,
 				4E99304229C9F02000D99DA9 /* FlowView.swift in Sources */,
 				4E99304B29CA003100D99DA9 /* String+Extension.swift in Sources */,
+				4E5CF74B29CD748600A4E0DE /* ShootBlurView.swift in Sources */,
 				4E5CF69A29CD58D100A4E0DE /* SPAlertIconErrorView.swift in Sources */,
 				4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */,
 				4E5CF69829CD58D100A4E0DE /* SPAlertLayout.swift in Sources */,
@@ -1564,7 +1584,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -1603,7 +1623,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -1750,6 +1770,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4E5CF74729CD69D800A4E0DE /* XCRemoteSwiftPackageReference "CHIPageControl" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ChiliLabs/CHIPageControl";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
 		4EE49F8B29C8820F00B51F4B /* XCRemoteSwiftPackageReference "WaterfallGrid" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/paololeonardi/WaterfallGrid";
@@ -1769,6 +1797,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4E5CF74829CD69D800A4E0DE /* CHIPageControl */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E5CF74729CD69D800A4E0DE /* XCRemoteSwiftPackageReference "CHIPageControl" */;
+			productName = CHIPageControl;
+		};
 		4EE49F8C29C8820F00B51F4B /* WaterfallGrid */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4EE49F8B29C8820F00B51F4B /* XCRemoteSwiftPackageReference "WaterfallGrid" */;

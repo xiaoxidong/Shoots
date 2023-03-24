@@ -16,11 +16,30 @@ struct ContentView: View {
     @State var uploadOptions = false
     @State var customUpload = false
     @State var upload = false
+    @State var showNavigation = true
+    @State var offset: CGSize = .zero
     var body: some View {
         NavigationView {
             HomeView(homeVM: homeVM, searchText: $searchText)
                 .navigationTitle("Shoots")
                 .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
+                .simultaneousGesture(
+                    DragGesture()
+                        .onChanged({ location in
+                            offset = location.translation
+                            if location.translation.height > 0 {
+                                print("下")
+                                withAnimation(.spring()) {
+                                    showNavigation = true
+                                }
+                            } else {
+                                print("上")
+                                withAnimation(.spring()) {
+                                    showNavigation = false
+                                }
+                            }
+                        })
+                )
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         NavigationLink {
@@ -52,6 +71,7 @@ struct ContentView: View {
                     uploadView, alignment: .bottom
                 )
                 .edgesIgnoringSafeArea(.bottom)
+                .toolbar(showNavigation ? .visible : .hidden, for: .automatic)
         }
         .navigationViewStyle(.stack)
         .overlay(

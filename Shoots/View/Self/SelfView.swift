@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SelfView: View {
     @State var showTag = false
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         ScrollView {
             if showTag {
@@ -17,8 +18,19 @@ struct SelfView: View {
                 folderView
             }
         }.navigationTitle("Xiaodong")
+            .navigationBarBackButtonHidden()
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .font(.system(size: 16, weight: .semibold))
+                            .tint(.shootBlue)
+                    }
+                }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
                         SettingView()

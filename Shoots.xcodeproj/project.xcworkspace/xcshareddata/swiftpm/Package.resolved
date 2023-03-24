@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "chipagecontrol",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ChiliLabs/CHIPageControl",
+      "state" : {
+        "revision" : "2d16f651a6c885e8d7eff21b36bd1cae3130aa10",
+        "version" : "0.2.1"
+      }
+    },
+    {
       "identity" : "swiftui-flow-layout",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/globulus/swiftui-flow-layout",
