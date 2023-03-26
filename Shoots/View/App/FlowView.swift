@@ -59,7 +59,7 @@ struct FlowView: View {
                 .font(.system(size: 16, weight: .medium))
                 .foregroundColor(.shootBlack)
                 .lineSpacing(4)
-        }.frame(maxWidth: .infinity)
+        }.frame(maxWidth: 560)
             .padding()
             .padding(.bottom)
             .padding(.top, 8)

@@ -67,7 +67,7 @@ struct AlbumView: View {
                     } label: {
                         Text(edit ? "完成" : "管理")
                             .bold()
-                            .foregroundColor(edit ? .shootBlack : .shootBlue)
+                            .foregroundColor(.shootBlue)
                     }
                 }
             }
@@ -94,11 +94,19 @@ struct AlbumView: View {
             )
     }
     
-    let columns = [
-        GridItem(.flexible(minimum: 100, maximum: 160), spacing: 2),
-        GridItem(.flexible(minimum: 100, maximum: 160), spacing: 2),
-        GridItem(.flexible(minimum: 100, maximum: 160), spacing: 2)
-    ]
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    #endif
+    
+    var columns: [GridItem] {
+        if horizontalSizeClass == .compact {
+            return [GridItem(.adaptive(minimum: 120, maximum: 260), spacing: 2)]
+        } else {
+            return [GridItem(.adaptive(minimum: 220, maximum: 360), spacing: 2)]
+        }
+    }
+    
     @State var selected: [String] = []
     var editView: some View {
         ScrollView {
@@ -145,7 +153,9 @@ struct AlbumView: View {
             
             HStack(spacing: 56) {
                 Button {
-                    
+                    withAnimation(.spring()) {
+                        editName = false
+                    }
                 } label: {
                     Text("取消")
                         .font(.system(size: 14, weight: .medium))
@@ -156,7 +166,9 @@ struct AlbumView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }
                 Button {
-                    
+                    withAnimation(.spring()) {
+                        editName = false
+                    }
                 } label: {
                     Text("确认")
                         .font(.system(size: 14, weight: .medium))
@@ -169,6 +181,7 @@ struct AlbumView: View {
             }
         }.padding()
             .padding(.vertical)
+            .frame(maxWidth: 460)
             .background(Color.white)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .padding()
@@ -186,7 +199,9 @@ struct AlbumView: View {
             
             HStack(spacing: 56) {
                 Button {
-                    
+                    withAnimation(.spring()) {
+                        delete = false
+                    }
                 } label: {
                     Text("取消")
                         .font(.system(size: 14, weight: .medium))
@@ -197,7 +212,9 @@ struct AlbumView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }
                 Button {
-                    
+                    withAnimation(.spring()) {
+                        delete = false
+                    }
                 } label: {
                     Text("确认")
                         .font(.system(size: 14, weight: .medium))
@@ -210,7 +227,7 @@ struct AlbumView: View {
             }
         }.padding()
             .padding(.vertical)
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: 460)
             .background(Color.white)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .padding()

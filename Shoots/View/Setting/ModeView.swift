@@ -79,7 +79,7 @@ struct ModeView: View {
                 .padding(.vertical, 20)
         }
         .padding(.top, 26)
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: 560)
         .background(Color.white)
         .clipShape(RoundedCornersShape(tl: 36, tr: 36))
     }
