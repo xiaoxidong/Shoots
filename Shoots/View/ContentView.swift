@@ -18,62 +18,19 @@ struct ContentView: View {
     @State var upload = false
     @State var showNavigation = true
     @State var offset: CGSize = .zero
+
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    #endif
     var body: some View {
         NavigationView {
-            HomeView(homeVM: homeVM, searchText: $searchText)
-                .navigationTitle("Shoots")
-                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
-                .simultaneousGesture(
-                    DragGesture()
-                        .onChanged({ location in
-                            offset = location.translation
-                            if location.translation.height > 0 {
-                                print("下")
-                                withAnimation(.spring()) {
-                                    showNavigation = true
-                                }
-                            } else {
-                                print("上")
-                                withAnimation(.spring()) {
-                                    showNavigation = false
-                                }
-                            }
-                        })
-                )
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        NavigationLink {
-                            SelfView()
-                        } label: {
-                            Image("self")
-                        }
-                    }
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        if showCustomUpload {
-                            Button {
-                                withAnimation(.spring()) {
-                                    uploadOptions.toggle()
-                                }
-                            } label: {
-                                Image("upload")
-                            }
-                        } else {
-                            NavigationLink {
-                                UploadView()
-                            } label: {
-                                Image("upload")
-                            }
-                        }
-                    }
-                }
-                .overlay(
-                    uploadView, alignment: .bottom
-                )
-                .edgesIgnoringSafeArea(.bottom)
-                .toolbar(showNavigation ? .visible : .hidden, for: .automatic)
+            if horizontalSizeClass == .compact {
+                iOSHomeView
+            } else {
+                iPadHomeView
+            }
         }
-        .navigationViewStyle(.stack)
         .overlay(
             homeNew
         )
@@ -96,6 +53,97 @@ struct ContentView: View {
             // 请求第一页的数据
             loadData()
         }
+    }
+    
+    var iPadHomeView: some View {
+        Group {
+            IPadSearchDefaultView(searchText: $searchText)
+                .navigationTitle("Shoots")
+
+            homeFeed
+        }
+    }
+    
+    var iOSHomeView: some View {
+        homeFeed
+            .navigationTitle("Shoots")
+            .simultaneousGesture(
+                DragGesture()
+                    .onChanged({ location in
+                        offset = location.translation
+                        if location.translation.height > 0 {
+                            print("下")
+                            withAnimation(.spring()) {
+                                showNavigation = true
+                            }
+                        } else {
+                            print("上")
+                            withAnimation(.spring()) {
+                                showNavigation = false
+                            }
+                        }
+                    })
+            )
+            .toolbar(showNavigation ? .visible : .hidden, for: .automatic)
+    }
+    
+    @State var uploadisActive = false
+    var homeFeed: some View {
+        HomeView(homeVM: homeVM, searchText: $searchText)
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavigationLink {
+                        SelfView()
+                    } label: {
+                        Image("self")
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if showCustomUpload {
+                        if horizontalSizeClass == .compact {
+                            Button {
+                                withAnimation(.spring()) {
+                                    uploadOptions.toggle()
+                                }
+                            } label: {
+                                Image("upload")
+                            }
+                        } else {
+                            Menu {
+                                Button {
+                                    uploadisActive.toggle()
+                                } label: {
+                                    Label("上传截图", image: "upload")
+                                }
+                                
+                                Button {
+                                    customUpload.toggle()
+                                } label: {
+                                    Label("整理截图", image: "tags")
+                                }
+                            } label: {
+                                Image("upload")
+                            }.background(
+                                NavigationLink(destination: UploadView(), isActive: $uploadisActive) {
+                                    EmptyView()
+                                }
+                            )
+                        }
+                    } else {
+                        NavigationLink {
+                            UploadView()
+                        } label: {
+                            Image("upload")
+                        }
+                    }
+                }
+            }
+            .overlay(
+                uploadView, alignment: .bottom
+            )
+            .edgesIgnoringSafeArea(.bottom)
     }
     
     
@@ -163,7 +211,7 @@ struct ContentView: View {
                 .shadow(color: Color.shootBlack.opacity(0.2), radius: 10, y: -10)
                 .contentShape(Rectangle())
                 .offset(y: uploadOptions ? 0 : 1000)
-            }
+            }.frame(maxWidth: 660)
         }
     }
     

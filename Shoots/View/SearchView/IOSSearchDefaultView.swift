@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchDefaultView: View {
+struct IOSSearchDefaultView: View {
     @Binding var searchText: String
     
     var body: some View {
@@ -60,6 +60,6 @@ struct SearchDefaultView: View {
 
 struct SearchDefaultView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchDefaultView(searchText: .constant(""))
+        IOSSearchDefaultView(searchText: .constant(""))
     }
 }

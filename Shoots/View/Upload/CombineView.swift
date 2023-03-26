@@ -16,7 +16,7 @@ struct CombineView: View {
                 Image("s\(index)")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: screen.width - 30)
+                    .frame(maxWidth: 560)
                     .overlay {
                         Group {
                             Color.red
@@ -29,6 +29,7 @@ struct CombineView: View {
                             }
                         }.opacity(selected == "s\(index)" ? 1 : 0)
                     }
+                    .padding(.horizontal)
                     .onTapGesture {
                         withAnimation(.spring()) {
                             selected = "s\(index)"

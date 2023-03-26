@@ -54,8 +54,9 @@ struct FolderCardView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }
             }
-            .frame(width: 156, height: 286)
-            .shadow(color: Color.shootBlack.opacity(0.1), radius: 12)
+            .frame(maxWidth: 156, maxHeight: 286)
+            .padding(.top)
+            .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
             .overlay(alignment: .bottomLeading) {
                 Text("\(images.count) 张")
                     .font(.system(size: 14, weight: .bold))

@@ -9,11 +9,16 @@ import SwiftUI
 
 struct CombineSelectView: View {
     @Environment(\.dismiss) var dismiss
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    #endif
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 Divider()
-                editView
+                selectView
             }
             .navigationTitle("选择图片进行拼接")
             .navigationBarTitleDisplayMode(.inline)
@@ -40,13 +45,15 @@ struct CombineSelectView: View {
         }
     }
     
-    let columns = [
-        GridItem(.flexible(minimum: 100, maximum: 160), spacing: 2),
-        GridItem(.flexible(minimum: 100, maximum: 160), spacing: 2),
-        GridItem(.flexible(minimum: 100, maximum: 160), spacing: 2)
-    ]
+    var columns: [GridItem] {
+        if horizontalSizeClass == .compact {
+            return [GridItem(.adaptive(minimum: 120, maximum: 260), spacing: 2)]
+        } else {
+            return [GridItem(.adaptive(minimum: 220, maximum: 360), spacing: 2)]
+        }
+    }
     @State var selected: [String] = []
-    var editView: some View {
+    var selectView: some View {
         ScrollView {
             LazyVGrid(columns: columns, alignment: .leading, spacing: 2) {
                 ForEach(homeData) { shoot in

@@ -10,6 +10,10 @@ import SwiftUI
 struct SelfView: View {
     @State var showTag = false
     @Environment(\.dismiss) var dismiss
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    #endif
     var body: some View {
         ScrollView {
             if showTag {
@@ -47,41 +51,40 @@ struct SelfView: View {
         GridItem(.flexible(minimum: 100, maximum: 160), spacing: 26),
         GridItem(.flexible(minimum: 100, maximum: 160), spacing: 26)
     ]
+    let rows = [
+        GridItem(.flexible(minimum: 400, maximum: 400), spacing: 26.0)
+    ]
     
     @State var tags: [String] = ["Feed", "Friends", "Settings", "Cards", "Live", "Maps", "Follwer", "Help", "Shop"]
     @State var selected = "Feed"
     var tagView: some View {
         VStack {
-            VStack {
-                HStack {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 16) {
-                            ForEach(tags, id: \.self) { text in
-                                Button {
-                                    withAnimation(.spring()) {
-                                        selected = text
-                                    }
-                                } label: {
-                                    Text(text)
-                                        .font(.system(size: selected == text ? 17 : 15, weight: selected == text ? .bold : .medium))
-                                        .foregroundColor(selected == text ? .shootBlue : .shootBlack)
-                                        .padding(.bottom, 12)
+            HStack {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 16) {
+                        ForEach(tags, id: \.self) { text in
+                            Button {
+                                withAnimation(.spring()) {
+                                    selected = text
                                 }
+                            } label: {
+                                Text(text)
+                                    .font(.system(size: selected == text ? 17 : 15, weight: selected == text ? .bold : .medium))
+                                    .foregroundColor(selected == text ? .shootBlue : .shootBlack)
+                                    .padding(.bottom, 12)
                             }
-                        }.padding(.horizontal)
-                    }
-                    Button {
-                        withAnimation(.spring()) {
-                            showTag.toggle()
                         }
-                    } label: {
-                        Image("grouped")
-                            .padding(.bottom, 12)
-                    }.padding(.trailing)
-                }.padding(.top)
-                
-                Divider()
-            }
+                    }.padding(.horizontal)
+                }
+                Button {
+                    withAnimation(.spring()) {
+                        showTag.toggle()
+                    }
+                } label: {
+                    Image("grouped")
+                        .padding(.bottom, 12)
+                }.padding(.trailing)
+            }.padding(.top)
             
             // 列表
             FeedView(shoots: homeData)
@@ -114,48 +117,31 @@ struct SelfView: View {
                 .padding(.top, 16)
                 .padding(.bottom, 12)
             
-            LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
-                ForEach(1..<11) { index in
-                    NavigationLink {
-                        AlbumView()
-                    } label: {
-                        VStack(spacing: 12) {
-                            ZStack {
-                                Image("s1")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                    .rotationEffect(Angle(degrees: -3))
-                                Image("s1")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                    .rotationEffect(Angle(degrees: -6))
-                                Image("s1")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+            if horizontalSizeClass == .compact {
+                LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
+                    ForEach(1..<10) { index in
+                        NavigationLink {
+                            AlbumView()
+                        } label: {
+                            FolderCardView(images: ["s1", "s3", "s5"], name: "Instagram")
+                        }
+                    }
+                }
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHGrid(rows: rows, alignment: .center, spacing: 26) {
+                        ForEach(1..<11) { index in
+                            NavigationLink {
+                                AlbumView()
+                            } label: {
+                                FolderCardView(images: ["s1", "s3", "s5"], name: "Instagram")
+                                    .frame(width: 206)
                             }
-                            .shadow(color: Color.shootBlack.opacity(0.1), radius: 12)
-                            .overlay(alignment: .bottomLeading) {
-                                Text("129 张")
-                                    .font(.system(size: 14, weight: .bold))
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .foregroundColor(.white)
-                                    .background(Color.shootRed.opacity(0.9))
-                                    .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-                                    .padding(6)
-                                    .offset(x: -4)
-                            }
-                            
-                            Text("Instagram")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.shootBlack)
                         }
                     }
                 }
             }
+            
             
             Text("收藏截图")
                 .font(.system(size: 16, weight: .bold))
@@ -164,46 +150,28 @@ struct SelfView: View {
                 .padding(.top, 36)
                 .padding(.bottom, 12)
             
-            LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
-                ForEach(1..<10) { index in
-                    NavigationLink {
-                        AlbumView()
-                    } label: {
-                        VStack(spacing: 12) {
-                            ZStack {
-                                Image("s1")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                    .rotationEffect(Angle(degrees: -3))
-                                Image("s1")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                    .rotationEffect(Angle(degrees: -6))
-                                Image("s1")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            }
-                            .shadow(color: Color.shootBlack.opacity(0.1), radius: 12)
-                            .overlay(alignment: .bottomLeading) {
-                                Text("129 张")
-                                    .font(.system(size: 14, weight: .bold))
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .foregroundColor(.white)
-                                    .background(Color.shootRed)
-                                    .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-                                    .padding(6)
-                            }
-                            
-                            Text("Instagram")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.shootBlack)
+            if horizontalSizeClass == .compact {
+                LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
+                    ForEach(1..<10) { index in
+                        NavigationLink {
+                            AlbumView()
+                        } label: {
+                            FolderCardView(images: ["s1", "s3", "s5"], name: "Instagram")
                         }
                     }
-                    
+                }
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHGrid(rows: rows, alignment: .center, spacing: 26) {
+                        ForEach(1..<11) { index in
+                            NavigationLink {
+                                AlbumView()
+                            } label: {
+                                FolderCardView(images: ["s1", "s3", "s5"], name: "Instagram")
+                                    .frame(width: 206)
+                            }
+                        }
+                    }
                 }
             }
         }.padding(.horizontal)

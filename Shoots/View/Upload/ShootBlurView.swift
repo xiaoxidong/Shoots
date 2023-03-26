@@ -16,7 +16,7 @@ struct ShootBlurView: View {
                 Image("s1")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: screen.width)
+                    .frame(maxWidth: 560)
             }
             .navigationTitle("敏感信息隐藏")
             .navigationBarTitleDisplayMode(.inline)

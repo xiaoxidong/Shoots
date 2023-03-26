@@ -33,7 +33,7 @@ struct SearchView: View {
                 } else if searchText == "关注" {
                     FeedView(shoots: homeData)
                 } else {
-                    SearchDefaultView(searchText: $searchText)
+                    IOSSearchDefaultView(searchText: $searchText)
                 }
             }
         }

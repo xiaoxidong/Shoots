@@ -14,6 +14,7 @@
 		4E195EF029C040C800E97522 /* ShootsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EEF29C040C800E97522 /* ShootsTests.swift */; };
 		4E195EFA29C040C800E97522 /* ShootsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EF929C040C800E97522 /* ShootsUITests.swift */; };
 		4E195EFC29C040C800E97522 /* ShootsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */; };
+		4E54163F29CFFD800053BE9E /* IPadSearchDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */; };
 		4E58F91B29CB2FF40087E902 /* CustomUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E58F91A29CB2FF40087E902 /* CustomUploadView.swift */; };
 		4E58F91D29CB37000087E902 /* DNALoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E58F91C29CB37000087E902 /* DNALoading.swift */; };
 		4E58F92029CB38CE0087E902 /* ShootEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E58F91F29CB38CE0087E902 /* ShootEmptyView.swift */; };
@@ -178,7 +179,7 @@
 		4EE49F9129C887B800B51F4B /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9029C887B800B51F4B /* AppView.swift */; };
 		4EE49F9329C88BA700B51F4B /* ActionTitleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9229C88BA700B51F4B /* ActionTitleButtonView.swift */; };
 		4EE49F9629C88E2B00B51F4B /* SwiftUIFlowLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 4EE49F9529C88E2B00B51F4B /* SwiftUIFlowLayout */; };
-		4EE49F9829C8943000B51F4B /* SearchDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9729C8943000B51F4B /* SearchDefaultView.swift */; };
+		4EE49F9829C8943000B51F4B /* IOSSearchDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9729C8943000B51F4B /* IOSSearchDefaultView.swift */; };
 		4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9929C898CE00B51F4B /* SelfView.swift */; };
 		4EE49FA329C89CAF00B51F4B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49FA229C89CAF00B51F4B /* SettingView.swift */; };
 /* End PBXBuildFile section */
@@ -212,6 +213,7 @@
 		4E195EF529C040C800E97522 /* ShootsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShootsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E195EF929C040C800E97522 /* ShootsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsUITests.swift; sourceTree = "<group>"; };
 		4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadSearchDefaultView.swift; sourceTree = "<group>"; };
 		4E58F91A29CB2FF40087E902 /* CustomUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUploadView.swift; sourceTree = "<group>"; };
 		4E58F91C29CB37000087E902 /* DNALoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNALoading.swift; sourceTree = "<group>"; };
 		4E58F91F29CB38CE0087E902 /* ShootEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootEmptyView.swift; sourceTree = "<group>"; };
@@ -382,7 +384,7 @@
 		4EE49F8E29C8831500B51F4B /* ImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
 		4EE49F9029C887B800B51F4B /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		4EE49F9229C88BA700B51F4B /* ActionTitleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTitleButtonView.swift; sourceTree = "<group>"; };
-		4EE49F9729C8943000B51F4B /* SearchDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDefaultView.swift; sourceTree = "<group>"; };
+		4EE49F9729C8943000B51F4B /* IOSSearchDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSSearchDefaultView.swift; sourceTree = "<group>"; };
 		4EE49F9929C898CE00B51F4B /* SelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfView.swift; sourceTree = "<group>"; };
 		4EE49FA229C89CAF00B51F4B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -980,7 +982,8 @@
 		4E99304929C9FE3000D99DA9 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
-				4EE49F9729C8943000B51F4B /* SearchDefaultView.swift */,
+				4EE49F9729C8943000B51F4B /* IOSSearchDefaultView.swift */,
+				4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */,
 				4E99304729C9FBCC00D99DA9 /* SearchView.swift */,
 			);
 			path = SearchView;
@@ -1281,6 +1284,7 @@
 				4E5CF70A29CD5AC000A4E0DE /* TimePeriodProtocol.swift in Sources */,
 				4E195EE029C040C600E97522 /* ContentView.swift in Sources */,
 				4E99304629C9F2CC00D99DA9 /* FolderCardView.swift in Sources */,
+				4E54163F29CFFD800053BE9E /* IPadSearchDefaultView.swift in Sources */,
 				4E5CF6A529CD58D100A4E0DE /* ElegantVList.swift in Sources */,
 				4E5CF71029CD5AC000A4E0DE /* DotNetParserFormatter.swift in Sources */,
 				4E5CF74F29CD784F00A4E0DE /* CombineView.swift in Sources */,
@@ -1395,7 +1399,7 @@
 				4E5CF69F29CD58D100A4E0DE /* AlertActivityIndicatorView.swift in Sources */,
 				4E5CF67E29CD58D100A4E0DE /* ScalingDotsIndicatorView.swift in Sources */,
 				4E5CF67329CD58D100A4E0DE /* InAppReceipt.swift in Sources */,
-				4EE49F9829C8943000B51F4B /* SearchDefaultView.swift in Sources */,
+				4EE49F9829C8943000B51F4B /* IOSSearchDefaultView.swift in Sources */,
 				4E5CF69129CD58D100A4E0DE /* View+vibrancyEffectStyle.swift in Sources */,
 				4E5CF6C529CD58D100A4E0DE /* SlimRectangle.swift in Sources */,
 				4E5CF6AF29CD58D100A4E0DE /* ElegantPagesView.swift in Sources */,

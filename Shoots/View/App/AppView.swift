@@ -78,6 +78,7 @@ struct AppView: View {
                 HStack {
                     ForEach(app.flows) { flow in
                         FolderCardView(images: flow.images, name: flow.name)
+                            .frame(width: 156)
                             .onTapGesture {
                                 self.flow = flow
                             }

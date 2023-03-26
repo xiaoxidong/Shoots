@@ -12,14 +12,28 @@ struct HomeView: View {
     @Binding var searchText: String
     
     @Environment(\.isSearching) var isSearching
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    #endif
     var body: some View {
-        if isSearching {
-            if searchText == "Instagram" {
-                AppView(app: appData, topPadding: 16)
-            } else if searchText == "关注" {
-                FeedView(shoots: homeData)
+        if isSearching || searchText != "" {
+            if horizontalSizeClass == .compact {
+                if searchText == "Instagram" {
+                    AppView(app: appData, topPadding: 16)
+                } else if searchText == "关注" {
+                    FeedView(shoots: homeData)
+                } else {
+                    IOSSearchDefaultView(searchText: $searchText)
+                }
             } else {
-                SearchDefaultView(searchText: $searchText)
+                if searchText == "Instagram" {
+                    AppView(app: appData, topPadding: 16)
+                } else if searchText == "关注" {
+                    FeedView(shoots: homeData)
+                } else {
+                    FeedView(shoots: homeVM.shoots)
+                }
             }
         } else {
             FeedView(shoots: homeVM.shoots)

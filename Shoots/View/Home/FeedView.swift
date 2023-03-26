@@ -38,6 +38,7 @@ struct FeedView: View {
             VStack(spacing: 2) {
                 ForEach(shoots) { shoot in
                     ImageCardView(shoot: shoot)
+                        .frame(maxWidth: 560)
                 }
             }
         }.background(Color.shootLight.opacity(0.1))
