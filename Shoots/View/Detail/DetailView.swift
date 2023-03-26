@@ -15,12 +15,14 @@ struct DetailView: View {
     @State var search: String? = nil
     @AppStorage("showDetailNew") var showDetailNew = true
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             Image(shoot.imageUrl)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: 460)
                 .padding(.top)
-        }
+                .frame(maxWidth: .infinity)
+        }.background(Color.shootLight.opacity(0.1))
         .overlay(alignment: .bottom) {
             infoView
                 .offset(y: showDetail ? 0 : 1000)
@@ -167,7 +169,7 @@ struct DetailView: View {
                     
                 }
             }.padding(.horizontal)
-        }.frame(maxWidth: .infinity)
+        }.frame(maxWidth: 560)
             .padding()
             .padding(.bottom)
             .padding(.top, 8)
