@@ -12,43 +12,65 @@ struct FlowView: View {
     
     @Environment(\.dismiss) var dismiss
     @State var showDetail = false
+    #if os(iOS)
     var screen = UIScreen.main.bounds
+    #endif
     var body: some View {
-        TabView {
+        Group {
+            #if os(iOS)
+            TabView {
+                content
+            }
+            .tabViewStyle(.page)
+            .navigationBarBackButtonHidden()
+            .statusBarHidden()
+            #else
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    content
+                }
+            }.background(Color.shootLight.opacity(0.2))
+            #endif
+        }
+        .onTapGesture {
+            withAnimation(.spring()) {
+                showDetail.toggle()
+            }
+        }
+        .overlay(alignment: .topTrailing) {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "xmark")
+                    .font(.system(size: 16, weight: .semibold))
+                    .padding(8)
+                    .background(Color.white)
+                    .clipShape(Circle())
+                    .shadow(radius: 12)
+                    .padding()
+                    .padding(.top)
+            }.tint(.shootBlack)
+                .buttonStyle(.plain)
+        }
+        .overlay(alignment: .bottom) {
+            infoView
+                .offset(y: showDetail ? 0 : 1000)
+        }
+        .ignoresSafeArea()
+    }
+    
+    var content: some View {
+        Group {
             ForEach(flow.images, id: \.self) { image in
                 Image(image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                 // 不设置的时候，左侧有个空白
+                #if os(iOS)
                     .frame(width: screen.width, height: screen.height)
+                #endif
             }
-        }.tabViewStyle(.page)
-            .navigationBarBackButtonHidden()
-            .statusBarHidden()
-            .onTapGesture {
-                withAnimation(.spring()) {
-                    showDetail.toggle()
-                }
-            }
-            .overlay(alignment: .topLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 16, weight: .semibold))
-                        .padding(8)
-                        .background(Color.white)
-                        .clipShape(Circle())
-                        .shadow(radius: 12)
-                        .padding()
-                        .padding(.top)
-                }.tint(.shootBlack)
-            }
-            .overlay(alignment: .bottom) {
-                infoView
-                    .offset(y: showDetail ? 0 : 1000)
-            }
-            .ignoresSafeArea()
+        }
     }
     
     var infoView: some View {

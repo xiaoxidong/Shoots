@@ -15,35 +15,53 @@ struct SelfView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
     var body: some View {
+        #if os(iOS)
+        content
+            .navigationTitle("Xiaodong")
+                .navigationBarBackButtonHidden()
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .font(.system(size: 16, weight: .semibold))
+                                .tint(.shootBlue)
+                        }
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink {
+                            SettingView()
+                        } label: {
+                            Image("setting")
+                        }
+                        
+                    }
+                }
+        #else
+        VStack {
+            HStack {
+                Text("Xiaodong")
+                    .font(.largeTitle)
+                    .bold()
+                Spacer()
+                MacCloseButton()
+            }.padding([.horizontal, .top], 36)
+            content
+        }
+        #endif
+    }
+    
+    var content: some View {
         ScrollView {
             if showTag {
                 tagView
             } else {
                 folderView
             }
-        }.navigationTitle("Xiaodong")
-            .navigationBarBackButtonHidden()
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .font(.system(size: 16, weight: .semibold))
-                            .tint(.shootBlue)
-                    }
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink {
-                        SettingView()
-                    } label: {
-                        Image("setting")
-                    }
-                    
-                }
-            }
+        }
     }
     
     let columns = [
@@ -72,7 +90,7 @@ struct SelfView: View {
                                     .font(.system(size: selected == text ? 17 : 15, weight: selected == text ? .bold : .medium))
                                     .foregroundColor(selected == text ? .shootBlue : .shootBlack)
                                     .padding(.bottom, 12)
-                            }
+                            }.buttonStyle(.plain)
                         }
                     }.padding(.horizontal)
                 }
@@ -83,7 +101,8 @@ struct SelfView: View {
                 } label: {
                     Image("grouped")
                         .padding(.bottom, 12)
-                }.padding(.trailing)
+                }.buttonStyle(.plain)
+                    .padding(.trailing)
             }.padding(.top)
             
             // 列表
@@ -91,6 +110,7 @@ struct SelfView: View {
         }
     }
     
+    @State var showMacFolderView = false
     var folderView: some View {
         VStack {
             VStack {
@@ -105,7 +125,7 @@ struct SelfView: View {
                         }
                     } label: {
                         Image("tags")
-                    }
+                    }.buttonStyle(.plain)
                 }.padding(.top)
                     
                 Divider()
@@ -116,7 +136,7 @@ struct SelfView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 16)
                 .padding(.bottom, 12)
-            
+            #if os(iOS)
             if horizontalSizeClass == .compact {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
                     ForEach(1..<10) { index in
@@ -141,7 +161,19 @@ struct SelfView: View {
                     }
                 }
             }
-            
+            #else
+            LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
+                ForEach(1..<10) { index in
+                    Button {
+                        showMacFolderView.toggle()
+                    } label: {
+                        FolderCardView(images: ["s1", "s3", "s5"], name: "Instagram")
+                    }.buttonStyle(.plain)
+                }
+            }.sheet(isPresented: $showMacFolderView) {
+                AlbumView().sheetFrameForMac()
+            }
+            #endif
             
             Text("收藏截图")
                 .font(.system(size: 16, weight: .bold))
@@ -149,7 +181,7 @@ struct SelfView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 36)
                 .padding(.bottom, 12)
-            
+            #if os(iOS)
             if horizontalSizeClass == .compact {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
                     ForEach(1..<10) { index in
@@ -174,6 +206,20 @@ struct SelfView: View {
                     }
                 }
             }
+            #else
+            LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
+                ForEach(1..<10) { index in
+                    Button {
+                        showMacFolderView.toggle()
+                    } label: {
+                        FolderCardView(images: ["s1", "s3", "s5"], name: "Instagram")
+                    }.buttonStyle(.plain)
+                }
+            }
+            .sheet(isPresented: $showMacFolderView) {
+                AlbumView().sheetFrameForMac()
+            }
+            #endif
         }.padding(.horizontal)
     }
 }

@@ -18,6 +18,7 @@ struct HomeView: View {
     #endif
     var body: some View {
         if isSearching || searchText != "" {
+            #if os(iOS)
             if horizontalSizeClass == .compact {
                 if searchText == "Instagram" {
                     AppView(app: appData, topPadding: 16)
@@ -35,6 +36,15 @@ struct HomeView: View {
                     FeedView(shoots: homeVM.shoots)
                 }
             }
+            #else
+            if searchText == "Instagram" {
+                AppView(app: appData, topPadding: 16)
+            } else if searchText == "关注" {
+                FeedView(shoots: homeData)
+            } else {
+                FeedView(shoots: homeVM.shoots)
+            }
+            #endif
         } else {
             FeedView(shoots: homeVM.shoots)
         }

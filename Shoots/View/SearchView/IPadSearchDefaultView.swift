@@ -34,7 +34,7 @@ struct IPadSearchDefaultView: View {
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(.shootBlack)
                             }
-                        }
+                        }.buttonStyle(.plain)
                     }
                 }.padding(.horizontal)
                     .padding(.top)
@@ -55,8 +55,7 @@ struct IPadSearchDefaultView: View {
                         .padding(.vertical, 6)
                         .background(Color.shootBlue.opacity(0.12))
                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                }
-
+                }.buttonStyle(.plain)
             }.padding(.top)
                 .padding(.horizontal)
         }

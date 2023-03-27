@@ -13,33 +13,34 @@ struct FeedView: View {
     
     @AppStorage("homeModel") var homeModel = 0
     var body: some View {
-        if homeModel == 0 {
-            waterfallView(columns: 3)
-        } else if homeModel == 1 {
-            waterfallView(columns: 2)
-        } else {
-            singleLineView
+        ScrollView {
+            VStack(spacing: 0) {
+                Divider()
+                if homeModel == 0 {
+                    waterfallView(columns: 3)
+                } else if homeModel == 1 {
+                    waterfallView(columns: 2)
+                } else {
+                    singleLineView
+                }
+            }
         }
+            .frame(maxWidth: .infinity)
     }
     
     func waterfallView(columns: Int) -> some View {
-        ScrollView {
-            Divider()
-            WaterfallGrid(shoots) { shoot in
-                ImageCardView(shoot: shoot)
-            }
-            .gridStyle(columns: columns)
+        WaterfallGrid(shoots) { shoot in
+            ImageCardView(shoot: shoot)
         }
+        .gridStyle(columns: columns)
+        .frame(maxWidth: 1060)
     }
     
     var singleLineView: some View {
-        ScrollView {
-            Divider()
-            VStack(spacing: 2) {
-                ForEach(shoots) { shoot in
-                    ImageCardView(shoot: shoot)
-                        .frame(maxWidth: 560)
-                }
+        VStack(spacing: 2) {
+            ForEach(shoots) { shoot in
+                ImageCardView(shoot: shoot)
+                    .frame(maxWidth: 560)
             }
         }.background(Color.shootLight.opacity(0.1))
     }

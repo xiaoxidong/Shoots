@@ -25,8 +25,7 @@ struct ActionTitleButtonView: View {
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(.shootBlack)
             }
-        }
-
+        }.buttonStyle(.plain)
     }
 }
 

@@ -45,7 +45,11 @@ struct AppView: View {
                 
                 Button {
                     if let url = URL(string: app.url) {
+                        #if os(iOS)
                         UIApplication.shared.open(url)
+                        #else
+                        NSWorkspace.shared.open(url)
+                        #endif
                     }
                 } label: {
                     HStack(spacing: 2) {
@@ -53,8 +57,7 @@ struct AppView: View {
                         Image(systemName: "chevron.forward")
                     }.font(.system(size: 16, weight: .bold))
                         .foregroundColor(.shootBlue)
-                }
-
+                }.buttonStyle(.plain)
             }
             
             Text(app.info)
@@ -86,9 +89,16 @@ struct AppView: View {
                 }.padding(.horizontal)
             }
         }.padding(.top, 26)
+        #if os(iOS)
             .fullScreenCover(item: $flow) { flow in
                 FlowView(flow: flow)
             }
+        #else
+            .sheet(item: $flow) { flow in
+                FlowView(flow: flow)
+                    .sheetFrameForMac()
+            }
+        #endif
     }
     
     var imagesView: some View {

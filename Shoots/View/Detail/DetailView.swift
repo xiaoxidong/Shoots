@@ -58,9 +58,16 @@ struct DetailView: View {
                 showDetail.toggle()
             }
         }
+        #if os(iOS)
         .fullScreenCover(item: $search) { search in
             SearchView(searchText: search)
         }
+        #else
+        .overlay(alignment: .topTrailing) {
+            MacCloseButton()
+                .padding(26)
+        }
+        #endif
     }
     
     
@@ -77,22 +84,36 @@ struct DetailView: View {
                         .foregroundColor(.shootBlack)
                     Image("link")
                 }
-            }.sheet(isPresented: $showApp) {
-                NavigationView {
-                    AppView(app: shoot.app)
-                        .navigationTitle(shoot.app.name)
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                Button {
-                                    
-                                } label: {
-                                    Image(systemName: "square.and.arrow.up.fill")
-                                }.tint(.shootRed)
+            }.buttonStyle(.plain)
+                .sheet(isPresented: $showApp) {
+                    #if os(iOS)
+                    NavigationView {
+                        AppView(app: shoot.app)
+                            .navigationTitle(shoot.app.name)
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarTrailing) {
+                                    Button {
+                                        
+                                    } label: {
+                                        Image(systemName: "square.and.arrow.up.fill")
+                                    }.tint(.shootRed)
+                                }
                             }
-                        }
+                    }
+                    #else
+                    VStack {
+                        HStack {
+                            Text("Instagram")
+                                .font(.largeTitle)
+                                .bold()
+                            Spacer()
+                            MacCloseButton()
+                        }.padding([.horizontal, .top], 36)
+                        AppView(app: shoot.app)
+                    }.sheetFrameForMac()
+                    #endif
                 }
-            }
 
             // 个人信息
             HStack {
@@ -147,8 +168,7 @@ struct DetailView: View {
                         .padding(.vertical, 6)
                         .background(Color.shootBlue.opacity(0.12))
                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                }
-
+                }.buttonStyle(.plain)
             }
             
             // 操作按钮

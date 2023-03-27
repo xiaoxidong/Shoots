@@ -11,15 +11,20 @@ struct SettingCellView: View {
     var image: String
     var text: String
     let action: () -> Void
-    
+    #if os(iOS)
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
+    #endif
     var padding: CGFloat {
+        #if os(iOS)
         if horizontalSizeClass == .regular && verticalSizeClass == .compact {
             return 56
         } else {
             return 16
         }
+        #else
+        return 16
+        #endif
     }
     var body: some View {
         VStack(spacing: 0) {

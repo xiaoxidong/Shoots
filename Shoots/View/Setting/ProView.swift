@@ -159,7 +159,11 @@ struct ProView: View {
                                             .fixedSize()
                                         Spacer()
                                         Button(action: {
+                                            #if os(iOS)
                                             UIApplication.shared.open(URL(string: "https://apps.apple.com/account/subscriptions")!)
+                                            #else
+                                            NSWorkspace.shared.open(URL(string: "https://apps.apple.com/account/subscriptions")!)
+                                            #endif
                                         }) {
                                             Text("订阅管理")
                                                 .bold()
@@ -172,7 +176,9 @@ struct ProView: View {
                             }.padding(.top, 10)
                         }
                         .padding()
+                        #if os(iOS)
                         .padding(.horizontal, iPhonelandscape ? 46 : 0)
+                        #endif
                     }
                     .padding(.top, 12)
                     .padding(.bottom, 16)

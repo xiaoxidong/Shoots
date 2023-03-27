@@ -18,6 +18,7 @@ struct ImageCardView: View {
             .aspectRatio(contentMode: .fit)
             .sheet(isPresented: $showDetail) {
                 DetailView(shoot: shoot)
+                    .sheetFrameForMac()
             }
             .onTapGesture {
                 showDetail.toggle()
@@ -34,6 +35,14 @@ struct ImageCardView: View {
                         }
                     }
             )
+            .onDrag {
+                #if os(iOS)
+                let provider = NSItemProvider(object: UIImage(named: shoot.imageUrl) ?? UIImage())
+                #else
+                let provider = NSItemProvider(object: NSImage(named: shoot.imageUrl) ?? NSImage())
+                #endif
+                return provider
+            }
     }
 }
 

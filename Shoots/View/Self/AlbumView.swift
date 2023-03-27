@@ -14,13 +14,8 @@ struct AlbumView: View {
     @State var delete = false
     @Environment(\.dismiss) var dismiss
     var body: some View {
-        VStack {
-            if edit {
-                editView
-            } else {
-                FeedView(shoots: homeData)
-            }
-        }
+        #if os(iOS)
+        content
             .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -71,27 +66,88 @@ struct AlbumView: View {
                     }
                 }
             }
-            .overlay(
-                Group {
-                    Color.black
-                        .ignoresSafeArea()
-                        .opacity(editName || delete ? 0.2 : 0)
-                        .onTapGesture {
-                            withAnimation(.spring()) {
-                                editName = false
-                                delete = false
-                            }
+        #else
+        VStack {
+            HStack {
+                Button {
+                    withAnimation(.spring()) {
+                        edit.toggle()
+                    }
+                } label: {
+                    Text(edit ? "完成" : "管理")
+                        .bold()
+                        .foregroundColor(.shootBlue)
+                }.buttonStyle(.plain)
+                
+                Spacer()
+                Button {
+                    withAnimation(.spring()) {
+                        editName.toggle()
+                    }
+                } label: {
+                    HStack(spacing: 2) {
+                        Text("Poke")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.shootBlack)
+                        Image("edit")
+                    }
+                }.buttonStyle(.plain)
+                Spacer()
+                Button {
+                    if edit {
+                        withAnimation(.spring()) {
+                            delete.toggle()
                         }
-                    if editName {
-                        editNameView
-                            .transition(.scale(scale: 0.6).combined(with: .opacity))
+                    } else {
+                        dismiss()
                     }
-                    if delete {
-                        deleteView
-                            .transition(.scale(scale: 0.6).combined(with: .opacity))
+                } label: {
+                    if edit {
+                        Text("删除")
+                            .bold()
+                            .foregroundColor(selected.isEmpty ? .shootGray : .shootRed)
+                    } else {
+                        MacCloseButton()
                     }
+                }.disabled(edit && selected.isEmpty)
+                    .buttonStyle(.plain)
+                
+            }.padding([.horizontal, .top], 36)
+            content
+        }
+        #endif
+            
+    }
+    
+    var content: some View {
+        VStack {
+            if edit {
+                editView
+            } else {
+                FeedView(shoots: homeData)
+            }
+        }.overlay(
+            Group {
+                Color.black
+                    .ignoresSafeArea()
+                    .opacity(editName || delete ? 0.2 : 0)
+                    .onTapGesture {
+                        withAnimation(.spring()) {
+                            editName = false
+                            delete = false
+                        }
+                    }
+                if editName {
+                    editNameView
+                        .transition(.scale(scale: 0.6).combined(with: .opacity))
                 }
-            )
+                if delete {
+                    deleteView
+                        .transition(.scale(scale: 0.6).combined(with: .opacity))
+                }
+            }
+        )
     }
     
     #if os(iOS)
@@ -100,11 +156,15 @@ struct AlbumView: View {
     #endif
     
     var columns: [GridItem] {
+        #if os(iOS)
         if horizontalSizeClass == .compact {
             return [GridItem(.adaptive(minimum: 120, maximum: 260), spacing: 2)]
         } else {
             return [GridItem(.adaptive(minimum: 220, maximum: 360), spacing: 2)]
         }
+        #else
+        return [GridItem(.adaptive(minimum: 120, maximum: 260), spacing: 2)]
+        #endif
     }
     
     @State var selected: [String] = []
@@ -132,7 +192,7 @@ struct AlbumView: View {
                                     .foregroundColor(selected.contains(shoot.imageUrl) ? Color.shootRed : Color.white)
                                     .shadow(radius: 6)
                             }
-                    })
+                    }).buttonStyle(.plain)
                 }
             }
         }
@@ -147,6 +207,7 @@ struct AlbumView: View {
             
             VStack {
                 TextField("输入收藏夹名称", text: $name)
+                    .textFieldStyle(.plain)
                     .padding(.horizontal)
                 Divider()
             }
@@ -164,7 +225,7 @@ struct AlbumView: View {
                         .foregroundColor(.black)
                         .background(Color.shootLight.opacity(0.4))
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                }
+                }.buttonStyle(.plain)
                 Button {
                     withAnimation(.spring()) {
                         editName = false
@@ -177,7 +238,7 @@ struct AlbumView: View {
                         .foregroundColor(.white)
                         .background(Color.shootRed)
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                }
+                }.buttonStyle(.plain)
             }
         }.padding()
             .padding(.vertical)
@@ -210,7 +271,7 @@ struct AlbumView: View {
                         .foregroundColor(.black)
                         .background(Color.shootLight.opacity(0.4))
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                }
+                }.buttonStyle(.plain)
                 Button {
                     withAnimation(.spring()) {
                         delete = false
@@ -223,7 +284,7 @@ struct AlbumView: View {
                         .foregroundColor(.white)
                         .background(Color.shootRed)
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                }
+                }.buttonStyle(.plain)
             }
         }.padding()
             .padding(.vertical)
@@ -238,7 +299,9 @@ struct AlbumView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             AlbumView()
+            #if os(iOS)
                 .navigationBarTitleDisplayMode(.inline)
+            #endif
         }
     }
 }

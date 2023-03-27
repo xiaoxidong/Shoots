@@ -35,4 +35,13 @@ extension View {
     ) -> some View {
         shadow(color: color, radius: blur / 2, x: x, y: y)
     }
+    
+    
+    func sheetFrameForMac() -> some View {
+        #if os(iOS)
+        self
+        #else
+        self.frame(minWidth: 400, idealWidth: 600, maxWidth: 700, minHeight: 500, idealHeight: 800, maxHeight: 900)
+        #endif
+    }
 }

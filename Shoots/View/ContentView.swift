@@ -25,11 +25,15 @@ struct ContentView: View {
     #endif
     var body: some View {
         NavigationView {
+            #if os(iOS)
             if horizontalSizeClass == .compact {
                 iOSHomeView
             } else {
                 iPadHomeView
             }
+            #else
+            iPadHomeView
+            #endif
         }
         .overlay(
             homeNew
@@ -46,9 +50,11 @@ struct ContentView: View {
             , alignment: .top
         )
         .ignoresSafeArea()
+        #if os(iOS)
         .fullScreenCover(isPresented: $customUpload, content: {
             CustomUploadView()
         })
+        #endif
         .onAppear {
             // 请求第一页的数据
             loadData()
@@ -58,7 +64,11 @@ struct ContentView: View {
     var iPadHomeView: some View {
         Group {
             IPadSearchDefaultView(searchText: $searchText)
+            #if os(iOS)
                 .navigationTitle("Shoots")
+            #else
+                .frame(minWidth: 280)
+            #endif
 
             homeFeed
         }
@@ -88,10 +98,12 @@ struct ContentView: View {
     }
     
     @State var uploadisActive = false
+    @State var showMacSelf = false
+    @State var showMacPro = false
     var homeFeed: some View {
         HomeView(homeVM: homeVM, searchText: $searchText)
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
             .toolbar {
+                #if os(iOS)
                 ToolbarItem(placement: .navigationBarLeading) {
                     NavigationLink {
                         SelfView()
@@ -139,14 +151,48 @@ struct ContentView: View {
                         }
                     }
                 }
+                #else
+                ToolbarItem(placement: .navigation) {
+                    Button {
+                        showMacSelf.toggle()
+                    } label: {
+                        Image("self")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .padding(3)
+                    }
+                }
+                
+                ToolbarItem(placement: .automatic) {
+                    Button {
+                        showMacPro.toggle()
+                    } label: {
+                        Image("pro")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .padding(3)
+                    }
+                }
+                #endif
             }
+        #if os(iOS)
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
             .overlay(
                 uploadView, alignment: .bottom
             )
+        #else
+            .searchable(text: $searchText)
+            .sheet(isPresented: $showMacSelf) {
+                SelfView().sheetFrameForMac()
+            }
+            .sheet(isPresented: $showMacPro) {
+                ProView().sheetFrameForMac()
+            }
+        #endif
             .edgesIgnoringSafeArea(.bottom)
     }
     
-    
+    #if os(iOS)
     var uploadView: some View {
         Group {
             Color.black.opacity(uploadOptions ? 0.02 : 0)
@@ -214,6 +260,7 @@ struct ContentView: View {
             }.frame(maxWidth: 660)
         }
     }
+    #endif
     
     var homeNew: some View {
         Group {
