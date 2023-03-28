@@ -258,8 +258,10 @@
 		4E5CF74D29CD749100A4E0DE /* CombineSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF74C29CD749100A4E0DE /* CombineSelectView.swift */; };
 		4E5CF74F29CD784F00A4E0DE /* CombineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF74E29CD784F00A4E0DE /* CombineView.swift */; };
 		4E5DE51A29C19680005495F0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DE51929C19680005495F0 /* HomeView.swift */; };
-		4E62A49329D158C400B09493 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62A49229D158C400B09493 /* Data+Extension.swift */; };
-		4E62A49429D158C600B09493 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62A49229D158C400B09493 /* Data+Extension.swift */; };
+		4E73A66F29D3122D009CFB5A /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73A66E29D3122D009CFB5A /* RefreshView.swift */; };
+		4E73A68A29D316BB009CFB5A /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 4E73A68929D316BB009CFB5A /* Introspect */; };
+		4E878ED429D191520027FDA9 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 4E878ED329D191520027FDA9 /* Refresh */; };
+		4E878ED529D192130027FDA9 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62A49229D158C400B09493 /* Data+Extension.swift */; };
 		4E99304029C9EBC400D99DA9 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99303F29C9EBC400D99DA9 /* FeedView.swift */; };
 		4E99304229C9F02000D99DA9 /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304129C9F02000D99DA9 /* FlowView.swift */; };
 		4E99304429C9F06300D99DA9 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304329C9F06300D99DA9 /* Flow.swift */; };
@@ -474,6 +476,7 @@
 		4E5CF74E29CD784F00A4E0DE /* CombineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineView.swift; sourceTree = "<group>"; };
 		4E5DE51929C19680005495F0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4E62A49229D158C400B09493 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		4E73A66E29D3122D009CFB5A /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
 		4E99303F29C9EBC400D99DA9 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		4E99304129C9F02000D99DA9 /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
 		4E99304329C9F06300D99DA9 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
@@ -504,6 +507,8 @@
 			files = (
 				4EE49F9629C88E2B00B51F4B /* SwiftUIFlowLayout in Frameworks */,
 				4EE49F8D29C8820F00B51F4B /* WaterfallGrid in Frameworks */,
+				4E73A68A29D316BB009CFB5A /* Introspect in Frameworks */,
+				4E878ED429D191520027FDA9 /* Refresh in Frameworks */,
 				4E5CF74929CD69D800A4E0DE /* CHIPageControl in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1210,6 +1215,7 @@
 			children = (
 				4E5DE51929C19680005495F0 /* HomeView.swift */,
 				4E99303F29C9EBC400D99DA9 /* FeedView.swift */,
+				4E73A66E29D3122D009CFB5A /* RefreshView.swift */,
 				4EE49F8E29C8831500B51F4B /* ImageCardView.swift */,
 			);
 			path = Home;
@@ -1280,6 +1286,8 @@
 				4EE49F8C29C8820F00B51F4B /* WaterfallGrid */,
 				4EE49F9529C88E2B00B51F4B /* SwiftUIFlowLayout */,
 				4E5CF74829CD69D800A4E0DE /* CHIPageControl */,
+				4E878ED329D191520027FDA9 /* Refresh */,
+				4E73A68929D316BB009CFB5A /* Introspect */,
 			);
 			productName = Shoots;
 			productReference = 4E195EDA29C040C600E97522 /* Shoots.app */;
@@ -1381,6 +1389,8 @@
 				4EE49F8B29C8820F00B51F4B /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
 				4EE49F9429C88E2B00B51F4B /* XCRemoteSwiftPackageReference "swiftui-flow-layout" */,
 				4E5CF74729CD69D800A4E0DE /* XCRemoteSwiftPackageReference "CHIPageControl" */,
+				4E878ED229D191520027FDA9 /* XCRemoteSwiftPackageReference "Refresh" */,
+				4E73A68829D316BB009CFB5A /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 4E195EDB29C040C600E97522 /* Products */;
 			projectDirPath = "";
@@ -1547,7 +1557,6 @@
 				4E5CF67B29CD58D100A4E0DE /* InAppReceiptVerificator.swift in Sources */,
 				4E5CF6FC29CD5AC000A4E0DE /* Region.swift in Sources */,
 				4E5CF67029CD58D100A4E0DE /* InAppProductQueryRequest.swift in Sources */,
-				4E62A49329D158C400B09493 /* Data+Extension.swift in Sources */,
 				4E5CF6B829CD58D100A4E0DE /* SafariViewPresenter.swift in Sources */,
 				4EE49FA329C89CAF00B51F4B /* SettingView.swift in Sources */,
 				4E5CF6B029CD58D100A4E0DE /* ElegantVPages.swift in Sources */,
@@ -1561,6 +1570,7 @@
 				4E5CF6C129CD58D100A4E0DE /* DefaultsKey+Extension.swift in Sources */,
 				4E5CF69529CD58D100A4E0DE /* EnvironmentValues+vibrancyEffectStyle.swift in Sources */,
 				4E5CF6B129CD58D100A4E0DE /* ElegantHPages.swift in Sources */,
+				4E73A66F29D3122D009CFB5A /* RefreshView.swift in Sources */,
 				4EE49F9329C88BA700B51F4B /* ActionTitleButtonView.swift in Sources */,
 				4E5CF69B29CD58D100A4E0DE /* SPAlertIconDoneView.swift in Sources */,
 				4E5CF72B29CD67C800A4E0DE /* TitlePageControll.swift in Sources */,
@@ -1643,7 +1653,7 @@
 				4E42A72129D14B1700BEC185 /* Commons.swift in Sources */,
 				4E42A73D29D152EF00BEC185 /* MenuBarExtraView.swift in Sources */,
 				4E42A71129D1337100BEC185 /* AlertToast.swift in Sources */,
-				4E62A49429D158C600B09493 /* Data+Extension.swift in Sources */,
+				4E878ED529D192130027FDA9 /* Data+Extension.swift in Sources */,
 				4E42A72B29D14B2100BEC185 /* TimePeriodChain.swift in Sources */,
 				4E42A71829D14AE900BEC185 /* Global.swift in Sources */,
 				4E42A70B29D1332F00BEC185 /* View+ConfettiCannon.swift in Sources */,
@@ -2145,6 +2155,22 @@
 				minimumVersion = 0.2.1;
 			};
 		};
+		4E73A68829D316BB009CFB5A /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.3;
+			};
+		};
+		4E878ED229D191520027FDA9 /* XCRemoteSwiftPackageReference "Refresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wxxsw/Refresh";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		4EE49F8B29C8820F00B51F4B /* XCRemoteSwiftPackageReference "WaterfallGrid" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/paololeonardi/WaterfallGrid";
@@ -2178,6 +2204,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E5CF74729CD69D800A4E0DE /* XCRemoteSwiftPackageReference "CHIPageControl" */;
 			productName = CHIPageControl;
+		};
+		4E73A68929D316BB009CFB5A /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E73A68829D316BB009CFB5A /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+		4E878ED329D191520027FDA9 /* Refresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E878ED229D191520027FDA9 /* XCRemoteSwiftPackageReference "Refresh" */;
+			productName = Refresh;
 		};
 		4EE49F8C29C8820F00B51F4B /* WaterfallGrid */ = {
 			isa = XCSwiftPackageProductDependency;

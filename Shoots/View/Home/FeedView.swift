@@ -7,11 +7,14 @@
 
 import SwiftUI
 import WaterfallGrid
+import Refresh
 
 struct FeedView: View {
     var shoots: [Shoot]
     
     @AppStorage("homeModel") var homeModel = 0
+    @State var footerRefreshing = false
+    @State var noMore = false
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -24,8 +27,23 @@ struct FeedView: View {
                     singleLineView
                 }
             }
-        }
-            .frame(maxWidth: .infinity)
+            
+            // 上拉加载更多
+            RefreshFooter(refreshing: $footerRefreshing, action: loadMore) {
+                if self.noMore {
+                    Text("No more data !")
+                        .foregroundColor(.white)
+                } else {
+                    Text("refreshing...")
+                }
+            }
+            .noMore(noMore)
+            .preload(offset: 50)
+        }.enableRefresh()
+            .refreshable {
+                // 下拉刷新
+                reload()
+            }
     }
     
     func waterfallView(columns: Int) -> some View {
@@ -43,6 +61,16 @@ struct FeedView: View {
                     .frame(maxWidth: 560)
             }
         }.background(Color.shootLight.opacity(0.1))
+    }
+    
+    func loadMore() {
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+            footerRefreshing = false
+        }
+    }
+    
+    func reload() {
+        
     }
 }
 
