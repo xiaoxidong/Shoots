@@ -31,11 +31,30 @@ struct SearchView: View {
                 if searchText == "Instagram" {
                     AppView(app: appData, topPadding: 16)
                 } else if searchText == "关注" {
-                    FeedView(shoots: homeData)
+                    feed
                 } else {
                     IOSSearchDefaultView(searchText: $searchText)
                 }
             }
+        }
+    }
+    
+    @State var footerRefreshing = false
+    @State var noMore = false
+    
+    var feed: some View {
+        ScrollView {
+            FeedView(shoots: homeData)
+            
+            LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
+                loadMore()
+            }
+        }.enableRefresh()
+    }
+    
+    func loadMore() {
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+            footerRefreshing = false
         }
     }
 }

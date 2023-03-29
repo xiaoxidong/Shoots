@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Refresh
 
 struct MenuBarExtraView: View {
     @State var searchText = ""
@@ -23,12 +24,26 @@ struct MenuBarExtraView: View {
                         .frame(width: 16, height: 16)
                 }.buttonStyle(.plain)
             }.padding([.horizontal, .top], 12)
-            ScrollView(showsIndicators: false) {
-                FeedView(shoots: homeData)
-            }
+            
+            feed
         }
-        
-        
+    }
+    
+    @State var footerRefreshing = false
+    @State var noMore = false
+    
+    var feed: some View {
+        ScrollView {
+            FeedView(shoots: homeVM.shoots)
+            
+            LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
+                loadMore()
+            }
+        }.enableRefresh()
+            .refreshable {
+                // 首页下拉刷新
+                
+            }
     }
 }
 

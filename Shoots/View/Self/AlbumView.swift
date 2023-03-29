@@ -125,7 +125,7 @@ struct AlbumView: View {
             if edit {
                 editView
             } else {
-                FeedView(shoots: homeData)
+                feed
             }
         }.overlay(
             Group {
@@ -148,6 +148,25 @@ struct AlbumView: View {
                 }
             }
         )
+    }
+    
+    @State var footerRefreshing = false
+    @State var noMore = false
+    
+    var feed: some View {
+        ScrollView {
+            FeedView(shoots: homeData)
+            
+            LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
+                loadMore()
+            }
+        }.enableRefresh()
+    }
+    
+    func loadMore() {
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+            footerRefreshing = false
+        }
     }
     
     #if os(iOS)

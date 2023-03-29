@@ -38,10 +38,10 @@ struct DNALoading: View {
     
     // MARK: - Drawing Constents
     let numberOfBalls: Int = 5
-    let spacing: CGFloat = 20
+    let spacing: CGFloat = 6
     let ballSpeed: Double = 0.75
-    let ballSize: CGFloat = 30
-    let frameHeight: CGFloat = 60
+    let ballSize: CGFloat = 16
+    let frameHeight: CGFloat = 20
     let firstBallColor: LinearGradient = LinearGradient(gradient: Gradient(colors: [firstC, secondC]), startPoint: .top, endPoint: .bottom)
     let secondBallColor: LinearGradient = LinearGradient(gradient: Gradient(colors: [firstC1, secondC2]), startPoint: .top, endPoint: .bottom)
     
@@ -90,11 +90,11 @@ struct DNABalls_Previews: PreviewProvider {
     static var previews: some View {
         DNABalls(delay: 0,
                  ballSpeed: 1,
-                 ballSize: 30,
+                 ballSize: 20,
                  firstBallColor: LinearGradient(gradient: Gradient(colors: [firstC, secondC]), startPoint: .top, endPoint: .bottom),
                  secondBallColor: LinearGradient(gradient: Gradient(colors: [firstC1, secondC2]), startPoint: .top, endPoint: .bottom)
         )
-            .frame(width: 30, height: 100)
+            .frame(width: 30, height: 30)
     }
 }
 

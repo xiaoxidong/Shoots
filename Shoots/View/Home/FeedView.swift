@@ -16,17 +16,19 @@ struct FeedView: View {
     @State var footerRefreshing = false
     @State var noMore = false
     var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                Divider()
-                if homeModel == 0 {
-                    waterfallView(columns: 3)
-                } else if homeModel == 1 {
-                    waterfallView(columns: 2)
-                } else {
-                    singleLineView
-                }
+        VStack(spacing: 0) {
+            Divider()
+            if homeModel == 0 {
+                waterfallView(columns: 3)
+            } else if homeModel == 1 {
+                waterfallView(columns: 2)
+            } else {
+                singleLineView
             }
+        }
+        
+        ScrollView {
+            
             
             // 上拉加载更多
             RefreshFooter(refreshing: $footerRefreshing, action: loadMore) {

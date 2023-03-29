@@ -54,11 +54,20 @@ struct SelfView: View {
         #endif
     }
     
+    @State var footerRefreshing = false
+    @State var noMore = false
+    @ViewBuilder
     var content: some View {
-        ScrollView {
-            if showTag {
+        if showTag {
+            ScrollView {
                 tagView
-            } else {
+                
+                LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
+                    loadMore()
+                }
+            }.enableRefresh()
+        } else {
+            ScrollView {
                 folderView
             }
         }
@@ -221,6 +230,12 @@ struct SelfView: View {
             }
             #endif
         }.padding(.horizontal)
+    }
+    
+    func loadMore() {
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+            footerRefreshing = false
+        }
     }
 }
 

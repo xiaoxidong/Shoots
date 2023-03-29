@@ -11,13 +11,32 @@ struct AppView: View {
     var app: Application
     var topPadding: CGFloat = 0
     
+    @State var footerRefreshing = false
+    @State var noMore = false
+    
+    var feed: some View {
+        ScrollView {
+            FeedView(shoots: homeData)
+            
+            
+        }
+    }
+    
     var body: some View {
         ScrollView {
             header
                 .padding(.top, topPadding)
             flowView
             imagesView
-        }
+            
+            LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
+                loadMore()
+            }
+        }.enableRefresh()
+            .refreshable {
+                // 首页下拉刷新
+                
+            }
     }
     
     var header: some View {
@@ -111,6 +130,12 @@ struct AppView: View {
             
             FeedView(shoots: homeData)
         }.padding(.top, 26)
+    }
+    
+    func loadMore() {
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+            footerRefreshing = false
+        }
     }
 }
 

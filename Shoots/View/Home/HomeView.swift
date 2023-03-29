@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Refresh
 
 struct HomeView: View {
     @ObservedObject var homeVM: HomeViewModel
@@ -23,7 +24,7 @@ struct HomeView: View {
                 if searchText == "Instagram" {
                     AppView(app: appData, topPadding: 16)
                 } else if searchText == "关注" {
-                    FeedView(shoots: homeData)
+                    feed
                 } else {
                     IOSSearchDefaultView(searchText: $searchText)
                 }
@@ -31,22 +32,48 @@ struct HomeView: View {
                 if searchText == "Instagram" {
                     AppView(app: appData, topPadding: 16)
                 } else if searchText == "关注" {
-                    FeedView(shoots: homeData)
+                    feed
                 } else {
-                    FeedView(shoots: homeVM.shoots)
+                    feed
                 }
             }
             #else
             if searchText == "Instagram" {
                 AppView(app: appData, topPadding: 16)
             } else if searchText == "关注" {
-                FeedView(shoots: homeData)
+                feed
             } else {
-                FeedView(shoots: homeVM.shoots)
+                feed
             }
             #endif
         } else {
+            feed
+        }
+    }
+    
+    @State var footerRefreshing = false
+    @State var noMore = false
+    
+    var feed: some View {
+        ScrollView {
             FeedView(shoots: homeVM.shoots)
+            
+            LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
+                loadMore()
+            }
+        }.enableRefresh()
+            .refreshable {
+                // 首页下拉刷新
+                
+            }
+    }
+    
+    func loadMore() {
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+            withAnimation(.spring()) {
+                footerRefreshing = false
+                noMore = true
+            }
         }
     }
 }
