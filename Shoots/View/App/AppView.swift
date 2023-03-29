@@ -17,8 +17,6 @@ struct AppView: View {
     var feed: some View {
         ScrollView {
             FeedView(shoots: homeData)
-            
-            
         }
     }
     
@@ -37,6 +35,7 @@ struct AppView: View {
                 // 首页下拉刷新
                 
             }
+            .frame(maxWidth: 1060)
     }
     
     var header: some View {

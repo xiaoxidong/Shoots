@@ -36,6 +36,8 @@ struct SelfView: View {
                             SettingView()
                         } label: {
                             Image("setting")
+                                .renderingMode(.template)
+                                .foregroundColor(.shootBlue)
                         }
                         
                     }
@@ -58,17 +60,39 @@ struct SelfView: View {
     @State var noMore = false
     @ViewBuilder
     var content: some View {
-        if showTag {
-            ScrollView {
+        VStack {
+            if showTag {
                 tagView
+                ScrollView {
+                    // 列表
+                    FeedView(shoots: homeData)
+                    
+                    LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
+                        loadMore()
+                    }
+                }.enableRefresh()
+            } else {
+                VStack {
+                    HStack {
+                        Text("12 个收藏夹和 34 图片已上传")
+                            .font(.system(size: 15, weight: .medium))
+                            .foregroundColor(.shootGray)
+                        Spacer()
+                        Button {
+                            withAnimation(.spring()) {
+                                showTag.toggle()
+                            }
+                        } label: {
+                            Image("tags")
+                        }.buttonStyle(.plain)
+                    }.padding(.top)
+                        
+                    Divider()
+                }.padding(.horizontal)
                 
-                LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
-                    loadMore()
+                ScrollView {
+                    folderView
                 }
-            }.enableRefresh()
-        } else {
-            ScrollView {
-                folderView
             }
         }
     }
@@ -85,60 +109,38 @@ struct SelfView: View {
     @State var tags: [String] = ["Feed", "Friends", "Settings", "Cards", "Live", "Maps", "Follwer", "Help", "Shop"]
     @State var selected = "Feed"
     var tagView: some View {
-        VStack {
-            HStack {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 16) {
-                        ForEach(tags, id: \.self) { text in
-                            Button {
-                                withAnimation(.spring()) {
-                                    selected = text
-                                }
-                            } label: {
-                                Text(text)
-                                    .font(.system(size: selected == text ? 17 : 15, weight: selected == text ? .bold : .medium))
-                                    .foregroundColor(selected == text ? .shootBlue : .shootBlack)
-                                    .padding(.bottom, 12)
-                            }.buttonStyle(.plain)
-                        }
-                    }.padding(.horizontal)
-                }
-                Button {
-                    withAnimation(.spring()) {
-                        showTag.toggle()
+        HStack {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 16) {
+                    ForEach(tags, id: \.self) { text in
+                        Button {
+                            withAnimation(.spring()) {
+                                selected = text
+                            }
+                        } label: {
+                            Text(text)
+                                .font(.system(size: selected == text ? 17 : 15, weight: selected == text ? .bold : .medium))
+                                .foregroundColor(selected == text ? .shootBlue : .shootBlack)
+                                .padding(.bottom, 12)
+                        }.buttonStyle(.plain)
                     }
-                } label: {
-                    Image("grouped")
-                        .padding(.bottom, 12)
-                }.buttonStyle(.plain)
-                    .padding(.trailing)
-            }.padding(.top)
-            
-            // 列表
-            FeedView(shoots: homeData)
-        }
+                }.padding(.horizontal)
+            }
+            Button {
+                withAnimation(.spring()) {
+                    showTag.toggle()
+                }
+            } label: {
+                Image("grouped")
+                    .padding(.bottom, 12)
+            }.buttonStyle(.plain)
+                .padding(.trailing)
+        }.padding(.top)
     }
     
     @State var showMacFolderView = false
     var folderView: some View {
         VStack {
-            VStack {
-                HStack {
-                    Text("12 个收藏夹和 34 图片已上传")
-                        .font(.system(size: 15, weight: .medium))
-                        .foregroundColor(.shootGray)
-                    Spacer()
-                    Button {
-                        withAnimation(.spring()) {
-                            showTag.toggle()
-                        }
-                    } label: {
-                        Image("tags")
-                    }.buttonStyle(.plain)
-                }.padding(.top)
-                    
-                Divider()
-            }
             Text("上传截图")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.shootBlack)

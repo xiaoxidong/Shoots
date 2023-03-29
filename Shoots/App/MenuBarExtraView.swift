@@ -9,21 +9,47 @@ import SwiftUI
 import Refresh
 
 struct MenuBarExtraView: View {
+    @Binding var isInserted: Bool
+    @Binding var isMenuPresented: Bool
+    
     @State var searchText = ""
+    @Environment(\.openWindow) var openWindow
     var body: some View {
         VStack {
             HStack {
                 TextField("搜索应用或设计模式", text: $searchText)
                     .textFieldStyle(.plain)
                 Button {
-                    
+                    isMenuPresented.toggle()
+                    openWindow(id: "setting")
+                    NSApp.activate(ignoringOtherApps: true)
                 } label: {
-                    Image("self")
+                    Image("setting")
                         .resizable()
+                        .renderingMode(.template)
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 16, height: 16)
+                        .foregroundColor(Color.shootBlack)
+                        .padding(4)
+                        .contentShape(Rectangle())
                 }.buttonStyle(.plain)
-            }.padding([.horizontal, .top], 12)
+                
+                Button {
+//                    NSApp.setActivationPolicy(.regular)
+                    isMenuPresented.toggle()
+                    openWindow(id: "main")
+                    NSApp.activate(ignoringOtherApps: true)
+                } label: {
+                    Image("inwindow")
+                        .resizable()
+                        .renderingMode(.template)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 16, height: 16)
+                        .foregroundColor(Color.shootBlack)
+                        .padding(4)
+                        .contentShape(Rectangle())
+                }.buttonStyle(.plain)
+            }.padding([.horizontal, .top], 14)
             
             feed
         }
@@ -34,7 +60,7 @@ struct MenuBarExtraView: View {
     
     var feed: some View {
         ScrollView {
-            FeedView(shoots: homeVM.shoots)
+            FeedView(shoots: homeData)
             
             LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
                 loadMore()
@@ -45,10 +71,19 @@ struct MenuBarExtraView: View {
                 
             }
     }
+    
+    func loadMore() {
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+            withAnimation(.spring()) {
+                footerRefreshing = false
+                noMore = true
+            }
+        }
+    }
 }
 
 struct MenuBarExtraView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuBarExtraView()
+        MenuBarExtraView(isInserted: .constant(false), isMenuPresented: .constant(false))
     }
 }

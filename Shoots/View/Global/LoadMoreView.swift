@@ -21,9 +21,19 @@ struct LoadMoreView: View {
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(.shootGray)
             } else {
+                #if os(iOS)
                 DNALoading()
                     .padding(.top, 36)
                     .padding(.bottom)
+                #else
+                HStack(spacing: 6) {
+                    ProgressView()
+                        .controlSize(.small)
+                    Text("加载中...")
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(.shootBlack)
+                }
+                #endif
             }
         }
         .noMore(noMore)
