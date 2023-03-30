@@ -21,7 +21,12 @@ struct MenuBarExtraView: View {
                     .textFieldStyle(.plain)
                 Button {
                     isMenuPresented.toggle()
-                    openWindow(id: "setting")
+
+                    if #available(macOS 13, *) {
+                        NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+                    } else {
+                        NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+                    }
                     NSApp.activate(ignoringOtherApps: true)
                 } label: {
                     Image("setting")

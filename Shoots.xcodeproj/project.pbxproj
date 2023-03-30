@@ -31,7 +31,6 @@
 		4E42A6DD29D1314D00BEC185 /* FolderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304529C9F2CC00D99DA9 /* FolderCardView.swift */; };
 		4E42A6DE29D1315000BEC185 /* SelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9929C898CE00B51F4B /* SelfView.swift */; };
 		4E42A6DF29D1315000BEC185 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2131629C8A80C007FAC6F /* AlbumView.swift */; };
-		4E42A6E029D1315500BEC185 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49FA229C89CAF00B51F4B /* SettingView.swift */; };
 		4E42A6E429D1315500BEC185 /* ModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF72429CD617000A4E0DE /* ModeView.swift */; };
 		4E42A6E529D1315500BEC185 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF72629CD617900A4E0DE /* IconView.swift */; };
 		4E42A6E629D1315500BEC185 /* SettingRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF71B29CD5EB400A4E0DE /* SettingRateView.swift */; };
@@ -75,7 +74,7 @@
 		4E42A71029D1337100BEC185 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF63129CD58D000A4E0DE /* BlurView.swift */; };
 		4E42A71129D1337100BEC185 /* AlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF63229CD58D000A4E0DE /* AlertToast.swift */; };
 		4E42A71229D1376A00BEC185 /* SlideOverCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF72229CD616600A4E0DE /* SlideOverCard.swift */; };
-		4E42A71529D143A000BEC185 /* ProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42A71429D143A000BEC185 /* ProView.swift */; };
+		4E42A71529D143A000BEC185 /* ProViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42A71429D143A000BEC185 /* ProViews.swift */; };
 		4E42A71729D1461B00BEC185 /* MacCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42A71629D1461B00BEC185 /* MacCloseButton.swift */; };
 		4E42A71829D14AE900BEC185 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF6CD29CD59B200A4E0DE /* Global.swift */; };
 		4E42A71929D14B1200BEC185 /* SwiftDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF6D729CD5AC000A4E0DE /* SwiftDate.swift */; };
@@ -270,6 +269,25 @@
 		4E99304B29CA003100D99DA9 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304A29CA003100D99DA9 /* String+Extension.swift */; };
 		4E99304D29CA075D00D99DA9 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304C29CA075D00D99DA9 /* UploadView.swift */; };
 		4E9B1F6729C7EA4F00A772CE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B1F6629C7EA4F00A772CE /* DetailView.swift */; };
+		4EA73AF529D59A59002901AE /* MacSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA73AF429D59A59002901AE /* MacSettingsView.swift */; };
+		4EA73AF729D5BB3B002901AE /* Uberabout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA73AF629D5BB3B002901AE /* Uberabout.swift */; };
+		4EA73AF929D5BB6A002901AE /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA73AF829D5BB6A002901AE /* Bundle+Extension.swift */; };
+		4EA73B1129D5C11E002901AE /* ProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E58F92329CB47930087E902 /* ProView.swift */; };
+		4EA73B1229D5C15B002901AE /* SKProduct+LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5EC29CD58D000A4E0DE /* SKProduct+LocalizedPrice.swift */; };
+		4EA73B1329D5C15B002901AE /* InAppProductQueryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5ED29CD58D000A4E0DE /* InAppProductQueryRequest.swift */; };
+		4EA73B1429D5C161002901AE /* SwiftyStoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5F629CD58D000A4E0DE /* SwiftyStoreKit.swift */; };
+		4EA73B1529D5C161002901AE /* AppleReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5FF29CD58D000A4E0DE /* AppleReceiptValidator.swift */; };
+		4EA73B1629D5C161002901AE /* SwiftyStoreKit+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5F429CD58D000A4E0DE /* SwiftyStoreKit+Types.swift */; };
+		4EA73B1729D5C161002901AE /* InAppReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5F529CD58D000A4E0DE /* InAppReceipt.swift */; };
+		4EA73B1829D5C161002901AE /* ProductsInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5F729CD58D000A4E0DE /* ProductsInfoController.swift */; };
+		4EA73B1929D5C161002901AE /* CompleteTransactionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5F829CD58D000A4E0DE /* CompleteTransactionsController.swift */; };
+		4EA73B1A29D5C161002901AE /* InAppReceiptRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5F329CD58D000A4E0DE /* InAppReceiptRefreshRequest.swift */; };
+		4EA73B1B29D5C161002901AE /* InAppReceiptVerificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5FD29CD58D000A4E0DE /* InAppReceiptVerificator.swift */; };
+		4EA73B1C29D5C161002901AE /* PaymentQueueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5FC29CD58D000A4E0DE /* PaymentQueueController.swift */; };
+		4EA73B1D29D5C161002901AE /* PaymentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5F929CD58D000A4E0DE /* PaymentsController.swift */; };
+		4EA73B1E29D5C161002901AE /* OS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5FA29CD58D000A4E0DE /* OS.swift */; };
+		4EA73B1F29D5C161002901AE /* SKProductDiscount+LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5FE29CD58D000A4E0DE /* SKProductDiscount+LocalizedPrice.swift */; };
+		4EA73B2029D5C161002901AE /* RestorePurchasesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5FB29CD58D000A4E0DE /* RestorePurchasesController.swift */; };
 		4ED4B08B29D3C0BA005D9758 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */; };
 		4ED4B08D29D3CAB1005D9758 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED4B08C29D3CAB1005D9758 /* Refresh */; };
 		4ED4B08E29D3CAC0005D9758 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */; };
@@ -329,7 +347,7 @@
 		4E42A69A29D12DA900BEC185 /* Shoots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoots.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E42A6A329D12DAB00BEC185 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4E42A6A529D12DAB00BEC185 /* Shoots_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Shoots_Mac.entitlements; sourceTree = "<group>"; };
-		4E42A71429D143A000BEC185 /* ProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProView.swift; sourceTree = "<group>"; };
+		4E42A71429D143A000BEC185 /* ProViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProViews.swift; sourceTree = "<group>"; };
 		4E42A71629D1461B00BEC185 /* MacCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacCloseButton.swift; sourceTree = "<group>"; };
 		4E42A73B29D152EC00BEC185 /* MenuBarExtraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarExtraView.swift; sourceTree = "<group>"; };
 		4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadSearchDefaultView.swift; sourceTree = "<group>"; };
@@ -495,6 +513,9 @@
 		4E99304A29CA003100D99DA9 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		4E99304C29CA075D00D99DA9 /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 		4E9B1F6629C7EA4F00A772CE /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		4EA73AF429D59A59002901AE /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
+		4EA73AF629D5BB3B002901AE /* Uberabout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uberabout.swift; sourceTree = "<group>"; };
+		4EA73AF829D5BB6A002901AE /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
 		4ED4B08F29D3D2ED005D9758 /* Shoots-Mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Shoots-Mac-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4ED4B09129D3E98B005D9758 /* NSWindow Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow Extensions.swift"; sourceTree = "<group>"; };
@@ -630,7 +651,7 @@
 				4ED4B08F29D3D2ED005D9758 /* Shoots-Mac-Info.plist */,
 				4E42A6A529D12DAB00BEC185 /* Shoots_Mac.entitlements */,
 				4ED4B09029D3E98B005D9758 /* MenuBarExtraAccess */,
-				4E42A71429D143A000BEC185 /* ProView.swift */,
+				4E42A71429D143A000BEC185 /* ProViews.swift */,
 				4E42A71629D1461B00BEC185 /* MacCloseButton.swift */,
 				4E42A6A229D12DAB00BEC185 /* Preview Content */,
 			);
@@ -1176,6 +1197,16 @@
 			path = Upload;
 			sourceTree = "<group>";
 		};
+		4EA73AFA29D5BC04002901AE /* Mac Setting */ = {
+			isa = PBXGroup;
+			children = (
+				4EA73AF429D59A59002901AE /* MacSettingsView.swift */,
+				4EA73AF629D5BB3B002901AE /* Uberabout.swift */,
+				4EA73AF829D5BB6A002901AE /* Bundle+Extension.swift */,
+			);
+			path = "Mac Setting";
+			sourceTree = "<group>";
+		};
 		4ED4B09029D3E98B005D9758 /* MenuBarExtraAccess */ = {
 			isa = PBXGroup;
 			children = (
@@ -1298,6 +1329,7 @@
 			isa = PBXGroup;
 			children = (
 				4EE49FA229C89CAF00B51F4B /* SettingView.swift */,
+				4EA73AFA29D5BC04002901AE /* Mac Setting */,
 				4E5CF72429CD617000A4E0DE /* ModeView.swift */,
 				4E5CF72629CD617900A4E0DE /* IconView.swift */,
 				4E5CF71B29CD5EB400A4E0DE /* SettingRateView.swift */,
@@ -1685,19 +1717,22 @@
 			files = (
 				4E42A6F229D1317200BEC185 /* Author.swift in Sources */,
 				4E42A73529D14B2F00BEC185 /* DateRepresentable.swift in Sources */,
+				4EA73B1D29D5C161002901AE /* PaymentsController.swift in Sources */,
 				4E42A6E929D1315500BEC185 /* SettingCellView.swift in Sources */,
 				4E42A72D29D14B2500BEC185 /* Date+Components.swift in Sources */,
 				4E42A70829D132E700BEC185 /* DefaultIndicatorView.swift in Sources */,
 				4E42A72329D14B1700BEC185 /* Calendars.swift in Sources */,
 				4E42A6EB29D1315B00BEC185 /* ShootEmptyView.swift in Sources */,
-				4E42A71529D143A000BEC185 /* ProView.swift in Sources */,
+				4E42A71529D143A000BEC185 /* ProViews.swift in Sources */,
 				4E42A71929D14B1200BEC185 /* SwiftDate.swift in Sources */,
 				4E42A6F829D131F100BEC185 /* RoundedCornersShape.swift in Sources */,
 				4ED4B09D29D3E98B005D9758 /* NSStatusItem Extensions.swift in Sources */,
 				4E42A72029D14B1700BEC185 /* Locales.swift in Sources */,
 				4E42A71F29D14B1200BEC185 /* DateInRegion.swift in Sources */,
 				4E42A70629D132E700BEC185 /* GrowingCircleIndicatorView.swift in Sources */,
+				4EA73AF929D5BB6A002901AE /* Bundle+Extension.swift in Sources */,
 				4E42A73229D14B2A00BEC185 /* Formatter+Protocols.swift in Sources */,
+				4EA73B1429D5C161002901AE /* SwiftyStoreKit.swift in Sources */,
 				4E42A72129D14B1700BEC185 /* Commons.swift in Sources */,
 				4E42A73D29D152EF00BEC185 /* MenuBarExtraView.swift in Sources */,
 				4E42A71129D1337100BEC185 /* AlertToast.swift in Sources */,
@@ -1707,15 +1742,19 @@
 				4E42A70B29D1332F00BEC185 /* View+ConfettiCannon.swift in Sources */,
 				4E42A73029D14B2500BEC185 /* Date+Compare.swift in Sources */,
 				4E42A6D629D1314100BEC185 /* IPadSearchDefaultView.swift in Sources */,
+				4EA73B1529D5C161002901AE /* AppleReceiptValidator.swift in Sources */,
 				4E42A72929D14B2100BEC185 /* TimePeriodProtocol.swift in Sources */,
 				4ED4B09A29D3E98B005D9758 /* Utilities.swift in Sources */,
 				4E42A6E529D1315500BEC185 /* IconView.swift in Sources */,
 				4E42A6D429D1313D00BEC185 /* FeedView.swift in Sources */,
+				4EA73B1729D5C161002901AE /* InAppReceipt.swift in Sources */,
 				4E42A72229D14B1700BEC185 /* Zones.swift in Sources */,
 				4E42A6FD29D1329200BEC185 /* DefaultsKey+Extension.swift in Sources */,
+				4EA73B1929D5C161002901AE /* CompleteTransactionsController.swift in Sources */,
 				4E42A72E29D14B2500BEC185 /* Date+Math.swift in Sources */,
 				4E42A71729D1461B00BEC185 /* MacCloseButton.swift in Sources */,
 				4E42A6DD29D1314D00BEC185 /* FolderCardView.swift in Sources */,
+				4EA73B1A29D5C161002901AE /* InAppReceiptRefreshRequest.swift in Sources */,
 				4E42A6DF29D1315000BEC185 /* AlbumView.swift in Sources */,
 				4ED4B08E29D3CAC0005D9758 /* LoadMoreView.swift in Sources */,
 				4E42A73429D14B2A00BEC185 /* DotNetParserFormatter.swift in Sources */,
@@ -1729,13 +1768,15 @@
 				4E42A6FB29D1320600BEC185 /* View+Extension.swift in Sources */,
 				4E42A6D329D1313D00BEC185 /* HomeView.swift in Sources */,
 				4E42A70429D132E700BEC185 /* ArcsIndicatorView.swift in Sources */,
+				4EA73B1E29D5C161002901AE /* OS.swift in Sources */,
 				4E42A71229D1376A00BEC185 /* SlideOverCard.swift in Sources */,
 				4E42A72F29D14B2500BEC185 /* Date+Create.swift in Sources */,
-				4E42A6E029D1315500BEC185 /* SettingView.swift in Sources */,
 				4E42A70A29D1332400BEC185 /* ConfettiSwiftUI.swift in Sources */,
 				4E42A6DA29D1314500BEC185 /* DetailView.swift in Sources */,
 				4E42A73129D14B2A00BEC185 /* ISOParser.swift in Sources */,
 				4E42A6EA29D1315B00BEC185 /* DNALoading.swift in Sources */,
+				4EA73B1B29D5C161002901AE /* InAppReceiptVerificator.swift in Sources */,
+				4EA73B1129D5C11E002901AE /* ProView.swift in Sources */,
 				4E42A72829D14B2100BEC185 /* TimePeriodCollection.swift in Sources */,
 				4E42A72429D14B1700BEC185 /* TimeStructures.swift in Sources */,
 				4E42A6E429D1315500BEC185 /* ModeView.swift in Sources */,
@@ -1743,24 +1784,32 @@
 				4E42A70D29D1333300BEC185 /* Triangle.swift in Sources */,
 				4E42A6F129D1317200BEC185 /* Flow.swift in Sources */,
 				4E42A6D729D1314100BEC185 /* SearchView.swift in Sources */,
+				4EA73B1329D5C15B002901AE /* InAppProductQueryRequest.swift in Sources */,
+				4EA73B1829D5C161002901AE /* ProductsInfoController.swift in Sources */,
 				4E42A73729D14B2F00BEC185 /* TimeInterval+Formatter.swift in Sources */,
 				4E42A71C29D14B1200BEC185 /* DateInRegion+Components.swift in Sources */,
 				4E42A6F029D1317200BEC185 /* Shoot.swift in Sources */,
 				4E42A6D529D1313D00BEC185 /* ImageCardView.swift in Sources */,
 				4E42A71D29D14B1200BEC185 /* DateInRegion+Create.swift in Sources */,
+				4EA73AF729D5BB3B002901AE /* Uberabout.swift in Sources */,
 				4ED4B09F29D3E98B005D9758 /* MenuBarExtraUtils.swift in Sources */,
 				4E42A6FF29D132E300BEC185 /* ActivityIndicatorView.swift in Sources */,
 				4E42A70029D132E700BEC185 /* EqualizerIndicatorView.swift in Sources */,
+				4EA73B1F29D5C161002901AE /* SKProductDiscount+LocalizedPrice.swift in Sources */,
 				4E42A6E729D1315500BEC185 /* AgreementView.swift in Sources */,
 				4E42A72C29D14B2500BEC185 /* Date.swift in Sources */,
 				4E42A6D229D1313300BEC185 /* ContentView.swift in Sources */,
+				4EA73AF529D59A59002901AE /* MacSettingsView.swift in Sources */,
+				4EA73B1C29D5C161002901AE /* PaymentQueueController.swift in Sources */,
 				4E42A70E29D1333300BEC185 /* RoundedCross.swift in Sources */,
 				4E42A70929D132E700BEC185 /* RotatingDotsIndicatorView.swift in Sources */,
 				4E42A6DB29D1314D00BEC185 /* FlowView.swift in Sources */,
 				4ED4B09E29D3E98B005D9758 /* MenuBarExtra Window Introspection.swift in Sources */,
+				4EA73B2029D5C161002901AE /* RestorePurchasesController.swift in Sources */,
 				4E42A73629D14B2F00BEC185 /* Int+DateComponents.swift in Sources */,
 				4E42A71029D1337100BEC185 /* BlurView.swift in Sources */,
 				4E42A70729D132E700BEC185 /* ScalingDotsIndicatorView.swift in Sources */,
+				4EA73B1229D5C15B002901AE /* SKProduct+LocalizedPrice.swift in Sources */,
 				4E42A6DC29D1314D00BEC185 /* AppView.swift in Sources */,
 				4E42A6DE29D1315000BEC185 /* SelfView.swift in Sources */,
 				4E42A70529D132E700BEC185 /* GradientIndicatorView.swift in Sources */,
@@ -1772,6 +1821,7 @@
 				4E42A73829D14B2F00BEC185 /* String+Parser.swift in Sources */,
 				4E42A70F29D1337100BEC185 /* AlertActivityIndicatorView.swift in Sources */,
 				4E42A6EC29D1315F00BEC185 /* HomeViewModel.swift in Sources */,
+				4EA73B1629D5C161002901AE /* SwiftyStoreKit+Types.swift in Sources */,
 				4E42A73929D14B2F00BEC185 /* DateComponents+Extras.swift in Sources */,
 				4E42A6D829D1314100BEC185 /* IOSSearchDefaultView.swift in Sources */,
 				4E42A70329D132E700BEC185 /* OpacityDotsIndicatorView.swift in Sources */,

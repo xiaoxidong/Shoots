@@ -35,12 +35,6 @@ struct ShootsApp: App {
                 }
         }
         
-        Window("Shoots", id: "setting") {
-            SettingView()
-                .padding(36)
-                .sheetFrameForMac()
-        }
-        
         MenuBarExtra("Status", systemImage: "photo.fill.on.rectangle.fill", isInserted: $isInserted) {
             MenuBarExtraView(isInserted: $isInserted, isMenuPresented: $isMenuPresented)
                 .frame(width: 520, height: 600)
@@ -48,9 +42,7 @@ struct ShootsApp: App {
             .menuBarExtraAccess(isPresented: $isMenuPresented)
         
         Settings {
-            SettingView()
-                .padding(36)
-                .sheetFrameForMac()
+            MacSettingsView()
         }
         #endif
     }

@@ -68,11 +68,7 @@ struct SettingView: View {
                     SettingCellView(image: "rate", text: "给我们一个五星评价") {
                         let urlString = "itms-apps://itunes.apple.com/app/id1140397642?action=write-review"
                         let url = URL(string: urlString)
-                        #if os(iOS)
                         UIApplication.shared.open(url!)
-                        #else
-                        NSWorkspace.shared.open(url!)
-                        #endif
                     }
                     SettingCellView(image: "feedback", text: "问题反馈") {
                         #if os(iOS)
@@ -93,7 +89,6 @@ struct SettingView: View {
                     SettingCellView(image: "weibo", text: "新浪微博") {
                         let urlStr = "sinaweibo://userinfo?uid=5682979153"
                         let url = URL(string: urlStr)
-                        #if os(iOS)
                         if UIApplication.shared.canOpenURL(url!) {
                             UIApplication.shared.open(url!)
                         } else {
@@ -101,9 +96,6 @@ struct SettingView: View {
                             openWeibToast = true
                             UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                         }
-                        #else
-                        NSWorkspace.shared.open(url!)
-                        #endif
                     }
                     
                     

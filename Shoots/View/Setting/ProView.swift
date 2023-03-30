@@ -44,152 +44,28 @@ struct ProView: View {
     
     var body: some View {
         ZStack {
+            #if os(iOS)
             NavigationView {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 0) {
-                        VStack {
-                            Text("升级为 Pro 使用预览全部功能")
-                                .font(.system(size: 26, weight: .bold))
-                                .foregroundColor(Color.shootBlack)
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal)
-                            
-                            if !(Defaults().get(for: .pro) ?? false) {
-                                HStack {
-                                    Text("12")
-                                        .font(.system(size: 14, weight: .bold))
-                                        .foregroundColor(Color.white)
-                                    + Text("天 Pro 功能试用，剩余")
-                                        .font(.system(size: 14, weight: .bold))
-                                        .foregroundColor(Color.white)
-                                    + Text("10")
-                                        .font(.system(size: 14, weight: .bold))
-                                        .foregroundColor(Color.white)
-                                    + Text("天")
-                                        .font(.system(size: 14, weight: .bold))
-                                        .foregroundColor(Color.white)
-                                }
-                                .padding(6)
-                                .background(Color.shootRed)
-                                .clipShape(RoundedCornersShape(tl: 10, tr: 0, bl: 0, br: 10))
-                            }
-                        }.frame(maxWidth: .infinity)
-                            .padding(.bottom, 10)
-                        
-                        imageView
-                        
-                        if !(Defaults().get(for: .pro) ?? false) {
-                            if self.showLoadingIndicator {
-                                HStack {
-                                    ActivityIndicatorView(isVisible: self.$showLoadingIndicator, type: .arcs)
-                                        .frame(width: 50.0, height: 50.0)
-                                        .foregroundColor(.red)
-                                }.frame(maxWidth: .infinity)
-                                    .frame(height: 247)
-                                    .padding(.bottom, 30)
-                                    .cornerRadius(20)
-                                    .shadow(color: Color.shootBlack.opacity(0.08), radius: 10, x: 0, y: 16)
-                            } else {
-                                buyButton
-                                    .frame(height: 247)
-                            }
-                        }
-                        
-                        VStack(alignment: .leading, spacing: 12) {
-                            Group {
-                                Text("\(Image(systemName: "bell.circle.fill"))")
-                                    .foregroundColor(Color.shootRed)
-                                + Text(" 按年付费确认订阅之后将会向您的 App Store 账户收取费用，按照年的时间长度收取您的费用。订阅服务将会在当前周期结束时自动续订并收取下一年的费用。")
-                                    .foregroundColor(Color.shootBlack)
-                            }
-                            .lineSpacing(6)
-                            .fixedSize(horizontal: false, vertical: true)
-                            
-                            .font(.subheadline)
-                            .multilineTextAlignment(.leading)
-                            Group {
-                                Text("\(Image(systemName: "bell.circle.fill"))")
-                                    .foregroundColor(Color.shootRed)
-                                + Text(" 取消自动续订需要在当前订阅周期结束前 24 小时完成，可以在下面的 App Store 订阅管理里查看，如果有任何问题，请联系我们。")
-                                    .foregroundColor(Color.shootBlack)
-                            }
-                            .lineSpacing(6)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .font(.subheadline)
-                            .multilineTextAlignment(.leading)
-                            
-                            VStack(spacing: 16) {
-                                HStack {
-                                    Spacer()
-                                    Button(action: {
-                                        self.showAgreement = true
-                                    }) {
-                                        Text("隐私条款")
-                                            .bold()
-                                            .foregroundColor(Color.shootRed)
-                                            .fixedSize()
-                                    }.sheet(isPresented: self.$showAgreement) {
-                                        PrivacyView(showPrivacy: self.$showPrivacy)
-                                    }
-                                    
-                                    Spacer()
-                                    Text("·")
-                                        .bold()
-                                        .foregroundColor(Color.shootRed)
-                                        .fixedSize()
-                                    Spacer()
-                                    
-                                    Button(action: {
-                                        self.showPrivacy = true
-                                    }) {
-                                        Text("使用协议")
-                                            .bold()
-                                            .foregroundColor(Color.shootRed)
-                                            .fixedSize()
-                                    }
-                                    .sheet(isPresented: self.$showPrivacy) {
-                                        AgreementView(showAgreement: self.$showAgreement)
-                                    }
-                                    
-                                    Group {
-                                        Spacer()
-                                        Text("·")
-                                            .bold()
-                                            .foregroundColor(Color.shootRed)
-                                            .fixedSize()
-                                        Spacer()
-                                        Button(action: {
-                                            #if os(iOS)
-                                            UIApplication.shared.open(URL(string: "https://apps.apple.com/account/subscriptions")!)
-                                            #else
-                                            NSWorkspace.shared.open(URL(string: "https://apps.apple.com/account/subscriptions")!)
-                                            #endif
-                                        }) {
-                                            Text("订阅管理")
-                                                .bold()
-                                                .foregroundColor(Color.shootRed)
-                                                .fixedSize()
-                                        }
-                                        Spacer()
-                                    }
-                                }
-                            }.padding(.top, 10)
-                        }
-                        .padding()
-                        #if os(iOS)
-                        .padding(.horizontal, iPhonelandscape ? 46 : 0)
-                        #endif
-                    }
-                    .padding(.top, 12)
-                    .padding(.bottom, 16)
-                    .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
-                }
-                .navigationTitle("Shoots Pro")
-                .navigationBarItems(trailing: trailing)
-                .background(Color("bg"))
-                .edgesIgnoringSafeArea([.bottom, .horizontal])
+                content
+                    .navigationTitle("Shoots Pro")
+                    .navigationBarItems(trailing: trailing)
+                    .background(Color("bg"))
+                    .edgesIgnoringSafeArea([.bottom, .horizontal])
             }
             .navigationViewStyle(StackNavigationViewStyle())
+            #else
+            VStack {
+                HStack {
+                    Text("Shoots Pro")
+                        .font(.largeTitle)
+                        .bold()
+                    Spacer()
+                    MacCloseButton()
+                }.padding([.horizontal, .top], 36)
+                
+                content
+            }.background(Color("bg"))
+            #endif
             ConfettiCannon(counter: $counter, num: 300, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 400)
         }
         .overlay(
@@ -200,40 +76,188 @@ struct ProView: View {
                     Image("discount")
                 }
             }
+            #if os(iOS)
                 .offset(x: Device.isPad() ? -20 : 0, y: Device.isPad() ? 20 : 10)
+            #endif
             , alignment: .topTrailing
         )
         .onAppear {
-            showLoadingIndicator = true
-            SwiftyStoreKit.retrieveProductsInfo([year, yearhalf, life, lifehalf]) { result in
-                if !result.retrievedProducts.isEmpty {
-                    result.retrievedProducts.forEach { product in
-                        if product.productIdentifier == yearhalf {
-                            yearhalfMoney = product.localizedPrice!
-                        } else if product.productIdentifier == year {
-                            yearMoney = product.localizedPrice!
-                        } else if product.productIdentifier == lifehalf {
-                            lifehalfMoney = product.localizedPrice!
-                        } else if product.productIdentifier == life {
-                            lifeMoney = product.localizedPrice!
-                        }
-                        
-                        
-                        let priceString = product.localizedPrice!
-                        print("Product: \(product.localizedDescription), price: \(priceString), id: \(product.productIdentifier)")
-                    }
-                    showLoadingIndicator = false
-                } else if let invalidProductId = result.invalidProductIDs.first {
-                    print("Invalid product identifier: \(invalidProductId)")
-                    showLoadingIndicator = false
-                } else {
-                    print("Error: \(result.error)")
-                    showLoadingIndicator = false
-                }
-            }
+            getInfo()
         }
     }
     
+    var content: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 0) {
+                VStack {
+                    Text("升级为 Pro 使用预览全部功能")
+                        .font(.system(size: 26, weight: .bold))
+                        .foregroundColor(Color.shootBlack)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                    
+                    if !(Defaults().get(for: .pro) ?? false) {
+                        HStack {
+                            Text("12")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(Color.white)
+                            + Text("天 Pro 功能试用，剩余")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(Color.white)
+                            + Text("10")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(Color.white)
+                            + Text("天")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(Color.white)
+                        }
+                        .padding(6)
+                        .background(Color.shootRed)
+                        .clipShape(RoundedCornersShape(tl: 10, tr: 0, bl: 0, br: 10))
+                    }
+                }.frame(maxWidth: .infinity)
+                    .padding(.bottom, 10)
+                
+                imageView
+                
+                if !(Defaults().get(for: .pro) ?? false) {
+                    if self.showLoadingIndicator {
+                        HStack {
+                            ActivityIndicatorView(isVisible: self.$showLoadingIndicator, type: .arcs)
+                                .frame(width: 50.0, height: 50.0)
+                                .foregroundColor(.red)
+                        }.frame(maxWidth: .infinity)
+                            .frame(height: 247)
+                            .padding(.bottom, 30)
+                            .cornerRadius(20)
+                            .shadow(color: Color.shootBlack.opacity(0.08), radius: 10, x: 0, y: 16)
+                    } else {
+                        buyButton
+                            .frame(height: 247)
+                    }
+                }
+                
+                VStack(alignment: .leading, spacing: 12) {
+                    Group {
+                        Text("\(Image(systemName: "bell.circle.fill"))")
+                            .foregroundColor(Color.shootRed)
+                        + Text(" 按年付费确认订阅之后将会向您的 App Store 账户收取费用，按照年的时间长度收取您的费用。订阅服务将会在当前周期结束时自动续订并收取下一年的费用。")
+                            .foregroundColor(Color.shootBlack)
+                    }
+                    .lineSpacing(6)
+                    .fixedSize(horizontal: false, vertical: true)
+                    
+                    .font(.subheadline)
+                    .multilineTextAlignment(.leading)
+                    Group {
+                        Text("\(Image(systemName: "bell.circle.fill"))")
+                            .foregroundColor(Color.shootRed)
+                        + Text(" 取消自动续订需要在当前订阅周期结束前 24 小时完成，可以在下面的 App Store 订阅管理里查看，如果有任何问题，请联系我们。")
+                            .foregroundColor(Color.shootBlack)
+                    }
+                    .lineSpacing(6)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .font(.subheadline)
+                    .multilineTextAlignment(.leading)
+                    
+                    VStack(spacing: 16) {
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                self.showAgreement = true
+                            }) {
+                                Text("隐私条款")
+                                    .bold()
+                                    .foregroundColor(Color.shootRed)
+                                    .fixedSize()
+                            }.buttonStyle(.plain)
+                            .sheet(isPresented: self.$showAgreement) {
+                                PrivacyView(showPrivacy: self.$showPrivacy)
+                            }
+                            
+                            Spacer()
+                            Text("·")
+                                .bold()
+                                .foregroundColor(Color.shootRed)
+                                .fixedSize()
+                            Spacer()
+                            
+                            Button(action: {
+                                self.showPrivacy = true
+                            }) {
+                                Text("使用协议")
+                                    .bold()
+                                    .foregroundColor(Color.shootRed)
+                                    .fixedSize()
+                            }.buttonStyle(.plain)
+                            .sheet(isPresented: self.$showPrivacy) {
+                                AgreementView(showAgreement: self.$showAgreement)
+                            }
+                            
+                            Group {
+                                Spacer()
+                                Text("·")
+                                    .bold()
+                                    .foregroundColor(Color.shootRed)
+                                    .fixedSize()
+                                Spacer()
+                                Button(action: {
+                                    #if os(iOS)
+                                    UIApplication.shared.open(URL(string: "https://apps.apple.com/account/subscriptions")!)
+                                    #else
+                                    NSWorkspace.shared.open(URL(string: "https://apps.apple.com/account/subscriptions")!)
+                                    #endif
+                                }) {
+                                    Text("订阅管理")
+                                        .bold()
+                                        .foregroundColor(Color.shootRed)
+                                        .fixedSize()
+                                }.buttonStyle(.plain)
+                                Spacer()
+                            }
+                        }
+                    }.padding(.top, 10)
+                }
+                .padding()
+                #if os(iOS)
+                .padding(.horizontal, iPhonelandscape ? 46 : 0)
+                #endif
+            }
+            .padding(.top, 12)
+            .padding(.bottom, 16)
+            .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
+        }
+    }
+    
+    func getInfo() {
+        showLoadingIndicator = true
+        SwiftyStoreKit.retrieveProductsInfo([year, yearhalf, life, lifehalf]) { result in
+            if !result.retrievedProducts.isEmpty {
+                result.retrievedProducts.forEach { product in
+                    if product.productIdentifier == yearhalf {
+                        yearhalfMoney = product.localizedPrice!
+                    } else if product.productIdentifier == year {
+                        yearMoney = product.localizedPrice!
+                    } else if product.productIdentifier == lifehalf {
+                        lifehalfMoney = product.localizedPrice!
+                    } else if product.productIdentifier == life {
+                        lifeMoney = product.localizedPrice!
+                    }
+                    
+                    
+                    let priceString = product.localizedPrice!
+                    print("Product: \(product.localizedDescription), price: \(priceString), id: \(product.productIdentifier)")
+                }
+                showLoadingIndicator = false
+            } else if let invalidProductId = result.invalidProductIDs.first {
+                print("Invalid product identifier: \(invalidProductId)")
+                showLoadingIndicator = false
+            } else {
+                print("Error: \(result.error)")
+                showLoadingIndicator = false
+            }
+        }
+    }
     func purchase(id: String) {
         SwiftyStoreKit.purchaseProduct(id, quantity: 1, atomically: true) { result in
             switch result {
@@ -245,26 +269,26 @@ struct ProView: View {
                 counter += 1
                 self.showLoadingIndicator = false
                 if true {
-                    let alertView = SPAlertView(title: "已经购买成功", message: "感谢您对 Poke 的支持，可以使用所有功能！", preset: .done)
-                    alertView.backgroundColor = .gray
-                    alertView.present()
+//                    let alertView = SPAlertView(title: "已经购买成功", message: "感谢您对 Poke 的支持，可以使用所有功能！", preset: .done)
+//                    alertView.backgroundColor = .gray
+//                    alertView.present()
                 } else {
-                    let alertView = SPAlertView(title: "Purchased Successfully", message: "Thank you for supporting Poke, now you have access to all features!", preset: .done)
-                    alertView.backgroundColor = .gray
-                    alertView.present()
+//                    let alertView = SPAlertView(title: "Purchased Successfully", message: "Thank you for supporting Poke, now you have access to all features!", preset: .done)
+//                    alertView.backgroundColor = .gray
+//                    alertView.present()
                 }
             case .error(let error):
                 switch error.code {
                 case .paymentCancelled:
                     self.showLoadingIndicator = false
                     if true {
-                        let alertView = SPAlertView(title: "取消购买", message: "已经取消购买！", preset: .error)
-                        alertView.backgroundColor = .gray
-                        alertView.present()
+//                        let alertView = SPAlertView(title: "取消购买", message: "已经取消购买！", preset: .error)
+//                        alertView.backgroundColor = .gray
+//                        alertView.present()
                     } else {
-                        let alertView = SPAlertView(title: "Cancel Purchase", message: "You cancel the purchase!", preset: .error)
-                        alertView.backgroundColor = .gray
-                        alertView.present()
+//                        let alertView = SPAlertView(title: "Cancel Purchase", message: "You cancel the purchase!", preset: .error)
+//                        alertView.backgroundColor = .gray
+//                        alertView.present()
                     }
                     
                     break
@@ -280,13 +304,13 @@ struct ProView: View {
                 }
                 self.showLoadingIndicator = false
                 if true {
-                    let alertView = SPAlertView(title: "购买失败", message: "购买出现问题，请稍后重试！", preset: .error)
-                    alertView.backgroundColor = .gray
-                    alertView.present()
+//                    let alertView = SPAlertView(title: "购买失败", message: "购买出现问题，请稍后重试！", preset: .error)
+//                    alertView.backgroundColor = .gray
+//                    alertView.present()
                 } else {
-                    let alertView = SPAlertView(title: "Purchase Failure", message: "A problem occured, please try again later!", preset: .error)
-                    alertView.backgroundColor = .gray
-                    alertView.present()
+//                    let alertView = SPAlertView(title: "Purchase Failure", message: "A problem occured, please try again later!", preset: .error)
+//                    alertView.backgroundColor = .gray
+//                    alertView.present()
                 }
             }
         }
@@ -300,13 +324,13 @@ struct ProView: View {
                 self.showLoadingIndicator = false
                 
                 if true {
-                    let alertView = SPAlertView(title: "恢复购买失败", message: "购买出现问题，请稍后重试！", preset: .error)
-                    alertView.backgroundColor = .gray
-                    alertView.present()
+//                    let alertView = SPAlertView(title: "恢复购买失败", message: "购买出现问题，请稍后重试！", preset: .error)
+//                    alertView.backgroundColor = .gray
+//                    alertView.present()
                 } else {
-                    let alertView = SPAlertView(title: "Resume Purchase Failed", message: "A problem occured, please try again later!", preset: .error)
-                    alertView.backgroundColor = .gray
-                    alertView.present()
+//                    let alertView = SPAlertView(title: "Resume Purchase Failed", message: "A problem occured, please try again later!", preset: .error)
+//                    alertView.backgroundColor = .gray
+//                    alertView.present()
                 }
                 
             } else if results.restoredPurchases.count > 0 {
@@ -317,13 +341,13 @@ struct ProView: View {
                 self.showLoadingIndicator = false
                 
                 if true {
-                    let alertView = SPAlertView(title: "恢复购买成功", message: "已经恢复购买成功，可以使用所有功能！", preset: .done)
-                    alertView.backgroundColor = .gray
-                    alertView.present()
+//                    let alertView = SPAlertView(title: "恢复购买成功", message: "已经恢复购买成功，可以使用所有功能！", preset: .done)
+//                    alertView.backgroundColor = .gray
+//                    alertView.present()
                 } else {
-                    let alertView = SPAlertView(title: "Resume Purchase Successful", message: "The purchase has been resumed successfully, all functions can be used!", preset: .done)
-                    alertView.backgroundColor = .gray
-                    alertView.present()
+//                    let alertView = SPAlertView(title: "Resume Purchase Successful", message: "The purchase has been resumed successfully, all functions can be used!", preset: .done)
+//                    alertView.backgroundColor = .gray
+//                    alertView.present()
                 }
                 
             } else {
@@ -331,13 +355,13 @@ struct ProView: View {
                 //之前没买过东西，无法恢复购买
                 self.showLoadingIndicator = false
                 if true {
-                    let alertView = SPAlertView(title: "未购买任何产品", message: "没有任何付费信息，无法恢复！", preset: .done)
-                    alertView.backgroundColor = .gray
-                    alertView.present()
+//                    let alertView = SPAlertView(title: "未购买任何产品", message: "没有任何付费信息，无法恢复！", preset: .done)
+//                    alertView.backgroundColor = .gray
+//                    alertView.present()
                 } else {
-                    let alertView = SPAlertView(title: "Nothing Purchased", message: "No payment information, unable to recover!", preset: .done)
-                    alertView.backgroundColor = .gray
-                    alertView.present()
+//                    let alertView = SPAlertView(title: "Nothing Purchased", message: "No payment information, unable to recover!", preset: .done)
+//                    alertView.backgroundColor = .gray
+//                    alertView.present()
                 }
             }
         }
@@ -446,6 +470,7 @@ struct ProView: View {
         }.padding(.top, 26).padding(.horizontal)
     }
     
+    #if os(iOS)
     var trailing: some View {
         Group {
             if horizontalSizeClass == .regular && verticalSizeClass == .compact {
@@ -460,6 +485,7 @@ struct ProView: View {
             }
         }
     }
+    #endif
 }
 
 

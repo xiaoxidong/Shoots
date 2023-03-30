@@ -14,28 +14,24 @@ struct AppView: View {
     @State var footerRefreshing = false
     @State var noMore = false
     
-    var feed: some View {
-        ScrollView {
-            FeedView(shoots: homeData)
-        }
-    }
-    
     var body: some View {
         ScrollView {
-            header
-                .padding(.top, topPadding)
-            flowView
-            imagesView
-            
-            LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
-                loadMore()
-            }
+            Group {
+                header
+                    .padding(.top, topPadding)
+                flowView
+                imagesView
+                
+                LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
+                    loadMore()
+                }
+            }.frame(maxWidth: 1060)
+                .frame(maxWidth: .infinity)
         }.enableRefresh()
             .refreshable {
-                // 首页下拉刷新
+                // 下拉刷新
                 
             }
-            .frame(maxWidth: 1060)
     }
     
     var header: some View {
