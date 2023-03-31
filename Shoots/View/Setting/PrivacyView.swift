@@ -21,6 +21,8 @@ struct PrivacyView: View {
                     Spacer()
                     #if os(iOS)
                     closeButton
+                    #else
+                    MacCloseButton()
                     #endif
                 }
                 .padding(.horizontal)

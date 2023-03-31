@@ -14,12 +14,12 @@ struct MacSettingsView: View {
         TabView(selection: $selection) {
             basicView
                 .tabItem {
-                    Label("基础设置", systemImage: "gearshape.fill")
+                    Label("  基础设置  ", systemImage: "gearshape.fill")
                 }
                 .tag(0)
             ShootsAIView()
                 .tabItem {
-                    Label("Shoots AI", systemImage: "theatermask.and.paintbrush.fill")
+                    Label("  Shoots AI  ", systemImage: "theatermask.and.paintbrush.fill")
                 }
                 .tag(1)
             UberaboutView(bundle: Bundle.main,
@@ -27,7 +27,7 @@ struct MacSettingsView: View {
                           creditsURL: "http://productpoke.com",
                           organizationLogo: Image("uberaboutOrgaLogo"))
                 .tabItem {
-                    Label("关于我们", systemImage: "app.badge.fill")
+                    Label("  关于我们  ", systemImage: "app.badge.fill")
                 }
                 .tag(2)
         }.frame(width: 520, height: 520)

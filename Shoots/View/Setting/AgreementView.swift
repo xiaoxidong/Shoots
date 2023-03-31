@@ -21,6 +21,8 @@ struct AgreementView: View {
                     Spacer()
                     #if os(iOS)
                     closeButton
+                    #else
+                    MacCloseButton()
                     #endif
                 }
                 .padding(.horizontal)

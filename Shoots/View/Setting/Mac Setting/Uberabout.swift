@@ -58,6 +58,9 @@ struct UberaboutView: View {
     @State private var foregroundIconVisible: Bool = true
     @State private var backgroundIconVisible: Bool = false
     @State private var copyrightFlipped: Bool = false
+    @State var showPrivacy = false
+    @State var showAgreement = false
+    
     var body: some View {
         VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
@@ -108,6 +111,14 @@ struct UberaboutView: View {
             }
             
             bottomView
+        }
+        .sheet(isPresented: self.$showAgreement) {
+            AgreementView(showAgreement: $showAgreement)
+                .sheetFrameForMac()
+        }
+        .sheet(isPresented: self.$showPrivacy) {
+            PrivacyView(showPrivacy: self.$showPrivacy)
+                .sheetFrameForMac()
         }
     }
     
@@ -233,13 +244,13 @@ struct UberaboutView: View {
                 Spacer()
                 
                 Button {
-                    
+                    showPrivacy.toggle()
                 } label: {
                     Text("隐私协议")
                 }
                 
                 Button {
-                    
+                    showAgreement.toggle()
                 } label: {
                     Text("使用条款")
                 }
