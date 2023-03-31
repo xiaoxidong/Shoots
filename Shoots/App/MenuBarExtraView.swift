@@ -14,6 +14,7 @@ struct MenuBarExtraView: View {
     
     @State var searchText = ""
     @Environment(\.openWindow) var openWindow
+    @AppStorage("showAI") var showAI = true
     var body: some View {
         VStack {
             HStack {
@@ -29,14 +30,21 @@ struct MenuBarExtraView: View {
                     }
                     NSApp.activate(ignoringOtherApps: true)
                 } label: {
-                    Image("setting")
-                        .resizable()
-                        .renderingMode(.template)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 16, height: 16)
-                        .foregroundColor(Color.shootBlack)
-                        .padding(4)
-                        .contentShape(Rectangle())
+                    Group {
+                        if showAI {
+                            Image(systemName: "theatermask.and.paintbrush.fill")
+                                .font(.system(size: 16))
+                        } else {
+                            Image("setting")
+                                .resizable()
+                                .renderingMode(.template)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 16, height: 16)
+                        }
+                    }
+                    .foregroundColor(Color.shootBlack)
+                    .padding(4)
+                    .contentShape(Rectangle())
                 }.buttonStyle(.plain)
                 
                 Button {

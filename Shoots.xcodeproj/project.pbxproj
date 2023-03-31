@@ -14,6 +14,8 @@
 		4E195EF029C040C800E97522 /* ShootsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EEF29C040C800E97522 /* ShootsTests.swift */; };
 		4E195EFA29C040C800E97522 /* ShootsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EF929C040C800E97522 /* ShootsUITests.swift */; };
 		4E195EFC29C040C800E97522 /* ShootsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */; };
+		4E1EBBA529D6723200636028 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4E1EBBA429D6723200636028 /* LaunchAtLogin */; };
+		4E1EBBA829D6758100636028 /* ShootsAIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EBBA729D6758100636028 /* ShootsAIView.swift */; };
 		4E42A6A429D12DAB00BEC185 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E42A6A329D12DAB00BEC185 /* Preview Assets.xcassets */; };
 		4E42A6A929D12DCD00BEC185 /* ShootsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EDD29C040C600E97522 /* ShootsApp.swift */; };
 		4E42A6AA29D12DD100BEC185 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E195EE129C040C700E97522 /* Assets.xcassets */; };
@@ -344,6 +346,7 @@
 		4E195EF529C040C800E97522 /* ShootsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShootsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E195EF929C040C800E97522 /* ShootsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsUITests.swift; sourceTree = "<group>"; };
 		4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4E1EBBA729D6758100636028 /* ShootsAIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsAIView.swift; sourceTree = "<group>"; };
 		4E42A69A29D12DA900BEC185 /* Shoots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoots.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E42A6A329D12DAB00BEC185 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4E42A6A529D12DAB00BEC185 /* Shoots_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Shoots_Mac.entitlements; sourceTree = "<group>"; };
@@ -573,6 +576,7 @@
 			files = (
 				4ED4B08D29D3CAB1005D9758 /* Refresh in Frameworks */,
 				4E42A6F729D1319D00BEC185 /* SwiftUIFlowLayout in Frameworks */,
+				4E1EBBA529D6723200636028 /* LaunchAtLogin in Frameworks */,
 				4E42A6F529D1319900BEC185 /* WaterfallGrid in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1201,6 +1205,7 @@
 			isa = PBXGroup;
 			children = (
 				4EA73AF429D59A59002901AE /* MacSettingsView.swift */,
+				4E1EBBA729D6758100636028 /* ShootsAIView.swift */,
 				4EA73AF629D5BB3B002901AE /* Uberabout.swift */,
 				4EA73AF829D5BB6A002901AE /* Bundle+Extension.swift */,
 			);
@@ -1413,6 +1418,7 @@
 				4E42A69629D12DA900BEC185 /* Sources */,
 				4E42A69729D12DA900BEC185 /* Frameworks */,
 				4E42A69829D12DA900BEC185 /* Resources */,
+				4E1EBBA629D6728D00636028 /* Launch at Login Helper */,
 			);
 			buildRules = (
 			);
@@ -1423,6 +1429,7 @@
 				4E42A6F429D1319900BEC185 /* WaterfallGrid */,
 				4E42A6F629D1319D00BEC185 /* SwiftUIFlowLayout */,
 				4ED4B08C29D3CAB1005D9758 /* Refresh */,
+				4E1EBBA429D6723200636028 /* LaunchAtLogin */,
 			);
 			productName = Shoots_Mac;
 			productReference = 4E42A69A29D12DA900BEC185 /* Shoots.app */;
@@ -1469,6 +1476,7 @@
 				4E5CF74729CD69D800A4E0DE /* XCRemoteSwiftPackageReference "CHIPageControl" */,
 				4E878ED229D191520027FDA9 /* XCRemoteSwiftPackageReference "Refresh" */,
 				4E73A68829D316BB009CFB5A /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				4E1EBBA129D6720F00636028 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 			);
 			productRefGroup = 4E195EDB29C040C600E97522 /* Products */;
 			projectDirPath = "";
@@ -1516,6 +1524,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4E1EBBA629D6728D00636028 /* Launch at Login Helper */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Launch at Login Helper";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4E195ED629C040C600E97522 /* Sources */ = {
@@ -1777,6 +1806,7 @@
 				4E42A6EA29D1315B00BEC185 /* DNALoading.swift in Sources */,
 				4EA73B1B29D5C161002901AE /* InAppReceiptVerificator.swift in Sources */,
 				4EA73B1129D5C11E002901AE /* ProView.swift in Sources */,
+				4E1EBBA829D6758100636028 /* ShootsAIView.swift in Sources */,
 				4E42A72829D14B2100BEC185 /* TimePeriodCollection.swift in Sources */,
 				4E42A72429D14B1700BEC185 /* TimeStructures.swift in Sources */,
 				4E42A6E429D1315500BEC185 /* ModeView.swift in Sources */,
@@ -1993,7 +2023,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -2034,7 +2064,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -2154,14 +2184,14 @@
 				INFOPLIST_FILE = "Shoots-Mac-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Shoots;
 				INFOPLIST_KEY_LSUIElement = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 -2024";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				LINKER_DISPLAYS_MANGLED_NAMES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_MODULE_NAME = Shoots;
 				PRODUCT_NAME = Shoots;
@@ -2188,14 +2218,14 @@
 				INFOPLIST_FILE = "Shoots-Mac-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Shoots;
 				INFOPLIST_KEY_LSUIElement = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 -2024";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				LINKER_DISPLAYS_MANGLED_NAMES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_MODULE_NAME = Shoots;
 				PRODUCT_NAME = Shoots;
@@ -2256,6 +2286,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4E1EBBA129D6720F00636028 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		4E5CF74729CD69D800A4E0DE /* XCRemoteSwiftPackageReference "CHIPageControl" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ChiliLabs/CHIPageControl";
@@ -2299,6 +2337,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4E1EBBA429D6723200636028 /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E1EBBA129D6720F00636028 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			productName = LaunchAtLogin;
+		};
 		4E42A6F429D1319900BEC185 /* WaterfallGrid */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4EE49F8B29C8820F00B51F4B /* XCRemoteSwiftPackageReference "WaterfallGrid" */;
