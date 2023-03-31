@@ -21,6 +21,7 @@ struct MenuBarExtraView: View {
                 TextField("搜索应用或设计模式", text: $searchText)
                     .textFieldStyle(.plain)
                 Button {
+                    NSApp.setActivationPolicy(.regular)
                     isMenuPresented.toggle()
 
                     if #available(macOS 13, *) {
@@ -48,7 +49,7 @@ struct MenuBarExtraView: View {
                 }.buttonStyle(.plain)
                 
                 Button {
-//                    NSApp.setActivationPolicy(.regular)
+                    NSApp.setActivationPolicy(.regular)
                     isMenuPresented.toggle()
                     openWindow(id: "main")
                     NSApp.activate(ignoringOtherApps: true)

@@ -18,6 +18,10 @@ struct ShootsApp: App {
                 .onAppear {
                     #if os(macOS)
                     NSApp.activate(ignoringOtherApps: true)
+                    NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: nil, queue: .main) { _ in
+                        // 关闭窗口的时候，隐藏应用
+                        NSApp.setActivationPolicy(.prohibited)
+                    }
                     #endif
                 }
         }
@@ -28,6 +32,9 @@ struct ShootsApp: App {
                 .onAppear {
                     if let window = NSApplication.shared.windows.first, window.className == "SwiftUI.AppKitWindow" {
                         window.close()
+                    }
+                    NotificationCenter.default.addObserver(forName: NSApplication.willTerminateNotification, object: nil, queue: .main) { _ in
+                        print("--------")
                     }
                 }
                 .onDisappear {

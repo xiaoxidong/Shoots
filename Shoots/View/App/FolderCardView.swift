@@ -14,8 +14,8 @@ struct FolderCardView: View {
     var body: some View {
         VStack(spacing: 12) {
             ZStack {
-                if let image = images[1] {
-                    Image(image)
+                if images.count >= 1 {
+                    Image(images[0])
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
@@ -29,8 +29,8 @@ struct FolderCardView: View {
                 }
                 
                 
-                if let image = images[1] {
-                    Image(image)
+                if images.count >= 2 {
+                    Image(images[1])
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
@@ -42,8 +42,8 @@ struct FolderCardView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }
                 
-                if let image = images.first {
-                    Image(image)
+                if images.count >= 3 {
+                    Image(images[2])
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))

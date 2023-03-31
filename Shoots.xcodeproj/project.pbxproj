@@ -2183,7 +2183,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Shoots-Mac-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Shoots;
-				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_LSUIElement = NO;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 -2024";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2217,7 +2217,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Shoots-Mac-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Shoots;
-				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_LSUIElement = NO;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 -2024";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

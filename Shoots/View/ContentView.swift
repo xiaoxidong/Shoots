@@ -108,7 +108,11 @@ struct ContentView: View {
                     NavigationLink {
                         SelfView()
                     } label: {
-                        Image("self")
+                        Image("pic")//"self"
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                            .clipShape(Circle())
                     }
                 }
                 
