@@ -189,10 +189,11 @@ struct DetailView: View {
                     
                 }
             }.padding(.horizontal)
-        }.frame(maxWidth: 560)
+        }.frame(maxWidth: 460)
             .padding()
             .padding(.bottom)
             .padding(.top, 8)
+            .frame(maxWidth: .infinity)
         .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
         .shadow(color: Color.shootBlack.opacity(0.2), radius: 10, y: -10)

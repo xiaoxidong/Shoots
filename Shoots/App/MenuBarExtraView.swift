@@ -64,7 +64,15 @@ struct MenuBarExtraView: View {
                 }.buttonStyle(.plain)
             }.padding([.horizontal, .top], 14)
             
-            feed
+            if searchText == "Instagram" {
+                AppView(app: appData, topPadding: 16)
+            } else if searchText == "关注" {
+                feed
+            } else {
+                ScrollView {
+                    FeedView(shoots: homeData)
+                }
+            }
         }
     }
     
