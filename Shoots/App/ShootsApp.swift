@@ -11,7 +11,7 @@ import SwiftUI
 struct ShootsApp: App {
     @State var isInserted = true
     @State var isMenuPresented: Bool = false
-    
+    @AppStorage("statusIcon") var statusIcon: String = "photo.fill.on.rectangle.fill"
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -35,7 +35,7 @@ struct ShootsApp: App {
                 }
         }
         
-        MenuBarExtra("Status", systemImage: "photo.fill.on.rectangle.fill", isInserted: $isInserted) {
+        MenuBarExtra("Status", systemImage: statusIcon, isInserted: $isInserted) {
             MenuBarExtraView(isInserted: $isInserted, isMenuPresented: $isMenuPresented)
                 .frame(width: 520, height: 600)
         }.menuBarExtraStyle(.window)

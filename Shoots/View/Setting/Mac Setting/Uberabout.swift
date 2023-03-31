@@ -59,7 +59,7 @@ struct UberaboutView: View {
     @State private var backgroundIconVisible: Bool = false
     @State private var copyrightFlipped: Bool = false
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
                 HStack(alignment: .top) {
                     icon.padding(.top, 36).padding(.leading, 26)
@@ -104,7 +104,7 @@ struct UberaboutView: View {
                     appsView(name: "Poke", content: "A simple but highly customizable UICollectionViewLayout for UICollectionView -- Simple SwiftUI views that let you make page-view effects.", image: "", url: "")
                     appsView(name: "Poke", content: "A simple but highly customizable UICollectionViewLayout for UICollectionView -- Simple SwiftUI views that let you make page-view effects.", image: "", url: "")
                     appsView(name: "Poke", content: "A simple but highly customizable UICollectionViewLayout for UICollectionView -- Simple SwiftUI views that let you make page-view effects.", image: "", url: "")
-                }
+                }.padding(.bottom, 36)
             }
             
             bottomView
@@ -215,7 +215,6 @@ struct UberaboutView: View {
     var bottomView: some View {
         VStack(spacing: 0) {
             Divider()
-                .padding(.top, 16.0)
 
             HStack(spacing: 12) {
                 Button(action: {

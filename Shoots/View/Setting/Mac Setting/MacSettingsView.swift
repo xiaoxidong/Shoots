@@ -30,10 +30,11 @@ struct MacSettingsView: View {
                     Label("关于我们", systemImage: "app.badge.fill")
                 }
                 .tag(2)
-        }.frame(width: 520, height: 460)
+        }.frame(width: 520, height: 520)
     }
     
     @AppStorage("colorMode") private var colorMode: ShootColorScheme = .none
+    @AppStorage("statusIcon") var statusIcon: String = "photo.fill.on.rectangle.fill"
     @Environment(\.colorScheme) var colorScheme
     @State var showPro = false
     var basicView: some View {
@@ -82,6 +83,30 @@ struct MacSettingsView: View {
                             } else if colorMode == .dark {
                                 Text("🌑 深色模式")
                             }
+                        }.frame(width: 120)
+                    }.padding(.vertical, 6)
+                    
+                    LabeledContent("状态栏图标：") {
+                        Menu {
+                            Button(action: {
+                                statusIcon = "theatermask.and.paintbrush.fill"
+                            }) {
+                                Image(systemName: "theatermask.and.paintbrush.fill")
+                            }
+                            
+                            Button(action: {
+                                statusIcon = "photo.fill.on.rectangle.fill"
+                            }) {
+                                Image(systemName: "photo.fill.on.rectangle.fill")
+                            }
+                            
+                            Button(action: {
+                                statusIcon = "photo.stack.fill"
+                            }) {
+                                Image(systemName: "photo.stack.fill")
+                            }
+                        } label: {
+                            Label("图标", systemImage: statusIcon)
                         }.frame(width: 120)
                     }.padding(.vertical, 6)
                 }
