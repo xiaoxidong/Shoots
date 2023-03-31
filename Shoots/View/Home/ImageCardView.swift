@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct ImageCardView: View {
     var shoot: Shoot
@@ -36,13 +37,14 @@ struct ImageCardView: View {
                     }
             )
             .onDrag {
-                #if os(iOS)
-                let provider = NSItemProvider(object: UIImage(named: shoot.imageUrl) ?? UIImage())
-                #else
-                let provider = NSItemProvider(object: NSImage(named: shoot.imageUrl) ?? NSImage())
-                #endif
-                return provider
+                let fileURL = FileManager.default.homeDirectoryForCurrentUser.appending(component: "cover.png")
+                // TODO: 拖拽保存图片
+                let image = NSImage(named: "s1")
+                FileManager.default.createFile(atPath: fileURL.path, contents: image?.png)
+                
+                return NSItemProvider(item: fileURL as NSSecureCoding, typeIdentifier: UTType.fileURL.identifier)
             }
+        
     }
 }
 
