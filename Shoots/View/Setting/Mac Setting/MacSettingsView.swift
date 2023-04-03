@@ -22,10 +22,7 @@ struct MacSettingsView: View {
                     Label("  Shoots AI  ", systemImage: "theatermask.and.paintbrush.fill")
                 }
                 .tag(1)
-            UberaboutView(bundle: Bundle.main,
-                          appIconBackside: Image("uberaboutIconBack"),
-                          creditsURL: "http://productpoke.com",
-                          organizationLogo: Image("uberaboutOrgaLogo"))
+            UberaboutView(bundle: Bundle.main)
                 .tabItem {
                     Label("  关于我们  ", systemImage: "app.badge.fill")
                 }
@@ -41,7 +38,7 @@ struct MacSettingsView: View {
         ScrollView(showsIndicators: false) {
             Form {
                 Section {
-                    LabeledContent("成为 Pro：") {
+                    LabeledContent("支持开发者：") {
                         Button {
                             showPro.toggle()
                         } label: {
@@ -50,7 +47,7 @@ struct MacSettingsView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 14, height: 14)
-                                Text("Shoots Pro")
+                                Text("买杯饮料")
                             }
                         }
                     }.padding(.vertical, 6)

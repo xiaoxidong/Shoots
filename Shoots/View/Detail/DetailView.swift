@@ -27,6 +27,10 @@ struct DetailView: View {
             infoView
                 .offset(y: showDetail ? 0 : 1000)
         }
+        .overlay(alignment: .bottom) {
+            saveView
+                .offset(y: showSave ? 0 : 1000)
+        }
         .overlay(
             Group {
                 Color.black.opacity(showDetailNew ? 0.4 : 0)
@@ -174,15 +178,42 @@ struct DetailView: View {
             // 操作按钮
             HStack {
                 ActionTitleButtonView(image: "save", title: "收藏") {
-                    
+                    #if os(iOS)
+                    FeedbackManager.impact(style: .medium)
+                    #endif
+                    withAnimation(.spring()) {
+                        showDetail = false
+                        showSave = true
+                    }
                 }
                 Spacer(minLength: 0)
-                ActionTitleButtonView(image: "share", title: "分享") {
-                    
+                
+                ShareLink(item: Image(shoot.imageUrl), preview: SharePreview("Shoots", image: Image(shoot.imageUrl))) {
+                    VStack {
+                        Image("share")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                        Text("分享")
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundColor(.shootBlack)
+                    }
                 }
+                
                 Spacer(minLength: 0)
                 ActionTitleButtonView(image: "download", title: "下载") {
+                    #if os(iOS)
+                    FeedbackManager.impact(style: .medium)
+                    #endif
                     
+                    let imageSaver = ImageSaver()
+                    imageSaver.successHandler = {
+                        print("保存成功")
+                    }
+                    imageSaver.errorHandler = {
+                        print("保存失败: \($0.localizedDescription)")
+                    }
+                    imageSaver.writeToPhotoAlbum(image: UIImage(named: shoot.imageUrl)!)
                 }
                 Spacer(minLength: 0)
                 ActionTitleButtonView(image: "report", title: "举报") {
@@ -191,6 +222,39 @@ struct DetailView: View {
             }.padding(.horizontal)
         }.frame(maxWidth: 460)
             .padding()
+            .padding(.bottom)
+            .padding(.top, 8)
+            .frame(maxWidth: .infinity)
+        .background(Color.white)
+        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+        .shadow(color: Color.shootBlack.opacity(0.2), radius: 10, y: -10)
+        .contentShape(Rectangle())
+    }
+    
+    @State var showSave = false
+    var saveView: some View {
+        VStack {
+            ZStack {
+                Text("添加收藏夹")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(.shootBlack)
+                Button {
+                    
+                } label: {
+                    Image("add")
+                }.padding(.trailing)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+            }
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 26) {
+                    FolderCardView(images: ["s1", "s2", "s4"], name: "Ins")
+                    FolderCardView(images: ["s5", "s6", "s9"], name: "Ins")
+                    FolderCardView(images: ["s8", "s3", "s1"], name: "Ins")
+                }.padding(.horizontal, 26)
+            }
+        }.frame(maxWidth: 460)
+            .padding(.vertical)
             .padding(.bottom)
             .padding(.top, 8)
             .frame(maxWidth: .infinity)

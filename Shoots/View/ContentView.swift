@@ -120,6 +120,7 @@ struct ContentView: View {
                     if showCustomUpload {
                         if horizontalSizeClass == .compact {
                             Button {
+                                FeedbackManager.impact(style: .medium)
                                 withAnimation(.spring()) {
                                     uploadOptions.toggle()
                                 }
@@ -129,12 +130,14 @@ struct ContentView: View {
                         } else {
                             Menu {
                                 Button {
+                                    FeedbackManager.impact(style: .medium)
                                     uploadisActive.toggle()
                                 } label: {
                                     Label("上传截图", image: "upload")
                                 }
                                 
                                 Button {
+                                    FeedbackManager.impact(style: .medium)
                                     customUpload.toggle()
                                 } label: {
                                     Label("整理截图", image: "tags")
@@ -160,23 +163,20 @@ struct ContentView: View {
                     Button {
                         showMacSelf.toggle()
                     } label: {
-                        Image("self")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 16, height: 16)
-                            .padding(3)
-                    }
-                }
-                
-                ToolbarItem(placement: .automatic) {
-                    Button {
-                        showMacPro.toggle()
-                    } label: {
-                        Image("pro")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 16, height: 16)
-                            .padding(3)
+                        // 登录和未登录状态设置
+                        if true {
+                            Image("pic")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 24, height: 24)
+                                .clipShape(Circle())
+                        } else {
+                            Image("self")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 16, height: 16)
+                                .padding(3)
+                        }
                     }
                 }
                 #endif

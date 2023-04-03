@@ -1,62 +1,16 @@
-
+//
+//  UberaboutView.swift
+//  Shoots
+//
+//  Created by XiaoDong Yuan on 2023/4/3.
+//
 
 import SwiftUI
-#if os(macOS)
-import Cocoa
-#endif
-import os.log
 
-struct Uberabout {
-    
-    static let windowWidth: CGFloat = 268.0
-    static let windowHeight: CGFloat = 348.0
-    
-    static func aboutWindow(for bundle: Bundle = Bundle.main) -> NSWindow {
-        
-        let origin = CGPoint.zero
-        let size = CGSize(width: self.windowWidth, height: self.windowHeight)
-        
-        let window = NSWindow(contentRect: NSRect(origin: origin, size: size),
-                              styleMask: [.titled, .closable, .fullSizeContentView],
-                              backing: .buffered,
-                              defer: false)
-        
-        window.setFrameAutosaveName(bundle.appName)
-        window.setAccessibilityTitle(bundle.appName)
-        window.titlebarAppearsTransparent = true
-        window.isMovableByWindowBackground = true
-        window.isReleasedWhenClosed = false
-        
-        // Configure here
-        let aboutView = UberaboutView(bundle: bundle,
-                                      appIconBackside: Image("uberaboutIconBack"),
-                                      creditsURL: "http://productpoke.com",
-                                      organizationLogo: Image("uberaboutOrgaLogo"))
-        
-        window.contentView = NSHostingView(rootView: aboutView)
-        window.center()
-        
-        return window
-        
-    }
-    
-}
-
-
-// MARK: - About View
 struct UberaboutView: View {
-    
     let bundle: Bundle
-    var appIconBackside: Image? = nil // 128pt × 128pt
     var creditsURL: String? = nil
-    var organizationLogo: Image? = nil // 12pt height max & render as template
-    
-    private let windowWidth: CGFloat = Uberabout.windowWidth
-    private let windowHeight: CGFloat = Uberabout.windowHeight
-    
-    @State private var iconHover: Bool = false
-    @State private var foregroundIconVisible: Bool = true
-    @State private var backgroundIconVisible: Bool = false
+    var organizationLogo: Image? = nil
     @State private var copyrightFlipped: Bool = false
     @State var showPrivacy = false
     @State var showAgreement = false
@@ -65,7 +19,9 @@ struct UberaboutView: View {
         VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
                 HStack(alignment: .top) {
-                    icon.padding(.top, 36).padding(.leading, 26)
+                    AppIconView(appIconBackside: Image("uberaboutIconBack"), appIconFrontside: Image("uberaboutIconBack"))
+                        .padding(.top, 36)
+                        .padding(.leading, 26)
                     
                     VStack(alignment: .leading, spacing: 16) {
                         VStack(alignment: .leading, spacing: 8) {
@@ -124,7 +80,7 @@ struct UberaboutView: View {
     
     func appsView(name: String, content: String, image: String, url: String) -> some View {
         HStack(alignment: .top) {
-            icon
+            AppIconView(appIconBackside: Image("uberaboutIconBack"), appIconFrontside: Image("uberaboutIconBack"))
             VStack(alignment: .leading, spacing: 12) {
                 Text(name)
                     .font(.largeTitle)
@@ -170,57 +126,6 @@ struct UberaboutView: View {
                 }.buttonStyle(UberaboutWindowButtonStyle())
             }
         }
-    }
-    
-    var icon: some View {
-        ZStack {
-            // App Icon: Back
-            Group {
-                if let backside = self.appIconBackside {
-                    backside.resizable()
-                } else {
-                    AppIconPlaceholder()
-                }
-            }
-            .rotation3DEffect(self.backgroundIconVisible ? Angle.zero : Angle(degrees: -90.0),
-                              axis: (x: 0.0, y: 1.0, z: 0.0),
-                              anchor: .center,
-                              anchorZ: 0.0,
-                              perspective: -0.5)
-            
-            // App Icon: Front
-            Group {
-                if let appIcon = NSApp.applicationIconImage {
-                    Image(nsImage: appIcon)
-                } else {
-                    AppIconPlaceholder()
-                }
-            }
-            .rotation3DEffect(self.foregroundIconVisible ? Angle.zero : Angle(degrees: 90.0),
-                              axis: (x: 0.0, y: 1.0, z: 0.0),
-                              anchor: .center,
-                              anchorZ: 0.0,
-                              perspective: -0.5)
-            
-        }
-        .frame(width: 128.0, height: 128.0)
-        .brightness(self.iconHover ? 0.05 : 0.0)
-        .onHover(perform: {
-            state in
-            
-            let ani = Animation.easeInOut(duration: 0.16)
-            withAnimation(ani, {
-                self.iconHover = state
-            })
-            
-            if !state && self.backgroundIconVisible {
-                self.flipIcon()
-            }
-            
-        })
-        .onTapGesture(perform: {
-            self.flipIcon()
-        })
     }
     
     var bottomView: some View {
@@ -270,73 +175,10 @@ struct UberaboutView: View {
             })
         }
     }
-    
-    
-    private func flipIcon() {
-        
-        let reversed = self.foregroundIconVisible
-        
-        let inDuration = 0.12
-        let inAnimation = Animation.easeIn(duration: inDuration)
-        let outAnimation = Animation.easeOut(duration: 0.32)
-        
-        withAnimation(inAnimation, {
-            if reversed {
-                self.foregroundIconVisible.toggle()
-            } else {
-                self.backgroundIconVisible.toggle()
-            }
-        })
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + inDuration) {
-            withAnimation(outAnimation, {
-                if !reversed {
-                    self.foregroundIconVisible.toggle()
-                } else {
-                    self.backgroundIconVisible.toggle()
-                }
-            })
-        }
-        
-    }
-    
-    
 }
 
-
-// MARK: - App Icon Placeholder
-struct AppIconPlaceholder: View {
-    private let cornerSize: CGSize = CGSize(width: 24.0, height: 24.0)
-    var body: some View {
-        return RoundedRectangle(cornerSize: self.cornerSize, style: .continuous)
-            .foregroundColor(Color.secondary)
-            .padding(13.0)
-    }
-}
-
-
-// MARK: - Button Style
-fileprivate struct UberaboutWindowButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        let color = Color.accentColor
-        let pressed = configuration.isPressed
-        return configuration.label
-            .font(Font.body.weight(.medium))
-            .padding([.leading, .trailing], 8.0)
-            .padding([.top], 4.0)
-            .padding([.bottom], 5.0)
-            .background(color.opacity(pressed ? 0.08 : 0.14))
-            .foregroundColor(color.opacity(pressed ? 0.8 : 1.0))
-            .cornerRadius(5.0)
-    }
-}
-
-// MARK: - Preview
 struct UberaboutView_Previews: PreviewProvider {
     static var previews: some View {
-        return UberaboutView(bundle: Bundle.main,
-                             appIconBackside: Image("uberaboutIconBack"),
-                             creditsURL: "http://ixeau.com",
-                             organizationLogo: Image("uberaboutOrgaLogo"))
+        UberaboutView(bundle: Bundle.main)
     }
 }

@@ -47,7 +47,7 @@ struct ProView: View {
             #if os(iOS)
             NavigationView {
                 content
-                    .navigationTitle("Shoots Pro")
+                    .navigationTitle("支持开发者")
                     .navigationBarItems(trailing: trailing)
                     .background(Color("bg"))
                     .edgesIgnoringSafeArea([.bottom, .horizontal])
@@ -56,7 +56,7 @@ struct ProView: View {
             #else
             VStack {
                 HStack {
-                    Text("Shoots Pro")
+                    Text("支持开发者")
                         .font(.largeTitle)
                         .bold()
                     Spacer()

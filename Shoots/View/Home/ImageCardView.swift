@@ -7,12 +7,15 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import StoreKit
 
 struct ImageCardView: View {
     var shoot: Shoot
     
     @AppStorage("homeModel") var homeModel = 0
+    @AppStorage("showReviewAlert") var showReviewAlert = 0
     @State var showDetail: Bool = false
+    @Environment(\.requestReview) var requestReview
     var body: some View {
         Image(shoot.imageUrl)
             .resizable()
@@ -23,6 +26,13 @@ struct ImageCardView: View {
             }
             .onTapGesture {
                 showDetail.toggle()
+                if showReviewAlert < 10 {
+                    showReviewAlert += 1
+                } else if showReviewAlert == 10 {
+                    // 显示引导评价
+                    requestReview()
+                    showReviewAlert = 11
+                }
             }
             .highPriorityGesture (
                 TapGesture(count: 2)

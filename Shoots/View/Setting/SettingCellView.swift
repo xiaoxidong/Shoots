@@ -50,7 +50,7 @@ struct SettingCellView: View {
 
 struct SettingCellView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingCellView(image: "pro", text: "Shoots Pro") {
+        SettingCellView(image: "pro", text: "支持开发者") {
             
         }
     }

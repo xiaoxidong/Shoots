@@ -50,7 +50,13 @@ struct FeedView: View {
     
     func waterfallView(columns: Int) -> some View {
         WaterfallGrid(shoots) { shoot in
-            ImageCardView(shoot: shoot)
+            Group {
+                if shoot.imageUrl == "s3" {
+                    AddsView()
+                } else {
+                    ImageCardView(shoot: shoot)
+                }
+            }
         }
         .gridStyle(columns: columns)
         .frame(maxWidth: 1060)

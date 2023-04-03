@@ -19,13 +19,15 @@ struct FolderCardView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .rotationEffect(Angle(degrees: -6))
+                        .rotationEffect(Angle(degrees: -8))
+                        .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
                 } else {
                     Image("s1")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .rotationEffect(Angle(degrees: -3))
+                        .rotationEffect(Angle(degrees: -8))
+                        .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
                 }
                 
                 
@@ -34,12 +36,13 @@ struct FolderCardView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .rotationEffect(Angle(degrees: -3))
+                        .rotationEffect(Angle(degrees: -4))
                 } else {
                     Image("s1")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        .rotationEffect(Angle(degrees: -4))
                 }
                 
                 if images.count >= 3 {
