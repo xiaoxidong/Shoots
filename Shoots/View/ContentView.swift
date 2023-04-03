@@ -163,6 +163,7 @@ struct ContentView: View {
                         Image("self")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
+                            .frame(width: 16, height: 16)
                             .padding(3)
                     }
                 }
@@ -174,6 +175,7 @@ struct ContentView: View {
                         Image("pro")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
+                            .frame(width: 16, height: 16)
                             .padding(3)
                     }
                 }

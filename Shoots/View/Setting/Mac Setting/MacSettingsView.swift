@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import LaunchAtLogin
+//import LaunchAtLogin
 
 struct MacSettingsView: View {
     @State var selection = 1
@@ -38,7 +38,7 @@ struct MacSettingsView: View {
     @Environment(\.colorScheme) var colorScheme
     @State var showPro = false
     var basicView: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             Form {
                 Section {
                     LabeledContent("成为 Pro：") {
@@ -203,9 +203,11 @@ struct MacSettingsView: View {
                 }
                 Section {
                     LabeledContent("开机启动：") {
-                        LaunchAtLogin.Toggle {
-                            Text("开启")
-                        }
+                        // 不知道为什么，添加了登录自动开启之后，iOS 的预览就不能使用，所以这里暂时注销了，可以添加下面的 SPM，然后引入库即可。
+                        //https://github.com/sindresorhus/LaunchAtLogin
+//                        LaunchAtLogin.Toggle {
+//                            Text("开启")
+//                        }
                     }.padding(.vertical, 6)
                         .padding(.top)
                     
@@ -218,6 +220,16 @@ struct MacSettingsView: View {
                     }.padding(.vertical, 6)
                 }
             }
+            
+            SettingRateView()
+                .padding(.top)
+                .frame(width: 460)
+            
+            Text("🎈A YUANXIAODONG PRODUCT MADE WITH ♥️")
+                .font(.system(size: 10, weight: .bold))
+                .foregroundColor(Color.gray)
+                .padding(.top, 86)
+                .padding(.bottom, 26)
         }.sheet(isPresented: $showPro) {
             ProView()
                 .sheetFrameForMac()

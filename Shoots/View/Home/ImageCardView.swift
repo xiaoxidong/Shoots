@@ -36,6 +36,7 @@ struct ImageCardView: View {
                         }
                     }
             )
+        #if os(macOS)
             .onDrag {
                 let fileURL = FileManager.default.homeDirectoryForCurrentUser.appending(component: "cover.png")
                 // TODO: 拖拽保存图片
@@ -44,7 +45,7 @@ struct ImageCardView: View {
                 
                 return NSItemProvider(item: fileURL as NSSecureCoding, typeIdentifier: UTType.fileURL.identifier)
             }
-        
+        #endif
     }
 }
 

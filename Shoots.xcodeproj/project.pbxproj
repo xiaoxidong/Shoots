@@ -14,7 +14,6 @@
 		4E195EF029C040C800E97522 /* ShootsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EEF29C040C800E97522 /* ShootsTests.swift */; };
 		4E195EFA29C040C800E97522 /* ShootsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EF929C040C800E97522 /* ShootsUITests.swift */; };
 		4E195EFC29C040C800E97522 /* ShootsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */; };
-		4E1EBBA529D6723200636028 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4E1EBBA429D6723200636028 /* LaunchAtLogin */; };
 		4E1EBBA829D6758100636028 /* ShootsAIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EBBA729D6758100636028 /* ShootsAIView.swift */; };
 		4E42A6A429D12DAB00BEC185 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E42A6A329D12DAB00BEC185 /* Preview Assets.xcassets */; };
 		4E42A6A929D12DCD00BEC185 /* ShootsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EDD29C040C600E97522 /* ShootsApp.swift */; };
@@ -254,7 +253,7 @@
 		4E5CF72729CD617900A4E0DE /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF72629CD617900A4E0DE /* IconView.swift */; };
 		4E5CF72929CD623600A4E0DE /* ShootColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF72829CD623600A4E0DE /* ShootColorScheme.swift */; };
 		4E5CF72B29CD67C800A4E0DE /* TitlePageControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF72A29CD67C800A4E0DE /* TitlePageControll.swift */; };
-		4E5CF74929CD69D800A4E0DE /* CHIPageControl in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 4E5CF74829CD69D800A4E0DE /* CHIPageControl */; };
+		4E5CF74929CD69D800A4E0DE /* CHIPageControl in Frameworks */ = {isa = PBXBuildFile; productRef = 4E5CF74829CD69D800A4E0DE /* CHIPageControl */; };
 		4E5CF74B29CD748600A4E0DE /* ShootBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF74A29CD748600A4E0DE /* ShootBlurView.swift */; };
 		4E5CF74D29CD749100A4E0DE /* CombineSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF74C29CD749100A4E0DE /* CombineSelectView.swift */; };
 		4E5CF74F29CD784F00A4E0DE /* CombineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF74E29CD784F00A4E0DE /* CombineView.swift */; };
@@ -576,7 +575,6 @@
 			files = (
 				4ED4B08D29D3CAB1005D9758 /* Refresh in Frameworks */,
 				4E42A6F729D1319D00BEC185 /* SwiftUIFlowLayout in Frameworks */,
-				4E1EBBA529D6723200636028 /* LaunchAtLogin in Frameworks */,
 				4E42A6F529D1319900BEC185 /* WaterfallGrid in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1418,7 +1416,6 @@
 				4E42A69629D12DA900BEC185 /* Sources */,
 				4E42A69729D12DA900BEC185 /* Frameworks */,
 				4E42A69829D12DA900BEC185 /* Resources */,
-				4E1EBBA629D6728D00636028 /* Launch at Login Helper */,
 			);
 			buildRules = (
 			);
@@ -1429,7 +1426,6 @@
 				4E42A6F429D1319900BEC185 /* WaterfallGrid */,
 				4E42A6F629D1319D00BEC185 /* SwiftUIFlowLayout */,
 				4ED4B08C29D3CAB1005D9758 /* Refresh */,
-				4E1EBBA429D6723200636028 /* LaunchAtLogin */,
 			);
 			productName = Shoots_Mac;
 			productReference = 4E42A69A29D12DA900BEC185 /* Shoots.app */;
@@ -1476,7 +1472,6 @@
 				4E5CF74729CD69D800A4E0DE /* XCRemoteSwiftPackageReference "CHIPageControl" */,
 				4E878ED229D191520027FDA9 /* XCRemoteSwiftPackageReference "Refresh" */,
 				4E73A68829D316BB009CFB5A /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
-				4E1EBBA129D6720F00636028 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 			);
 			productRefGroup = 4E195EDB29C040C600E97522 /* Products */;
 			projectDirPath = "";
@@ -1524,27 +1519,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4E1EBBA629D6728D00636028 /* Launch at Login Helper */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Launch at Login Helper";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4E195ED629C040C600E97522 /* Sources */ = {
@@ -2286,14 +2260,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4E1EBBA129D6720F00636028 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		4E5CF74729CD69D800A4E0DE /* XCRemoteSwiftPackageReference "CHIPageControl" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ChiliLabs/CHIPageControl";
@@ -2337,11 +2303,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4E1EBBA429D6723200636028 /* LaunchAtLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4E1EBBA129D6720F00636028 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
-			productName = LaunchAtLogin;
-		};
 		4E42A6F429D1319900BEC185 /* WaterfallGrid */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4EE49F8B29C8820F00B51F4B /* XCRemoteSwiftPackageReference "WaterfallGrid" */;

@@ -19,7 +19,7 @@ struct FolderCardView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .rotationEffect(Angle(degrees: -3))
+                        .rotationEffect(Angle(degrees: -6))
                 } else {
                     Image("s1")
                         .resizable()
@@ -34,7 +34,7 @@ struct FolderCardView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .rotationEffect(Angle(degrees: -6))
+                        .rotationEffect(Angle(degrees: -3))
                 } else {
                     Image("s1")
                         .resizable()

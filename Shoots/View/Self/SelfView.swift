@@ -154,7 +154,7 @@ struct SelfView: View {
                         NavigationLink {
                             AlbumView()
                         } label: {
-                            FolderCardView(images: ["s1", "s3", "s5"], name: "Instagram")
+                            FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
                         }
                     }
                 }
@@ -165,7 +165,7 @@ struct SelfView: View {
                             NavigationLink {
                                 AlbumView()
                             } label: {
-                                FolderCardView(images: ["s1", "s3", "s5"], name: "Instagram")
+                                FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
                                     .frame(width: 206)
                             }
                         }
@@ -178,7 +178,7 @@ struct SelfView: View {
                     Button {
                         showMacFolderView.toggle()
                     } label: {
-                        FolderCardView(images: ["s1", "s3", "s5"], name: "Instagram")
+                        FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
                     }.buttonStyle(.plain)
                 }
             }.sheet(isPresented: $showMacFolderView) {
@@ -199,7 +199,7 @@ struct SelfView: View {
                         NavigationLink {
                             AlbumView()
                         } label: {
-                            FolderCardView(images: ["s1", "s3", "s5"], name: "Instagram")
+                            FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
                         }
                     }
                 }
@@ -210,7 +210,7 @@ struct SelfView: View {
                             NavigationLink {
                                 AlbumView()
                             } label: {
-                                FolderCardView(images: ["s1", "s3", "s5"], name: "Instagram")
+                                FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
                                     .frame(width: 206)
                             }
                         }
@@ -223,7 +223,7 @@ struct SelfView: View {
                     Button {
                         showMacFolderView.toggle()
                     } label: {
-                        FolderCardView(images: ["s1", "s3", "s5"], name: "Instagram")
+                        FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
                     }.buttonStyle(.plain)
                 }
             }
