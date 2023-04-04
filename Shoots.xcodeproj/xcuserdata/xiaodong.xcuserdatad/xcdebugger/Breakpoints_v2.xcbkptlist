@@ -64,6 +64,21 @@
                   endingLineNumber = "33"
                   offsetFromSymbolStart = "414">
                </Location>
+               <Location
+                  uuid = "760FE5C3-5360-4288-AAE2-6C9A8BB7FB90 - 1423f1d2808405c4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in Shoots.ImageCardView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Home/ImageCardView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "410">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>

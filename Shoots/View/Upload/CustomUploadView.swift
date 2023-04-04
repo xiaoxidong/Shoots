@@ -87,7 +87,7 @@ struct CustomUploadView: View {
     
     var addAppView: some View {
         Group {
-            VStack(spacing: 22) {
+            VStack(spacing: 0) {
                 HStack {
                     Text("选择操作")
                     Spacer()
@@ -104,20 +104,24 @@ struct CustomUploadView: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        FolderCardView(images: ["s1", "s2"], name: "Instagram")
-                        FolderCardView(images: ["s1", "s2"], name: "Instagram")
-                        FolderCardView(images: ["s1", "s2"], name: "Instagram")
-                        FolderCardView(images: ["s1", "s2"], name: "Instagram")
+                        FolderCardView(images: ["s3", "s2"], name: "Instagram")
+                            .frame(minWidth: 156)
+                        FolderCardView(images: ["s4", "s2"], name: "Instagram")
+                            .frame(minWidth: 156)
+                        FolderCardView(images: ["s5", "s2"], name: "Instagram")
+                            .frame(minWidth: 156)
+                        FolderCardView(images: ["s7", "s2"], name: "Instagram")
+                            .frame(minWidth: 156)
                     }.padding(.horizontal)
                 }
                 
             }.frame(maxWidth: .infinity)
                 .padding(.bottom, 36)
                 .padding(.top, 8)
-            .background(Color.white)
-            .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-            .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -10)
-            .offset(y: !finish ? 1000 : 0)
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -10)
+                .offset(y: !finish ? 1000 : 0)
         }
     }
     

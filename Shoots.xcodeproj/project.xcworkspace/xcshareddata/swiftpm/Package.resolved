@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "isscrolling",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fatbobman/IsScrolling",
+      "state" : {
+        "revision" : "7def8d8f789a326b6f725a76cee8ec3fa69511df",
+        "version" : "1.1.2"
+      }
+    },
+    {
       "identity" : "refresh",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/wxxsw/Refresh",
@@ -34,6 +43,15 @@
       "state" : {
         "revision" : "c18951c747ab62af7c15e17a81bd37d4fd5a9979",
         "version" : "0.2.3"
+      }
+    },
+    {
+      "identity" : "toast-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/BastiaanJansen/toast-swift",
+      "state" : {
+        "revision" : "23b4195ea4c9dd705acf184df518196474e1e098",
+        "version" : "1.3.1"
       }
     },
     {

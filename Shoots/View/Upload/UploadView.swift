@@ -10,31 +10,31 @@ import SwiftUI
 struct UploadView: View {
     @State var selection: Int = 0
     @Environment(\.dismiss) var dismiss
-    #if os(iOS)
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
-    #endif
+    @AppStorage("showBlurNew") var showBlurNew = true
+    @State var image: UIImage = UIImage(named: "s1")!
     var body: some View {
         TabView(selection: $selection) {
-            Image("s1")
+            Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: screen.width, height: screen.height)
                 .ignoresSafeArea()
                 .tag(0)
-            Image("s2")
+            Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: screen.width, height: screen.height)
                 
                 .tag(1)
-            Image("s3")
+            Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: screen.width, height: screen.height)
                 .ignoresSafeArea()
                 .tag(2)
-            Image("s4")
+            Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: screen.width, height: screen.height)
@@ -201,11 +201,53 @@ struct UploadView: View {
                 
         }
             .fullScreenCover(isPresented: $showBluer) {
-                ShootBlurView()
+                EditButton(image: $image)
+                    .ignoresSafeArea()
+                    .overlay(alignment: .center) {
+                        blurNew
+                    }
             }
             .fullScreenCover(isPresented: $showCombine) {
                 CombineSelectView()
             }
+            .onAppear {
+                showBlurNew = true
+            }
+    }
+    
+    var blurNew: some View {
+        Group {
+            if showBlurNew {
+                Color.black.opacity(0.2)
+                VStack(spacing: 16) {
+                    Image(systemName: "scribble.variable")
+                        .font(.system(size: 56))
+                        .foregroundColor(.shootWhite)
+                    Text("手指滑动打码敏感信息")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(.white)
+                    
+                    Button {
+                        withAnimation(.spring()) {
+                            showBlurNew.toggle()
+                        }
+                    } label: {
+                        Text("知道了")
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 56)
+                            .padding(.vertical, 12)
+                            .background(LinearGradient(colors: [.pink, .yellow], startPoint: .leading, endPoint: .trailing))
+                            .clipShape(Capsule())
+                    }.padding(.top)
+                }
+            }
+        }.ignoresSafeArea()
+        .onTapGesture {
+            withAnimation(.spring()) {
+                showBlurNew = false
+            }
+        }
     }
 }
 

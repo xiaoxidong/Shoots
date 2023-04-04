@@ -7,6 +7,9 @@
 
 import SwiftUI
 import SwiftUIFlowLayout
+#if os(iOS)
+import Toast
+#endif
 
 struct DetailView: View {
     var shoot: Shoot
@@ -23,6 +26,15 @@ struct DetailView: View {
                 .padding(.top)
                 .frame(maxWidth: .infinity)
         }.background(Color.shootLight.opacity(0.1))
+            .onTapGesture {
+                withAnimation(.spring()) {
+                    if showSave {
+                        showSave = false
+                    } else {
+                        showDetail.toggle()
+                    }
+                }
+            }
         .overlay(alignment: .bottom) {
             infoView
                 .offset(y: showDetail ? 0 : 1000)
@@ -56,12 +68,23 @@ struct DetailView: View {
                 }.opacity(showDetailNew ? 1 : 0)
             }
         )
-        .ignoresSafeArea()
-        .onTapGesture {
-            withAnimation(.spring()) {
-                showDetail.toggle()
+        .overlay(
+            Group {
+                Color.black
+                    .ignoresSafeArea()
+                    .opacity(showNewFolder ? 0.2 : 0)
+                    .onTapGesture {
+                        withAnimation(.spring()) {
+                            showNewFolder = false
+                        }
+                    }
+                if showNewFolder {
+                    newFoldereView
+                        .transition(.scale(scale: 0.6).combined(with: .opacity))
+                }
             }
-        }
+        )
+        .ignoresSafeArea()
         #if os(iOS)
         .fullScreenCover(item: $search) { search in
             SearchView(searchText: search)
@@ -76,6 +99,7 @@ struct DetailView: View {
     
     
     @State var showApp = false
+    @State var showReport = false
     var infoView: some View {
         VStack(spacing: 16) {
             // 顶部应用按钮
@@ -97,9 +121,7 @@ struct DetailView: View {
                             .navigationBarTitleDisplayMode(.inline)
                             .toolbar {
                                 ToolbarItem(placement: .navigationBarTrailing) {
-                                    Button {
-                                        
-                                    } label: {
+                                    ShareLink(item: URL(string: shoot.app.url)!) {
                                         Image(systemName: "square.and.arrow.up.fill")
                                     }.tint(.shootRed)
                                 }
@@ -198,26 +220,37 @@ struct DetailView: View {
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.shootBlack)
                     }
-                }
+                }.buttonStyle(.plain)
                 
                 Spacer(minLength: 0)
                 ActionTitleButtonView(image: "download", title: "下载") {
                     #if os(iOS)
                     FeedbackManager.impact(style: .medium)
-                    #endif
                     
                     let imageSaver = ImageSaver()
                     imageSaver.successHandler = {
-                        print("保存成功")
+                        let toast = Toast.default(
+                            image: UIImage(systemName: "hands.sparkles.fill")!,
+                            title: "成功保存的到相册"
+                        )
+                        toast.show(haptic: .success, after: 0)
                     }
                     imageSaver.errorHandler = {
                         print("保存失败: \($0.localizedDescription)")
                     }
                     imageSaver.writeToPhotoAlbum(image: UIImage(named: shoot.imageUrl)!)
+                    #else
+                    if let url = showSavePanel() {
+                        savePNG(imageName: "s1", path: url)
+                    }
+                    #endif
                 }
                 Spacer(minLength: 0)
                 ActionTitleButtonView(image: "report", title: "举报") {
-                    
+                    showReport.toggle()
+                }.sheet(isPresented: $showReport) {
+                    ReportView(shoot: shoot)
+                        .sheetFrameForMac()
                 }
             }.padding(.horizontal)
         }.frame(maxWidth: 460)
@@ -232,6 +265,7 @@ struct DetailView: View {
     }
     
     @State var showSave = false
+    @State var images = [["s7", "s2", "s4"], ["s5", "s2", "s4"]]
     var saveView: some View {
         VStack {
             ZStack {
@@ -239,21 +273,48 @@ struct DetailView: View {
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(.shootBlack)
                 Button {
-                    
+                    withAnimation(.spring()) {
+                        showNewFolder = true
+                    }
                 } label: {
                     Image("add")
                 }.padding(.trailing)
+                    .buttonStyle(.plain)
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 26) {
-                    FolderCardView(images: ["s1", "s2", "s4"], name: "Ins")
-                    FolderCardView(images: ["s5", "s6", "s9"], name: "Ins")
-                    FolderCardView(images: ["s8", "s3", "s1"], name: "Ins")
+                    ForEach(images, id: \.self) { image in
+                        FolderCardView(images: image, name: "Ins")
+                            .frame(minWidth: 156)
+                            .overlay(
+                                Group {
+                                    if image.isEmpty {
+                                        Image(systemName: "plus")
+                                    }
+                                }
+                            )
+                            .onTapGesture {
+                                // 收藏
+
+                                #if os(iOS)
+                                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                                    // 收藏成功
+                                    showSave = false
+                                    // 提示成功
+                                    let toast = Toast.default(
+                                        image: UIImage(systemName: "hands.sparkles.fill")!,
+                                        title: "成功收藏"
+                                    )
+                                    toast.show(haptic: .success, after: 0)
+                                }
+                                #endif
+                            }
+                    }
                 }.padding(.horizontal, 26)
             }
-        }.frame(maxWidth: 460)
+        }
             .padding(.vertical)
             .padding(.bottom)
             .padding(.top, 8)
@@ -263,6 +324,84 @@ struct DetailView: View {
         .shadow(color: Color.shootBlack.opacity(0.2), radius: 10, y: -10)
         .contentShape(Rectangle())
     }
+    
+    @State var name: String = ""
+    @State var showNewFolder = false
+    var newFoldereView: some View {
+        VStack(spacing: 26) {
+            Text("新建收藏夹")
+                .font(.system(size: 16, weight: .medium))
+                .foregroundColor(.shootBlack)
+            
+            VStack {
+                TextField("输入收藏夹名称", text: $name)
+                    .textFieldStyle(.plain)
+                    .padding(.horizontal)
+                Divider()
+            }
+            
+            HStack(spacing: 56) {
+                Button {
+                    withAnimation(.spring()) {
+                        showNewFolder = false
+                    }
+                } label: {
+                    Text("取消")
+                        .font(.system(size: 14, weight: .medium))
+                        .padding(.horizontal, 22)
+                        .padding(.vertical, 10)
+                        .foregroundColor(.black)
+                        .background(Color.shootLight.opacity(0.4))
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                }.buttonStyle(.plain)
+                Button {
+                    withAnimation(.spring()) {
+                        showNewFolder = false
+                        images.insert([], at: 0)
+                    }
+                } label: {
+                    Text("确认")
+                        .font(.system(size: 14, weight: .medium))
+                        .padding(.horizontal, 22)
+                        .padding(.vertical, 10)
+                        .foregroundColor(.white)
+                        .background(Color.shootRed)
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                }.buttonStyle(.plain)
+            }
+        }.padding()
+            .padding(.vertical)
+            .frame(maxWidth: 460)
+            .background(Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .padding()
+    }
+    
+    #if os(macOS)
+    func showSavePanel() -> URL? {
+        let savePanel = NSSavePanel()
+        savePanel.allowedContentTypes = [.png, .jpeg]
+        savePanel.canCreateDirectories = true
+        savePanel.isExtensionHidden = false
+        savePanel.title = "保存图片"
+        savePanel.message = "选择保存位置"
+        savePanel.nameFieldLabel = "名称："
+        
+        let response = savePanel.runModal()
+        return response == .OK ? savePanel.url : nil
+    }
+    
+    func savePNG(imageName: String, path: URL) {
+        let image = NSImage(named: imageName)!
+        let imageRepresentation = NSBitmapImageRep(data: image.tiffRepresentation!)
+        let pngData = imageRepresentation?.representation(using: .png, properties: [:])
+        do {
+            try pngData!.write(to: path)
+        } catch {
+            print(error)
+        }
+    }
+    #endif
 }
 
 struct DetailView_Previews: PreviewProvider {

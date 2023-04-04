@@ -10,15 +10,21 @@ import SwiftUI
 struct AddsView: View {
     @State var showAdds = false
     var body: some View {
-        Color.red
-            .frame(height: 200)
+        Image("adds")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
             .onTapGesture {
+                #if os(iOS)
                 showAdds.toggle()
+                #else
+                // Mac 下直接打开链接
+                #endif
             }
+        #if os(iOS)
             .sheet(isPresented: $showAdds) {
-                Color.red
-                    .sheetFrameForMac()
+                SafariView(url: URL(string: "https://www.baidu.com/")!)
             }
+        #endif
     }
 }
 

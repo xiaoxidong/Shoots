@@ -14,48 +14,21 @@ struct FolderCardView: View {
     var body: some View {
         VStack(spacing: 12) {
             ZStack {
-                if images.count >= 1 {
-                    Image(images[0])
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .rotationEffect(Angle(degrees: -8))
-                        .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
-                } else {
-                    Image("s1")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .rotationEffect(Angle(degrees: -8))
-                        .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
+                Group {
+                    if images.count >= 3 {
+                        Image(images[2])
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            .rotationEffect(Angle(degrees: -8))
+                                .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
+                    } else {
+                        two
+                            .rotationEffect(Angle(degrees: -4))
+                    }
                 }
-                
-                
-                if images.count >= 2 {
-                    Image(images[1])
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .rotationEffect(Angle(degrees: -4))
-                } else {
-                    Image("s1")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .rotationEffect(Angle(degrees: -4))
-                }
-                
-                if images.count >= 3 {
-                    Image(images[2])
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                } else {
-                    Image("s1")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                }
+                two
+                one
             }
             .frame(maxWidth: 156, maxHeight: 286)
             .padding(.top)
@@ -77,10 +50,39 @@ struct FolderCardView: View {
                 .foregroundColor(.shootBlack)
         }
     }
+    
+    var one: some View {
+        Group {
+            if images.count >= 1 {
+                Image(images[0])
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    
+            } else {
+                Color.shootWhite
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+            }
+        }
+    }
+    
+    var two: some View {
+        Group {
+            if images.count >= 2 {
+                Image(images[1])
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+            } else {
+                one
+            }
+        }.rotationEffect(Angle(degrees: -4))
+            .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
+    }
 }
 
 struct FolderCardView_Previews: PreviewProvider {
     static var previews: some View {
-        FolderCardView(images: ["s2", "s5", "s6"], name: "注册")
+        FolderCardView(images: ["s2", "s1"], name: "注册")
     }
 }

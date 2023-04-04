@@ -14,4 +14,5 @@ extension Color {
     static let shootBlue = Color("shootBlue")
     static let shootYellow = Color("shootYellow")
     static let shootRed = Color("shootRed")
+    static let shootWhite = Color("shootWhite")
 }
