@@ -11,6 +11,7 @@ struct FolderCardView: View {
     var images: [String]
     var name: String
     
+    @State var hover = false
     var body: some View {
         VStack(spacing: 12) {
             ZStack {
@@ -20,15 +21,15 @@ struct FolderCardView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            .rotationEffect(Angle(degrees: -8))
+                            .rotationEffect(Angle(degrees: hover ? -16 : -8))
                                 .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
                     } else {
                         two
-                            .rotationEffect(Angle(degrees: -4))
+                            .rotationEffect(Angle(degrees: hover ? -8 : -4))
                     }
                 }
                 two
-                one
+                one.rotationEffect(Angle(degrees: hover ? 4 : 0))
             }
             .frame(maxWidth: 156, maxHeight: 286)
             .padding(.top)
@@ -48,6 +49,10 @@ struct FolderCardView: View {
             Text(name)
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.shootBlack)
+        }.onHover { hover in
+            withAnimation(.spring()) {
+                self.hover = hover
+            }
         }
     }
     
@@ -76,7 +81,7 @@ struct FolderCardView: View {
             } else {
                 one
             }
-        }.rotationEffect(Angle(degrees: -4))
+        }.rotationEffect(Angle(degrees: hover ? -6 : -4))
             .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
     }
 }
