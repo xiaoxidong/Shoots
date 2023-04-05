@@ -356,12 +356,6 @@
 		4EE49F9829C8943000B51F4B /* IOSSearchDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9729C8943000B51F4B /* IOSSearchDefaultView.swift */; };
 		4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9929C898CE00B51F4B /* SelfView.swift */; };
 		4EE49FA329C89CAF00B51F4B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49FA229C89CAF00B51F4B /* SettingView.swift */; };
-		4EF1E5E029DD3C4F0002748B /* ToastBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1E5DD29DD3C4F0002748B /* ToastBlurView.swift */; };
-		4EF1E5E129DD3C4F0002748B /* ToastBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1E5DD29DD3C4F0002748B /* ToastBlurView.swift */; };
-		4EF1E5E229DD3C4F0002748B /* CustomAlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1E5DE29DD3C4F0002748B /* CustomAlertToast.swift */; };
-		4EF1E5E329DD3C4F0002748B /* CustomAlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1E5DE29DD3C4F0002748B /* CustomAlertToast.swift */; };
-		4EF1E5E429DD3C4F0002748B /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1E5DF29DD3C4F0002748B /* ActivityIndicator.swift */; };
-		4EF1E5E529DD3C4F0002748B /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1E5DF29DD3C4F0002748B /* ActivityIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -629,9 +623,6 @@
 		4EE49F9729C8943000B51F4B /* IOSSearchDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSSearchDefaultView.swift; sourceTree = "<group>"; };
 		4EE49F9929C898CE00B51F4B /* SelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfView.swift; sourceTree = "<group>"; };
 		4EE49FA229C89CAF00B51F4B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		4EF1E5DD29DD3C4F0002748B /* ToastBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastBlurView.swift; sourceTree = "<group>"; };
-		4EF1E5DE29DD3C4F0002748B /* CustomAlertToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertToast.swift; sourceTree = "<group>"; };
-		4EF1E5DF29DD3C4F0002748B /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -784,7 +775,6 @@
 			isa = PBXGroup;
 			children = (
 				4E5CF6CD29CD59B200A4E0DE /* Global.swift */,
-				4EF1E5DC29DD3C4F0002748B /* AlertToast */,
 				4E5CF6CF29CD5AC000A4E0DE /* SwiftDate */,
 				4E5CF60029CD58D000A4E0DE /* ActivityIndicatorView */,
 				4E5CF62F29CD58D000A4E0DE /* AlertToast */,
@@ -1503,17 +1493,6 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		4EF1E5DC29DD3C4F0002748B /* AlertToast */ = {
-			isa = PBXGroup;
-			children = (
-				4EF1E5DD29DD3C4F0002748B /* ToastBlurView.swift */,
-				4EF1E5DE29DD3C4F0002748B /* CustomAlertToast.swift */,
-				4EF1E5DF29DD3C4F0002748B /* ActivityIndicator.swift */,
-			);
-			name = AlertToast;
-			path = ../../../SwiftUIForDesigners/Shared/Third/AlertToast;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1706,7 +1685,6 @@
 				4E99304429C9F06300D99DA9 /* Flow.swift in Sources */,
 				4EDDD67B29DC238E00C4E14D /* Cell+ZLImageEditor.swift in Sources */,
 				4E5CF67A29CD58D100A4E0DE /* PaymentQueueController.swift in Sources */,
-				4EF1E5E029DD3C4F0002748B /* ToastBlurView.swift in Sources */,
 				4E5CF71129CD5AC000A4E0DE /* ISOParser.swift in Sources */,
 				4E5CF68129CD58D100A4E0DE /* DefaultIndicatorView.swift in Sources */,
 				4E5CF6BD29CD58D100A4E0DE /* Device.swift in Sources */,
@@ -1719,7 +1697,6 @@
 				4E5CF70C29CD5AC000A4E0DE /* Date+Components.swift in Sources */,
 				4E5CF68929CD58D100A4E0DE /* VibrancyVisualEffectViewRepresentable.swift in Sources */,
 				4E5CF6A929CD58D100A4E0DE /* PageViewBuilder.swift in Sources */,
-				4EF1E5E429DD3C4F0002748B /* ActivityIndicator.swift in Sources */,
 				4EDDD66C29DC238E00C4E14D /* ZLClipImageDismissAnimatedTransition.swift in Sources */,
 				4E5CF71C29CD5EB400A4E0DE /* SettingRateView.swift in Sources */,
 				4E5CF6C329CD58D100A4E0DE /* RoundedCross.swift in Sources */,
@@ -1892,7 +1869,6 @@
 				4E5CF6B629CD58D100A4E0DE /* SafariView.swift in Sources */,
 				4EE49F8329C878FB00B51F4B /* Application.swift in Sources */,
 				4E5CF69E29CD58D100A4E0DE /* SPAlert.swift in Sources */,
-				4EF1E5E229DD3C4F0002748B /* CustomAlertToast.swift in Sources */,
 				4E5CF68C29CD58D100A4E0DE /* BlurEffectStyleKey.swift in Sources */,
 				4E5CF71229CD5AC000A4E0DE /* Formatter+Protocols.swift in Sources */,
 				4EE49F8F29C8831500B51F4B /* ImageCardView.swift in Sources */,
@@ -1947,7 +1923,6 @@
 				4E42A72029D14B1700BEC185 /* Locales.swift in Sources */,
 				4E42A71F29D14B1200BEC185 /* DateInRegion.swift in Sources */,
 				4E42A70629D132E700BEC185 /* GrowingCircleIndicatorView.swift in Sources */,
-				4EF1E5E329DD3C4F0002748B /* CustomAlertToast.swift in Sources */,
 				4EA73AF929D5BB6A002901AE /* Bundle+Extension.swift in Sources */,
 				4E42A73229D14B2A00BEC185 /* Formatter+Protocols.swift in Sources */,
 				4EA73B1429D5C161002901AE /* SwiftyStoreKit.swift in Sources */,
@@ -2009,7 +1984,6 @@
 				4EA73B1329D5C15B002901AE /* InAppProductQueryRequest.swift in Sources */,
 				4EA73B1829D5C161002901AE /* ProductsInfoController.swift in Sources */,
 				4E42A73729D14B2F00BEC185 /* TimeInterval+Formatter.swift in Sources */,
-				4EF1E5E129DD3C4F0002748B /* ToastBlurView.swift in Sources */,
 				4E42A71C29D14B1200BEC185 /* DateInRegion+Components.swift in Sources */,
 				4E42A6F029D1317200BEC185 /* Shoot.swift in Sources */,
 				4E42A6D529D1313D00BEC185 /* ImageCardView.swift in Sources */,
@@ -2039,7 +2013,6 @@
 				4E42A6FE29D1329200BEC185 /* Defaults.swift in Sources */,
 				4E42A71E29D14B1200BEC185 /* Region.swift in Sources */,
 				4E42A6FC29D1320600BEC185 /* String+Extension.swift in Sources */,
-				4EF1E5E529DD3C4F0002748B /* ActivityIndicator.swift in Sources */,
 				4E42A71A29D14B1200BEC185 /* DateInRegion+Compare.swift in Sources */,
 				4E42A6E629D1315500BEC185 /* SettingRateView.swift in Sources */,
 				4E42A73829D14B2F00BEC185 /* String+Parser.swift in Sources */,
