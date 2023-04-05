@@ -17,6 +17,8 @@ struct DetailView: View {
     @State var showDetail = false
     @State var search: String? = nil
     @AppStorage("showDetailNew") var showDetailNew = true
+    @State var showAlert = false
+    @State var alertText = ""
     var body: some View {
         ScrollView(showsIndicators: false) {
             Image(shoot.imageUrl)
@@ -95,6 +97,9 @@ struct DetailView: View {
                 .padding(26)
         }
         #endif
+        .toast(isPresenting: $showAlert) {
+            AlertToast(displayMode: .alert, type: .systemImage("drop.triangle.fill", .red), title: alertText)
+        }
     }
     
     
@@ -229,11 +234,8 @@ struct DetailView: View {
                     
                     let imageSaver = ImageSaver()
                     imageSaver.successHandler = {
-                        let toast = Toast.default(
-                            image: UIImage(systemName: "hands.sparkles.fill")!,
-                            title: "成功保存的到相册"
-                        )
-                        toast.show(haptic: .success, after: 0)
+                        alertText = "成功保存到相册"
+                        showAlert = true
                     }
                     imageSaver.errorHandler = {
                         print("保存失败: \($0.localizedDescription)")
@@ -303,11 +305,8 @@ struct DetailView: View {
                                     // 收藏成功
                                     showSave = false
                                     // 提示成功
-                                    let toast = Toast.default(
-                                        image: UIImage(systemName: "hands.sparkles.fill")!,
-                                        title: "成功收藏"
-                                    )
-                                    toast.show(haptic: .success, after: 0)
+                                    alertText = "收藏成功"
+                                    showAlert = true
                                 }
                                 #endif
                             }
