@@ -340,7 +340,7 @@
 		4EDDD67D29DC238E00C4E14D /* UIColor+ZLImageEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDD65F29DC238E00C4E14D /* UIColor+ZLImageEditor.swift */; };
 		4EDDD67E29DC238E00C4E14D /* String+ZLImageEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDD66029DC238E00C4E14D /* String+ZLImageEditor.swift */; };
 		4EDDD67F29DC238E00C4E14D /* ZLImageEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4EDDD66229DC238E00C4E14D /* ZLImageEditor.bundle */; };
-		4EDDD68229DC24ED00C4E14D /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDD68129DC24ED00C4E14D /* EditButton.swift */; };
+		4EDDD68229DC24ED00C4E14D /* ImageBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDD68129DC24ED00C4E14D /* ImageBlurView.swift */; };
 		4EE2131729C8A80C007FAC6F /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2131629C8A80C007FAC6F /* AlbumView.swift */; };
 		4EE49F7D29C877DC00B51F4B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F7C29C877DC00B51F4B /* HomeViewModel.swift */; };
 		4EE49F8029C8781500B51F4B /* Shoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F7F29C8781500B51F4B /* Shoot.swift */; };
@@ -609,7 +609,7 @@
 		4EDDD66029DC238E00C4E14D /* String+ZLImageEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ZLImageEditor.swift"; sourceTree = "<group>"; };
 		4EDDD66129DC238E00C4E14D /* ZLImageEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLImageEditor.h; sourceTree = "<group>"; };
 		4EDDD66229DC238E00C4E14D /* ZLImageEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLImageEditor.bundle; sourceTree = "<group>"; };
-		4EDDD68129DC24ED00C4E14D /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
+		4EDDD68129DC24ED00C4E14D /* ImageBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBlurView.swift; sourceTree = "<group>"; };
 		4EE2131629C8A80C007FAC6F /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		4EE49F7C29C877DC00B51F4B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4EE49F7F29C8781500B51F4B /* Shoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shoot.swift; sourceTree = "<group>"; };
@@ -1281,7 +1281,7 @@
 				4E5CF74E29CD784F00A4E0DE /* CombineView.swift */,
 				4E58F91A29CB2FF40087E902 /* CustomUploadView.swift */,
 				4E5CF72A29CD67C800A4E0DE /* TitlePageControll.swift */,
-				4EDDD68129DC24ED00C4E14D /* EditButton.swift */,
+				4EDDD68129DC24ED00C4E14D /* ImageBlurView.swift */,
 				4EDDD64329DC238E00C4E14D /* ImageEditor */,
 			);
 			path = Upload;
@@ -1761,7 +1761,7 @@
 				4E5CF67229CD58D100A4E0DE /* SwiftyStoreKit+Types.swift in Sources */,
 				4E5CF6BF29CD58D100A4E0DE /* Keychain.swift in Sources */,
 				4EDDD67329DC238E00C4E14D /* ZLImageEditorConfiguration+Chaining.swift in Sources */,
-				4EDDD68229DC24ED00C4E14D /* EditButton.swift in Sources */,
+				4EDDD68229DC24ED00C4E14D /* ImageBlurView.swift in Sources */,
 				4E5CF6FB29CD5AC000A4E0DE /* DateInRegion+Math.swift in Sources */,
 				4E5CF6A729CD58D100A4E0DE /* PageState.swift in Sources */,
 				4E5CF6FF29CD5AC000A4E0DE /* Commons.swift in Sources */,

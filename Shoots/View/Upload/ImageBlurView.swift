@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditButton: UIViewControllerRepresentable {
+struct ImageBlurView: UIViewControllerRepresentable {
     @Binding var image: UIImage
     
     typealias UIViewControllerType = ZLEditImageViewController

@@ -201,7 +201,7 @@ struct UploadView: View {
                 
         }
             .fullScreenCover(isPresented: $showBluer) {
-                EditButton(image: $image)
+                ImageBlurView(image: $image)
                     .ignoresSafeArea()
                     .overlay(alignment: .center) {
                         blurNew
