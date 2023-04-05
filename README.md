@@ -28,12 +28,16 @@ Shoots 是一款开源的截图管理软件，也是[「做个应用」](https:/
 - 可以收藏产品设计模式比较好的应用的截图
 
 # 整体设计
-整体的设计内容可以查看[ Figma 原始文件](https://www.figma.com/file/uq7cAfob875rL61xQyLsPJ/SwiftUI-%E7%9B%B4%E6%92%AD%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE?node-id=618%3A723&t=drNbLhVnEiqN59I2-1)。
+整体的设计内容可以查看[「Figma 原始文件」](https://www.figma.com/file/uq7cAfob875rL61xQyLsPJ/SwiftUI-%E7%9B%B4%E6%92%AD%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE?node-id=0%3A1&t=YSVU4rHW5c8Qs53B-1)。
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fuq7cAfob875rL61xQyLsPJ%2FSwiftUI-%25E7%259B%25B4%25E6%2592%25AD%25E5%25BC%2580%25E5%258F%2591%25E9%25A1%25B9%25E7%259B%25AE%3Fnode-id%3D0%253A1%26t%3DYSVU4rHW5c8Qs53B-1" allowfullscreen></iframe>
+![1](https://user-images.githubusercontent.com/3838258/229986950-fcdf69e9-99c7-4af6-922a-5208dc6e1ed1.png)
+
 
 # 更多内容
-关于需求可以查看我们的 [Notion 需求列表](https://productpoke.notion.site/b1b9e7130e504e289832732a33670e5c)。
+关于需求可以查看我们的 [「Notion 需求列表」](https://productpoke.notion.site/b1b9e7130e504e289832732a33670e5c)。
+
+![22](https://user-images.githubusercontent.com/3838258/229986971-d1a5601c-30e5-4651-9f97-df3f7c934c4d.png)
+
 
 # 如何使用
 可以点击右上角的绿色 Code 按钮，下拉里会有三个选项：
