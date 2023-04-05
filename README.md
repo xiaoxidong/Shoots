@@ -1,10 +1,20 @@
 # Shoots
 Shoots 是一款开源的截图管理软件，也是[做个应用](https://apps.apple.com/cn/app/id1578873606)里的开源课程，跟着这个应用，作为一个 0 基础的小白也可以做一个自己的应用，关于新手学习 SwiftUI 更多的内容可以查看应用。
-![Group 380](https://user-images.githubusercontent.com/3838258/229984956-5ce8ad63-d32f-4477-917b-8c5726a2b567.png)
-iOS 端截图
 
+<details>
+<summary>iOS 端截图</summary>
+![Group 380](https://user-images.githubusercontent.com/3838258/229984956-5ce8ad63-d32f-4477-917b-8c5726a2b567.png)
+</details>
+
+
+
+<details>
+<summary>iPad 和 Mac 端截图</summary>
 ![2](https://user-images.githubusercontent.com/3838258/229985027-50356625-73bd-4719-8eb2-062ce91066b7.png)
-iPad 和 Mac 端截图
+</details>
+
+
+
 
 # 需求描述
 1.  每个人的手机里都存在这大量的应用的截图，当我们希望找下某个应用的截图或者某个设计模式的截图做参考的时候很难找到，大量的截图哪些需要删除哪些需要保留也很难整理。
