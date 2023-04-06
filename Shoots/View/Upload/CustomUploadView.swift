@@ -63,11 +63,17 @@ struct CustomUploadView: View {
         }
     }
     
-    let columns = [
-        GridItem(.flexible(minimum: 100, maximum: 160), spacing: 2),
-        GridItem(.flexible(minimum: 100, maximum: 160), spacing: 2),
-        GridItem(.flexible(minimum: 100, maximum: 160), spacing: 2)
-    ]
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    #endif
+    var columns: [GridItem] {
+        if horizontalSizeClass == .compact {
+            return [GridItem(.adaptive(minimum: 120, maximum: 260), spacing: 2)]
+        } else {
+            return [GridItem(.adaptive(minimum: 220, maximum: 360), spacing: 2)]
+        }
+    }
     
     var photoView: some View {
         ScrollView {
