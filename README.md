@@ -3,7 +3,10 @@ Shoots 是一款开源的截图管理软件，也是[「做个应用」](https:/
 
 <summary>iOS 端截图</summary>
 
-![Group 380](https://user-images.githubusercontent.com/3838258/229984956-5ce8ad63-d32f-4477-917b-8c5726a2b567.png)
+![1](https://user-images.githubusercontent.com/3838258/230244497-43ae6a82-1ff0-43e3-9205-961e99630cd4.png)
+
+![2](https://user-images.githubusercontent.com/3838258/230244518-d10f47a6-3a63-4832-b178-99d6570c9893.png)
+
 
 
 
