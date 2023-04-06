@@ -11,13 +11,21 @@ Shoots 是一款开源的截图管理软件，也是[「做个应用」](https:/
 
 
 <details>
-<summary>iPad 和 Mac 端截图</summary>
+<summary>iPad 端截图</summary>
+
+![1](https://user-images.githubusercontent.com/3838258/230250139-e7ef88fa-0a6f-4190-98a2-64bce91d56d7.png)
+
+![2](https://user-images.githubusercontent.com/3838258/230250153-eedf2c5d-cc9a-4ee0-b113-38245eca7717.png)
+
+</details>
+
+
+<details>
+<summary>Mac 端截图</summary>
 
 ![1](https://user-images.githubusercontent.com/3838258/230248473-cf17f9bc-9d79-4771-a78e-f6a07c2a8ce3.png)
      
 </details>
-
-
 
 
 # 需求描述
