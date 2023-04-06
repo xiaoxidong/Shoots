@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ReportView: View {
     var shoot: Shoot
+    let action: () -> Void
+    
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         #if os(iOS)
         NavigationView {
@@ -82,7 +85,11 @@ struct ReportView: View {
                 .padding(.horizontal, 26)
         }.overlay(alignment: .bottom) {
             Button {
+                // 反馈问题
                 
+                // 反馈成功，返回上一级页面并给出提示
+                dismiss()
+                action()
             } label: {
                 HStack {
                     Image("uploadwhite")
@@ -107,6 +114,8 @@ struct ReportView: View {
 
 struct ReportView_Previews: PreviewProvider {
     static var previews: some View {
-        ReportView(shoot: singleShoot)
+        ReportView(shoot: singleShoot) {
+            
+        }
     }
 }

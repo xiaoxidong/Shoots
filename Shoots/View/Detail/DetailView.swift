@@ -98,7 +98,7 @@ struct DetailView: View {
         }
         #endif
         .toast(isPresenting: $showAlert) {
-            AlertToast(displayMode: .alert, type: .systemImage("drop.triangle.fill", .red), title: alertText)
+            AlertToast(displayMode: .alert, type: .success(.black), title: alertText)
         }
     }
     
@@ -251,7 +251,10 @@ struct DetailView: View {
                 ActionTitleButtonView(image: "report", title: "举报") {
                     showReport.toggle()
                 }.sheet(isPresented: $showReport) {
-                    ReportView(shoot: shoot)
+                    ReportView(shoot: shoot) {
+                        alertText = "反馈成功"
+                        showAlert = true
+                    }
                         .sheetFrameForMac()
                 }
             }.padding(.horizontal)

@@ -10,6 +10,7 @@ import SwiftUI
 class HomeViewModel: ObservableObject {
     // 首页的图片数据
     @Published var shoots: [Shoot] = []
+    @Published var showAlert = false
     // 首页的页数
     var page: Int = 0
     

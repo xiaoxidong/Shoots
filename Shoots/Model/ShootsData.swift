@@ -35,7 +35,7 @@ var homeData: [Shoot] = [
 ]
 
 
-var singleShoot = Shoot(imageUrl: "s1", originalImageUrl: "s1", app: Application(name: "Instagram", image: "Instagram", type: "社交", info: appInfo, url: "https://apps.apple.com/us/app/id389801252"), designType: ["Home", "Flow", "Fans", "Information feed", "Setting"], author: Author(name: "Xiaodong", image: "pic", uploadCount: 12, savedCount: 24))
+var singleShoot = Shoot(imageUrl: "s2", originalImageUrl: "s2", app: Application(name: "Instagram", image: "Instagram", type: "社交", info: appInfo, url: "https://apps.apple.com/us/app/id389801252"), designType: ["Home", "Flow", "Fans", "Information feed", "Setting"], author: Author(name: "Xiaodong", image: "pic", uploadCount: 12, savedCount: 24))
 
 
 var apps: [Application] = [
