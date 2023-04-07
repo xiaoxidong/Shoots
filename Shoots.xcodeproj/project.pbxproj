@@ -17,6 +17,7 @@
 		4E010E2629DB1D4000A4B231 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E010E2829DB1D4000A4B231 /* Localizable.strings */; };
 		4E010E2D29DB1ED600A4B231 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E010E2C29DB1ED600A4B231 /* FeedbackManager.swift */; };
 		4E010E2F29DB27C900A4B231 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E010E2E29DB27C900A4B231 /* ImageSaver.swift */; };
+		4E07F81F29E0300800E72CCD /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07F81E29E0300800E72CCD /* UIImage+Extension.swift */; };
 		4E195EDE29C040C600E97522 /* ShootsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EDD29C040C600E97522 /* ShootsApp.swift */; };
 		4E195EE029C040C600E97522 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EDF29C040C600E97522 /* ContentView.swift */; };
 		4E195EE229C040C700E97522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E195EE129C040C700E97522 /* Assets.xcassets */; };
@@ -387,6 +388,7 @@
 		4E010E2B29DB1D5B00A4B231 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4E010E2C29DB1ED600A4B231 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		4E010E2E29DB27C900A4B231 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
+		4E07F81E29E0300800E72CCD /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		4E195EDA29C040C600E97522 /* Shoots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoots.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E195EDD29C040C600E97522 /* ShootsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsApp.swift; sourceTree = "<group>"; };
 		4E195EDF29C040C600E97522 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -1430,6 +1432,7 @@
 				4E5CF71929CD5B3E00A4E0DE /* View+Extension.swift */,
 				4E99304A29CA003100D99DA9 /* String+Extension.swift */,
 				4E62A49229D158C400B09493 /* Data+Extension.swift */,
+				4E07F81E29E0300800E72CCD /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1805,6 +1808,7 @@
 				4E5CF6C629CD58D100A4E0DE /* ConfettiSwiftUI.swift in Sources */,
 				4E5CF6A129CD58D100A4E0DE /* AlertToast.swift in Sources */,
 				4E5CF70129CD5AC000A4E0DE /* Locales.swift in Sources */,
+				4E07F81F29E0300800E72CCD /* UIImage+Extension.swift in Sources */,
 				4E5CF6C829CD594200A4E0DE /* RoundedCornersShape.swift in Sources */,
 				4EDDD67729DC238E00C4E14D /* ZLImageEditorDefine.swift in Sources */,
 				4E5CF6C229CD58D100A4E0DE /* View+ConfettiCannon.swift in Sources */,

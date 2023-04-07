@@ -14,6 +14,8 @@ struct CombineSelectView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
     
+    @State var combinedImage: UIImage? = nil
+    @State var images: [UIImage] = [UIImage(named: "s1")!, UIImage(named: "s4")!, UIImage(named: "s4")!]
     var body: some View {
         NavigationView {
             ScrollView {
@@ -34,7 +36,7 @@ struct CombineSelectView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
-                        CombineView()
+                        CombineView(images: images, combinedImage: $combinedImage)
                     } label: {
                         Text("拼接")
                             .font(.system(size: 16, weight: .semibold))

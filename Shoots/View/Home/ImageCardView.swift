@@ -55,6 +55,8 @@ struct ImageCardView: View {
                 
                 return NSItemProvider(item: fileURL as NSSecureCoding, typeIdentifier: UTType.fileURL.identifier)
             }
+        #else
+            .draggable(Image(shoot.imageUrl))
         #endif
     }
 }

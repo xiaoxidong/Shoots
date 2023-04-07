@@ -411,3 +411,5 @@ struct DetailView_Previews: PreviewProvider {
         DetailView(shoot: singleShoot)
     }
 }
+
+
