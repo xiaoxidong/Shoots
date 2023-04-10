@@ -124,6 +124,57 @@
 		4E42A73929D14B2F00BEC185 /* DateComponents+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF6F329CD5AC000A4E0DE /* DateComponents+Extras.swift */; };
 		4E42A73A29D14B5200BEC185 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF66229CD58D100A4E0DE /* Keychain.swift */; };
 		4E42A73D29D152EF00BEC185 /* MenuBarExtraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42A73B29D152EC00BEC185 /* MenuBarExtraView.swift */; };
+		4E49407929E3A7200058391E /* ZLPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E49403629E3A7200058391E /* ZLPhotoBrowser.bundle */; };
+		4E49407A29E3A7200058391E /* ZLImagePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49403829E3A7200058391E /* ZLImagePreviewController.swift */; };
+		4E49407B29E3A7200058391E /* ZLCameraConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49403929E3A7200058391E /* ZLCameraConfiguration.swift */; };
+		4E49407C29E3A7200058391E /* ZLResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49403A29E3A7200058391E /* ZLResultModel.swift */; };
+		4E49407D29E3A7200058391E /* ZLPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49403B29E3A7200058391E /* ZLPhotoManager.swift */; };
+		4E49407E29E3A7200058391E /* ZLPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49403C29E3A7200058391E /* ZLPhotoModel.swift */; };
+		4E49408029E3A7200058391E /* ZLAnimationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49403E29E3A7200058391E /* ZLAnimationUtils.swift */; };
+		4E49408229E3A7200058391E /* ZLPhotoPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404029E3A7200058391E /* ZLPhotoPreviewCell.swift */; };
+		4E49408429E3A7200058391E /* ZLFetchImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404229E3A7200058391E /* ZLFetchImageOperation.swift */; };
+		4E49408529E3A7200058391E /* ZLAlbumListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404329E3A7200058391E /* ZLAlbumListController.swift */; };
+		4E49408629E3A7200058391E /* ZLEmbedAlbumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404429E3A7200058391E /* ZLEmbedAlbumListView.swift */; };
+		4E49408729E3A7200058391E /* ZLLanguageDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404529E3A7200058391E /* ZLLanguageDefine.swift */; };
+		4E49408829E3A7200058391E /* ZLCustomAlertProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404629E3A7200058391E /* ZLCustomAlertProtocol.swift */; };
+		4E49408929E3A7200058391E /* ZLPhotoPreviewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404729E3A7200058391E /* ZLPhotoPreviewSheet.swift */; };
+		4E49408A29E3A7200058391E /* ZLAlbumListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404829E3A7200058391E /* ZLAlbumListCell.swift */; };
+		4E49408B29E3A7200058391E /* ZLEditImageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404929E3A7200058391E /* ZLEditImageConfiguration.swift */; };
+		4E49408C29E3A7200058391E /* ZLPhotoUIConfiguration+Chaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404A29E3A7200058391E /* ZLPhotoUIConfiguration+Chaining.swift */; };
+		4E49408D29E3A7200058391E /* ZLPhotoPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404B29E3A7200058391E /* ZLPhotoPreviewController.swift */; };
+		4E49408E29E3A7200058391E /* ZLPhotoUIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404C29E3A7200058391E /* ZLPhotoUIConfiguration.swift */; };
+		4E49408F29E3A7200058391E /* ZLImageNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404D29E3A7200058391E /* ZLImageNavController.swift */; };
+		4E49409029E3A7200058391E /* ZLThumbnailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404E29E3A7200058391E /* ZLThumbnailViewController.swift */; };
+		4E49409129E3A7200058391E /* ZLVideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49404F29E3A7200058391E /* ZLVideoManager.swift */; };
+		4E49409229E3A7200058391E /* ZLAddPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49405029E3A7200058391E /* ZLAddPhotoCell.swift */; };
+		4E49409329E3A7200058391E /* ZLGeneralDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49405129E3A7200058391E /* ZLGeneralDefine.swift */; };
+		4E49409429E3A7200058391E /* ZLThumbnailPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49405229E3A7200058391E /* ZLThumbnailPhotoCell.swift */; };
+		4E49409529E3A7200058391E /* ZLProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49405329E3A7200058391E /* ZLProgressView.swift */; };
+		4E49409629E3A7200058391E /* ZLPhotoConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49405429E3A7200058391E /* ZLPhotoConfiguration.swift */; };
+		4E49409729E3A7200058391E /* ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49405529E3A7200058391E /* ZLPhotoBrowser.swift */; };
+		4E49409829E3A7200058391E /* ZLPhotoConfiguration+Chaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49405629E3A7200058391E /* ZLPhotoConfiguration+Chaining.swift */; };
+		4E49409929E3A7200058391E /* ZLAlbumListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49405729E3A7200058391E /* ZLAlbumListModel.swift */; };
+		4E49409A29E3A7200058391E /* ZLCameraCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49405829E3A7200058391E /* ZLCameraCell.swift */; };
+		4E49409B29E3A7200058391E /* ZLCustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49405A29E3A7200058391E /* ZLCustomCamera.swift */; };
+		4E49409C29E3A7200058391E /* ZLPhotoPreviewAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49405C29E3A7200058391E /* ZLPhotoPreviewAnimatedTransition.swift */; };
+		4E49409E29E3A7200058391E /* ZLPhotoPreviewPopInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49405E29E3A7200058391E /* ZLPhotoPreviewPopInteractiveTransition.swift */; };
+		4E49409F29E3A7200058391E /* UIView+ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49406029E3A7200058391E /* UIView+ZLPhotoBrowser.swift */; };
+		4E4940A029E3A7200058391E /* Bundle+ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49406129E3A7200058391E /* Bundle+ZLPhotoBrowser.swift */; };
+		4E4940A129E3A7200058391E /* NSError+ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49406229E3A7200058391E /* NSError+ZLPhotoBrowser.swift */; };
+		4E4940A229E3A7200058391E /* UIImage+ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49406329E3A7200058391E /* UIImage+ZLPhotoBrowser.swift */; };
+		4E4940A329E3A7200058391E /* String+ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49406429E3A7200058391E /* String+ZLPhotoBrowser.swift */; };
+		4E4940A429E3A7200058391E /* Bool+ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49406529E3A7200058391E /* Bool+ZLPhotoBrowser.swift */; };
+		4E4940A529E3A7200058391E /* Cell+ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49406629E3A7200058391E /* Cell+ZLPhotoBrowser.swift */; };
+		4E4940A629E3A7200058391E /* UIFont+ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49406729E3A7200058391E /* UIFont+ZLPhotoBrowser.swift */; };
+		4E4940A729E3A7200058391E /* UIViewController+ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49406829E3A7200058391E /* UIViewController+ZLPhotoBrowser.swift */; };
+		4E4940A829E3A7200058391E /* Array+ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49406929E3A7200058391E /* Array+ZLPhotoBrowser.swift */; };
+		4E4940A929E3A7200058391E /* CGFloat+ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49406A29E3A7200058391E /* CGFloat+ZLPhotoBrowser.swift */; };
+		4E4940AA29E3A7200058391E /* PHAsset+ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49406B29E3A7200058391E /* PHAsset+ZLPhotoBrowser.swift */; };
+		4E4940AB29E3A7200058391E /* UIColor+ZLPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49406C29E3A7200058391E /* UIColor+ZLPhotoBrowser.swift */; };
+		4E4940D729E3A8E40058391E /* ZLEditVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4940CD29E3A8E40058391E /* ZLEditVideoViewController.swift */; };
+		4E4940D929E3B2EA0058391E /* ImageStickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4940D829E3B2EA0058391E /* ImageStickerContainerView.swift */; };
+		4E4940DB29E3B5700058391E /* SelectPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4940DA29E3B5700058391E /* SelectPhotoView.swift */; };
+		4E4940DF29E3E2740058391E /* BackgroundClearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4940DE29E3E2740058391E /* BackgroundClearView.swift */; };
 		4E54163F29CFFD800053BE9E /* IPadSearchDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */; };
 		4E58F91B29CB2FF40087E902 /* CustomUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E58F91A29CB2FF40087E902 /* CustomUploadView.swift */; };
 		4E58F91D29CB37000087E902 /* DNALoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E58F91C29CB37000087E902 /* DNALoading.swift */; };
@@ -407,6 +458,58 @@
 		4E42A71429D143A000BEC185 /* ProViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProViews.swift; sourceTree = "<group>"; };
 		4E42A71629D1461B00BEC185 /* MacCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacCloseButton.swift; sourceTree = "<group>"; };
 		4E42A73B29D152EC00BEC185 /* MenuBarExtraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarExtraView.swift; sourceTree = "<group>"; };
+		4E49403529E3A7200058391E /* ZLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoBrowser.h; sourceTree = "<group>"; };
+		4E49403629E3A7200058391E /* ZLPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLPhotoBrowser.bundle; sourceTree = "<group>"; };
+		4E49403829E3A7200058391E /* ZLImagePreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLImagePreviewController.swift; sourceTree = "<group>"; };
+		4E49403929E3A7200058391E /* ZLCameraConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLCameraConfiguration.swift; sourceTree = "<group>"; };
+		4E49403A29E3A7200058391E /* ZLResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLResultModel.swift; sourceTree = "<group>"; };
+		4E49403B29E3A7200058391E /* ZLPhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLPhotoManager.swift; sourceTree = "<group>"; };
+		4E49403C29E3A7200058391E /* ZLPhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLPhotoModel.swift; sourceTree = "<group>"; };
+		4E49403E29E3A7200058391E /* ZLAnimationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLAnimationUtils.swift; sourceTree = "<group>"; };
+		4E49404029E3A7200058391E /* ZLPhotoPreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLPhotoPreviewCell.swift; sourceTree = "<group>"; };
+		4E49404229E3A7200058391E /* ZLFetchImageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLFetchImageOperation.swift; sourceTree = "<group>"; };
+		4E49404329E3A7200058391E /* ZLAlbumListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLAlbumListController.swift; sourceTree = "<group>"; };
+		4E49404429E3A7200058391E /* ZLEmbedAlbumListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLEmbedAlbumListView.swift; sourceTree = "<group>"; };
+		4E49404529E3A7200058391E /* ZLLanguageDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLLanguageDefine.swift; sourceTree = "<group>"; };
+		4E49404629E3A7200058391E /* ZLCustomAlertProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLCustomAlertProtocol.swift; sourceTree = "<group>"; };
+		4E49404729E3A7200058391E /* ZLPhotoPreviewSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLPhotoPreviewSheet.swift; sourceTree = "<group>"; };
+		4E49404829E3A7200058391E /* ZLAlbumListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLAlbumListCell.swift; sourceTree = "<group>"; };
+		4E49404929E3A7200058391E /* ZLEditImageConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLEditImageConfiguration.swift; sourceTree = "<group>"; };
+		4E49404A29E3A7200058391E /* ZLPhotoUIConfiguration+Chaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ZLPhotoUIConfiguration+Chaining.swift"; sourceTree = "<group>"; };
+		4E49404B29E3A7200058391E /* ZLPhotoPreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLPhotoPreviewController.swift; sourceTree = "<group>"; };
+		4E49404C29E3A7200058391E /* ZLPhotoUIConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLPhotoUIConfiguration.swift; sourceTree = "<group>"; };
+		4E49404D29E3A7200058391E /* ZLImageNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLImageNavController.swift; sourceTree = "<group>"; };
+		4E49404E29E3A7200058391E /* ZLThumbnailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLThumbnailViewController.swift; sourceTree = "<group>"; };
+		4E49404F29E3A7200058391E /* ZLVideoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLVideoManager.swift; sourceTree = "<group>"; };
+		4E49405029E3A7200058391E /* ZLAddPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLAddPhotoCell.swift; sourceTree = "<group>"; };
+		4E49405129E3A7200058391E /* ZLGeneralDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLGeneralDefine.swift; sourceTree = "<group>"; };
+		4E49405229E3A7200058391E /* ZLThumbnailPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLThumbnailPhotoCell.swift; sourceTree = "<group>"; };
+		4E49405329E3A7200058391E /* ZLProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLProgressView.swift; sourceTree = "<group>"; };
+		4E49405429E3A7200058391E /* ZLPhotoConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLPhotoConfiguration.swift; sourceTree = "<group>"; };
+		4E49405529E3A7200058391E /* ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLPhotoBrowser.swift; sourceTree = "<group>"; };
+		4E49405629E3A7200058391E /* ZLPhotoConfiguration+Chaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ZLPhotoConfiguration+Chaining.swift"; sourceTree = "<group>"; };
+		4E49405729E3A7200058391E /* ZLAlbumListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLAlbumListModel.swift; sourceTree = "<group>"; };
+		4E49405829E3A7200058391E /* ZLCameraCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLCameraCell.swift; sourceTree = "<group>"; };
+		4E49405A29E3A7200058391E /* ZLCustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLCustomCamera.swift; sourceTree = "<group>"; };
+		4E49405C29E3A7200058391E /* ZLPhotoPreviewAnimatedTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLPhotoPreviewAnimatedTransition.swift; sourceTree = "<group>"; };
+		4E49405E29E3A7200058391E /* ZLPhotoPreviewPopInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLPhotoPreviewPopInteractiveTransition.swift; sourceTree = "<group>"; };
+		4E49406029E3A7200058391E /* UIView+ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ZLPhotoBrowser.swift"; sourceTree = "<group>"; };
+		4E49406129E3A7200058391E /* Bundle+ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+ZLPhotoBrowser.swift"; sourceTree = "<group>"; };
+		4E49406229E3A7200058391E /* NSError+ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+ZLPhotoBrowser.swift"; sourceTree = "<group>"; };
+		4E49406329E3A7200058391E /* UIImage+ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ZLPhotoBrowser.swift"; sourceTree = "<group>"; };
+		4E49406429E3A7200058391E /* String+ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ZLPhotoBrowser.swift"; sourceTree = "<group>"; };
+		4E49406529E3A7200058391E /* Bool+ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+ZLPhotoBrowser.swift"; sourceTree = "<group>"; };
+		4E49406629E3A7200058391E /* Cell+ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cell+ZLPhotoBrowser.swift"; sourceTree = "<group>"; };
+		4E49406729E3A7200058391E /* UIFont+ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+ZLPhotoBrowser.swift"; sourceTree = "<group>"; };
+		4E49406829E3A7200058391E /* UIViewController+ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ZLPhotoBrowser.swift"; sourceTree = "<group>"; };
+		4E49406929E3A7200058391E /* Array+ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+ZLPhotoBrowser.swift"; sourceTree = "<group>"; };
+		4E49406A29E3A7200058391E /* CGFloat+ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+ZLPhotoBrowser.swift"; sourceTree = "<group>"; };
+		4E49406B29E3A7200058391E /* PHAsset+ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PHAsset+ZLPhotoBrowser.swift"; sourceTree = "<group>"; };
+		4E49406C29E3A7200058391E /* UIColor+ZLPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ZLPhotoBrowser.swift"; sourceTree = "<group>"; };
+		4E4940CD29E3A8E40058391E /* ZLEditVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLEditVideoViewController.swift; sourceTree = "<group>"; };
+		4E4940D829E3B2EA0058391E /* ImageStickerContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStickerContainerView.swift; sourceTree = "<group>"; };
+		4E4940DA29E3B5700058391E /* SelectPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoView.swift; sourceTree = "<group>"; };
+		4E4940DE29E3E2740058391E /* BackgroundClearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundClearView.swift; sourceTree = "<group>"; };
 		4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadSearchDefaultView.swift; sourceTree = "<group>"; };
 		4E58F91A29CB2FF40087E902 /* CustomUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUploadView.swift; sourceTree = "<group>"; };
 		4E58F91C29CB37000087E902 /* DNALoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNALoading.swift; sourceTree = "<group>"; };
@@ -761,6 +864,102 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4E49403429E3A7200058391E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				4E49403529E3A7200058391E /* ZLPhotoBrowser.h */,
+				4E49403629E3A7200058391E /* ZLPhotoBrowser.bundle */,
+				4E49403729E3A7200058391E /* General */,
+				4E49405929E3A7200058391E /* Camera */,
+				4E49405B29E3A7200058391E /* Animation */,
+				4E4940C329E3A8E40058391E /* Edit */,
+				4E49405F29E3A7200058391E /* Extensions */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		4E49403729E3A7200058391E /* General */ = {
+			isa = PBXGroup;
+			children = (
+				4E49403829E3A7200058391E /* ZLImagePreviewController.swift */,
+				4E49403929E3A7200058391E /* ZLCameraConfiguration.swift */,
+				4E49403A29E3A7200058391E /* ZLResultModel.swift */,
+				4E49403B29E3A7200058391E /* ZLPhotoManager.swift */,
+				4E49403C29E3A7200058391E /* ZLPhotoModel.swift */,
+				4E49403E29E3A7200058391E /* ZLAnimationUtils.swift */,
+				4E49404029E3A7200058391E /* ZLPhotoPreviewCell.swift */,
+				4E49404229E3A7200058391E /* ZLFetchImageOperation.swift */,
+				4E49404329E3A7200058391E /* ZLAlbumListController.swift */,
+				4E49404429E3A7200058391E /* ZLEmbedAlbumListView.swift */,
+				4E49404529E3A7200058391E /* ZLLanguageDefine.swift */,
+				4E49404629E3A7200058391E /* ZLCustomAlertProtocol.swift */,
+				4E49404729E3A7200058391E /* ZLPhotoPreviewSheet.swift */,
+				4E49404829E3A7200058391E /* ZLAlbumListCell.swift */,
+				4E49404929E3A7200058391E /* ZLEditImageConfiguration.swift */,
+				4E49404A29E3A7200058391E /* ZLPhotoUIConfiguration+Chaining.swift */,
+				4E49404B29E3A7200058391E /* ZLPhotoPreviewController.swift */,
+				4E49404C29E3A7200058391E /* ZLPhotoUIConfiguration.swift */,
+				4E49404D29E3A7200058391E /* ZLImageNavController.swift */,
+				4E49404E29E3A7200058391E /* ZLThumbnailViewController.swift */,
+				4E49404F29E3A7200058391E /* ZLVideoManager.swift */,
+				4E49405029E3A7200058391E /* ZLAddPhotoCell.swift */,
+				4E49405129E3A7200058391E /* ZLGeneralDefine.swift */,
+				4E49405229E3A7200058391E /* ZLThumbnailPhotoCell.swift */,
+				4E49405329E3A7200058391E /* ZLProgressView.swift */,
+				4E49405429E3A7200058391E /* ZLPhotoConfiguration.swift */,
+				4E49405529E3A7200058391E /* ZLPhotoBrowser.swift */,
+				4E49405629E3A7200058391E /* ZLPhotoConfiguration+Chaining.swift */,
+				4E49405729E3A7200058391E /* ZLAlbumListModel.swift */,
+				4E49405829E3A7200058391E /* ZLCameraCell.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		4E49405929E3A7200058391E /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				4E49405A29E3A7200058391E /* ZLCustomCamera.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		4E49405B29E3A7200058391E /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				4E49405C29E3A7200058391E /* ZLPhotoPreviewAnimatedTransition.swift */,
+				4E49405E29E3A7200058391E /* ZLPhotoPreviewPopInteractiveTransition.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		4E49405F29E3A7200058391E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4E49406029E3A7200058391E /* UIView+ZLPhotoBrowser.swift */,
+				4E49406129E3A7200058391E /* Bundle+ZLPhotoBrowser.swift */,
+				4E49406229E3A7200058391E /* NSError+ZLPhotoBrowser.swift */,
+				4E49406329E3A7200058391E /* UIImage+ZLPhotoBrowser.swift */,
+				4E49406429E3A7200058391E /* String+ZLPhotoBrowser.swift */,
+				4E49406529E3A7200058391E /* Bool+ZLPhotoBrowser.swift */,
+				4E49406629E3A7200058391E /* Cell+ZLPhotoBrowser.swift */,
+				4E49406729E3A7200058391E /* UIFont+ZLPhotoBrowser.swift */,
+				4E49406829E3A7200058391E /* UIViewController+ZLPhotoBrowser.swift */,
+				4E49406929E3A7200058391E /* Array+ZLPhotoBrowser.swift */,
+				4E49406A29E3A7200058391E /* CGFloat+ZLPhotoBrowser.swift */,
+				4E49406B29E3A7200058391E /* PHAsset+ZLPhotoBrowser.swift */,
+				4E49406C29E3A7200058391E /* UIColor+ZLPhotoBrowser.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4E4940C329E3A8E40058391E /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				4E4940CD29E3A8E40058391E /* ZLEditVideoViewController.swift */,
+			);
+			path = Edit;
 			sourceTree = "<group>";
 		};
 		4E58F91E29CB372E0087E902 /* Global */ = {
@@ -1284,6 +1483,9 @@
 				4E58F91A29CB2FF40087E902 /* CustomUploadView.swift */,
 				4E5CF72A29CD67C800A4E0DE /* TitlePageControll.swift */,
 				4EDDD68129DC24ED00C4E14D /* ImageBlurView.swift */,
+				4E4940DA29E3B5700058391E /* SelectPhotoView.swift */,
+				4E4940DE29E3E2740058391E /* BackgroundClearView.swift */,
+				4E49403429E3A7200058391E /* Sources */,
 				4EDDD64329DC238E00C4E14D /* ImageEditor */,
 			);
 			path = Upload;
@@ -1328,6 +1530,7 @@
 		4EDDD64329DC238E00C4E14D /* ImageEditor */ = {
 			isa = PBXGroup;
 			children = (
+				4E4940D829E3B2EA0058391E /* ImageStickerContainerView.swift */,
 				4EDDD64429DC238E00C4E14D /* General */,
 				4EDDD65929DC238E00C4E14D /* Extensions */,
 				4EDDD66129DC238E00C4E14D /* ZLImageEditor.h */,
@@ -1651,6 +1854,7 @@
 				4E195EE629C040C700E97522 /* Preview Assets.xcassets in Resources */,
 				4E010E2529DB1D4000A4B231 /* Localizable.strings in Resources */,
 				4E195EE229C040C700E97522 /* Assets.xcassets in Resources */,
+				4E49407929E3A7200058391E /* ZLPhotoBrowser.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1686,13 +1890,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E99304429C9F06300D99DA9 /* Flow.swift in Sources */,
+				4E49408D29E3A7200058391E /* ZLPhotoPreviewController.swift in Sources */,
 				4EDDD67B29DC238E00C4E14D /* Cell+ZLImageEditor.swift in Sources */,
 				4E5CF67A29CD58D100A4E0DE /* PaymentQueueController.swift in Sources */,
 				4E5CF71129CD5AC000A4E0DE /* ISOParser.swift in Sources */,
 				4E5CF68129CD58D100A4E0DE /* DefaultIndicatorView.swift in Sources */,
 				4E5CF6BD29CD58D100A4E0DE /* Device.swift in Sources */,
+				4E49408F29E3A7200058391E /* ZLImageNavController.swift in Sources */,
 				4E5CF6B429CD58D100A4E0DE /* WebAuthenticationPresentationModifier.swift in Sources */,
+				4E49409129E3A7200058391E /* ZLVideoManager.swift in Sources */,
 				4E5CF70629CD5AC000A4E0DE /* TimePeriod+Support.swift in Sources */,
+				4E4940A529E3A7200058391E /* Cell+ZLPhotoBrowser.swift in Sources */,
 				4E5CF67429CD58D100A4E0DE /* SwiftyStoreKit.swift in Sources */,
 				4E5CF6A329CD58D100A4E0DE /* ElegantListController.swift in Sources */,
 				4E5CF72529CD617000A4E0DE /* ModeView.swift in Sources */,
@@ -1704,12 +1912,14 @@
 				4E5CF71C29CD5EB400A4E0DE /* SettingRateView.swift in Sources */,
 				4E5CF6C329CD58D100A4E0DE /* RoundedCross.swift in Sources */,
 				4EDDD66B29DC238E00C4E14D /* ZLEditImageViewController.swift in Sources */,
+				4E49409E29E3A7200058391E /* ZLPhotoPreviewPopInteractiveTransition.swift in Sources */,
 				4E5CF69629CD58D100A4E0DE /* SPAlertView.swift in Sources */,
 				4E58F92029CB38CE0087E902 /* ShootEmptyView.swift in Sources */,
 				4E5CF68629CD58D100A4E0DE /* GrowingCircleIndicatorView.swift in Sources */,
 				4E5CF69C29CD58D100A4E0DE /* SPAlertIconPreset.swift in Sources */,
 				4E5CF71829CD5AC000A4E0DE /* DateRepresentable.swift in Sources */,
 				4E5CF70B29CD5AC000A4E0DE /* Date.swift in Sources */,
+				4E49408029E3A7200058391E /* ZLAnimationUtils.swift in Sources */,
 				4E5CF6A229CD58D100A4E0DE /* ElegantListView.swift in Sources */,
 				4E5CF68829CD58D100A4E0DE /* ActivityIndicatorView.swift in Sources */,
 				4E5CF69029CD58D100A4E0DE /* View+blurEffect.swift in Sources */,
@@ -1720,10 +1930,19 @@
 				4E5CF70A29CD5AC000A4E0DE /* TimePeriodProtocol.swift in Sources */,
 				4E195EE029C040C600E97522 /* ContentView.swift in Sources */,
 				4E99304629C9F2CC00D99DA9 /* FolderCardView.swift in Sources */,
+				4E4940A329E3A7200058391E /* String+ZLPhotoBrowser.swift in Sources */,
+				4E4940AA29E3A7200058391E /* PHAsset+ZLPhotoBrowser.swift in Sources */,
+				4E49408B29E3A7200058391E /* ZLEditImageConfiguration.swift in Sources */,
 				4E54163F29CFFD800053BE9E /* IPadSearchDefaultView.swift in Sources */,
 				4E5CF6A529CD58D100A4E0DE /* ElegantVList.swift in Sources */,
+				4E49407B29E3A7200058391E /* ZLCameraConfiguration.swift in Sources */,
 				4E5CF71029CD5AC000A4E0DE /* DotNetParserFormatter.swift in Sources */,
 				4E5CF74F29CD784F00A4E0DE /* CombineView.swift in Sources */,
+				4E4940A029E3A7200058391E /* Bundle+ZLPhotoBrowser.swift in Sources */,
+				4E49408A29E3A7200058391E /* ZLAlbumListCell.swift in Sources */,
+				4E49408529E3A7200058391E /* ZLAlbumListController.swift in Sources */,
+				4E49409929E3A7200058391E /* ZLAlbumListModel.swift in Sources */,
+				4E4940A729E3A7200058391E /* UIViewController+ZLPhotoBrowser.swift in Sources */,
 				4E5CF71F29CD606000A4E0DE /* MailView.swift in Sources */,
 				4E5CF6A829CD58D100A4E0DE /* ScrollDirection.swift in Sources */,
 				4E5CF68E29CD58D100A4E0DE /* View+blurEffectStyle.swift in Sources */,
@@ -1733,15 +1952,18 @@
 				4EDDD66729DC238E00C4E14D /* ZLBaseStickerView.swift in Sources */,
 				4E5CF69229CD58D100A4E0DE /* BlurEffectModifier.swift in Sources */,
 				4EDDD67129DC238E00C4E14D /* ZLTextStickerView.swift in Sources */,
+				4E49408C29E3A7200058391E /* ZLPhotoUIConfiguration+Chaining.swift in Sources */,
 				4E5CF71529CD5AC000A4E0DE /* TimeInterval+Formatter.swift in Sources */,
 				4E5CF69429CD58D100A4E0DE /* EnvironmentValues+blurEffectStyle.swift in Sources */,
 				4E5CF6A029CD58D100A4E0DE /* BlurView.swift in Sources */,
 				4E5DE51A29C19680005495F0 /* HomeView.swift in Sources */,
 				4E5CF70029CD5AC000A4E0DE /* AssociatedValues.swift in Sources */,
+				4E49409C29E3A7200058391E /* ZLPhotoPreviewAnimatedTransition.swift in Sources */,
 				4E5CF67829CD58D100A4E0DE /* OS.swift in Sources */,
 				4E5CF69329CD58D100A4E0DE /* VibrancyEffectModifier.swift in Sources */,
 				4E5CF67D29CD58D100A4E0DE /* AppleReceiptValidator.swift in Sources */,
 				4E5CF70729CD5AC000A4E0DE /* TimePeriodGroup.swift in Sources */,
+				4E4940D929E3B2EA0058391E /* ImageStickerContainerView.swift in Sources */,
 				4EE49F8729C87B3E00B51F4B /* ShootsData.swift in Sources */,
 				4EDDD67929DC238E00C4E14D /* UIView+ZLImageEditor.swift in Sources */,
 				4E5CF67929CD58D100A4E0DE /* RestorePurchasesController.swift in Sources */,
@@ -1754,7 +1976,9 @@
 				4E5CF68F29CD58D100A4E0DE /* View+vibrancyEffect.swift in Sources */,
 				4E5CF67529CD58D100A4E0DE /* ProductsInfoController.swift in Sources */,
 				4EDDD67529DC238E00C4E14D /* ZLEditToolCells.swift in Sources */,
+				4E49408429E3A7200058391E /* ZLFetchImageOperation.swift in Sources */,
 				4E5CF6CB29CD597900A4E0DE /* PrivacyView.swift in Sources */,
+				4E49409B29E3A7200058391E /* ZLCustomCamera.swift in Sources */,
 				4E5CF69929CD58D100A4E0DE /* SPAlertIconHeartView.swift in Sources */,
 				4E5CF67C29CD58D100A4E0DE /* SKProductDiscount+LocalizedPrice.swift in Sources */,
 				4EDDD66529DC238E00C4E14D /* ZLImageEditorLanguageDefine.swift in Sources */,
@@ -1774,21 +1998,25 @@
 				4E5CF74D29CD749100A4E0DE /* CombineSelectView.swift in Sources */,
 				4E5CF6BC29CD58D100A4E0DE /* Version.swift in Sources */,
 				4EDDD67E29DC238E00C4E14D /* String+ZLImageEditor.swift in Sources */,
+				4E49408929E3A7200058391E /* ZLPhotoPreviewSheet.swift in Sources */,
 				4EE49F8029C8781500B51F4B /* Shoot.swift in Sources */,
 				4E5CF6B229CD58D100A4E0DE /* Shared.swift in Sources */,
 				4EE49F7D29C877DC00B51F4B /* HomeViewModel.swift in Sources */,
 				4E5CF6C029CD58D100A4E0DE /* Defaults.swift in Sources */,
+				4E4940A829E3A7200058391E /* Array+ZLPhotoBrowser.swift in Sources */,
 				4E99304029C9EBC400D99DA9 /* FeedView.swift in Sources */,
 				4E5CF6CC29CD597900A4E0DE /* AgreementView.swift in Sources */,
 				4E5CF68029CD58D100A4E0DE /* OpacityDotsIndicatorView.swift in Sources */,
 				4E58F91D29CB37000087E902 /* DNALoading.swift in Sources */,
 				4EDDD67A29DC238E00C4E14D /* UIImage+ZLImageEditor.swift in Sources */,
 				4E5CF6C429CD58D100A4E0DE /* Triangle.swift in Sources */,
+				4E49408E29E3A7200058391E /* ZLPhotoUIConfiguration.swift in Sources */,
 				4E5CF6AE29CD58D100A4E0DE /* Comparable+Clamped.swift in Sources */,
 				4E5CF72129CD60F500A4E0DE /* ActivityViewController.swift in Sources */,
 				4E5CF6B329CD58D100A4E0DE /* WebAuthenticationSession.swift in Sources */,
 				4EDDD66E29DC238E00C4E14D /* ZLImageEditor.swift in Sources */,
 				4EDDD67D29DC238E00C4E14D /* UIColor+ZLImageEditor.swift in Sources */,
+				4E49407A29E3A7200058391E /* ZLImagePreviewController.swift in Sources */,
 				4E010E2029DB17F400A4B231 /* AddsView.swift in Sources */,
 				4EDDD66929DC238E00C4E14D /* ZLImageStickerView.swift in Sources */,
 				4E5CF71A29CD5B3E00A4E0DE /* View+Extension.swift in Sources */,
@@ -1804,6 +2032,8 @@
 				4E5CF72329CD616600A4E0DE /* SlideOverCard.swift in Sources */,
 				4E5CF71329CD5AC000A4E0DE /* ISOFormatter.swift in Sources */,
 				4E5CF6F829CD5AC000A4E0DE /* DateInRegion+Compare.swift in Sources */,
+				4E4940A629E3A7200058391E /* UIFont+ZLPhotoBrowser.swift in Sources */,
+				4E49408729E3A7200058391E /* ZLLanguageDefine.swift in Sources */,
 				4E5CF68529CD58D100A4E0DE /* GrowingArcIndicatorView.swift in Sources */,
 				4E5CF6C629CD58D100A4E0DE /* ConfettiSwiftUI.swift in Sources */,
 				4E5CF6A129CD58D100A4E0DE /* AlertToast.swift in Sources */,
@@ -1811,9 +2041,11 @@
 				4E07F81F29E0300800E72CCD /* UIImage+Extension.swift in Sources */,
 				4E5CF6C829CD594200A4E0DE /* RoundedCornersShape.swift in Sources */,
 				4EDDD67729DC238E00C4E14D /* ZLImageEditorDefine.swift in Sources */,
+				4E49409229E3A7200058391E /* ZLAddPhotoCell.swift in Sources */,
 				4E5CF6C229CD58D100A4E0DE /* View+ConfettiCannon.swift in Sources */,
 				4E5CF69729CD58D100A4E0DE /* SPAlertIconAnimatable.swift in Sources */,
 				4E5CF70229CD5AC000A4E0DE /* TimeStructures.swift in Sources */,
+				4E49407E29E3A7200058391E /* ZLPhotoModel.swift in Sources */,
 				4EE49F9129C887B800B51F4B /* AppView.swift in Sources */,
 				4E5CF6FD29CD5AC000A4E0DE /* DateInRegion.swift in Sources */,
 				4E5CF67B29CD58D100A4E0DE /* InAppReceiptVerificator.swift in Sources */,
@@ -1822,19 +2054,26 @@
 				4EDDD66629DC238E00C4E14D /* ZLInputTextViewController.swift in Sources */,
 				4EDDD66A29DC238E00C4E14D /* ZLAdjustSlider.swift in Sources */,
 				4E5CF6B829CD58D100A4E0DE /* SafariViewPresenter.swift in Sources */,
+				4E4940A929E3A7200058391E /* CGFloat+ZLPhotoBrowser.swift in Sources */,
+				4E49409029E3A7200058391E /* ZLThumbnailViewController.swift in Sources */,
 				4EE49FA329C89CAF00B51F4B /* SettingView.swift in Sources */,
 				4EDDD66829DC238E00C4E14D /* ZLClipImageViewController.swift in Sources */,
 				4E5CF6B029CD58D100A4E0DE /* ElegantVPages.swift in Sources */,
 				4E010E2D29DB1ED600A4B231 /* FeedbackManager.swift in Sources */,
 				4E5CF70F29CD5AC000A4E0DE /* Date+Create.swift in Sources */,
 				4E5CF67629CD58D100A4E0DE /* CompleteTransactionsController.swift in Sources */,
+				4E49407C29E3A7200058391E /* ZLResultModel.swift in Sources */,
+				4E49408229E3A7200058391E /* ZLPhotoPreviewCell.swift in Sources */,
 				4E5CF68329CD58D100A4E0DE /* GradientIndicatorView.swift in Sources */,
 				4E58F91B29CB2FF40087E902 /* CustomUploadView.swift in Sources */,
 				4E58F92229CB43A80087E902 /* SettingCellView.swift in Sources */,
 				4E5CF71729CD5AC000A4E0DE /* Int+DateComponents.swift in Sources */,
 				4E99304829C9FBCC00D99DA9 /* SearchView.swift in Sources */,
+				4E49409A29E3A7200058391E /* ZLCameraCell.swift in Sources */,
 				4E5CF6C129CD58D100A4E0DE /* DefaultsKey+Extension.swift in Sources */,
 				4E5CF69529CD58D100A4E0DE /* EnvironmentValues+vibrancyEffectStyle.swift in Sources */,
+				4E49409829E3A7200058391E /* ZLPhotoConfiguration+Chaining.swift in Sources */,
+				4E4940A229E3A7200058391E /* UIImage+ZLPhotoBrowser.swift in Sources */,
 				4E5CF6B129CD58D100A4E0DE /* ElegantHPages.swift in Sources */,
 				4E73A66F29D3122D009CFB5A /* RefreshView.swift in Sources */,
 				4EE49F9329C88BA700B51F4B /* ActionTitleButtonView.swift in Sources */,
@@ -1847,17 +2086,23 @@
 				4E5CF67729CD58D100A4E0DE /* PaymentsController.swift in Sources */,
 				4E5CF68429CD58D100A4E0DE /* RotatingDotsIndicatorView.swift in Sources */,
 				4E5CF6B729CD58D100A4E0DE /* SafariViewPresentationModifier.swift in Sources */,
+				4E49408629E3A7200058391E /* ZLEmbedAlbumListView.swift in Sources */,
 				4E5CF70829CD5AC000A4E0DE /* TimePeriodChain.swift in Sources */,
 				4E99304229C9F02000D99DA9 /* FlowView.swift in Sources */,
+				4E49409529E3A7200058391E /* ZLProgressView.swift in Sources */,
+				4E49409629E3A7200058391E /* ZLPhotoConfiguration.swift in Sources */,
 				4E99304B29CA003100D99DA9 /* String+Extension.swift in Sources */,
 				4E5CF74B29CD748600A4E0DE /* ShootBlurView.swift in Sources */,
 				4E5CF69A29CD58D100A4E0DE /* SPAlertIconErrorView.swift in Sources */,
+				4E4940A429E3A7200058391E /* Bool+ZLPhotoBrowser.swift in Sources */,
 				4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */,
 				4E5CF69829CD58D100A4E0DE /* SPAlertLayout.swift in Sources */,
 				4EE2131729C8A80C007FAC6F /* AlbumView.swift in Sources */,
 				4EDDD67029DC238E00C4E14D /* ZLWeakProxy.swift in Sources */,
+				4E49409429E3A7200058391E /* ZLThumbnailPhotoCell.swift in Sources */,
 				4E5CF72929CD623600A4E0DE /* ShootColorScheme.swift in Sources */,
 				4E5CF69F29CD58D100A4E0DE /* AlertActivityIndicatorView.swift in Sources */,
+				4E49409F29E3A7200058391E /* UIView+ZLPhotoBrowser.swift in Sources */,
 				4EDDD67229DC238E00C4E14D /* ZLProgressHUD.swift in Sources */,
 				4EDDD67C29DC238E00C4E14D /* Bundle+ZLImageEditor.swift in Sources */,
 				4E5CF67E29CD58D100A4E0DE /* ScalingDotsIndicatorView.swift in Sources */,
@@ -1872,9 +2117,11 @@
 				4EDDD67629DC238E00C4E14D /* ZLImageEditorUIConfiguration.swift in Sources */,
 				4E5CF6B629CD58D100A4E0DE /* SafariView.swift in Sources */,
 				4EE49F8329C878FB00B51F4B /* Application.swift in Sources */,
+				4E4940D729E3A8E40058391E /* ZLEditVideoViewController.swift in Sources */,
 				4E5CF69E29CD58D100A4E0DE /* SPAlert.swift in Sources */,
 				4E5CF68C29CD58D100A4E0DE /* BlurEffectStyleKey.swift in Sources */,
 				4E5CF71229CD5AC000A4E0DE /* Formatter+Protocols.swift in Sources */,
+				4E4940A129E3A7200058391E /* NSError+ZLPhotoBrowser.swift in Sources */,
 				4EE49F8F29C8831500B51F4B /* ImageCardView.swift in Sources */,
 				4EDDD66429DC238E00C4E14D /* ZLImageEditorUIConfiguration+Chaining.swift in Sources */,
 				4E5CF6FA29CD5AC000A4E0DE /* DateInRegion+Create.swift in Sources */,
@@ -1883,10 +2130,17 @@
 				4E010E2F29DB27C900A4B231 /* ImageSaver.swift in Sources */,
 				4E5CF71429CD5AC000A4E0DE /* DateComponents+Extras.swift in Sources */,
 				4E5CF70D29CD5AC000A4E0DE /* Date+Math.swift in Sources */,
+				4E4940AB29E3A7200058391E /* UIColor+ZLPhotoBrowser.swift in Sources */,
 				4E5CF6BA29CD58D100A4E0DE /* DeviceMacOS.swift in Sources */,
+				4E49408829E3A7200058391E /* ZLCustomAlertProtocol.swift in Sources */,
+				4E49407D29E3A7200058391E /* ZLPhotoManager.swift in Sources */,
+				4E49409729E3A7200058391E /* ZLPhotoBrowser.swift in Sources */,
+				4E4940DB29E3B5700058391E /* SelectPhotoView.swift in Sources */,
 				4EDDD63729DC0C5F00C4E14D /* ReportView.swift in Sources */,
 				4E5CF6B929CD58D100A4E0DE /* SafariView+View.swift in Sources */,
+				4E4940DF29E3E2740058391E /* BackgroundClearView.swift in Sources */,
 				4EDDD67829DC238E00C4E14D /* CGFloat+ZLImageEditor.swift in Sources */,
+				4E49409329E3A7200058391E /* ZLGeneralDefine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2198,6 +2452,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Shoots/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "保存截图到相册～";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "选择截图上传";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -2240,6 +2495,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Shoots/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "保存截图到相册～";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "选择截图上传";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

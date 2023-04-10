@@ -8,38 +8,26 @@
 import SwiftUI
 
 struct UploadView: View {
+    @State var uploadImages: [UIImage]
+    
     @State var selection: Int = 0
     @Environment(\.dismiss) var dismiss
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @AppStorage("showBlurNew") var showBlurNew = true
+    
     @State var image: UIImage = UIImage(named: "s1")!
+    @State var updateIndicator = false
     var body: some View {
         TabView(selection: $selection) {
-            Image(uiImage: image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: screen.width, height: screen.height)
-                .ignoresSafeArea()
-                .tag(0)
-            Image(uiImage: image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: screen.width, height: screen.height)
-                
-                .tag(1)
-            Image(uiImage: image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: screen.width, height: screen.height)
-                .ignoresSafeArea()
-                .tag(2)
-            Image(uiImage: image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: screen.width, height: screen.height)
-                .ignoresSafeArea()
-                .tag(3)
+            ForEach(uploadImages.indices, id: \.self) { indice in
+                Image(uiImage: uploadImages[indice])
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: screen.width, height: screen.height)
+                    .ignoresSafeArea()
+                    .tag(indice)
+            }
         }.tabViewStyle(.page(indexDisplayMode: .never))
             .toolbar(.hidden, for: .navigationBar)
             .onTapGesture {
@@ -60,6 +48,11 @@ struct UploadView: View {
         .safeAreaInset(edge: .bottom) {
             bottomActions
         }
+        .onChange(of: uploadImages) { newValue in
+            withAnimation(.spring()) {
+                updateIndicator.toggle()
+            }
+        }
     }
     
     var topActions: some View {
@@ -73,8 +66,13 @@ struct UploadView: View {
                         .foregroundColor(.shootBlack)
                 }.frame(maxWidth: .infinity, alignment: .leading)
                 Spacer(minLength: 0)
-                TitlePageControll(progress: selection, numberOfPages: 4, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
-                    .frame(height: 24)
+                if updateIndicator {
+                    TitlePageControll(progress: selection, numberOfPages: uploadImages.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
+                        .frame(height: 24)
+                } else {
+                    TitlePageControll(progress: selection, numberOfPages: uploadImages.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
+                        .frame(height: 24)
+                }
                 Spacer(minLength: 0)
                 Button {
                     dismiss()
@@ -201,14 +199,14 @@ struct UploadView: View {
                 
         }
             .fullScreenCover(isPresented: $showBluer) {
-                ImageBlurView(image: $image)
+                ImageBlurView(image: $uploadImages[selection])
                     .ignoresSafeArea()
                     .overlay(alignment: .center) {
                         blurNew
                     }
             }
             .fullScreenCover(isPresented: $showCombine) {
-                CombineSelectView()
+                CombineSelectView(uploadImages: $uploadImages)
             }
             .onAppear {
                 showBlurNew = true
@@ -254,7 +252,7 @@ struct UploadView: View {
 struct UploadView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UploadView()
+            UploadView(uploadImages: [UIImage(named: "s1")!, UIImage(named: "s2")!])
         }
     }
 }

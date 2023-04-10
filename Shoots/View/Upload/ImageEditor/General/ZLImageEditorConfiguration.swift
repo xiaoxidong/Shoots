@@ -286,13 +286,13 @@ public extension ZLImageClipRatio {
 }
 
 /// Provide an image sticker container view that conform to this protocol must be a subclass of UIView
-@objc public protocol ZLImageStickerContainerDelegate {
-    @objc var selectImageBlock: ((UIImage) -> Void)? { get set }
-    
-    @objc var hideBlock: (() -> Void)? { get set }
-    
-    @objc func show(in view: UIView)
-}
+//@objc public protocol ZLImageStickerContainerDelegate {
+//    @objc var selectImageBlock: ((UIImage) -> Void)? { get set }
+//    
+//    @objc var hideBlock: (() -> Void)? { get set }
+//    
+//    @objc func show(in view: UIView)
+//}
 
 /// Provide an text font choose view that conform to this protocol must be a subclass of UIView
 @objc public protocol ZLTextFontChooserDelegate {

@@ -22,6 +22,7 @@ struct ContentView: View {
     #if os(iOS)
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
+    @State var selectedImages: [UIImage] = []
     #endif
     var body: some View {
         NavigationView {
@@ -54,10 +55,40 @@ struct ContentView: View {
         .fullScreenCover(isPresented: $customUpload, content: {
             CustomUploadView()
         })
+        .overlay {
+            Color.black.opacity(uploadisActive ? 0.16 : 0)
+                .animation(.spring(), value: uploadisActive)
+                .ignoresSafeArea()
+        }
+        .fullScreenCover(isPresented: $uploadisActive, onDismiss: {
+            withAnimation(.spring()) {
+                uploadisActive = false
+            }
+            if !selectedImages.isEmpty {
+                upload.toggle()
+            }
+        }, content: {
+            SelectPhotoView(show: $uploadisActive, selectedImages: $selectedImages)
+                .background(BackgroundClearView())
+                .ignoresSafeArea()
+        })
+        .fullScreenCover(isPresented: $upload, onDismiss: {
+            selectedImages.removeAll()
+        }, content: {
+            UploadView(uploadImages: selectedImages)
+        })
         #endif
         .onAppear {
             // 请求第一页的数据
             loadData()
+            
+            // DEBUG 模式下显示自定义上传
+            #if DEBUG
+            showCustomUpload = true
+            #endif
+            // 如果自定义上传上传过，则不显示
+            // 如果上传了 x 次，但是还是没有使用自定义上传，也不需要显示
+            
         }
     }
     
@@ -144,15 +175,20 @@ struct ContentView: View {
                                 }
                             } label: {
                                 Image("upload")
-                            }.background(
-                                NavigationLink(destination: UploadView(), isActive: $uploadisActive) {
-                                    EmptyView()
-                                }
-                            )
+                            }
                         }
                     } else {
-                        NavigationLink {
-                            UploadView()
+                        Button {
+                            FeedbackManager.impact(style: .medium)
+                            if showCustomUpload {
+                                withAnimation(.spring()) {
+                                    uploadOptions.toggle()
+                                }
+                            } else {
+                                withAnimation(.spring()) {
+                                    uploadisActive = true
+                                }
+                            }
                         } label: {
                             Image("upload")
                         }
@@ -211,10 +247,12 @@ struct ContentView: View {
                 Spacer()
                 VStack(spacing: 22) {
                     Text("选择操作")
-                    
-                    NavigationLink {
-                        UploadView()
-                    } label: {
+                    Button(action: {
+                        withAnimation(.spring()) {
+                            uploadOptions.toggle()
+                            uploadisActive = true
+                        }
+                    }, label: {
                         HStack {
                             Image("uploadwhite")
                                 .resizable()
@@ -229,7 +267,7 @@ struct ContentView: View {
                             .padding(.vertical, 12)
                             .background(LinearGradient(colors: [.yellow, .pink], startPoint: .leading, endPoint: .trailing))
                             .clipShape(Capsule())
-                    }
+                    })
                     
                     VStack(spacing: 8) {
                         Button {

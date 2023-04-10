@@ -133,11 +133,11 @@ public class ZLImageEditorUIConfiguration: NSObject {
 
 // MARK: Image source deploy
 
-enum ZLCustomImageDeploy {
-    static var imageNames: [String] = []
-    
-    static var imageForKey: [String: UIImage] = [:]
-}
+//enum ZLCustomImageDeploy {
+//    static var imageNames: [String] = []
+//    
+//    static var imageForKey: [String: UIImage] = [:]
+//}
 
 @objc public enum ZLAdjustSliderType: Int {
     case vertical

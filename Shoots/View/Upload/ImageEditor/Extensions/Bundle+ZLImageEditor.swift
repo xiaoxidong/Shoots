@@ -32,7 +32,7 @@ extension Bundle {
     private static var bundle: Bundle?
     
     static var normal_module: Bundle? = {
-        let bundleName = "ZLImageEditor"
+        let bundleName = "ZLPhotoBrowser"
 
         var candidates = [
             // Bundle should be present here when the package is linked into an App.

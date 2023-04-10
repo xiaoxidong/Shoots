@@ -189,6 +189,134 @@
             endingLineNumber = "20"
             landmarkName = "combine(images:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4E69570A-0BD3-4213-9DD0-4464FC81BD8B - d33224a0d6e70cd9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static __C.UIImage.combine(images: Swift.Array&lt;__C.UIImage&gt;) -&gt; __C.UIImage"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/Extension/UIImage+Extension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "358">
+               </Location>
+               <Location
+                  uuid = "4E69570A-0BD3-4213-9DD0-4464FC81BD8B - d33224a0d6e70cd9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static __C.UIImage.combine(images: Swift.Array&lt;__C.UIImage&gt;) -&gt; __C.UIImage"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/Extension/UIImage+Extension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "304">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "709989AB-DBC0-41CF-849A-77C7D3063A51"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/View/Upload/SelectPhotoView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "shows()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "32065950-7668-4DE9-82B1-702ABDF746A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/View/Upload/Sources/General/ZLPhotoPreviewSheet.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "406"
+            endingLineNumber = "406"
+            landmarkName = "show()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "53CD832F-1BAB-43EE-B5F9-639C3574D27D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/View/Upload/Sources/General/ZLPhotoPreviewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "557"
+            endingLineNumber = "557"
+            landmarkName = "editBtnClick()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "53CD832F-1BAB-43EE-B5F9-639C3574D27D - 85b71bef8186305"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Swift.Optional&lt;__C.AVAsset&gt;, Swift.Optional&lt;Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;&gt;) -&gt; () in Shoots.ZLPhotoPreviewController.editBtnClick() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/Sources/General/ZLPhotoPreviewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "557"
+                  endingLineNumber = "557"
+                  offsetFromSymbolStart = "324">
+               </Location>
+               <Location
+                  uuid = "53CD832F-1BAB-43EE-B5F9-639C3574D27D - 85b71bef8186305"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Swift.Optional&lt;__C.AVAsset&gt;, Swift.Optional&lt;Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;&gt;) -&gt; () in Shoots.ZLPhotoPreviewController.editBtnClick() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/Sources/General/ZLPhotoPreviewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "557"
+                  endingLineNumber = "557"
+                  offsetFromSymbolStart = "427">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "397F2B40-DBC3-4E9E-9BD0-70A59A4C6BD1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/View/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

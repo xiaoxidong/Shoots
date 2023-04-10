@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CombineSelectView: View {
+    @Binding var uploadImages: [UIImage]
+    
     @Environment(\.dismiss) var dismiss
     #if os(iOS)
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -15,7 +17,8 @@ struct CombineSelectView: View {
     #endif
     
     @State var combinedImage: UIImage? = nil
-    @State var images: [UIImage] = [UIImage(named: "s1")!, UIImage(named: "s4")!, UIImage(named: "s4")!]
+    @State var showCombine = false
+    @State var showAlert = false
     var body: some View {
         NavigationView {
             ScrollView {
@@ -35,14 +38,38 @@ struct CombineSelectView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink {
-                        CombineView(images: images, combinedImage: $combinedImage)
-                    } label: {
+                    Button(action: {
+                        if chectSameSize() {
+                            showCombine = true
+                        } else {
+                            // 提示不一样的尺寸不能拼接
+                            showAlert.toggle()
+                        }
+                    }, label: {
                         Text("拼接")
                             .font(.system(size: 16, weight: .semibold))
                             .tint(.shootBlue)
-                    }.disabled(selected.isEmpty)
+                    })
+                    .disabled(selected.count < 2)
+                    .background(
+                        NavigationLink(destination: CombineView(images: selected, combinedImage: $combinedImage) {
+                            selected.forEach { image in
+                                if let index = uploadImages.firstIndex(of: image) {
+                                    uploadImages.remove(at: index)
+                                }
+                            }
+                            if let combinedImage = combinedImage {
+                                uploadImages.append(combinedImage)
+                            }
+                            dismiss()
+                        }, isActive: $showCombine) {
+                            EmptyView()
+                        }
+                    )
                 }
+            }
+            .toast(isPresenting: $showAlert) {
+                AlertToast(displayMode: .alert, type: .error(), title: "尺寸不一致无法拼接")
             }
         }
     }
@@ -54,29 +81,29 @@ struct CombineSelectView: View {
             return [GridItem(.adaptive(minimum: 220, maximum: 360), spacing: 2)]
         }
     }
-    @State var selected: [String] = []
+    @State var selected: [UIImage] = []
     var selectView: some View {
         ScrollView {
             LazyVGrid(columns: columns, alignment: .leading, spacing: 2) {
-                ForEach(homeData) { shoot in
+                ForEach(uploadImages, id: \.self) { image in
                     Button(action: {
                         //选择和取消选择截图
                         withAnimation(.spring()) {
-                            if selected.contains(shoot.imageUrl), let index = selected.firstIndex(of: shoot.imageUrl) {
+                            if selected.contains(image), let index = selected.firstIndex(of: image) {
                                 selected.remove(at: index)
                             } else {
-                                selected.append(shoot.imageUrl)
+                                selected.append(image)
                             }
                         }
                     }, label: {
-                        Image(shoot.imageUrl)
+                        Image(uiImage: image)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(maxWidth: .infinity, alignment: .top)
                             .overlay(alignment: .bottomLeading) {
                                 Image(systemName: "checkmark.circle.fill")
                                     .padding(12)
-                                    .foregroundColor(selected.contains(shoot.imageUrl) ? Color.shootRed : Color.white)
+                                    .foregroundColor(selected.contains(image) ? Color.shootRed : Color.white)
                                     .shadow(radius: 6)
                             }
                     })
@@ -84,10 +111,27 @@ struct CombineSelectView: View {
             }
         }
     }
+    
+    func chectSameSize() -> Bool {
+        var width: CGFloat? = nil
+        var same = true
+        for image in selected {
+            if width == nil {
+                width = image.size.width
+            } else {
+                if width != image.size.width {
+                    // 尺寸不一样不能拼接
+                    same = false
+                    break
+                }
+            }
+        }
+        return same
+    }
 }
 
 struct CombineSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        CombineSelectView()
+        CombineSelectView(uploadImages: .constant([UIImage(named: "s1")!, UIImage(named: "s2")!]))
     }
 }

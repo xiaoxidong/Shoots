@@ -24,6 +24,7 @@ struct SettingView: View {
     @State var result: Result<MFMailComposeResult, Error>? = nil
     #endif
     @Environment(\.dismiss) var dismiss
+    @State var customUpload = false
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -31,6 +32,11 @@ struct SettingView: View {
                     Divider()
                     SettingCellView(image: "pro", text: "支持开发者") {
                         showPro.toggle()
+                    }
+                    SettingCellView(image: "tags", text: "批量上传") {
+                        withAnimation(.spring()) {
+                            customUpload.toggle()
+                        }
                     }
                     
                     // 基础设置
@@ -156,6 +162,9 @@ struct SettingView: View {
         .bottomSlideOverCard(isPresented: $showIconSetting) {
             IconView()
         }
+        .fullScreenCover(isPresented: $customUpload, content: {
+            CustomUploadView()
+        })
     }
 }
 

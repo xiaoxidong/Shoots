@@ -11,6 +11,7 @@ struct CustomUploadView: View {
     @Environment(\.dismiss) var dismiss
     @State var photos: [String] = []
     @State var finish = false
+    @AppStorage("showCustomUpload") var showCustomUpload = true
     var body: some View {
         NavigationView {
             Group {
@@ -41,7 +42,7 @@ struct CustomUploadView: View {
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
-                            
+                            showCustomUpload = false
                         } label: {
                             Text("上传")
                                 .font(.system(size: 16, weight: .semibold))
