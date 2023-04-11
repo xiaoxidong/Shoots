@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+#if os(macOS)
+import MASShortcut
+#endif
 
 @main
 struct ShootsApp: App {
     @State var isInserted = true
     @State var isMenuPresented: Bool = false
     @AppStorage("statusIcon") var statusIcon: String = "photo.fill.on.rectangle.fill"
+    @Environment(\.openWindow) var openWindow
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -26,6 +30,7 @@ struct ShootsApp: App {
                         }
                         
                     }
+                    configureShortcuts()
                     #endif
                 }
         }
@@ -61,4 +66,15 @@ struct ShootsApp: App {
         }
         #endif
     }
+    
+    #if os(macOS)
+    // 快捷键启动状态栏搜索
+    private func configureShortcuts() {
+        let activeShortcut = MASShortcut(keyCode: kVK_ANSI_S, modifierFlags: [.command, .control])
+
+        MASShortcutMonitor.shared().register(activeShortcut, withAction: {
+            isMenuPresented.toggle()
+        })
+    }
+    #endif
 }

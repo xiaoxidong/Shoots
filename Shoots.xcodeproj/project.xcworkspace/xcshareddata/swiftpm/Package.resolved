@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "masshortcut",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/shpakovski/MASShortcut.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "6f2603c6b6cc18f64a799e5d2c9d3bbc467c413a"
+      }
+    },
+    {
       "identity" : "refresh",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/wxxsw/Refresh",
