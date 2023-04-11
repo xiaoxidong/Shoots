@@ -46,6 +46,10 @@ struct ShootsApp: App {
                 }
         }
         
+//        SidebarCommands()
+//        TextEditingCommands()
+//        TextFormattingCommands()
+//        ToolbarCommands()
         MenuBarExtra("Status", systemImage: statusIcon, isInserted: $isInserted) {
             MenuBarExtraView(isInserted: $isInserted, isMenuPresented: $isMenuPresented)
                 .frame(width: 520, height: 600)

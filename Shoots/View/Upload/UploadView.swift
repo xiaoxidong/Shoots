@@ -216,14 +216,18 @@ struct UploadView: View {
     var blurNew: some View {
         Group {
             if showBlurNew {
-                Color.black.opacity(0.2)
+                Color.black.opacity(0.5)
                 VStack(spacing: 16) {
                     Image(systemName: "scribble.variable")
                         .font(.system(size: 56))
                         .foregroundColor(.shootWhite)
-                    Text("手指滑动打码敏感信息")
-                        .font(.system(size: 16, weight: .medium))
+                    Text("双指缩放图片")
+                        .font(.system(size: 18, weight: .medium))
                         .foregroundColor(.white)
+                    Text("手指滑动打码敏感信息")
+                        .font(.system(size: 18, weight: .medium))
+                        .foregroundColor(.white)
+                    
                     
                     Button {
                         withAnimation(.spring()) {

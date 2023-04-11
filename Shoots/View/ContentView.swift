@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// 预览模式下无法选择相册上传图片，请在模拟器里查看上传操作。
 struct ContentView: View {
     @StateObject var homeVM: HomeViewModel = HomeViewModel()
     @State var searchText: String = ""
