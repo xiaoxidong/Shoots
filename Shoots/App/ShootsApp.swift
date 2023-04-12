@@ -73,7 +73,7 @@ struct ShootsApp: App {
         let activeShortcut = MASShortcut(keyCode: kVK_ANSI_S, modifierFlags: [.command, .control])
 
         MASShortcutMonitor.shared().register(activeShortcut, withAction: {
-            isMenuPresented.toggle()
+            isMenuPresented = true
         })
     }
     #endif

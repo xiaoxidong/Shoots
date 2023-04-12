@@ -18,7 +18,7 @@ struct MenuBarExtraView: View {
     var body: some View {
         VStack {
             HStack {
-                TextField("搜索应用或设计模式", text: $searchText)
+                TextField("搜索应用或设计模式(􀆍 + 􀆔 + S)", text: $searchText)
                     .textFieldStyle(.plain)
                 Button {
                     NSApp.setActivationPolicy(.regular)
