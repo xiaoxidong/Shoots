@@ -7,7 +7,7 @@
 
 import SwiftUI
 #if os(macOS)
-import MASShortcut
+//import MASShortcut
 #endif
 
 @main
@@ -30,7 +30,7 @@ struct ShootsApp: App {
                         }
                         
                     }
-                    configureShortcuts()
+//                    configureShortcuts()
                     #endif
                 }
         }
@@ -69,12 +69,14 @@ struct ShootsApp: App {
     
     #if os(macOS)
     // 快捷键启动状态栏搜索
-    private func configureShortcuts() {
-        let activeShortcut = MASShortcut(keyCode: kVK_ANSI_S, modifierFlags: [.command, .control])
-
-        MASShortcutMonitor.shared().register(activeShortcut, withAction: {
-            isMenuPresented = true
-        })
-    }
+    // 和开机启动一样，添加之后 iOS 就无法预览了，所以展示注释掉，可以添加 SPM 然后开启
+    //https://github.com/shpakovski/MASShortcut.git
+//    private func configureShortcuts() {
+//        let activeShortcut = MASShortcut(keyCode: kVK_ANSI_S, modifierFlags: [.command, .control])
+//
+//        MASShortcutMonitor.shared().register(activeShortcut, withAction: {
+//            isMenuPresented = true
+//        })
+//    }
     #endif
 }

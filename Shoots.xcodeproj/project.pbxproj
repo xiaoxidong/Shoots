@@ -363,7 +363,6 @@
 		4EA73B1E29D5C161002901AE /* OS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5FA29CD58D000A4E0DE /* OS.swift */; };
 		4EA73B1F29D5C161002901AE /* SKProductDiscount+LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5FE29CD58D000A4E0DE /* SKProductDiscount+LocalizedPrice.swift */; };
 		4EA73B2029D5C161002901AE /* RestorePurchasesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5FB29CD58D000A4E0DE /* RestorePurchasesController.swift */; };
-		4EC0A79D29E592EF00C4E25B /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC0A79C29E592EF00C4E25B /* MASShortcut */; };
 		4ED4B08B29D3C0BA005D9758 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */; };
 		4ED4B08D29D3CAB1005D9758 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED4B08C29D3CAB1005D9758 /* Refresh */; };
 		4ED4B08E29D3CAC0005D9758 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */; };
@@ -811,7 +810,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EC0A79D29E592EF00C4E25B /* MASShortcut in Frameworks */,
 				4ED4B08D29D3CAB1005D9758 /* Refresh in Frameworks */,
 				4E42A6F729D1319D00BEC185 /* SwiftUIFlowLayout in Frameworks */,
 				4E42A6F529D1319900BEC185 /* WaterfallGrid in Frameworks */,
@@ -1865,7 +1863,6 @@
 				4E42A6F429D1319900BEC185 /* WaterfallGrid */,
 				4E42A6F629D1319D00BEC185 /* SwiftUIFlowLayout */,
 				4ED4B08C29D3CAB1005D9758 /* Refresh */,
-				4EC0A79C29E592EF00C4E25B /* MASShortcut */,
 			);
 			productName = Shoots_Mac;
 			productReference = 4E42A69A29D12DA900BEC185 /* Shoots.app */;
@@ -1920,7 +1917,6 @@
 				4E73A68829D316BB009CFB5A /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				4EDDD62B29DBC9F500C4E14D /* XCRemoteSwiftPackageReference "IsScrolling" */,
 				4EDDD63329DC092200C4E14D /* XCRemoteSwiftPackageReference "toast-swift" */,
-				4EC0A79B29E592EF00C4E25B /* XCRemoteSwiftPackageReference "MASShortcut" */,
 			);
 			productRefGroup = 4E195EDB29C040C600E97522 /* Products */;
 			projectDirPath = "";
@@ -2942,14 +2938,6 @@
 				kind = branch;
 			};
 		};
-		4EC0A79B29E592EF00C4E25B /* XCRemoteSwiftPackageReference "MASShortcut" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/shpakovski/MASShortcut.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		4EDDD62B29DBC9F500C4E14D /* XCRemoteSwiftPackageReference "IsScrolling" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fatbobman/IsScrolling";
@@ -3014,11 +3002,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E878ED229D191520027FDA9 /* XCRemoteSwiftPackageReference "Refresh" */;
 			productName = Refresh;
-		};
-		4EC0A79C29E592EF00C4E25B /* MASShortcut */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4EC0A79B29E592EF00C4E25B /* XCRemoteSwiftPackageReference "MASShortcut" */;
-			productName = MASShortcut;
 		};
 		4ED4B08C29D3CAB1005D9758 /* Refresh */ = {
 			isa = XCSwiftPackageProductDependency;
