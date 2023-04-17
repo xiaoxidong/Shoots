@@ -24,7 +24,7 @@ struct UploadView: View {
                 Image(uiImage: uploadImages[indice])
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: screen.width, height: screen.height)
+//                    .frame(width: screen.width, height: screen.height)
                     .ignoresSafeArea()
                     .tag(indice)
             }
@@ -46,7 +46,12 @@ struct UploadView: View {
             }
         }
         .safeAreaInset(edge: .bottom) {
-            bottomActions
+            if #available(iOSApplicationExtension 13.0, *) {
+                Text("Hello, World!")
+            } else {
+                Text("Hello, World!")
+            }
+//            bottomActions
         }
         .onChange(of: uploadImages) { newValue in
             withAnimation(.spring()) {
@@ -110,108 +115,109 @@ struct UploadView: View {
     @State var tagTexts: [String] = ["设置", "粉丝", "信息流", "自定义内容", "卡片", "用户中心", "推荐", "Setting"]
     @FocusState var appFocused: Bool
     @FocusState var tagFocused: Bool
-    var bottomActions: some View {
-        VStack(spacing: 0) {
-            if appFocused {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 0) {
-                        ForEach(appRsults, id: \.self) { app in
-                            Button {
-                                appText = app
-                                appFocused = false
-                            } label: {
-                                VStack(alignment: .leading, spacing: 0) {
-                                    Text(app)
-                                        .font(.system(size: 16, weight: .medium))
-                                        .foregroundColor(.shootBlack)
-                                        .padding(.vertical, 16)
-                                        .padding(.horizontal, 16)
-                                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-                                    Divider()
-                                }.frame(width: .infinity, alignment: .leading)
-                                    .background(Color.white)
-                                    .contentShape(Rectangle())
-                            }
-                        }
-                    }
-                }.frame(maxHeight: 240)
-                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-                    .shadow(color: Color.shootBlack.opacity(appFocused ? 0.06 : 0), x: 0, y: -6, blur: 10)
-            } else if tagFocused {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 0) {
-                        ForEach(tagRsults, id: \.self) { tag in
-                            Button {
-                                if tagText == "" {
-                                    tagText = "\(tag),"
-                                } else if !tagText.contains(tag) {
-                                    var new = tagText.components(separatedBy: ",")
-                                    new.removeLast()
-                                    tagText = new.joined(separator: ",") + ",\(tag),"
-                                }
-                            } label: {
-                                VStack(alignment: .center, spacing: 0) {
-                                    Text(tag)
-                                        .font(.system(size: 16, weight: .medium))
-                                        .foregroundColor(.shootBlack)
-                                        .padding(.vertical, 16)
-                                        .padding(.horizontal, 16)
-                                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-                                    Divider()
-                                }.frame(width: .infinity, alignment: .center)
-                                    .background(Color.white)
-                                    .contentShape(Rectangle())
-                            }.buttonStyle(.plain)
-                        }
-                    }
-                }.frame(maxHeight: 240)
-                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-                    .shadow(color: Color.shootBlack.opacity(tagFocused ? 0.06 : 0), x: 0, y: -6, blur: 10)
-            }
-            VStack(spacing: 6) {
-                Divider()
-                HStack(spacing: 8) {
-                    TextField("应用名称", text: $appText)
-                        .focused($appFocused)
-                    Divider()
-                        .frame(height: 36)
-                    TextField("设计模式", text: $tagText)
-                        .focused($tagFocused)
-                    Button {
-                        showBluer.toggle()
-                    } label: {
-                        Image("blur")
-                            .padding(4)
-                            .contentShape(Rectangle())
-                    }
-                   
-                    Button {
-                        showCombine.toggle()
-                    } label: {
-                        Image("connect")
-                            .padding(4)
-                            .contentShape(Rectangle())
-                    }
-                }.padding(.horizontal)
-            }
-                .background(Color.white)
-                .shadow(color: Color.shootBlack.opacity(appFocused || tagFocused ? 0 : 0.06), x: 0, y: -6, blur: 10)
-                
-        }
-            .fullScreenCover(isPresented: $showBluer) {
-                ImageBlurView(image: $uploadImages[selection])
-                    .ignoresSafeArea()
-                    .overlay(alignment: .center) {
-                        blurNew
-                    }
-            }
-            .fullScreenCover(isPresented: $showCombine) {
-                CombineSelectView(uploadImages: $uploadImages)
-            }
-            .onAppear {
-                showBlurNew = true
-            }
-    }
+    
+//    var bottomActions: some View {
+//        VStack(spacing: 0) {
+//            if appFocused {
+//                ScrollView(showsIndicators: false) {
+//                    VStack(spacing: 0) {
+//                        ForEach(appRsults, id: \.self) { app in
+//                            Button {
+//                                appText = app
+//                                appFocused = false
+//                            } label: {
+//                                VStack(alignment: .leading, spacing: 0) {
+//                                    Text(app)
+//                                        .font(.system(size: 16, weight: .medium))
+//                                        .foregroundColor(.shootBlack)
+//                                        .padding(.vertical, 16)
+//                                        .padding(.horizontal, 16)
+//                                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+//                                    Divider()
+//                                }.frame(width: .infinity, alignment: .leading)
+//                                    .background(Color.white)
+//                                    .contentShape(Rectangle())
+//                            }
+//                        }
+//                    }
+//                }.frame(maxHeight: 240)
+//                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+//                    .shadow(color: Color.shootBlack.opacity(appFocused ? 0.06 : 0), x: 0, y: -6, blur: 10)
+//            } else if tagFocused {
+//                ScrollView(showsIndicators: false) {
+//                    VStack(spacing: 0) {
+//                        ForEach(tagRsults, id: \.self) { tag in
+//                            Button {
+//                                if tagText == "" {
+//                                    tagText = "\(tag),"
+//                                } else if !tagText.contains(tag) {
+//                                    var new = tagText.components(separatedBy: ",")
+//                                    new.removeLast()
+//                                    tagText = new.joined(separator: ",") + ",\(tag),"
+//                                }
+//                            } label: {
+//                                VStack(alignment: .center, spacing: 0) {
+//                                    Text(tag)
+//                                        .font(.system(size: 16, weight: .medium))
+//                                        .foregroundColor(.shootBlack)
+//                                        .padding(.vertical, 16)
+//                                        .padding(.horizontal, 16)
+//                                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+//                                    Divider()
+//                                }.frame(width: .infinity, alignment: .center)
+//                                    .background(Color.white)
+//                                    .contentShape(Rectangle())
+//                            }.buttonStyle(.plain)
+//                        }
+//                    }
+//                }.frame(maxHeight: 240)
+//                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+//                    .shadow(color: Color.shootBlack.opacity(tagFocused ? 0.06 : 0), x: 0, y: -6, blur: 10)
+//            }
+//            VStack(spacing: 6) {
+//                Divider()
+//                HStack(spacing: 8) {
+//                    TextField("应用名称", text: $appText)
+//                        .focused($appFocused)
+//                    Divider()
+//                        .frame(height: 36)
+//                    TextField("设计模式", text: $tagText)
+//                        .focused($tagFocused)
+//                    Button {
+//                        showBluer.toggle()
+//                    } label: {
+//                        Image("blur")
+//                            .padding(4)
+//                            .contentShape(Rectangle())
+//                    }
+//
+//                    Button {
+//                        showCombine.toggle()
+//                    } label: {
+//                        Image("connect")
+//                            .padding(4)
+//                            .contentShape(Rectangle())
+//                    }
+//                }.padding(.horizontal)
+//            }
+//                .background(Color.white)
+//                .shadow(color: Color.shootBlack.opacity(appFocused || tagFocused ? 0 : 0.06), x: 0, y: -6, blur: 10)
+//
+//        }
+//            .fullScreenCover(isPresented: $showBluer) {
+//                ImageBlurView(image: $uploadImages[selection])
+//                    .ignoresSafeArea()
+//                    .overlay(alignment: .center) {
+//                        blurNew
+//                    }
+//            }
+//            .fullScreenCover(isPresented: $showCombine) {
+//                CombineSelectView(uploadImages: $uploadImages)
+//            }
+//            .onAppear {
+//                showBlurNew = true
+//            }
+//    }
     
     var blurNew: some View {
         Group {

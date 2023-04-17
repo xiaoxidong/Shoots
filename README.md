@@ -24,7 +24,7 @@ Shoots 是一款开源的截图管理软件，也是[「做个应用」](https:/
 <summary>Mac 端截图</summary>
 
 ![1](https://user-images.githubusercontent.com/3838258/230248473-cf17f9bc-9d79-4771-a78e-f6a07c2a8ce3.png)
-     
+
 </details>
 
 
@@ -99,4 +99,4 @@ NavigationView {
 📮：834599524@qq.com
 
 # License
-Shoots 基于 MIT 开源协议。[查看详细信息](https://github.com/xiaoxidong/Shoots/blob/main/LICENSE)
+Shoots 基于 [MIT 开源协议]。(https://github.com/xiaoxidong/Shoots/blob/main/LICENSE)
