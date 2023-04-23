@@ -9,24 +9,31 @@ import SwiftUI
 
 struct UploadView: View {
     @State var uploadImages: [UIImage]
-    
+    var shareExtension: Bool = false
     @State var selection: Int = 0
+    let shareCancellAction: () -> Void
+    let shareDoneAction: () -> Void
+    
     @Environment(\.dismiss) var dismiss
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @AppStorage("showBlurNew") var showBlurNew = true
     
-    @State var image: UIImage = UIImage(named: "s1")!
-    @State var updateIndicator = false
+//    @State var image: UIImage = UIImage(named: "s1")!
+    @State var updateIndicator = true
+    let screen = UIScreen.main.bounds
     var body: some View {
         TabView(selection: $selection) {
             ForEach(uploadImages.indices, id: \.self) { indice in
                 Image(uiImage: uploadImages[indice])
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-//                    .frame(width: screen.width, height: screen.height)
+                    .frame(width: screen.width, height: shareExtension ? nil : screen.height)
                     .ignoresSafeArea()
                     .tag(indice)
+                    .onTapGesture {
+                        print("----")
+                    }
             }
         }.tabViewStyle(.page(indexDisplayMode: .never))
             .toolbar(.hidden, for: .navigationBar)
@@ -34,30 +41,30 @@ struct UploadView: View {
                 appFocused = false
                 tagFocused = false
             }
-        .edgesIgnoringSafeArea(.all)
-        .safeAreaInset(edge: .top) {
-            if horizontalSizeClass == .compact {
-                topActions
-                    .background(Color.white)
-            } else {
-                topActions
-                    .padding(.top)
-                    .background(Color.white)
+            .edgesIgnoringSafeArea(shareExtension ? [] : .all)
+            .safeAreaInset(edge: .top) {
+                if horizontalSizeClass == .compact {
+                    topActions
+                        .background(Color.white)
+                } else {
+                    topActions
+                        .padding(.top)
+                        .background(Color.white)
+                }
             }
-        }
-        .safeAreaInset(edge: .bottom) {
-            if #available(iOSApplicationExtension 13.0, *) {
-                Text("Hello, World!")
-            } else {
-                Text("Hello, World!")
+            .safeAreaInset(edge: .bottom) {
+                if shareExtension {
+                    bottomActions
+                        .padding(.bottom)
+                } else {
+                    bottomActions
+                }
             }
-//            bottomActions
-        }
-        .onChange(of: uploadImages) { newValue in
-            withAnimation(.spring()) {
-                updateIndicator.toggle()
+            .onChange(of: uploadImages) { newValue in
+                withAnimation(.spring()) {
+                    updateIndicator.toggle()
+                }
             }
-        }
     }
     
     var topActions: some View {
@@ -65,6 +72,7 @@ struct UploadView: View {
             HStack {
                 Button {
                     dismiss()
+                    shareCancellAction()
                 } label: {
                     Image(systemName: "xmark")
                         .font(.system(size: 16, weight: .bold))
@@ -81,6 +89,7 @@ struct UploadView: View {
                 Spacer(minLength: 0)
                 Button {
                     dismiss()
+                    shareDoneAction()
                     //TODO: 后台上传截图
                     
                 } label: {
@@ -90,7 +99,7 @@ struct UploadView: View {
                 }.frame(maxWidth: .infinity, alignment: .trailing)
             }.padding(.horizontal)
             Divider()
-        }
+        }.padding(.top, shareExtension ? 16 : 0)
     }
     
     @State var appText = ""
@@ -116,108 +125,109 @@ struct UploadView: View {
     @FocusState var appFocused: Bool
     @FocusState var tagFocused: Bool
     
-//    var bottomActions: some View {
-//        VStack(spacing: 0) {
-//            if appFocused {
-//                ScrollView(showsIndicators: false) {
-//                    VStack(spacing: 0) {
-//                        ForEach(appRsults, id: \.self) { app in
-//                            Button {
-//                                appText = app
-//                                appFocused = false
-//                            } label: {
-//                                VStack(alignment: .leading, spacing: 0) {
-//                                    Text(app)
-//                                        .font(.system(size: 16, weight: .medium))
-//                                        .foregroundColor(.shootBlack)
-//                                        .padding(.vertical, 16)
-//                                        .padding(.horizontal, 16)
-//                                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-//                                    Divider()
-//                                }.frame(width: .infinity, alignment: .leading)
-//                                    .background(Color.white)
-//                                    .contentShape(Rectangle())
-//                            }
-//                        }
-//                    }
-//                }.frame(maxHeight: 240)
-//                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-//                    .shadow(color: Color.shootBlack.opacity(appFocused ? 0.06 : 0), x: 0, y: -6, blur: 10)
-//            } else if tagFocused {
-//                ScrollView(showsIndicators: false) {
-//                    VStack(spacing: 0) {
-//                        ForEach(tagRsults, id: \.self) { tag in
-//                            Button {
-//                                if tagText == "" {
-//                                    tagText = "\(tag),"
-//                                } else if !tagText.contains(tag) {
-//                                    var new = tagText.components(separatedBy: ",")
-//                                    new.removeLast()
-//                                    tagText = new.joined(separator: ",") + ",\(tag),"
-//                                }
-//                            } label: {
-//                                VStack(alignment: .center, spacing: 0) {
-//                                    Text(tag)
-//                                        .font(.system(size: 16, weight: .medium))
-//                                        .foregroundColor(.shootBlack)
-//                                        .padding(.vertical, 16)
-//                                        .padding(.horizontal, 16)
-//                                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-//                                    Divider()
-//                                }.frame(width: .infinity, alignment: .center)
-//                                    .background(Color.white)
-//                                    .contentShape(Rectangle())
-//                            }.buttonStyle(.plain)
-//                        }
-//                    }
-//                }.frame(maxHeight: 240)
-//                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-//                    .shadow(color: Color.shootBlack.opacity(tagFocused ? 0.06 : 0), x: 0, y: -6, blur: 10)
-//            }
-//            VStack(spacing: 6) {
-//                Divider()
-//                HStack(spacing: 8) {
-//                    TextField("应用名称", text: $appText)
-//                        .focused($appFocused)
-//                    Divider()
-//                        .frame(height: 36)
-//                    TextField("设计模式", text: $tagText)
-//                        .focused($tagFocused)
-//                    Button {
-//                        showBluer.toggle()
-//                    } label: {
-//                        Image("blur")
-//                            .padding(4)
-//                            .contentShape(Rectangle())
-//                    }
-//
-//                    Button {
-//                        showCombine.toggle()
-//                    } label: {
-//                        Image("connect")
-//                            .padding(4)
-//                            .contentShape(Rectangle())
-//                    }
-//                }.padding(.horizontal)
-//            }
-//                .background(Color.white)
-//                .shadow(color: Color.shootBlack.opacity(appFocused || tagFocused ? 0 : 0.06), x: 0, y: -6, blur: 10)
-//
-//        }
-//            .fullScreenCover(isPresented: $showBluer) {
-//                ImageBlurView(image: $uploadImages[selection])
-//                    .ignoresSafeArea()
+    var bottomActions: some View {
+        VStack(spacing: 0) {
+            if appFocused {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 0) {
+                        ForEach(appRsults, id: \.self) { app in
+                            Button {
+                                appText = app
+                                appFocused = false
+                            } label: {
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text(app)
+                                        .font(.system(size: 16, weight: .medium))
+                                        .foregroundColor(.shootBlack)
+                                        .padding(.vertical, 16)
+                                        .padding(.horizontal, 16)
+                                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+                                    Divider()
+                                }.frame(width: .infinity, alignment: .leading)
+                                    .background(Color.white)
+                                    .contentShape(Rectangle())
+                            }
+                        }
+                    }
+                }.frame(maxHeight: 240)
+                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+                    .shadow(color: Color.shootBlack.opacity(appFocused ? 0.06 : 0), x: 0, y: -6, blur: 10)
+            } else if tagFocused {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 0) {
+                        ForEach(tagRsults, id: \.self) { tag in
+                            Button {
+                                if tagText == "" {
+                                    tagText = "\(tag),"
+                                } else if !tagText.contains(tag) {
+                                    var new = tagText.components(separatedBy: ",")
+                                    new.removeLast()
+                                    tagText = new.joined(separator: ",") + ",\(tag),"
+                                }
+                            } label: {
+                                VStack(alignment: .center, spacing: 0) {
+                                    Text(tag)
+                                        .font(.system(size: 16, weight: .medium))
+                                        .foregroundColor(.shootBlack)
+                                        .padding(.vertical, 16)
+                                        .padding(.horizontal, 16)
+                                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+                                    Divider()
+                                }.frame(width: .infinity, alignment: .center)
+                                    .background(Color.white)
+                                    .contentShape(Rectangle())
+                            }.buttonStyle(.plain)
+                        }
+                    }
+                }.frame(maxHeight: 240)
+                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+                    .shadow(color: Color.shootBlack.opacity(tagFocused ? 0.06 : 0), x: 0, y: -6, blur: 10)
+            }
+            VStack(spacing: 6) {
+                Divider()
+                HStack(spacing: 8) {
+                    TextField("应用名称", text: $appText)
+                        .focused($appFocused)
+                    Divider()
+                        .frame(height: 36)
+                    TextField("设计模式", text: $tagText)
+                        .focused($tagFocused)
+                    Button {
+                        showBluer.toggle()
+                    } label: {
+                        Image("blur")
+                            .padding(4)
+                            .contentShape(Rectangle())
+                    }
+
+                    Button {
+                        showCombine.toggle()
+                        print("-------")
+                    } label: {
+                        Image("connect")
+                            .padding(4)
+                            .contentShape(Rectangle())
+                    }
+                }.padding(.horizontal)
+            }
+                .background(Color.white)
+                .shadow(color: Color.shootBlack.opacity(appFocused || tagFocused ? 0 : 0.06), x: 0, y: -6, blur: 10)
+
+        }
+            .fullScreenCover(isPresented: $showBluer) {
+                ImageBlurView(image: $uploadImages[selection])
+                    .ignoresSafeArea()
 //                    .overlay(alignment: .center) {
 //                        blurNew
 //                    }
-//            }
-//            .fullScreenCover(isPresented: $showCombine) {
-//                CombineSelectView(uploadImages: $uploadImages)
-//            }
-//            .onAppear {
-//                showBlurNew = true
-//            }
-//    }
+            }
+            .fullScreenCover(isPresented: $showCombine) {
+                CombineSelectView(uploadImages: $uploadImages)
+            }
+            .onAppear {
+                showBlurNew = true
+            }
+    }
     
     var blurNew: some View {
         Group {
@@ -262,7 +272,11 @@ struct UploadView: View {
 struct UploadView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UploadView(uploadImages: [UIImage(named: "s1")!, UIImage(named: "s2")!])
+            UploadView(uploadImages: [UIImage(named: "s1")!, UIImage(named: "s2")!]) {
+                
+            } shareDoneAction: {
+                
+            }
         }
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import LaunchAtLogin
+import LaunchAtLogin
 
 struct MacSettingsView: View {
     @State var selection = 1
@@ -119,7 +119,7 @@ struct MacSettingsView: View {
 
                 Section {
                     LabeledContent("分享应用：") {
-                        ShareLink(items: [URL(string: "https://weibo.com/u/5682979153")!]) {
+                        ShareLink(items: [URL(string: "https://apps.apple.com/cn/app/id1140397642")!]) {
                             HStack {
                                 Image("share")
                                     .resizable()
@@ -202,9 +202,9 @@ struct MacSettingsView: View {
                     LabeledContent("开机启动：") {
                         // 不知道为什么，添加了登录自动开启之后，iOS 的预览就不能使用，所以这里暂时注销了，可以添加下面的 SPM，然后引入库即可。
                         //https://github.com/sindresorhus/LaunchAtLogin
-//                        LaunchAtLogin.Toggle {
-//                            Text("开启")
-//                        }
+                        LaunchAtLogin.Toggle {
+                            Text("开启")
+                        }
                     }.padding(.vertical, 6)
                         .padding(.top)
                     

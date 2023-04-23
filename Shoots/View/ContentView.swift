@@ -76,7 +76,11 @@ struct ContentView: View {
         .fullScreenCover(isPresented: $upload, onDismiss: {
             selectedImages.removeAll()
         }, content: {
-            UploadView(uploadImages: selectedImages)
+            UploadView(uploadImages: selectedImages) {
+                
+            } shareDoneAction: {
+                
+            }
         })
         #endif
         .onAppear {
