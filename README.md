@@ -99,4 +99,4 @@ NavigationView {
 📮：834599524@qq.com
 
 # License
-Shoots 基于 [MIT 开源协议]。(https://github.com/xiaoxidong/Shoots/blob/main/LICENSE)
+Shoots 基于 [MIT 开源协议](https://github.com/xiaoxidong/Shoots/blob/main/LICENSE)
