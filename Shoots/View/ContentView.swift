@@ -345,5 +345,10 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        ContentView()
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

@@ -87,5 +87,11 @@ struct PrivacyView: View {
 struct PrivacyView_Previews: PreviewProvider {
     static var previews: some View {
         PrivacyView(showPrivacy: .constant(true))
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        PrivacyView(showPrivacy: .constant(true))
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

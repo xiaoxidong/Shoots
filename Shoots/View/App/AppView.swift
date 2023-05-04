@@ -139,5 +139,13 @@ struct AppView_Previews: PreviewProvider {
         NavigationView {
             AppView(app: appData)
         }
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        NavigationView {
+            AppView(app: appData)
+        }
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

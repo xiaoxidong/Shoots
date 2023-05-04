@@ -99,5 +99,11 @@ struct AppIconView: View {
 struct AppIconView_Previews: PreviewProvider {
     static var previews: some View {
         AppIconView()
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        AppIconView()
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

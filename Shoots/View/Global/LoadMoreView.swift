@@ -46,7 +46,13 @@ struct LoadMoreView: View {
 struct LoadMoreView_Previews: PreviewProvider {
     static var previews: some View {
         LoadMoreView(footerRefreshing: .constant(true), noMore: .constant(false)) {
-            
         }
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        LoadMoreView(footerRefreshing: .constant(true), noMore: .constant(false)) {
+        }
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

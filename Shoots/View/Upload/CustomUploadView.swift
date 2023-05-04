@@ -137,5 +137,11 @@ struct CustomUploadView: View {
 struct CustomUploadView_Previews: PreviewProvider {
     static var previews: some View {
         CustomUploadView()
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        CustomUploadView()
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

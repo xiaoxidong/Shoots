@@ -96,5 +96,11 @@ struct AgreementView: View {
 struct AgreementView_Previews: PreviewProvider {
     static var previews: some View {
         AgreementView(showAgreement: .constant(true))
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        AgreementView(showAgreement: .constant(true))
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

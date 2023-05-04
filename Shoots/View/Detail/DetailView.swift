@@ -164,7 +164,8 @@ struct DetailView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 16, height: 16)
-                        Text("\(shoot.author.uploadCount) 图片")
+                        
+                        Text(String(format: NSLocalizedString("%d 图片", comment: ""), shoot.author.uploadCount))
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.shootBlack)
                             .padding(.trailing, 12)
@@ -172,7 +173,7 @@ struct DetailView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 16, height: 16)
-                        Text("\(shoot.author.uploadCount) 图片")
+                        Text(String(format: NSLocalizedString("%d 图片", comment: ""), shoot.author.uploadCount))
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.shootBlack)
                     }
@@ -409,6 +410,11 @@ struct DetailView: View {
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         DetailView(shoot: singleShoot)
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        DetailView(shoot: singleShoot)
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }
 

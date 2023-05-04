@@ -125,21 +125,28 @@ class ZLFetchImageOperation: Operation {
             return
         }
         
-        if isOriginal {
-            requestImageID = ZLPhotoManager.fetchOriginalImage(for: model.asset, progress: progress) { [weak self] image, isDegraded in
-                if !isDegraded {
-                    zl_debugPrint("---- 原图加载完成 \(String(describing: self?.isCancelled))")
-                    self?.completion(image?.zll.fixOrientation(), nil)
-                    self?.fetchFinish()
-                }
-            }
-        } else {
-            requestImageID = ZLPhotoManager.fetchImage(for: model.asset, size: model.previewSize, progress: progress) { [weak self] image, isDegraded in
-                if !isDegraded {
-                    zl_debugPrint("---- 加载完成 isCancelled: \(String(describing: self?.isCancelled))")
-                    self?.completion(self?.scaleImage(image?.zll.fixOrientation()), nil)
-                    self?.fetchFinish()
-                }
+//        if isOriginal {
+//            requestImageID = ZLPhotoManager.fetchOriginalImage(for: model.asset, progress: progress) { [weak self] image, isDegraded in
+//                if !isDegraded {
+//                    zl_debugPrint("---- 原图加载完成 \(String(describing: self?.isCancelled))")
+//                    self?.completion(image?.zll.fixOrientation(), nil)
+//                    self?.fetchFinish()
+//                }
+//            }
+//        } else {
+//            requestImageID = ZLPhotoManager.fetchImage(for: model.asset, size: model.previewSize, progress: progress) { [weak self] image, isDegraded in
+//                if !isDegraded {
+//                    zl_debugPrint("---- 加载完成 isCancelled: \(String(describing: self?.isCancelled))")
+//                    self?.completion(self?.scaleImage(image?.zll.fixOrientation()), nil)
+//                    self?.fetchFinish()
+//                }
+//            }
+//        }
+        requestImageID = ZLPhotoManager.fetchOriginalImage(for: model.asset, progress: progress) { [weak self] image, isDegraded in
+            if !isDegraded {
+                zl_debugPrint("---- 原图加载完成 \(String(describing: self?.isCancelled))")
+                self?.completion(image?.zll.fixOrientation(), nil)
+                self?.fetchFinish()
             }
         }
     }

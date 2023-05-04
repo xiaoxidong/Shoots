@@ -322,5 +322,16 @@ struct AlbumView_Previews: PreviewProvider {
                 .navigationBarTitleDisplayMode(.inline)
             #endif
         }
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        NavigationView {
+            AlbumView()
+            #if os(iOS)
+                .navigationBarTitleDisplayMode(.inline)
+            #endif
+        }
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

@@ -33,10 +33,10 @@ struct FeedView: View {
             // 上拉加载更多
             RefreshFooter(refreshing: $footerRefreshing, action: loadMore) {
                 if self.noMore {
-                    Text("No more data !")
+                    Text("没有更多内容啦")
                         .foregroundColor(.white)
                 } else {
-                    Text("refreshing...")
+                    Text("加载中...")
                 }
             }
             .noMore(noMore)
@@ -85,5 +85,10 @@ struct FeedView: View {
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
         FeedView(shoots: homeData)
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        FeedView(shoots: homeData)
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

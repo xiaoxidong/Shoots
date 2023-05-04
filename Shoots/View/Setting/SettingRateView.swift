@@ -48,5 +48,11 @@ struct SettingRateView: View {
 struct SettingRateView_Previews: PreviewProvider {
     static var previews: some View {
         SettingRateView()
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        SettingRateView()
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

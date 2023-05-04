@@ -23,5 +23,11 @@ struct ShootEmptyView: View {
 struct ShootEmptyView_Previews: PreviewProvider {
     static var previews: some View {
         ShootEmptyView()
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        ShootEmptyView()
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

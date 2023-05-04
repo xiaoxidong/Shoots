@@ -21,7 +21,7 @@ struct ActionTitleButtonView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30, height: 30)
-                Text(title)
+                Text(LocalizedStringKey(title))
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(.shootBlack)
             }
@@ -31,8 +31,11 @@ struct ActionTitleButtonView: View {
 
 struct ActionTitleButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ActionTitleButtonView(image: "saved", title: "已收藏") {
-            
-        }
+        ActionTitleButtonView(image: "saved", title: "已收藏") { }
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        ActionTitleButtonView(image: "saved", title: "已收藏") { }
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

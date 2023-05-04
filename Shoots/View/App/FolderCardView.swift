@@ -89,5 +89,11 @@ struct FolderCardView: View {
 struct FolderCardView_Previews: PreviewProvider {
     static var previews: some View {
         FolderCardView(images: ["s2", "s1"], name: "注册")
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        FolderCardView(images: ["s2", "s1"], name: "注册")
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

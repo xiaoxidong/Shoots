@@ -232,5 +232,16 @@ struct CombineView_Previews: PreviewProvider {
             }
                 .navigationBarTitleDisplayMode(.inline)
         }
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        NavigationView {
+            CombineView(images: [UIImage(named: "s1")!, UIImage(named: "s2")!, UIImage(named: "s3")!], combinedImage: .constant(nil)) {
+                
+            }
+                .navigationBarTitleDisplayMode(.inline)
+        }
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

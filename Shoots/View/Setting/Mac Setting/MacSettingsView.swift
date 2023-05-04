@@ -237,5 +237,11 @@ struct MacSettingsView: View {
 struct MacSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         MacSettingsView()
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        MacSettingsView()
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

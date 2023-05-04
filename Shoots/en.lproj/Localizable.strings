@@ -10,6 +10,102 @@
 "上传截图" = "Upload Shoots";
 "整理截图" = "Organize Shoots";
 "选择操作" = "Choose Options";
-"一次性快速整理之前截图" = "";
-
+"一次性快速整理之前截图" = "Organize all screenshots";
+"双击切换查看其他试图" = "Double click to switch";
 "previewAlbum" = "Album";
+
+"没有更多内容啦" = "No more content";
+"加载中..." = "Loading...";
+
+"输入搜索内容" = "Search content";
+"取消" = "Cancel";
+
+
+// Detail
+"保存图片" = "Save Image";
+"选择保存位置" = "Select a location";
+"名称：" = "Name: ";
+"确认" = "Done";
+"输入收藏夹名称" = "Enter Folder Name";
+"新建收藏夹" = "New Folder";
+"收藏成功" = "Saved Successfully";
+"添加收藏夹" = "Add to Folder";
+"反馈成功" = "Feedback successful";
+"成功保存到相册" = "Successfully saved to album";
+"分享" = "Share";
+"收藏" = "Save";
+"下载" = "Download";
+"举报" = "Report";
+"%d 图片" = "%d Pics";
+"知道了" = "Got it.";
+"点击查看截图详情信息" = "Click for detail information";
+
+
+// Report
+"报告问题" = "Reporting Problems";
+"问题描述" = "Problem Description";
+"包含敏感信息" = "Contains sensitive information";
+"包含黄色信息" = "Contains yellow information";
+"标签错误" = "Labeling error";
+"所属应用错误" = "Application error";
+"问题类型" = "Question Type";
+"报告问题" = "Reporting Issues";
+
+
+// Upload
+"手指滑动打码敏感信息" = "Finger swipe coding sensitive information";
+"双指缩放图片" = "Two-finger zoom image";
+"设计模式" = "Design Patterns";
+"应用名称" = "Application Name";
+"上传" = "Upload";
+"上传图片" = "Upload Image";
+
+"尺寸不一致无法拼接" = "Inconsistent size cannot be Combined";
+"拼接" = "Combined";
+"选择图片进行拼接" = "Select images for combining";
+"保存" = "Save";
+"拖动排序" = "Drag and drop sorting";
+"点击裁剪，长按排序" = "Click to crop, long press to sort";
+
+
+// Custom Upload
+"选择操作" = "Select Operation";
+"选择应用" = "Select Application";
+"扫描截图" = "Scan Screenshot";
+"本地扫描截图中..." = "Local scan screenshot in...";
+"未扫描到任何截图" = "No screenshots scanned";
+
+
+// App
+"应用截图" = "Screenshots";
+"设计流" = "Design Patterns";
+"关于操作集" = "About Design Patterns";
+
+// Self
+"收藏截图" = "Collection";
+"12 个收藏夹和 34 图片已上传" = "";
+"删除之后将无法恢复，确认删除？" = "You will not be able to recover after deletion, confirm deletion?";
+"确认删除？" = "Confirm deletion?";
+"编辑收藏夹" = "Edit Folder";
+"删除" = "Delete";
+"管理" = "Mange";
+
+
+// Setting
+"支持开发者" = "Support for Developers";
+"批量上传" = "Batch Upload";
+"基础设置" = "Basic Settings";
+"外观设置" = "Appearance Settings";
+"应用图标" = "App Icon";
+"支持我们" = "Support Us";
+"分享给好友" = "Share with Friends";
+"给我们一个五星评价" = "Give us a five-star rating";
+"问题反馈" = "Question Feedback";
+"新浪微博" = "Sina Weibo";
+"用户隐私" = "User Privacy";
+"使用协议" = "Usage Agreement";
+"设置" = "Settings";
+"您的手机暂时无法发送邮件，可通过联系我们联系！" = "Your cell phone is temporarily unable to send emails, you can contact us by contacting us!";
+
+"评价应用" = "Rate Application";
+"如果应用对你有帮助，请帮我们在应用商店写个好评，对我们非常有帮助。" = "If the app was helpful, please write a positive review, it's very helpful to us.";

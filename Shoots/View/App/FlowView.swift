@@ -95,5 +95,11 @@ struct FlowView: View {
 struct FlowView_Previews: PreviewProvider {
     static var previews: some View {
         FlowView(flow: flow)
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        FlowView(flow: flow)
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

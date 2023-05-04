@@ -64,5 +64,10 @@ struct ImageCardView: View {
 struct ImageCardView_Previews: PreviewProvider {
     static var previews: some View {
         ImageCardView(shoot: singleShoot)
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        ImageCardView(shoot: singleShoot)
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

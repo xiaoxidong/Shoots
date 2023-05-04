@@ -79,12 +79,16 @@ struct UploadView: View {
                         .foregroundColor(.shootBlack)
                 }.frame(maxWidth: .infinity, alignment: .leading)
                 Spacer(minLength: 0)
-                if updateIndicator {
-                    TitlePageControll(progress: selection, numberOfPages: uploadImages.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
-                        .frame(height: 24)
+                if uploadImages.count < 2 {
+                    Text("上传图片")
                 } else {
-                    TitlePageControll(progress: selection, numberOfPages: uploadImages.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
-                        .frame(height: 24)
+                    if updateIndicator {
+                        TitlePageControll(progress: selection, numberOfPages: uploadImages.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
+                            .frame(height: 24)
+                    } else {
+                        TitlePageControll(progress: selection, numberOfPages: uploadImages.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
+                            .frame(height: 24)
+                    }
                 }
                 Spacer(minLength: 0)
                 Button {
@@ -278,5 +282,17 @@ struct UploadView_Previews: PreviewProvider {
                 
             }
         }
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        NavigationView {
+            UploadView(uploadImages: [UIImage(named: "s1")!, UIImage(named: "s2")!]) {
+                
+            } shareDoneAction: {
+                
+            }
+        }
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

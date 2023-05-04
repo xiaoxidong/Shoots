@@ -40,5 +40,11 @@ struct IconView: View {
 struct IconView_Previews: PreviewProvider {
     static var previews: some View {
         IconView()
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        IconView()
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

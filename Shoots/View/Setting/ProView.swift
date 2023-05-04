@@ -492,6 +492,12 @@ struct ProView: View {
 struct ProView_Previews: PreviewProvider {
     static var previews: some View {
         ProView()
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        
+        ProView()
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }
 

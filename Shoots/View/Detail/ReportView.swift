@@ -114,8 +114,11 @@ struct ReportView: View {
 
 struct ReportView_Previews: PreviewProvider {
     static var previews: some View {
-        ReportView(shoot: singleShoot) {
-            
-        }
+        ReportView(shoot: singleShoot) { }
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        ReportView(shoot: singleShoot) { }
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }

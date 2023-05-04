@@ -65,5 +65,10 @@ struct IPadSearchDefaultView: View {
 struct IPadSearchDefaultView_Previews: PreviewProvider {
     static var previews: some View {
         IPadSearchDefaultView(searchText: .constant(""))
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh"))
+        IPadSearchDefaultView(searchText: .constant(""))
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
     }
 }
