@@ -72,6 +72,9 @@ struct ContentView: View {
             SelectPhotoView(show: $uploadisActive, selectedImages: $selectedImages)
                 .background(BackgroundClearView())
                 .ignoresSafeArea()
+                .onDisappear {
+                    uploadisActive = false
+                }
         })
         .fullScreenCover(isPresented: $upload, onDismiss: {
             selectedImages.removeAll()
