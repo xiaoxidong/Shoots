@@ -53,7 +53,7 @@ struct RefreshView_Previews: PreviewProvider {
     static var previews: some View {
         RefreshView()
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         RefreshView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

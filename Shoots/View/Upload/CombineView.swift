@@ -233,7 +233,7 @@ struct CombineView_Previews: PreviewProvider {
                 .navigationBarTitleDisplayMode(.inline)
         }
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         
         NavigationView {
             CombineView(images: [UIImage(named: "s1")!, UIImage(named: "s2")!, UIImage(named: "s3")!], combinedImage: .constant(nil)) {

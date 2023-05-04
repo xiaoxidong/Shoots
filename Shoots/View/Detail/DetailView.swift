@@ -411,7 +411,7 @@ struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         DetailView(shoot: singleShoot)
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         DetailView(shoot: singleShoot)
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

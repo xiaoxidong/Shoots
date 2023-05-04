@@ -48,7 +48,7 @@ struct LoadMoreView_Previews: PreviewProvider {
         LoadMoreView(footerRefreshing: .constant(true), noMore: .constant(false)) {
         }
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         
         LoadMoreView(footerRefreshing: .constant(true), noMore: .constant(false)) {
         }

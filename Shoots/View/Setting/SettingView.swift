@@ -174,7 +174,7 @@ struct SettingView_Previews: PreviewProvider {
             SettingView()
         }
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         
         NavigationView {
             SettingView()

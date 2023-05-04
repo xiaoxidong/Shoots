@@ -181,7 +181,7 @@ struct UberaboutView_Previews: PreviewProvider {
     static var previews: some View {
         UberaboutView(bundle: Bundle.main)
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         
         UberaboutView(bundle: Bundle.main)
             .previewDisplayName("English")

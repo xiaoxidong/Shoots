@@ -54,7 +54,7 @@ struct SettingCellView_Previews: PreviewProvider {
             
         }
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         
         SettingCellView(image: "pro", text: "支持开发者") {
             

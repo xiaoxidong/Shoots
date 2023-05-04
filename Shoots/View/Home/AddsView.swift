@@ -32,7 +32,7 @@ struct AddsView_Previews: PreviewProvider {
     static var previews: some View {
         AddsView()
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         AddsView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

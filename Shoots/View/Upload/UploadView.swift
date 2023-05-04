@@ -283,7 +283,7 @@ struct UploadView_Previews: PreviewProvider {
             }
         }
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         
         NavigationView {
             UploadView(uploadImages: [UIImage(named: "s1")!, UIImage(named: "s2")!]) {

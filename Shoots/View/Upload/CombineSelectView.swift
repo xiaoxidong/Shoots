@@ -134,7 +134,7 @@ struct CombineSelectView_Previews: PreviewProvider {
     static var previews: some View {
         CombineSelectView(uploadImages: .constant([UIImage(named: "s1")!, UIImage(named: "s2")!]))
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         
         CombineSelectView(uploadImages: .constant([UIImage(named: "s1")!, UIImage(named: "s2")!]))
             .previewDisplayName("English")

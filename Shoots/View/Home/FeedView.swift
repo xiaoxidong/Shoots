@@ -86,7 +86,7 @@ struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
         FeedView(shoots: homeData)
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         FeedView(shoots: homeData)
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

@@ -89,7 +89,7 @@ struct ModeView_Previews: PreviewProvider {
     static var previews: some View {
         ModeView()
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         
         ModeView()
             .previewDisplayName("English")

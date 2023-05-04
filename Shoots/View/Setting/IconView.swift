@@ -41,7 +41,7 @@ struct IconView_Previews: PreviewProvider {
     static var previews: some View {
         IconView()
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         
         IconView()
             .previewDisplayName("English")

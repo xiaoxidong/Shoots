@@ -323,7 +323,7 @@ struct AlbumView_Previews: PreviewProvider {
             #endif
         }
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         
         NavigationView {
             AlbumView()

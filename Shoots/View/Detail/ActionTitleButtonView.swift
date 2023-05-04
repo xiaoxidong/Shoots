@@ -33,7 +33,7 @@ struct ActionTitleButtonView_Previews: PreviewProvider {
     static var previews: some View {
         ActionTitleButtonView(image: "saved", title: "已收藏") { }
             .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh"))
+            .environment(\.locale, .init(identifier: "zh-cn"))
         ActionTitleButtonView(image: "saved", title: "已收藏") { }
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
