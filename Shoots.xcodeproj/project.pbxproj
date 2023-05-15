@@ -362,6 +362,13 @@
 		4EA73B1E29D5C161002901AE /* OS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5FA29CD58D000A4E0DE /* OS.swift */; };
 		4EA73B1F29D5C161002901AE /* SKProductDiscount+LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5FE29CD58D000A4E0DE /* SKProductDiscount+LocalizedPrice.swift */; };
 		4EA73B2029D5C161002901AE /* RestorePurchasesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF5FB29CD58D000A4E0DE /* RestorePurchasesController.swift */; };
+		4EB203372A10C745006A9A15 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4EB203362A10C745006A9A15 /* Alamofire */; };
+		4EB203392A10C7B9006A9A15 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB203382A10C7B9006A9A15 /* UserViewModel.swift */; };
+		4EB2033A2A10C7B9006A9A15 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB203382A10C7B9006A9A15 /* UserViewModel.swift */; };
+		4EB2033D2A10D281006A9A15 /* Requst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB2033C2A10D281006A9A15 /* Requst.swift */; };
+		4EB2033E2A10D281006A9A15 /* Requst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB2033C2A10D281006A9A15 /* Requst.swift */; };
+		4EB203432A1102D6006A9A15 /* OSSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB203422A1102D6006A9A15 /* OSSImage.swift */; };
+		4EB203442A1102D6006A9A15 /* OSSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB203422A1102D6006A9A15 /* OSSImage.swift */; };
 		4ED4B08B29D3C0BA005D9758 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */; };
 		4ED4B08D29D3CAB1005D9758 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED4B08C29D3CAB1005D9758 /* Refresh */; };
 		4ED4B08E29D3CAC0005D9758 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */; };
@@ -770,6 +777,9 @@
 		4EA4E59D29F4F75A00936451 /* CustomShareNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShareNavigationController.swift; sourceTree = "<group>"; };
 		4EA73AF429D59A59002901AE /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
 		4EA73AF829D5BB6A002901AE /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		4EB203382A10C7B9006A9A15 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		4EB2033C2A10D281006A9A15 /* Requst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requst.swift; sourceTree = "<group>"; };
+		4EB203422A1102D6006A9A15 /* OSSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSSImage.swift; sourceTree = "<group>"; };
 		4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
 		4ED4B08F29D3D2ED005D9758 /* Shoots-Mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Shoots-Mac-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4ED4B09129D3E98B005D9758 /* NSWindow Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow Extensions.swift"; sourceTree = "<group>"; };
@@ -836,6 +846,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EE49F9629C88E2B00B51F4B /* SwiftUIFlowLayout in Frameworks */,
+				4EB203372A10C745006A9A15 /* Alamofire in Frameworks */,
 				4EE49F8D29C8820F00B51F4B /* WaterfallGrid in Frameworks */,
 				4E73A68A29D316BB009CFB5A /* Introspect in Frameworks */,
 				4E878ED429D191520027FDA9 /* Refresh in Frameworks */,
@@ -1753,6 +1764,7 @@
 			isa = PBXGroup;
 			children = (
 				4EE49F7C29C877DC00B51F4B /* HomeViewModel.swift */,
+				4EB203382A10C7B9006A9A15 /* UserViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1768,6 +1780,8 @@
 				4E010E2C29DB1ED600A4B231 /* FeedbackManager.swift */,
 				4E010E2E29DB27C900A4B231 /* ImageSaver.swift */,
 				4EE49F8629C87B3E00B51F4B /* ShootsData.swift */,
+				4EB2033C2A10D281006A9A15 /* Requst.swift */,
+				4EB203422A1102D6006A9A15 /* OSSImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1869,6 +1883,7 @@
 				4E73A68929D316BB009CFB5A /* Introspect */,
 				4EDDD62C29DBC9F500C4E14D /* IsScrolling */,
 				4EDDD63429DC092200C4E14D /* Toast */,
+				4EB203362A10C745006A9A15 /* Alamofire */,
 			);
 			productName = Shoots;
 			productReference = 4E195EDA29C040C600E97522 /* Shoots.app */;
@@ -2005,6 +2020,7 @@
 				4EDDD63329DC092200C4E14D /* XCRemoteSwiftPackageReference "toast-swift" */,
 				4EF6646C29F4C5CA005C3BD1 /* XCRemoteSwiftPackageReference "MASShortcut" */,
 				4EF6646F29F4C65F005C3BD1 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+				4EB203352A10C745006A9A15 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 4E195EDB29C040C600E97522 /* Products */;
 			projectDirPath = "";
@@ -2137,6 +2153,7 @@
 				4E5CF69229CD58D100A4E0DE /* BlurEffectModifier.swift in Sources */,
 				4EDDD67129DC238E00C4E14D /* ZLTextStickerView.swift in Sources */,
 				4E49408C29E3A7200058391E /* ZLPhotoUIConfiguration+Chaining.swift in Sources */,
+				4EB203432A1102D6006A9A15 /* OSSImage.swift in Sources */,
 				4E5CF71529CD5AC000A4E0DE /* TimeInterval+Formatter.swift in Sources */,
 				4E5CF69429CD58D100A4E0DE /* EnvironmentValues+blurEffectStyle.swift in Sources */,
 				4E5CF6A029CD58D100A4E0DE /* BlurView.swift in Sources */,
@@ -2181,6 +2198,7 @@
 				4E5CF6AA29CD58D100A4E0DE /* ElegantPagesManager.swift in Sources */,
 				4E5CF74D29CD749100A4E0DE /* CombineSelectView.swift in Sources */,
 				4E5CF6BC29CD58D100A4E0DE /* Version.swift in Sources */,
+				4EB203392A10C7B9006A9A15 /* UserViewModel.swift in Sources */,
 				4EDDD67E29DC238E00C4E14D /* String+ZLImageEditor.swift in Sources */,
 				4E49408929E3A7200058391E /* ZLPhotoPreviewSheet.swift in Sources */,
 				4EE49F8029C8781500B51F4B /* Shoot.swift in Sources */,
@@ -2280,6 +2298,7 @@
 				4E5CF69A29CD58D100A4E0DE /* SPAlertIconErrorView.swift in Sources */,
 				4E4940A429E3A7200058391E /* Bool+ZLPhotoBrowser.swift in Sources */,
 				4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */,
+				4EB2033D2A10D281006A9A15 /* Requst.swift in Sources */,
 				4E5CF69829CD58D100A4E0DE /* SPAlertLayout.swift in Sources */,
 				4EE2131729C8A80C007FAC6F /* AlbumView.swift in Sources */,
 				4EDDD67029DC238E00C4E14D /* ZLWeakProxy.swift in Sources */,
@@ -2487,6 +2506,7 @@
 				4E1EBBA829D6758100636028 /* ShootsAIView.swift in Sources */,
 				4E42A72829D14B2100BEC185 /* TimePeriodCollection.swift in Sources */,
 				4E42A72429D14B1700BEC185 /* TimeStructures.swift in Sources */,
+				4EB2033E2A10D281006A9A15 /* Requst.swift in Sources */,
 				4E42A6E429D1315500BEC185 /* ModeView.swift in Sources */,
 				4E42A6EF29D1317200BEC185 /* Application.swift in Sources */,
 				4E42A70D29D1333300BEC185 /* Triangle.swift in Sources */,
@@ -2509,6 +2529,7 @@
 				4EA73AF529D59A59002901AE /* MacSettingsView.swift in Sources */,
 				4EA73B1C29D5C161002901AE /* PaymentQueueController.swift in Sources */,
 				4E42A70E29D1333300BEC185 /* RoundedCross.swift in Sources */,
+				4EB2033A2A10C7B9006A9A15 /* UserViewModel.swift in Sources */,
 				4E010E1E29DB0D4F00A4B231 /* UberaboutWindowButtonStyle.swift in Sources */,
 				4E42A70929D132E700BEC185 /* RotatingDotsIndicatorView.swift in Sources */,
 				4E42A6DB29D1314D00BEC185 /* FlowView.swift in Sources */,
@@ -2529,6 +2550,7 @@
 				4E42A73829D14B2F00BEC185 /* String+Parser.swift in Sources */,
 				4E42A70F29D1337100BEC185 /* AlertActivityIndicatorView.swift in Sources */,
 				4E42A6EC29D1315F00BEC185 /* HomeViewModel.swift in Sources */,
+				4EB203442A1102D6006A9A15 /* OSSImage.swift in Sources */,
 				4EA73B1629D5C161002901AE /* SwiftyStoreKit+Types.swift in Sources */,
 				4E42A73929D14B2F00BEC185 /* DateComponents+Extras.swift in Sources */,
 				4E42A6D829D1314100BEC185 /* IOSSearchDefaultView.swift in Sources */,
@@ -2708,6 +2730,10 @@
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Shoots/Third",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Shoots/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
@@ -2754,6 +2780,10 @@
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Shoots/Third",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Shoots/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
@@ -2945,6 +2975,10 @@
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Shoots/Third",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Shoots-Mac-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Shoots;
@@ -2980,6 +3014,10 @@
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Shoots/Third",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Shoots-Mac-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Shoots;
@@ -3086,6 +3124,14 @@
 				kind = branch;
 			};
 		};
+		4EB203352A10C745006A9A15 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		4EDDD62B29DBC9F500C4E14D /* XCRemoteSwiftPackageReference "IsScrolling" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fatbobman/IsScrolling";
@@ -3166,6 +3212,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E878ED229D191520027FDA9 /* XCRemoteSwiftPackageReference "Refresh" */;
 			productName = Refresh;
+		};
+		4EB203362A10C745006A9A15 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EB203352A10C745006A9A15 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		4ED4B08C29D3CAB1005D9758 /* Refresh */ = {
 			isa = XCSwiftPackageProductDependency;

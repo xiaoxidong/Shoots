@@ -16,9 +16,10 @@ struct ShootsApp: App {
     @State var isMenuPresented: Bool = false
     @AppStorage("statusIcon") var statusIcon: String = "photo.fill.on.rectangle.fill"
     @Environment(\.openWindow) var openWindow
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            content
                 .onAppear {
                     #if os(macOS)
                     NSApp.activate(ignoringOtherApps: true)
@@ -37,7 +38,7 @@ struct ShootsApp: App {
         
         #if os(macOS)
         Window("Shoots", id: "main") {
-            ContentView()
+            content
                 .onAppear {
                     if let window = NSApplication.shared.windows.first, window.className == "SwiftUI.AppKitWindow" {
                         window.close()
@@ -65,6 +66,14 @@ struct ShootsApp: App {
             MacSettingsView()
         }
         #endif
+    }
+    
+    @StateObject var user: UserViewModel = UserViewModel()
+    @StateObject var homeVM: HomeViewModel = HomeViewModel()
+    var content: some View {
+        ContentView()
+            .environmentObject(user)
+            .environmentObject(homeVM)
     }
     
     #if os(macOS)

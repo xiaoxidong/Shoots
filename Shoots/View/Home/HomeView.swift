@@ -9,7 +9,6 @@ import SwiftUI
 import Refresh
 
 struct HomeView: View {
-    @ObservedObject var homeVM: HomeViewModel
     @Binding var searchText: String
     
     @Environment(\.isSearching) var isSearching
@@ -54,6 +53,7 @@ struct HomeView: View {
     @State var footerRefreshing = false
     @State var noMore = false
     
+    @EnvironmentObject var homeVM: HomeViewModel
     var feed: some View {
         ScrollView {
             FeedView(shoots: homeVM.shoots)
@@ -80,11 +80,15 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(homeVM: HomeViewModel(), searchText: .constant(""))
+        HomeView(searchText: .constant(""))
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        HomeView(homeVM: HomeViewModel(), searchText: .constant(""))
+            .environmentObject(UserViewModel())
+            .environmentObject(HomeViewModel())
+        HomeView(searchText: .constant(""))
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
+            .environmentObject(UserViewModel())
+            .environmentObject(HomeViewModel())
     }
 }

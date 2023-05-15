@@ -768,8 +768,8 @@
             filePath = "Shoots/View/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -832,6 +832,36 @@
                   startingLineNumber = "76"
                   endingLineNumber = "76"
                   offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "9B03BBC6-150C-4009-A92B-11FE3898122B - a7d137cc37b4043a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #6 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onDisappear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in Shoots.ContentView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "9B03BBC6-150C-4009-A92B-11FE3898122B - a7d137cc37b4043a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #6 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onDisappear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in Shoots.ContentView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "71">
                </Location>
             </Locations>
          </BreakpointContent>

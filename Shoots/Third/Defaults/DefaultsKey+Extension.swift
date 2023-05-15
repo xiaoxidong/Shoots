@@ -10,5 +10,6 @@ import SwiftUI
 
 extension DefaultsKey {
     static let pro = Key<Bool>("pro")
+    static let login = Key<String>("login")
 }
 

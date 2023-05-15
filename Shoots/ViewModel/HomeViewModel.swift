@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 class HomeViewModel: ObservableObject {
     // 首页的图片数据

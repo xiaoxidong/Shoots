@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
+import _AuthenticationServices_SwiftUI
 
 // 预览模式下无法选择相册上传图片，请在模拟器里查看上传操作。
 struct ContentView: View {
-    @StateObject var homeVM: HomeViewModel = HomeViewModel()
     @State var searchText: String = ""
     
     @AppStorage("showHomeNew") var showHomeNew = true
     @AppStorage("showCustomUpload") var showCustomUpload = true
     @State var uploadOptions = false
+    @State var login = false
     @State var customUpload = false
     @State var upload = false
     @State var showNavigation = true
@@ -96,7 +97,6 @@ struct ContentView: View {
             #endif
             // 如果自定义上传上传过，则不显示
             // 如果上传了 x 次，但是还是没有使用自定义上传，也不需要显示
-            
         }
     }
     
@@ -139,19 +139,30 @@ struct ContentView: View {
     @State var uploadisActive = false
     @State var showMacSelf = false
     @State var showMacPro = false
+    @EnvironmentObject var user: UserViewModel
     var homeFeed: some View {
-        HomeView(homeVM: homeVM, searchText: $searchText)
+        HomeView(searchText: $searchText)
             .toolbar {
                 #if os(iOS)
                 ToolbarItem(placement: .navigationBarLeading) {
-                    NavigationLink {
-                        SelfView()
-                    } label: {
-                        Image("pic")//"self"
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 30, height: 30)
-                            .clipShape(Circle())
+                    if user.login {
+                        NavigationLink {
+                            SelfView()
+                        } label: {
+                            Image("pic")//"self"
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30, height: 30)
+                                .clipShape(Circle())
+                        }
+                    } else {
+                        Button {
+                            withAnimation(.spring()) {
+                                login.toggle()
+                            }
+                        } label: {
+                            Image("self")
+                        }
                     }
                 }
                 
@@ -230,6 +241,9 @@ struct ContentView: View {
             .overlay(
                 uploadView, alignment: .bottom
             )
+            .overlay(
+                loginView, alignment: .bottom
+            )
         #else
             .searchable(text: $searchText)
             .sheet(isPresented: $showMacSelf) {
@@ -243,6 +257,65 @@ struct ContentView: View {
     }
     
     #if os(iOS)
+    var loginView: some View {
+        Group {
+            Color.black.opacity(login ? 0.02 : 0)
+                .onTapGesture {
+                    withAnimation(.spring()) {
+                        login.toggle()
+                    }
+                }
+            VStack {
+                Spacer()
+                VStack(spacing: 22) {
+                    Text("登录应用")
+                    
+                    SignInWithAppleButton(onRequest: { request in
+                        request.requestedScopes = [.fullName, .email]
+                    }, onCompletion: { result in
+                        switch result {
+                        case .success(let authResults):
+                            print("Authorization successful.")
+                            guard let credentials = authResults.credential as? ASAuthorizationAppleIDCredential, let identityToken = credentials.identityToken, let identityTokenString = String(data: identityToken, encoding: .utf8) else { return }
+                            
+                            let email = credentials.email
+                            let userID = credentials.user
+                            
+                            let firstName = credentials.fullName?.givenName
+                            let lastName = credentials.fullName?.familyName
+                            
+                            user.login(appleUserId: userID, identityToken: identityTokenString, email: email, fullName: "\(firstName ?? "") \(lastName ?? "")") { success in
+                                withAnimation(.spring()) {
+                                    login.toggle()
+                                }
+                                if !success {
+                                    // 提示登录失败
+                                }
+                            }
+                        case .failure(let error):
+                            print("Authorization failed: " + error.localizedDescription)
+                            withAnimation(.spring()) {
+                                login.toggle()
+                                // 提示登录失败
+                                
+                            }
+                        }
+                    }).frame(height: 46)
+                        .signInWithAppleButtonStyle(.black)
+                        .cornerRadius(26)
+                }.frame(maxWidth: .infinity)
+                    .padding()
+                    .padding(.bottom)
+                    .padding(.top, 8)
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                .shadow(color: Color.shootBlack.opacity(0.2), radius: 10, y: -10)
+                .contentShape(Rectangle())
+                .offset(y: login ? 0 : 1000)
+            }.frame(maxWidth: 460)
+        }
+    }
+    
     var uploadView: some View {
         Group {
             Color.black.opacity(uploadOptions ? 0.02 : 0)
@@ -341,17 +414,24 @@ struct ContentView: View {
     }
     // MARK: - 首页方法
     func loadData() {
-        homeVM.getData()
+//        homeVM.getData()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
+    static let user = UserViewModel()
+    static let homeVM = HomeViewModel()
+    
     static var previews: some View {
         ContentView()
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
+            .environmentObject(user)
+            .environmentObject(homeVM)
         ContentView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
+            .environmentObject(user)
+            .environmentObject(homeVM)
     }
 }
