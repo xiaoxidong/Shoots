@@ -7,22 +7,25 @@
 
 import SwiftUI
 
-#if DEBUG
-let baseURL: String = "http://124.222.232.27:8080"
-#else
-let baseURL: String = ""
-#endif
-
 enum URLPath {
     case login
     case feed
+    case pattern
+    case apps
+    case allFavorite
     
     var path: String {
         switch self {
         case .login:
             return "/app/login"
+        case .pattern:
+            return "/app/pattern/list"
+        case .apps:
+            return "/app/application/list"
+        case .allFavorite:
+            return "/app/favorite/list"
         case .feed:
-            return baseURL
+            return "/app/pic/feed"
         }
     }
 }

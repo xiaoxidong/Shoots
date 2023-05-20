@@ -10,7 +10,7 @@ import WaterfallGrid
 import Refresh
 
 struct FeedView: View {
-    var shoots: [Shoot]
+    var shoots: [Picture]
     
     @AppStorage("homeModel") var homeModel = 0
     @State var footerRefreshing = false
@@ -51,7 +51,7 @@ struct FeedView: View {
     func waterfallView(columns: Int) -> some View {
         WaterfallGrid(shoots) { shoot in
             Group {
-                if shoot.imageUrl == "s3" {
+                if shoot.id == "s" {
                     AddsView()
                 } else {
                     ImageCardView(shoot: shoot)
@@ -82,13 +82,13 @@ struct FeedView: View {
     }
 }
 
-struct FeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedView(shoots: homeData)
-            .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh-cn"))
-        FeedView(shoots: homeData)
-            .previewDisplayName("English")
-            .environment(\.locale, .init(identifier: "en"))
-    }
-}
+//struct FeedView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FeedView(shoots: homeData)
+//            .previewDisplayName("Chinese")
+//            .environment(\.locale, .init(identifier: "zh-cn"))
+//        FeedView(shoots: homeData)
+//            .previewDisplayName("English")
+//            .environment(\.locale, .init(identifier: "en"))
+//    }
+//}

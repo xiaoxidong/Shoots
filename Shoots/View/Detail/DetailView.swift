@@ -7,12 +7,13 @@
 
 import SwiftUI
 import SwiftUIFlowLayout
+import SDWebImageSwiftUI
 #if os(iOS)
 import Toast
 #endif
 
 struct DetailView: View {
-    var shoot: Shoot
+    var shoot: Picture
     
     @State var showDetail = false
     @State var search: String? = nil
@@ -21,9 +22,21 @@ struct DetailView: View {
     @State var alertText = ""
     var body: some View {
         ScrollView(showsIndicators: false) {
-            Image(shoot.imageUrl)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            WebImage(url: URL(string: shoot.compressedPicUrl))
+                // Supports options and context, like `.delayPlaceholder` to show placeholder only when error
+                .onSuccess { image, data, cacheType in
+                    // Success
+                    // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
+                }
+                .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
+                .placeholder(Image(systemName: "photo")) // Placeholder Image
+                // Supports ViewBuilder as well
+                .placeholder {
+                    Rectangle().foregroundColor(.gray)
+                }
+                .indicator(.activity) // Activity Indicator
+                .transition(.fade(duration: 0.5)) // Fade Transition with duration
+                .scaledToFit()
                 .frame(maxWidth: 460)
                 .padding(.top)
                 .frame(maxWidth: .infinity)
@@ -112,7 +125,7 @@ struct DetailView: View {
                 showApp.toggle()
             } label: {
                 HStack {
-                    Text(shoot.app.name)
+                    Text("shoot.app.name")
                         .font(.system(size: 18, weight: .bold))
                         .foregroundColor(.shootBlack)
                     Image("link")
@@ -121,16 +134,16 @@ struct DetailView: View {
                 .sheet(isPresented: $showApp) {
                     #if os(iOS)
                     NavigationView {
-                        AppView(app: shoot.app)
-                            .navigationTitle(shoot.app.name)
-                            .navigationBarTitleDisplayMode(.inline)
-                            .toolbar {
-                                ToolbarItem(placement: .navigationBarTrailing) {
-                                    ShareLink(item: URL(string: shoot.app.url)!) {
-                                        Image(systemName: "square.and.arrow.up.fill")
-                                    }.tint(.shootRed)
-                                }
-                            }
+//                        AppView(app: shoot.app)
+//                            .navigationTitle(shoot.app.name)
+//                            .navigationBarTitleDisplayMode(.inline)
+//                            .toolbar {
+//                                ToolbarItem(placement: .navigationBarTrailing) {
+//                                    ShareLink(item: URL(string: shoot.app.url)!) {
+//                                        Image(systemName: "square.and.arrow.up.fill")
+//                                    }.tint(.shootRed)
+//                                }
+//                            }
                     }
                     #else
                     VStack {
@@ -141,21 +154,21 @@ struct DetailView: View {
                             Spacer()
                             MacCloseButton()
                         }.padding([.horizontal, .top], 36)
-                        AppView(app: shoot.app)
+//                        AppView(app: shoot.app)
                     }.sheetFrameForMac()
                     #endif
                 }
 
             // 个人信息
             HStack {
-                Image(shoot.author.image)
+                Image("s1")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 56, height: 56)
                     .clipShape(Circle())
                 
                 VStack(alignment: .leading) {
-                    Text(shoot.author.name)
+                    Text("shoot.author.name")
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.shootBlack)
                     
@@ -165,7 +178,8 @@ struct DetailView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 16, height: 16)
                         
-                        Text(String(format: NSLocalizedString("%d 图片", comment: ""), shoot.author.uploadCount))
+                        Text(String(format: NSLocalizedString("%d 图片", comment: ""), 12))
+                        // shoot.author.uploadCount
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.shootBlack)
                             .padding(.trailing, 12)
@@ -173,7 +187,8 @@ struct DetailView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 16, height: 16)
-                        Text(String(format: NSLocalizedString("%d 图片", comment: ""), shoot.author.uploadCount))
+                        Text(String(format: NSLocalizedString("%d 图片", comment: ""), 12))
+                        //shoot.author.uploadCount
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.shootBlack)
                     }
@@ -182,26 +197,26 @@ struct DetailView: View {
             }
             
             // 设计模式
-            FlowLayout(mode: .vstack,
-                       items: shoot.designType,
-                       itemSpacing: 4) { text in
-                Button {
-//                    search = text
-                    search = "关注"
-                } label: {
-                    HStack(spacing: 2) {
-                        Image(systemName: "number")
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.shootBlue)
-                        Text(text)
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.shootBlack)
-                    }.padding(.horizontal, 10)
-                        .padding(.vertical, 6)
-                        .background(Color.shootBlue.opacity(0.12))
-                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                }.buttonStyle(.plain)
-            }
+//            FlowLayout(mode: .vstack,
+//                       items: shoot.designType,
+//                       itemSpacing: 4) { text in
+//                Button {
+////                    search = text
+//                    search = "关注"
+//                } label: {
+//                    HStack(spacing: 2) {
+//                        Image(systemName: "number")
+//                            .font(.system(size: 14, weight: .medium))
+//                            .foregroundColor(.shootBlue)
+//                        Text(text)
+//                            .font(.system(size: 14, weight: .medium))
+//                            .foregroundColor(.shootBlack)
+//                    }.padding(.horizontal, 10)
+//                        .padding(.vertical, 6)
+//                        .background(Color.shootBlue.opacity(0.12))
+//                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+//                }.buttonStyle(.plain)
+//            }
             
             // 操作按钮
             HStack {
@@ -216,17 +231,17 @@ struct DetailView: View {
                 }
                 Spacer(minLength: 0)
                 
-                ShareLink(item: Image(shoot.imageUrl), preview: SharePreview("Shoots", image: Image(shoot.imageUrl))) {
-                    VStack {
-                        Image("share")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 30, height: 30)
-                        Text("分享")
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.shootBlack)
-                    }
-                }.buttonStyle(.plain)
+//                ShareLink(item: Image(shoot.imageUrl), preview: SharePreview("Shoots", image: Image(shoot.imageUrl))) {
+//                    VStack {
+//                        Image("share")
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fit)
+//                            .frame(width: 30, height: 30)
+//                        Text("分享")
+//                            .font(.system(size: 14, weight: .medium))
+//                            .foregroundColor(.shootBlack)
+//                    }
+//                }.buttonStyle(.plain)
                 
                 Spacer(minLength: 0)
                 ActionTitleButtonView(image: "download", title: "下载") {
@@ -241,7 +256,7 @@ struct DetailView: View {
                     imageSaver.errorHandler = {
                         print("保存失败: \($0.localizedDescription)")
                     }
-                    imageSaver.writeToPhotoAlbum(image: UIImage(named: shoot.imageUrl)!)
+//                    imageSaver.writeToPhotoAlbum(image: UIImage(named: shoot.imageUrl)!)
                     #else
                     if let url = showSavePanel() {
                         savePNG(imageName: "s1", path: url)
@@ -407,15 +422,15 @@ struct DetailView: View {
     #endif
 }
 
-struct DetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailView(shoot: singleShoot)
-            .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh-cn"))
-        DetailView(shoot: singleShoot)
-            .previewDisplayName("English")
-            .environment(\.locale, .init(identifier: "en"))
-    }
-}
+//struct DetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailView(shoot: singleShoot)
+//            .previewDisplayName("Chinese")
+//            .environment(\.locale, .init(identifier: "zh-cn"))
+//        DetailView(shoot: singleShoot)
+//            .previewDisplayName("English")
+//            .environment(\.locale, .init(identifier: "en"))
+//    }
+//}
 
 

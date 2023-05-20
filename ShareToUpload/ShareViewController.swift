@@ -15,10 +15,12 @@ class CustomShareViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let contentView = UploadView(uploadImages: images, shareExtension: true)  {
+        let contentView = UploadView(uploadImages: images, uploadData: .constant([]), shareExtension: true)  {
             self.cancelAction()
         } shareDoneAction: {
             self.doneAction()
+        } uploadAction: {
+            
         }
         view = UIHostingView(rootView: contentView)
         view.isOpaque = true

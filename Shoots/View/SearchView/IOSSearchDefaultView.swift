@@ -10,21 +10,22 @@ import SwiftUI
 struct IOSSearchDefaultView: View {
     @Binding var searchText: String
     
+    @EnvironmentObject var user: UserViewModel
     var body: some View {
         ScrollView {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 26) {
-                    ForEach(apps) { app in
+                    ForEach(user.apps) { app in
                         Button {
-                            searchText = app.name
+                            searchText = app.linkApplicationName
                         } label: {
                             VStack {
-                                Image(app.image)
+                                Image("Instagram")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 66, height: 66)
                                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                                Text(app.name)
+                                Text(app.linkApplicationName)
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(.shootBlack)
                             }
@@ -36,12 +37,12 @@ struct IOSSearchDefaultView: View {
             
             // Tag
             VStack(spacing: 16) {
-                ForEach(1...100, id: \.self) { num in
+                ForEach(user.patterns) { pattern in
                     Button {
                         searchText = "关注"
                     } label: {
                         Group {
-                            Text("关注")
+                            Text(pattern.designPatternName)
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(.shootBlack)
                             + Text(" (24)")

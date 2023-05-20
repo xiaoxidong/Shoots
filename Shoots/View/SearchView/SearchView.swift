@@ -44,7 +44,7 @@ struct SearchView: View {
     
     var feed: some View {
         ScrollView {
-            FeedView(shoots: homeData)
+//            FeedView(shoots: homeData)
             
             LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
                 loadMore()

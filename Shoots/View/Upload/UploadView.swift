@@ -6,22 +6,25 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct UploadView: View {
     @State var uploadImages: [UIImage]
+    @Binding var uploadData: [UploadData]
     var shareExtension: Bool = false
     @State var selection: Int = 0
     let shareCancellAction: () -> Void
     let shareDoneAction: () -> Void
+    let uploadAction: () -> Void
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @AppStorage("showBlurNew") var showBlurNew = true
-    
-//    @State var image: UIImage = UIImage(named: "s1")!
+
     @State var updateIndicator = true
     let screen = UIScreen.main.bounds
+    @EnvironmentObject var user: UserViewModel
     var body: some View {
         TabView(selection: $selection) {
             ForEach(uploadImages.indices, id: \.self) { indice in
@@ -60,13 +63,22 @@ struct UploadView: View {
                     bottomActions
                 }
             }
+            .overlay(
+                LoginView(login: $showLogin) {
+                    upload()
+                }, alignment: .bottom
+            )
             .onChange(of: uploadImages) { newValue in
                 withAnimation(.spring()) {
                     updateIndicator.toggle()
                 }
             }
+            .onAppear {
+                
+            }
     }
     
+    @State var showLogin = false
     var topActions: some View {
         VStack(spacing: 12) {
             HStack {
@@ -92,10 +104,14 @@ struct UploadView: View {
                 }
                 Spacer(minLength: 0)
                 Button {
-                    dismiss()
-                    shareDoneAction()
-                    //TODO: 后台上传截图
-                    
+                    // 如果未登录，先登录
+                    if !user.login {
+                        withAnimation(.spring()) {
+                            showLogin.toggle()
+                        }
+                    } else {
+                        upload()
+                    }
                 } label: {
                     Text("上传")
                         .font(.system(size: 16, weight: .semibold))
@@ -271,6 +287,19 @@ struct UploadView: View {
             }
         }
     }
+    
+    func upload() {
+        if shareExtension {
+            //TODO: 上传截图
+            
+            // 完成之后关闭
+            shareDoneAction()
+        } else {
+            dismiss()
+            //TODO: 后台上传截图
+            uploadAction()
+        }
+    }
 }
 
 struct UploadView_Previews: PreviewProvider {
@@ -279,6 +308,8 @@ struct UploadView_Previews: PreviewProvider {
             UploadView(uploadImages: [UIImage(named: "s1")!, UIImage(named: "s2")!]) {
                 
             } shareDoneAction: {
+                
+            } uploadAction: {
                 
             }
         }
@@ -289,6 +320,8 @@ struct UploadView_Previews: PreviewProvider {
             UploadView(uploadImages: [UIImage(named: "s1")!, UIImage(named: "s2")!]) {
                 
             } shareDoneAction: {
+                
+            } uploadAction: {
                 
             }
         }

@@ -11,5 +11,7 @@ import SwiftUI
 extension DefaultsKey {
     static let pro = Key<Bool>("pro")
     static let login = Key<String>("login")
+    static let localPatterns = Key<[Pattern]>("localPatterns")
+    static let localApps = Key<[Apps]>("localApps")
 }
 

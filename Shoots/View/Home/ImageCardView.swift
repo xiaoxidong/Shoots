@@ -8,18 +8,31 @@
 import SwiftUI
 import UniformTypeIdentifiers
 import StoreKit
+import SDWebImageSwiftUI
 
 struct ImageCardView: View {
-    var shoot: Shoot
+    var shoot: Picture
     
     @AppStorage("homeModel") var homeModel = 0
     @AppStorage("showReviewAlert") var showReviewAlert = 0
     @State var showDetail: Bool = false
     @Environment(\.requestReview) var requestReview
     var body: some View {
-        Image(shoot.imageUrl)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
+        WebImage(url: URL(string: shoot.compressedPicUrl))
+            // Supports options and context, like `.delayPlaceholder` to show placeholder only when error
+            .onSuccess { image, data, cacheType in
+                // Success
+                // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
+            }
+            .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
+            .placeholder(Image(systemName: "photo")) // Placeholder Image
+            // Supports ViewBuilder as well
+            .placeholder {
+                Rectangle().foregroundColor(.gray)
+            }
+            .indicator(.activity) // Activity Indicator
+            .transition(.fade(duration: 0.5)) // Fade Transition with duration
+            .scaledToFit()
             .sheet(isPresented: $showDetail) {
                 DetailView(shoot: shoot)
                     .sheetFrameForMac()
@@ -55,19 +68,19 @@ struct ImageCardView: View {
                 
                 return NSItemProvider(item: fileURL as NSSecureCoding, typeIdentifier: UTType.fileURL.identifier)
             }
-        #else
-            .draggable(Image(shoot.imageUrl))
+//        #else
+//            .draggable(Image(shoot.imageUrl))
         #endif
     }
 }
 
-struct ImageCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        ImageCardView(shoot: singleShoot)
-            .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh-cn"))
-        ImageCardView(shoot: singleShoot)
-            .previewDisplayName("English")
-            .environment(\.locale, .init(identifier: "en"))
-    }
-}
+//struct ImageCardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ImageCardView(shoot: singleShoot)
+//            .previewDisplayName("Chinese")
+//            .environment(\.locale, .init(identifier: "zh-cn"))
+//        ImageCardView(shoot: singleShoot)
+//            .previewDisplayName("English")
+//            .environment(\.locale, .init(identifier: "en"))
+//    }
+//}

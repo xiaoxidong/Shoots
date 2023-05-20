@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ReportView: View {
-    var shoot: Shoot
+    var shoot: Picture
     let action: () -> Void
     
     @Environment(\.dismiss) var dismiss
@@ -112,13 +112,13 @@ struct ReportView: View {
     }
 }
 
-struct ReportView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReportView(shoot: singleShoot) { }
-            .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh-cn"))
-        ReportView(shoot: singleShoot) { }
-            .previewDisplayName("English")
-            .environment(\.locale, .init(identifier: "en"))
-    }
-}
+//struct ReportView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReportView(shoot: singleShoot) { }
+//            .previewDisplayName("Chinese")
+//            .environment(\.locale, .init(identifier: "zh-cn"))
+//        ReportView(shoot: singleShoot) { }
+//            .previewDisplayName("English")
+//            .environment(\.locale, .init(identifier: "en"))
+//    }
+//}

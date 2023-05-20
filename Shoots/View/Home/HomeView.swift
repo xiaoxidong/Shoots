@@ -20,27 +20,21 @@ struct HomeView: View {
         if isSearching || searchText != "" {
             #if os(iOS)
             if horizontalSizeClass == .compact {
-                if searchText == "Instagram" {
+                if searchText != "" {
                     AppView(app: appData, topPadding: 16)
-                } else if searchText == "关注" {
-                    feed
                 } else {
                     IOSSearchDefaultView(searchText: $searchText)
                 }
             } else {
-                if searchText == "Instagram" {
+                if searchText != "" {
                     AppView(app: appData, topPadding: 16)
-                } else if searchText == "关注" {
-                    feed
                 } else {
                     feed
                 }
             }
             #else
-            if searchText == "Instagram" {
+            if searchText != "" {
                 AppView(app: appData, topPadding: 16)
-            } else if searchText == "关注" {
-                feed
             } else {
                 feed
             }
@@ -53,10 +47,10 @@ struct HomeView: View {
     @State var footerRefreshing = false
     @State var noMore = false
     
-    @EnvironmentObject var homeVM: HomeViewModel
+    @EnvironmentObject var user: UserViewModel
     var feed: some View {
         ScrollView {
-            FeedView(shoots: homeVM.shoots)
+            FeedView(shoots: user.homeFeed)
             
             LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
                 loadMore()

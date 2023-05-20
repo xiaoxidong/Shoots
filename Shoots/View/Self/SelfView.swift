@@ -65,7 +65,7 @@ struct SelfView: View {
                 tagView
                 ScrollView {
                     // 列表
-                    FeedView(shoots: homeData)
+//                    FeedView(shoots: homeData)
                     
                     LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
                         loadMore()
