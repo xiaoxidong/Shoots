@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct PatternData: Codable {
+struct PatternResponseData: Codable {
     var code: Int
     var msg: String
     var data: [Pattern]
 }
+
 struct Pattern: Codable, Identifiable {
     var id: String
     var designPatternName: String

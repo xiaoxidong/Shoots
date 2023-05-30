@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct AppView: View {
-    var app: Application
+    var id: String
+    var app: Application = Application(name: "Instagram", image: "Instagram", type: "社交", info: appInfo, url: "https://apps.apple.com/us/app/id389801252", flows: flows)
     var topPadding: CGFloat = 0
     
     @State var footerRefreshing = false
     @State var noMore = false
-    
+    @EnvironmentObject var user: UserViewModel
     var body: some View {
         ScrollView {
             Group {
@@ -31,6 +32,14 @@ struct AppView: View {
             .refreshable {
                 // 下拉刷新
                 
+            }
+            .onAppear {
+                Task {
+                    await user.getAppDetail(id: id) { success in
+                        
+                    }
+                    await user.appPics(id: id)
+                }
             }
     }
     
@@ -137,13 +146,13 @@ struct AppView: View {
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            AppView(app: appData)
+            AppView(id: "")
         }
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
         
         NavigationView {
-            AppView(app: appData)
+            AppView(id: "")
         }
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

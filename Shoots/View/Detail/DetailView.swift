@@ -20,6 +20,8 @@ struct DetailView: View {
     @AppStorage("showDetailNew") var showDetailNew = true
     @State var showAlert = false
     @State var alertText = ""
+    @EnvironmentObject var user: UserViewModel
+    @State var detail: ImageDetailResponseData? = nil
     var body: some View {
         ScrollView(showsIndicators: false) {
             WebImage(url: URL(string: shoot.compressedPicUrl))
@@ -46,7 +48,16 @@ struct DetailView: View {
                     if showSave {
                         showSave = false
                     } else {
-                        showDetail.toggle()
+                        if detail == nil {
+                            Task {
+                                await user.getImageDetail(id: shoot.id) { detail in
+                                    self.detail = detail
+                                    showDetail = true
+                                }
+                            }
+                        } else {
+                            showDetail.toggle()
+                        }
                     }
                 }
             }
@@ -118,6 +129,7 @@ struct DetailView: View {
     
     @State var showApp = false
     @State var showReport = false
+    @State var designTypes: [String] = []
     var infoView: some View {
         VStack(spacing: 16) {
             // 顶部应用按钮
@@ -125,7 +137,7 @@ struct DetailView: View {
                 showApp.toggle()
             } label: {
                 HStack {
-                    Text("shoot.app.name")
+                    Text(detail?.linkApplicationName ?? "图片详情")
                         .font(.system(size: 18, weight: .bold))
                         .foregroundColor(.shootBlack)
                     Image("link")
@@ -134,16 +146,16 @@ struct DetailView: View {
                 .sheet(isPresented: $showApp) {
                     #if os(iOS)
                     NavigationView {
-//                        AppView(app: shoot.app)
-//                            .navigationTitle(shoot.app.name)
-//                            .navigationBarTitleDisplayMode(.inline)
-//                            .toolbar {
-//                                ToolbarItem(placement: .navigationBarTrailing) {
+                        AppView(id: shoot.linkApplicationId ?? "")
+                            .navigationTitle(detail?.linkApplicationName ?? "图片详情")
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarTrailing) {
 //                                    ShareLink(item: URL(string: shoot.app.url)!) {
 //                                        Image(systemName: "square.and.arrow.up.fill")
 //                                    }.tint(.shootRed)
-//                                }
-//                            }
+                                }
+                            }
                     }
                     #else
                     VStack {
@@ -197,26 +209,25 @@ struct DetailView: View {
             }
             
             // 设计模式
-//            FlowLayout(mode: .vstack,
-//                       items: shoot.designType,
-//                       itemSpacing: 4) { text in
-//                Button {
-////                    search = text
-//                    search = "关注"
-//                } label: {
-//                    HStack(spacing: 2) {
-//                        Image(systemName: "number")
-//                            .font(.system(size: 14, weight: .medium))
-//                            .foregroundColor(.shootBlue)
-//                        Text(text)
-//                            .font(.system(size: 14, weight: .medium))
-//                            .foregroundColor(.shootBlack)
-//                    }.padding(.horizontal, 10)
-//                        .padding(.vertical, 6)
-//                        .background(Color.shootBlue.opacity(0.12))
-//                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-//                }.buttonStyle(.plain)
-//            }
+            FlowLayout(mode: .vstack,
+                       items: designTypes,
+                       itemSpacing: 4) { text in
+                Button {
+                    search = text
+                } label: {
+                    HStack(spacing: 2) {
+                        Image(systemName: "number")
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundColor(.shootBlue)
+                        Text(text)
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundColor(.shootBlack)
+                    }.padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(Color.shootBlue.opacity(0.12))
+                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                }.buttonStyle(.plain)
+            }
             
             // 操作按钮
             HStack {
@@ -228,20 +239,23 @@ struct DetailView: View {
                         showDetail = false
                         showSave = true
                     }
+                    Task {
+                        await user.getFavorites()
+                    }
                 }
                 Spacer(minLength: 0)
                 
-//                ShareLink(item: Image(shoot.imageUrl), preview: SharePreview("Shoots", image: Image(shoot.imageUrl))) {
-//                    VStack {
-//                        Image("share")
-//                            .resizable()
-//                            .aspectRatio(contentMode: .fit)
-//                            .frame(width: 30, height: 30)
-//                        Text("分享")
-//                            .font(.system(size: 14, weight: .medium))
-//                            .foregroundColor(.shootBlack)
-//                    }
-//                }.buttonStyle(.plain)
+                ShareLink(item: Image(shoot.picUrl), preview: SharePreview("Shoots", image: Image(shoot.picUrl))) {
+                    VStack {
+                        Image("share")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                        Text("分享")
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundColor(.shootBlack)
+                    }
+                }.buttonStyle(.plain)
                 
                 Spacer(minLength: 0)
                 ActionTitleButtonView(image: "download", title: "下载") {
@@ -304,33 +318,38 @@ struct DetailView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 26) {
-                    ForEach(images, id: \.self) { image in
-                        FolderCardView(images: image, name: "Ins")
-                            .frame(minWidth: 156)
-                            .overlay(
-                                Group {
-                                    if image.isEmpty {
-                                        Image(systemName: "plus")
+            if user.favorites.isEmpty {
+                Text("收藏夹为空")
+                    .frame(height: 286)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 26) {
+                        ForEach(user.favorites) { favorite in
+                            FolderCardView(images: favorite.pics, name: favorite.favoriteFileName)
+                                .frame(minWidth: 156)
+                                .overlay(
+                                    Group {
+                                        if favorite.pics.isEmpty {
+                                            Image(systemName: "plus")
+                                        }
                                     }
-                                }
-                            )
-                            .onTapGesture {
-                                // 收藏
+                                )
+                                .onTapGesture {
+                                    // 收藏
 
-                                #if os(iOS)
-                                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                                    // 收藏成功
-                                    showSave = false
-                                    // 提示成功
-                                    alertText = "收藏成功"
-                                    showAlert = true
+                                    #if os(iOS)
+                                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                                        // 收藏成功
+                                        showSave = false
+                                        // 提示成功
+                                        alertText = "收藏成功"
+                                        showAlert = true
+                                    }
+                                    #endif
                                 }
-                                #endif
-                            }
-                    }
-                }.padding(.horizontal, 26)
+                        }
+                    }.padding(.horizontal, 26)
+                }
             }
         }
             .padding(.vertical)
@@ -373,9 +392,17 @@ struct DetailView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }.buttonStyle(.plain)
                 Button {
-                    withAnimation(.spring()) {
-                        showNewFolder = false
-                        images.insert([], at: 0)
+                    if name == "" {
+                        alertText = "收藏夹名称不能为空！"
+                        showAlert = true
+                    } else {
+                        Task {
+                            await user.addFavorites(name: name)
+                        }
+                        
+                        withAnimation(.spring()) {
+                            showNewFolder = false
+                        }
                     }
                 } label: {
                     Text("确认")

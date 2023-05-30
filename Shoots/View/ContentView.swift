@@ -24,7 +24,9 @@ struct ContentView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @State var selectedImages: [UIImage] = []
-    @State var uploadData: [UploadData] = []
+    @State var uploadData: [LocalImageData] = []
+    @State var showUploadAction = false
+    
     #endif
     var body: some View {
         NavigationView {
@@ -85,13 +87,35 @@ struct ContentView: View {
             } shareDoneAction: {
                 
             } uploadAction: {
+                showUploadAction = true
                 
+                Task {
+                    user.uploadImages(localDatas: uploadData) { pics in
+                        user.uploadPics(pics: pics) { success in
+                            if success {
+                                uploadData.removeAll()
+                            } else {
+                                
+                            }
+                        }
+                    }
+                }
             }
         })
         #endif
+        .onChange(of: Reachability.isConnectedToNetwork(), perform: { newValue in
+            // 第一次打开的时候没有网络授权，授权之后再次请求网络
+            if newValue {
+                Task {
+                    await loadData()
+                }
+            }
+        })
         .onAppear {
             // 请求第一页的数据
-            loadData()
+            Task {
+                await loadData()
+            }
             
             // DEBUG 模式下显示自定义上传
             #if DEBUG
@@ -118,23 +142,23 @@ struct ContentView: View {
     var iOSHomeView: some View {
         homeFeed
             .navigationTitle("Shoots")
-            .simultaneousGesture(
-                DragGesture()
-                    .onChanged({ location in
-                        offset = location.translation
-                        if location.translation.height > 0 {
-                            print("下")
-                            withAnimation(.spring()) {
-                                showNavigation = true
-                            }
-                        } else {
-                            print("上")
-                            withAnimation(.spring()) {
-                                showNavigation = false
-                            }
-                        }
-                    })
-            )
+//            .simultaneousGesture(
+//                DragGesture()
+//                    .onChanged({ location in
+//                        offset = location.translation
+//                        if location.translation.height > 0 {
+//                            print("下")
+//                            withAnimation(.spring()) {
+//                                showNavigation = true
+//                            }
+//                        } else {
+//                            print("上")
+//                            withAnimation(.spring()) {
+//                                showNavigation = false
+//                            }
+//                        }
+//                    })
+//            )
             .toolbar(showNavigation ? .visible : .hidden, for: .automatic)
     }
     
@@ -356,9 +380,9 @@ struct ContentView: View {
         }
     }
     // MARK: - 首页方法
-    func loadData() {
+    func loadData() async {
         Task {
-            user.getFeed()
+            await user.getHomeFirstPageFeed()
         }
     }
 }

@@ -10,7 +10,7 @@ import Alamofire
 
 struct UploadView: View {
     @State var uploadImages: [UIImage]
-    @Binding var uploadData: [UploadData]
+    @Binding var uploadData: [LocalImageData]
     var shareExtension: Bool = false
     @State var selection: Int = 0
     let shareCancellAction: () -> Void
@@ -74,7 +74,7 @@ struct UploadView: View {
                 }
             }
             .onAppear {
-                
+                uploadData.append(LocalImageData(image: uploadImages[0].pngData()!, app: "sad", pattern: "asd,asdf", fileName: "", fileSuffix: ""))
             }
     }
     
@@ -291,10 +291,19 @@ struct UploadView: View {
     func upload() {
         if shareExtension {
             //TODO: 上传截图
-            
+//            Task {
+//                await user.uploadPics(pics: user.uploadImage(localDatas: uploadData)) { success in
+//                    if success {
+//                        
+//                    } else {
+//                        
+//                    }
+//                }
+//            }
             // 完成之后关闭
             shareDoneAction()
         } else {
+            // 上传
             dismiss()
             //TODO: 后台上传截图
             uploadAction()
@@ -305,7 +314,7 @@ struct UploadView: View {
 struct UploadView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UploadView(uploadImages: [UIImage(named: "s1")!, UIImage(named: "s2")!]) {
+            UploadView(uploadImages: [UIImage(named: "s1")!, UIImage(named: "s2")!], uploadData: .constant([])) {
                 
             } shareDoneAction: {
                 
@@ -317,7 +326,7 @@ struct UploadView_Previews: PreviewProvider {
             .environment(\.locale, .init(identifier: "zh-cn"))
         
         NavigationView {
-            UploadView(uploadImages: [UIImage(named: "s1")!, UIImage(named: "s2")!]) {
+            UploadView(uploadImages: [UIImage(named: "s1")!, UIImage(named: "s2")!], uploadData: .constant([])) {
                 
             } shareDoneAction: {
                 

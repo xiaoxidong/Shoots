@@ -11,26 +11,26 @@ import SwiftUIFlowLayout
 struct IPadSearchDefaultView: View {
     @Binding var searchText: String
     
-    @State var tagTexts: [String] = ["关注", "设置", "粉丝", "信息流", "自定义内容", "卡片", "用户中心", "推荐", "Setting"]
     let rows = [
             GridItem(.fixed(90.00), spacing: 20),
             GridItem(.fixed(90.00), spacing: 20),
         ]
+    @EnvironmentObject var user: UserViewModel
     var body: some View {
         ScrollView {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: rows, alignment: .center, spacing: 16) {
-                    ForEach(apps) { app in
+                    ForEach(user.apps) { app in
                         Button {
-                            searchText = app.name
+                            searchText = app.linkApplicationName
                         } label: {
                             VStack {
-                                Image(app.image)
+                                Image("Instagram")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 66, height: 66)
                                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                                Text(app.name)
+                                Text(app.linkApplicationName)
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(.shootBlack)
                             }
@@ -42,13 +42,13 @@ struct IPadSearchDefaultView: View {
             
             // Tag
             FlowLayout(mode: .vstack,
-                       items: tagTexts,
-                       itemSpacing: 4) { text in
+                       items: user.patterns,
+                       itemSpacing: 4) { pattern in
                 Button {
-                    searchText = text
+                    searchText = pattern.designPatternName
                 } label: {
                     HStack(spacing: 2) {
-                        Text(text)
+                        Text(pattern.designPatternName)
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.shootBlack)
                     }.padding(.horizontal, 10)
@@ -58,6 +58,11 @@ struct IPadSearchDefaultView: View {
                 }.buttonStyle(.plain)
             }.padding(.top)
                 .padding(.horizontal)
+        }.onAppear {
+            Task {
+                await user.getAllPatterns()
+                await user.getApps()
+            }
         }
     }
 }

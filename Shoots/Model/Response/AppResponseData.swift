@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AppData: Codable {
+struct AppResponseData: Codable {
     var code: Int
     var msg: String
     var data: [Apps]

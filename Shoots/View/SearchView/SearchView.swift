@@ -29,7 +29,7 @@ struct SearchView: View {
                 
                 // 搜索结果
                 if searchText == "Instagram" {
-                    AppView(app: appData, topPadding: 16)
+                    AppView(id: "appData", topPadding: 16)
                 } else if searchText == "关注" {
                     feed
                 } else {

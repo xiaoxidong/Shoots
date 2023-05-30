@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FeedData: Codable {
+struct FeedResponseData: Codable {
     var msg: String
     var code: Int
     var total: Int

@@ -21,13 +21,13 @@ struct HomeView: View {
             #if os(iOS)
             if horizontalSizeClass == .compact {
                 if searchText != "" {
-                    AppView(app: appData, topPadding: 16)
+                    AppView(id: "appData", topPadding: 16)
                 } else {
                     IOSSearchDefaultView(searchText: $searchText)
                 }
             } else {
                 if searchText != "" {
-                    AppView(app: appData, topPadding: 16)
+                    AppView(id: "appData", topPadding: 16)
                 } else {
                     feed
                 }
@@ -44,31 +44,25 @@ struct HomeView: View {
         }
     }
     
-    @State var footerRefreshing = false
-    @State var noMore = false
+    
     
     @EnvironmentObject var user: UserViewModel
     var feed: some View {
         ScrollView {
             FeedView(shoots: user.homeFeed)
             
-            LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
-                loadMore()
+            LoadMoreView(footerRefreshing: $user.footerRefreshing, noMore: $user.noMore) {
+                Task {
+                    await user.nextPage()
+                }
             }
         }.enableRefresh()
             .refreshable {
                 // 首页下拉刷新
-                
+                Task {
+                    await user.getHomeFirstPageFeed()
+                }
             }
-    }
-    
-    func loadMore() {
-        Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
-            withAnimation(.spring()) {
-                footerRefreshing = false
-                noMore = true
-            }
-        }
     }
 }
 

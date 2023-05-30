@@ -39,7 +39,7 @@ struct IOSSearchDefaultView: View {
             VStack(spacing: 16) {
                 ForEach(user.patterns) { pattern in
                     Button {
-                        searchText = "关注"
+                        searchText = pattern.designPatternName
                     } label: {
                         Group {
                             Text(pattern.designPatternName)
@@ -55,6 +55,12 @@ struct IOSSearchDefaultView: View {
 
                 }
             }.padding(.top)
+        }
+        .onAppear {
+            Task {
+                await user.getApps()
+                await user.getAllPatterns()
+            }
         }
     }
 }
