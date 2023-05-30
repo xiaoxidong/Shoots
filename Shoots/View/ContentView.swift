@@ -75,9 +75,7 @@ struct ContentView: View {
             SelectPhotoView(show: $uploadisActive, selectedImages: $selectedImages)
                 .background(BackgroundClearView())
                 .ignoresSafeArea()
-                .onDisappear {
-                    uploadisActive = false
-                }
+                
         })
         .fullScreenCover(isPresented: $upload, onDismiss: {
             selectedImages.removeAll()
@@ -175,19 +173,16 @@ struct ContentView: View {
                         NavigationLink {
                             SelfView()
                         } label: {
-                            Image("pic")//"self"
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30, height: 30)
+                            Image("self")
                                 .clipShape(Circle())
                         }
                     } else {
-                        Button {
-                            withAnimation(.spring()) {
-                                login.toggle()
-                            }
+                        NavigationLink {
+                            SettingView()
                         } label: {
-                            Image("self")
+                            Image("setting")
+                                .renderingMode(.template)
+                                .foregroundColor(.shootBlue)
                         }
                     }
                 }
@@ -265,10 +260,15 @@ struct ContentView: View {
         #if os(iOS)
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
             .overlay(
-                uploadView, alignment: .bottom
+                Group {
+                    if !user.login {
+                        LoginView(login: .constant(true), showBG: false) { }
+                    }
+                }
+                , alignment: .bottom
             )
             .overlay(
-                LoginView(login: $login) { }, alignment: .bottom
+                uploadView, alignment: .bottom
             )
         #else
             .searchable(text: $searchText)
@@ -295,6 +295,8 @@ struct ContentView: View {
                 Spacer()
                 VStack(spacing: 22) {
                     Text("选择操作")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(.shootBlack)
                     Button(action: {
                         withAnimation(.spring()) {
                             uploadOptions.toggle()
@@ -344,11 +346,11 @@ struct ContentView: View {
                     .padding()
                     .padding(.bottom)
                     .padding(.top, 8)
-                .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                .shadow(color: Color.shootBlack.opacity(0.2), radius: 10, y: -10)
-                .contentShape(Rectangle())
-                .offset(y: uploadOptions ? 0 : 1000)
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                    .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
+                    .contentShape(Rectangle())
+                    .offset(y: uploadOptions ? 0 : 1000)
             }.frame(maxWidth: 660)
         }
     }

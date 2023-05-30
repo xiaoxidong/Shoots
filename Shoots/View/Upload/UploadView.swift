@@ -93,6 +93,7 @@ struct UploadView: View {
                 Spacer(minLength: 0)
                 if uploadImages.count < 2 {
                     Text("上传图片")
+                        .font(.system(size: 14, weight: .medium))
                 } else {
                     if updateIndicator {
                         TitlePageControll(progress: selection, numberOfPages: uploadImages.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
@@ -116,6 +117,8 @@ struct UploadView: View {
                     Text("上传")
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(.shootBlue)
+                        .padding(.horizontal, 6)
+                        .contentShape(Rectangle())
                 }.frame(maxWidth: .infinity, alignment: .trailing)
             }.padding(.horizontal)
             Divider()
@@ -127,18 +130,18 @@ struct UploadView: View {
     @State var showBluer = false
     @State var showCombine = false
     @State var appTexts: [String] = ["Instagram", "Facebook", "Paper", "微博", "知乎", "Twitter", "抖音"]
-    var appRsults: [String] {
+    var appRsults: [Apps] {
         if appText == "" {
-            return appTexts
+            return user.apps
         } else {
-            return appTexts.filter({ $0.transToLowercasedPinYin().contains(appText.transToLowercasedPinYin()) })
+            return user.apps.filter({ $0.linkApplicationName.transToLowercasedPinYin().contains(appText.transToLowercasedPinYin()) })
         }
     }
-    var tagRsults: [String] {
+    var tagRsults: [Pattern] {
         if tagText.components(separatedBy: ",").last == "" {
-            return tagTexts
+            return user.patterns
         } else {
-            return tagTexts.filter({ $0.transToLowercasedPinYin().contains(tagText.components(separatedBy: ",").last?.transToLowercasedPinYin() ?? "") })
+            return user.patterns.filter({ $0.designPatternName.transToLowercasedPinYin().contains(tagText.components(separatedBy: ",").last?.transToLowercasedPinYin() ?? "") })
         }
     }
     @State var tagTexts: [String] = ["设置", "粉丝", "信息流", "自定义内容", "卡片", "用户中心", "推荐", "Setting"]
@@ -150,13 +153,13 @@ struct UploadView: View {
             if appFocused {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
-                        ForEach(appRsults, id: \.self) { app in
+                        ForEach(appRsults) { app in
                             Button {
-                                appText = app
+                                appText = app.linkApplicationName
                                 appFocused = false
                             } label: {
                                 VStack(alignment: .leading, spacing: 0) {
-                                    Text(app)
+                                    Text(app.linkApplicationName)
                                         .font(.system(size: 16, weight: .medium))
                                         .foregroundColor(.shootBlack)
                                         .padding(.vertical, 16)
@@ -178,15 +181,15 @@ struct UploadView: View {
                         ForEach(tagRsults, id: \.self) { tag in
                             Button {
                                 if tagText == "" {
-                                    tagText = "\(tag),"
-                                } else if !tagText.contains(tag) {
+                                    tagText = "\(tag.designPatternName),"
+                                } else if !tagText.contains(tag.designPatternName) {
                                     var new = tagText.components(separatedBy: ",")
                                     new.removeLast()
-                                    tagText = new.joined(separator: ",") + ",\(tag),"
+                                    tagText = new.joined(separator: ",") + ",\(tag.designPatternName),"
                                 }
                             } label: {
                                 VStack(alignment: .center, spacing: 0) {
-                                    Text(tag)
+                                    Text(tag.designPatternName)
                                         .font(.system(size: 16, weight: .medium))
                                         .foregroundColor(.shootBlack)
                                         .padding(.vertical, 16)

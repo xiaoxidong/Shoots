@@ -13,7 +13,7 @@ struct PatternResponseData: Codable {
     var data: [Pattern]
 }
 
-struct Pattern: Codable, Identifiable {
+struct Pattern: Codable, Identifiable, Hashable {
     var id: String
     var designPatternName: String
 }

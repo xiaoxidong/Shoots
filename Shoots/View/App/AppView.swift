@@ -20,7 +20,9 @@ struct AppView: View {
             Group {
                 header
                     .padding(.top, topPadding)
-                flowView
+                if !app.flows.isEmpty {
+                    flowView
+                }
                 imagesView
                 
                 LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
@@ -88,6 +90,7 @@ struct AppView: View {
                 .foregroundColor(.shootBlack)
                 .lineLimit(3)
                 .lineSpacing(4)
+                .fixedSize(horizontal: false, vertical: true)
         }.padding(.horizontal)
     }
     
@@ -101,15 +104,15 @@ struct AppView: View {
                 .padding(.leading)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
+                HStack(spacing: 36) {
                     ForEach(app.flows) { flow in
                         FolderCardView(images: flow.images, name: flow.name)
-                            .frame(width: 156)
+                            .frame(height: 286)
                             .onTapGesture {
                                 self.flow = flow
                             }
                     }
-                }.padding(.horizontal)
+                }.padding(.horizontal, 36)
             }
         }.padding(.top, 26)
         #if os(iOS)
@@ -132,7 +135,7 @@ struct AppView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading)
             
-//            FeedView(shoots: homeData)
+            FeedView(shoots: user.homeFeed)
         }.padding(.top, 26)
     }
     

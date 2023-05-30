@@ -22,6 +22,7 @@ struct DetailView: View {
     @State var alertText = ""
     @EnvironmentObject var user: UserViewModel
     @State var detail: ImageDetailResponseData? = nil
+    @State var showLogin = false
     var body: some View {
         ScrollView(showsIndicators: false) {
             WebImage(url: URL(string: shoot.compressedPicUrl))
@@ -109,6 +110,11 @@ struct DetailView: View {
                         .transition(.scale(scale: 0.6).combined(with: .opacity))
                 }
             }
+        )
+        .overlay(
+            LoginView(login: $showLogin) {
+                
+            }, alignment: .bottom
         )
         .ignoresSafeArea()
         #if os(iOS)
@@ -235,12 +241,16 @@ struct DetailView: View {
                     #if os(iOS)
                     FeedbackManager.impact(style: .medium)
                     #endif
-                    withAnimation(.spring()) {
-                        showDetail = false
-                        showSave = true
-                    }
-                    Task {
-                        await user.getFavorites()
+                    if user.login {
+                        withAnimation(.spring()) {
+                            showDetail = false
+                            showSave = true
+                        }
+                        Task {
+                            await user.getFavorites()
+                        }
+                    } else {
+                        showLogin.toggle()
                     }
                 }
                 Spacer(minLength: 0)
@@ -259,23 +269,27 @@ struct DetailView: View {
                 
                 Spacer(minLength: 0)
                 ActionTitleButtonView(image: "download", title: "下载") {
-                    #if os(iOS)
-                    FeedbackManager.impact(style: .medium)
-                    
-                    let imageSaver = ImageSaver()
-                    imageSaver.successHandler = {
-                        alertText = "成功保存到相册"
-                        showAlert = true
+                    if user.login {
+                        #if os(iOS)
+                        FeedbackManager.impact(style: .medium)
+                        
+                        let imageSaver = ImageSaver()
+                        imageSaver.successHandler = {
+                            alertText = "成功保存到相册"
+                            showAlert = true
+                        }
+                        imageSaver.errorHandler = {
+                            print("保存失败: \($0.localizedDescription)")
+                        }
+                        //                    imageSaver.writeToPhotoAlbum(image: UIImage(named: shoot.imageUrl)!)
+                        #else
+                        if let url = showSavePanel() {
+                            savePNG(imageName: "s1", path: url)
+                        }
+                        #endif
+                    } else {
+                        showLogin.toggle()
                     }
-                    imageSaver.errorHandler = {
-                        print("保存失败: \($0.localizedDescription)")
-                    }
-//                    imageSaver.writeToPhotoAlbum(image: UIImage(named: shoot.imageUrl)!)
-                    #else
-                    if let url = showSavePanel() {
-                        savePNG(imageName: "s1", path: url)
-                    }
-                    #endif
                 }
                 Spacer(minLength: 0)
                 ActionTitleButtonView(image: "report", title: "举报") {

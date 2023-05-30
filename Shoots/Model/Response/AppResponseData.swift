@@ -13,7 +13,7 @@ struct AppResponseData: Codable {
     var data: [Apps]
 }
 
-struct Apps: Codable, Identifiable {
+struct Apps: Codable, Identifiable, Hashable {
     var id: String
     var linkApplicationName: String
     var description: String?

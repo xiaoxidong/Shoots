@@ -90,7 +90,7 @@ struct ProView: View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
                 VStack {
-                    Text("升级为 Pro 使用预览全部功能")
+                    Text("升级为 Pro 支持开发者")
                         .font(.system(size: 26, weight: .bold))
                         .foregroundColor(Color.shootBlack)
                         .multilineTextAlignment(.center)

@@ -67,7 +67,8 @@ class ZLThumbnailPhotoCell: UICollectionViewCell {
     
     lazy var btnSelect: ZLEnlargeButton = {
         let btn = ZLEnlargeButton(type: .custom)
-        btn.setBackgroundImage(.zll.getImage("zl_btn_unselected"), for: .normal)
+//        btn.setBackgroundImage(.zll.getImage("zl_btn_unselected"), for: .normal)
+        btn.setBackgroundImage(UIImage(named: "unselected"), for: .normal)
         btn.setBackgroundImage(.zll.getImage("zl_btn_selected"), for: .selected)
         btn.addTarget(self, action: #selector(btnSelectClick), for: .touchUpInside)
         btn.enlargeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 10, right: 5)
