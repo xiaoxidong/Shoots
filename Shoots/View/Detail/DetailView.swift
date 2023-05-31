@@ -53,7 +53,9 @@ struct DetailView: View {
                             Task {
                                 await user.getImageDetail(id: shoot.id) { detail in
                                     self.detail = detail
-                                    showDetail = true
+                                    withAnimation(.spring()) {
+                                        showDetail = true
+                                    }
                                 }
                             }
                         } else {
@@ -307,10 +309,10 @@ struct DetailView: View {
             .padding(.bottom)
             .padding(.top, 8)
             .frame(maxWidth: .infinity)
-        .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-        .shadow(color: Color.shootBlack.opacity(0.2), radius: 10, y: -10)
-        .contentShape(Rectangle())
+            .background(Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+            .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
+            .contentShape(Rectangle())
     }
     
     @State var showSave = false

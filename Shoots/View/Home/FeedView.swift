@@ -28,8 +28,6 @@ struct FeedView: View {
         }
         
         ScrollView {
-            
-            
             // 上拉加载更多
             RefreshFooter(refreshing: $footerRefreshing, action: loadMore) {
                 if self.noMore {

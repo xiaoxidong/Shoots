@@ -17,19 +17,28 @@ struct ImageCardView: View {
     @AppStorage("showReviewAlert") var showReviewAlert = 0
     @State var showDetail: Bool = false
     @Environment(\.requestReview) var requestReview
+    let d = "https://shoot-dev.oss-cn-beijing.aliyuncs.com/pics/compress/1663005063778217986/2023/05/31/23e6da9db1044487949bc526819bb121.jpg"
+    let da = "https://shoot-dev.oss-cn-beijing.aliyuncs.com/pics/compress/1663005063778217986/2023/05/31/5483214ac3ea48ec8f5e4d8fe8a76c04.jpg"
     var body: some View {
-        WebImage(url: URL(string: shoot.compressedPicUrl))
+        WebImage(url: URL(string: [d, da].randomElement()!))
             // Supports options and context, like `.delayPlaceholder` to show placeholder only when error
             .onSuccess { image, data, cacheType in
                 // Success
                 // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
             }
             .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
-            .placeholder(Image(systemName: "photo")) // Placeholder Image
+            
             // Supports ViewBuilder as well
             .placeholder {
-                Rectangle().foregroundColor(.gray)
+                Rectangle()
+                    .foregroundColor(.gray.opacity(0.1))
+                    .overlay {
+                        Image(systemName: "photo")
+                            .font(.system(size: 20))
+                            .foregroundColor(.gray.opacity(0.8))
+                    }
             }
+//            .placeholder(Image(systemName: "photo")) // Placeholder Image
             .indicator(.activity) // Activity Indicator
             .transition(.fade(duration: 0.5)) // Fade Transition with duration
             .scaledToFit()

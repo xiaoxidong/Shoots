@@ -146,7 +146,8 @@ struct SelfView: View {
                 .foregroundColor(.shootBlack)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 16)
-                .padding(.bottom, 12)
+//                .padding(.bottom, 12)
+                .padding(.horizontal)
             #if os(iOS)
             if horizontalSizeClass == .compact {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
@@ -157,20 +158,21 @@ struct SelfView: View {
                             FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
                         }
                     }
-                }
+                }.padding(.horizontal)
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHGrid(rows: rows, alignment: .center, spacing: 26) {
+                    LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
                         ForEach(1..<11) { index in
                             NavigationLink {
                                 AlbumView()
                             } label: {
                                 FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
-                                    .frame(width: 206)
+                                   
                             }
                         }
-                    }
-                }
+                    }.padding(.horizontal, 36)
+                }.frame(height: 286)
+                    .padding(.vertical)
             }
             #else
             LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
@@ -181,9 +183,10 @@ struct SelfView: View {
                         FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
                     }.buttonStyle(.plain)
                 }
-            }.sheet(isPresented: $showMacFolderView) {
-                AlbumView().sheetFrameForMac()
-            }
+            }.padding(.horizontal)
+                .sheet(isPresented: $showMacFolderView) {
+                    AlbumView().sheetFrameForMac()
+                }
             #endif
             
             Text("收藏截图")
@@ -192,6 +195,7 @@ struct SelfView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 36)
                 .padding(.bottom, 12)
+                .padding(.horizontal)
             #if os(iOS)
             if horizontalSizeClass == .compact {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
@@ -202,20 +206,20 @@ struct SelfView: View {
                             FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
                         }
                     }
-                }
+                }.padding(.horizontal)
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHGrid(rows: rows, alignment: .center, spacing: 26) {
+                    LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
                         ForEach(1..<11) { index in
                             NavigationLink {
                                 AlbumView()
                             } label: {
                                 FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
-                                    .frame(width: 206)
                             }
                         }
-                    }
-                }
+                    }.padding(.horizontal, 36)
+                }.frame(height: 286)
+                    .padding(.vertical)
             }
             #else
             LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
@@ -226,12 +230,12 @@ struct SelfView: View {
                         FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
                     }.buttonStyle(.plain)
                 }
-            }
+            }.padding(.horizontal)
             .sheet(isPresented: $showMacFolderView) {
                 AlbumView().sheetFrameForMac()
             }
             #endif
-        }.padding(.horizontal)
+        }
     }
     
     func loadMore() {
