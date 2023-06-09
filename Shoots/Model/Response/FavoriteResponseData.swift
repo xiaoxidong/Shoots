@@ -19,11 +19,11 @@ struct FavoriteData: Codable, Identifiable {
     var previewPics: [Pic]
     
     struct Pic: Codable {
-        var id: Int
+        var id: String
         var picUrl: String
         var compressedPicUrl: String
-        var linkApplicationId: Int
-        var linkApplicationOfficialId: Int
+        var linkApplicationId: String
+        var linkApplicationOfficialId: String?
     }
     
     var pics: [String] {

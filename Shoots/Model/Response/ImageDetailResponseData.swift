@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ImageDetailResponseData: Codable {
-    var id: String
+    var id: String?
     var picUrl: String
     var compressedPicUrl: String
     var linkApplicationId: String?
@@ -19,4 +19,14 @@ struct ImageDetailResponseData: Codable {
     var description: String?
     var appUrl: String?
     var appLogoUrl: String?
+    var isFavorite: Int
+    var userName: String?
+    var uploadNum: String
+    var favoriteNum: String
+    var designPatternList: [PatternName]
+    
+    struct PatternName: Codable, Identifiable, Hashable {
+        var id: String
+        var designPatternName: String
+    }
 }

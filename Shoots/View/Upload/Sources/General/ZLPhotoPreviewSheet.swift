@@ -1101,10 +1101,12 @@ extension ZLPhotoPreviewSheet: UICollectionViewDataSource, UICollectionViewDeleg
     private func changeCancelBtnTitle() {
         if arrSelectedModels.count > 0 {
             cancelBtn.setTitle(String(format: "%@(%ld)", localLanguageTextValue(.done), arrSelectedModels.count), for: .normal)
-            cancelBtn.setTitleColor(.zll.previewBtnHighlightTitleColor, for: .normal)
+            cancelBtn.setTitleColor(UIColor(named: "shootBlue"), for: .normal)
+            cancelBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         } else {
             cancelBtn.setTitle(localLanguageTextValue(.cancel), for: .normal)
             cancelBtn.setTitleColor(.zll.previewBtnTitleColor, for: .normal)
+            cancelBtn.titleLabel?.font = .zll.font(ofSize: 17)
         }
     }
     

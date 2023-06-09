@@ -8,7 +8,7 @@
 import SwiftUI
 
 #if DEBUG
-let baseURL: String = ""
+let baseURL: String = "http://124.222.232.27:8080"
 #else
 let baseURL: String = ""
 #endif

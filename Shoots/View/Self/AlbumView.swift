@@ -6,13 +6,18 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct AlbumView: View {
+    var id: String
+    @Binding var name: String
     
     @State var edit = false
-    @State var editName = false
+    @State var showEditName = false
     @State var delete = false
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var user: UserViewModel
+    @State var favoriteFeed: [Picture] = []
     var body: some View {
         #if os(iOS)
         content
@@ -41,12 +46,13 @@ struct AlbumView: View {
                 
                 ToolbarItem(placement: .principal) {
                     Button {
+                        editName = name
                         withAnimation(.spring()) {
-                            editName.toggle()
+                            showEditName.toggle()
                         }
                     } label: {
                         HStack(spacing: 2) {
-                            Text("Poke")
+                            Text(name)
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(.shootBlack)
                             Image("edit")
@@ -82,7 +88,7 @@ struct AlbumView: View {
                 Spacer()
                 Button {
                     withAnimation(.spring()) {
-                        editName.toggle()
+                        showEditName.toggle()
                     }
                 } label: {
                     HStack(spacing: 2) {
@@ -131,14 +137,14 @@ struct AlbumView: View {
             Group {
                 Color.black
                     .ignoresSafeArea()
-                    .opacity(editName || delete ? 0.2 : 0)
+                    .opacity(showEditName || delete ? 0.2 : 0)
                     .onTapGesture {
                         withAnimation(.spring()) {
-                            editName = false
+                            showEditName = false
                             delete = false
                         }
                     }
-                if editName {
+                if showEditName {
                     editNameView
                         .transition(.scale(scale: 0.6).combined(with: .opacity))
                 }
@@ -148,6 +154,11 @@ struct AlbumView: View {
                 }
             }
         )
+        .onAppear {
+            Task {
+                await self.favoritePics(id: id)
+            }
+        }
     }
     
     @State var footerRefreshing = false
@@ -155,7 +166,7 @@ struct AlbumView: View {
     
     var feed: some View {
         ScrollView {
-//            FeedView(shoots: homeData)
+            FeedView(shoots: favoriteFeed)
             
             LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
                 loadMore()
@@ -190,25 +201,23 @@ struct AlbumView: View {
     var editView: some View {
         ScrollView {
             LazyVGrid(columns: columns, alignment: .leading, spacing: 2) {
-                ForEach(homeData) { shoot in
+                ForEach(favoriteFeed) { shoot in
                     Button(action: {
                         //选择和取消选择截图
                         withAnimation(.spring()) {
-                            if selected.contains(shoot.imageUrl), let index = selected.firstIndex(of: shoot.imageUrl) {
+                            if selected.contains(shoot.id), let index = selected.firstIndex(of: shoot.id) {
                                 selected.remove(at: index)
                             } else {
-                                selected.append(shoot.imageUrl)
+                                selected.append(shoot.id)
                             }
                         }
                     }, label: {
-                        Image(shoot.imageUrl)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
+                        ImageView(urlString: shoot.compressedPicUrl, image: .constant(nil))
                             .frame(maxWidth: .infinity, alignment: .top)
                             .overlay(alignment: .bottomLeading) {
                                 Image(systemName: "checkmark.circle.fill")
                                     .padding(12)
-                                    .foregroundColor(selected.contains(shoot.imageUrl) ? Color.shootRed : Color.white)
+                                    .foregroundColor(selected.contains(shoot.id) ? Color.shootRed : Color.white)
                                     .shadow(radius: 6)
                             }
                     }).buttonStyle(.plain)
@@ -217,7 +226,7 @@ struct AlbumView: View {
         }
     }
     
-    @State var name: String = ""
+    @State var editName: String = ""
     var editNameView: some View {
         VStack(spacing: 26) {
             Text("编辑收藏夹")
@@ -225,7 +234,7 @@ struct AlbumView: View {
                 .foregroundColor(.shootBlack)
             
             VStack {
-                TextField("输入收藏夹名称", text: $name)
+                TextField("输入收藏夹名称", text: $editName)
                     .textFieldStyle(.plain)
                     .padding(.horizontal)
                 Divider()
@@ -234,7 +243,7 @@ struct AlbumView: View {
             HStack(spacing: 56) {
                 Button {
                     withAnimation(.spring()) {
-                        editName = false
+                        showEditName = false
                     }
                 } label: {
                     Text("取消")
@@ -246,9 +255,17 @@ struct AlbumView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }.buttonStyle(.plain)
                 Button {
-                    withAnimation(.spring()) {
-                        editName = false
+                    Task {
+                        await user.editFavoriteName(id: id, name: editName) { success in
+                            if success {
+                                name = editName
+                                withAnimation(.spring()) {
+                                    showEditName = false
+                                }
+                            }
+                        }
                     }
+                    
                 } label: {
                     Text("确认")
                         .font(.system(size: 14, weight: .medium))
@@ -292,6 +309,11 @@ struct AlbumView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }.buttonStyle(.plain)
                 Button {
+                    Task {
+                        await user.removeFavorite(id: selected) { success in
+                            
+                        }
+                    }
                     withAnimation(.spring()) {
                         delete = false
                     }
@@ -312,12 +334,24 @@ struct AlbumView: View {
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .padding()
     }
+    
+    func favoritePics(id: String) async {
+        AF.request("\(baseURL)\(URLPath.favoritePics.path)", method: .post, parameters: ["pageSize" : 20, "pageNum": 1, "orderByColumn": "", "isAsc": "true", "favoriteFileId": id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(user.token)"]).responseDecodable(of: FeedResponseData.self) { response in
+            switch response.result {
+            case .success(let feeds):
+                print(feeds)
+                self.favoriteFeed.append(contentsOf: feeds.rows)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 
 struct AlbumView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            AlbumView()
+            AlbumView(id: "", name: .constant(""))
             #if os(iOS)
                 .navigationBarTitleDisplayMode(.inline)
             #endif
@@ -326,7 +360,7 @@ struct AlbumView_Previews: PreviewProvider {
             .environment(\.locale, .init(identifier: "zh-cn"))
         
         NavigationView {
-            AlbumView()
+            AlbumView(id: "", name: .constant(""))
             #if os(iOS)
                 .navigationBarTitleDisplayMode(.inline)
             #endif

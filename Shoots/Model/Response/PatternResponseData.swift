@@ -16,4 +16,5 @@ struct PatternResponseData: Codable {
 struct Pattern: Codable, Identifiable, Hashable {
     var id: String
     var designPatternName: String
+    var count: String?
 }

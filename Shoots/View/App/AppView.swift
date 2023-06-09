@@ -135,7 +135,7 @@ struct AppView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading)
             
-            FeedView(shoots: user.homeFeed)
+            FeedView(shoots: user.appFeed)
         }.padding(.top, 26)
     }
     

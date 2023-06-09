@@ -17,9 +17,7 @@ struct FolderCardView: View {
             ZStack {
                 Group {
                     if images.count >= 3 {
-                        Image(images[2])
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
+                        ImageView(urlString: images[2], image: .constant(nil))
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             .rotationEffect(Angle(degrees: hover ? -16 : -8))
                                 .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
@@ -59,9 +57,7 @@ struct FolderCardView: View {
     var one: some View {
         Group {
             if images.count >= 1 {
-                Image(images[0])
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                ImageView(urlString: images[0], image: .constant(nil))
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     
             } else {
@@ -74,9 +70,7 @@ struct FolderCardView: View {
     var two: some View {
         Group {
             if images.count >= 2 {
-                Image(images[1])
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                ImageView(urlString: images[1], image: .constant(nil))
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             } else {
                 one

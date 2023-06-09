@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftUIFlowLayout
-import SDWebImageSwiftUI
 #if os(iOS)
 import Toast
 #endif
@@ -23,28 +22,19 @@ struct DetailView: View {
     @EnvironmentObject var user: UserViewModel
     @State var detail: ImageDetailResponseData? = nil
     @State var showLogin = false
+    @State var image: UIImage? = nil
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
-            WebImage(url: URL(string: shoot.compressedPicUrl))
-                // Supports options and context, like `.delayPlaceholder` to show placeholder only when error
-                .onSuccess { image, data, cacheType in
-                    // Success
-                    // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
-                }
-                .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
-                .placeholder(Image(systemName: "photo")) // Placeholder Image
-                // Supports ViewBuilder as well
-                .placeholder {
-                    Rectangle().foregroundColor(.gray)
-                }
-                .indicator(.activity) // Activity Indicator
-                .transition(.fade(duration: 0.5)) // Fade Transition with duration
-                .scaledToFit()
+            ImageView(urlString: shoot.compressedPicUrl, image: $image)
                 .frame(maxWidth: 460)
                 .padding(.top)
                 .frame(maxWidth: .infinity)
         }.background(Color.shootLight.opacity(0.1))
             .onTapGesture {
+                #if os(iOS)
+                FeedbackManager.impact(style: .medium)
+                #endif
                 withAnimation(.spring()) {
                     if showSave {
                         showSave = false
@@ -181,14 +171,14 @@ struct DetailView: View {
 
             // 个人信息
             HStack {
-                Image("s1")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 56, height: 56)
+                Image("self")
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                    .frame(width: 36, height: 36)
                     .clipShape(Circle())
                 
                 VStack(alignment: .leading) {
-                    Text("shoot.author.name")
+                    Text(self.detail?.userName ?? "上传用户")
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.shootBlack)
                     
@@ -198,43 +188,49 @@ struct DetailView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 16, height: 16)
                         
-                        Text(String(format: NSLocalizedString("%d 图片", comment: ""), 12))
-                        // shoot.author.uploadCount
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.shootBlack)
-                            .padding(.trailing, 12)
+                        Group {
+                            Text("\(self.detail?.uploadNum ?? "1")")
+                            + Text(" 图片")
+                        }
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(.shootBlack)
+                        .padding(.trailing, 12)
                         Image("saved")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 16, height: 16)
-                        Text(String(format: NSLocalizedString("%d 图片", comment: ""), 12))
-                        //shoot.author.uploadCount
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.shootBlack)
+                        Group {
+                            Text("\(self.detail?.favoriteNum ?? "1")")
+                            + Text(" 图片")
+                        }
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(.shootBlack)
                     }
                 }
                 Spacer()
             }
             
             // 设计模式
-            FlowLayout(mode: .vstack,
-                       items: designTypes,
-                       itemSpacing: 4) { text in
-                Button {
-                    search = text
-                } label: {
-                    HStack(spacing: 2) {
-                        Image(systemName: "number")
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.shootBlue)
-                        Text(text)
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.shootBlack)
-                    }.padding(.horizontal, 10)
-                        .padding(.vertical, 6)
-                        .background(Color.shootBlue.opacity(0.12))
-                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                }.buttonStyle(.plain)
+            if let detail = detail {
+                FlowLayout(mode: .vstack,
+                           items: detail.designPatternList,
+                           itemSpacing: 4) { designPattern in
+                    Button {
+                        search = designPattern.designPatternName
+                    } label: {
+                        HStack(spacing: 2) {
+                            Image(systemName: "number")
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(.shootBlue)
+                            Text(designPattern.designPatternName)
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(.shootBlack)
+                        }.padding(.horizontal, 10)
+                            .padding(.vertical, 6)
+                            .background(Color.shootBlue.opacity(0.12))
+                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    }.buttonStyle(.plain)
+                }
             }
             
             // 操作按钮
@@ -244,32 +240,40 @@ struct DetailView: View {
                     FeedbackManager.impact(style: .medium)
                     #endif
                     if user.login {
-                        withAnimation(.spring()) {
-                            showDetail = false
-                            showSave = true
-                        }
-                        Task {
-                            await user.getFavorites()
+                        if self.detail?.isFavorite == 0 {
+                            withAnimation(.spring()) {
+                                showDetail = false
+                                showSave = true
+                            }
+                            Task {
+                                await user.getFavorites()
+                            }
+                        } else {
+                            // 取消收藏
+                            
+                            self.detail?.isFavorite = 0
                         }
                     } else {
                         showLogin.toggle()
                     }
                 }
                 Spacer(minLength: 0)
+                if let image = image {
+                    ShareLink(item: Image(uiImage: image), preview: SharePreview("Shoots", image: Image(uiImage: image))) {
+                        VStack {
+                            Image("share")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30, height: 30)
+                            Text("分享")
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(.shootBlack)
+                        }
+                    }.buttonStyle(.plain)
+                    
+                    Spacer(minLength: 0)
+                }
                 
-                ShareLink(item: Image(shoot.picUrl), preview: SharePreview("Shoots", image: Image(shoot.picUrl))) {
-                    VStack {
-                        Image("share")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 30, height: 30)
-                        Text("分享")
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.shootBlack)
-                    }
-                }.buttonStyle(.plain)
-                
-                Spacer(minLength: 0)
                 ActionTitleButtonView(image: "download", title: "下载") {
                     if user.login {
                         #if os(iOS)
@@ -283,7 +287,14 @@ struct DetailView: View {
                         imageSaver.errorHandler = {
                             print("保存失败: \($0.localizedDescription)")
                         }
-                        //                    imageSaver.writeToPhotoAlbum(image: UIImage(named: shoot.imageUrl)!)
+                        
+                        guard let url = URL(string: shoot.picUrl) else { return }
+                        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                            guard let data = data else { return }
+                            imageSaver.writeToPhotoAlbum(image: UIImage(data: data)!)
+                        }
+                        task.resume()
+                        
                         #else
                         if let url = showSavePanel() {
                             savePNG(imageName: "s1", path: url)
@@ -335,8 +346,12 @@ struct DetailView: View {
             }
             
             if user.favorites.isEmpty {
-                Text("收藏夹为空")
-                    .frame(height: 286)
+                VStack {
+                    Image("empty")
+                    Text("收藏夹为空")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(.shootGray)
+                }.frame(height: 286)
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 26) {
@@ -352,7 +367,10 @@ struct DetailView: View {
                                 )
                                 .onTapGesture {
                                     // 收藏
-
+                                    Task {
+                                        await user.savePics(pics: [shoot.id], favoriteFileId: favorite.id)
+                                    }
+                                    self.detail?.isFavorite = 1
                                     #if os(iOS)
                                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                                         // 收藏成功

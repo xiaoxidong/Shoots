@@ -45,7 +45,7 @@ struct IOSSearchDefaultView: View {
                             Text(pattern.designPatternName)
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(.shootBlack)
-                            + Text(" (24)")
+                            + Text(" (\(pattern.count ?? ""))")
                                 .font(.system(size: 14, weight: .regular))
                                 .foregroundColor(.shootGray)
                         }.padding(.vertical, 10)

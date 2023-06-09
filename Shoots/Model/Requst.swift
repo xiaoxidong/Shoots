@@ -14,11 +14,19 @@ enum URLPath {
     case apps
     case allFavorite
     case addFavorite
+    case addPicToFavorite
+    case removePicFromFavorite
+    case favoritePics
+    case editFavoriteName
     case upload
     case uploadImage
     case imageDetail
     case appDetail
     case appPics
+    case userPattern
+    case uploadPicGroup
+    case patternPics
+    case report
     
     var path: String {
         switch self {
@@ -32,6 +40,14 @@ enum URLPath {
             return "/app/favorite/list"
         case .addFavorite:
             return "/app/favorite/add"
+        case .addPicToFavorite:
+            return "/app/pic/bookmark"
+        case .removePicFromFavorite:
+            return "/app/pic/unBookmark"
+        case .favoritePics:
+            return "/app/favorite/pics"
+        case .editFavoriteName:
+            return "/app/favorite/update"
         case .feed:
             return "/app/pic/feed"
         case .upload:
@@ -44,6 +60,14 @@ enum URLPath {
             return "/app/application/detail/"
         case .appPics:
             return "/app/application/pics"
+        case .userPattern:
+            return "/app/pattern/pattern"
+        case .uploadPicGroup:
+            return "/app/application/group"
+        case .patternPics:
+            return "/app/pic/pattern"
+        case .report:
+            return "/app/pic/report"
         }
     }
 }

@@ -14,6 +14,7 @@ struct SelfView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
+    @EnvironmentObject var user: UserViewModel
     var body: some View {
         #if os(iOS)
         content
@@ -82,6 +83,11 @@ struct SelfView: View {
                             withAnimation(.spring()) {
                                 showTag.toggle()
                             }
+                            if showTag && user.userPattern.isEmpty {
+                                Task {
+                                    await user.getUserPattern()
+                                }
+                            }
                         } label: {
                             Image("tags")
                         }.buttonStyle(.plain)
@@ -95,6 +101,9 @@ struct SelfView: View {
                 }
             }
         }
+        .task {
+            await user.getFavorites()
+        }
     }
     
     let columns = [
@@ -106,21 +115,20 @@ struct SelfView: View {
         GridItem(.flexible(minimum: 400, maximum: 400), spacing: 26.0)
     ]
     
-    @State var tags: [String] = ["Feed", "Friends", "Settings", "Cards", "Live", "Maps", "Follwer", "Help", "Shop"]
     @State var selected = "Feed"
     var tagView: some View {
         HStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 16) {
-                    ForEach(tags, id: \.self) { text in
+                    ForEach(user.userPattern, id: \.self) { pattern in
                         Button {
                             withAnimation(.spring()) {
-                                selected = text
+                                selected = pattern.designPatternName
                             }
                         } label: {
-                            Text(text)
-                                .font(.system(size: selected == text ? 17 : 15, weight: selected == text ? .bold : .medium))
-                                .foregroundColor(selected == text ? .shootBlue : .shootBlack)
+                            Text(pattern.designPatternName)
+                                .font(.system(size: selected == pattern.designPatternName ? 17 : 15, weight: selected == pattern.designPatternName ? .bold : .medium))
+                                .foregroundColor(selected == pattern.designPatternName ? .shootBlue : .shootBlack)
                                 .padding(.bottom, 12)
                         }.buttonStyle(.plain)
                     }
@@ -153,7 +161,7 @@ struct SelfView: View {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
                     ForEach(1..<10) { index in
                         NavigationLink {
-                            AlbumView()
+                            AlbumView(id: "", name: .constant(""))
                         } label: {
                             FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
                         }
@@ -164,7 +172,7 @@ struct SelfView: View {
                     LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
                         ForEach(1..<11) { index in
                             NavigationLink {
-                                AlbumView()
+                                AlbumView(id: "", name: .constant(""))
                             } label: {
                                 FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
                                    
@@ -199,11 +207,11 @@ struct SelfView: View {
             #if os(iOS)
             if horizontalSizeClass == .compact {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
-                    ForEach(1..<10) { index in
+                    ForEach($user.favorites) { $favorite in
                         NavigationLink {
-                            AlbumView()
+                            AlbumView(id: favorite.id, name: $favorite.favoriteFileName)
                         } label: {
-                            FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
+                            FolderCardView(images: favorite.pics, name: favorite.favoriteFileName)
                         }
                     }
                 }.padding(.horizontal)
@@ -212,7 +220,7 @@ struct SelfView: View {
                     LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
                         ForEach(1..<11) { index in
                             NavigationLink {
-                                AlbumView()
+                                AlbumView(id: "", name: .constant(""))
                             } label: {
                                 FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
                             }

@@ -17,26 +17,33 @@ class UserViewModel: ObservableObject {
     
     // 首页数据
     @Published var homeFeed: [Picture] = []
-    @State var page: Int = 0
-    @State var numberPerpage: Int = 20
+    @Published var page: Int = 1
+    @State var numberPerpage: Int = 12
+    @Published var mostPages: Int = 1
     @Published var footerRefreshing = false
     @Published var noMore = false
+    
+    @Published var favoriteFeed: [Picture] = []
+    
+    @Published var appFeed: [Picture] = []
     
     init() {
         
     }
     // TODO: 第一次进入的时候当没网的时候，处理
-    func login(appleUserId: String, identityToken: String, email: String?, fullName: String?, _ suceess: @escaping (Bool) -> Void) {
-        AF.request("\(baseURL)\(URLPath.login.path)", method: .post, parameters: ["appleUserId" : appleUserId, "identityToken" : identityToken, "email" : email ?? "834599524@qq.com", "fullName" : fullName ?? ""], encoding: JSONEncoding.default).responseDecodable(of: UserResponseData.self) { response in
+    func login(appleUserId: String, identityToken: String, email: String?, fullName: String?, _ success: @escaping (Bool) -> Void) {
+        print(identityToken)
+        print(appleUserId)
+        AF.request("\(baseURL)\(URLPath.login.path)", method: .post, parameters: ["appleUserId" : appleUserId, "identityToken" : identityToken, "email" : email ?? "", "fullName" : fullName ?? ""], encoding: JSONEncoding.default).responseDecodable(of: UserResponseData.self) { response in
             switch response.result {
             case .success(let user):
                 self.login = true
                 self.token = user.data.token
                 Defaults().set(user.data.token, for: .login)
-                suceess(true)
+                success(true)
             case .failure(let error):
                 print(error)
-                suceess(false)
+                success(false)
             }
         }
     }
@@ -69,12 +76,15 @@ class UserViewModel: ObservableObject {
     
     func getHomeFirstPageFeed() async {
         self.homeFeed.removeAll()
-        page = 1
-        AF.request("\(baseURL)\(URLPath.feed.path)", method: .post, parameters: ["pageSize" : numberPerpage, "pageNum" : page], encoding: JSONEncoding.default).responseDecodable(of: FeedResponseData.self) { response in
+        self.noMore = false
+        self.page = 1
+        print(token)
+        AF.request("\(baseURL)\(URLPath.feed.path)", method: .post, parameters: ["pageSize" : numberPerpage, "pageNum" : 1], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"]).responseDecodable(of: FeedResponseData.self) { response in
             switch response.result {
             case .success(let feeds):
                 print(feeds)
                 self.homeFeed.append(contentsOf: feeds.rows)
+                self.mostPages = feeds.total / self.numberPerpage + 1
             case .failure(let error):
                 print(error)
             }
@@ -82,37 +92,40 @@ class UserViewModel: ObservableObject {
     }
     
     func nextPage() async {
-        page += 1
-        AF.request("\(baseURL)\(URLPath.feed.path)", method: .post, parameters: ["pageSize" : numberPerpage, "pageNum" : page], encoding: JSONEncoding.default).responseDecodable(of: FeedResponseData.self) { response in
-            switch response.result {
-            case .success(let feeds):
-                print(feeds)
-                self.homeFeed.append(contentsOf: feeds.rows)
-                withAnimation(.spring()) {
-                    self.footerRefreshing = false
-                    self.noMore = false
+        self.page += 1
+        if self.page > self.mostPages {
+            self.noMore = true
+        } else {
+            AF.request("\(baseURL)\(URLPath.feed.path)", method: .post, parameters: ["pageSize" : numberPerpage, "pageNum" : page], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"]).responseDecodable(of: FeedResponseData.self) { response in
+                print(self.page)
+                switch response.result {
+                case .success(let feeds):
+                    print(feeds)
+                    self.homeFeed.append(contentsOf: feeds.rows)
+                    withAnimation(.spring()) {
+                        self.footerRefreshing = false
+                    }
+                case .failure(let error):
+                    print(error)
                 }
-            case .failure(let error):
-                print(error)
             }
         }
     }
     
-    func uploadPics(pics: [UploadData], _ suceess: @escaping (Bool) -> Void) {
+    func uploadPics(pics: [UploadData], _ success: @escaping (Bool) -> Void) {
         AF.request("\(baseURL)\(URLPath.upload.path)", method: .post, parameters: ["userPicList" : pics], encoder: JSONParameterEncoder.prettyPrinted, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"])
             .responseJSON { response in
             print(pics)
-            print(["userPicList" : pics])
             switch response.result {
             case .success(let user):
                 print(user)
                 if let json = user as? [String: Any] {
                     print(json["msg"] as Any)
                 }
-                suceess(true)
+                success(true)
             case .failure(let error):
                 print(error)
-                suceess(false)
+                success(false)
             }
         }
     }
@@ -125,7 +138,7 @@ class UserViewModel: ObservableObject {
 //            uploads.append(await uploadImage(image: local))
             var data = UploadData(picUrl: "", compressedPicUrl: "")
             AF.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(local.image, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
+                multipartFormData.append(local.image, withName: "file", fileName: "file.png", mimeType: "image/png")
             }, to: "\(baseURL)\(URLPath.uploadImage.path)", method: .post, headers: ["Content-Type": "multipart/form-data", "Authorization" : "Bearer \(token)"])
                 .responseDecodable(of: UploadImageResponseData.self) { response in
                 switch response.result {
@@ -149,8 +162,6 @@ class UserViewModel: ObservableObject {
         }
     }
     
-    //, _ suceess: @escaping (UploadData) -> Void
-    @MainActor
     func uploadImage(image: LocalImageData) async -> UploadData {
         var data = UploadData(picUrl: "", compressedPicUrl: "")
         AF.upload(multipartFormData: { multipartFormData in
@@ -187,8 +198,21 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    func uploadPicGroup() async {
+        AF.request("\(baseURL)\(URLPath.uploadPicGroup.path)", method: .get, headers: ["Authorization" : "Bearer \(token)"]).responseDecodable(of: FavoriteResponseData.self) { response in
+            switch response.result {
+            case .success(let favorite):
+                print(favorite)
+                self.favorites = favorite.data
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     func addFavorites(name: String) async {
-        AF.request("\(baseURL)\(URLPath.addFavorite.path)", method: .post, parameters: ["favoriteFileName" : name], headers: ["Authorization" : "Bearer \(token)"]).response { response in
+        print(name)
+        AF.request("\(baseURL)\(URLPath.addFavorite.path)", method: .post, parameters: ["favoriteFileName" : name], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"]).response { response in
             switch response.result {
             case .success(_):
                 self.favorites.removeAll()
@@ -201,24 +225,88 @@ class UserViewModel: ObservableObject {
         }
     }
     
-    func getImageDetail(id: String, _ suceess: @escaping (ImageDetailResponseData) -> Void) async {
-        AF.request("\(baseURL)\(URLPath.imageDetail.path)\(id)", method: .get, headers: ["Authorization" : "Bearer \(token)"]).responseDecodable(of: ImageDetailResponseData.self) { response in
+    func favoritePics(id: String) async {
+        AF.request("\(baseURL)\(URLPath.favoritePics.path)", method: .post, parameters: ["pageSize" : 20, "pageNum": 1, "orderByColumn": "", "isAsc": "true", "favoriteFileId": id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"]).responseDecodable(of: FeedResponseData.self) { response in
             switch response.result {
-            case .success(let detail):
-                print(detail)
-                suceess(detail)
+            case .success(let feeds):
+                print(feeds)
+                self.favoriteFeed.append(contentsOf: feeds.rows)
             case .failure(let error):
                 print(error)
             }
         }
     }
     
-    func getAppDetail(id: String, _ suceess: @escaping (AppDetailResponseData) -> Void) async {
+    func removePics(pics: [String]) async {
+        AF.request("\(baseURL)\(URLPath.addFavorite.path)", method: .post, parameters: ["picIds" : pics], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"]).response { response in
+            switch response.result {
+            case .success(_):
+                self.favorites.removeAll()
+                Task {
+                    await self.getFavorites()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func editFavoriteName(id: String, name: String, _ success: @escaping (Bool) -> Void) async {
+        AF.request("\(baseURL)\(URLPath.editFavoriteName.path)", method: .post, parameters: ["favoriteFileId" : id, "favoriteFileName": name], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"]).response { response in
+            switch response.result {
+            case .success(let feeds):
+                print(feeds)
+                success(true)
+            case .failure(let error):
+                print(error)
+                success(false)
+            }
+        }
+    }
+    
+    func removeFavorite(id: [String], _ success: @escaping (Bool) -> Void) async {
+        AF.request("\(baseURL)\(URLPath.removePicFromFavorite.path)", method: .post, parameters: ["picIds" : id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"]).response { response in
+            switch response.result {
+            case .success(let feeds):
+                print(feeds)
+                success(true)
+            case .failure(let error):
+                print(error)
+                success(false)
+            }
+        }
+    }
+    
+    func savePics(pics: [String], favoriteFileId: String) async {
+        AF.request("\(baseURL)\(URLPath.addPicToFavorite.path)", method: .post, parameters: ["picIds" : pics, "favoriteFileId": favoriteFileId], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"]).response { response in
+            switch response.result {
+            case .success(_):
+                print("------")
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func getImageDetail(id: String, _ success: @escaping (ImageDetailResponseData) -> Void) async {
+        AF.request("\(baseURL)\(URLPath.imageDetail.path)\(id)", method: .get, headers: ["Authorization" : "Bearer \(token)"]).responseDecodable(of: ImageDetailResponseData.self) { response in
+            print(id)
+            switch response.result {
+            case .success(let detail):
+                print(detail)
+                success(detail)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func getAppDetail(id: String, _ success: @escaping (AppDetailResponseData) -> Void) async {
         AF.request("\(baseURL)\(URLPath.appDetail.path)\(id)", method: .get).responseDecodable(of: AppDetailResponseData.self) { response in
             switch response.result {
             case .success(let app):
                 print(app)
-                suceess(app)
+                success(app)
             case .failure(let error):
                 print(error)
             }
@@ -233,6 +321,35 @@ class UserViewModel: ObservableObject {
             switch response.result {
             case .success(let app):
                 print(app)
+                self.appFeed.append(contentsOf: app.rows)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    @Published var userPattern: [Pattern] = []
+    func getUserPattern() async {
+        AF.request("\(baseURL)\(URLPath.userPattern.path)", method: .post, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"]).responseDecodable(of: UserPatternResponseData.self) { response in
+            switch response.result {
+            case .success(let userPattern):
+                print(userPattern)
+                self.userPattern = userPattern.data
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func report(picList: [Report]) async {
+        AF.request("\(baseURL)\(URLPath.report.path)", method: .post, parameters: ["picList" : picList], encoder: JSONParameterEncoder.prettyPrinted, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"]).response { response in
+            print(picList)
+            switch response.result {
+            case .success(let userPattern):
+                print(userPattern)
+                if let json = userPattern as? [String: Any] {
+                    print(json["msg"] as Any)
+                }
             case .failure(let error):
                 print(error)
             }
