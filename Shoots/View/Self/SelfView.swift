@@ -18,7 +18,7 @@ struct SelfView: View {
     var body: some View {
         #if os(iOS)
         content
-            .navigationTitle("Xiaodong")
+            .navigationTitle("我的图片")
                 .navigationBarBackButtonHidden()
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -28,6 +28,8 @@ struct SelfView: View {
                         } label: {
                             Image(systemName: "chevron.left")
                                 .font(.system(size: 16, weight: .semibold))
+                                .padding(6)
+                                .contentShape(Rectangle())
                                 .tint(.shootBlue)
                         }
                     }
@@ -39,6 +41,8 @@ struct SelfView: View {
                             Image("setting")
                                 .renderingMode(.template)
                                 .foregroundColor(.shootBlue)
+                                .padding(6)
+                                .contentShape(Rectangle())
                         }
                         
                     }
@@ -66,7 +70,7 @@ struct SelfView: View {
                 tagView
                 ScrollView {
                     // 列表
-//                    FeedView(shoots: homeData)
+                    FeedView(shoots: user.patternFeed)
                     
                     LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
                         loadMore()
@@ -75,7 +79,7 @@ struct SelfView: View {
             } else {
                 VStack {
                     HStack {
-                        Text("12 个收藏夹和 34 图片已上传")
+                        Text("上传应用截图和收藏夹")
                             .font(.system(size: 15, weight: .medium))
                             .foregroundColor(.shootGray)
                         Spacer()
@@ -96,13 +100,18 @@ struct SelfView: View {
                     Divider()
                 }.padding(.horizontal)
                 
-                ScrollView {
-                    folderView
+                if !user.app.isEmpty {
+                    ScrollView {
+                        folderView
+                    }
                 }
             }
         }
-        .task {
-            await user.getFavorites()
+        .onAppear {
+            Task {
+                await user.getFavorites()
+                await user.uploadPicGroup()
+            }
         }
     }
     
@@ -115,7 +124,7 @@ struct SelfView: View {
         GridItem(.flexible(minimum: 400, maximum: 400), spacing: 26.0)
     ]
     
-    @State var selected = "Feed"
+    @State var selected = ""
     var tagView: some View {
         HStack {
             ScrollView(.horizontal, showsIndicators: false) {
@@ -125,12 +134,23 @@ struct SelfView: View {
                             withAnimation(.spring()) {
                                 selected = pattern.designPatternName
                             }
+                            user.patternFeed.removeAll()
+                            Task {
+                                await user.getPatternPics(id: pattern.id)
+                            }
                         } label: {
                             Text(pattern.designPatternName)
                                 .font(.system(size: selected == pattern.designPatternName ? 17 : 15, weight: selected == pattern.designPatternName ? .bold : .medium))
                                 .foregroundColor(selected == pattern.designPatternName ? .shootBlue : .shootBlack)
                                 .padding(.bottom, 12)
                         }.buttonStyle(.plain)
+                    }.onAppear {
+                        if let pattern = user.userPattern.first {
+                            selected = pattern.designPatternName
+                            Task {
+                                await user.getPatternPics(id: pattern.id)
+                            }
+                        }
                     }
                 }.padding(.horizontal)
             }
@@ -148,33 +168,36 @@ struct SelfView: View {
     
     @State var showMacFolderView = false
     var folderView: some View {
-        VStack {
-            Text("上传截图")
-                .font(.system(size: 16, weight: .bold))
-                .foregroundColor(.shootBlack)
-                .frame(maxWidth: .infinity, alignment: .leading)
+        VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("上传截图")
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(.shootBlack)
+                Text("\(user.app.count) 个应用 \(user.appPicNum) 张截图")
+                    .font(.system(size: 13, weight: .regular))
+                    .foregroundColor(.shootGray)
+            }.padding(.horizontal)
                 .padding(.top, 16)
-//                .padding(.bottom, 12)
-                .padding(.horizontal)
+            
             #if os(iOS)
             if horizontalSizeClass == .compact {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
-                    ForEach(1..<10) { index in
+                    ForEach(user.app) { app in
                         NavigationLink {
                             AlbumView(id: "", name: .constant(""))
                         } label: {
-                            FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
+                            FolderCardView(images: app.pics, name: app.linkApplicationName, picCount: app.countPics)
                         }
                     }
                 }.padding(.horizontal)
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
-                        ForEach(1..<11) { index in
+                        ForEach(user.app) { app in
                             NavigationLink {
                                 AlbumView(id: "", name: .constant(""))
                             } label: {
-                                FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
+                                FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram", picCount: 10)
                                    
                             }
                         }
@@ -188,7 +211,7 @@ struct SelfView: View {
                     Button {
                         showMacFolderView.toggle()
                     } label: {
-                        FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
+                        FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram", picCount: 10)
                     }.buttonStyle(.plain)
                 }
             }.padding(.horizontal)
@@ -197,13 +220,16 @@ struct SelfView: View {
                 }
             #endif
             
-            Text("收藏截图")
-                .font(.system(size: 16, weight: .bold))
-                .foregroundColor(.shootBlack)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            VStack(alignment: .leading, spacing: 6) {
+                Text("收藏截图")
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(.shootBlack)
+                Text("\(user.favorites.count) 个收藏夹 \(user.favoritesPicNum) 张截图")
+                    .font(.system(size: 13, weight: .regular))
+                    .foregroundColor(.shootGray)
+            }.padding(.horizontal)
                 .padding(.top, 36)
-                .padding(.bottom, 12)
-                .padding(.horizontal)
+            
             #if os(iOS)
             if horizontalSizeClass == .compact {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
@@ -211,7 +237,7 @@ struct SelfView: View {
                         NavigationLink {
                             AlbumView(id: favorite.id, name: $favorite.favoriteFileName)
                         } label: {
-                            FolderCardView(images: favorite.pics, name: favorite.favoriteFileName)
+                            FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
                         }
                     }
                 }.padding(.horizontal)
@@ -222,7 +248,7 @@ struct SelfView: View {
                             NavigationLink {
                                 AlbumView(id: "", name: .constant(""))
                             } label: {
-                                FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
+                                FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram", picCount: 10)
                             }
                         }
                     }.padding(.horizontal, 36)
@@ -235,7 +261,7 @@ struct SelfView: View {
                     Button {
                         showMacFolderView.toggle()
                     } label: {
-                        FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram")
+                        FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram", picCount: 10)
                     }.buttonStyle(.plain)
                 }
             }.padding(.horizontal)

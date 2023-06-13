@@ -17,8 +17,7 @@ struct ImageCardView: View {
     @AppStorage("showReviewAlert") var showReviewAlert = 0
     @State var showDetail: Bool = false
     @Environment(\.requestReview) var requestReview
-    let d = "https://shoot-dev.oss-cn-beijing.aliyuncs.com/pics/compress/1663005063778217986/2023/05/31/23e6da9db1044487949bc526819bb121.jpg"
-    let da = "https://shoot-dev.oss-cn-beijing.aliyuncs.com/pics/compress/1663005063778217986/2023/05/31/5483214ac3ea48ec8f5e4d8fe8a76c04.jpg"
+    
     var body: some View {
         WebImage(url: URL(string: shoot.compressedPicUrl)!)
             // Supports options and context, like `.delayPlaceholder` to show placeholder only when error

@@ -17,7 +17,7 @@ struct FeedView: View {
     @State var noMore = false
     var body: some View {
         VStack(spacing: 0) {
-            Divider()
+//            Divider()
             if homeModel == 0 {
                 waterfallView(columns: 3)
             } else if homeModel == 1 {
@@ -25,7 +25,7 @@ struct FeedView: View {
             } else {
                 singleLineView
             }
-        }
+        }.background(Color.shootLight.opacity(0.2))
         
         ScrollView {
             // 上拉加载更多
@@ -57,6 +57,7 @@ struct FeedView: View {
             }
         }
         .gridStyle(columns: columns)
+        .gridStyle(spacing: 0)
         .frame(maxWidth: 1060)
     }
     
@@ -66,7 +67,7 @@ struct FeedView: View {
                 ImageCardView(shoot: shoot)
                     .frame(maxWidth: 560)
             }
-        }.background(Color.shootLight.opacity(0.1))
+        }
     }
     
     func loadMore() {

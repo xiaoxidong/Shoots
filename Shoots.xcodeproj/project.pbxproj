@@ -486,6 +486,9 @@
 		4EE49F9829C8943000B51F4B /* IOSSearchDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9729C8943000B51F4B /* IOSSearchDefaultView.swift */; };
 		4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9929C898CE00B51F4B /* SelfView.swift */; };
 		4EE49FA329C89CAF00B51F4B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49FA229C89CAF00B51F4B /* SettingView.swift */; };
+		4EE7C08C2A3770D000140FFD /* UploadResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C08B2A3770D000140FFD /* UploadResponseData.swift */; };
+		4EE7C08D2A3770D000140FFD /* UploadResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C08B2A3770D000140FFD /* UploadResponseData.swift */; };
+		4EE7C08E2A3770D000140FFD /* UploadResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C08B2A3770D000140FFD /* UploadResponseData.swift */; };
 		4EF6646E29F4C5CA005C3BD1 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = 4EF6646D29F4C5CA005C3BD1 /* MASShortcut */; };
 		4EF6647129F4C65F005C3BD1 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4EF6647029F4C65F005C3BD1 /* LaunchAtLogin */; };
 		4EF6647329F4CAAE005C3BD1 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304C29CA075D00D99DA9 /* UploadView.swift */; };
@@ -911,6 +914,7 @@
 		4EE49F9729C8943000B51F4B /* IOSSearchDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSSearchDefaultView.swift; sourceTree = "<group>"; };
 		4EE49F9929C898CE00B51F4B /* SelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfView.swift; sourceTree = "<group>"; };
 		4EE49FA229C89CAF00B51F4B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		4EE7C08B2A3770D000140FFD /* UploadResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadResponseData.swift; sourceTree = "<group>"; };
 		4EF664D329F4CE22005C3BD1 /* ZLProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLProgressHUD.swift; sourceTree = "<group>"; };
 		4EF664DB29F4D0B8005C3BD1 /* ZLEditImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLEditImageModel.swift; sourceTree = "<group>"; };
 		4EF664DD29F4D0D7005C3BD1 /* ZLImageEditorLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLImageEditorLayout.swift; sourceTree = "<group>"; };
@@ -1053,6 +1057,7 @@
 				4E63A8482A2487C4001A0FD4 /* UploadImageResponseData.swift */,
 				4E587F262A1BAC9D00907D9D /* LocalImageData.swift */,
 				4E63A84C2A249ED0001A0FD4 /* FavoriteResponseData.swift */,
+				4EE7C08B2A3770D000140FFD /* UploadResponseData.swift */,
 				4E63A8502A24B0F3001A0FD4 /* ImageDetailResponseData.swift */,
 				4E63A8542A24B66A001A0FD4 /* AppDetailResponseData.swift */,
 				4E63A8582A258BE1001A0FD4 /* AppImageResponseData.swift */,
@@ -2385,6 +2390,7 @@
 				4E5CF6B029CD58D100A4E0DE /* ElegantVPages.swift in Sources */,
 				4E010E2D29DB1ED600A4B231 /* FeedbackManager.swift in Sources */,
 				4E5CF70F29CD5AC000A4E0DE /* Date+Create.swift in Sources */,
+				4EE7C08C2A3770D000140FFD /* UploadResponseData.swift in Sources */,
 				4E5CF67629CD58D100A4E0DE /* CompleteTransactionsController.swift in Sources */,
 				4E49407C29E3A7200058391E /* ZLResultModel.swift in Sources */,
 				4E49408229E3A7200058391E /* ZLPhotoPreviewCell.swift in Sources */,
@@ -2537,6 +2543,7 @@
 				4E63A85B2A258BE1001A0FD4 /* AppImageResponseData.swift in Sources */,
 				4E3BF03629E6DFFA0024AB99 /* CombineView.swift in Sources */,
 				4EF664E229F4D5D4005C3BD1 /* CombineSelectView.swift in Sources */,
+				4EE7C08E2A3770D000140FFD /* UploadResponseData.swift in Sources */,
 				4EF664DA29F4D05C005C3BD1 /* ZLLanguageDefine.swift in Sources */,
 				4E3BF03E29E6E0530024AB99 /* String+Extension.swift in Sources */,
 				4EF664DE29F4D0D7005C3BD1 /* ZLImageEditorLayout.swift in Sources */,
@@ -2723,6 +2730,7 @@
 				4E010E1D29DB0D4400A4B231 /* UberaboutView.swift in Sources */,
 				4ED4B09C29D3E98B005D9758 /* Unused Code.swift in Sources */,
 				4E42A71B29D14B1200BEC185 /* DateInRegion+Math.swift in Sources */,
+				4EE7C08D2A3770D000140FFD /* UploadResponseData.swift in Sources */,
 				4E42A6A929D12DCD00BEC185 /* ShootsApp.swift in Sources */,
 				4E42A70C29D1333300BEC185 /* SlimRectangle.swift in Sources */,
 				4E42A6D929D1314500BEC185 /* ActionTitleButtonView.swift in Sources */,

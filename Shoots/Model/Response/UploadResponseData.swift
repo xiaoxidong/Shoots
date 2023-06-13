@@ -1,21 +1,21 @@
 //
-//  FavoriteResponseData.swift
+//  UploadResponseData.swift
 //  Shoots
 //
-//  Created by XiaoDong Yuan on 2023/5/29.
+//  Created by XiaoDong Yuan on 2023/6/12.
 //
 
 import SwiftUI
 
-struct FavoriteResponseData: Codable {
+struct UploadResponseData: Codable {
     var code: Int
     var msg: String
-    var data: [FavoriteData]
+    var data: [UploadAblumData]   
 }
 
-struct FavoriteData: Codable, Identifiable {
+struct UploadAblumData: Codable, Identifiable {
     var id: String
-    var favoriteFileName: String
+    var linkApplicationName: String
     var countPics: Int
     var previewPics: [Pic]
     
@@ -32,11 +32,11 @@ struct FavoriteData: Codable, Identifiable {
         
         if previewPics.count <= 3 {
             for pic in previewPics {
-                urls.append(pic.compressedPicUrl)
+                urls.insert(pic.compressedPicUrl, at: 0)
             }
         } else {
             for pic in previewPics.prefix(3) {
-                urls.append(pic.compressedPicUrl)
+                urls.insert(pic.compressedPicUrl, at: 0)
             }
         }
         return urls

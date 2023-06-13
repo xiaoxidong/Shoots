@@ -10,6 +10,7 @@ import SwiftUI
 struct FolderCardView: View {
     var images: [String]
     var name: String
+    var picCount: Int
     
     @State var hover = false
     var body: some View {
@@ -33,7 +34,7 @@ struct FolderCardView: View {
             .padding(.top)
             .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
             .overlay(alignment: .bottomLeading) {
-                Text("\(images.count) 张")
+                Text("\(picCount) 张")
                     .font(.system(size: 14, weight: .bold))
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
@@ -82,11 +83,11 @@ struct FolderCardView: View {
 
 struct FolderCardView_Previews: PreviewProvider {
     static var previews: some View {
-        FolderCardView(images: ["s2", "s1"], name: "注册")
+        FolderCardView(images: ["s2", "s1"], name: "注册", picCount: 10)
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
         
-        FolderCardView(images: ["s2", "s1"], name: "注册")
+        FolderCardView(images: ["s2", "s1"], name: "注册", picCount: 10)
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
     }

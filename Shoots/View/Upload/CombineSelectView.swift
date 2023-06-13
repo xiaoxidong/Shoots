@@ -35,6 +35,8 @@ struct CombineSelectView: View {
                         Image(systemName: "chevron.down")
                             .font(.system(size: 16, weight: .semibold))
                             .tint(.shootBlue)
+                            .padding(6)
+                            .contentShape(Rectangle())
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -49,6 +51,9 @@ struct CombineSelectView: View {
                         Text("拼接")
                             .font(.system(size: 16, weight: .semibold))
                             .tint(.shootBlue)
+                            .padding(.horizontal, 4)
+                            .padding(.vertical, 2)
+                            .contentShape(Rectangle())
                     })
                     .disabled(selected.count < 2)
                     .background(

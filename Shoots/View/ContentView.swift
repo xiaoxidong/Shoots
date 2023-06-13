@@ -54,7 +54,7 @@ struct ContentView: View {
                 }
             , alignment: .top
         )
-        .ignoresSafeArea()
+//        .edgesIgnoringSafeArea(.bottom)
         #if os(iOS)
         .fullScreenCover(isPresented: $customUpload, content: {
             CustomUploadView()
@@ -174,6 +174,8 @@ struct ContentView: View {
                             SelfView()
                         } label: {
                             Image("self")
+                                .padding(6)
+                                .contentShape(Rectangle())
                                 .clipShape(Circle())
                         }
                     } else {
@@ -183,6 +185,8 @@ struct ContentView: View {
                             Image("setting")
                                 .renderingMode(.template)
                                 .foregroundColor(.shootBlue)
+                                .padding(6)
+                                .contentShape(Rectangle())
                         }
                     }
                 }
@@ -197,6 +201,8 @@ struct ContentView: View {
                                 }
                             } label: {
                                 Image("upload")
+                                    .padding(6)
+                                    .contentShape(Rectangle())
                             }
                         } else {
                             Menu {
@@ -215,6 +221,8 @@ struct ContentView: View {
                                 }
                             } label: {
                                 Image("upload")
+                                    .padding(6)
+                                    .contentShape(Rectangle())
                             }
                         }
                     } else {
@@ -231,6 +239,8 @@ struct ContentView: View {
                             }
                         } label: {
                             Image("upload")
+                                .padding(6)
+                                .contentShape(Rectangle())
                         }
                     }
                 }

@@ -9,18 +9,19 @@ import SwiftUI
 
 struct AppView: View {
     var id: String
-    var app: Application = Application(name: "Instagram", image: "Instagram", type: "社交", info: appInfo, url: "https://apps.apple.com/us/app/id389801252", flows: flows)
+//    var app: Application = Application(name: "Instagram", image: "Instagram", type: "社交", info: appInfo, url: "https://apps.apple.com/us/app/id389801252", flows: flows)
     var topPadding: CGFloat = 0
     
     @State var footerRefreshing = false
     @State var noMore = false
     @EnvironmentObject var user: UserViewModel
+    @State var detail: AppDetailResponseData? = nil
+    
     var body: some View {
         ScrollView {
             Group {
                 header
-                    .padding(.top, topPadding)
-                if !app.flows.isEmpty {
+                if true {
                     flowView
                 }
                 imagesView
@@ -38,60 +39,64 @@ struct AppView: View {
             .onAppear {
                 Task {
                     await user.getAppDetail(id: id) { success in
-                        
+                        self.detail = success
                     }
+                    await user.appFlows(id: id)
                     await user.appPics(id: id)
                 }
             }
     }
     
+    @ViewBuilder
     var header: some View {
-        VStack(spacing: 16) {
-            HStack(spacing: 16) {
-                Image(app.image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 86, height: 86)
-                    .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
-                
-                VStack(alignment: .leading) {
-                    Text(app.name)
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.shootBlack)
-                    Text(app.type)
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(.shootGray)
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 4)
-                        .background(Color.shootBlue.opacity(0.1))
-                        .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-                }
-                Spacer()
-                
-                Button {
-                    if let url = URL(string: app.url) {
-                        #if os(iOS)
-                        UIApplication.shared.open(url)
-                        #else
-                        NSWorkspace.shared.open(url)
-                        #endif
+        if let detail = detail, let pic = detail.applicationTypeName {
+            VStack(spacing: 16) {
+                HStack(spacing: 16) {
+                    Image(detail.appLogoUrl ?? "")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 86, height: 86)
+                        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+                    
+                    VStack(alignment: .leading) {
+                        Text(detail.linkApplicationName ?? "")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(.shootBlack)
+                        Text(detail.applicationTypeName ?? "")
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundColor(.shootGray)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 4)
+                            .background(Color.shootBlue.opacity(0.1))
+                            .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
                     }
-                } label: {
-                    HStack(spacing: 2) {
-                        Text("App Store")
-                        Image(systemName: "chevron.forward")
-                    }.font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.shootBlue)
-                }.buttonStyle(.plain)
-            }
-            
-            Text(app.info)
-                .font(.system(size: 15, weight: .medium))
-                .foregroundColor(.shootBlack)
-                .lineLimit(3)
-                .lineSpacing(4)
-                .fixedSize(horizontal: false, vertical: true)
-        }.padding(.horizontal)
+                    Spacer()
+                    
+                    Button {
+                        if let url = URL(string: detail.appUrl ?? "") {
+                            #if os(iOS)
+                            UIApplication.shared.open(url)
+                            #else
+                            NSWorkspace.shared.open(url)
+                            #endif
+                        }
+                    } label: {
+                        HStack(spacing: 2) {
+                            Text("App Store")
+                            Image(systemName: "chevron.forward")
+                        }.font(.system(size: 16, weight: .bold))
+                            .foregroundColor(.shootBlue)
+                    }.buttonStyle(.plain)
+                }
+                
+                Text(detail.description ?? "")
+                    .font(.system(size: 15, weight: .medium))
+                    .foregroundColor(.shootBlack)
+                    .lineLimit(3)
+                    .lineSpacing(4)
+                    .fixedSize(horizontal: false, vertical: true)
+            }.padding(.horizontal).padding(.top, topPadding)
+        }
     }
     
     @State var flow: Flow? = nil
@@ -105,12 +110,12 @@ struct AppView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 36) {
-                    ForEach(app.flows) { flow in
-                        FolderCardView(images: flow.images, name: flow.name)
-                            .frame(height: 286)
-                            .onTapGesture {
-                                self.flow = flow
-                            }
+                    ForEach(1...4, id: \.self) { flow in
+//                        FolderCardView(images: flow.images, name: flow.name, picCount: 10)
+//                            .frame(height: 286)
+//                            .onTapGesture {
+//                                self.flow = flow
+//                            }
                     }
                 }.padding(.horizontal, 36)
             }

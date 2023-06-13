@@ -168,9 +168,9 @@ struct AlbumView: View {
         ScrollView {
             FeedView(shoots: favoriteFeed)
             
-            LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
-                loadMore()
-            }
+//            LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
+//                loadMore()
+//            }
         }.enableRefresh()
     }
     

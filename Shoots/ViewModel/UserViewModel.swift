@@ -186,6 +186,13 @@ class UserViewModel: ObservableObject {
     }
     
     @Published var favorites: [FavoriteData] = []
+    var favoritesPicNum: Int {
+        var num = 0
+        favorites.forEach { favorite in
+            num += favorite.countPics
+        }
+        return num
+    }
     func getFavorites() async {
         AF.request("\(baseURL)\(URLPath.allFavorite.path)", method: .get, headers: ["Authorization" : "Bearer \(token)"]).responseDecodable(of: FavoriteResponseData.self) { response in
             switch response.result {
@@ -198,12 +205,20 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    @Published var app: [UploadAblumData] = []
+    var appPicNum: Int {
+        var num: Int = 0
+        app.forEach { app in
+            num += app.countPics
+        }
+        return num
+    }
     func uploadPicGroup() async {
-        AF.request("\(baseURL)\(URLPath.uploadPicGroup.path)", method: .get, headers: ["Authorization" : "Bearer \(token)"]).responseDecodable(of: FavoriteResponseData.self) { response in
+        AF.request("\(baseURL)\(URLPath.uploadPicGroup.path)", method: .get, headers: ["Authorization" : "Bearer \(token)"]).responseDecodable(of: UploadResponseData.self) { response in
             switch response.result {
             case .success(let favorite):
                 print(favorite)
-                self.favorites = favorite.data
+                self.app = favorite.data
             case .failure(let error):
                 print(error)
             }
@@ -313,10 +328,13 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    func appFlows(id: String) async {
+        
+    }
     
-    @State var appPageNumber: Int = 0
+    @State var appPageNumber: Int = 1
     func appPics(id: String) async {
-        appPageNumber += 1
+//        appPageNumber += 1
         AF.request("\(baseURL)\(URLPath.appPics.path)", method: .post, parameters: ["pageSize" : numberPerpage, "pageNum" : appPageNumber, "orderByColumn" : "true", "isAsc" : "true", "linkApplicationId" : id], headers: ["Authorization" : "Bearer \(token)"]).responseDecodable(of: AppImageResponseData.self) { response in
             switch response.result {
             case .success(let app):
@@ -330,7 +348,7 @@ class UserViewModel: ObservableObject {
     
     @Published var userPattern: [Pattern] = []
     func getUserPattern() async {
-        AF.request("\(baseURL)\(URLPath.userPattern.path)", method: .post, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"]).responseDecodable(of: UserPatternResponseData.self) { response in
+        AF.request("\(baseURL)\(URLPath.userPattern.path)", method: .get, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"]).responseDecodable(of: UserPatternResponseData.self) { response in
             switch response.result {
             case .success(let userPattern):
                 print(userPattern)
@@ -350,6 +368,19 @@ class UserViewModel: ObservableObject {
                 if let json = userPattern as? [String: Any] {
                     print(json["msg"] as Any)
                 }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    @Published var patternFeed: [Picture] = []
+    func getPatternPics(id: String) async {
+        AF.request("\(baseURL)\(URLPath.patternPics.path)", method: .post, parameters: ["pageSize" : 20, "pageNum": 1, "orderByColumn": "", "isAsc": "true", "designPatternId": id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"]).responseDecodable(of: FeedResponseData.self) { response in
+            switch response.result {
+            case .success(let feeds):
+                print(feeds)
+                self.patternFeed.append(contentsOf: feeds.rows)
             case .failure(let error):
                 print(error)
             }

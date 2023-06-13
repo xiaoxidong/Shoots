@@ -240,18 +240,12 @@ struct DetailView: View {
                     FeedbackManager.impact(style: .medium)
                     #endif
                     if user.login {
-                        if self.detail?.isFavorite == 0 {
-                            withAnimation(.spring()) {
-                                showDetail = false
-                                showSave = true
-                            }
-                            Task {
-                                await user.getFavorites()
-                            }
-                        } else {
-                            // 取消收藏
-                            
-                            self.detail?.isFavorite = 0
+                        withAnimation(.spring()) {
+                            showDetail = false
+                            showSave = true
+                        }
+                        Task {
+                            await user.getFavorites()
                         }
                     } else {
                         showLogin.toggle()
@@ -356,7 +350,7 @@ struct DetailView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 26) {
                         ForEach(user.favorites) { favorite in
-                            FolderCardView(images: favorite.pics, name: favorite.favoriteFileName)
+                            FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
                                 .frame(minWidth: 156)
                                 .overlay(
                                     Group {
@@ -436,6 +430,7 @@ struct DetailView: View {
                         
                         withAnimation(.spring()) {
                             showNewFolder = false
+                            name = ""
                         }
                     }
                 } label: {

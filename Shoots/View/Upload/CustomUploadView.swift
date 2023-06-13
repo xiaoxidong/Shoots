@@ -111,13 +111,13 @@ struct CustomUploadView: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        FolderCardView(images: ["s3", "s2"], name: "Instagram")
+                        FolderCardView(images: ["s3", "s2"], name: "Instagram", picCount: 10)
                             .frame(minWidth: 156)
-                        FolderCardView(images: ["s4", "s2"], name: "Instagram")
+                        FolderCardView(images: ["s4", "s2"], name: "Instagram", picCount: 10)
                             .frame(minWidth: 156)
-                        FolderCardView(images: ["s5", "s2"], name: "Instagram")
+                        FolderCardView(images: ["s5", "s2"], name: "Instagram", picCount: 10)
                             .frame(minWidth: 156)
-                        FolderCardView(images: ["s7", "s2"], name: "Instagram")
+                        FolderCardView(images: ["s7", "s2"], name: "Instagram", picCount: 10)
                             .frame(minWidth: 156)
                     }.padding(.horizontal)
                 }

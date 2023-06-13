@@ -89,6 +89,8 @@ struct UploadView: View {
                     Image(systemName: "xmark")
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.shootBlack)
+                        .padding(4)
+                        .contentShape(Rectangle())
                 }.frame(maxWidth: .infinity, alignment: .leading)
                 Spacer(minLength: 0)
                 if uploadImages.count < 2 {

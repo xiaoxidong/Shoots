@@ -56,6 +56,7 @@ struct IOSSearchDefaultView: View {
                 }
             }.padding(.top)
         }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .onAppear {
             Task {
                 await user.getApps()
