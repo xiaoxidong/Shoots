@@ -12,9 +12,3 @@ struct PatternResponseData: Codable {
     var msg: String
     var data: [Pattern]
 }
-
-struct Pattern: Codable, Identifiable, Hashable {
-    var id: String
-    var designPatternName: String
-    var count: String?
-}

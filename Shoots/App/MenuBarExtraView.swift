@@ -15,6 +15,8 @@ struct MenuBarExtraView: View {
     @State var searchText = ""
     @Environment(\.openWindow) var openWindow
     @AppStorage("showAI") var showAI = true
+    @StateObject var home: HomeFeedViewModel = HomeFeedViewModel()
+    
     var body: some View {
         VStack {
             HStack {
@@ -66,14 +68,16 @@ struct MenuBarExtraView: View {
             }.padding([.horizontal, .top], 14)
             
             if searchText == "Instagram" {
-                AppView(app: appData, topPadding: 16)
+                AppView(id: "appData", topPadding: 16)
             } else if searchText == "关注" {
                 feed
             } else {
                 ScrollView {
-                    FeedView(shoots: homeData)
+//                    FeedView(shoots: homeData)
                 }
             }
+        }.onAppear {
+            load()
         }
     }
     
@@ -82,7 +86,7 @@ struct MenuBarExtraView: View {
     
     var feed: some View {
         ScrollView {
-            FeedView(shoots: homeData)
+            FeedView(shoots: home.homeFeed)
             
             LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
                 loadMore()
@@ -90,7 +94,7 @@ struct MenuBarExtraView: View {
         }.enableRefresh()
             .refreshable {
                 // 首页下拉刷新
-                
+                load()
             }
     }
     
@@ -101,6 +105,10 @@ struct MenuBarExtraView: View {
                 noMore = true
             }
         }
+    }
+    
+    func load() {
+        home.getHomeFirstPageFeed()
     }
 }
 

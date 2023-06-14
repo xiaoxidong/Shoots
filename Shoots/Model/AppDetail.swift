@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AppDetailResponseData: Codable {
+struct AppDetail: Codable {
     var linkApplicationName: String?
     var linkApplicationOfficialName: String?
     var applicationTypeName: String?

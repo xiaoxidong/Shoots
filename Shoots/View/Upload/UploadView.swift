@@ -25,6 +25,7 @@ struct UploadView: View {
     @State var updateIndicator = true
     let screen = UIScreen.main.bounds
     @EnvironmentObject var user: UserViewModel
+    @EnvironmentObject var info: InfoViewModel
     var body: some View {
         TabView(selection: $selection) {
             ForEach(uploadImages.indices, id: \.self) { indice in
@@ -74,7 +75,7 @@ struct UploadView: View {
                 }
             }
             .onAppear {
-                uploadData.append(LocalImageData(image: uploadImages[0].pngData()!, app: "sad", pattern: "asd,asdf", fileName: "", fileSuffix: ""))
+                uploadData.append(LocalImageData(image: uploadImages[0].pngData()!, app: "Poke", pattern: "卡片,粉丝", fileName: "", fileSuffix: ""))
             }
     }
     
@@ -132,18 +133,18 @@ struct UploadView: View {
     @State var showBluer = false
     @State var showCombine = false
     @State var appTexts: [String] = ["Instagram", "Facebook", "Paper", "微博", "知乎", "Twitter", "抖音"]
-    var appRsults: [Apps] {
+    var appRsults: [AppInfo] {
         if appText == "" {
-            return user.apps
+            return info.apps
         } else {
-            return user.apps.filter({ $0.linkApplicationName.transToLowercasedPinYin().contains(appText.transToLowercasedPinYin()) })
+            return info.apps.filter({ $0.linkApplicationName.transToLowercasedPinYin().contains(appText.transToLowercasedPinYin()) })
         }
     }
     var tagRsults: [Pattern] {
         if tagText.components(separatedBy: ",").last == "" {
-            return user.patterns
+            return info.patterns
         } else {
-            return user.patterns.filter({ $0.designPatternName.transToLowercasedPinYin().contains(tagText.components(separatedBy: ",").last?.transToLowercasedPinYin() ?? "") })
+            return info.patterns.filter({ $0.designPatternName.transToLowercasedPinYin().contains(tagText.components(separatedBy: ",").last?.transToLowercasedPinYin() ?? "") })
         }
     }
     @State var tagTexts: [String] = ["设置", "粉丝", "信息流", "自定义内容", "卡片", "用户中心", "推荐", "Setting"]

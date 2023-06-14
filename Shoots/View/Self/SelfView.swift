@@ -14,7 +14,7 @@ struct SelfView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
-    @EnvironmentObject var user: UserViewModel
+    @StateObject var selfPic: SelfViewModel = SelfViewModel()
     var body: some View {
         #if os(iOS)
         content
@@ -70,7 +70,7 @@ struct SelfView: View {
                 tagView
                 ScrollView {
                     // 列表
-                    FeedView(shoots: user.patternFeed)
+                    FeedView(shoots: selfPic.patternFeed)
                     
                     LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
                         loadMore()
@@ -87,9 +87,9 @@ struct SelfView: View {
                             withAnimation(.spring()) {
                                 showTag.toggle()
                             }
-                            if showTag && user.userPattern.isEmpty {
+                            if showTag && selfPic.userPattern.isEmpty {
                                 Task {
-                                    await user.getUserPattern()
+                                    await selfPic.getUserPattern()
                                 }
                             }
                         } label: {
@@ -100,7 +100,7 @@ struct SelfView: View {
                     Divider()
                 }.padding(.horizontal)
                 
-                if !user.app.isEmpty {
+                if !selfPic.apps.isEmpty {
                     ScrollView {
                         folderView
                     }
@@ -109,8 +109,8 @@ struct SelfView: View {
         }
         .onAppear {
             Task {
-                await user.getFavorites()
-                await user.uploadPicGroup()
+                await selfPic.getFavorites()
+                await selfPic.uploadPicGroup()
             }
         }
     }
@@ -129,14 +129,14 @@ struct SelfView: View {
         HStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 16) {
-                    ForEach(user.userPattern, id: \.self) { pattern in
+                    ForEach(selfPic.userPattern, id: \.self) { pattern in
                         Button {
                             withAnimation(.spring()) {
                                 selected = pattern.designPatternName
                             }
-                            user.patternFeed.removeAll()
+//                            user.patternFeed.removeAll()
                             Task {
-                                await user.getPatternPics(id: pattern.id)
+                                await selfPic.getPatternPics(id: pattern.id)
                             }
                         } label: {
                             Text(pattern.designPatternName)
@@ -145,10 +145,10 @@ struct SelfView: View {
                                 .padding(.bottom, 12)
                         }.buttonStyle(.plain)
                     }.onAppear {
-                        if let pattern = user.userPattern.first {
+                        if let pattern = selfPic.userPattern.first {
                             selected = pattern.designPatternName
                             Task {
-                                await user.getPatternPics(id: pattern.id)
+                                await selfPic.getPatternPics(id: pattern.id)
                             }
                         }
                     }
@@ -173,7 +173,7 @@ struct SelfView: View {
                 Text("上传截图")
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.shootBlack)
-                Text("\(user.app.count) 个应用 \(user.appPicNum) 张截图")
+                Text("\(selfPic.apps.count) 个应用 \(selfPic.appPicNum) 张截图")
                     .font(.system(size: 13, weight: .regular))
                     .foregroundColor(.shootGray)
             }.padding(.horizontal)
@@ -182,7 +182,7 @@ struct SelfView: View {
             #if os(iOS)
             if horizontalSizeClass == .compact {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
-                    ForEach(user.app) { app in
+                    ForEach(selfPic.apps) { app in
                         NavigationLink {
                             AlbumView(id: "", name: .constant(""))
                         } label: {
@@ -193,7 +193,7 @@ struct SelfView: View {
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
-                        ForEach(user.app) { app in
+                        ForEach(selfPic.apps) { app in
                             NavigationLink {
                                 AlbumView(id: "", name: .constant(""))
                             } label: {
@@ -216,7 +216,8 @@ struct SelfView: View {
                 }
             }.padding(.horizontal)
                 .sheet(isPresented: $showMacFolderView) {
-                    AlbumView().sheetFrameForMac()
+                    AlbumView(id: "", name: .constant(""))
+                        .sheetFrameForMac()
                 }
             #endif
             
@@ -224,7 +225,7 @@ struct SelfView: View {
                 Text("收藏截图")
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.shootBlack)
-                Text("\(user.favorites.count) 个收藏夹 \(user.favoritesPicNum) 张截图")
+                Text("\(selfPic.favorites.count) 个收藏夹 \(selfPic.favoritesPicNum) 张截图")
                     .font(.system(size: 13, weight: .regular))
                     .foregroundColor(.shootGray)
             }.padding(.horizontal)
@@ -233,7 +234,7 @@ struct SelfView: View {
             #if os(iOS)
             if horizontalSizeClass == .compact {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
-                    ForEach($user.favorites) { $favorite in
+                    ForEach($selfPic.favorites) { $favorite in
                         NavigationLink {
                             AlbumView(id: favorite.id, name: $favorite.favoriteFileName)
                         } label: {
@@ -266,7 +267,8 @@ struct SelfView: View {
                 }
             }.padding(.horizontal)
             .sheet(isPresented: $showMacFolderView) {
-                AlbumView().sheetFrameForMac()
+                AlbumView(id: "", name: .constant(""))
+                    .sheetFrameForMac()
             }
             #endif
         }

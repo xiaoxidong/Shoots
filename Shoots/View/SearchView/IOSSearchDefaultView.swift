@@ -10,12 +10,12 @@ import SwiftUI
 struct IOSSearchDefaultView: View {
     @Binding var searchText: String
     
-    @EnvironmentObject var user: UserViewModel
+    @EnvironmentObject var info: InfoViewModel
     var body: some View {
         ScrollView {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 26) {
-                    ForEach(user.apps) { app in
+                    ForEach(info.apps) { app in
                         Button {
                             searchText = app.linkApplicationName
                         } label: {
@@ -37,7 +37,7 @@ struct IOSSearchDefaultView: View {
             
             // Tag
             VStack(spacing: 16) {
-                ForEach(user.patterns) { pattern in
+                ForEach(info.patterns) { pattern in
                     Button {
                         searchText = pattern.designPatternName
                     } label: {
@@ -59,8 +59,8 @@ struct IOSSearchDefaultView: View {
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .onAppear {
             Task {
-                await user.getApps()
-                await user.getAllPatterns()
+                await info.getApps()
+                await info.getAllPatterns()
             }
         }
     }

@@ -15,12 +15,12 @@ struct IPadSearchDefaultView: View {
             GridItem(.fixed(90.00), spacing: 20),
             GridItem(.fixed(90.00), spacing: 20),
         ]
-    @EnvironmentObject var user: UserViewModel
+    @EnvironmentObject var info: InfoViewModel
     var body: some View {
         ScrollView {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: rows, alignment: .center, spacing: 16) {
-                    ForEach(user.apps) { app in
+                    ForEach(info.apps) { app in
                         Button {
                             searchText = app.linkApplicationName
                         } label: {
@@ -42,7 +42,7 @@ struct IPadSearchDefaultView: View {
             
             // Tag
             FlowLayout(mode: .vstack,
-                       items: user.patterns,
+                       items: info.patterns,
                        itemSpacing: 4) { pattern in
                 Button {
                     searchText = pattern.designPatternName
@@ -58,11 +58,6 @@ struct IPadSearchDefaultView: View {
                 }.buttonStyle(.plain)
             }.padding(.top)
                 .padding(.horizontal)
-        }.onAppear {
-            Task {
-                await user.getAllPatterns()
-                await user.getApps()
-            }
         }
     }
 }

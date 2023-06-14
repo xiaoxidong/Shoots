@@ -101,20 +101,7 @@ struct ContentView: View {
             }
         })
         #endif
-        .onChange(of: Reachability.isConnectedToNetwork(), perform: { newValue in
-            // 第一次打开的时候没有网络授权，授权之后再次请求网络
-            if newValue {
-                Task {
-                    await loadData()
-                }
-            }
-        })
         .onAppear {
-            // 请求第一页的数据
-            Task {
-                await loadData()
-            }
-            
             // DEBUG 模式下显示自定义上传
             #if DEBUG
             showCustomUpload = true
@@ -132,7 +119,6 @@ struct ContentView: View {
             #else
                 .frame(minWidth: 280)
             #endif
-
             homeFeed
         }
     }
@@ -391,28 +377,19 @@ struct ContentView: View {
             }.opacity(showHomeNew ? 1 : 0)
         }
     }
-    // MARK: - 首页方法
-    func loadData() async {
-        Task {
-            await user.getHomeFirstPageFeed()
-        }
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static let user = UserViewModel()
-    static let homeVM = HomeViewModel()
     
     static var previews: some View {
         ContentView()
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
             .environmentObject(user)
-            .environmentObject(homeVM)
         ContentView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
             .environmentObject(user)
-            .environmentObject(homeVM)
     }
 }

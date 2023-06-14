@@ -10,7 +10,11 @@ import SDWebImageSwiftUI
 
 struct ImageView: View {
     var urlString: String
+    #if os(iOS)
     @Binding var image: UIImage?
+    #else
+    @Binding var image: NSImage?
+    #endif
     
     var body: some View {
         WebImage(url: URL(string: urlString))

@@ -69,11 +69,11 @@ struct ShootsApp: App {
     }
     
     @StateObject var user: UserViewModel = UserViewModel()
-    @StateObject var homeVM: HomeViewModel = HomeViewModel()
+    @StateObject var info: InfoViewModel = InfoViewModel()
     var content: some View {
         ContentView()
             .environmentObject(user)
-            .environmentObject(homeVM)
+            .environmentObject(info)
     }
     
     #if os(macOS)

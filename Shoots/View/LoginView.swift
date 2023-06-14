@@ -85,7 +85,7 @@ struct LoginView: View {
                     let firstName = credentials.fullName?.givenName
                     let lastName = credentials.fullName?.familyName
                     
-                    user.login(appleUserId: userID, identityToken: identityTokenString, email: email, fullName: "\(firstName ?? "") \(lastName ?? "")") { success in
+                    user.login(appleUserId: userID, identityToken: identityTokenString, email: email ?? "", fullName: "\(firstName ?? "") \(lastName ?? "")") { success in
                         withAnimation(.spring()) {
                             login.toggle()
                         }

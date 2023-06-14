@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ImageDetailResponseData: Codable {
+struct ImageDetail: Codable {
     var id: String?
     var picUrl: String
     var compressedPicUrl: String

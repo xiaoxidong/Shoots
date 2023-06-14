@@ -14,9 +14,9 @@ struct AppView: View {
     
     @State var footerRefreshing = false
     @State var noMore = false
-    @EnvironmentObject var user: UserViewModel
-    @State var detail: AppDetailResponseData? = nil
+//    @EnvironmentObject var user: UserViewModel
     
+    @StateObject var app: AppViewModel = AppViewModel()
     var body: some View {
         ScrollView {
             Group {
@@ -38,31 +38,31 @@ struct AppView: View {
             }
             .onAppear {
                 Task {
-                    await user.getAppDetail(id: id) { success in
-                        self.detail = success
+                    await app.getAppDetail(id: id) { success in
+                        
                     }
-                    await user.appFlows(id: id)
-                    await user.appPics(id: id)
+                    await app.appFlows(id: id)
+                    await app.appPics(id: id)
                 }
             }
     }
     
     @ViewBuilder
     var header: some View {
-        if let detail = detail, let pic = detail.applicationTypeName {
+        if let app = app.app, let pic = app.applicationTypeName {
             VStack(spacing: 16) {
                 HStack(spacing: 16) {
-                    Image(detail.appLogoUrl ?? "")
+                    Image(app.appLogoUrl ?? "")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 86, height: 86)
                         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
                     
                     VStack(alignment: .leading) {
-                        Text(detail.linkApplicationName ?? "")
+                        Text(app.linkApplicationName ?? "")
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(.shootBlack)
-                        Text(detail.applicationTypeName ?? "")
+                        Text(app.applicationTypeName ?? "")
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.shootGray)
                             .padding(.horizontal, 6)
@@ -73,7 +73,7 @@ struct AppView: View {
                     Spacer()
                     
                     Button {
-                        if let url = URL(string: detail.appUrl ?? "") {
+                        if let url = URL(string: app.appUrl ?? "") {
                             #if os(iOS)
                             UIApplication.shared.open(url)
                             #else
@@ -89,7 +89,7 @@ struct AppView: View {
                     }.buttonStyle(.plain)
                 }
                 
-                Text(detail.description ?? "")
+                Text(app.description ?? "")
                     .font(.system(size: 15, weight: .medium))
                     .foregroundColor(.shootBlack)
                     .lineLimit(3)
@@ -140,7 +140,7 @@ struct AppView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading)
             
-            FeedView(shoots: user.appFeed)
+            FeedView(shoots: app.appFeed)
         }.padding(.top, 26)
     }
     

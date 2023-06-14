@@ -16,6 +16,8 @@ struct HomeView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
+    
+    @StateObject var home: HomeFeedViewModel = HomeFeedViewModel()
     var body: some View {
         if isSearching || searchText != "" {
             #if os(iOS)
@@ -34,7 +36,7 @@ struct HomeView: View {
             }
             #else
             if searchText != "" {
-                AppView(app: appData, topPadding: 16)
+                AppView(id: "appData", topPadding: 16)
             } else {
                 feed
             }
@@ -44,25 +46,33 @@ struct HomeView: View {
         }
     }
     
-    
-    
-    @EnvironmentObject var user: UserViewModel
     var feed: some View {
         ScrollView {
-            FeedView(shoots: user.homeFeed)
+            FeedView(shoots: home.homeFeed)
             
-            LoadMoreView(footerRefreshing: $user.footerRefreshing, noMore: $user.noMore) {
+            LoadMoreView(footerRefreshing: $home.footerRefreshing, noMore: $home.noMore) {
                 Task {
-                    await user.nextPage()
+                    await home.nextPage()
                 }
             }
         }.enableRefresh()
             .refreshable {
                 // 首页下拉刷新
-                Task {
-                    await user.getHomeFirstPageFeed()
-                }
+                loadData()
             }
+            .onChange(of: Reachability.isConnectedToNetwork(), perform: { newValue in
+                // 第一次打开的时候没有网络授权，授权之后再次请求网络
+                if newValue {
+                    loadData()
+                }
+            })
+            .onAppear {
+                loadData()
+            }
+    }
+    
+    func loadData() {
+        home.getHomeFirstPageFeed()
     }
 }
 
@@ -72,11 +82,9 @@ struct HomeView_Previews: PreviewProvider {
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
             .environmentObject(UserViewModel())
-            .environmentObject(HomeViewModel())
         HomeView(searchText: .constant(""))
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
             .environmentObject(UserViewModel())
-            .environmentObject(HomeViewModel())
     }
 }

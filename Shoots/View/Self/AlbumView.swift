@@ -16,7 +16,9 @@ struct AlbumView: View {
     @State var showEditName = false
     @State var delete = false
     @Environment(\.dismiss) var dismiss
+    @StateObject var favoriteDetail = FavoriteDetailViewModel()
     @EnvironmentObject var user: UserViewModel
+    
     @State var favoriteFeed: [Picture] = []
     var body: some View {
         #if os(iOS)
@@ -256,7 +258,7 @@ struct AlbumView: View {
                 }.buttonStyle(.plain)
                 Button {
                     Task {
-                        await user.editFavoriteName(id: id, name: editName) { success in
+                        await favoriteDetail.editFavoriteName(id: id, name: editName) { success in
                             if success {
                                 name = editName
                                 withAnimation(.spring()) {
@@ -310,7 +312,7 @@ struct AlbumView: View {
                 }.buttonStyle(.plain)
                 Button {
                     Task {
-                        await user.removeFavorite(id: selected) { success in
+                        await favoriteDetail.removeFavorite(id: selected) { success in
                             
                         }
                     }
@@ -336,7 +338,7 @@ struct AlbumView: View {
     }
     
     func favoritePics(id: String) async {
-        AF.request("\(baseURL)\(URLPath.favoritePics.path)", method: .post, parameters: ["pageSize" : 20, "pageNum": 1, "orderByColumn": "", "isAsc": "true", "favoriteFileId": id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(user.token)"]).responseDecodable(of: FeedResponseData.self) { response in
+        AF.request("\(baseURL)\(APIService.URLPath.favoritePics.path)", method: .post, parameters: ["pageSize" : 20, "pageNum": 1, "orderByColumn": "", "isAsc": "true", "favoriteFileId": id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(user.token)"]).responseDecodable(of: FeedResponseData.self) { response in
             switch response.result {
             case .success(let feeds):
                 print(feeds)

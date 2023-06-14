@@ -20,9 +20,13 @@ struct DetailView: View {
     @State var showAlert = false
     @State var alertText = ""
     @EnvironmentObject var user: UserViewModel
-    @State var detail: ImageDetailResponseData? = nil
+    @EnvironmentObject var detail: DetailViewModel
     @State var showLogin = false
+    #if os(iOS)
     @State var image: UIImage? = nil
+    #else
+    @State var image: NSImage? = nil
+    #endif
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -39,10 +43,9 @@ struct DetailView: View {
                     if showSave {
                         showSave = false
                     } else {
-                        if detail == nil {
+                        if detail.detail == nil {
                             Task {
-                                await user.getImageDetail(id: shoot.id) { detail in
-                                    self.detail = detail
+                                await detail.getImageDetail(id: shoot.id) { success in
                                     withAnimation(.spring()) {
                                         showDetail = true
                                     }
@@ -135,7 +138,7 @@ struct DetailView: View {
                 showApp.toggle()
             } label: {
                 HStack {
-                    Text(detail?.linkApplicationName ?? "图片详情")
+                    Text(detail.detail?.linkApplicationName ?? "图片详情")
                         .font(.system(size: 18, weight: .bold))
                         .foregroundColor(.shootBlack)
                     Image("link")
@@ -145,7 +148,7 @@ struct DetailView: View {
                     #if os(iOS)
                     NavigationView {
                         AppView(id: shoot.linkApplicationId ?? "")
-                            .navigationTitle(detail?.linkApplicationName ?? "图片详情")
+                            .navigationTitle(detail.detail?.linkApplicationName ?? "图片详情")
                             .navigationBarTitleDisplayMode(.inline)
                             .toolbar {
                                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -178,7 +181,7 @@ struct DetailView: View {
                     .clipShape(Circle())
                 
                 VStack(alignment: .leading) {
-                    Text(self.detail?.userName ?? "上传用户")
+                    Text(detail.detail?.userName ?? "上传用户")
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.shootBlack)
                     
@@ -189,7 +192,7 @@ struct DetailView: View {
                             .frame(width: 16, height: 16)
                         
                         Group {
-                            Text("\(self.detail?.uploadNum ?? "1")")
+                            Text("\(detail.detail?.uploadNum ?? "1")")
                             + Text(" 图片")
                         }
                         .font(.system(size: 14, weight: .medium))
@@ -200,7 +203,7 @@ struct DetailView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 16, height: 16)
                         Group {
-                            Text("\(self.detail?.favoriteNum ?? "1")")
+                            Text("\(detail.detail?.favoriteNum ?? "1")")
                             + Text(" 图片")
                         }
                         .font(.system(size: 14, weight: .medium))
@@ -211,9 +214,9 @@ struct DetailView: View {
             }
             
             // 设计模式
-            if let detail = detail {
+            if let pattern = detail.detail {
                 FlowLayout(mode: .vstack,
-                           items: detail.designPatternList,
+                           items: pattern.designPatternList,
                            itemSpacing: 4) { designPattern in
                     Button {
                         search = designPattern.designPatternName
@@ -245,7 +248,7 @@ struct DetailView: View {
                             showSave = true
                         }
                         Task {
-                            await user.getFavorites()
+                            await detail.getFavorites()
                         }
                     } else {
                         showLogin.toggle()
@@ -253,6 +256,7 @@ struct DetailView: View {
                 }
                 Spacer(minLength: 0)
                 if let image = image {
+                    #if os(iOS)
                     ShareLink(item: Image(uiImage: image), preview: SharePreview("Shoots", image: Image(uiImage: image))) {
                         VStack {
                             Image("share")
@@ -264,7 +268,19 @@ struct DetailView: View {
                                 .foregroundColor(.shootBlack)
                         }
                     }.buttonStyle(.plain)
-                    
+                    #else
+                    ShareLink(item: Image(nsImage: image), preview: SharePreview("Shoots", image: Image(nsImage: image))) {
+                        VStack {
+                            Image("share")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30, height: 30)
+                            Text("分享")
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(.shootBlack)
+                        }
+                    }.buttonStyle(.plain)
+                    #endif
                     Spacer(minLength: 0)
                 }
                 
@@ -339,7 +355,7 @@ struct DetailView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
             
-            if user.favorites.isEmpty {
+            if detail.favorites.isEmpty {
                 VStack {
                     Image("empty")
                     Text("收藏夹为空")
@@ -349,7 +365,7 @@ struct DetailView: View {
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 26) {
-                        ForEach(user.favorites) { favorite in
+                        ForEach(detail.favorites) { favorite in
                             FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
                                 .frame(minWidth: 156)
                                 .overlay(
@@ -362,9 +378,8 @@ struct DetailView: View {
                                 .onTapGesture {
                                     // 收藏
                                     Task {
-                                        await user.savePics(pics: [shoot.id], favoriteFileId: favorite.id)
+                                        await detail.savePics(pics: [shoot.id], favoriteFileId: favorite.id)
                                     }
-                                    self.detail?.isFavorite = 1
                                     #if os(iOS)
                                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                                         // 收藏成功
@@ -425,7 +440,7 @@ struct DetailView: View {
                         showAlert = true
                     } else {
                         Task {
-                            await user.addFavorites(name: name)
+                            await detail.addFavorites(name: name)
                         }
                         
                         withAnimation(.spring()) {

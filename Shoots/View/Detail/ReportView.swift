@@ -34,7 +34,7 @@ struct ReportView: View {
     
     @State var text = ""
     @State var type = "包含敏感信息"
-    @EnvironmentObject var user: UserViewModel
+    @StateObject var report: ReportViewModel = ReportViewModel()
     var content: some View {
         ScrollView(showsIndicators: false) {
             Text("问题类型")
@@ -87,9 +87,9 @@ struct ReportView: View {
         }.overlay(alignment: .bottom) {
             Button {
                 // 反馈问题
-                let report = [Report(id: shoot.id, type: type, description: text)]
+                let data = [Report(id: shoot.id, type: type, description: text)]
                 Task {
-                    await user.report(picList: report)
+                    await report.report(picList: data)
                 }
                 // 反馈成功，返回上一级页面并给出提示
                 dismiss()

@@ -79,15 +79,15 @@ struct CustomUploadView: View {
     var photoView: some View {
         ScrollView {
             LazyVGrid(columns: columns, alignment: .leading, spacing: 2) {
-                ForEach(homeData) { shoot in
-                    Image(shoot.imageUrl)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(maxWidth: .infinity, alignment: .top)
-                        .onDrag {
-                            return NSItemProvider(object: shoot.imageUrl as NSItemProviderWriting)
-                        }
-                }
+//                ForEach(homeData) { shoot in
+//                    Image(shoot.imageUrl)
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fill)
+//                        .frame(maxWidth: .infinity, alignment: .top)
+//                        .onDrag {
+//                            return NSItemProvider(object: shoot.imageUrl as NSItemProviderWriting)
+//                        }
+//                }
             }
         }
     }
