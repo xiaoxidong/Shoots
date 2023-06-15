@@ -125,7 +125,7 @@ struct CustomUploadView: View {
             }.frame(maxWidth: .infinity)
                 .padding(.bottom, 36)
                 .padding(.top, 8)
-                .background(Color.white)
+                .background(Color.shootWhite)
                 .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
                 .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -10)
                 .offset(y: !finish ? 1000 : 0)

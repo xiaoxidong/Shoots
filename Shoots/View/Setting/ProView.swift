@@ -70,9 +70,8 @@ struct ProView: View {
                 content
                     .navigationTitle("支持开发者")
                     .navigationBarItems(trailing: trailing)
-                    .background(Color.shootWhite)
                     .edgesIgnoringSafeArea([.bottom, .horizontal])
-            }
+            }.background(Color.shootWhite)
             .navigationViewStyle(StackNavigationViewStyle())
             #else
             VStack {
@@ -85,10 +84,11 @@ struct ProView: View {
                 }.padding([.horizontal, .top], 36)
                 
                 content
-            }.background(Color("bg"))
+            }.background(Color.shootWhite)
             #endif
             ConfettiCannon(counter: $counter, num: 300, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 400)
         }
+        .background(Color.shootWhite)
         .toast(isPresenting: $showToast) {
             AlertToast(displayMode: .alert, type: .systemImage("drop.triangle.fill", .red), title: toastText)
         }
@@ -123,22 +123,6 @@ struct ProView: View {
                 imageView
                 
                 buyButton
-//                if !(Defaults().get(for: .pro) ?? false) {
-//                    if self.showBuyLoadingIndicator {
-//                        HStack {
-//                            ActivityIndicatorView(isVisible: self.$showBuyLoadingIndicator, type: .arcs)
-//                                .frame(width: 50.0, height: 50.0)
-//                                .foregroundColor(.red)
-//                        }.frame(maxWidth: .infinity)
-//                            .frame(height: 247)
-//                            .padding(.bottom, 30)
-//                            .cornerRadius(20)
-//                            .shadow(color: Color.shootBlack.opacity(0.08), radius: 10, x: 0, y: 16)
-//                    } else {
-//
-//                    }
-//                }
-                
                 VStack(alignment: .leading, spacing: 12) {
                     Group {
                         Text("\(Image(systemName: "bell.circle.fill"))")
@@ -227,7 +211,6 @@ struct ProView: View {
             }
             .padding(.top, 12)
             .padding(.bottom, 16)
-            .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
         }
     }
     

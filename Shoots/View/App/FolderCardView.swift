@@ -32,7 +32,7 @@ struct FolderCardView: View {
             }
             .frame(maxWidth: 156, maxHeight: 286)
             .padding(.top)
-            .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
+//            .shadow(color: Color.shootLight.opacity(0.1), radius: 8)
             .overlay(alignment: .bottomLeading) {
                 Text("\(picCount) 张")
                     .font(.system(size: 14, weight: .bold))
@@ -66,6 +66,8 @@ struct FolderCardView: View {
             } else {
                 Color.shootWhite
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .contentShape(Rectangle())
+                    .shadow(color: Color.shootBlack.opacity(0.06), radius: 10)
             }
         }
     }

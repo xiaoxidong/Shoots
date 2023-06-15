@@ -27,11 +27,11 @@ struct SelfView: View {
                             dismiss()
                         } label: {
                             Image(systemName: "chevron.left")
+                                .foregroundColor(.shootBlack)
                                 .font(.system(size: 16, weight: .semibold))
                                 .padding(.vertical, 6)
                                 .padding(.trailing, 6)
                                 .contentShape(Rectangle())
-                                .tint(.shootBlue)
                         }
                     }
                     

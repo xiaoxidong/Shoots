@@ -37,7 +37,7 @@ struct LoginView: View {
                     button
                 }.frame(maxWidth: .infinity)
                     .padding(.top)
-                    .background(Color.white)
+                    .background(Color.shootWhite)
                     .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
                     .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
                     .contentShape(Rectangle())
@@ -60,7 +60,7 @@ struct LoginView: View {
                 button
             }.frame(maxWidth: .infinity)
                 .padding(.top)
-                .background(Color.white)
+                .background(Color.shootWhite)
                 .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
                 .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
                 .contentShape(Rectangle())

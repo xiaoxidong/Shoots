@@ -25,7 +25,7 @@ struct HomeView: View {
                 #if os(iOS)
                 if horizontalSizeClass == .compact {
                     IOSSearchView(searchText: $searchText)
-                        .background(Color.white)
+                        .background(Color.shootWhite)
                 } else {
                     if searchText != "" {
                         AppView(id: "appData", topPadding: 16)

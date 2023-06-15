@@ -142,8 +142,8 @@ struct SettingView: View {
                     dismiss()
                 } label: {
                     Image(systemName: "chevron.left")
+                        .foregroundColor(.shootBlack)
                         .font(.system(size: 16, weight: .semibold))
-                        .tint(.shootBlue)
                         .padding(.vertical, 6)
                         .padding(.trailing, 6)
                         .contentShape(Rectangle())

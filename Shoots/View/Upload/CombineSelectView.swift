@@ -109,7 +109,7 @@ struct CombineSelectView: View {
                             .overlay(alignment: .bottomLeading) {
                                 Image(systemName: "checkmark.circle.fill")
                                     .padding(12)
-                                    .foregroundColor(selected.contains(image) ? Color.shootRed : Color.white)
+                                    .foregroundColor(selected.contains(image) ? Color.shootRed : Color.shootWhite)
                                     .shadow(radius: 6)
                             }
                     })

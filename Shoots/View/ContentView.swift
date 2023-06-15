@@ -143,6 +143,8 @@ struct ContentView: View {
                             SelfView()
                         } label: {
                             Image("self")
+                                .renderingMode(.template)
+                                .foregroundColor(.shootBlack)
                                 .padding(.vertical, 6)
                                 .padding(.trailing, 6)
                                 .contentShape(Rectangle())
@@ -333,7 +335,7 @@ struct ContentView: View {
                     .padding()
                     .padding(.bottom)
                     .padding(.top, 8)
-                    .background(Color.white)
+                    .background(Color.shootWhite)
                     .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
                     .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
                     .contentShape(Rectangle())

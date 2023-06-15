@@ -40,6 +40,7 @@ struct AlbumView: View {
                                 .foregroundColor(selected.isEmpty ? .shootGray : .shootRed)
                         } else {
                             Image(systemName: "chevron.left")
+                                .foregroundColor(.shootBlack)
                                 .font(.system(size: 16, weight: .semibold))
                         }
                     }.disabled(edit && selected.isEmpty)
@@ -48,7 +49,7 @@ struct AlbumView: View {
                 ToolbarItem(placement: .principal) {
                     Button {
                         editName = name
-                        withAnimation(.spring()) {
+                        withAnimation(.easeInOut(duration: 0.2)) {
                             showEditName.toggle()
                         }
                     } label: {
@@ -90,12 +91,12 @@ struct AlbumView: View {
                 
                 Spacer()
                 Button {
-                    withAnimation(.spring()) {
+                    withAnimation(.easeInOut(duration: 0.2)) {
                         showEditName.toggle()
                     }
                 } label: {
                     HStack(spacing: 2) {
-                        Text("Poke")
+                        Text(name)
                             .font(.largeTitle)
                             .bold()
                             .foregroundColor(.shootBlack)
@@ -153,7 +154,7 @@ struct AlbumView: View {
                 }
                 if delete {
                     deleteView
-                        .transition(.scale(scale: 0.6).combined(with: .opacity))
+                        .transition(.scale(scale: 0.9).combined(with: .opacity))
                 }
             }
         )
@@ -256,8 +257,8 @@ struct AlbumView: View {
             
             HStack(spacing: 56) {
                 Button {
-                    withAnimation(.spring()) {
-                        showEditName = false
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        showEditName.toggle()
                     }
                 } label: {
                     Text("取消")
@@ -265,7 +266,7 @@ struct AlbumView: View {
                         .padding(.horizontal, 22)
                         .padding(.vertical, 10)
                         .foregroundColor(.black)
-                        .background(Color.shootLight.opacity(0.4))
+                        .background(Color.shootGray.opacity(0.4))
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }.buttonStyle(.plain)
                 Button {
@@ -273,8 +274,8 @@ struct AlbumView: View {
                         await favoriteDetail.editFavoriteName(id: id, name: editName) { success in
                             if success {
                                 name = editName
-                                withAnimation(.spring()) {
-                                    showEditName = false
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    showEditName.toggle()
                                 }
                             }
                         }
@@ -293,7 +294,7 @@ struct AlbumView: View {
         }.padding()
             .padding(.vertical)
             .frame(maxWidth: 460)
-            .background(Color.white)
+            .background(Color.shootWhite)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .padding()
     }
@@ -344,7 +345,7 @@ struct AlbumView: View {
         }.padding()
             .padding(.vertical)
             .frame(maxWidth: 460)
-            .background(Color.white)
+            .background(Color.shootWhite)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .padding()
     }

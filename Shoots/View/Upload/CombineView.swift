@@ -40,7 +40,7 @@ struct CombineView: View {
                     } label: {
                         Image(systemName: "chevron.left")
                             .font(.system(size: 16, weight: .semibold))
-                            .tint(.shootBlue)
+                            .foregroundColor(.shootBlack)
                     }
                 }
             }

@@ -49,11 +49,11 @@ struct UploadView: View {
             .safeAreaInset(edge: .top) {
                 if horizontalSizeClass == .compact {
                     topActions
-                        .background(Color.white)
+                        .background(Color.shootWhite)
                 } else {
                     topActions
                         .padding(.top)
-                        .background(Color.white)
+                        .background(Color.shootWhite)
                 }
             }
             .safeAreaInset(edge: .bottom) {
@@ -170,7 +170,7 @@ struct UploadView: View {
                                         .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
                                     Divider()
                                 }.frame(width: .infinity, alignment: .leading)
-                                    .background(Color.white)
+                                    .background(Color.shootWhite)
                                     .contentShape(Rectangle())
                             }
                         }
@@ -200,7 +200,7 @@ struct UploadView: View {
                                         .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
                                     Divider()
                                 }.frame(width: .infinity, alignment: .center)
-                                    .background(Color.white)
+                                    .background(Color.shootWhite)
                                     .contentShape(Rectangle())
                             }.buttonStyle(.plain)
                         }
@@ -236,7 +236,7 @@ struct UploadView: View {
                     }
                 }.padding(.horizontal)
             }
-                .background(Color.white)
+                .background(Color.shootWhite)
                 .shadow(color: Color.shootBlack.opacity(appFocused || tagFocused ? 0 : 0.06), x: 0, y: -6, blur: 10)
 
         }

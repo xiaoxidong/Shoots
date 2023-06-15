@@ -80,7 +80,7 @@ struct ModeView: View {
         }
         .padding(.top, 26)
         .frame(maxWidth: 560)
-        .background(Color.white)
+        .background(Color.shootWhite)
         .clipShape(RoundedCornersShape(tl: 36, tr: 36))
     }
 }

@@ -31,7 +31,7 @@ struct IconView: View {
             
         }.frame(maxWidth: .infinity)
             .padding()
-            .background(Color.white)
+            .background(Color.shootWhite)
             .frame(maxWidth: 560)
             .clipShape(RoundedCornersShape(tl: 36, tr: 36))
     }

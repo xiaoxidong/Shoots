@@ -21,6 +21,8 @@ struct ShootsApp: App {
     @AppStorage("statusIcon") var statusIcon: String = "photo.fill.on.rectangle.fill"
     @Environment(\.openWindow) var openWindow
     
+    @AppStorage("colorMode") private var colorMode: ShootColorScheme = .none
+    @Environment(\.colorScheme) var colorScheme
     var body: some Scene {
         WindowGroup {
             content
@@ -80,6 +82,8 @@ struct ShootsApp: App {
             .environmentObject(user)
             .environmentObject(info)
             .environmentObject(search)
+            .preferredColorScheme(colorScheme)
+            .preferredColorScheme(colorMode.colorScheme)
     }
     
     #if os(macOS)
