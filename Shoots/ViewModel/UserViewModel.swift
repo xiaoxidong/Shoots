@@ -16,7 +16,6 @@ class UserViewModel: ObservableObject {
     
     // TODO: 第一次进入的时候当没网的时候，处理
     func login(appleUserId: String, identityToken: String, email: String, fullName: String, _ success: @escaping (Bool) -> Void) {
-        
         APIService.shared.POST(url: .login, params: ["appleUserId" : appleUserId, "identityToken" : identityToken, "email" : email, "fullName" : fullName]) { (result: Result<UserResponseData, APIService.APIError>) in
             switch result {
             case .success(let user):

@@ -66,7 +66,7 @@ extension View {
         ZStack {
             self
             if isPresented.wrappedValue {
-                Color.black.opacity(isPresented.wrappedValue ? 0.4 : 0)
+                Color.shootBlack.opacity(isPresented.wrappedValue ? 0.1 : 0)
                 //                    .animation(.linear(duration: 2))
 //                    .animation(.spring(response: 0.35, dampingFraction: 1))
                 //.animation(Animation.default.speed(2))

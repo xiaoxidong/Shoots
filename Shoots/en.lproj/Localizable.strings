@@ -26,14 +26,14 @@
 "选择保存位置" = "Select a location";
 "名称：" = "Name: ";
 "确认" = "Done";
-"输入收藏夹名称" = "Enter Folder Name";
-"新建收藏夹" = "New Folder";
-"收藏成功" = "Saved Successfully";
-"添加收藏夹" = "Add to Folder";
+"输入系列名称" = "Enter Folder Name";
+"新建系列" = "New Folder";
+"添加成功" = "Saved Successfully";
+"添加系列" = "Add to Folder";
 "反馈成功" = "Feedback successful";
 "成功保存到相册" = "Successfully saved to album";
 "分享" = "Share";
-"收藏" = "Save";
+"系列" = "Save";
 "下载" = "Download";
 "举报" = "Report";
 "%d 图片" = "%d Pics";
@@ -82,11 +82,11 @@
 "关于操作集" = "About Design Patterns";
 
 // Self
-"收藏截图" = "Collection";
-"上传应用截图和收藏夹" = "";
+"系列" = "Collection";
+"上传应用截图和系列" = "";
 "删除之后将无法恢复，确认删除？" = "You will not be able to recover after deletion, confirm deletion?";
 "确认删除？" = "Confirm deletion?";
-"编辑收藏夹" = "Edit Folder";
+"编辑系列" = "Edit Folder";
 "删除" = "Delete";
 "管理" = "Mange";
 

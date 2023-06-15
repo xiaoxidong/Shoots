@@ -53,7 +53,7 @@ struct AlbumView: View {
                             showEditName.toggle()
                         }
                     } label: {
-                        HStack(spacing: 2) {
+                        HStack(spacing: 4) {
                             Text(name)
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(.shootBlack)
@@ -95,7 +95,7 @@ struct AlbumView: View {
                         showEditName.toggle()
                     }
                 } label: {
-                    HStack(spacing: 2) {
+                    HStack(spacing: 4) {
                         Text(name)
                             .font(.largeTitle)
                             .bold()
@@ -244,12 +244,12 @@ struct AlbumView: View {
     @State var editName: String = ""
     var editNameView: some View {
         VStack(spacing: 26) {
-            Text("编辑收藏夹")
+            Text("编辑系列")
                 .font(.system(size: 16, weight: .medium))
                 .foregroundColor(.shootBlack)
             
             VStack {
-                TextField("输入收藏夹名称", text: $editName)
+                TextField("输入系列名称", text: $editName)
                     .textFieldStyle(.plain)
                     .padding(.horizontal)
                 Divider()

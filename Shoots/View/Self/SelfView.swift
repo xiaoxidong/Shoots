@@ -79,7 +79,7 @@ struct SelfView: View {
             } else {
                 VStack {
                     HStack {
-                        Text("上传应用截图和收藏夹")
+                        Text("上传应用截图和系列")
                             .font(.system(size: 15, weight: .medium))
                             .foregroundColor(.shootGray)
                         Spacer()
@@ -235,10 +235,10 @@ struct SelfView: View {
     @ViewBuilder
     var favorite: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("收藏截图")
+            Text("系列")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.shootBlack)
-            Text("\(selfPic.favorites.count) 个收藏夹 \(selfPic.favoritesPicNum) 张截图")
+            Text("\(selfPic.favorites.count) 个系列 \(selfPic.favoritesPicNum) 张截图")
                 .font(.system(size: 13, weight: .regular))
                 .foregroundColor(.shootGray)
         }.padding(.horizontal)

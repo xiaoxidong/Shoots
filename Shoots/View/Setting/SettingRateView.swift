@@ -26,7 +26,7 @@ struct SettingRateView: View {
                     
                     Text("如果应用对你有帮助，请帮我们在应用商店写个好评，对我们非常有帮助。")
                         .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(Color.shootLight)
+                        .foregroundColor(Color.shootGray)
                         .lineSpacing(4)
                     
                     Image("srate")

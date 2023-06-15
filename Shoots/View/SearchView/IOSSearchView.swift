@@ -29,8 +29,9 @@ struct IOSSearchView: View {
             if newValue == "" {
                 search.showResult = false
             }
-            patterns = info.patterns.filter({ $0.designPatternName.lowercased().contains(newValue.lowercased()) })
-            apps = info.apps.filter({ $0.linkApplicationName.lowercased().contains(newValue.lowercased()) })
+            // TODO: 处理下 isOfficial 为 nil 的情况
+            patterns = info.patterns.filter({ $0.designPatternName.lowercased().contains(newValue.lowercased()) }).sorted(by: { $0.isOfficial > $1.isOfficial })
+            apps = info.apps.filter({ $0.linkApplicationName.lowercased().contains(newValue.lowercased()) }).sorted(by: { $0.isOfficial > $1.isOfficial })
         }
     }
     

@@ -26,7 +26,7 @@ struct SettingView: View {
     @Environment(\.dismiss) var dismiss
     @State var customUpload = false
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
                 Group {
                     Divider()

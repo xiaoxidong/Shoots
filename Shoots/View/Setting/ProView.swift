@@ -58,7 +58,7 @@ struct ProView: View {
     @State var drinkMoney = "¥12.00"
     @State var milkMoney = "¥18.00"
     @State var coffeeMoney = "¥28.00"
-    @State var richMoney = "¥28.00"
+    @State var richMoney = "¥98.00"
     
     @State var counter: Int = 0
     @State var showToast = false
@@ -521,7 +521,7 @@ struct ProView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 108, height: 108)
-                        Text("大额大赏 (\(richMoney))")
+                        Text("大额打赏 (\(richMoney))")
                             .foregroundColor(Color.shootBlack)
                             .font(.system(size: 12, weight: .medium))
                     }.padding(20)
@@ -604,7 +604,7 @@ struct ProView: View {
             }
                 .padding(.top, 16)
                 .padding(.bottom, 26)
-        }.background(Color.shootLight.opacity(0.06))
+        }.background(Color.shootLight.opacity(0.04))
             .padding(.vertical)
     }
 }

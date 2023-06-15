@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ActionTitleButtonView: View {
-    var image: String
+    var image: String = ""
+    var systemImage: String = ""
     var title: String
     let action: () -> Void
     
@@ -17,10 +18,17 @@ struct ActionTitleButtonView: View {
             action()
         } label: {
             VStack {
-                Image(image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 30, height: 30)
+                if image != "" {
+                    Image(image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30, height: 30)
+                } else if systemImage != "" {
+                    Image(systemName: systemImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30, height: 30)
+                }
                 Text(LocalizedStringKey(title))
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(.shootBlack)

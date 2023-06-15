@@ -44,7 +44,7 @@ struct ModeView: View {
                     Text("🌕").bold().font(.system(size: 30))
                     Text("浅色模式")
                         .bold()
-                        .foregroundColor(Color.shootGray)
+                        .foregroundColor(Color.shootBlack)
                     Spacer()
                     if colorMode == .light {
                         Image(systemName: "checkmark.circle.fill")
@@ -66,7 +66,7 @@ struct ModeView: View {
                     Text("🌑").bold().font(.system(size: 30))
                     Text("深色模式")
                         .bold()
-                        .foregroundColor(Color.shootGray)
+                        .foregroundColor(Color.shootBlack)
                     Spacer()
                     if colorMode == .dark {
                         Image(systemName: "checkmark.circle.fill")

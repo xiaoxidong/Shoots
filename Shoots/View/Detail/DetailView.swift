@@ -173,14 +173,12 @@ struct DetailView: View {
                 }
 
             // 个人信息
-            HStack {
-                Image("self")
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: 36, height: 36)
-                    .clipShape(Circle())
+            HStack(spacing: 8) {
+                Image(systemName: "person.2.crop.square.stack")
+                    .font(.system(size: 30, weight: .regular))
+                    .foregroundColor(.shootGray)
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text(detail.detail?.userName ?? "上传用户")
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.shootBlack)
@@ -238,7 +236,7 @@ struct DetailView: View {
             
             // 操作按钮
             HStack {
-                ActionTitleButtonView(image: "save", title: "收藏") {
+                ActionTitleButtonView(systemImage: "sparkles.rectangle.stack.fill", title: "系列") {
                     #if os(iOS)
                     FeedbackManager.impact(style: .medium)
                     #endif
@@ -259,7 +257,7 @@ struct DetailView: View {
                     #if os(iOS)
                     ShareLink(item: Image(uiImage: image), preview: SharePreview("Shoots", image: Image(uiImage: image))) {
                         VStack {
-                            Image("share")
+                            Image(systemName: "square.and.arrow.up.circle.fill")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 30, height: 30)
@@ -271,7 +269,7 @@ struct DetailView: View {
                     #else
                     ShareLink(item: Image(nsImage: image), preview: SharePreview("Shoots", image: Image(nsImage: image))) {
                         VStack {
-                            Image("share")
+                            Image(systemName: "square.and.arrow.up.circle.fill")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 30, height: 30)
@@ -284,7 +282,7 @@ struct DetailView: View {
                     Spacer(minLength: 0)
                 }
                 
-                ActionTitleButtonView(image: "download", title: "下载") {
+                ActionTitleButtonView(systemImage: "square.and.arrow.down.fill", title: "下载") {
                     if user.login {
                         #if os(iOS)
                         FeedbackManager.impact(style: .medium)
@@ -315,7 +313,7 @@ struct DetailView: View {
                     }
                 }
                 Spacer(minLength: 0)
-                ActionTitleButtonView(image: "report", title: "举报") {
+                ActionTitleButtonView(systemImage: "exclamationmark.shield.fill", title: "举报") {
                     showReport.toggle()
                 }.sheet(isPresented: $showReport) {
                     ReportView(shoot: shoot) {
@@ -331,17 +329,20 @@ struct DetailView: View {
             .padding(.top, 8)
             .frame(maxWidth: .infinity)
             .background(Color.shootWhite)
-            .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+            .clipShape(RoundedRectangle(cornerRadius: 36, style: .continuous))
             .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
             .contentShape(Rectangle())
     }
-    
+    //sparkles.rectangle.stack
+    //square.and.arrow.up.circle
+    //square.and.arrow.down.fill
+    //exclamationmark.shield
     @State var showSave = false
     @State var images = [["s7", "s2", "s4"], ["s5", "s2", "s4"]]
     var saveView: some View {
         VStack {
             ZStack {
-                Text("添加收藏夹")
+                Text("添加到系列")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(.shootBlack)
                 Button {
@@ -358,7 +359,7 @@ struct DetailView: View {
             if detail.favorites.isEmpty {
                 VStack {
                     Image("empty")
-                    Text("收藏夹为空")
+                    Text("系列为空")
                         .font(.system(size: 14, weight: .medium))
                         .foregroundColor(.shootGray)
                 }.frame(height: 286)
@@ -385,7 +386,7 @@ struct DetailView: View {
                                         // 收藏成功
                                         showSave = false
                                         // 提示成功
-                                        alertText = "收藏成功"
+                                        alertText = "添加成功"
                                         showAlert = true
                                     }
                                     #endif
@@ -409,12 +410,12 @@ struct DetailView: View {
     @State var showNewFolder = false
     var newFoldereView: some View {
         VStack(spacing: 26) {
-            Text("新建收藏夹")
+            Text("新建系列")
                 .font(.system(size: 16, weight: .medium))
                 .foregroundColor(.shootBlack)
             
             VStack {
-                TextField("输入收藏夹名称", text: $name)
+                TextField("输入系列名称", text: $name)
                     .textFieldStyle(.plain)
                     .padding(.horizontal)
                 Divider()
@@ -436,7 +437,7 @@ struct DetailView: View {
                 }.buttonStyle(.plain)
                 Button {
                     if name == "" {
-                        alertText = "收藏夹名称不能为空！"
+                        alertText = "系列名称不能为空！"
                         showAlert = true
                     } else {
                         Task {

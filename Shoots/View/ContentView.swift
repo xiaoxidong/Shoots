@@ -336,7 +336,7 @@ struct ContentView: View {
                     .padding(.bottom)
                     .padding(.top, 8)
                     .background(Color.shootWhite)
-                    .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                    .clipShape(RoundedRectangle(cornerRadius: 36, style: .continuous))
                     .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
                     .contentShape(Rectangle())
                     .offset(y: uploadOptions ? 0 : 1000)
