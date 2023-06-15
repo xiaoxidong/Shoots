@@ -214,22 +214,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6C3BAE76-9961-4E8F-9137-A7CDCFB1374B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shoots/View/Home/FeedView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "342B1374-2A49-42B4-B132-F129CBBF08C4"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -278,47 +262,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CD975854-323F-4131-8400-82BCA4601B59"
+            uuid = "740E1A7A-949B-4908-878C-BD14567FFB7A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shoots/View/Self/AlbumView.swift"
+            filePath = "Shoots/ViewModel/SelfViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "345"
-            endingLineNumber = "345"
-            landmarkName = "favoritePics(id:)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "getPatternPics(id:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "CD975854-323F-4131-8400-82BCA4601B59 - 826ffede3413f5f0"
+                  uuid = "740E1A7A-949B-4908-878C-BD14567FFB7A - a51aa4f75d56f98f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Shoots.FeedResponseData, Alamofire.AFError&gt;) -&gt; () in Shoots.AlbumView.favoritePics(id: Swift.String) async -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.FeedResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.SelfViewModel.getPatternPics(id: Swift.String) async -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/AlbumView.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/SelfViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "345"
-                  endingLineNumber = "345"
-                  offsetFromSymbolStart = "952">
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "348">
                </Location>
                <Location
-                  uuid = "CD975854-323F-4131-8400-82BCA4601B59 - 826ffede3413f5f0"
+                  uuid = "740E1A7A-949B-4908-878C-BD14567FFB7A - a51aa4f75d56f897"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Shoots.FeedResponseData, Alamofire.AFError&gt;) -&gt; () in Shoots.AlbumView.favoritePics(id: Swift.String) async -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.FeedResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.SelfViewModel.getPatternPics(id: Swift.String) async -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/AlbumView.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/SelfViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "345"
-                  endingLineNumber = "345"
-                  offsetFromSymbolStart = "722">
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "396">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -326,46 +310,190 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "776F80AE-3206-4B55-91E0-E54C13F4E99F"
+            uuid = "76BF2DFF-5AA7-47CC-A7D4-ECA9A2EA0D83"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shoots/View/Self/AlbumView.swift"
+            filePath = "Shoots/ViewModel/SelfViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
-            landmarkName = "favoritePics(id:)"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "getPatternPics(id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3B7BC304-847A-43C7-99BF-464706B44CFD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/SelfViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "getUserPattern()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "213129BD-2B99-4955-B841-04107595D87F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/SelfViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "getUserPattern()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D15A8947-AAB5-45A1-AD92-1DEC1BF5A753"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/FavoriteDetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "removePics(pics:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "776F80AE-3206-4B55-91E0-E54C13F4E99F - 826ffede3413f532"
+                  uuid = "D15A8947-AAB5-45A1-AD92-1DEC1BF5A753 - 1e6edceb97c906b4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Shoots.FeedResponseData, Alamofire.AFError&gt;) -&gt; () in Shoots.AlbumView.favoritePics(id: Swift.String) async -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.Response, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.FavoriteDetailViewModel.removePics(pics: Swift.Array&lt;Swift.String&gt;) async -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/AlbumView.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "347"
-                  endingLineNumber = "347"
-                  offsetFromSymbolStart = "1132">
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "236">
                </Location>
                <Location
-                  uuid = "776F80AE-3206-4B55-91E0-E54C13F4E99F - 826ffede3413f532"
+                  uuid = "D15A8947-AAB5-45A1-AD92-1DEC1BF5A753 - 1e6edceb97c9016f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Shoots.FeedResponseData, Alamofire.AFError&gt;) -&gt; () in Shoots.AlbumView.favoritePics(id: Swift.String) async -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.Response, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.FavoriteDetailViewModel.removePics(pics: Swift.Array&lt;Swift.String&gt;) async -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/AlbumView.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "347"
-                  endingLineNumber = "347"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "236">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E3304596-CF8F-4F19-9EDD-3CF500F165A3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/Model/Service/APIService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "POST(url:params:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E3304596-CF8F-4F19-9EDD-3CF500F165A3 - d2bd15ffc6501d4f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;&#x3c4;_0_0, Alamofire.AFError&gt;) -&gt; () in Shoots.APIService.POST&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(url: Shoots.APIService.URLPath, params: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;, completionHandler: (Swift.Result&lt;&#x3c4;_0_0, Shoots.APIService.APIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/Model/Service/APIService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "736">
+               </Location>
+               <Location
+                  uuid = "E3304596-CF8F-4F19-9EDD-3CF500F165A3 - d2bd15ffc6501d4f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;&#x3c4;_0_0, Alamofire.AFError&gt;) -&gt; () in Shoots.APIService.POST&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(url: Shoots.APIService.URLPath, params: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;, completionHandler: (Swift.Result&lt;&#x3c4;_0_0, Shoots.APIService.APIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/Model/Service/APIService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "596">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0D89F0F8-25E9-4AA3-9822-51E1558CB480"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/Model/Service/APIService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "POST(url:params:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0D89F0F8-25E9-4AA3-9822-51E1558CB480 - d2bd15ffc6501ad3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;&#x3c4;_0_0, Alamofire.AFError&gt;) -&gt; () in Shoots.APIService.POST&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(url: Shoots.APIService.URLPath, params: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;, completionHandler: (Swift.Result&lt;&#x3c4;_0_0, Shoots.APIService.APIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/Model/Service/APIService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "1048">
+               </Location>
+               <Location
+                  uuid = "0D89F0F8-25E9-4AA3-9822-51E1558CB480 - d2bd15ffc6501aac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;&#x3c4;_0_0, Alamofire.AFError&gt;) -&gt; () in Shoots.APIService.POST&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(url: Shoots.APIService.URLPath, params: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;, completionHandler: (Swift.Result&lt;&#x3c4;_0_0, Shoots.APIService.APIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/Model/Service/APIService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
                   offsetFromSymbolStart = "928">
                </Location>
             </Locations>
@@ -374,79 +502,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "32C3012A-9FFE-4EE5-833B-4DAC55A99167"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shoots/View/Self/AlbumView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "feed"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F7165988-A51C-4AA6-8128-23C55151A9E0"
+            uuid = "61E97703-24B6-4B3F-83B6-7FD6B8AB3655"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shoots/View/Home/HomeView.swift"
+            filePath = "Shoots/ViewModel/FavoriteDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "feed"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "553A9A71-4CE7-4DF6-96F0-CE8AA18DE389"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shoots/ViewModel/HomeFeedViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "getHomeFirstPageFeed()"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "removeFavorite(pics:id:_:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "553A9A71-4CE7-4DF6-96F0-CE8AA18DE389 - 4f1e08ad1df5352b"
+                  uuid = "61E97703-24B6-4B3F-83B6-7FD6B8AB3655 - cd6a16d4f6426432"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Shoots.FeedResponseData, Alamofire.AFError&gt;) -&gt; () in Shoots.HomeFeedViewModel.getHomeFirstPageFeed() -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.Response, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.FavoriteDetailViewModel.removeFavorite(pics: Swift.Array&lt;Swift.String&gt;, id: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/HomeFeedViewModel.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "297">
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "276">
                </Location>
                <Location
-                  uuid = "553A9A71-4CE7-4DF6-96F0-CE8AA18DE389 - cf4c9eaa41b5ad7f"
+                  uuid = "61E97703-24B6-4B3F-83B6-7FD6B8AB3655 - cd6a16d4f64265d9"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.Optional&lt;Foundation.Data&gt;, Alamofire.AFError&gt;) -&gt; () in Shoots.HomeFeedViewModel.getHomeFirstPageFeed() -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.Response, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.FavoriteDetailViewModel.removeFavorite(pics: Swift.Array&lt;Swift.String&gt;, id: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/HomeFeedViewModel.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "240">
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "276">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -454,47 +550,474 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "85DDBC59-EF88-4353-A1F5-8F9011D57CE7"
+            uuid = "2AC7C663-E917-465C-9DEA-AAC1D77B7270"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shoots/ViewModel/HomeFeedViewModel.swift"
+            filePath = "Shoots/ViewModel/FavoriteDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "getHomeFirstPageFeed()"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "removeFavorite(pics:id:_:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "85DDBC59-EF88-4353-A1F5-8F9011D57CE7 - 4f1e08ad1df53569"
+                  uuid = "2AC7C663-E917-465C-9DEA-AAC1D77B7270 - cd6a16d4f642651b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Shoots.FeedResponseData, Alamofire.AFError&gt;) -&gt; () in Shoots.HomeFeedViewModel.getHomeFirstPageFeed() -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.Response, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.FavoriteDetailViewModel.removeFavorite(pics: Swift.Array&lt;Swift.String&gt;, id: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/HomeFeedViewModel.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "617">
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "560">
                </Location>
                <Location
-                  uuid = "85DDBC59-EF88-4353-A1F5-8F9011D57CE7 - cf4c9eaa41b5ad3d"
+                  uuid = "2AC7C663-E917-465C-9DEA-AAC1D77B7270 - cd6a16d4f6427abe"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.Optional&lt;Foundation.Data&gt;, Alamofire.AFError&gt;) -&gt; () in Shoots.HomeFeedViewModel.getHomeFirstPageFeed() -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.Response, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.FavoriteDetailViewModel.removeFavorite(pics: Swift.Array&lt;Swift.String&gt;, id: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/HomeFeedViewModel.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "473">
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "560">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0228BD44-CB0E-4C16-84B3-BA9F1B9BDFB4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/View/Home/HomeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "feed"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "0228BD44-CB0E-4C16-84B3-BA9F1B9BDFB4 - 187c91e43687eef2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #4 @Sendable () async -&gt; () in Shoots.HomeView.feed.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Home/HomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "0228BD44-CB0E-4C16-84B3-BA9F1B9BDFB4 - 187c91e43687eed5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #4 @Sendable () async -&gt; () in Shoots.HomeView.feed.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Home/HomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46BC2943-6E48-4ACB-ACAF-330E66ADAFCB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/SelfViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "nextPage(id:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "46BC2943-6E48-4ACB-ACAF-330E66ADAFCB - f1d8eb7b834c09a5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.FeedResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.SelfViewModel.nextPage(id: Swift.String) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/SelfViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "576">
+               </Location>
+               <Location
+                  uuid = "46BC2943-6E48-4ACB-ACAF-330E66ADAFCB - 704535f5ff43115a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 (Swift.Result&lt;Shoots.FeedResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.SelfViewModel.nextPage(id: Swift.String) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/SelfViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3407654B-9F03-4F61-BB95-066670C829A3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/SelfViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "nextPage(id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF7F1764-AEE7-489E-948A-86482E41A335"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/View/Self/SelfView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "loadMore()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FF7F1764-AEE7-489E-948A-86482E41A335 - f8faa4c8b6610319"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.SelfView.loadMore() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "278"
+                  endingLineNumber = "278"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  uuid = "FF7F1764-AEE7-489E-948A-86482E41A335 - f8faa4c8b6610319"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.SelfView.loadMore() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "278"
+                  endingLineNumber = "278"
+                  offsetFromSymbolStart = "504">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/View/Self/SelfView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
+            landmarkName = "loadMore()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - f8faa4c8b66103a5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.SelfView.loadMore() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "282"
+                  endingLineNumber = "282"
+                  offsetFromSymbolStart = "576">
+               </Location>
+               <Location
+                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - b09ea9798f6d1e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "282"
+                  endingLineNumber = "282"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - aa95b2401e3ef47a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "282"
+                  endingLineNumber = "282"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - aa95b2401e3ef45b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "281"
+                  endingLineNumber = "281"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - 3b158b814b2c1760"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "281"
+                  endingLineNumber = "281"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - 7330e589e6663059"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "281"
+                  endingLineNumber = "281"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "105D455A-EDDC-4736-8A58-29E120BF44A1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/SelfViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "getPatternPics(id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1B030418-F5FD-4DCD-977D-C4DBBE20C7DC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/SearchViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ACECF062-33F7-4A21-9477-54F539F6B09E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/SearchViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7555B1E6-3FAE-4255-8F90-7A40A02A14DD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/View/SearchView/IOSSearchView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "7555B1E6-3FAE-4255-8F90-7A40A02A14DD - 4a414cf21ea41111"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.IOSSearchView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/IOSSearchView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "632">
+               </Location>
+               <Location
+                  uuid = "7555B1E6-3FAE-4255-8F90-7A40A02A14DD - 4966f81be3754bbc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in Shoots.IOSSearchView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/IOSSearchView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "7555B1E6-3FAE-4255-8F90-7A40A02A14DD - 14c53b84a6f1e7d8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI._ConditionalContent&lt;Shoots.SearchResultView, SwiftUI._ConditionalContent&lt;Shoots.SearchSuggestionView, &lt;&lt;opaque return type of Shoots.IOSSearchView.defaultView : some&gt;&gt;.0&gt;&gt; in Shoots.IOSSearchView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/IOSSearchView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "632">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0EAA8138-6098-47FA-9916-1D92102FE4F8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/View/SearchView/IOSSearchView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "0EAA8138-6098-47FA-9916-1D92102FE4F8 - 4a414cf21ea411b4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.IOSSearchView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/IOSSearchView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "1176">
+               </Location>
+               <Location
+                  uuid = "0EAA8138-6098-47FA-9916-1D92102FE4F8 - 14c53b84a6f1e77d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI._ConditionalContent&lt;Shoots.SearchResultView, SwiftUI._ConditionalContent&lt;Shoots.SearchSuggestionView, &lt;&lt;opaque return type of Shoots.IOSSearchView.defaultView : some&gt;&gt;.0&gt;&gt; in Shoots.IOSSearchView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/IOSSearchView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "988">
                </Location>
             </Locations>
          </BreakpointContent>

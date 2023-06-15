@@ -19,30 +19,28 @@ struct HomeView: View {
     
     @StateObject var home: HomeFeedViewModel = HomeFeedViewModel()
     var body: some View {
-        if isSearching || searchText != "" {
-            #if os(iOS)
-            if horizontalSizeClass == .compact {
-                if searchText != "" {
-                    AppView(id: "appData", topPadding: 16)
+        ZStack {
+            feed
+            if isSearching || searchText != "" {
+                #if os(iOS)
+                if horizontalSizeClass == .compact {
+                    IOSSearchView(searchText: $searchText)
+                        .background(Color.white)
                 } else {
-                    IOSSearchDefaultView(searchText: $searchText)
+                    if searchText != "" {
+                        AppView(id: "appData", topPadding: 16)
+                    } else {
+                        feed
+                    }
                 }
-            } else {
+                #else
                 if searchText != "" {
                     AppView(id: "appData", topPadding: 16)
                 } else {
                     feed
                 }
+                #endif
             }
-            #else
-            if searchText != "" {
-                AppView(id: "appData", topPadding: 16)
-            } else {
-                feed
-            }
-            #endif
-        } else {
-            feed
         }
     }
     
@@ -51,28 +49,36 @@ struct HomeView: View {
             FeedView(shoots: home.homeFeed)
             
             LoadMoreView(footerRefreshing: $home.footerRefreshing, noMore: $home.noMore) {
-                Task {
-                    await home.nextPage()
+                if self.home.page + 1 > self.home.mostPages {
+                    self.home.footerRefreshing = false
+                    self.home.noMore = true
+                } else {
+                    Task {
+                        await home.nextPage()
+                    }
                 }
             }
         }.enableRefresh()
             .refreshable {
                 // 首页下拉刷新
-                loadData()
+                home.getHomeFirstPageFeed()
             }
+            .background(Color.shootLight.opacity(0.2))
             .onChange(of: Reachability.isConnectedToNetwork(), perform: { newValue in
                 // 第一次打开的时候没有网络授权，授权之后再次请求网络
                 if newValue {
                     loadData()
                 }
             })
-            .onAppear {
+            .task {
                 loadData()
             }
     }
     
     func loadData() {
-        home.getHomeFirstPageFeed()
+        if home.homeFeed.isEmpty {
+            home.getHomeFirstPageFeed()
+        }
     }
 }
 

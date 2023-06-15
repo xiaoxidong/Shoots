@@ -39,8 +39,6 @@ struct LoadMoreView: View {
         .noMore(noMore)
         .preload(offset: 50)
     }
-    
-    
 }
 
 struct LoadMoreView_Previews: PreviewProvider {

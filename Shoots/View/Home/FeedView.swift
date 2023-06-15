@@ -16,7 +16,7 @@ struct FeedView: View {
     @State var footerRefreshing = false
     @State var noMore = false
     var body: some View {
-        VStack(spacing: 0) {
+        LazyVStack(spacing: 0) {
 //            Divider()
             if homeModel == 0 {
                 waterfallView(columns: 3)
@@ -25,25 +25,25 @@ struct FeedView: View {
             } else {
                 singleLineView
             }
-        }.background(Color.shootLight.opacity(0.2))
-        
-        ScrollView {
-            // 上拉加载更多
-            RefreshFooter(refreshing: $footerRefreshing, action: loadMore) {
-                if self.noMore {
-                    Text("没有更多内容啦")
-                        .foregroundColor(.white)
-                } else {
-                    Text("加载中...")
-                }
-            }
-            .noMore(noMore)
-            .preload(offset: 50)
-        }.enableRefresh()
-            .refreshable {
-                // 下拉刷新
-                reload()
-            }
+            
+//            ScrollView {
+//                // 上拉加载更多
+//                RefreshFooter(refreshing: $footerRefreshing, action: loadMore) {
+//                    if self.noMore {
+//                        Text("没有更多内容啦")
+//                            .foregroundColor(.white)
+//                    } else {
+//                        Text("加载中...")
+//                    }
+//                }
+//                .noMore(noMore)
+//                .preload(offset: 50)
+//            }.enableRefresh()
+//                .refreshable {
+//                    // 下拉刷新
+//                    reload()
+//                }
+        }
     }
     
     func waterfallView(columns: Int) -> some View {

@@ -61,8 +61,6 @@ struct SelfView: View {
         #endif
     }
     
-    @State var footerRefreshing = false
-    @State var noMore = false
     @ViewBuilder
     var content: some View {
         VStack {
@@ -72,7 +70,7 @@ struct SelfView: View {
                     // 列表
                     FeedView(shoots: selfPic.patternFeed)
                     
-                    LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
+                    LoadMoreView(footerRefreshing: self.$selfPic.footerRefreshing, noMore: self.$selfPic.noMore) {
                         loadMore()
                     }
                 }.enableRefresh()
@@ -134,7 +132,7 @@ struct SelfView: View {
                             withAnimation(.spring()) {
                                 selected = pattern.designPatternName
                             }
-//                            user.patternFeed.removeAll()
+                            
                             Task {
                                 await selfPic.getPatternPics(id: pattern.id)
                             }
@@ -275,8 +273,13 @@ struct SelfView: View {
     }
     
     func loadMore() {
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-            footerRefreshing = false
+        if !self.selfPic.noMore, self.selfPic.page + 1 > self.selfPic.mostPages {
+            self.selfPic.footerRefreshing = false
+            self.selfPic.noMore = true
+        } else {
+            Task {
+                await selfPic.nextPage(id: selected)
+            }
         }
     }
 }

@@ -74,7 +74,7 @@
 		4E42A6D529D1313D00BEC185 /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F8E29C8831500B51F4B /* ImageCardView.swift */; };
 		4E42A6D629D1314100BEC185 /* IPadSearchDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */; };
 		4E42A6D729D1314100BEC185 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304729C9FBCC00D99DA9 /* SearchView.swift */; };
-		4E42A6D829D1314100BEC185 /* IOSSearchDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9729C8943000B51F4B /* IOSSearchDefaultView.swift */; };
+		4E42A6D829D1314100BEC185 /* IOSSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9729C8943000B51F4B /* IOSSearchView.swift */; };
 		4E42A6D929D1314500BEC185 /* ActionTitleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9229C88BA700B51F4B /* ActionTitleButtonView.swift */; };
 		4E42A6DA29D1314500BEC185 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B1F6629C7EA4F00A772CE /* DetailView.swift */; };
 		4E42A6DB29D1314D00BEC185 /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304129C9F02000D99DA9 /* FlowView.swift */; };
@@ -470,7 +470,7 @@
 		4EE49F9129C887B800B51F4B /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9029C887B800B51F4B /* AppView.swift */; };
 		4EE49F9329C88BA700B51F4B /* ActionTitleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9229C88BA700B51F4B /* ActionTitleButtonView.swift */; };
 		4EE49F9629C88E2B00B51F4B /* SwiftUIFlowLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 4EE49F9529C88E2B00B51F4B /* SwiftUIFlowLayout */; };
-		4EE49F9829C8943000B51F4B /* IOSSearchDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9729C8943000B51F4B /* IOSSearchDefaultView.swift */; };
+		4EE49F9829C8943000B51F4B /* IOSSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9729C8943000B51F4B /* IOSSearchView.swift */; };
 		4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9929C898CE00B51F4B /* SelfView.swift */; };
 		4EE49FA329C89CAF00B51F4B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49FA229C89CAF00B51F4B /* SettingView.swift */; };
 		4EE7C08C2A3770D000140FFD /* UploadResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C08B2A3770D000140FFD /* UploadResponseData.swift */; };
@@ -513,6 +513,13 @@
 		4EE7C0C32A39810300140FFD /* UploadAblum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C0C02A39810300140FFD /* UploadAblum.swift */; };
 		4EE7C0C62A39820A00140FFD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4EE7C0C52A39820A00140FFD /* Alamofire */; };
 		4EE7C0C82A39822100140FFD /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4EE7C0C72A39822100140FFD /* SDWebImageSwiftUI */; };
+		4EE7C0CA2A3AB27F00140FFD /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C0C92A3AB27F00140FFD /* UINavigationController+Extension.swift */; };
+		4EE7C0CC2A3AB98A00140FFD /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C0CB2A3AB98A00140FFD /* SearchViewModel.swift */; };
+		4EE7C0CD2A3AB98A00140FFD /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C0CB2A3AB98A00140FFD /* SearchViewModel.swift */; };
+		4EE7C0CF2A3ABC6500140FFD /* SearchSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C0CE2A3ABC6500140FFD /* SearchSuggestionView.swift */; };
+		4EE7C0D02A3ABC6500140FFD /* SearchSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C0CE2A3ABC6500140FFD /* SearchSuggestionView.swift */; };
+		4EE7C0D22A3AC2A700140FFD /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C0D12A3AC2A700140FFD /* SearchResultView.swift */; };
+		4EE7C0D32A3AC2A700140FFD /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C0D12A3AC2A700140FFD /* SearchResultView.swift */; };
 		4EF6646E29F4C5CA005C3BD1 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = 4EF6646D29F4C5CA005C3BD1 /* MASShortcut */; };
 		4EF6647129F4C65F005C3BD1 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4EF6647029F4C65F005C3BD1 /* LaunchAtLogin */; };
 		4EF6647329F4CAAE005C3BD1 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304C29CA075D00D99DA9 /* UploadView.swift */; };
@@ -929,7 +936,7 @@
 		4EE49F8E29C8831500B51F4B /* ImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
 		4EE49F9029C887B800B51F4B /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		4EE49F9229C88BA700B51F4B /* ActionTitleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTitleButtonView.swift; sourceTree = "<group>"; };
-		4EE49F9729C8943000B51F4B /* IOSSearchDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSSearchDefaultView.swift; sourceTree = "<group>"; };
+		4EE49F9729C8943000B51F4B /* IOSSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSSearchView.swift; sourceTree = "<group>"; };
 		4EE49F9929C898CE00B51F4B /* SelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfView.swift; sourceTree = "<group>"; };
 		4EE49FA229C89CAF00B51F4B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		4EE7C08B2A3770D000140FFD /* UploadResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadResponseData.swift; sourceTree = "<group>"; };
@@ -945,6 +952,10 @@
 		4EE7C0B82A39803800140FFD /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		4EE7C0BC2A3980C100140FFD /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		4EE7C0C02A39810300140FFD /* UploadAblum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAblum.swift; sourceTree = "<group>"; };
+		4EE7C0C92A3AB27F00140FFD /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		4EE7C0CB2A3AB98A00140FFD /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		4EE7C0CE2A3ABC6500140FFD /* SearchSuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSuggestionView.swift; sourceTree = "<group>"; };
+		4EE7C0D12A3AC2A700140FFD /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		4EF664D329F4CE22005C3BD1 /* ZLProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLProgressHUD.swift; sourceTree = "<group>"; };
 		4EF664DB29F4D0B8005C3BD1 /* ZLEditImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLEditImageModel.swift; sourceTree = "<group>"; };
 		4EF664DD29F4D0D7005C3BD1 /* ZLImageEditorLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLImageEditorLayout.swift; sourceTree = "<group>"; };
@@ -1736,9 +1747,11 @@
 		4E99304929C9FE3000D99DA9 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
-				4EE49F9729C8943000B51F4B /* IOSSearchDefaultView.swift */,
+				4EE49F9729C8943000B51F4B /* IOSSearchView.swift */,
 				4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */,
 				4E99304729C9FBCC00D99DA9 /* SearchView.swift */,
+				4EE7C0CE2A3ABC6500140FFD /* SearchSuggestionView.swift */,
+				4EE7C0D12A3AC2A700140FFD /* SearchResultView.swift */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -1906,6 +1919,7 @@
 				4EE7C0A32A39787500140FFD /* SelfViewModel.swift */,
 				4EE7C0A72A39796800140FFD /* FavoriteDetailViewModel.swift */,
 				4EE7C0AB2A397B5200140FFD /* ReportViewModel.swift */,
+				4EE7C0CB2A3AB98A00140FFD /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1935,6 +1949,7 @@
 			isa = PBXGroup;
 			children = (
 				4EE49F8829C87FFE00B51F4B /* Color+Extension.swift */,
+				4EE7C0C92A3AB27F00140FFD /* UINavigationController+Extension.swift */,
 				4E5CF71929CD5B3E00A4E0DE /* View+Extension.swift */,
 				4E99304A29CA003100D99DA9 /* String+Extension.swift */,
 				4E62A49229D158C400B09493 /* Data+Extension.swift */,
@@ -2291,6 +2306,7 @@
 				4E5CF71829CD5AC000A4E0DE /* DateRepresentable.swift in Sources */,
 				4E5CF70B29CD5AC000A4E0DE /* Date.swift in Sources */,
 				4E49408029E3A7200058391E /* ZLAnimationUtils.swift in Sources */,
+				4EE7C0CC2A3AB98A00140FFD /* SearchViewModel.swift in Sources */,
 				4E5CF6A229CD58D100A4E0DE /* ElegantListView.swift in Sources */,
 				4E5CF68829CD58D100A4E0DE /* ActivityIndicatorView.swift in Sources */,
 				4E5CF69029CD58D100A4E0DE /* View+blurEffect.swift in Sources */,
@@ -2337,6 +2353,7 @@
 				4E5DE51A29C19680005495F0 /* HomeView.swift in Sources */,
 				4E5CF70029CD5AC000A4E0DE /* AssociatedValues.swift in Sources */,
 				4E49409C29E3A7200058391E /* ZLPhotoPreviewAnimatedTransition.swift in Sources */,
+				4EE7C0D22A3AC2A700140FFD /* SearchResultView.swift in Sources */,
 				4E5CF67829CD58D100A4E0DE /* OS.swift in Sources */,
 				4E2B6ED12A189F65000BC713 /* FeedResponseData.swift in Sources */,
 				4E5CF69329CD58D100A4E0DE /* VibrancyEffectModifier.swift in Sources */,
@@ -2438,6 +2455,7 @@
 				4EDDD66A29DC238E00C4E14D /* ZLAdjustSlider.swift in Sources */,
 				4EE7C0B52A397F8D00140FFD /* Pattern.swift in Sources */,
 				4E5CF6B829CD58D100A4E0DE /* SafariViewPresenter.swift in Sources */,
+				4EE7C0CA2A3AB27F00140FFD /* UINavigationController+Extension.swift in Sources */,
 				4E63A8512A24B0F3001A0FD4 /* ImageDetail.swift in Sources */,
 				4E4940A929E3A7200058391E /* CGFloat+ZLPhotoBrowser.swift in Sources */,
 				4E49409029E3A7200058391E /* ZLThumbnailViewController.swift in Sources */,
@@ -2502,7 +2520,7 @@
 				4EDDD67C29DC238E00C4E14D /* Bundle+ZLImageEditor.swift in Sources */,
 				4E5CF67E29CD58D100A4E0DE /* ScalingDotsIndicatorView.swift in Sources */,
 				4E5CF67329CD58D100A4E0DE /* InAppReceipt.swift in Sources */,
-				4EE49F9829C8943000B51F4B /* IOSSearchDefaultView.swift in Sources */,
+				4EE49F9829C8943000B51F4B /* IOSSearchView.swift in Sources */,
 				4E5CF69129CD58D100A4E0DE /* View+vibrancyEffectStyle.swift in Sources */,
 				4E5CF6C529CD58D100A4E0DE /* SlimRectangle.swift in Sources */,
 				4E5CF6AF29CD58D100A4E0DE /* ElegantPagesView.swift in Sources */,
@@ -2511,6 +2529,7 @@
 				4E195EDE29C040C600E97522 /* ShootsApp.swift in Sources */,
 				4EDDD67629DC238E00C4E14D /* ZLImageEditorUIConfiguration.swift in Sources */,
 				4EE7C0982A39745C00140FFD /* DetailViewModel.swift in Sources */,
+				4EE7C0CF2A3ABC6500140FFD /* SearchSuggestionView.swift in Sources */,
 				4E5CF6B629CD58D100A4E0DE /* SafariView.swift in Sources */,
 				4E4940D729E3A8E40058391E /* ZLEditVideoViewController.swift in Sources */,
 				4E5CF69E29CD58D100A4E0DE /* SPAlert.swift in Sources */,
@@ -2677,6 +2696,7 @@
 				4E42A6EB29D1315B00BEC185 /* ShootEmptyView.swift in Sources */,
 				4E42A71529D143A000BEC185 /* ProViews.swift in Sources */,
 				4E42A71929D14B1200BEC185 /* SwiftDate.swift in Sources */,
+				4EE7C0D02A3ABC6500140FFD /* SearchSuggestionView.swift in Sources */,
 				4E42A6F829D131F100BEC185 /* RoundedCornersShape.swift in Sources */,
 				4E2B6EDD2A18B3EC000BC713 /* UploadData.swift in Sources */,
 				4ED4B09D29D3E98B005D9758 /* NSStatusItem Extensions.swift in Sources */,
@@ -2707,6 +2727,7 @@
 				4E42A6E529D1315500BEC185 /* IconView.swift in Sources */,
 				4E42A6D429D1313D00BEC185 /* FeedView.swift in Sources */,
 				4EA73B1729D5C161002901AE /* InAppReceipt.swift in Sources */,
+				4EE7C0D32A3AC2A700140FFD /* SearchResultView.swift in Sources */,
 				4E42A72229D14B1700BEC185 /* Zones.swift in Sources */,
 				4E42A6FD29D1329200BEC185 /* DefaultsKey+Extension.swift in Sources */,
 				4E63A8462A244205001A0FD4 /* Reachability.swift in Sources */,
@@ -2766,6 +2787,7 @@
 				4EE7C0C22A39810300140FFD /* UploadAblum.swift in Sources */,
 				4E40800E2A32B40C003B5322 /* ImageView.swift in Sources */,
 				4E42A70029D132E700BEC185 /* EqualizerIndicatorView.swift in Sources */,
+				4EE7C0CD2A3AB98A00140FFD /* SearchViewModel.swift in Sources */,
 				4EA73B1F29D5C161002901AE /* SKProductDiscount+LocalizedPrice.swift in Sources */,
 				4E42A6E729D1315500BEC185 /* AgreementView.swift in Sources */,
 				4E42A72C29D14B2500BEC185 /* Date.swift in Sources */,
@@ -2802,7 +2824,7 @@
 				4EA73B1629D5C161002901AE /* SwiftyStoreKit+Types.swift in Sources */,
 				4E42A73929D14B2F00BEC185 /* DateComponents+Extras.swift in Sources */,
 				4EE7C0A12A3974B300140FFD /* InfoViewModel.swift in Sources */,
-				4E42A6D829D1314100BEC185 /* IOSSearchDefaultView.swift in Sources */,
+				4E42A6D829D1314100BEC185 /* IOSSearchView.swift in Sources */,
 				4E42A70329D132E700BEC185 /* OpacityDotsIndicatorView.swift in Sources */,
 				4E42A6F929D131FD00BEC185 /* Color+Extension.swift in Sources */,
 				4E010E1D29DB0D4400A4B231 /* UberaboutView.swift in Sources */,

@@ -85,6 +85,7 @@ struct APIService {
     }
     
     public func POST<T: Codable>(url: URLPath, params: [String: Any]?, completionHandler: @escaping (Result<T, APIError>) -> Void) {
+        print(APIService.token)
         AF.request("\(baseURL)\(url.path)", method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(APIService.token)"]).responseDecodable(of: T.self) { response in
             switch response.result {
             case .success(let object):

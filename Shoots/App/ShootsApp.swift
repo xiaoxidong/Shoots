@@ -70,10 +70,12 @@ struct ShootsApp: App {
     
     @StateObject var user: UserViewModel = UserViewModel()
     @StateObject var info: InfoViewModel = InfoViewModel()
+    @StateObject var search: SearchViewModel = SearchViewModel()
     var content: some View {
         ContentView()
             .environmentObject(user)
             .environmentObject(info)
+            .environmentObject(search)
     }
     
     #if os(macOS)

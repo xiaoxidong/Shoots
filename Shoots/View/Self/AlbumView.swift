@@ -19,7 +19,6 @@ struct AlbumView: View {
     @StateObject var favoriteDetail = FavoriteDetailViewModel()
     @EnvironmentObject var user: UserViewModel
     
-    @State var favoriteFeed: [Picture] = []
     var body: some View {
         #if os(iOS)
         content
@@ -157,28 +156,39 @@ struct AlbumView: View {
             }
         )
         .onAppear {
+            getData()
+        }
+    }
+    
+    var feed: some View {
+        ScrollView {
+            FeedView(shoots: favoriteDetail.favoriteFeed)
+            
+            LoadMoreView(footerRefreshing: $favoriteDetail.footerRefreshing, noMore: $favoriteDetail.noMore) {
+                loadMore()
+            }
+        }.enableRefresh()
+            .refreshable {
+                // 首页下拉刷新
+                getData()
+            }
+            .background(Color.shootLight.opacity(0.2))
+    }
+    
+    func loadMore() {
+        if self.favoriteDetail.page + 1 > self.favoriteDetail.mostPages {
+            self.favoriteDetail.footerRefreshing = false
+            self.favoriteDetail.noMore = true
+        } else {
             Task {
-                await self.favoritePics(id: id)
+                await self.favoriteDetail.nexPage(id: id)
             }
         }
     }
     
-    @State var footerRefreshing = false
-    @State var noMore = false
-    
-    var feed: some View {
-        ScrollView {
-            FeedView(shoots: favoriteFeed)
-            
-//            LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
-//                loadMore()
-//            }
-        }.enableRefresh()
-    }
-    
-    func loadMore() {
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-            footerRefreshing = false
+    func getData() {
+        Task {
+            await self.favoriteDetail.favoritePics(id: id)
         }
     }
     
@@ -203,7 +213,7 @@ struct AlbumView: View {
     var editView: some View {
         ScrollView {
             LazyVGrid(columns: columns, alignment: .leading, spacing: 2) {
-                ForEach(favoriteFeed) { shoot in
+                ForEach(favoriteDetail.favoriteFeed) { shoot in
                     Button(action: {
                         //选择和取消选择截图
                         withAnimation(.spring()) {
@@ -225,7 +235,7 @@ struct AlbumView: View {
                     }).buttonStyle(.plain)
                 }
             }
-        }
+        }.background(Color.shootLight.opacity(0.2))
     }
     
     @State var editName: String = ""
@@ -312,7 +322,7 @@ struct AlbumView: View {
                 }.buttonStyle(.plain)
                 Button {
                     Task {
-                        await favoriteDetail.removeFavorite(id: selected) { success in
+                        await favoriteDetail.removeFavorite(pics: selected, id: id) { success in
                             
                         }
                     }
@@ -335,18 +345,6 @@ struct AlbumView: View {
             .background(Color.white)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .padding()
-    }
-    
-    func favoritePics(id: String) async {
-        AF.request("\(baseURL)\(APIService.URLPath.favoritePics.path)", method: .post, parameters: ["pageSize" : 20, "pageNum": 1, "orderByColumn": "", "isAsc": "true", "favoriteFileId": id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(user.token)"]).responseDecodable(of: FeedResponseData.self) { response in
-            switch response.result {
-            case .success(let feeds):
-                print(feeds)
-                self.favoriteFeed.append(contentsOf: feeds.rows)
-            case .failure(let error):
-                print(error)
-            }
-        }
     }
 }
 

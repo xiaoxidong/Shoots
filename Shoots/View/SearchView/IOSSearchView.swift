@@ -1,5 +1,5 @@
 //
-//  SearchView.swift
+//  IOSSearchView.swift
 //  Shoots
 //
 //  Created by XiaoDong Yuan on 2023/3/20.
@@ -7,17 +7,41 @@
 
 import SwiftUI
 
-struct IOSSearchDefaultView: View {
+struct IOSSearchView: View {
     @Binding var searchText: String
     
     @EnvironmentObject var info: InfoViewModel
+    @EnvironmentObject var search: SearchViewModel
+    @State var patterns: [Pattern] = []
+    @State var apps: [AppInfo] = []
     var body: some View {
+        Group {
+            if search.showResult {
+                SearchResultView()
+            } else {
+                if searchText != "" {
+                    SearchSuggestionView(searchText: $searchText, patterns: $patterns, apps: $apps)
+                } else {
+                    defaultView
+                }
+            }
+        }.onChange(of: searchText) { newValue in
+            if newValue == "" {
+                search.showResult = false
+            }
+            patterns = info.patterns.filter({ $0.designPatternName.contains(newValue) })
+            apps = info.apps.filter({ $0.linkApplicationName.contains(newValue) })
+        }
+    }
+    
+    var defaultView: some View {
         ScrollView {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 26) {
                     ForEach(info.apps) { app in
                         Button {
                             searchText = app.linkApplicationName
+                            search.appID = app.id
                         } label: {
                             VStack {
                                 Image("Instagram")
@@ -36,25 +60,28 @@ struct IOSSearchDefaultView: View {
             }
             
             // Tag
-            VStack(spacing: 16) {
+            VStack(spacing: 0) {
                 ForEach(info.patterns) { pattern in
                     Button {
                         searchText = pattern.designPatternName
+                        search.patternID = pattern.id
                     } label: {
-                        Group {
+                        VStack(spacing: 20) {
                             Text(pattern.designPatternName)
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(.shootBlack)
                             + Text(" (\(pattern.count ?? ""))")
                                 .font(.system(size: 14, weight: .regular))
                                 .foregroundColor(.shootGray)
-                        }.padding(.vertical, 10)
+                            Divider()
+                                .padding(.horizontal)
+                        }.padding(.top, 20)
                             .frame(maxWidth: .infinity)
                             .contentShape(Rectangle())
                     }
-
                 }
             }.padding(.top)
+                .padding(.bottom, 400)
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .onAppear {
@@ -68,10 +95,10 @@ struct IOSSearchDefaultView: View {
 
 struct SearchDefaultView_Previews: PreviewProvider {
     static var previews: some View {
-        IOSSearchDefaultView(searchText: .constant(""))
+        IOSSearchView(searchText: .constant(""))
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        IOSSearchDefaultView(searchText: .constant(""))
+        IOSSearchView(searchText: .constant(""))
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
     }

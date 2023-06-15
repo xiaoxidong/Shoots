@@ -150,6 +150,7 @@ struct ContentView: View {
     @State var showMacSelf = false
     @State var showMacPro = false
     @EnvironmentObject var user: UserViewModel
+    @EnvironmentObject var search: SearchViewModel
     var homeFeed: some View {
         HomeView(searchText: $searchText)
             .toolbar {
@@ -255,6 +256,9 @@ struct ContentView: View {
             }
         #if os(iOS)
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
+            .onSubmit(of: .search) {
+                search.search(text: searchText)
+            }
             .overlay(
                 Group {
                     if !user.login {

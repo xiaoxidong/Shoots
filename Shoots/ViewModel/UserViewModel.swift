@@ -8,6 +8,8 @@
 import SwiftUI
 import Alamofire
 
+var numberPerpage: Int = 20
+
 class UserViewModel: ObservableObject {
     @Published var login = Defaults().get(for: .login) == nil ? false : true
     @Published var token: String = Defaults().get(for: .login) ?? ""

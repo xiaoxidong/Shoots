@@ -20,7 +20,7 @@ struct DetailView: View {
     @State var showAlert = false
     @State var alertText = ""
     @EnvironmentObject var user: UserViewModel
-    @EnvironmentObject var detail: DetailViewModel
+    @StateObject var detail: DetailViewModel = DetailViewModel()
     @State var showLogin = false
     #if os(iOS)
     @State var image: UIImage? = nil
