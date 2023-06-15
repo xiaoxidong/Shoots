@@ -9,42 +9,43 @@ import SwiftUI
 
 struct AppView: View {
     var id: String
-//    var app: Application = Application(name: "Instagram", image: "Instagram", type: "社交", info: appInfo, url: "https://apps.apple.com/us/app/id389801252", flows: flows)
     var topPadding: CGFloat = 0
-    
-    @State var footerRefreshing = false
-    @State var noMore = false
-//    @EnvironmentObject var user: UserViewModel
     
     @StateObject var app: AppViewModel = AppViewModel()
     var body: some View {
         ScrollView {
             Group {
                 header
-                if true {
+                if !app.flows.isEmpty {
                     flowView
                 }
                 imagesView
                 
-                LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
-                    loadMore()
+                LoadMoreView(footerRefreshing: $app.footerRefreshing, noMore: $app.noMore) {
+                    Task {
+                        await app.nextPage(id: id)
+                    }
                 }
             }.frame(maxWidth: 1060)
                 .frame(maxWidth: .infinity)
         }.enableRefresh()
             .refreshable {
                 // 下拉刷新
-                
-            }
-            .onAppear {
                 Task {
-                    await app.getAppDetail(id: id) { success in
-                        
-                    }
-                    await app.appFlows(id: id)
-                    await app.appPics(id: id)
+                    await loadData()
                 }
             }
+            .task {
+                await loadData()
+            }
+    }
+    
+    func loadData() async {
+        await app.getAppDetail(id: id) { success in
+            
+        }
+        await app.appFlows(id: id)
+        await app.appPics(id: id)
     }
     
     @ViewBuilder
@@ -110,12 +111,12 @@ struct AppView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 36) {
-                    ForEach(1...4, id: \.self) { flow in
-//                        FolderCardView(images: flow.images, name: flow.name, picCount: 10)
-//                            .frame(height: 286)
-//                            .onTapGesture {
-//                                self.flow = flow
-//                            }
+                    ForEach(app.flows) { flow in
+                        FolderCardView(images: flow.images, name: flow.name, picCount: 10)
+                            .frame(height: 286)
+                            .onTapGesture {
+                                self.flow = flow
+                            }
                     }
                 }.padding(.horizontal, 36)
             }
@@ -142,12 +143,6 @@ struct AppView: View {
             
             FeedView(shoots: app.appFeed)
         }.padding(.top, 26)
-    }
-    
-    func loadMore() {
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-            footerRefreshing = false
-        }
     }
 }
 

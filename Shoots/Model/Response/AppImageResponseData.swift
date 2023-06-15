@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AppImageResponseData: Codable {
     var code: Int
-    var total: Int?
+    var total: Int
     var msg: String
     var rows: [Picture]
 }

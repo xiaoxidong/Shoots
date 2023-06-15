@@ -30,4 +30,9 @@ extension String: Identifiable {
         //去除字符串之间的空格
         return string.replacingOccurrences(of: " ", with: "").lowercased()
     }
+    
+    // 获取本地化的字符串
+    var localized: String {
+        return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
+    }
 }

@@ -326,38 +326,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3B7BC304-847A-43C7-99BF-464706B44CFD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shoots/ViewModel/SelfViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "getUserPattern()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "213129BD-2B99-4955-B841-04107595D87F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shoots/ViewModel/SelfViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "getUserPattern()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "D15A8947-AAB5-45A1-AD92-1DEC1BF5A753"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -509,13 +477,13 @@
             filePath = "Shoots/ViewModel/FavoriteDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "removeFavorite(pics:id:_:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "61E97703-24B6-4B3F-83B6-7FD6B8AB3655 - cd6a16d4f6426432"
+                  uuid = "61E97703-24B6-4B3F-83B6-7FD6B8AB3655 - cd6a16d4f64265f8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -525,12 +493,27 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75"
-                  offsetFromSymbolStart = "276">
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "436">
                </Location>
                <Location
-                  uuid = "61E97703-24B6-4B3F-83B6-7FD6B8AB3655 - cd6a16d4f64265d9"
+                  uuid = "61E97703-24B6-4B3F-83B6-7FD6B8AB3655 - b4a01a13611b20f4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in closure #1 (Swift.Result&lt;Shoots.Response, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.FavoriteDetailViewModel.removeFavorite(pics: Swift.Array&lt;Swift.String&gt;, id: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "61E97703-24B6-4B3F-83B6-7FD6B8AB3655 - cd6a16d4f64265f8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -540,8 +523,8 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
                   offsetFromSymbolStart = "276">
                </Location>
             </Locations>
@@ -557,13 +540,13 @@
             filePath = "Shoots/ViewModel/FavoriteDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "removeFavorite(pics:id:_:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "2AC7C663-E917-465C-9DEA-AAC1D77B7270 - cd6a16d4f642651b"
+                  uuid = "2AC7C663-E917-465C-9DEA-AAC1D77B7270 - cd6a16d4f6427ae1"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -573,12 +556,12 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "82"
-                  endingLineNumber = "82"
-                  offsetFromSymbolStart = "560">
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "868">
                </Location>
                <Location
-                  uuid = "2AC7C663-E917-465C-9DEA-AAC1D77B7270 - cd6a16d4f6427abe"
+                  uuid = "2AC7C663-E917-465C-9DEA-AAC1D77B7270 - cd6a16d4f6427ae1"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -588,8 +571,8 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
                   offsetFromSymbolStart = "560">
                </Location>
             </Locations>
@@ -605,8 +588,8 @@
             filePath = "Shoots/View/Home/HomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "feed"
             landmarkType = "24">
             <Locations>
@@ -717,8 +700,8 @@
             filePath = "Shoots/View/Self/SelfView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "loadMore()"
             landmarkType = "7">
             <Locations>
@@ -765,8 +748,8 @@
             filePath = "Shoots/View/Self/SelfView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "loadMore()"
             landmarkType = "7">
             <Locations>
@@ -882,94 +865,78 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1B030418-F5FD-4DCD-977D-C4DBBE20C7DC"
+            uuid = "AC619798-B859-4E1F-9D86-342AC4D21B7B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shoots/ViewModel/SearchViewModel.swift"
+            filePath = "Shoots/View/SearchView/SearchSuggestionView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "ACECF062-33F7-4A21-9477-54F539F6B09E"
+            uuid = "9F9B8C8B-EF66-46BD-AA66-05D5E1EEA54D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shoots/ViewModel/SearchViewModel.swift"
+            filePath = "Shoots/View/SearchView/SearchSuggestionView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "unknown"
-            landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7555B1E6-3FAE-4255-8F90-7A40A02A14DD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shoots/View/SearchView/IOSSearchView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "7555B1E6-3FAE-4255-8F90-7A40A02A14DD - 4a414cf21ea41111"
+                  uuid = "9F9B8C8B-EF66-46BD-AA66-05D5E1EEA54D - ae7037758b05d2d1"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Shoots.IOSSearchView.body.getter : some"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 () -&gt; () in closure #2 (Shoots.Pattern) -&gt; &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.ForEach&lt;Swift.Array&lt;Shoots.AppInfo&gt;, Swift.String, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt;, SwiftUI.ForEach&lt;Swift.Array&lt;Shoots.Pattern&gt;, Swift.String, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt;)&gt; in Shoots.SearchSuggestionView.body.getter : some"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/IOSSearchView.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/SearchSuggestionView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "632">
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "48">
                </Location>
                <Location
-                  uuid = "7555B1E6-3FAE-4255-8F90-7A40A02A14DD - 4966f81be3754bbc"
+                  uuid = "9F9B8C8B-EF66-46BD-AA66-05D5E1EEA54D - 8f1615731e424fa2"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String) -&gt; () in Shoots.IOSSearchView.body.getter : some"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 () -&gt; () in closure #2 (Shoots.Pattern) -&gt; &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.ForEach&lt;Swift.Array&lt;Shoots.AppInfo&gt;, Swift.String, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt;, SwiftUI.ForEach&lt;Swift.Array&lt;Shoots.Pattern&gt;, Swift.String, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt;)&gt; in Shoots.SearchSuggestionView.body.getter : some"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/IOSSearchView.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/SearchSuggestionView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "56">
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "40">
                </Location>
                <Location
-                  uuid = "7555B1E6-3FAE-4255-8F90-7A40A02A14DD - 14c53b84a6f1e7d8"
+                  uuid = "9F9B8C8B-EF66-46BD-AA66-05D5E1EEA54D - 647ec7f650e316df"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; SwiftUI._ConditionalContent&lt;Shoots.SearchResultView, SwiftUI._ConditionalContent&lt;Shoots.SearchSuggestionView, &lt;&lt;opaque return type of Shoots.IOSSearchView.defaultView : some&gt;&gt;.0&gt;&gt; in Shoots.IOSSearchView.body.getter : some"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 () -&gt; () in closure #2 (Shoots.Pattern) -&gt; &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.ForEach&lt;Swift.Array&lt;Shoots.AppInfo&gt;, Swift.String, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt;, SwiftUI.ForEach&lt;Swift.Array&lt;Shoots.Pattern&gt;, Swift.String, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt;)&gt; in Shoots.SearchSuggestionView.body.getter : some"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/IOSSearchView.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/SearchSuggestionView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "632">
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "36">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -977,47 +944,95 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0EAA8138-6098-47FA-9916-1D92102FE4F8"
+            uuid = "9418BB2E-DFA0-4029-B405-66778DC5BBA3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shoots/View/SearchView/IOSSearchView.swift"
+            filePath = "Shoots/ViewModel/FavoriteDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "editFavoriteName(id:name:_:)"
+            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "0EAA8138-6098-47FA-9916-1D92102FE4F8 - 4a414cf21ea411b4"
+                  uuid = "9418BB2E-DFA0-4029-B405-66778DC5BBA3 - aa64d4b2f8b299c0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Shoots.IOSSearchView.body.getter : some"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.Response, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.FavoriteDetailViewModel.editFavoriteName(id: Swift.String, name: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/IOSSearchView.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "1176">
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "236">
                </Location>
                <Location
-                  uuid = "0EAA8138-6098-47FA-9916-1D92102FE4F8 - 14c53b84a6f1e77d"
+                  uuid = "9418BB2E-DFA0-4029-B405-66778DC5BBA3 - aa64d4b2f8b299c0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; SwiftUI._ConditionalContent&lt;Shoots.SearchResultView, SwiftUI._ConditionalContent&lt;Shoots.SearchSuggestionView, &lt;&lt;opaque return type of Shoots.IOSSearchView.defaultView : some&gt;&gt;.0&gt;&gt; in Shoots.IOSSearchView.body.getter : some"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.Response, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.FavoriteDetailViewModel.editFavoriteName(id: Swift.String, name: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/IOSSearchView.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "988">
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "264">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "09AA613B-3889-4F9B-8516-A4D52BFE1C35"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/FavoriteDetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "editFavoriteName(id:name:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "09AA613B-3889-4F9B-8516-A4D52BFE1C35 - aa64d4b2f8b29a7d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.Response, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.FavoriteDetailViewModel.editFavoriteName(id: Swift.String, name: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "772">
+               </Location>
+               <Location
+                  uuid = "09AA613B-3889-4F9B-8516-A4D52BFE1C35 - aa64d4b2f8b29a5c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.Response, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.FavoriteDetailViewModel.editFavoriteName(id: Swift.String, name: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/FavoriteDetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "800">
                </Location>
             </Locations>
          </BreakpointContent>

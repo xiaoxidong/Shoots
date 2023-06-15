@@ -520,6 +520,7 @@
 		4EE7C0D02A3ABC6500140FFD /* SearchSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C0CE2A3ABC6500140FFD /* SearchSuggestionView.swift */; };
 		4EE7C0D22A3AC2A700140FFD /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C0D12A3AC2A700140FFD /* SearchResultView.swift */; };
 		4EE7C0D32A3AC2A700140FFD /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C0D12A3AC2A700140FFD /* SearchResultView.swift */; };
+		4EE7C0D42A3AFDA000140FFD /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304329C9F06300D99DA9 /* Flow.swift */; };
 		4EF6646E29F4C5CA005C3BD1 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = 4EF6646D29F4C5CA005C3BD1 /* MASShortcut */; };
 		4EF6647129F4C65F005C3BD1 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4EF6647029F4C65F005C3BD1 /* LaunchAtLogin */; };
 		4EF6647329F4CAAE005C3BD1 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304C29CA075D00D99DA9 /* UploadView.swift */; };
@@ -2584,6 +2585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E2B6ECA2A189BC2000BC713 /* PatternResponseData.swift in Sources */,
+				4EE7C0D42A3AFDA000140FFD /* Flow.swift in Sources */,
 				4EF664E529F4D605005C3BD1 /* AlertActivityIndicatorView.swift in Sources */,
 				4E63A8472A244205001A0FD4 /* Reachability.swift in Sources */,
 				4E3BEFCB29E6D1830024AB99 /* ShareViewController.swift in Sources */,

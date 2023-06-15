@@ -10,13 +10,13 @@ import Refresh
 
 struct HomeView: View {
     @Binding var searchText: String
+    @Binding var showNavigation: Bool
     
     @Environment(\.isSearching) var isSearching
     #if os(iOS)
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
-    
     @StateObject var home: HomeFeedViewModel = HomeFeedViewModel()
     var body: some View {
         ZStack {
@@ -64,6 +64,23 @@ struct HomeView: View {
                 home.getHomeFirstPageFeed()
             }
             .background(Color.shootLight.opacity(0.2))
+//            .simultaneousGesture(
+//                DragGesture()
+//                    .onChanged({ location in
+//                        print(location.translation.height)
+//                        if location.translation.height > 0 {
+//                            print("下")
+//                            withAnimation(.spring()) {
+//                                showNavigation = true
+//                            }
+//                        } else {
+//                            print("上")
+//                            withAnimation(.spring()) {
+//                                showNavigation = false
+//                            }
+//                        }
+//                    })
+//            )
             .onChange(of: Reachability.isConnectedToNetwork(), perform: { newValue in
                 // 第一次打开的时候没有网络授权，授权之后再次请求网络
                 if newValue {
@@ -84,11 +101,11 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(searchText: .constant(""))
+        HomeView(searchText: .constant(""), showNavigation: .constant(true))
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
             .environmentObject(UserViewModel())
-        HomeView(searchText: .constant(""))
+        HomeView(searchText: .constant(""), showNavigation: .constant(true))
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
             .environmentObject(UserViewModel())

@@ -25,6 +25,10 @@ class HomeFeedViewModel: ObservableObject {
             case .success(let feeds):
                 self.homeFeed = feeds.rows
                 self.mostPages = feeds.total / numberPerpage + 1
+                if feeds.rows.count < numberPerpage {
+                    self.noMore = true
+                    self.footerRefreshing = false
+                }
             case .failure(let error):
                 print("api reqeust erro: \(error)")
                 break

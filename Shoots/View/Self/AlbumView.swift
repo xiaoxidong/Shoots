@@ -56,6 +56,8 @@ struct AlbumView: View {
                             Text(name)
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(.shootBlack)
+                                .lineLimit(1)
+                                .frame(maxWidth: 200)
                             Image("edit")
                         }
                     }

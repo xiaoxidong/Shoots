@@ -11,6 +11,8 @@ class AppViewModel: ObservableObject {
     @Published var app: AppDetail? = nil
     @Published var appFeed: [Picture] = []
     
+    @Published var flows: [Flow] = []
+    
     func getAppDetail(id: String, _ success: @escaping (Bool) -> Void) async {
         APIService.shared.GET(url: .appDetail(id: id), params: nil) { (result: Result<AppDetail, APIService.APIError>) in
             switch result {
@@ -28,14 +30,23 @@ class AppViewModel: ObservableObject {
         
     }
     
-    @State var appPageNumber: Int = 1
-    @State var numberPerpage: Int = 20
+    var page: Int = 1
+    var mostPages: Int = 1
+    @Published var footerRefreshing = false
+    @Published var noMore = false
     func appPics(id: String) async {
-//        appPageNumber += 1
-        APIService.shared.POST(url: .appPics, params: ["pageSize" : numberPerpage, "pageNum" : appPageNumber, "linkApplicationId" : id]) { (result: Result<AppImageResponseData, APIService.APIError>) in
+        self.noMore = false
+        self.footerRefreshing = false
+        self.page = 1
+        APIService.shared.POST(url: .appPics, params: ["pageSize" : numberPerpage, "pageNum" : page, "linkApplicationId" : id]) { (result: Result<AppImageResponseData, APIService.APIError>) in
             switch result {
             case .success(let app):
-                self.appFeed.append(contentsOf: app.rows)
+                self.appFeed = app.rows
+                self.mostPages = app.total / numberPerpage + 1
+                if app.rows.count < numberPerpage {
+                    self.noMore = true
+                    self.footerRefreshing = false
+                }
             case .failure(let error):
                 print("api reqeust erro: \(error)")
                 break
@@ -43,4 +54,19 @@ class AppViewModel: ObservableObject {
         }
     }
     
+    func nextPage(id: String) async {
+        self.page += 1
+        APIService.shared.POST(url: .appPics, params: ["pageSize" : page, "pageNum" : page, "linkApplicationId" : id]) { (result: Result<AppImageResponseData, APIService.APIError>) in
+            switch result {
+            case .success(let app):
+                DispatchQueue.main.async {
+                    self.appFeed.append(contentsOf: app.rows)
+                    self.footerRefreshing = false
+                }
+            case .failure(let error):
+                print("api reqeust erro: \(error)")
+                break
+            }
+        }
+    }
 }

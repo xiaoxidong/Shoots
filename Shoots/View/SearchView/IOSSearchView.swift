@@ -16,7 +16,7 @@ struct IOSSearchView: View {
     @State var apps: [AppInfo] = []
     var body: some View {
         Group {
-            if search.showResult {
+            if search.showResult && !searchText.isEmpty {
                 SearchResultView()
             } else {
                 if searchText != "" {
@@ -29,8 +29,8 @@ struct IOSSearchView: View {
             if newValue == "" {
                 search.showResult = false
             }
-            patterns = info.patterns.filter({ $0.designPatternName.contains(newValue) })
-            apps = info.apps.filter({ $0.linkApplicationName.contains(newValue) })
+            patterns = info.patterns.filter({ $0.designPatternName.lowercased().contains(newValue.lowercased()) })
+            apps = info.apps.filter({ $0.linkApplicationName.lowercased().contains(newValue.lowercased()) })
         }
     }
     
@@ -65,6 +65,9 @@ struct IOSSearchView: View {
                     Button {
                         searchText = pattern.designPatternName
                         search.patternID = pattern.id
+                        Task {
+                            await search.getPatternPics(id: pattern.id)
+                        }
                     } label: {
                         VStack(spacing: 20) {
                             Text(pattern.designPatternName)

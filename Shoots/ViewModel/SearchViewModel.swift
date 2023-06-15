@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 class SearchViewModel: ObservableObject {
     @Published var searchResults: [Picture] = []
@@ -24,7 +25,14 @@ class SearchViewModel: ObservableObject {
         }
     }
     
-    @Published var showResult = false
+    @Published var showResult = false {
+        didSet {
+            if !showResult {
+                appID = nil
+                patternID = nil
+            }
+        }
+    }
     
     func search(text: String) {
         showResult = true
@@ -40,10 +48,11 @@ class SearchViewModel: ObservableObject {
         self.footerRefreshing = false
         self.page = 1
         
-        APIService.shared.POST(url: .patternPics, params: ["pageSize" : numberPerpage, "pageNum": 1, "designPatternId": id]) { (result: Result<FeedResponseData, APIService.APIError>) in
-            switch result {
+        AF.request("\(baseURL)\(APIService.URLPath.patternPics.path)", method: .post, parameters: ["pageSize" : numberPerpage, "pageNum": 1, "designPatternId": id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: FeedResponseData.self) { response in
+            switch response.result {
             case .success(let pattern):
                 self.patternFeed = pattern.rows
+                self.objectWillChange.send()
                 self.mostPages = pattern.total / numberPerpage + 1
                 if pattern.rows.count < numberPerpage {
                     self.noMore = true
@@ -54,6 +63,22 @@ class SearchViewModel: ObservableObject {
                 break
             }
         }
+        
+//        APIService.shared.POST(url: .patternPics, params: ["pageSize" : numberPerpage, "pageNum": 1, "designPatternId": id]) { (result: Result<FeedResponseData, APIService.APIError>) in
+//            switch result {
+//            case .success(let pattern):
+//                self.patternFeed = pattern.rows
+//                self.objectWillChange.send()
+//                self.mostPages = pattern.total / numberPerpage + 1
+//                if pattern.rows.count < numberPerpage {
+//                    self.noMore = true
+//                    self.footerRefreshing = false
+//                }
+//            case .failure(let error):
+//                print("api reqeust erro: \(error)")
+//                break
+//            }
+//        }
     }
     
     func nextPage(id: String) async {

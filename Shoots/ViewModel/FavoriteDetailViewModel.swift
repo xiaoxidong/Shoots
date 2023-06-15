@@ -66,6 +66,7 @@ class FavoriteDetailViewModel: ObservableObject {
             switch result {
             case .success(let feeds):
                 print(feeds)
+                success(true)
             case .failure(let error):
                 print("api reqeust erro: \(error)")
                 break

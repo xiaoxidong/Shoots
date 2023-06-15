@@ -18,7 +18,6 @@ struct ContentView: View {
     @State var customUpload = false
     @State var upload = false
     @State var showNavigation = true
-    @State var offset: CGSize = .zero
 
     #if os(iOS)
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -126,23 +125,6 @@ struct ContentView: View {
     var iOSHomeView: some View {
         homeFeed
             .navigationTitle("Shoots")
-//            .simultaneousGesture(
-//                DragGesture()
-//                    .onChanged({ location in
-//                        offset = location.translation
-//                        if location.translation.height > 0 {
-//                            print("下")
-//                            withAnimation(.spring()) {
-//                                showNavigation = true
-//                            }
-//                        } else {
-//                            print("上")
-//                            withAnimation(.spring()) {
-//                                showNavigation = false
-//                            }
-//                        }
-//                    })
-//            )
             .toolbar(showNavigation ? .visible : .hidden, for: .automatic)
     }
     
@@ -152,7 +134,7 @@ struct ContentView: View {
     @EnvironmentObject var user: UserViewModel
     @EnvironmentObject var search: SearchViewModel
     var homeFeed: some View {
-        HomeView(searchText: $searchText)
+        HomeView(searchText: $searchText, showNavigation: $showNavigation)
             .toolbar {
                 #if os(iOS)
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -161,7 +143,8 @@ struct ContentView: View {
                             SelfView()
                         } label: {
                             Image("self")
-                                .padding(6)
+                                .padding(.vertical, 6)
+                                .padding(.trailing, 6)
                                 .contentShape(Rectangle())
                                 .clipShape(Circle())
                         }
@@ -172,7 +155,8 @@ struct ContentView: View {
                             Image("setting")
                                 .renderingMode(.template)
                                 .foregroundColor(.shootBlue)
-                                .padding(6)
+                                .padding(.vertical, 6)
+                                .padding(.trailing, 6)
                                 .contentShape(Rectangle())
                         }
                     }
@@ -188,7 +172,8 @@ struct ContentView: View {
                                 }
                             } label: {
                                 Image("upload")
-                                    .padding(6)
+                                    .padding(.vertical, 6)
+                                    .padding(.leading, 6)
                                     .contentShape(Rectangle())
                             }
                         } else {
@@ -208,7 +193,8 @@ struct ContentView: View {
                                 }
                             } label: {
                                 Image("upload")
-                                    .padding(6)
+                                    .padding(.vertical, 6)
+                                    .padding(.leading, 6)
                                     .contentShape(Rectangle())
                             }
                         }
@@ -226,7 +212,8 @@ struct ContentView: View {
                             }
                         } label: {
                             Image("upload")
-                                .padding(6)
+                                .padding(.vertical, 6)
+                                .padding(.leading, 6)
                                 .contentShape(Rectangle())
                         }
                     }
@@ -255,7 +242,7 @@ struct ContentView: View {
                 #endif
             }
         #if os(iOS)
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "搜索应用或设计模式")
             .onSubmit(of: .search) {
                 search.search(text: searchText)
             }

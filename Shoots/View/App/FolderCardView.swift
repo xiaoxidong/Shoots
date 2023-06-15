@@ -48,6 +48,8 @@ struct FolderCardView: View {
             Text(name)
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.shootBlack)
+                .frame(maxWidth: 126)
+                .lineLimit(1)
         }.onHover { hover in
             withAnimation(.spring()) {
                 self.hover = hover

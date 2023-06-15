@@ -23,11 +23,14 @@ struct SearchSuggestionView: View {
                 } label: {
                     HStack {
                         Image(systemName: "app.badge.fill")
+                            .bold()
                         Text(app.linkApplicationName)
-                            .font(.system(size: 16, weight: .medium))
+                            .font(.system(size: 16, weight: .bold))
                             .foregroundColor(.shootBlack)
                         Spacer()
                         Image(systemName: "chevron.right")
+                            .bold()
+                            .foregroundColor(.shootGray)
                     }
                         .padding(.horizontal)
                         .padding(.vertical, 12)
@@ -44,11 +47,14 @@ struct SearchSuggestionView: View {
                 } label: {
                     HStack {
                         Image(systemName: "number")
+                            .bold()
                         Text(pattern.designPatternName)
-                            .font(.system(size: 16, weight: .medium))
+                            .font(.system(size: 16, weight: .bold))
                             .foregroundColor(.shootBlack)
                         Spacer()
                         Image(systemName: "chevron.right")
+                            .bold()
+                            .foregroundColor(.shootGray)
                     }
                         .padding(.horizontal)
                         .padding(.vertical, 12)

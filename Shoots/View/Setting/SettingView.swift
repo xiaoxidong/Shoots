@@ -144,7 +144,8 @@ struct SettingView: View {
                     Image(systemName: "chevron.left")
                         .font(.system(size: 16, weight: .semibold))
                         .tint(.shootBlue)
-                        .padding(6)
+                        .padding(.vertical, 6)
+                        .padding(.trailing, 6)
                         .contentShape(Rectangle())
                 }
             }

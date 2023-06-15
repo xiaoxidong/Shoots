@@ -26,10 +26,11 @@ public struct ActivityIndicatorView: View {
     @Binding var isVisible: Bool
     var type: IndicatorType
     var text: String = "加载中..."
-
-    public init(isVisible: Binding<Bool>, type: IndicatorType) {
+    var width: CGFloat = 36
+    public init(isVisible: Binding<Bool>, type: IndicatorType, width: CGFloat = 36) {
         self._isVisible = isVisible
         self.type = type
+        self.width = width
     }
 
     public var body: some View {
@@ -41,16 +42,16 @@ public struct ActivityIndicatorView: View {
             return AnyView(
                 HStack(spacing: -6) {
                     ArcsIndicatorView()
-                        .frame(width: 36, height: 36)
+                        .frame(width: width, height: width)
                     Text(LocalizedStringKey(text))
                         .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(Color("title"))
+                        .foregroundColor(Color.shootWhite)
                         .frame(width: 100)
                     
                 }//.fixedSize(horizontal: true, vertical: true)
                 .padding(.vertical, 8)
                 .padding(.leading, 14)
-                .background(Color("light"))
+//                .background(Color("light"))
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 6)
             )
