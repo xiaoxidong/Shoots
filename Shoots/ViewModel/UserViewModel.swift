@@ -14,6 +14,9 @@ class UserViewModel: ObservableObject {
     @Published var login = Defaults().get(for: .login) == nil ? false : true
     @Published var token: String = Defaults().get(for: .login) ?? ""
     
+    @Published var uploading = false
+    @Published var error = false
+    @Published var uploadIndex = 1
     // TODO: 第一次进入的时候当没网的时候，处理
     func login(appleUserId: String, identityToken: String, email: String, fullName: String, _ success: @escaping (Bool) -> Void) {
         APIService.shared.POST(url: .login, params: ["appleUserId" : appleUserId, "identityToken" : identityToken, "email" : email, "fullName" : fullName]) { (result: Result<UserResponseData, APIService.APIError>) in
@@ -31,23 +34,33 @@ class UserViewModel: ObservableObject {
     }
     
     func uploadPics(pics: [UploadData], _ success: @escaping (Bool) -> Void) {
-        APIService.shared.POST(url: .upload, params: ["userPicList" : pics]) { (result: Result<FeedResponseData, APIService.APIError>) in
-            switch result {
-            case .success(let feeds):
-               print("success")
-            case .failure(let error):
-                print("api reqeust erro: \(error)")
-                break
-            }
-        }
+        AF.request("\(baseURL)\(APIService.URLPath.upload.path)", method: .post, parameters: ["userPicList" : pics], encoder: JSONParameterEncoder.prettyPrinted, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"])
+                    .responseJSON { response in
+                    print(pics)
+                    switch response.result {
+                    case .success(let user):
+                        print(user)
+                        if let json = user as? [String: Any] {
+                            print(json["msg"] as Any)
+                        }
+                        success(true)
+                        self.uploading = false
+                    case .failure(let error):
+                        print(error)
+                        success(false)
+                        self.error = true
+                    }
+                }
     }
     
     // MARK: 上传图片
     func uploadImages(localDatas: [LocalImageData], _ pics: @escaping ([UploadData]) -> Void) {
         var uploads: [UploadData] = []
-        
+        if !uploading {
+            uploading = true
+        }
+        self.uploadIndex = 1
         localDatas.forEach { local in
-            var data = UploadData(picUrl: "", compressedPicUrl: "")
             AF.upload(multipartFormData: { multipartFormData in
                 multipartFormData.append(local.image, withName: "file", fileName: "file.png", mimeType: "image/png")
             }, to: "\(baseURL)\(APIService.URLPath.uploadImage.path)", method: .post, headers: ["Content-Type": "multipart/form-data", "Authorization" : "Bearer \(token)"])
@@ -55,16 +68,19 @@ class UserViewModel: ObservableObject {
                 switch response.result {
                 case .success(let imageURL):
                     print(imageURL)
+                    var data = UploadData(picUrl: imageURL.data.url, compressedPicUrl: imageURL.data.compressedUrl)
                     data.linkApplicationName = local.app
                     data.designPatternName = local.pattern
-                    data.picUrl = imageURL.data.url
-                    data.compressedPicUrl = imageURL.data.compressedUrl
                     data.fileName = imageURL.data.fileName
                     data.fileSuffix = "PNG"
                     uploads.append(data)
                     
                     if uploads.count == localDatas.count {
                         pics(uploads)
+                    } else {
+                        withAnimation(.spring()) {
+                            self.uploadIndex = uploads.count
+                        }
                     }
                 case .failure(let error):
                     print(error)
@@ -73,3 +89,4 @@ class UserViewModel: ObservableObject {
         }
     }
 }
+

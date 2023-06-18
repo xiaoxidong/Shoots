@@ -17,6 +17,10 @@
 		4E010E2629DB1D4000A4B231 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E010E2829DB1D4000A4B231 /* Localizable.strings */; };
 		4E010E2D29DB1ED600A4B231 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E010E2C29DB1ED600A4B231 /* FeedbackManager.swift */; };
 		4E010E2F29DB27C900A4B231 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E010E2E29DB27C900A4B231 /* ImageSaver.swift */; };
+		4E06025B2A3EE70F00508B8B /* AppAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E06025A2A3EE70F00508B8B /* AppAlbumView.swift */; };
+		4E06025C2A3EE70F00508B8B /* AppAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E06025A2A3EE70F00508B8B /* AppAlbumView.swift */; };
+		4E06025E2A3EEA0A00508B8B /* SelfAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E06025D2A3EEA0A00508B8B /* SelfAppViewModel.swift */; };
+		4E06025F2A3EEA0A00508B8B /* SelfAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E06025D2A3EEA0A00508B8B /* SelfAppViewModel.swift */; };
 		4E07F81F29E0300800E72CCD /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07F81E29E0300800E72CCD /* UIImage+Extension.swift */; };
 		4E195EDE29C040C600E97522 /* ShootsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EDD29C040C600E97522 /* ShootsApp.swift */; };
 		4E195EE029C040C600E97522 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EDF29C040C600E97522 /* ContentView.swift */; };
@@ -81,7 +85,7 @@
 		4E42A6DC29D1314D00BEC185 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9029C887B800B51F4B /* AppView.swift */; };
 		4E42A6DD29D1314D00BEC185 /* FolderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304529C9F2CC00D99DA9 /* FolderCardView.swift */; };
 		4E42A6DE29D1315000BEC185 /* SelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9929C898CE00B51F4B /* SelfView.swift */; };
-		4E42A6DF29D1315000BEC185 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2131629C8A80C007FAC6F /* AlbumView.swift */; };
+		4E42A6DF29D1315000BEC185 /* FavoriteAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2131629C8A80C007FAC6F /* FavoriteAlbumView.swift */; };
 		4E42A6E429D1315500BEC185 /* ModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF72429CD617000A4E0DE /* ModeView.swift */; };
 		4E42A6E529D1315500BEC185 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF72629CD617900A4E0DE /* IconView.swift */; };
 		4E42A6E629D1315500BEC185 /* SettingRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF71B29CD5EB400A4E0DE /* SettingRateView.swift */; };
@@ -462,7 +466,7 @@
 		4EDDD67E29DC238E00C4E14D /* String+ZLImageEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDD66029DC238E00C4E14D /* String+ZLImageEditor.swift */; };
 		4EDDD67F29DC238E00C4E14D /* ZLImageEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4EDDD66229DC238E00C4E14D /* ZLImageEditor.bundle */; };
 		4EDDD68229DC24ED00C4E14D /* ImageBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDD68129DC24ED00C4E14D /* ImageBlurView.swift */; };
-		4EE2131729C8A80C007FAC6F /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2131629C8A80C007FAC6F /* AlbumView.swift */; };
+		4EE2131729C8A80C007FAC6F /* FavoriteAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2131629C8A80C007FAC6F /* FavoriteAlbumView.swift */; };
 		4EE49F7D29C877DC00B51F4B /* HomeFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F7C29C877DC00B51F4B /* HomeFeedViewModel.swift */; };
 		4EE49F8929C87FFE00B51F4B /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F8829C87FFE00B51F4B /* Color+Extension.swift */; };
 		4EE49F8D29C8820F00B51F4B /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 4EE49F8C29C8820F00B51F4B /* WaterfallGrid */; };
@@ -630,6 +634,8 @@
 		4E010E2B29DB1D5B00A4B231 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4E010E2C29DB1ED600A4B231 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		4E010E2E29DB27C900A4B231 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
+		4E06025A2A3EE70F00508B8B /* AppAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAlbumView.swift; sourceTree = "<group>"; };
+		4E06025D2A3EEA0A00508B8B /* SelfAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfAppViewModel.swift; sourceTree = "<group>"; };
 		4E07F81E29E0300800E72CCD /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		4E195EDA29C040C600E97522 /* Shoots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoots.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E195EDD29C040C600E97522 /* ShootsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsApp.swift; sourceTree = "<group>"; };
@@ -931,7 +937,7 @@
 		4EDDD66129DC238E00C4E14D /* ZLImageEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLImageEditor.h; sourceTree = "<group>"; };
 		4EDDD66229DC238E00C4E14D /* ZLImageEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLImageEditor.bundle; sourceTree = "<group>"; };
 		4EDDD68129DC24ED00C4E14D /* ImageBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBlurView.swift; sourceTree = "<group>"; };
-		4EE2131629C8A80C007FAC6F /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
+		4EE2131629C8A80C007FAC6F /* FavoriteAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAlbumView.swift; sourceTree = "<group>"; };
 		4EE49F7C29C877DC00B51F4B /* HomeFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedViewModel.swift; sourceTree = "<group>"; };
 		4EE49F8829C87FFE00B51F4B /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		4EE49F8E29C8831500B51F4B /* ImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
@@ -1916,6 +1922,7 @@
 				4EE49F7C29C877DC00B51F4B /* HomeFeedViewModel.swift */,
 				4EE7C0972A39745C00140FFD /* DetailViewModel.swift */,
 				4EE7C09B2A39748A00140FFD /* AppViewModel.swift */,
+				4E06025D2A3EEA0A00508B8B /* SelfAppViewModel.swift */,
 				4EE7C09F2A3974B300140FFD /* InfoViewModel.swift */,
 				4EE7C0A32A39787500140FFD /* SelfViewModel.swift */,
 				4EE7C0A72A39796800140FFD /* FavoriteDetailViewModel.swift */,
@@ -1996,7 +2003,8 @@
 			isa = PBXGroup;
 			children = (
 				4EE49F9929C898CE00B51F4B /* SelfView.swift */,
-				4EE2131629C8A80C007FAC6F /* AlbumView.swift */,
+				4EE2131629C8A80C007FAC6F /* FavoriteAlbumView.swift */,
+				4E06025A2A3EE70F00508B8B /* AppAlbumView.swift */,
 			);
 			path = Self;
 			sourceTree = "<group>";
@@ -2407,6 +2415,7 @@
 				4E5CF68029CD58D100A4E0DE /* OpacityDotsIndicatorView.swift in Sources */,
 				4E58F91D29CB37000087E902 /* DNALoading.swift in Sources */,
 				4EDDD67A29DC238E00C4E14D /* UIImage+ZLImageEditor.swift in Sources */,
+				4E06025B2A3EE70F00508B8B /* AppAlbumView.swift in Sources */,
 				4E63A8492A2487C4001A0FD4 /* UploadImageResponseData.swift in Sources */,
 				4E5CF6C429CD58D100A4E0DE /* Triangle.swift in Sources */,
 				4E49408E29E3A7200058391E /* ZLPhotoUIConfiguration.swift in Sources */,
@@ -2511,7 +2520,7 @@
 				4E4940A429E3A7200058391E /* Bool+ZLPhotoBrowser.swift in Sources */,
 				4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */,
 				4E5CF69829CD58D100A4E0DE /* SPAlertLayout.swift in Sources */,
-				4EE2131729C8A80C007FAC6F /* AlbumView.swift in Sources */,
+				4EE2131729C8A80C007FAC6F /* FavoriteAlbumView.swift in Sources */,
 				4EDDD67029DC238E00C4E14D /* ZLWeakProxy.swift in Sources */,
 				4E49409429E3A7200058391E /* ZLThumbnailPhotoCell.swift in Sources */,
 				4E5CF72929CD623600A4E0DE /* ShootColorScheme.swift in Sources */,
@@ -2528,6 +2537,7 @@
 				4E5CF6A429CD58D100A4E0DE /* ElegantHList.swift in Sources */,
 				4E5CF6FE29CD5AC000A4E0DE /* SwiftDate.swift in Sources */,
 				4E195EDE29C040C600E97522 /* ShootsApp.swift in Sources */,
+				4E06025E2A3EEA0A00508B8B /* SelfAppViewModel.swift in Sources */,
 				4EDDD67629DC238E00C4E14D /* ZLImageEditorUIConfiguration.swift in Sources */,
 				4EE7C0982A39745C00140FFD /* DetailViewModel.swift in Sources */,
 				4EE7C0CF2A3ABC6500140FFD /* SearchSuggestionView.swift in Sources */,
@@ -2709,9 +2719,11 @@
 				4E42A73229D14B2A00BEC185 /* Formatter+Protocols.swift in Sources */,
 				4EA73B1429D5C161002901AE /* SwiftyStoreKit.swift in Sources */,
 				4E42A72129D14B1700BEC185 /* Commons.swift in Sources */,
+				4E06025F2A3EEA0A00508B8B /* SelfAppViewModel.swift in Sources */,
 				4E63A84A2A2487C4001A0FD4 /* UploadImageResponseData.swift in Sources */,
 				4E42A73D29D152EF00BEC185 /* MenuBarExtraView.swift in Sources */,
 				4EE7C0952A39654800140FFD /* Response.swift in Sources */,
+				4E06025C2A3EE70F00508B8B /* AppAlbumView.swift in Sources */,
 				4E42A71129D1337100BEC185 /* AlertToast.swift in Sources */,
 				4E878ED529D192130027FDA9 /* Data+Extension.swift in Sources */,
 				4E42A72B29D14B2100BEC185 /* TimePeriodChain.swift in Sources */,
@@ -2740,7 +2752,7 @@
 				4E010E1C29DB0D3600A4B231 /* AppIconPlaceholder.swift in Sources */,
 				4EE7C0BE2A3980C100140FFD /* Favorite.swift in Sources */,
 				4EA73B1A29D5C161002901AE /* InAppReceiptRefreshRequest.swift in Sources */,
-				4E42A6DF29D1315000BEC185 /* AlbumView.swift in Sources */,
+				4E42A6DF29D1315000BEC185 /* FavoriteAlbumView.swift in Sources */,
 				4ED4B08E29D3CAC0005D9758 /* LoadMoreView.swift in Sources */,
 				4E42A73429D14B2A00BEC185 /* DotNetParserFormatter.swift in Sources */,
 				4E42A72529D14B1700BEC185 /* AssociatedValues.swift in Sources */,

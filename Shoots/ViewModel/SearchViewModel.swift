@@ -14,6 +14,7 @@ class SearchViewModel: ObservableObject {
         didSet {
             if appID != nil {
                 showResult = true
+                patternID = nil
             }
         }
     }
@@ -21,6 +22,7 @@ class SearchViewModel: ObservableObject {
         didSet {
             if patternID != nil {
                 showResult = true
+                appID = nil
             }
         }
     }

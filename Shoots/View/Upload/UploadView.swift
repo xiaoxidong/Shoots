@@ -12,7 +12,6 @@ struct UploadView: View {
     @State var uploadImages: [UIImage]
     @Binding var uploadData: [LocalImageData]
     var shareExtension: Bool = false
-    @State var selection: Int = 0
     let shareCancellAction: () -> Void
     let shareDoneAction: () -> Void
     let uploadAction: () -> Void
@@ -20,24 +19,22 @@ struct UploadView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
-    @AppStorage("showBlurNew") var showBlurNew = true
+    @AppStorage("showBlurNew") var showBlurNewGuide = true
 
     @State var updateIndicator = true
     let screen = UIScreen.main.bounds
+    @State var selection: Int = 0
     @EnvironmentObject var user: UserViewModel
     @EnvironmentObject var info: InfoViewModel
     var body: some View {
         TabView(selection: $selection) {
-            ForEach(uploadImages.indices, id: \.self) { indice in
-                Image(uiImage: uploadImages[indice])
+            ForEach(uploadData.indices, id: \.self) { indice in
+                Image(uiImage: UIImage(data: uploadData[indice].image)!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: screen.width, height: shareExtension ? nil : screen.height)
                     .ignoresSafeArea()
                     .tag(indice)
-                    .onTapGesture {
-                        print("----")
-                    }
             }
         }.tabViewStyle(.page(indexDisplayMode: .never))
             .toolbar(.hidden, for: .navigationBar)
@@ -73,9 +70,6 @@ struct UploadView: View {
                 withAnimation(.spring()) {
                     updateIndicator.toggle()
                 }
-            }
-            .onAppear {
-                uploadData.append(LocalImageData(image: uploadImages[0].pngData()!, app: "Poke", pattern: "卡片,粉丝", fileName: "", fileSuffix: ""))
             }
     }
     
@@ -128,26 +122,22 @@ struct UploadView: View {
         }.padding(.top, shareExtension ? 16 : 0)
     }
     
-    @State var appText = ""
-    @State var tagText = ""
     @State var showBluer = false
     @State var showCombine = false
-    @State var appTexts: [String] = ["Instagram", "Facebook", "Paper", "微博", "知乎", "Twitter", "抖音"]
     var appRsults: [AppInfo] {
-        if appText == "" {
+        if uploadData[selection].app == "" {
             return info.apps
         } else {
-            return info.apps.filter({ $0.linkApplicationName.transToLowercasedPinYin().contains(appText.transToLowercasedPinYin()) })
+            return info.apps.filter({ $0.linkApplicationName.transToLowercasedPinYin().contains(uploadData[selection].app.transToLowercasedPinYin()) })
         }
     }
     var tagRsults: [Pattern] {
-        if tagText.components(separatedBy: ",").last == "" {
+        if uploadData[selection].pattern.components(separatedBy: ",").last == "" {
             return info.patterns
         } else {
-            return info.patterns.filter({ $0.designPatternName.transToLowercasedPinYin().contains(tagText.components(separatedBy: ",").last?.transToLowercasedPinYin() ?? "") })
+            return info.patterns.filter({ $0.designPatternName.transToLowercasedPinYin().contains(uploadData[selection].pattern.components(separatedBy: ",").last?.transToLowercasedPinYin() ?? "") })
         }
     }
-    @State var tagTexts: [String] = ["设置", "粉丝", "信息流", "自定义内容", "卡片", "用户中心", "推荐", "Setting"]
     @FocusState var appFocused: Bool
     @FocusState var tagFocused: Bool
     
@@ -158,7 +148,7 @@ struct UploadView: View {
                     VStack(spacing: 0) {
                         ForEach(appRsults) { app in
                             Button {
-                                appText = app.linkApplicationName
+                                uploadData[selection].app = app.linkApplicationName
                                 appFocused = false
                             } label: {
                                 VStack(alignment: .leading, spacing: 0) {
@@ -183,12 +173,12 @@ struct UploadView: View {
                     VStack(spacing: 0) {
                         ForEach(tagRsults, id: \.self) { tag in
                             Button {
-                                if tagText == "" {
-                                    tagText = "\(tag.designPatternName),"
-                                } else if !tagText.contains(tag.designPatternName) {
-                                    var new = tagText.components(separatedBy: ",")
+                                if uploadData[selection].pattern == "" {
+                                    uploadData[selection].pattern = "\(tag.designPatternName),"
+                                } else if !uploadData[selection].pattern.contains(tag.designPatternName) {
+                                    var new = uploadData[selection].pattern.components(separatedBy: ",")
                                     new.removeLast()
-                                    tagText = new.joined(separator: ",") + ",\(tag.designPatternName),"
+                                    uploadData[selection].pattern = new.joined(separator: ",") + ",\(tag.designPatternName),"
                                 }
                             } label: {
                                 VStack(alignment: .center, spacing: 0) {
@@ -212,11 +202,11 @@ struct UploadView: View {
             VStack(spacing: 6) {
                 Divider()
                 HStack(spacing: 8) {
-                    TextField("应用名称", text: $appText)
+                    TextField("应用名称", text: $uploadData[selection].app)
                         .focused($appFocused)
                     Divider()
                         .frame(height: 36)
-                    TextField("设计模式", text: $tagText)
+                    TextField("设计模式", text: $uploadData[selection].pattern)
                         .focused($tagFocused)
                     Button {
                         showBluer.toggle()
@@ -251,13 +241,13 @@ struct UploadView: View {
                 CombineSelectView(uploadImages: $uploadImages)
             }
             .onAppear {
-                showBlurNew = true
+                showBlurNewGuide = true
             }
     }
     
     var blurNew: some View {
         Group {
-            if showBlurNew {
+            if showBlurNewGuide {
                 Color.black.opacity(0.5)
                 VStack(spacing: 16) {
                     Image(systemName: "scribble.variable")
@@ -273,7 +263,7 @@ struct UploadView: View {
                     
                     Button {
                         withAnimation(.spring()) {
-                            showBlurNew.toggle()
+                            showBlurNewGuide.toggle()
                         }
                     } label: {
                         Text("知道了")
@@ -289,30 +279,37 @@ struct UploadView: View {
         }.ignoresSafeArea()
         .onTapGesture {
             withAnimation(.spring()) {
-                showBlurNew = false
+                showBlurNewGuide = false
             }
         }
     }
     
     func upload() {
-        if shareExtension {
-            //TODO: 上传截图
-//            Task {
-//                await user.uploadPics(pics: user.uploadImage(localDatas: uploadData)) { success in
-//                    if success {
-//                        
-//                    } else {
-//                        
-//                    }
-//                }
-//            }
-            // 完成之后关闭
-            shareDoneAction()
+        if let index = uploadData.firstIndex(where: { $0.app == "" }) {
+            // 提示需要填写应用名称
+            selection = index
         } else {
-            // 上传
-            dismiss()
-            //TODO: 后台上传截图
-            uploadAction()
+            if shareExtension {
+                //上传截图
+                Task {
+                    user.uploadImages(localDatas: uploadData) { pics in
+                        user.uploadPics(pics: pics) { success in
+                            if success {
+                                uploadData.removeAll()
+                            } else {
+                                
+                            }
+                        }
+                    }
+                }
+                // 完成之后关闭
+                shareDoneAction()
+            } else {
+                // 上传
+                dismiss()
+                //TODO: 后台上传截图
+                uploadAction()
+            }
         }
     }
 }

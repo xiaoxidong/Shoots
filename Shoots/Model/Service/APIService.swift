@@ -39,6 +39,7 @@ struct APIService {
         case uploadPicGroup
         case patternPics
         case report
+        case searchPattern
         
         var path: String {
             switch self {
@@ -77,9 +78,11 @@ struct APIService {
             case .uploadPicGroup:
                 return "/app/application/group"
             case .patternPics:
-                return "/app/pic/pattern"
+                return "/app/pic/pageByPatternId"
             case .report:
                 return "/app/pic/report"
+            case .searchPattern:
+                return "/app/pic/pageByPatternName"
             }
         }
     }

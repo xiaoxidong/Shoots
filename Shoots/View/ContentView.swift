@@ -54,6 +54,7 @@ struct ContentView: View {
             , alignment: .top
         )
 //        .edgesIgnoringSafeArea(.bottom)
+        .overlay(uploadingView, alignment: .bottom)
         #if os(iOS)
         .fullScreenCover(isPresented: $customUpload, content: {
             CustomUploadView()
@@ -67,8 +68,14 @@ struct ContentView: View {
             withAnimation(.spring()) {
                 uploadisActive = false
             }
-            if !selectedImages.isEmpty {
-                upload.toggle()
+            
+            Task {
+                selectedImages.forEach { image in
+                    uploadData.append(LocalImageData(image: image.pngData()!, app: "", pattern: "", fileName: "", fileSuffix: ""))
+                }
+                if !selectedImages.isEmpty {
+                    upload.toggle()
+                }
             }
         }, content: {
             SelectPhotoView(show: $uploadisActive, selectedImages: $selectedImages)
@@ -341,6 +348,51 @@ struct ContentView: View {
                     .contentShape(Rectangle())
                     .offset(y: uploadOptions ? 0 : 1000)
             }.frame(maxWidth: 660)
+        }
+    }
+    
+    @ViewBuilder
+    var uploadingView: some View {
+        if user.uploading {
+            VStack(spacing: 12) {
+                if !user.error {
+                    HStack(spacing: 12) {
+                        Text("上传图片")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(.shootBlack)
+                        ProgressView()
+                    }
+                    
+                } else {
+                    HStack(spacing: 12) {
+                        Text("上传失败")
+                            .foregroundColor(.shootBlack)
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundColor(.yellow)
+                        Spacer()
+                        
+                        Button(action: {
+                            
+                        }, label: {
+                            Text("重新上传")
+                        })
+                    }.font(.system(size: 16, weight: .bold))
+                }
+                ProgressView(value: CGFloat(user.uploadIndex), total: CGFloat(uploadData.count + 1), label: {
+                    
+                }, currentValueLabel: {
+                    Text("正在上传")
+                }).progressViewStyle(.linear)
+            }
+                .padding()
+                .padding(.bottom)
+                .padding(.top, 8)
+                .background(Color.shootWhite)
+                .clipShape(RoundedRectangle(cornerRadius: 36, style: .continuous))
+                .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
+                .contentShape(Rectangle())
+                .padding(.horizontal)
+                .frame(maxWidth: 660)
         }
     }
     #endif

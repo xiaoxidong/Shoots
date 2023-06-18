@@ -441,13 +441,17 @@ struct DetailView: View {
                         showAlert = true
                     } else {
                         Task {
-                            await detail.addFavorites(name: name)
+                            await detail.addFavorites(name: name) { success in
+                                if success {
+                                    withAnimation(.spring()) {
+                                        showNewFolder = false
+                                        name = ""
+                                    }
+                                }
+                            }
                         }
                         
-                        withAnimation(.spring()) {
-                            showNewFolder = false
-                            name = ""
-                        }
+                        
                     }
                 } label: {
                     Text("确认")

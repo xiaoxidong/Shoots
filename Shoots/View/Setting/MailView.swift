@@ -47,7 +47,7 @@ struct MailView: UIViewControllerRepresentable {
         let vc = MFMailComposeViewController()
         //        vc.setMessageBody("请输入内容的啊", isHTML: false)
         vc.setToRecipients(["834599524@qq.com"])
-        vc.setSubject("Note2Do 使用意见反馈")
+        vc.setSubject("Shoots 使用意见反馈")
         vc.mailComposeDelegate = context.coordinator
         return vc
     }

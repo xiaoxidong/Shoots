@@ -194,7 +194,7 @@ struct SelfView: View {
             LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
                 ForEach(selfPic.apps) { app in
                     NavigationLink {
-                        AlbumView(id: "", name: .constant(""))
+                        AppAlbumView(id: app.id, name: app.linkApplicationName)
                     } label: {
                         FolderCardView(images: app.pics, name: app.linkApplicationName, picCount: app.countPics)
                     }
@@ -205,7 +205,7 @@ struct SelfView: View {
                 LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
                     ForEach(selfPic.apps) { app in
                         NavigationLink {
-                            AlbumView(id: "", name: .constant(""))
+                            AppAlbumView(id: app.id, name: app.linkApplicationName)
                         } label: {
                             FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram", picCount: 10)
                             
@@ -226,7 +226,7 @@ struct SelfView: View {
             }
         }.padding(.horizontal)
             .sheet(isPresented: $showMacFolderView) {
-                AlbumView(id: "", name: .constant(""))
+                FavoriteAlbumView(id: "", name: .constant(""))
                     .sheetFrameForMac()
             }
         #endif
@@ -249,7 +249,7 @@ struct SelfView: View {
             LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
                 ForEach($selfPic.favorites) { $favorite in
                     NavigationLink {
-                        AlbumView(id: favorite.id, name: $favorite.favoriteFileName)
+                        FavoriteAlbumView(id: favorite.id, name: $favorite.favoriteFileName)
                     } label: {
                         FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
                     }
@@ -260,7 +260,7 @@ struct SelfView: View {
                 LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
                     ForEach(1..<11) { index in
                         NavigationLink {
-                            AlbumView(id: "", name: .constant(""))
+                            FavoriteAlbumView(id: "", name: .constant(""))
                         } label: {
                             FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram", picCount: 10)
                         }
@@ -280,7 +280,7 @@ struct SelfView: View {
             }
         }.padding(.horizontal)
         .sheet(isPresented: $showMacFolderView) {
-            AlbumView(id: "", name: .constant(""))
+            FavoriteAlbumView(id: "", name: .constant(""))
                 .sheetFrameForMac()
         }
         #endif

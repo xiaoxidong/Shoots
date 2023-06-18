@@ -36,7 +36,7 @@ class FavoriteDetailViewModel: ObservableObject {
         }
     }
     
-    func nexPage(id: String) async {
+    func nextPage(id: String) async {
         self.page += 1
         APIService.shared.POST(url: .favoritePics, params: ["pageSize" : numberPerpage, "pageNum": page, "favoriteFileId": id]) { (result: Result<FeedResponseData, APIService.APIError>) in
             switch result {

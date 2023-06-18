@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 class AppViewModel: ObservableObject {
     @Published var app: AppDetail? = nil
@@ -38,8 +39,9 @@ class AppViewModel: ObservableObject {
         self.noMore = false
         self.footerRefreshing = false
         self.page = 1
-        APIService.shared.POST(url: .appPics, params: ["pageSize" : numberPerpage, "pageNum" : page, "linkApplicationId" : id]) { (result: Result<AppImageResponseData, APIService.APIError>) in
-            switch result {
+        
+        AF.request("\(baseURL)\(APIService.URLPath.appPics.path)", method: .post, parameters: ["pageSize" : numberPerpage, "pageNum" : page, "linkApplicationId" : id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: AppImageResponseData.self) { response in
+            switch response.result {
             case .success(let app):
                 self.appFeed = app.rows
                 self.mostPages = app.total / numberPerpage + 1
@@ -48,25 +50,49 @@ class AppViewModel: ObservableObject {
                     self.footerRefreshing = false
                 }
             case .failure(let error):
-                print("api reqeust erro: \(error)")
-                break
+                print(error)
             }
         }
+//        APIService.shared.POST(url: .appPics, params: ["pageSize" : numberPerpage, "pageNum" : page, "linkApplicationId" : id]) { (result: Result<AppImageResponseData, APIService.APIError>) in
+//            switch result {
+//            case .success(let app):
+//                self.appFeed = app.rows
+//                self.mostPages = app.total / numberPerpage + 1
+//                if app.rows.count < numberPerpage {
+//                    self.noMore = true
+//                    self.footerRefreshing = false
+//                }
+//            case .failure(let error):
+//                print("api reqeust erro: \(error)")
+//                break
+//            }
+//        }
     }
     
     func nextPage(id: String) async {
         self.page += 1
-        APIService.shared.POST(url: .appPics, params: ["pageSize" : page, "pageNum" : page, "linkApplicationId" : id]) { (result: Result<AppImageResponseData, APIService.APIError>) in
-            switch result {
+        AF.request("\(baseURL)\(APIService.URLPath.appPics.path)", method: .post, parameters: ["pageSize" : numberPerpage, "pageNum" : page, "linkApplicationId" : id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: AppImageResponseData.self) { response in
+            switch response.result {
             case .success(let app):
                 DispatchQueue.main.async {
                     self.appFeed.append(contentsOf: app.rows)
                     self.footerRefreshing = false
                 }
             case .failure(let error):
-                print("api reqeust erro: \(error)")
-                break
+                print(error)
             }
         }
+//        APIService.shared.POST(url: .appPics, params: ["pageSize" : page, "pageNum" : page, "linkApplicationId" : id]) { (result: Result<AppImageResponseData, APIService.APIError>) in
+//            switch result {
+//            case .success(let app):
+//                DispatchQueue.main.async {
+//                    self.appFeed.append(contentsOf: app.rows)
+//                    self.footerRefreshing = false
+//                }
+//            case .failure(let error):
+//                print("api reqeust erro: \(error)")
+//                break
+//            }
+//        }
     }
 }

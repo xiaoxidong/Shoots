@@ -24,14 +24,14 @@ class DetailViewModel: ObservableObject {
         }
     }
     
-    func addFavorites(name: String) async {
+    func addFavorites(name: String, _ success: @escaping (Bool) -> Void) async {
         APIService.shared.POST(url: .addFavorite, params: ["favoriteFileName" : name]) { (result: Result<Response, APIService.APIError>) in
             switch result {
             case .success(_):
-                self.favorites.removeAll()
                 Task {
                     await self.getFavorites()
                 }
+                success(true)
             case .failure(let error):
                 print("api reqeust erro: \(error)")
                 break

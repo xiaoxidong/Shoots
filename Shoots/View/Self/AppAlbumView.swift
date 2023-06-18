@@ -1,22 +1,20 @@
 //
-//  AlbumView.swift
+//  AppAlbumView.swift
 //  Shoots
 //
-//  Created by XiaoDong Yuan on 2023/3/20.
+//  Created by XiaoDong Yuan on 2023/6/18.
 //
 
 import SwiftUI
-import Alamofire
 
-struct AlbumView: View {
+struct AppAlbumView: View {
     var id: String
-    @Binding var name: String
+    var name: String
     
     @State var edit = false
-    @State var showEditName = false
     @State var delete = false
     @Environment(\.dismiss) var dismiss
-    @StateObject var favoriteDetail = FavoriteDetailViewModel()
+    @StateObject var selfAppDetail = SelfAppViewModel()
     @EnvironmentObject var user: UserViewModel
     
     var body: some View {
@@ -47,21 +45,11 @@ struct AlbumView: View {
                 }
                 
                 ToolbarItem(placement: .principal) {
-                    Button {
-                        editName = name
-                        withAnimation(.easeInOut(duration: 0.2)) {
-                            showEditName.toggle()
-                        }
-                    } label: {
-                        HStack(spacing: 4) {
-                            Text(name)
-                                .font(.system(size: 16, weight: .medium))
-                                .foregroundColor(.shootBlack)
-                                .lineLimit(1)
-                                .frame(maxWidth: 200)
-                            Image("edit")
-                        }
-                    }
+                    Text(name)
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(.shootBlack)
+                        .lineLimit(1)
+                        .frame(maxWidth: 200)
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -90,19 +78,10 @@ struct AlbumView: View {
                 }.buttonStyle(.plain)
                 
                 Spacer()
-                Button {
-                    withAnimation(.easeInOut(duration: 0.2)) {
-                        showEditName.toggle()
-                    }
-                } label: {
-                    HStack(spacing: 4) {
-                        Text(name)
-                            .font(.largeTitle)
-                            .bold()
-                            .foregroundColor(.shootBlack)
-                        Image("edit")
-                    }
-                }.buttonStyle(.plain)
+                Text(name)
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundColor(.shootBlack)
                 Spacer()
                 Button {
                     if edit {
@@ -141,17 +120,12 @@ struct AlbumView: View {
             Group {
                 Color.black
                     .ignoresSafeArea()
-                    .opacity(showEditName || delete ? 0.2 : 0)
+                    .opacity(delete ? 0.2 : 0)
                     .onTapGesture {
                         withAnimation(.spring()) {
-                            showEditName = false
                             delete = false
                         }
                     }
-                if showEditName {
-                    editNameView
-                        .transition(.scale(scale: 0.6).combined(with: .opacity))
-                }
                 if delete {
                     deleteView
                         .transition(.scale(scale: 0.9).combined(with: .opacity))
@@ -165,9 +139,9 @@ struct AlbumView: View {
     
     var feed: some View {
         ScrollView {
-            FeedView(shoots: favoriteDetail.favoriteFeed)
+            FeedView(shoots: selfAppDetail.appFeed)
             
-            LoadMoreView(footerRefreshing: $favoriteDetail.footerRefreshing, noMore: $favoriteDetail.noMore) {
+            LoadMoreView(footerRefreshing: $selfAppDetail.footerRefreshing, noMore: $selfAppDetail.noMore) {
                 loadMore()
             }
         }.enableRefresh()
@@ -179,19 +153,19 @@ struct AlbumView: View {
     }
     
     func loadMore() {
-        if self.favoriteDetail.page + 1 > self.favoriteDetail.mostPages {
-            self.favoriteDetail.footerRefreshing = false
-            self.favoriteDetail.noMore = true
+        if self.selfAppDetail.page + 1 > self.selfAppDetail.mostPages {
+            self.selfAppDetail.footerRefreshing = false
+            self.selfAppDetail.noMore = true
         } else {
             Task {
-                await self.favoriteDetail.nexPage(id: id)
+                await self.selfAppDetail.nextPage(id: id)
             }
         }
     }
     
     func getData() {
         Task {
-            await self.favoriteDetail.favoritePics(id: id)
+            await self.selfAppDetail.nextPage(id: id)
         }
     }
     
@@ -216,7 +190,7 @@ struct AlbumView: View {
     var editView: some View {
         ScrollView {
             LazyVGrid(columns: columns, alignment: .leading, spacing: 2) {
-                ForEach(favoriteDetail.favoriteFeed) { shoot in
+                ForEach(selfAppDetail.appFeed) { shoot in
                     Button(action: {
                         //选择和取消选择截图
                         withAnimation(.spring()) {
@@ -239,64 +213,6 @@ struct AlbumView: View {
                 }
             }
         }.background(Color.shootLight.opacity(0.2))
-    }
-    
-    @State var editName: String = ""
-    var editNameView: some View {
-        VStack(spacing: 26) {
-            Text("编辑系列")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundColor(.shootBlack)
-            
-            VStack {
-                TextField("输入系列名称", text: $editName)
-                    .textFieldStyle(.plain)
-                    .padding(.horizontal)
-                Divider()
-            }
-            
-            HStack(spacing: 56) {
-                Button {
-                    withAnimation(.easeInOut(duration: 0.2)) {
-                        showEditName.toggle()
-                    }
-                } label: {
-                    Text("取消")
-                        .font(.system(size: 14, weight: .medium))
-                        .padding(.horizontal, 22)
-                        .padding(.vertical, 10)
-                        .foregroundColor(.black)
-                        .background(Color.shootGray.opacity(0.4))
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                }.buttonStyle(.plain)
-                Button {
-                    Task {
-                        await favoriteDetail.editFavoriteName(id: id, name: editName) { success in
-                            if success {
-                                name = editName
-                                withAnimation(.easeInOut(duration: 0.2)) {
-                                    showEditName.toggle()
-                                }
-                            }
-                        }
-                    }
-                    
-                } label: {
-                    Text("确认")
-                        .font(.system(size: 14, weight: .medium))
-                        .padding(.horizontal, 22)
-                        .padding(.vertical, 10)
-                        .foregroundColor(.white)
-                        .background(Color.shootRed)
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                }.buttonStyle(.plain)
-            }
-        }.padding()
-            .padding(.vertical)
-            .frame(maxWidth: 460)
-            .background(Color.shootWhite)
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-            .padding()
     }
     
     var deleteView: some View {
@@ -324,11 +240,11 @@ struct AlbumView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }.buttonStyle(.plain)
                 Button {
-                    Task {
-                        await favoriteDetail.removeFavorite(pics: selected, id: id) { success in
-                            
-                        }
-                    }
+//                    Task {
+//                        await selfAppDetail.removeFavorite(pics: selected, id: id) { success in
+//
+//                        }
+//                    }
                     withAnimation(.spring()) {
                         delete = false
                     }
@@ -351,24 +267,8 @@ struct AlbumView: View {
     }
 }
 
-struct AlbumView_Previews: PreviewProvider {
+struct AppAlbumView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            AlbumView(id: "", name: .constant(""))
-            #if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
-            #endif
-        }
-            .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh-cn"))
-        
-        NavigationView {
-            AlbumView(id: "", name: .constant(""))
-            #if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
-            #endif
-        }
-            .previewDisplayName("English")
-            .environment(\.locale, .init(identifier: "en"))
+        AppAlbumView(id: "", name: "")
     }
 }
