@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct IconView: View {
-    
     let columns = [
         GridItem(.flexible(minimum: 100, maximum: 260), spacing: 12),
         GridItem(.flexible(minimum: 100, maximum: 260), spacing: 12),
@@ -16,7 +15,7 @@ struct IconView: View {
     ]
     var body: some View {
         VStack(spacing: 16) {
-            Text("选择 Icon")
+            Text("选择图标")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.shootBlack)
             
@@ -25,6 +24,7 @@ struct IconView: View {
                     Image("Instagram")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
+                        .frame(width: 106, height: 106)
                         .clipShape(RoundedRectangle(cornerRadius: 36, style: .continuous))
                 }
             }

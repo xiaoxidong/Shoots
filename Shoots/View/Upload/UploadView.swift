@@ -114,6 +114,8 @@ struct UploadView: View {
                 Button {
                     // 如果未登录，先登录
                     if !user.login {
+                        appFocused = false
+                        tagFocused = false
                         withAnimation(.spring()) {
                             showLogin.toggle()
                         }

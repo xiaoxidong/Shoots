@@ -18,14 +18,15 @@ struct IOSSearchView: View {
             if search.showResult && !searchText.isEmpty {
                 SearchResultView()
             } else {
+                if showSearchDefault {
+                    defaultView
+                }
+                
                 #if os(iOS)
                 if searchText != "" {
                     SearchSuggestionView(searchText: $searchText)
                 }
                 #endif
-                if showSearchDefault {
-                    defaultView
-                }
             }
         }.background(Color.shootWhite)
         .onChange(of: searchText) { newValue in

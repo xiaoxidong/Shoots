@@ -11,19 +11,28 @@ import Alamofire
 var numberPerpage: Int = 20
 
 class UserViewModel: ObservableObject {
-    @Published var login = Defaults().get(for: .login) == "" ? false : true
+    @Published var login: Bool = false
     @Published var token: String = Defaults().get(for: .login) ?? ""
     
     @Published var uploading = false
     @Published var error = false
     @Published var uploadIndex = 1
+    init() {
+        if Defaults().get(for: .login) == nil {
+            Defaults().set("", for: .login)
+        }
+        login = Defaults().get(for: .login) == "" ? false : true
+    }
     // TODO: 第一次进入的时候当没网的时候，处理
     func login(appleUserId: String, identityToken: String, email: String, fullName: String, _ success: @escaping (Bool) -> Void) {
         print(email)
         print(fullName)
+        print(appleUserId)
+        print(identityToken)
         APIService.shared.POST(url: .login, params: ["appleUserId" : appleUserId, "identityToken" : identityToken, "email" : email, "fullName" : fullName]) { (result: Result<UserResponseData, APIService.APIError>) in
             switch result {
             case .success(let user):
+                print("Token: \(user.data.token)")
                 self.login = true
                 self.token = user.data.token
                 APIService.token = user.data.token

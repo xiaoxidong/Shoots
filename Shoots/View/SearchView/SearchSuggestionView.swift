@@ -69,12 +69,12 @@ struct SearchSuggestionView: View {
                 update(newValue: newValue)
             }
             .onAppear {
-                if searchText == "" {
-                    patterns = info.patterns.filter({ $0.isOfficial == "1" })
-                    apps = info.apps.filter({ $0.isOfficial == "1" })
-                } else {
-                    update(newValue: searchText)
-                }
+                #if os(iOS)
+                update(newValue: searchText)
+                #else
+                patterns = info.patterns.filter({ $0.isOfficial == "1" })
+                apps = info.apps.filter({ $0.isOfficial == "1" })
+                #endif
             }
     }
     
