@@ -301,6 +301,9 @@ struct ContentView: View {
                 SearchSuggestionView(searchText: $searchText)
                     .frame(minHeight: 240)
             }
+            .onSubmit(of: .search) {
+                search.search(text: searchText)
+            }
             .overlay(
                 Group {
                     if showLogin {

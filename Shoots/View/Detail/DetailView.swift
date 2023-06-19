@@ -117,7 +117,7 @@ struct DetailView: View {
         .ignoresSafeArea()
         #if os(iOS)
         .fullScreenCover(item: $search) { search in
-            SearchView(searchText: search)
+            FullScreenSearchView(searchText: search)
         }
         #else
         .overlay(alignment: .topTrailing) {

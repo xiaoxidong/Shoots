@@ -16,6 +16,7 @@ struct IPadSearchDefaultView: View {
             GridItem(.fixed(90.00), spacing: 20),
         ]
     @EnvironmentObject var info: InfoViewModel
+    @EnvironmentObject var search: SearchViewModel
     var body: some View {
         ScrollView {
             ScrollView(.horizontal, showsIndicators: false) {
@@ -23,6 +24,7 @@ struct IPadSearchDefaultView: View {
                     ForEach(info.apps) { app in
                         Button {
                             searchText = app.linkApplicationName
+                            search.appID = app.id
                         } label: {
                             VStack {
                                 Image("Instagram")
@@ -46,6 +48,10 @@ struct IPadSearchDefaultView: View {
                        itemSpacing: 4) { pattern in
                 Button {
                     searchText = pattern.designPatternName
+                    search.patternID = pattern.id
+                    Task {
+                        await search.getPatternPics(id: pattern.id)
+                    }
                 } label: {
                     HStack(spacing: 2) {
                         Text(pattern.designPatternName)

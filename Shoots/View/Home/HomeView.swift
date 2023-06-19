@@ -25,12 +25,12 @@ struct HomeView: View {
             if isSearching || searchText != "" {
                 #if os(iOS)
                 if horizontalSizeClass == .compact {
-                    IOSSearchView(searchText: $searchText)
+                    SearchView(searchText: $searchText)
                 } else {
-                    IOSSearchView(searchText: $searchText, showSearchDefault: false)
+                    SearchView(searchText: $searchText, showSearchDefault: false)
                 }
                 #else
-                IOSSearchView(searchText: $searchText, showSearchDefault: false)
+                SearchView(searchText: $searchText, showSearchDefault: false)
                 #endif
             }
         }

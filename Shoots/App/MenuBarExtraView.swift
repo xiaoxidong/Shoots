@@ -69,7 +69,7 @@ struct MenuBarExtraView: View {
             
             ZStack {
                 feed
-                IOSSearchView(searchText: $searchText, showSearchDefault: false)
+                SearchView(searchText: $searchText, showSearchDefault: false)
             }
         }.onAppear {
             load()

@@ -18,7 +18,7 @@ class DetailViewModel: ObservableObject {
                 self.detail = detail
                 success(true)
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -33,7 +33,7 @@ class DetailViewModel: ObservableObject {
                 }
                 success(true)
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -45,7 +45,7 @@ class DetailViewModel: ObservableObject {
             case .success(let favorite):
                 self.favorites = favorite.data
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -58,7 +58,7 @@ class DetailViewModel: ObservableObject {
                 print(feeds)
                 success(true)
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }

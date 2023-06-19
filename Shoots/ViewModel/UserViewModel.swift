@@ -39,7 +39,7 @@ class UserViewModel: ObservableObject {
                 Defaults().set(user.data.token, for: .login)
                 success(true)
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -106,7 +106,7 @@ class UserViewModel: ObservableObject {
                 APIService.token = ""
                 Defaults().set("", for: .login)
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }

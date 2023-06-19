@@ -25,7 +25,7 @@ class SelfViewModel: ObservableObject {
             case .success(let favorite):
                 self.favorites = favorite.data
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -44,7 +44,7 @@ class SelfViewModel: ObservableObject {
             case .success(let app):
                 self.apps = app.data
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -70,7 +70,7 @@ class SelfViewModel: ObservableObject {
                     self.footerRefreshing = false
                 }
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -86,7 +86,7 @@ class SelfViewModel: ObservableObject {
                     self.footerRefreshing = false
                 }
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -99,7 +99,7 @@ class SelfViewModel: ObservableObject {
             case .success(let userPattern):
                 self.userPattern = userPattern.data
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }

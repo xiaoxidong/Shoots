@@ -25,7 +25,7 @@ class InfoViewModel: ObservableObject {
                 self.patterns = pattern.data
                 Defaults().set(pattern.data, for: .localPatterns)
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -38,7 +38,7 @@ class InfoViewModel: ObservableObject {
                 self.apps = apps.data
                 Defaults().set(apps.data, for: .localApps)
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }

@@ -14,7 +14,7 @@ class ReportViewModel: ObservableObject {
             case .success(let reponse):
                 print(reponse)
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }

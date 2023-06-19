@@ -21,7 +21,7 @@ class AppViewModel: ObservableObject {
                 self.app = app
                 success(true)
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -63,7 +63,7 @@ class AppViewModel: ObservableObject {
 //                    self.footerRefreshing = false
 //                }
 //            case .failure(let error):
-//                print("api reqeust erro: \(error)")
+//                print("Api Reqeust Error: \(error)")
 //                break
 //            }
 //        }
@@ -90,7 +90,7 @@ class AppViewModel: ObservableObject {
 //                    self.footerRefreshing = false
 //                }
 //            case .failure(let error):
-//                print("api reqeust erro: \(error)")
+//                print("Api Reqeust Error: \(error)")
 //                break
 //            }
 //        }

@@ -31,7 +31,7 @@ class FavoriteDetailViewModel: ObservableObject {
                     self.footerRefreshing = false
                 }
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -44,7 +44,7 @@ class FavoriteDetailViewModel: ObservableObject {
             case .success(let feeds):
                 self.favoriteFeed.append(contentsOf: feeds.rows)
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -56,7 +56,7 @@ class FavoriteDetailViewModel: ObservableObject {
             case .success(let feeds):
                 print(feeds)
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -69,7 +69,7 @@ class FavoriteDetailViewModel: ObservableObject {
                 print(feeds)
                 success(true)
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
@@ -86,7 +86,7 @@ class FavoriteDetailViewModel: ObservableObject {
                     }
                 }
             case .failure(let error):
-                print("api reqeust erro: \(error)")
+                print("Api Reqeust Error: \(error)")
                 break
             }
         }
