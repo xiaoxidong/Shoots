@@ -182,9 +182,9 @@ class ZLThumbnailViewController: UIViewController {
     var arrDataSources: [ZLPhotoModel] = []
     
     var showCameraCell: Bool {
-        if ZLPhotoConfiguration.default().allowTakePhotoInLibrary, self.albumList.isCameraRoll {
-            return true
-        }
+//        if ZLPhotoConfiguration.default().allowTakePhotoInLibrary, self.albumList.isCameraRoll {
+//            return true
+//        }
         return false
     }
     
@@ -366,14 +366,14 @@ class ZLThumbnailViewController: UIViewController {
         if ZLPhotoUIConfiguration.default().style == .embedAlbumList {
             embedNavView = ZLEmbedAlbumListNavView(title: albumList.title)
             
-            embedNavView?.selectAlbumBlock = { [weak self] in
-                if self?.embedAlbumListView?.isHidden == true {
-                    self?.embedAlbumListView?.show(reloadAlbumList: self?.hasTakeANewAsset ?? false)
-                    self?.hasTakeANewAsset = false
-                } else {
-                    self?.embedAlbumListView?.hide()
-                }
-            }
+//            embedNavView?.selectAlbumBlock = { [weak self] in
+//                if self?.embedAlbumListView?.isHidden == true {
+//                    self?.embedAlbumListView?.show(reloadAlbumList: self?.hasTakeANewAsset ?? false)
+//                    self?.hasTakeANewAsset = false
+//                } else {
+//                    self?.embedAlbumListView?.hide()
+//                }
+//            }
             
             embedNavView?.cancelBlock = { [weak self] in
                 let nav = self?.navigationController as? ZLImageNavController
@@ -1415,7 +1415,8 @@ class ZLEmbedAlbumListNavView: UIView {
                 limitSize: CGSize(width: CGFloat.greatestFiniteMagnitude, height: 44)
             ).width
         )
-        let titleBgControlW = albumTitleW + ZLEmbedAlbumListNavView.arrowH + 20
+        let titleBgControlW = albumTitleW + 20
+        // albumTitleW + ZLEmbedAlbumListNavView.arrowH + 20
         
         UIView.animate(withDuration: 0.25) {
             self.titleBgControl.frame = CGRect(
@@ -1444,7 +1445,7 @@ class ZLEmbedAlbumListNavView: UIView {
         
         addSubview(titleBgControl)
         titleBgControl.addSubview(albumTitleLabel)
-        titleBgControl.addSubview(arrow)
+//        titleBgControl.addSubview(arrow)
         addSubview(cancelBtn)
     }
     

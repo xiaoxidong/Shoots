@@ -36,6 +36,28 @@ struct SearchResultView: View {
                     }
                 }
                 .frame(maxWidth: 1060)
+        } else if let name = search.patternName {
+            ScrollView {
+                FeedView(shoots: search.patternFeed)
+                
+                LoadMoreView(footerRefreshing: $search.footerRefreshing, noMore: $search.noMore) {
+                    if self.search.page + 1 > self.search.mostPages {
+                        self.search.footerRefreshing = false
+                        self.search.noMore = true
+                    } else {
+                        Task {
+                            await search.nextPatternNamePage(name: name)
+                        }
+                    }
+                }
+            }.enableRefresh()
+                .refreshable {
+                    // 首页下拉刷新
+                    Task {
+                        await search.getPatternNamePics(name: name)
+                    }
+                }
+                .frame(maxWidth: 1060)
         }
     }
 }

@@ -940,6 +940,11 @@ extension ZLPhotoPreviewSheet: UICollectionViewDataSource, UICollectionViewDeleg
         guard let cell = collectionView.cellForItem(at: indexPath) as? ZLThumbnailPhotoCell else {
             return
         }
+        cell.btnSelectClick()
+        /*
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ZLThumbnailPhotoCell else {
+            return
+        }
         
         if !ZLPhotoConfiguration.default().allowPreviewPhotos {
             cell.btnSelectClick()
@@ -977,6 +982,7 @@ extension ZLPhotoPreviewSheet: UICollectionViewDataSource, UICollectionViewDeleg
             
             self.showPreviewController(totalPhotos, index: index ?? defaultIndex)
         }
+         */
     }
     
     private func shouldDirectEdit(_ model: ZLPhotoModel) -> Bool {
