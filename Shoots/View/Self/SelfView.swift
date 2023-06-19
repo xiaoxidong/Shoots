@@ -70,11 +70,13 @@ struct SelfView: View {
             if showTag {
                 tagView
                 ScrollView {
-                    // 列表
-                    FeedView(shoots: selfPic.patternFeed)
-                    
-                    LoadMoreView(footerRefreshing: self.$selfPic.footerRefreshing, noMore: self.$selfPic.noMore) {
-                        loadMore()
+                    VStack(spacing: 0) {
+                        // 列表
+                        FeedView(shoots: selfPic.patternFeed)
+                        
+                        LoadMoreView(footerRefreshing: self.$selfPic.footerRefreshing, noMore: self.$selfPic.noMore) {
+                            loadMore()
+                        }
                     }
                 }.enableRefresh()
             } else {

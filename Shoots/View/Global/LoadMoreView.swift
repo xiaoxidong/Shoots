@@ -38,6 +38,8 @@ struct LoadMoreView: View {
         }
         .noMore(noMore)
         .preload(offset: 50)
+        .padding(.vertical)
+        .background(Color.shootLight.opacity(0.06))
     }
 }
 

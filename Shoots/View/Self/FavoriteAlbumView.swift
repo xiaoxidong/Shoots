@@ -73,7 +73,7 @@ struct FavoriteAlbumView: View {
                         }
                     } label: {
                         if edit {
-                            Text("取消收藏")
+                            Text("移除系列")
                                 .bold()
                                 .foregroundColor(selected.isEmpty ? .shootGray : .shootRed)
                         } else {
@@ -152,7 +152,7 @@ struct FavoriteAlbumView: View {
                     }
                 } label: {
                     if edit {
-                        Text("取消收藏")
+                        Text("移除系列")
                             .bold()
                             .foregroundColor(selected.isEmpty ? .shootGray : .shootRed)
                     } else {
@@ -207,10 +207,12 @@ struct FavoriteAlbumView: View {
     
     var feed: some View {
         ScrollView {
-            FeedView(shoots: favoriteDetail.favoriteFeed)
-            
-            LoadMoreView(footerRefreshing: $favoriteDetail.footerRefreshing, noMore: $favoriteDetail.noMore) {
-                loadMore()
+            VStack(spacing: 0) {
+                FeedView(shoots: favoriteDetail.favoriteFeed)
+                
+                LoadMoreView(footerRefreshing: $favoriteDetail.footerRefreshing, noMore: $favoriteDetail.noMore) {
+                    loadMore()
+                }
             }
         }.enableRefresh()
             .refreshable {
@@ -342,11 +344,11 @@ struct FavoriteAlbumView: View {
     
     var deleteView: some View {
         VStack(spacing: 26) {
-            Text("确认取消收藏？")
+            Text("确认移除系列？")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.shootBlack)
             
-            Text("取消之后将无法恢复，确认？")
+            Text("移除之后将无法恢复，确认移除？")
                 .font(.system(size: 15, weight: .medium))
                 .foregroundColor(.shootBlack)
             
@@ -368,11 +370,11 @@ struct FavoriteAlbumView: View {
                     Task {
                         await favoriteDetail.removeFavorite(pics: selected, id: id) { success in
                             if success {
-                                toastText = "取消系列"
+                                toastText = "移除系列"
                                 alertType = .success(.black)
                                 showToast = true
                             } else {
-                                toastText = "取消失败，请重试"
+                                toastText = "移除失败，请重试"
                                 alertType = .error(.red)
                                 showToast = true
                             }

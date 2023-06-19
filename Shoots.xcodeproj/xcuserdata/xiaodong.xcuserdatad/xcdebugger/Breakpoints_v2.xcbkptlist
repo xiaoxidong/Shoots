@@ -1032,13 +1032,13 @@
             filePath = "Shoots/View/Self/SelfView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
             landmarkName = "loadMore()"
-            landmarkType = "7">
+            landmarkType = "9">
             <Locations>
                <Location
-                  uuid = "FF7F1764-AEE7-489E-948A-86482E41A335 - f8faa4c8b6610319"
+                  uuid = "FF7F1764-AEE7-489E-948A-86482E41A335 - f8faa4c8b6610c77"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1048,42 +1048,42 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "278"
-                  endingLineNumber = "278"
-                  offsetFromSymbolStart = "180">
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
+                  offsetFromSymbolStart = "576">
                </Location>
                <Location
-                  uuid = "FF7F1764-AEE7-489E-948A-86482E41A335 - f8faa4c8b6610319"
+                  uuid = "FF7F1764-AEE7-489E-948A-86482E41A335 - b09ea9798f62cc"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Shoots.SelfView.loadMore() -&gt; ()"
+                  symbolName = "closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "278"
-                  endingLineNumber = "278"
-                  offsetFromSymbolStart = "504">
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
+                  offsetFromSymbolStart = "148">
                </Location>
                <Location
-                  uuid = "FF7F1764-AEE7-489E-948A-86482E41A335 - f8faa4c8b6610d6f"
+                  uuid = "FF7F1764-AEE7-489E-948A-86482E41A335 - aa95b2401e3efba8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Shoots.SelfView.loadMore() -&gt; ()"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "292"
-                  endingLineNumber = "292"
-                  offsetFromSymbolStart = "504">
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
+                  offsetFromSymbolStart = "48">
                </Location>
                <Location
-                  uuid = "FF7F1764-AEE7-489E-948A-86482E41A335 - f8faa4c8b6610db5"
+                  uuid = "FF7F1764-AEE7-489E-948A-86482E41A335 - f8faa4c8b6610c77"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1093,23 +1093,8 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "298"
-                  endingLineNumber = "298"
-                  offsetFromSymbolStart = "410">
-               </Location>
-               <Location
-                  uuid = "FF7F1764-AEE7-489E-948A-86482E41A335 - f8faa4c8b6610db5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Shoots.SelfView.loadMore() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "298"
-                  endingLineNumber = "298"
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
                   offsetFromSymbolStart = "504">
                </Location>
             </Locations>
@@ -1125,13 +1110,13 @@
             filePath = "Shoots/View/Self/SelfView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
             landmarkName = "loadMore()"
-            landmarkType = "7">
+            landmarkType = "9">
             <Locations>
                <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - f8faa4c8b66103a5"
+                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - f8faa4c8b6610cd2"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1141,27 +1126,12 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "282"
-                  endingLineNumber = "282"
-                  offsetFromSymbolStart = "576">
+                  startingLineNumber = "303"
+                  endingLineNumber = "303"
+                  offsetFromSymbolStart = "732">
                </Location>
                <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - b09ea9798f6d1e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "282"
-                  endingLineNumber = "282"
-                  offsetFromSymbolStart = "148">
-               </Location>
-               <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - aa95b2401e3ef47a"
+                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - aa95b2401e3efb0d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1171,27 +1141,12 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "282"
-                  endingLineNumber = "282"
-                  offsetFromSymbolStart = "48">
-               </Location>
-               <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - aa95b2401e3ef45b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "281"
-                  endingLineNumber = "281"
+                  startingLineNumber = "303"
+                  endingLineNumber = "303"
                   offsetFromSymbolStart = "68">
                </Location>
                <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - 3b158b814b2c1760"
+                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - 3b158b814b2c1836"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1201,12 +1156,12 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "281"
-                  endingLineNumber = "281"
+                  startingLineNumber = "303"
+                  endingLineNumber = "303"
                   offsetFromSymbolStart = "40">
                </Location>
                <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - 7330e589e6663059"
+                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - 7330e589e6663f0f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1216,129 +1171,9 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "281"
-                  endingLineNumber = "281"
+                  startingLineNumber = "303"
+                  endingLineNumber = "303"
                   offsetFromSymbolStart = "68">
-               </Location>
-               <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - aa95b2401e3efa15"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "295"
-                  endingLineNumber = "295"
-                  offsetFromSymbolStart = "68">
-               </Location>
-               <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - 3b158b814b2c192e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "295"
-                  endingLineNumber = "295"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - 7330e589e6663e17"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "295"
-                  endingLineNumber = "295"
-                  offsetFromSymbolStart = "68">
-               </Location>
-               <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - aa95b2401e3efbcf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "301"
-                  endingLineNumber = "301"
-                  offsetFromSymbolStart = "61">
-               </Location>
-               <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - 3b158b814b2c18f4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "301"
-                  endingLineNumber = "301"
-                  offsetFromSymbolStart = "34">
-               </Location>
-               <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - 7330e589e6663fcd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "301"
-                  endingLineNumber = "301"
-                  offsetFromSymbolStart = "68">
-               </Location>
-               <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - aa95b2401e3efbcf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "301"
-                  endingLineNumber = "301"
-                  offsetFromSymbolStart = "68">
-               </Location>
-               <Location
-                  uuid = "07AA0447-873E-49C7-85DF-9DCE3E4D9F23 - 3b158b814b2c18f4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in Shoots.SelfView.loadMore() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Self/SelfView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "301"
-                  endingLineNumber = "301"
-                  offsetFromSymbolStart = "40">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -3177,28 +3012,28 @@
             filePath = "Shoots/View/Home/HomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "feed"
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "68D4840A-99B6-4A4D-B055-EB6CC6D59AB7 - 6af7c1c07667b5a8"
+                  uuid = "68D4840A-99B6-4A4D-B055-EB6CC6D59AB7 - ce20a49dbd4629a7"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #3 (Swift.Bool) -&gt; () in Shoots.HomeView.feed.getter : some"
+                  symbolName = "Shoots.HomeView.feed.getter : some"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Home/HomeView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "58">
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "1112">
                </Location>
                <Location
-                  uuid = "68D4840A-99B6-4A4D-B055-EB6CC6D59AB7 - 6af7c1c07667b5a8"
+                  uuid = "68D4840A-99B6-4A4D-B055-EB6CC6D59AB7 - 6af7c1c07667b46e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -3208,8 +3043,8 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Home/HomeView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
                   offsetFromSymbolStart = "32">
                </Location>
             </Locations>

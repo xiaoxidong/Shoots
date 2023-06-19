@@ -16,15 +16,17 @@ struct SearchResultView: View {
                 .frame(maxWidth: 1060)
         } else if let id = search.patternID {
             ScrollView {
-                FeedView(shoots: search.patternFeed)
-                
-                LoadMoreView(footerRefreshing: $search.footerRefreshing, noMore: $search.noMore) {
-                    if self.search.page + 1 > self.search.mostPages {
-                        self.search.footerRefreshing = false
-                        self.search.noMore = true
-                    } else {
-                        Task {
-                            await search.nextPage(id: id)
+                VStack(spacing: 0) {
+                    FeedView(shoots: search.patternFeed)
+                    
+                    LoadMoreView(footerRefreshing: $search.footerRefreshing, noMore: $search.noMore) {
+                        if self.search.page + 1 > self.search.mostPages {
+                            self.search.footerRefreshing = false
+                            self.search.noMore = true
+                        } else {
+                            Task {
+                                await search.nextPage(id: id)
+                            }
                         }
                     }
                 }
@@ -38,15 +40,17 @@ struct SearchResultView: View {
                 .frame(maxWidth: 1060)
         } else if let name = search.patternName {
             ScrollView {
-                FeedView(shoots: search.patternFeed)
-                
-                LoadMoreView(footerRefreshing: $search.footerRefreshing, noMore: $search.noMore) {
-                    if self.search.page + 1 > self.search.mostPages {
-                        self.search.footerRefreshing = false
-                        self.search.noMore = true
-                    } else {
-                        Task {
-                            await search.nextPatternNamePage(name: name)
+                VStack(spacing: 0) {
+                    FeedView(shoots: search.patternFeed)
+                    
+                    LoadMoreView(footerRefreshing: $search.footerRefreshing, noMore: $search.noMore) {
+                        if self.search.page + 1 > self.search.mostPages {
+                            self.search.footerRefreshing = false
+                            self.search.noMore = true
+                        } else {
+                            Task {
+                                await search.nextPatternNamePage(name: name)
+                            }
                         }
                     }
                 }

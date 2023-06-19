@@ -78,15 +78,17 @@ struct MenuBarExtraView: View {
    
     var feed: some View {
         ScrollView {
-            FeedView(shoots: home.homeFeed)
-            
-            LoadMoreView(footerRefreshing: $home.footerRefreshing, noMore: $home.noMore) {
-                if self.home.page + 1 > self.home.mostPages {
-                    self.home.footerRefreshing = false
-                    self.home.noMore = true
-                } else {
-                    Task {
-                        await home.nextPage()
+            VStack(spacing: 0) {
+                FeedView(shoots: home.homeFeed)
+                
+                LoadMoreView(footerRefreshing: $home.footerRefreshing, noMore: $home.noMore) {
+                    if self.home.page + 1 > self.home.mostPages {
+                        self.home.footerRefreshing = false
+                        self.home.noMore = true
+                    } else {
+                        Task {
+                            await home.nextPage()
+                        }
                     }
                 }
             }

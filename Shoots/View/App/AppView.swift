@@ -14,7 +14,7 @@ struct AppView: View {
     @StateObject var app: AppViewModel = AppViewModel()
     var body: some View {
         ScrollView {
-            Group {
+            VStack(spacing: 0) {
                 header
                 if !app.flows.isEmpty {
                     flowView

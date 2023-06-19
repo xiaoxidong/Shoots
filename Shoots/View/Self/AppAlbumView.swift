@@ -145,10 +145,12 @@ struct AppAlbumView: View {
     
     var feed: some View {
         ScrollView {
-            FeedView(shoots: selfAppDetail.appFeed)
-            
-            LoadMoreView(footerRefreshing: $selfAppDetail.footerRefreshing, noMore: $selfAppDetail.noMore) {
-                loadMore()
+            VStack(spacing: 0) {
+                FeedView(shoots: selfAppDetail.appFeed)
+                
+                LoadMoreView(footerRefreshing: $selfAppDetail.footerRefreshing, noMore: $selfAppDetail.noMore) {
+                    loadMore()
+                }
             }
         }.enableRefresh()
             .refreshable {
