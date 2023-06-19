@@ -8,6 +8,7 @@
 import SwiftUI
 import WaterfallGrid
 import Refresh
+import Grid
 
 struct FeedView: View {
     var shoots: [Picture]
@@ -17,7 +18,6 @@ struct FeedView: View {
     @State var noMore = false
     var body: some View {
         LazyVStack(spacing: 0) {
-//            Divider()
             if homeModel == 0 {
                 waterfallView(columns: 3)
             } else if homeModel == 1 {
@@ -46,19 +46,42 @@ struct FeedView: View {
         }
     }
     
+    @ViewBuilder
     func waterfallView(columns: Int) -> some View {
-        WaterfallGrid(shoots) { shoot in
-            Group {
-                if shoot.id == "s" {
-                    AddsView()
-                } else {
+        if shoots.count < 4 {
+            HStack(spacing: 8) {
+                ForEach(shoots) { shoot in
                     ImageCardView(shoot: shoot)
+                        .frame(maxWidth: 160)
                 }
-            }
+                Spacer(minLength: 0)
+            }.padding(.horizontal, 8)
+        } else {
+            Grid(shoots) { shoot in
+                Group {
+                    if shoot.id == "s" {
+                        AddsView()
+                    } else {
+                        ImageCardView(shoot: shoot)
+                    }
+                }
+            }.gridStyle(StaggeredGridStyle(tracks: .count(columns)))
+            .frame(maxWidth: 1060)
         }
-        .gridStyle(columns: columns)
-        .gridStyle(spacing: 0)
-        .frame(maxWidth: 1060)
+        
+        
+//        WaterfallGrid(shoots) { shoot in
+//            Group {
+//                if shoot.id == "s" {
+//                    AddsView()
+//                } else {
+//                    ImageCardView(shoot: shoot)
+//                }
+//            }
+//        }
+//        .gridStyle(columns: columns)
+//        .gridStyle(spacing: 0)
+//        .frame(maxWidth: 1060)
     }
     
     var singleLineView: some View {

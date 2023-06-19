@@ -16,7 +16,9 @@ struct AppAlbumView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var selfAppDetail = SelfAppViewModel()
     @EnvironmentObject var user: UserViewModel
-    
+    @State var showToast = false
+    @State var toastText = ""
+    @State var alertType: AlertToast.AlertType = .success(.black)
     var body: some View {
         #if os(iOS)
         content
@@ -132,6 +134,9 @@ struct AppAlbumView: View {
                 }
             }
         )
+        .toast(isPresenting: $showToast) {
+            AlertToast(displayMode: .alert, type: alertType, title: toastText)
+        }
         .onAppear {
             getData()
         }
@@ -240,11 +245,19 @@ struct AppAlbumView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }.buttonStyle(.plain)
                 Button {
-//                    Task {
-//                        await selfAppDetail.removeFavorite(pics: selected, id: id) { success in
-//
-//                        }
-//                    }
+                    Task {
+                        await selfAppDetail.deletePics(ids: selected, { success in
+                            if success {
+                                toastText = "成功删除"
+                                alertType = .success(.black)
+                                showToast = true
+                            } else {
+                                toastText = "删除失败，请重试"
+                                alertType = .error(.red)
+                                showToast = true
+                            }
+                        })
+                    }
                     withAnimation(.spring()) {
                         delete = false
                     }

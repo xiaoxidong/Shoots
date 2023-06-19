@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CombineSelectView: View {
-    @Binding var uploadImages: [UIImage]
+    @Binding var uploadImages: [LocalImageData]
     
     @Environment(\.dismiss) var dismiss
     #if os(iOS)
@@ -16,7 +16,7 @@ struct CombineSelectView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
     
-    @State var combinedImage: UIImage? = nil
+    @State var combinedImage: LocalImageData? = nil
     @State var showCombine = false
     @State var showAlert = false
     var body: some View {
@@ -59,12 +59,12 @@ struct CombineSelectView: View {
                     .disabled(selected.count < 2)
                     .background(
                         NavigationLink(destination: CombineView(images: selected, combinedImage: $combinedImage) {
-                            selected.forEach { image in
-                                if let index = uploadImages.firstIndex(of: image) {
-                                    uploadImages.remove(at: index)
-                                }
-                            }
                             if let combinedImage = combinedImage {
+                                selected.forEach { image in
+                                    if let index = uploadImages.firstIndex(of: image) {
+                                        uploadImages.remove(at: index)
+                                    }
+                                }
                                 uploadImages.append(combinedImage)
                             }
                             dismiss()
@@ -87,7 +87,7 @@ struct CombineSelectView: View {
             return [GridItem(.adaptive(minimum: 220, maximum: 360), spacing: 2)]
         }
     }
-    @State var selected: [UIImage] = []
+    @State var selected: [LocalImageData] = []
     var selectView: some View {
         ScrollView {
             LazyVGrid(columns: columns, alignment: .leading, spacing: 2) {
@@ -102,7 +102,7 @@ struct CombineSelectView: View {
                             }
                         }
                     }, label: {
-                        Image(uiImage: image)
+                        Image(uiImage: UIImage(data: image.image)!)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(maxWidth: .infinity, alignment: .top)
@@ -123,9 +123,9 @@ struct CombineSelectView: View {
         var same = true
         for image in selected {
             if width == nil {
-                width = image.size.width
+                width = UIImage(data: image.image)?.size.width
             } else {
-                if width != image.size.width {
+                if width != UIImage(data: image.image)?.size.width {
                     // 尺寸不一样不能拼接
                     same = false
                     break
@@ -138,11 +138,11 @@ struct CombineSelectView: View {
 
 struct CombineSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        CombineSelectView(uploadImages: .constant([UIImage(named: "s1")!, UIImage(named: "s2")!]))
+        CombineSelectView(uploadImages: .constant([]))
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
         
-        CombineSelectView(uploadImages: .constant([UIImage(named: "s1")!, UIImage(named: "s2")!]))
+        CombineSelectView(uploadImages: .constant([]))
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
     }

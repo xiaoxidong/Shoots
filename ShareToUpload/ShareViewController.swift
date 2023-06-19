@@ -15,7 +15,7 @@ class CustomShareViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let contentView = UploadView(uploadImages: images, uploadData: .constant([]), shareExtension: true)  {
+        let contentView = UploadView(uploadData: .constant([]), shareExtension: true)  {
             self.cancelAction()
         } shareDoneAction: {
             self.doneAction()

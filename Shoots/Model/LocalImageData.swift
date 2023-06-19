@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LocalImageData {
+struct LocalImageData: Equatable, Hashable {
     var image: Data
     var app: String
     var pattern: String

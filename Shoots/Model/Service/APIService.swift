@@ -30,8 +30,10 @@ struct APIService {
         case removePicFromFavorite
         case favoritePics
         case editFavoriteName
+        case deleteFavorite
         case upload
         case uploadImage
+        case deleteImage
         case imageDetail(id: String)
         case appDetail(id: String)
         case appPics
@@ -61,12 +63,16 @@ struct APIService {
                 return "/app/favorite/pics"
             case .editFavoriteName:
                 return "/app/favorite/update"
+            case .deleteFavorite:
+                return "/app/favorite/delete/"
             case .feed:
                 return "/app/pic/feed"
             case .upload:
                 return "/app/pic/upload"
             case .uploadImage:
                 return "/system/oss/upload"
+            case .deleteImage:
+                return "/app/pic/delete"
             case .imageDetail(let id):
                 return "/app/pic/detail/\(id)"
             case .appDetail(let id):

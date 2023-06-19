@@ -51,11 +51,12 @@ class DetailViewModel: ObservableObject {
         }
     }
     
-    func savePics(pics: [String], favoriteFileId: String) async {
+    func savePics(pics: [String], favoriteFileId: String, _ success: @escaping (Bool) -> Void) async {
         APIService.shared.POST(url: .addPicToFavorite, params: ["picIds" : pics, "favoriteFileId": favoriteFileId]) { (result: Result<Response, APIService.APIError>) in
             switch result {
             case .success(let feeds):
                 print(feeds)
+                success(true)
             case .failure(let error):
                 print("api reqeust erro: \(error)")
                 break

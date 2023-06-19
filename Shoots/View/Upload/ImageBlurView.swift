@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ImageBlurView: UIViewControllerRepresentable {
-    @Binding var image: UIImage
+    @Binding var image: Data
     
     typealias UIViewControllerType = ZLEditImageViewController
     
     func makeUIViewController(context: Context) -> ZLEditImageViewController {
-        let vc = ZLEditImageViewController(image: image) { (resImage, editModel) in
-            self.image = resImage
+        let vc = ZLEditImageViewController(image: UIImage(data: image)!) { (resImage, editModel) in
+            self.image = resImage.pngData()!
         }
         return vc
     }

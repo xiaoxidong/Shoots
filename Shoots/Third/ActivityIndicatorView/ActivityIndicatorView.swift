@@ -27,10 +27,11 @@ public struct ActivityIndicatorView: View {
     var type: IndicatorType
     var text: String = "加载中..."
     var width: CGFloat = 36
-    public init(isVisible: Binding<Bool>, type: IndicatorType, width: CGFloat = 36) {
+    public init(isVisible: Binding<Bool>, type: IndicatorType, text: String = "加载中...", width: CGFloat = 36) {
         self._isVisible = isVisible
         self.type = type
         self.width = width
+        self.text = text
     }
 
     public var body: some View {
@@ -40,20 +41,26 @@ public struct ActivityIndicatorView: View {
             return AnyView(DefaultIndicatorView())
         case .arcs:
             return AnyView(
-                HStack(spacing: -6) {
-                    ArcsIndicatorView()
-                        .frame(width: width, height: width)
-                    Text(LocalizedStringKey(text))
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(Color.shootWhite)
-                        .frame(width: 100)
-                    
-                }//.fixedSize(horizontal: true, vertical: true)
-                .padding(.vertical, 8)
-                .padding(.leading, 14)
-//                .background(Color("light"))
-                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 6)
+                Group {
+                    if text == "" {
+                        ArcsIndicatorView()
+                            .frame(width: width, height: width)
+                            .padding(8)
+                    } else {
+                        HStack(spacing: -6) {
+                            ArcsIndicatorView()
+                                .frame(width: width, height: width)
+                            Text(LocalizedStringKey(text))
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(Color.shootWhite)
+                                .fixedSize()
+                        }
+                        .padding(.vertical, 8)
+                        .padding(.leading, 14)
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 6)
+                    }
+                }
             )
         case .rotatingDots:
             return AnyView(RotatingDotsIndicatorView())

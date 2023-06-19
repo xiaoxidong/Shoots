@@ -25,7 +25,9 @@ struct ContentView: View {
     @State var selectedImages: [UIImage] = []
     @State var uploadData: [LocalImageData] = []
     @State var showUploadAction = false
-    
+    @State var showToast = false
+    @State var toastText = ""
+    @State var alertType: AlertToast.AlertType = .success(.black)
     #endif
     var body: some View {
         NavigationView {
@@ -85,8 +87,9 @@ struct ContentView: View {
         })
         .fullScreenCover(isPresented: $upload, onDismiss: {
             selectedImages.removeAll()
+            uploadData.removeAll()
         }, content: {
-            UploadView(uploadImages: selectedImages, uploadData: $uploadData) {
+            UploadView(uploadData: $uploadData) {
                 
             } shareDoneAction: {
                 
@@ -98,6 +101,8 @@ struct ContentView: View {
                         user.uploadPics(pics: pics) { success in
                             if success {
                                 uploadData.removeAll()
+                                toastText = "上传成功"
+                                showToast = true
                             } else {
                                 
                             }
@@ -106,6 +111,9 @@ struct ContentView: View {
                 }
             }
         })
+        .toast(isPresenting: $showToast) {
+            AlertToast(displayMode: .alert, type: alertType, title: toastText)
+        }
         #endif
         .onAppear {
             // DEBUG 模式下显示自定义上传
@@ -172,6 +180,29 @@ struct ContentView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        FeedbackManager.impact(style: .medium)
+                        withAnimation(.spring()) {
+                            uploadisActive = true
+                        }
+                        /*
+                        if showCustomUpload {
+                            withAnimation(.spring()) {
+                                uploadOptions.toggle()
+                            }
+                        } else {
+                            withAnimation(.spring()) {
+                                uploadisActive = true
+                            }
+                        }
+                         */
+                    } label: {
+                        Image("upload")
+                            .padding(.vertical, 6)
+                            .padding(.leading, 6)
+                            .contentShape(Rectangle())
+                    }
+                    /*
                     if showCustomUpload {
                         if horizontalSizeClass == .compact {
                             Button {
@@ -226,6 +257,7 @@ struct ContentView: View {
                                 .contentShape(Rectangle())
                         }
                     }
+                    */
                 }
                 #else
                 ToolbarItem(placement: .navigation) {

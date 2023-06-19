@@ -18,11 +18,49 @@ struct FavoriteAlbumView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var favoriteDetail = FavoriteDetailViewModel()
     @EnvironmentObject var user: UserViewModel
-    
+    @State var showToast = false
+    @State var toastText = ""
+    @State var alertType: AlertToast.AlertType = .success(.black)
     var body: some View {
         #if os(iOS)
         content
             .navigationBarBackButtonHidden()
+            .safeAreaInset(edge: .bottom) {
+                if edit {
+                    Button {
+                        Task {
+                            await favoriteDetail.deleteFavorite(id: id) { success in
+                                if success {
+                                    toastText = "成功删除"
+                                    alertType = .success(.black)
+                                    showToast = true
+                                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                                        DispatchQueue.main.async {
+                                            dismiss()
+                                        }
+                                    }
+                                } else {
+                                    toastText = "删除失败，请重试"
+                                    alertType = .error(.red)
+                                    showToast = true
+                                }
+                            }
+                        }
+                    } label: {
+                        Text("删除系列")
+                            .font(.system(size: 16, weight: .bold))
+                            .padding(.vertical, 12)
+                            .padding(.horizontal, 16)
+                            .foregroundColor(Color.white)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.shootRed)
+                            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                            .frame(maxWidth: 414)
+                            .contentShape(Rectangle())
+                    }.buttonStyle(PlainButtonStyle())
+                        .padding(.horizontal)
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
@@ -35,7 +73,7 @@ struct FavoriteAlbumView: View {
                         }
                     } label: {
                         if edit {
-                            Text("删除")
+                            Text("取消收藏")
                                 .bold()
                                 .foregroundColor(selected.isEmpty ? .shootGray : .shootRed)
                         } else {
@@ -114,7 +152,7 @@ struct FavoriteAlbumView: View {
                     }
                 } label: {
                     if edit {
-                        Text("删除")
+                        Text("取消收藏")
                             .bold()
                             .foregroundColor(selected.isEmpty ? .shootGray : .shootRed)
                     } else {
@@ -158,6 +196,9 @@ struct FavoriteAlbumView: View {
                 }
             }
         )
+        .toast(isPresenting: $showToast) {
+            AlertToast(displayMode: .alert, type: alertType, title: toastText)
+        }
         .onAppear {
             getData()
         }
@@ -301,11 +342,11 @@ struct FavoriteAlbumView: View {
     
     var deleteView: some View {
         VStack(spacing: 26) {
-            Text("确认删除？")
+            Text("确认取消收藏？")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.shootBlack)
             
-            Text("删除之后将无法恢复，确认删除？")
+            Text("取消之后将无法恢复，确认？")
                 .font(.system(size: 15, weight: .medium))
                 .foregroundColor(.shootBlack)
             
@@ -326,7 +367,15 @@ struct FavoriteAlbumView: View {
                 Button {
                     Task {
                         await favoriteDetail.removeFavorite(pics: selected, id: id) { success in
-                            
+                            if success {
+                                toastText = "取消系列"
+                                alertType = .success(.black)
+                                showToast = true
+                            } else {
+                                toastText = "取消失败，请重试"
+                                alertType = .error(.red)
+                                showToast = true
+                            }
                         }
                     }
                     withAnimation(.spring()) {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 class FavoriteDetailViewModel: ObservableObject {
     @Published var favoriteFeed: [Picture] = []
@@ -87,6 +88,18 @@ class FavoriteDetailViewModel: ObservableObject {
             case .failure(let error):
                 print("api reqeust erro: \(error)")
                 break
+            }
+        }
+    }
+    
+    func deleteFavorite(id: String, _ success: @escaping (Bool) -> Void) async {
+        AF.request("\(baseURL)\(APIService.URLPath.deleteFavorite.path)\(id)", method: .delete, parameters: ["favoriteFileId" : id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(APIService.token)"]).responseDecodable(of: Response.self) { response in
+            switch response.result {
+            case .success(let object):
+                print(object)
+                success(true)
+            case .failure(let error):
+                print(error)
             }
         }
     }

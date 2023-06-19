@@ -19,6 +19,7 @@ struct DetailView: View {
     @AppStorage("showDetailNew") var showDetailNew = true
     @State var showAlert = false
     @State var alertText = ""
+    @State var alertType: AlertToast.AlertType = .success(.black)
     @EnvironmentObject var user: UserViewModel
     @StateObject var detail: DetailViewModel = DetailViewModel()
     @State var showLogin = false
@@ -123,7 +124,7 @@ struct DetailView: View {
         }
         #endif
         .toast(isPresenting: $showAlert) {
-            AlertToast(displayMode: .alert, type: .success(.black), title: alertText)
+            AlertToast(displayMode: .alert, type: alertType, title: alertText)
         }
     }
     
@@ -290,10 +291,14 @@ struct DetailView: View {
                         let imageSaver = ImageSaver()
                         imageSaver.successHandler = {
                             alertText = "成功保存到相册"
+                            alertType = .success(.black)
                             showAlert = true
                         }
                         imageSaver.errorHandler = {
                             print("保存失败: \($0.localizedDescription)")
+                            alertText = "保存失败"
+                            alertType = .error(.red)
+                            showAlert = true
                         }
                         
                         guard let url = URL(string: shoot.picUrl) else { return }
@@ -318,6 +323,7 @@ struct DetailView: View {
                 }.sheet(isPresented: $showReport) {
                     ReportView(shoot: shoot) {
                         alertText = "反馈成功"
+                        alertType = .success(.black)
                         showAlert = true
                     }
                         .sheetFrameForMac()
@@ -379,17 +385,15 @@ struct DetailView: View {
                                 .onTapGesture {
                                     // 收藏
                                     Task {
-                                        await detail.savePics(pics: [shoot.id], favoriteFileId: favorite.id)
+                                        await detail.savePics(pics: [shoot.id], favoriteFileId: favorite.id) { success in
+                                            // 收藏成功
+                                            showSave = false
+                                            // 提示成功
+                                            alertText = "添加成功"
+                                            alertType = .success(.black)
+                                            showAlert = true
+                                        }
                                     }
-                                    #if os(iOS)
-                                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                                        // 收藏成功
-                                        showSave = false
-                                        // 提示成功
-                                        alertText = "添加成功"
-                                        showAlert = true
-                                    }
-                                    #endif
                                 }
                         }
                     }.padding(.horizontal, 26)
@@ -438,6 +442,7 @@ struct DetailView: View {
                 Button {
                     if name == "" {
                         alertText = "系列名称不能为空！"
+                        alertType = .error(.red)
                         showAlert = true
                     } else {
                         Task {
@@ -447,6 +452,9 @@ struct DetailView: View {
                                         showNewFolder = false
                                         name = ""
                                     }
+                                    alertText = "创建成功"
+                                    alertType = .success(.black)
+                                    showAlert = true
                                 }
                             }
                         }

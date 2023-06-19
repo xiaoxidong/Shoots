@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct CombineView: View {
-    @State var images: [UIImage]
-    @Binding var combinedImage: UIImage?
+    @State var images: [LocalImageData]
+    @Binding var combinedImage: LocalImageData?
     let action: () -> Void
     
     @State var selected: UIImage? = nil
     @State var topOffsets: [CGFloat] = [0, 0]
     @State var bottomOffsets: [CGFloat] = [0, 0]
-    @State var orignalimages: [UIImage] = []
+    @State var orignalimages: [LocalImageData] = []
     @State var topOffset: CGFloat = 0
     @State var bottomOffset: CGFloat = 0
     @State var scrollDisabled = false
@@ -73,7 +73,7 @@ struct CombineView: View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 12) {
                 ForEach(images.indices, id:\.self) { indice in
-                    Image(uiImage: images[indice])
+                    Image(uiImage: UIImage(data: images[indice].image)!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: 560)
@@ -131,13 +131,13 @@ struct CombineView: View {
                                                 }
                                         )
                                 }
-                            }.opacity(selected == images[indice] ? 1 : 0)
+                            }.opacity(selected == UIImage(data: images[indice].image) ? 1 : 0)
                         }
                         .padding(.horizontal, 12)
-                        .zIndex(selected == images[indice] ? 1 : 0)
+                        .zIndex(selected == UIImage(data: images[indice].image) ? 1 : 0)
                         .onTapGesture {
                             withAnimation(.spring()) {
-                                selected = images[indice]
+                                selected = UIImage(data: images[indice].image)
                             }
                         }
                 }.frame(maxWidth: .infinity)
@@ -154,7 +154,7 @@ struct CombineView: View {
     var moveView: some View {
         List {
             ForEach(images, id: \.self) { image in
-                Image(uiImage: image)
+                Image(uiImage: UIImage(data: image.image)!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 260)
@@ -167,11 +167,14 @@ struct CombineView: View {
     }
     
     func crop(indice: Int) {
-        let height = orignalimages[indice].size.height * (UIScreen.main.bounds.width - 24) / orignalimages[indice].size.width
+        var image = UIImage(data: orignalimages[indice].image)!
+        let height = image.size.height * (UIScreen.main.bounds.width - 24) / image.size.width
         let rec = CGRect(x: 0, y: topOffsets[indice], width: UIScreen.main.bounds.width - 24, height: height + bottomOffsets[indice] - topOffsets[indice])
         
-        images[indice] = cropImage(orignalimages[indice], toRect: rec, viewWidth: UIScreen.main.bounds.width - 24, viewHeight: height)!
-        selected = images[indice]
+        image = cropImage(image, toRect: rec, viewWidth: UIScreen.main.bounds.width - 24, viewHeight: height)!
+        
+        orignalimages[indice].image = image.pngData()!
+        selected = image
     }
     
     func clipButton(top: Bool) -> some View {
@@ -216,18 +219,12 @@ struct CombineView: View {
     func move(from source: IndexSet, to destination: Int) {
         images.move(fromOffsets: source, toOffset: destination)
     }
-    
-    
-    
-    
-    
-    
 }
 
 struct CombineView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CombineView(images: [UIImage(named: "s1")!, UIImage(named: "s2")!, UIImage(named: "s3")!], combinedImage: .constant(nil)) {
+            CombineView(images: [], combinedImage: .constant(nil)) {
                 
             }
                 .navigationBarTitleDisplayMode(.inline)
@@ -236,7 +233,7 @@ struct CombineView_Previews: PreviewProvider {
             .environment(\.locale, .init(identifier: "zh-cn"))
         
         NavigationView {
-            CombineView(images: [UIImage(named: "s1")!, UIImage(named: "s2")!, UIImage(named: "s3")!], combinedImage: .constant(nil)) {
+            CombineView(images: [], combinedImage: .constant(nil)) {
                 
             }
                 .navigationBarTitleDisplayMode(.inline)

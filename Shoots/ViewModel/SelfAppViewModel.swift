@@ -54,4 +54,22 @@ class SelfAppViewModel: ObservableObject {
             }
         }
     }
+    
+    func deletePics(ids: [String], _ success: @escaping (Bool) -> Void) async {
+        APIService.shared.POST(url: .deleteImage, params: ["picIds" : ids]) { (result: Result<Response, APIService.APIError>) in
+            switch result {
+            case .success(let app):
+                print(app)
+                success(true)
+                ids.forEach { id in
+                    if let index = self.appFeed.firstIndex(where: { $0.id == id }) {
+                        self.appFeed.remove(at: index)
+                    }
+                }
+            case .failure(let error):
+                print("api reqeust erro: \(error)")
+                break
+            }
+        }
+    }
 }

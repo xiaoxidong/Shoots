@@ -9,7 +9,6 @@ import SwiftUI
 import Alamofire
 
 struct UploadView: View {
-    @State var uploadImages: [UIImage]
     @Binding var uploadData: [LocalImageData]
     var shareExtension: Bool = false
     let shareCancellAction: () -> Void
@@ -26,6 +25,9 @@ struct UploadView: View {
     @State var selection: Int = 0
     @EnvironmentObject var user: UserViewModel
     @EnvironmentObject var info: InfoViewModel
+    @State var showToast = false
+    @State var toastText = ""
+    @State var alertType: AlertToast.AlertType = .success(.black)
     var body: some View {
         TabView(selection: $selection) {
             ForEach(uploadData.indices, id: \.self) { indice in
@@ -66,10 +68,18 @@ struct UploadView: View {
                     upload()
                 }, alignment: .bottom
             )
-            .onChange(of: uploadImages) { newValue in
+            .toast(isPresenting: $showToast) {
+                AlertToast(displayMode: .alert, type: alertType, title: toastText)
+            }
+            .onChange(of: uploadData) { newValue in
                 withAnimation(.spring()) {
                     updateIndicator.toggle()
                 }
+            }
+            .onAppear {
+                #if DEBUG
+                showBlurNewGuide = true
+                #endif
             }
     }
     
@@ -88,15 +98,15 @@ struct UploadView: View {
                         .contentShape(Rectangle())
                 }.frame(maxWidth: .infinity, alignment: .leading)
                 Spacer(minLength: 0)
-                if uploadImages.count < 2 {
+                if uploadData.count < 2 {
                     Text("上传图片")
                         .font(.system(size: 14, weight: .medium))
                 } else {
                     if updateIndicator {
-                        TitlePageControll(progress: selection, numberOfPages: uploadImages.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
+                        TitlePageControll(progress: selection, numberOfPages: uploadData.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
                             .frame(height: 24)
                     } else {
-                        TitlePageControll(progress: selection, numberOfPages: uploadImages.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
+                        TitlePageControll(progress: selection, numberOfPages: uploadData.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
                             .frame(height: 24)
                     }
                 }
@@ -150,6 +160,7 @@ struct UploadView: View {
                             Button {
                                 uploadData[selection].app = app.linkApplicationName
                                 appFocused = false
+                                tagFocused = true
                             } label: {
                                 VStack(alignment: .leading, spacing: 0) {
                                     Text(app.linkApplicationName)
@@ -231,17 +242,21 @@ struct UploadView: View {
 
         }
             .fullScreenCover(isPresented: $showBluer) {
-                ImageBlurView(image: $uploadImages[selection])
+                ImageBlurView(image: $uploadData[selection].image)
                     .ignoresSafeArea()
-//                    .overlay(alignment: .center) {
-//                        blurNew
-//                    }
+                    .overlay(alignment: .center) {
+                        blurNew
+                    }
             }
-            .fullScreenCover(isPresented: $showCombine) {
-                CombineSelectView(uploadImages: $uploadImages)
-            }
+            .fullScreenCover(isPresented: $showCombine, onDismiss: {
+                if selection > uploadData.count + 1 {
+                    selection = uploadData.count
+                }
+            }, content: {
+                CombineSelectView(uploadImages: $uploadData)
+            })
             .onAppear {
-                showBlurNewGuide = true
+                appFocused = true
             }
     }
     
@@ -288,6 +303,9 @@ struct UploadView: View {
         if let index = uploadData.firstIndex(where: { $0.app == "" }) {
             // 提示需要填写应用名称
             selection = index
+            alertType = .error(.red)
+            toastText = "请添加所属应用"
+            showToast = true
         } else {
             if shareExtension {
                 //上传截图
@@ -317,7 +335,7 @@ struct UploadView: View {
 struct UploadView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UploadView(uploadImages: [UIImage(named: "s1")!, UIImage(named: "s2")!], uploadData: .constant([])) {
+            UploadView(uploadData: .constant([])) {
                 
             } shareDoneAction: {
                 
@@ -329,7 +347,7 @@ struct UploadView_Previews: PreviewProvider {
             .environment(\.locale, .init(identifier: "zh-cn"))
         
         NavigationView {
-            UploadView(uploadImages: [UIImage(named: "s1")!, UIImage(named: "s2")!], uploadData: .constant([])) {
+            UploadView(uploadData: .constant([])) {
                 
             } shareDoneAction: {
                 

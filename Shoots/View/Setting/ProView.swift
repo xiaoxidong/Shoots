@@ -55,7 +55,7 @@ struct ProView: View {
     }
     
     @State var yearMoney = "¥18.00"
-    @State var drinkMoney = "¥12.00"
+    @State var drinkMoney = "¥6.00"
     @State var milkMoney = "¥18.00"
     @State var coffeeMoney = "¥28.00"
     @State var richMoney = "¥98.00"
@@ -255,7 +255,11 @@ struct ProView: View {
                 //购买成功，修改 UI 状态以及给用户提示信息
                 Defaults().set(true, for: .pro)
                 counter += 1
-                self.showBuyLoadingIndicator = false
+                
+                withAnimation(.spring()) {
+                    showYearLoadingIndicator = false
+                    showBuyLoadingIndicator = false
+                }
                 #if os(iOS)
                 let alertView = SPAlertView(title: "已经购买成功".localized, message: "感谢支持，可以使用所有功能！".localized, preset: .done)
                 alertView.backgroundColor = .gray
@@ -267,7 +271,10 @@ struct ProView: View {
             case .error(let error):
                 switch error.code {
                 case .paymentCancelled:
-                    self.showBuyLoadingIndicator = false
+                    withAnimation(.spring()) {
+                        showYearLoadingIndicator = false
+                        showBuyLoadingIndicator = false
+                    }
                     #if os(iOS)
                     let alertView = SPAlertView(title: "取消购买".localized, message: "已经取消购买！".localized, preset: .error)
                     alertView.backgroundColor = .gray
@@ -288,7 +295,10 @@ struct ProView: View {
                 case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
                 default: print((error as NSError).localizedDescription)
                 }
-                self.showBuyLoadingIndicator = false
+                withAnimation(.spring()) {
+                    showYearLoadingIndicator = false
+                    showBuyLoadingIndicator = false
+                }
                 #if os(iOS)
                 let alertView = SPAlertView(title: "购买失败".localized, message: "购买出现问题，请稍后重试！".localized, preset: .error)
                 alertView.backgroundColor = .gray
@@ -306,7 +316,10 @@ struct ProView: View {
             if results.restoreFailedPurchases.count > 0 {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
                 //回复购买失败，提示用户稍后重试
-                self.showBuyLoadingIndicator = false
+                withAnimation(.spring()) {
+                    showYearLoadingIndicator = false
+                    showBuyLoadingIndicator = false
+                }
                 #if os(iOS)
                 let alertView = SPAlertView(title: "恢复购买失败".localized, message: "购买出现问题，请稍后重试！".localized, preset: .error)
                 alertView.backgroundColor = .gray
@@ -321,7 +334,10 @@ struct ProView: View {
                 //恢复购买成功，调取获取凭证方法
                 Defaults().set(true, for: .pro)
                 counter += 1
-                self.showBuyLoadingIndicator = false
+                withAnimation(.spring()) {
+                    showYearLoadingIndicator = false
+                    showBuyLoadingIndicator = false
+                }
                 
                 #if os(iOS)
                 let alertView = SPAlertView(title: "恢复购买成功".localized, message: "已经恢复购买成功，可以使用所有功能！".localized, preset: .done)
@@ -335,7 +351,10 @@ struct ProView: View {
             } else {
                 print("Nothing to Restore")
                 //之前没买过东西，无法恢复购买
-                self.showBuyLoadingIndicator = false
+                withAnimation(.spring()) {
+                    showYearLoadingIndicator = false
+                    showBuyLoadingIndicator = false
+                }
                 #if os(iOS)
                 let alertView = SPAlertView(title: "未购买任何产品".localized, message: "没有任何付费信息，无法恢复！".localized, preset: .done)
                 alertView.backgroundColor = .gray
@@ -363,7 +382,7 @@ struct ProView: View {
             } label: {
                 HStack {
                     if showBuyLoadingIndicator {
-                        ActivityIndicatorView(isVisible: self.$showBuyLoadingIndicator, type: .arcs, width: 28)
+                        ActivityIndicatorView(isVisible: self.$showBuyLoadingIndicator, type: .arcs, text: "", width: 28)
                             .foregroundColor(.white)
                     } else {
                         Text("支持开发者")
@@ -373,7 +392,7 @@ struct ProView: View {
                     }
                 }
                 .foregroundColor(Color.white)
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: showBuyLoadingIndicator ? nil : .infinity)
                 .background(Color.shootRed)
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .frame(maxWidth: 414)
@@ -390,7 +409,7 @@ struct ProView: View {
             } label: {
                 HStack {
                     if showYearLoadingIndicator {
-                        ActivityIndicatorView(isVisible: self.$showYearLoadingIndicator, type: .arcs, width: 28)
+                        ActivityIndicatorView(isVisible: self.$showYearLoadingIndicator, type: .arcs, text: "", width: 28)
                             .foregroundColor(.white)
                     } else {
                         Text("每年支持 \(yearMoney)")
@@ -400,8 +419,7 @@ struct ProView: View {
                     }
                 }
                 .foregroundColor(Color.white)
-                
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: showYearLoadingIndicator ? nil : .infinity)
                 .background(Color.shootYellow)
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .frame(maxWidth: 414)

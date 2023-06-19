@@ -21,6 +21,7 @@
 		4E06025C2A3EE70F00508B8B /* AppAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E06025A2A3EE70F00508B8B /* AppAlbumView.swift */; };
 		4E06025E2A3EEA0A00508B8B /* SelfAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E06025D2A3EEA0A00508B8B /* SelfAppViewModel.swift */; };
 		4E06025F2A3EEA0A00508B8B /* SelfAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E06025D2A3EEA0A00508B8B /* SelfAppViewModel.swift */; };
+		4E0602622A3F586700508B8B /* Grid in Frameworks */ = {isa = PBXBuildFile; productRef = 4E0602612A3F586700508B8B /* Grid */; };
 		4E07F81F29E0300800E72CCD /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07F81E29E0300800E72CCD /* UIImage+Extension.swift */; };
 		4E195EDE29C040C600E97522 /* ShootsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EDD29C040C600E97522 /* ShootsApp.swift */; };
 		4E195EE029C040C600E97522 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EDF29C040C600E97522 /* ContentView.swift */; };
@@ -983,6 +984,7 @@
 				4E878ED429D191520027FDA9 /* Refresh in Frameworks */,
 				4EDDD62D29DBC9F500C4E14D /* IsScrolling in Frameworks */,
 				4EDDD63529DC092200C4E14D /* Toast in Frameworks */,
+				4E0602622A3F586700508B8B /* Grid in Frameworks */,
 				4E5CF74929CD69D800A4E0DE /* CHIPageControl in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2075,6 +2077,7 @@
 				4EDDD63429DC092200C4E14D /* Toast */,
 				4EB203362A10C745006A9A15 /* Alamofire */,
 				4E2B6ED52A18A9C1000BC713 /* SDWebImageSwiftUI */,
+				4E0602612A3F586700508B8B /* Grid */,
 			);
 			productName = Shoots;
 			productReference = 4E195EDA29C040C600E97522 /* Shoots.app */;
@@ -2216,6 +2219,7 @@
 				4EF6646F29F4C65F005C3BD1 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 				4EB203352A10C745006A9A15 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4E2B6ED42A18A9C1000BC713 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				4E0602602A3F586700508B8B /* XCRemoteSwiftPackageReference "swiftui-grid" */,
 			);
 			productRefGroup = 4E195EDB29C040C600E97522 /* Products */;
 			projectDirPath = "";
@@ -3389,6 +3393,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4E0602602A3F586700508B8B /* XCRemoteSwiftPackageReference "swiftui-grid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spacenation/swiftui-grid";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		4E2B6ED42A18A9C1000BC713 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
@@ -3480,6 +3492,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4E0602612A3F586700508B8B /* Grid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E0602602A3F586700508B8B /* XCRemoteSwiftPackageReference "swiftui-grid" */;
+			productName = Grid;
+		};
 		4E2B6EB92A177935000BC713 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4EB203352A10C745006A9A15 /* XCRemoteSwiftPackageReference "Alamofire" */;
