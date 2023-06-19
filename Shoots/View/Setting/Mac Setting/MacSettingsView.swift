@@ -34,6 +34,8 @@ struct MacSettingsView: View {
     @AppStorage("statusIcon") var statusIcon: String = "photo.fill.on.rectangle.fill"
     @Environment(\.colorScheme) var colorScheme
     @State var showPro = false
+    @EnvironmentObject var user: UserViewModel
+    @State var logout = false
     var basicView: some View {
         ScrollView(showsIndicators: false) {
             Form {
@@ -207,14 +209,33 @@ struct MacSettingsView: View {
                         }
                     }.padding(.vertical, 6)
                         .padding(.top)
-                    
                     LabeledContent("退出：") {
                         Button {
                             NSApp.terminate(self)
                         } label: {
-                            Text("退出 Shoots")
+                            Text("关闭 Shoots")
                         }
                     }.padding(.vertical, 6)
+                    
+                    if user.login {
+                        LabeledContent("已登录：") {
+                            Button {
+                                withAnimation(.spring()) {
+                                    logout = true
+                                }
+                            } label: {
+                                Text("退出登录")
+                            }
+                        }.padding(.vertical, 6)
+                            .alert("确认退出？", isPresented: $logout) {
+                                Button("取消", role: .cancel) { }
+                                Button("退出") {
+                                    Task {
+                                        await user.logout()
+                                    }
+                                }
+                            }
+                    }
                 }
             }
             

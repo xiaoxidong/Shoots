@@ -104,7 +104,8 @@ struct AppAlbumView: View {
                 }.disabled(edit && selected.isEmpty)
                     .buttonStyle(.plain)
                 
-            }.padding([.horizontal, .top], 36)
+            }.padding(.top, 36)
+                .padding(.horizontal)
             content
         }
         #endif
@@ -154,7 +155,6 @@ struct AppAlbumView: View {
                 // 首页下拉刷新
                 getData()
             }
-            .background(Color.shootLight.opacity(0.2))
     }
     
     func loadMore() {
@@ -217,7 +217,7 @@ struct AppAlbumView: View {
                     }).buttonStyle(.plain)
                 }
             }
-        }.background(Color.shootLight.opacity(0.2))
+        }.background(Color.shootLight.opacity(0.06))
     }
     
     var deleteView: some View {

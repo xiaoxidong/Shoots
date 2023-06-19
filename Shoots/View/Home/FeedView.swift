@@ -43,7 +43,7 @@ struct FeedView: View {
 //                    // 下拉刷新
 //                    reload()
 //                }
-        }
+        }.background(Color.shootLight.opacity(0.06))
     }
     
     @ViewBuilder

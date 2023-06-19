@@ -24,7 +24,9 @@ struct SettingView: View {
     @State var result: Result<MFMailComposeResult, Error>? = nil
     #endif
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var user: UserViewModel
     @State var customUpload = false
+    @State var logout = false
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
@@ -120,6 +122,22 @@ struct SettingView: View {
                         showAgreement.toggle()
                     }.sheet(isPresented: self.$showAgreement) {
                         AgreementView(showAgreement: $showAgreement)
+                    }
+                    
+                    if user.login {
+                        SettingCellView(image: "yinsi", text: "退出登录") {
+                            withAnimation(.spring()) {
+                                logout = true
+                            }
+                        }.padding(.top, 36)
+                            .alert("确认退出？", isPresented: $logout) {
+                                Button("取消", role: .cancel) { }
+                                Button("退出") {
+                                    Task {
+                                        await user.logout()
+                                    }
+                                }
+                            }
                     }
                 }
                 

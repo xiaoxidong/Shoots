@@ -26,7 +26,8 @@ struct ReportView: View {
                     .bold()
                 Spacer()
                 MacCloseButton()
-            }.padding([.horizontal, .top], 36)
+            }.padding(.top, 36)
+                .padding(.horizontal)
             content
         }
         #endif

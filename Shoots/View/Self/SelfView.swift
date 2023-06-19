@@ -52,12 +52,13 @@ struct SelfView: View {
         #else
         VStack {
             HStack {
-                Text("Xiaodong")
+                Text("我的图片")
                     .font(.largeTitle)
                     .bold()
                 Spacer()
                 MacCloseButton()
-            }.padding([.horizontal, .top], 36)
+            }.padding(.top, 36)
+                .padding(.horizontal)
             content
         }
         #endif
@@ -177,6 +178,8 @@ struct SelfView: View {
         }
     }
     
+    @State var id: String = ""
+    @State var name: String = ""
     @ViewBuilder
     var upload: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -207,8 +210,7 @@ struct SelfView: View {
                         NavigationLink {
                             AppAlbumView(id: app.id, name: app.linkApplicationName)
                         } label: {
-                            FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram", picCount: 10)
-                            
+                            FolderCardView(images: app.pics, name: app.linkApplicationName, picCount: app.countPics)
                         }
                     }
                 }.padding(.horizontal, 36)
@@ -217,11 +219,13 @@ struct SelfView: View {
         }
         #else
         LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
-            ForEach(1..<10) { index in
+            ForEach(selfPic.apps) { app in
                 Button {
+                    id = app.id
+                    name = app.linkApplicationName
                     showMacFolderView.toggle()
                 } label: {
-                    FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram", picCount: 10)
+                    FolderCardView(images: app.pics, name: app.linkApplicationName, picCount: app.countPics)
                 }.buttonStyle(.plain)
             }
         }.padding(.horizontal)
@@ -258,11 +262,11 @@ struct SelfView: View {
         } else {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
-                    ForEach(1..<11) { index in
+                    ForEach($selfPic.favorites) { $favorite in
                         NavigationLink {
-                            FavoriteAlbumView(id: "", name: .constant(""))
+                            FavoriteAlbumView(id: favorite.id, name: $favorite.favoriteFileName)
                         } label: {
-                            FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram", picCount: 10)
+                            FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
                         }
                     }
                 }.padding(.horizontal, 36)
@@ -271,11 +275,13 @@ struct SelfView: View {
         }
         #else
         LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
-            ForEach(1..<10) { index in
+            ForEach(selfPic.favorites) { favorite in
                 Button {
+                    id = favorite.id
+                    name = favorite.favoriteFileName
                     showMacFolderView.toggle()
                 } label: {
-                    FolderCardView(images: ["s1", "s5", "s3"], name: "Instagram", picCount: 10)
+                    FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
                 }.buttonStyle(.plain)
             }
         }.padding(.horizontal)

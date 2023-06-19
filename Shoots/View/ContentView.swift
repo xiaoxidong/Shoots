@@ -14,7 +14,7 @@ struct ContentView: View {
     @AppStorage("showHomeNew") var showHomeNew = true
     @AppStorage("showCustomUpload") var showCustomUpload = true
     @State var uploadOptions = false
-    @State var login = false
+    @State var showLogin = false
     @State var customUpload = false
     @State var upload = false
     @State var showNavigation = true
@@ -50,14 +50,14 @@ struct ContentView: View {
                 .opacity(uploadOptions ? 0.01 : 0)
                 .onTapGesture {
                     withAnimation(.spring()) {
-                        uploadOptions.toggle()
+                        uploadOptions = false
+                        uploadisActive = false
                     }
                 }
             , alignment: .top
         )
-//        .edgesIgnoringSafeArea(.bottom)
-        .overlay(uploadingView, alignment: .bottom)
         #if os(iOS)
+        .overlay(uploadingView, alignment: .bottom)
         .fullScreenCover(isPresented: $customUpload, content: {
             CustomUploadView()
         })
@@ -71,11 +71,11 @@ struct ContentView: View {
                 uploadisActive = false
             }
             
-            Task {
-                selectedImages.forEach { image in
-                    uploadData.append(LocalImageData(image: image.pngData()!, app: "", pattern: "", fileName: "", fileSuffix: ""))
-                }
-                if !selectedImages.isEmpty {
+            if !selectedImages.isEmpty {
+                Task {
+                    selectedImages.forEach { image in
+                        uploadData.append(LocalImageData(image: image.pngData()!, app: "", pattern: "", fileName: "", fileSuffix: ""))
+                    }
                     upload.toggle()
                 }
             }
@@ -262,22 +262,20 @@ struct ContentView: View {
                 #else
                 ToolbarItem(placement: .navigation) {
                     Button {
-                        showMacSelf.toggle()
+                        if user.login {
+                            showMacSelf.toggle()
+                        } else {
+                            withAnimation(.spring()) {
+                                showLogin.toggle()
+                            }
+                        }
                     } label: {
                         // 登录和未登录状态设置
-                        if true {
-                            Image("pic")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 24, height: 24)
-                                .clipShape(Circle())
-                        } else {
-                            Image("self")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 16, height: 16)
-                                .padding(3)
-                        }
+                        Image("self")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 16, height: 16)
+                            .clipShape(Circle())
                     }
                 }
                 #endif
@@ -299,7 +297,18 @@ struct ContentView: View {
                 uploadView, alignment: .bottom
             )
         #else
-            .searchable(text: $searchText)
+            .searchable(text: $searchText, placement: .toolbar, prompt: "搜索应用或设计模式") {
+                SearchSuggestionView(searchText: $searchText)
+                    .frame(minHeight: 240)
+            }
+            .overlay(
+                Group {
+                    if showLogin {
+                        LoginView(login: $showLogin, showBG: true) { }
+                    }
+                }
+                , alignment: .bottom
+            )
             .sheet(isPresented: $showMacSelf) {
                 SelfView().sheetFrameForMac()
             }
@@ -432,6 +441,7 @@ struct ContentView: View {
     var homeNew: some View {
         Group {
             Color.black.opacity(showHomeNew ? 0.4 : 0)
+                .edgesIgnoringSafeArea(.all)
             VStack(spacing: 16) {
                 Image("doubleclick")
                 Text("双击切换查看其他试图")

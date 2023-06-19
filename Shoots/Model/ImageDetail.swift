@@ -19,7 +19,7 @@ struct ImageDetail: Codable {
     var description: String?
     var appUrl: String?
     var appLogoUrl: String?
-    var isFavorite: Int
+    var isFavorite: Int?
     var userName: String?
     var uploadNum: String
     var favoriteNum: String

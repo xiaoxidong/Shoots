@@ -32,7 +32,7 @@ struct ActionTitleButtonView: View {
                 Text(LocalizedStringKey(title))
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(.shootBlack)
-            }
+            }.contentShape(Rectangle())
         }.buttonStyle(.plain)
     }
 }

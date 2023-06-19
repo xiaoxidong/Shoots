@@ -28,33 +28,8 @@ struct SearchView: View {
                 }
                 
                 // 搜索结果
-                if searchText == "Instagram" {
-                    AppView(id: "appData", topPadding: 16)
-                } else if searchText == "关注" {
-                    feed
-                } else {
-                    IOSSearchView(searchText: $searchText)
-                }
+                IOSSearchView(searchText: $searchText)
             }
-        }
-    }
-    
-    @State var footerRefreshing = false
-    @State var noMore = false
-    
-    var feed: some View {
-        ScrollView {
-//            FeedView(shoots: homeData)
-            
-            LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
-                loadMore()
-            }
-        }.enableRefresh()
-    }
-    
-    func loadMore() {
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-            footerRefreshing = false
         }
     }
 }

@@ -22,6 +22,7 @@
 		4E06025E2A3EEA0A00508B8B /* SelfAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E06025D2A3EEA0A00508B8B /* SelfAppViewModel.swift */; };
 		4E06025F2A3EEA0A00508B8B /* SelfAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E06025D2A3EEA0A00508B8B /* SelfAppViewModel.swift */; };
 		4E0602622A3F586700508B8B /* Grid in Frameworks */ = {isa = PBXBuildFile; productRef = 4E0602612A3F586700508B8B /* Grid */; };
+		4E0602642A40341100508B8B /* Grid in Frameworks */ = {isa = PBXBuildFile; productRef = 4E0602632A40341100508B8B /* Grid */; };
 		4E07F81F29E0300800E72CCD /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07F81E29E0300800E72CCD /* UIImage+Extension.swift */; };
 		4E195EDE29C040C600E97522 /* ShootsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EDD29C040C600E97522 /* ShootsApp.swift */; };
 		4E195EE029C040C600E97522 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EDF29C040C600E97522 /* ContentView.swift */; };
@@ -1018,6 +1019,7 @@
 			files = (
 				4EE7C0C82A39822100140FFD /* SDWebImageSwiftUI in Frameworks */,
 				4EF6646E29F4C5CA005C3BD1 /* MASShortcut in Frameworks */,
+				4E0602642A40341100508B8B /* Grid in Frameworks */,
 				4ED4B08D29D3CAB1005D9758 /* Refresh in Frameworks */,
 				4E42A6F729D1319D00BEC185 /* SwiftUIFlowLayout in Frameworks */,
 				4EE7C0C62A39820A00140FFD /* Alamofire in Frameworks */,
@@ -2161,6 +2163,7 @@
 				4EF6647029F4C65F005C3BD1 /* LaunchAtLogin */,
 				4EE7C0C52A39820A00140FFD /* Alamofire */,
 				4EE7C0C72A39822100140FFD /* SDWebImageSwiftUI */,
+				4E0602632A40341100508B8B /* Grid */,
 			);
 			productName = Shoots_Mac;
 			productReference = 4E42A69A29D12DA900BEC185 /* Shoots.app */;
@@ -3018,7 +3021,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3068,7 +3071,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3493,6 +3496,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		4E0602612A3F586700508B8B /* Grid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E0602602A3F586700508B8B /* XCRemoteSwiftPackageReference "swiftui-grid" */;
+			productName = Grid;
+		};
+		4E0602632A40341100508B8B /* Grid */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4E0602602A3F586700508B8B /* XCRemoteSwiftPackageReference "swiftui-grid" */;
 			productName = Grid;

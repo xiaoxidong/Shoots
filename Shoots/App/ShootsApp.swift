@@ -65,11 +65,17 @@ struct ShootsApp: App {
         MenuBarExtra("Status", systemImage: statusIcon, isInserted: $isInserted) {
             MenuBarExtraView(isInserted: $isInserted, isMenuPresented: $isMenuPresented)
                 .frame(width: 520, height: 600)
+                .environmentObject(user)
+                .environmentObject(info)
+                .environmentObject(search)
+                .preferredColorScheme(colorScheme)
+                .preferredColorScheme(colorMode.colorScheme)
         }.menuBarExtraStyle(.window)
             .menuBarExtraAccess(isPresented: $isMenuPresented)
         
         Settings {
             MacSettingsView()
+                .environmentObject(user)
         }
         #endif
     }

@@ -13,6 +13,7 @@ struct SearchResultView: View {
     var body: some View {
         if let id = search.appID {
             AppView(id: id)
+                .frame(maxWidth: 1060)
         } else if let id = search.patternID {
             ScrollView {
                 FeedView(shoots: search.patternFeed)
@@ -34,7 +35,7 @@ struct SearchResultView: View {
                         await search.getPatternPics(id: id)
                     }
                 }
-                .background(Color.shootLight.opacity(0.2))
+                .frame(maxWidth: 1060)
         }
     }
 }

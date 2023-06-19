@@ -472,7 +472,7 @@ struct ProView: View {
                             }
                         }
                     )
-                }
+                }.buttonStyle(.plain)
                 
                 Button(action: {
                     #if os(iOS)
@@ -498,7 +498,7 @@ struct ProView: View {
                                 }
                             }
                         )
-                }
+                }.buttonStyle(.plain)
                 
                 Button(action: {
                     #if os(iOS)
@@ -524,7 +524,7 @@ struct ProView: View {
                                 }
                             }
                         )
-                }
+                }.buttonStyle(.plain)
                 
                 Button(action: {
                     #if os(iOS)
@@ -550,7 +550,7 @@ struct ProView: View {
                                 }
                             }
                         )
-                }
+                }.buttonStyle(.plain)
             }.padding(.horizontal)
         }
     }

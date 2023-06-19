@@ -34,7 +34,7 @@ struct DetailView: View {
             ImageView(urlString: shoot.compressedPicUrl, image: $image)
                 .frame(maxWidth: 460)
                 .padding(.top)
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }.background(Color.shootLight.opacity(0.1))
             .onTapGesture {
                 #if os(iOS)
@@ -42,7 +42,9 @@ struct DetailView: View {
                 #endif
                 withAnimation(.spring()) {
                     if showSave {
-                        showSave = false
+                        withAnimation(.spring()) {
+                            showSave = false
+                        }
                     } else {
                         if detail.detail == nil {
                             Task {
@@ -162,13 +164,13 @@ struct DetailView: View {
                     #else
                     VStack {
                         HStack {
-                            Text("Instagram")
+                            Text(detail.detail?.linkApplicationName ?? "图片详情")
                                 .font(.largeTitle)
                                 .bold()
                             Spacer()
                             MacCloseButton()
                         }.padding([.horizontal, .top], 36)
-//                        AppView(app: shoot.app)
+                        AppView(id: shoot.linkApplicationId ?? "")
                     }.sheetFrameForMac()
                     #endif
                 }
@@ -250,7 +252,10 @@ struct DetailView: View {
                             await detail.getFavorites()
                         }
                     } else {
-                        showLogin.toggle()
+                        withAnimation(.spring()) {
+                            showDetail = false
+                            showLogin = true
+                        }
                     }
                 }
                 Spacer(minLength: 0)
@@ -314,7 +319,10 @@ struct DetailView: View {
                         }
                         #endif
                     } else {
-                        showLogin.toggle()
+                        withAnimation(.spring()) {
+                            showDetail = false
+                            showLogin = true
+                        }
                     }
                 }
                 Spacer(minLength: 0)

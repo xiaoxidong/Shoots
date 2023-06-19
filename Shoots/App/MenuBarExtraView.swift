@@ -67,44 +67,34 @@ struct MenuBarExtraView: View {
                 }.buttonStyle(.plain)
             }.padding([.horizontal, .top], 14)
             
-            if searchText == "Instagram" {
-                AppView(id: "appData", topPadding: 16)
-            } else if searchText == "关注" {
+            ZStack {
                 feed
-            } else {
-                ScrollView {
-//                    FeedView(shoots: homeData)
-                }
+                IOSSearchView(searchText: $searchText, showSearchDefault: false)
             }
         }.onAppear {
             load()
         }
     }
-    
-    @State var footerRefreshing = false
-    @State var noMore = false
-    
+   
     var feed: some View {
         ScrollView {
             FeedView(shoots: home.homeFeed)
             
-            LoadMoreView(footerRefreshing: $footerRefreshing, noMore: $noMore) {
-                loadMore()
+            LoadMoreView(footerRefreshing: $home.footerRefreshing, noMore: $home.noMore) {
+                if self.home.page + 1 > self.home.mostPages {
+                    self.home.footerRefreshing = false
+                    self.home.noMore = true
+                } else {
+                    Task {
+                        await home.nextPage()
+                    }
+                }
             }
         }.enableRefresh()
             .refreshable {
                 // 首页下拉刷新
                 load()
             }
-    }
-    
-    func loadMore() {
-        Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
-            withAnimation(.spring()) {
-                footerRefreshing = false
-                noMore = true
-            }
-        }
     }
     
     func load() {

@@ -9,29 +9,29 @@ import SwiftUI
 
 struct IOSSearchView: View {
     @Binding var searchText: String
+    var showSearchDefault: Bool = true
     
     @EnvironmentObject var info: InfoViewModel
     @EnvironmentObject var search: SearchViewModel
-    @State var patterns: [Pattern] = []
-    @State var apps: [AppInfo] = []
     var body: some View {
         Group {
             if search.showResult && !searchText.isEmpty {
                 SearchResultView()
             } else {
+                #if os(iOS)
                 if searchText != "" {
-                    SearchSuggestionView(searchText: $searchText, patterns: $patterns, apps: $apps)
-                } else {
+                    SearchSuggestionView(searchText: $searchText)
+                }
+                #endif
+                if showSearchDefault {
                     defaultView
                 }
             }
-        }.onChange(of: searchText) { newValue in
+        }.background(Color.shootWhite)
+        .onChange(of: searchText) { newValue in
             if newValue == "" {
                 search.showResult = false
             }
-            // TODO: 处理下 isOfficial 为 nil 的情况
-            patterns = info.patterns.filter({ $0.designPatternName.lowercased().contains(newValue.lowercased()) }).sorted(by: { $0.isOfficial > $1.isOfficial })
-            apps = info.apps.filter({ $0.linkApplicationName.lowercased().contains(newValue.lowercased()) }).sorted(by: { $0.isOfficial > $1.isOfficial })
         }
     }
     
@@ -74,7 +74,7 @@ struct IOSSearchView: View {
                             Text(pattern.designPatternName)
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(.shootBlack)
-                            + Text(" (\(pattern.count ?? ""))")
+                            + Text(" (\(pattern.count))")
                                 .font(.system(size: 14, weight: .regular))
                                 .foregroundColor(.shootGray)
                             Divider()

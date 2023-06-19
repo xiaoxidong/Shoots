@@ -161,7 +161,8 @@ struct FavoriteAlbumView: View {
                 }.disabled(edit && selected.isEmpty)
                     .buttonStyle(.plain)
                 
-            }.padding([.horizontal, .top], 36)
+            }.padding(.top, 36)
+                .padding(.horizontal)
             content
         }
         #endif
@@ -216,7 +217,6 @@ struct FavoriteAlbumView: View {
                 // 首页下拉刷新
                 getData()
             }
-            .background(Color.shootLight.opacity(0.2))
     }
     
     func loadMore() {
@@ -279,7 +279,7 @@ struct FavoriteAlbumView: View {
                     }).buttonStyle(.plain)
                 }
             }
-        }.background(Color.shootLight.opacity(0.2))
+        }.background(Color.shootLight.opacity(0.06))
     }
     
     @State var editName: String = ""

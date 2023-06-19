@@ -24,21 +24,12 @@ struct HomeView: View {
             if isSearching || searchText != "" {
                 #if os(iOS)
                 if horizontalSizeClass == .compact {
-                    IOSSearchView(searchText: $searchText)
-                        .background(Color.shootWhite)
+                    IOSSearchView(searchText: $searchText) 
                 } else {
-                    if searchText != "" {
-                        AppView(id: "appData", topPadding: 16)
-                    } else {
-                        feed
-                    }
+                    IOSSearchView(searchText: $searchText, showSearchDefault: false)
                 }
                 #else
-                if searchText != "" {
-                    AppView(id: "appData", topPadding: 16)
-                } else {
-                    feed
-                }
+                IOSSearchView(searchText: $searchText, showSearchDefault: false)
                 #endif
             }
         }
@@ -63,7 +54,6 @@ struct HomeView: View {
                 // 首页下拉刷新
                 home.getHomeFirstPageFeed()
             }
-            .background(Color.shootLight.opacity(0.2))
 //            .simultaneousGesture(
 //                DragGesture()
 //                    .onChanged({ location in

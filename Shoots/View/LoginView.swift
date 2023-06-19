@@ -101,9 +101,10 @@ struct LoginView: View {
                         
                     }
                 }
-            }).frame(height: 46)
+            })
                 .signInWithAppleButtonStyle(.black)
-                .cornerRadius(26)
+                .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
+                .frame(height: 46)
                 .padding(.horizontal)
             Button {
                 #if os(iOS)
@@ -118,7 +119,8 @@ struct LoginView: View {
                 + Text("Shoots 使用协议")
                     .font(.system(size: 15, weight: .bold))
                     .foregroundColor(Color.shootBlue)
-            }.padding(.bottom, 36)
+            }.buttonStyle(.plain)
+            .padding(.bottom, 36)
                 .padding(.top, 4)
         }
     }

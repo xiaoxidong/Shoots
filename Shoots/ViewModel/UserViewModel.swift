@@ -11,7 +11,7 @@ import Alamofire
 var numberPerpage: Int = 20
 
 class UserViewModel: ObservableObject {
-    @Published var login = Defaults().get(for: .login) == nil ? false : true
+    @Published var login = Defaults().get(for: .login) == "" ? false : true
     @Published var token: String = Defaults().get(for: .login) ?? ""
     
     @Published var uploading = false
@@ -19,11 +19,14 @@ class UserViewModel: ObservableObject {
     @Published var uploadIndex = 1
     // TODO: 第一次进入的时候当没网的时候，处理
     func login(appleUserId: String, identityToken: String, email: String, fullName: String, _ success: @escaping (Bool) -> Void) {
+        print(email)
+        print(fullName)
         APIService.shared.POST(url: .login, params: ["appleUserId" : appleUserId, "identityToken" : identityToken, "email" : email, "fullName" : fullName]) { (result: Result<UserResponseData, APIService.APIError>) in
             switch result {
             case .success(let user):
                 self.login = true
                 self.token = user.data.token
+                APIService.token = user.data.token
                 Defaults().set(user.data.token, for: .login)
                 success(true)
             case .failure(let error):
@@ -35,14 +38,10 @@ class UserViewModel: ObservableObject {
     
     func uploadPics(pics: [UploadData], _ success: @escaping (Bool) -> Void) {
         AF.request("\(baseURL)\(APIService.URLPath.upload.path)", method: .post, parameters: ["userPicList" : pics], encoder: JSONParameterEncoder.prettyPrinted, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"])
-                    .responseJSON { response in
+                    .response { response in
                     print(pics)
                     switch response.result {
                     case .success(let user):
-                        print(user)
-                        if let json = user as? [String: Any] {
-                            print(json["msg"] as Any)
-                        }
                         success(true)
                         self.uploading = false
                     case .failure(let error):
@@ -85,6 +84,21 @@ class UserViewModel: ObservableObject {
                 case .failure(let error):
                     print(error)
                 }
+            }
+        }
+    }
+    
+    func logout() async {
+        APIService.shared.POST(url: .logout, params: nil) { (result: Result<Response, APIService.APIError>) in
+            switch result {
+            case .success(_):
+                self.login = false
+                self.token = ""
+                APIService.token = ""
+                Defaults().set("", for: .login)
+            case .failure(let error):
+                print("api reqeust erro: \(error)")
+                break
             }
         }
     }
