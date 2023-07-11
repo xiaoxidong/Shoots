@@ -76,7 +76,7 @@ class UserViewModel: ObservableObject {
                 switch response.result {
                 case .success(let imageURL):
                     print(imageURL)
-                    var data = UploadData(picUrl: imageURL.data.url, compressedPicUrl: imageURL.data.compressedUrl)
+                    var data = UploadData(picUrl: imageURL.data.url)
                     data.linkApplicationName = local.app
                     data.designPatternName = local.pattern
                     data.fileName = imageURL.data.fileName

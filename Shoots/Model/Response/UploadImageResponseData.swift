@@ -14,7 +14,6 @@ struct UploadImageResponseData: Codable {
     
     struct Upload: Codable {
         var url: String
-        var compressedUrl: String
         var fileName: String
         var ossId: String
     }

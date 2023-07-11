@@ -35,11 +35,11 @@ struct SettingView: View {
                     SettingCellView(image: "pro", text: "支持开发者") {
                         showPro.toggle()
                     }
-                    SettingCellView(image: "tags", text: "批量上传") {
-                        withAnimation(.spring()) {
-                            customUpload.toggle()
-                        }
-                    }
+//                    SettingCellView(image: "tags", text: "批量上传") {
+//                        withAnimation(.spring()) {
+//                            customUpload.toggle()
+//                        }
+//                    }
                     
                     // 基础设置
                     Text("基础设置")

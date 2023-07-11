@@ -11,7 +11,6 @@ struct UploadData: Codable {
     var linkApplicationName: String = "ss"
     var designPatternName: String = "ss"
     var picUrl: String
-    var compressedPicUrl: String
     var fileName: String = "ss"
     var fileSuffix: String = "ss"
 }

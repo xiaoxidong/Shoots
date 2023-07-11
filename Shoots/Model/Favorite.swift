@@ -16,9 +16,13 @@ struct Favorite: Codable, Identifiable {
     struct Pic: Codable {
         var id: String
         var picUrl: String
-        var compressedPicUrl: String
         var linkApplicationId: String
         var linkApplicationOfficialId: String?
+        
+        var compressedPicUrl: String {
+            picUrl + "?x-oss-process=image/format,heic"
+            // "?x-oss-process=image/resize,l_923,h_600/format,heic"
+        }
     }
     
     var pics: [String] {

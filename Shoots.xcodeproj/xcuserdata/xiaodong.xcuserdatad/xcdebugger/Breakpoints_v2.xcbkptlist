@@ -1779,13 +1779,13 @@
             filePath = "Shoots/ViewModel/AppViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "appPics(id:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "33DF955A-2762-4F9E-87AE-AC8BC679780C - acb3e282a1bbcfa9"
+                  uuid = "33DF955A-2762-4F9E-87AE-AC8BC679780C - acb3e282a1bbc1db"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1795,12 +1795,12 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/AppViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "448">
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "1040">
                </Location>
                <Location
-                  uuid = "33DF955A-2762-4F9E-87AE-AC8BC679780C - acb3e282a1bbcfa9"
+                  uuid = "33DF955A-2762-4F9E-87AE-AC8BC679780C - acb3e282a1bbc1db"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1810,9 +1810,9 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/AppViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "379">
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "448">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1827,13 +1827,28 @@
             filePath = "Shoots/ViewModel/AppViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "nextPage(id:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "FB9E4871-6BEF-4784-98FC-7AAD098B9728 - 7cedc864b0428bd2"
+                  uuid = "FB9E4871-6BEF-4784-98FC-7AAD098B9728 - e289e9bb2d50f1b9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 (Alamofire.DataResponse&lt;Shoots.AppImageResponseData, Alamofire.AFError&gt;) -&gt; () in Shoots.AppViewModel.nextPage(id: Swift.String) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/AppViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  uuid = "FB9E4871-6BEF-4784-98FC-7AAD098B9728 - 7cedc864b0428dec"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1843,12 +1858,12 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/AppViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
                   offsetFromSymbolStart = "504">
                </Location>
                <Location
-                  uuid = "FB9E4871-6BEF-4784-98FC-7AAD098B9728 - e289e9bb2d50f7e6"
+                  uuid = "FB9E4871-6BEF-4784-98FC-7AAD098B9728 - e289e9bb2d50f198"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1858,39 +1873,9 @@
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/AppViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
                   offsetFromSymbolStart = "48">
-               </Location>
-               <Location
-                  uuid = "FB9E4871-6BEF-4784-98FC-7AAD098B9728 - 7cedc864b0428bd2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Shoots.AppImageResponseData, Alamofire.AFError&gt;) -&gt; () in Shoots.AppViewModel.nextPage(id: Swift.String) async -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/AppViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "418">
-               </Location>
-               <Location
-                  uuid = "FB9E4871-6BEF-4784-98FC-7AAD098B9728 - e289e9bb2d50f7e6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 (Alamofire.DataResponse&lt;Shoots.AppImageResponseData, Alamofire.AFError&gt;) -&gt; () in Shoots.AppViewModel.nextPage(id: Swift.String) async -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/AppViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "41">
                </Location>
             </Locations>
          </BreakpointContent>

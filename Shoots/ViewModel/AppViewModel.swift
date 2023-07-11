@@ -14,6 +14,20 @@ class AppViewModel: ObservableObject {
     
     @Published var flows: [Flow] = []
     
+    @Published var info: Info? = nil
+    
+    func info(id: String) async {
+        AF.request("https://itunes.apple.com/us/lookup?id=\(id)", method: .get, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: AppDetailInfo.self) { response in
+            switch response.result {
+            case .success(let object):
+                print(object)
+                self.info = object.results.first
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     func getAppDetail(id: String, _ success: @escaping (Bool) -> Void) async {
         APIService.shared.GET(url: .appDetail(id: id), params: nil) { (result: Result<AppDetail, APIService.APIError>) in
             switch result {

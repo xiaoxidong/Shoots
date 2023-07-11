@@ -10,7 +10,6 @@ import SwiftUI
 struct ImageDetail: Codable {
     var id: String?
     var picUrl: String
-    var compressedPicUrl: String
     var linkApplicationId: String?
     var linkApplicationOfficialId: String?
     var fileName: String

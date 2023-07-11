@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct AppView: View {
     var id: String
@@ -41,6 +42,7 @@ struct AppView: View {
     }
     
     func loadData() async {
+        await app.info(id: "6446901002")
         await app.getAppDetail(id: id) { success in
             
         }
@@ -48,54 +50,85 @@ struct AppView: View {
         await app.appPics(id: id)
     }
     
+    @State var showDetailInfo = false
     @ViewBuilder
     var header: some View {
-        if let app = app.app, let pic = app.applicationTypeName {
+        if let info = app.info {
             VStack(spacing: 16) {
                 HStack(spacing: 16) {
-                    Image(app.appLogoUrl ?? "")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                    WebImage(url: URL(string: info.artworkUrl512)!)
+                        // Supports options and context, like `.delayPlaceholder` to show placeholder only when error
+                        .onSuccess { image, data, cacheType in
+                            // Success
+                            // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
+                        }
+                        .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
+                        
+                        // Supports ViewBuilder as well
+                        .placeholder {
+                            Rectangle()
+                                .foregroundColor(.gray.opacity(0.1))
+                                .overlay {
+                                    Image(systemName: "photo")
+                                        .font(.system(size: 20))
+                                        .foregroundColor(.gray.opacity(0.8))
+                                }
+                        }
+                        .indicator(.activity) // Activity Indicator
+                        .transition(.fade(duration: 0.5)) // Fade Transition with duration
+                        .scaledToFit()
                         .frame(width: 86, height: 86)
                         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
                     
                     VStack(alignment: .leading) {
-                        Text(app.linkApplicationName ?? "")
+                        Text(info.trackName)
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(.shootBlack)
-                        Text(app.applicationTypeName ?? "")
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.shootGray)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 4)
-                            .background(Color.shootBlue.opacity(0.1))
-                            .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-                    }
-                    Spacer()
-                    
-                    Button {
-                        if let url = URL(string: app.appUrl ?? "") {
-                            #if os(iOS)
-                            UIApplication.shared.open(url)
-                            #else
-                            NSWorkspace.shared.open(url)
-                            #endif
+                            .lineLimit(1)
+                            .fixedSize(horizontal: false, vertical: true)
+                        HStack(spacing: 6) {
+                            ForEach(info.genres, id: \.self) { text in
+                                Text(text)
+                                    .font(.system(size: 14, weight: .medium))
+                                    .foregroundColor(.shootGray)
+                                    .padding(.horizontal, 6)
+                                    .padding(.vertical, 4)
+                                    .background(Color.shootBlue.opacity(0.1))
+                                    .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+                            }
                         }
-                    } label: {
-                        HStack(spacing: 2) {
-                            Text("App Store")
-                            Image(systemName: "chevron.forward")
-                        }.font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.shootBlue)
-                    }.buttonStyle(.plain)
+                        Button {
+                            if let url = URL(string: info.trackViewUrl) {
+                                #if os(iOS)
+                                UIApplication.shared.open(url)
+                                #else
+                                NSWorkspace.shared.open(url)
+                                #endif
+                            }
+                        } label: {
+                            HStack(spacing: 2) {
+                                Text("App Store")
+                                    .font(.system(size: 16, weight: .bold))
+                                Image(systemName: "chevron.forward")
+                                    .font(.system(size: 14, weight: .bold))
+                                    .padding(.top, 1)
+                            }.foregroundColor(.shootBlue)
+                        }.buttonStyle(.plain)
+                    }.frame(maxWidth: .infinity, alignment: .leading)
                 }
                 
-                Text(app.description ?? "")
+                Text(showDetailInfo ? info.description : info.descriptionWithoutSpace)
                     .font(.system(size: 15, weight: .medium))
                     .foregroundColor(.shootBlack)
-                    .lineLimit(3)
+                    .lineLimit(showDetailInfo ? nil : 4)
                     .lineSpacing(4)
                     .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .onTapGesture {
+                        withAnimation(.spring()) {
+                            showDetailInfo.toggle()
+                        }
+                    }
             }.padding(.horizontal).padding(.top, topPadding)
         }
     }

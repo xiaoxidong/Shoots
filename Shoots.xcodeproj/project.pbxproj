@@ -58,6 +58,9 @@
 		4E2B6EDC2A18B3EC000BC713 /* UploadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B6EDB2A18B3EC000BC713 /* UploadData.swift */; };
 		4E2B6EDD2A18B3EC000BC713 /* UploadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B6EDB2A18B3EC000BC713 /* UploadData.swift */; };
 		4E2B6EDE2A18B3EE000BC713 /* UploadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B6EDB2A18B3EC000BC713 /* UploadData.swift */; };
+		4E37EB292A57A7E70011BC63 /* AppDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37EB282A57A7E70011BC63 /* AppDetailInfo.swift */; };
+		4E37EB2A2A57A7E70011BC63 /* AppDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37EB282A57A7E70011BC63 /* AppDetailInfo.swift */; };
+		4E37EB2B2A57AA310011BC63 /* AppDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37EB282A57A7E70011BC63 /* AppDetailInfo.swift */; };
 		4E3BEFCB29E6D1830024AB99 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3BEFCA29E6D1830024AB99 /* ShareViewController.swift */; };
 		4E3BEFD229E6D1830024AB99 /* ShareToUpload.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4E3BEFC829E6D1830024AB99 /* ShareToUpload.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4E3BEFD829E6D82C0024AB99 /* UIHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3BEFD729E6D82C0024AB99 /* UIHostingView.swift */; };
@@ -658,6 +661,7 @@
 		4E2B6ED02A189F65000BC713 /* FeedResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedResponseData.swift; sourceTree = "<group>"; };
 		4E2B6ED72A18ADBF000BC713 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4E2B6EDB2A18B3EC000BC713 /* UploadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadData.swift; sourceTree = "<group>"; };
+		4E37EB282A57A7E70011BC63 /* AppDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailInfo.swift; sourceTree = "<group>"; };
 		4E3BEFC829E6D1830024AB99 /* ShareToUpload.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareToUpload.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E3BEFCA29E6D1830024AB99 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		4E3BEFCF29E6D1830024AB99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1942,6 +1946,7 @@
 				4E2B6ECC2A189DD5000BC713 /* Picture.swift */,
 				4EE7C0B42A397F8D00140FFD /* Pattern.swift */,
 				4EE7C0B82A39803800140FFD /* AppInfo.swift */,
+				4E37EB282A57A7E70011BC63 /* AppDetailInfo.swift */,
 				4E99304329C9F06300D99DA9 /* Flow.swift */,
 				4E99D1DE2A320D410086BFC2 /* Report.swift */,
 				4E2B6EDB2A18B3EC000BC713 /* UploadData.swift */,
@@ -2400,6 +2405,7 @@
 				4EDDD67329DC238E00C4E14D /* ZLImageEditorConfiguration+Chaining.swift in Sources */,
 				4EDDD68229DC24ED00C4E14D /* ImageBlurView.swift in Sources */,
 				4E5CF6FB29CD5AC000A4E0DE /* DateInRegion+Math.swift in Sources */,
+				4E37EB292A57A7E70011BC63 /* AppDetailInfo.swift in Sources */,
 				4E5CF6A729CD58D100A4E0DE /* PageState.swift in Sources */,
 				4E5CF6FF29CD5AC000A4E0DE /* Commons.swift in Sources */,
 				4E5CF72729CD617900A4E0DE /* IconView.swift in Sources */,
@@ -2615,6 +2621,7 @@
 				4EE7C0C32A39810300140FFD /* UploadAblum.swift in Sources */,
 				4EF6647329F4CAAE005C3BD1 /* UploadView.swift in Sources */,
 				4EF664D829F4CF1C005C3BD1 /* ZLPhotoUIConfiguration.swift in Sources */,
+				4E37EB2B2A57AA310011BC63 /* AppDetailInfo.swift in Sources */,
 				4EF664CF29F4CCD7005C3BD1 /* ZLImageEditorUIConfiguration.swift in Sources */,
 				4EF6648F29F4CB79005C3BD1 /* UIColor+ZLImageEditor.swift in Sources */,
 				4EF664DC29F4D0B8005C3BD1 /* ZLEditImageModel.swift in Sources */,
@@ -2759,6 +2766,7 @@
 				4E010E1C29DB0D3600A4B231 /* AppIconPlaceholder.swift in Sources */,
 				4EE7C0BE2A3980C100140FFD /* Favorite.swift in Sources */,
 				4EA73B1A29D5C161002901AE /* InAppReceiptRefreshRequest.swift in Sources */,
+				4E37EB2A2A57A7E70011BC63 /* AppDetailInfo.swift in Sources */,
 				4E42A6DF29D1315000BEC185 /* FavoriteAlbumView.swift in Sources */,
 				4ED4B08E29D3CAC0005D9758 /* LoadMoreView.swift in Sources */,
 				4E42A73429D14B2A00BEC185 /* DotNetParserFormatter.swift in Sources */,
@@ -3021,7 +3029,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3071,7 +3079,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
