@@ -58,6 +58,7 @@
 		4E2B6EDC2A18B3EC000BC713 /* UploadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B6EDB2A18B3EC000BC713 /* UploadData.swift */; };
 		4E2B6EDD2A18B3EC000BC713 /* UploadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B6EDB2A18B3EC000BC713 /* UploadData.swift */; };
 		4E2B6EDE2A18B3EE000BC713 /* UploadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B6EDB2A18B3EC000BC713 /* UploadData.swift */; };
+		4E325BDE2A60EEB700FF1004 /* NewAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E325BDD2A60EEB700FF1004 /* NewAppView.swift */; };
 		4E37EB292A57A7E70011BC63 /* AppDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37EB282A57A7E70011BC63 /* AppDetailInfo.swift */; };
 		4E37EB2A2A57A7E70011BC63 /* AppDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37EB282A57A7E70011BC63 /* AppDetailInfo.swift */; };
 		4E37EB2B2A57AA310011BC63 /* AppDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37EB282A57A7E70011BC63 /* AppDetailInfo.swift */; };
@@ -661,6 +662,7 @@
 		4E2B6ED02A189F65000BC713 /* FeedResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedResponseData.swift; sourceTree = "<group>"; };
 		4E2B6ED72A18ADBF000BC713 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4E2B6EDB2A18B3EC000BC713 /* UploadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadData.swift; sourceTree = "<group>"; };
+		4E325BDD2A60EEB700FF1004 /* NewAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAppView.swift; sourceTree = "<group>"; };
 		4E37EB282A57A7E70011BC63 /* AppDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailInfo.swift; sourceTree = "<group>"; };
 		4E3BEFC829E6D1830024AB99 /* ShareToUpload.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareToUpload.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E3BEFCA29E6D1830024AB99 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -1118,6 +1120,16 @@
 				4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		4E2F4D2F2A654D6D007C7683 /* Self */ = {
+			isa = PBXGroup;
+			children = (
+				4EE7C0A32A39787500140FFD /* SelfViewModel.swift */,
+				4E06025D2A3EEA0A00508B8B /* SelfAppViewModel.swift */,
+				4EE7C0A72A39796800140FFD /* FavoriteDetailViewModel.swift */,
+			);
+			path = Self;
 			sourceTree = "<group>";
 		};
 		4E3BEFC929E6D1830024AB99 /* ShareToUpload */ = {
@@ -1902,6 +1914,7 @@
 			children = (
 				4E195EDF29C040C600E97522 /* ContentView.swift */,
 				4E2B6ED72A18ADBF000BC713 /* LoginView.swift */,
+				4E325BDD2A60EEB700FF1004 /* NewAppView.swift */,
 				4EE49F9D29C89A0F00B51F4B /* Home */,
 				4E99304929C9FE3000D99DA9 /* SearchView */,
 				4EE49F9E29C89A1C00B51F4B /* Detail */,
@@ -1926,14 +1939,12 @@
 		4EE49F7E29C877FF00B51F4B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4EE7C09F2A3974B300140FFD /* InfoViewModel.swift */,
 				4EB203382A10C7B9006A9A15 /* UserViewModel.swift */,
 				4EE49F7C29C877DC00B51F4B /* HomeFeedViewModel.swift */,
 				4EE7C0972A39745C00140FFD /* DetailViewModel.swift */,
 				4EE7C09B2A39748A00140FFD /* AppViewModel.swift */,
-				4E06025D2A3EEA0A00508B8B /* SelfAppViewModel.swift */,
-				4EE7C09F2A3974B300140FFD /* InfoViewModel.swift */,
-				4EE7C0A32A39787500140FFD /* SelfViewModel.swift */,
-				4EE7C0A72A39796800140FFD /* FavoriteDetailViewModel.swift */,
+				4E2F4D2F2A654D6D007C7683 /* Self */,
 				4EE7C0AB2A397B5200140FFD /* ReportViewModel.swift */,
 				4EE7C0CB2A3AB98A00140FFD /* SearchViewModel.swift */,
 			);
@@ -2523,6 +2534,7 @@
 				4E49408629E3A7200058391E /* ZLEmbedAlbumListView.swift in Sources */,
 				4E5CF70829CD5AC000A4E0DE /* TimePeriodChain.swift in Sources */,
 				4E99304229C9F02000D99DA9 /* FlowView.swift in Sources */,
+				4E325BDE2A60EEB700FF1004 /* NewAppView.swift in Sources */,
 				4E49409529E3A7200058391E /* ZLProgressView.swift in Sources */,
 				4E49409629E3A7200058391E /* ZLPhotoConfiguration.swift in Sources */,
 				4E99304B29CA003100D99DA9 /* String+Extension.swift in Sources */,
@@ -3029,7 +3041,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3079,7 +3091,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;

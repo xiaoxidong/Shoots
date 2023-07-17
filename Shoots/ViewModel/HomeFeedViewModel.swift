@@ -16,6 +16,7 @@ class HomeFeedViewModel: ObservableObject {
     @Published var footerRefreshing = false
     @Published var noMore = false
     
+    // 首页第一页数据
     func getHomeFirstPageFeed() {
         self.noMore = false
         self.footerRefreshing = false
@@ -30,12 +31,13 @@ class HomeFeedViewModel: ObservableObject {
                     self.footerRefreshing = false
                 }
             case .failure(let error):
-                print("Api Reqeust Error: \(error)")
+                print("首页信息流第一页错误: \(error)")
                 break
             }
         }
     }
     
+    // 首页下一页数据
     func nextPage() async {
         self.page += 1
         APIService.shared.POST(url: .feed, params: ["pageSize" : numberPerpage, "pageNum" : page]) { (result: Result<FeedResponseData, APIService.APIError>) in
@@ -46,7 +48,7 @@ class HomeFeedViewModel: ObservableObject {
                     self.footerRefreshing = false
                 }
             case .failure(let error):
-                print("Api Reqeust Error: \(error)")
+                print("首页加载下一页错误: \(error)")
                 break
             }
         }

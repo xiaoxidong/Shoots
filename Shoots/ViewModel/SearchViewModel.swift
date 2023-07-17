@@ -61,6 +61,7 @@ class SearchViewModel: ObservableObject {
     var mostPages: Int = 1
     @Published var footerRefreshing = false
     @Published var noMore = false
+    // 根据设计模式 ID 获取设计模式下的图片
     func getPatternPics(id: String) async {
         self.noMore = false
         self.footerRefreshing = false
@@ -77,12 +78,12 @@ class SearchViewModel: ObservableObject {
                     self.footerRefreshing = false
                 }
             case .failure(let error):
-                print("Api Reqeust Error: \(error)")
+                print("根据 ID 获取设计模式图片错误: \(error)")
                 break
             }
         }
     }
-    
+    // 根据设计模式 ID 获取设计模式下的图片，下一页
     func nextPage(id: String) async {
         self.page += 1
         APIService.shared.POST(url: .patternPics, params: ["pageSize" : numberPerpage, "pageNum": page, "designPatternId": id]) { (result: Result<FeedResponseData, APIService.APIError>) in
@@ -93,13 +94,13 @@ class SearchViewModel: ObservableObject {
                     self.footerRefreshing = false
                 }
             case .failure(let error):
-                print("Api Reqeust Error: \(error)")
+                print("根据 ID 获取设计模式图片下一页错误: \(error)")
                 break
             }
         }
     }
     
-    //
+    // 根据名称获取设计模式下的图片
     func getPatternNamePics(name: String) async {
         self.noMore = false
         self.footerRefreshing = false
@@ -116,12 +117,13 @@ class SearchViewModel: ObservableObject {
                     self.footerRefreshing = false
                 }
             case .failure(let error):
-                print("Api Reqeust Error: \(error)")
+                print("根据名称获取设计模式下的图片错误: \(error)")
                 break
             }
         }
     }
     
+    // 根据名称获取设计模式下的图片，下一页
     func nextPatternNamePage(name: String) async {
         self.page += 1
         APIService.shared.POST(url: .patternPics, params: ["pageSize" : numberPerpage, "pageNum": page, "designPatternName": name]) { (result: Result<FeedResponseData, APIService.APIError>) in
@@ -132,7 +134,7 @@ class SearchViewModel: ObservableObject {
                     self.footerRefreshing = false
                 }
             case .failure(let error):
-                print("Api Reqeust Error: \(error)")
+                print("根据名称获取设计模式下的图片下一页错误: \(error)")
                 break
             }
         }

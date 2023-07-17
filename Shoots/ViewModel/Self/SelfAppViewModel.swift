@@ -11,19 +11,16 @@ class SelfAppViewModel: ObservableObject {
     @Published var appFeed: [Picture] = []
     @Published var flows: [Flow] = []
     
-    func appFlows(id: String) async {
-        
-    }
-    
     var page: Int = 1
     var mostPages: Int = 1
     @Published var footerRefreshing = false
     @Published var noMore = false
+    // 个人中心，按照应用上传图片的应用详情
     func appPics(id: String) async {
         self.noMore = false
         self.footerRefreshing = false
         self.page = 1
-        APIService.shared.POST(url: .appPics, params: ["pageSize" : numberPerpage, "pageNum" : page, "linkApplicationId" : id]) { (result: Result<AppImageResponseData, APIService.APIError>) in
+        APIService.shared.POST(url: .selfAppPic, params: ["pageSize" : numberPerpage, "pageNum" : page, "linkApplicationId" : id]) { (result: Result<AppImageResponseData, APIService.APIError>) in
             switch result {
             case .success(let app):
                 self.appFeed = app.rows
@@ -33,15 +30,16 @@ class SelfAppViewModel: ObservableObject {
                     self.footerRefreshing = false
                 }
             case .failure(let error):
-                print("Api Reqeust Error: \(error)")
+                print("个人中心应用详情错误: \(error)")
                 break
             }
         }
     }
     
+    // 下一页数据
     func nextPage(id: String) async {
         self.page += 1
-        APIService.shared.POST(url: .appPics, params: ["pageSize" : page, "pageNum" : page, "linkApplicationId" : id]) { (result: Result<AppImageResponseData, APIService.APIError>) in
+        APIService.shared.POST(url: .selfAppPic, params: ["pageSize" : page, "pageNum" : page, "linkApplicationId" : id]) { (result: Result<AppImageResponseData, APIService.APIError>) in
             switch result {
             case .success(let app):
                 DispatchQueue.main.async {
@@ -49,12 +47,13 @@ class SelfAppViewModel: ObservableObject {
                     self.footerRefreshing = false
                 }
             case .failure(let error):
-                print("Api Reqeust Error: \(error)")
+                print("个人中心应用详情下一页错误: \(error)")
                 break
             }
         }
     }
     
+    // 上传上传的图片
     func deletePics(ids: [String], _ success: @escaping (Bool) -> Void) async {
         APIService.shared.POST(url: .deleteImage, params: ["picIds" : ids]) { (result: Result<Response, APIService.APIError>) in
             switch result {
@@ -67,7 +66,7 @@ class SelfAppViewModel: ObservableObject {
                     }
                 }
             case .failure(let error):
-                print("Api Reqeust Error: \(error)")
+                print("删除上传的图片错误: \(error)")
                 break
             }
         }

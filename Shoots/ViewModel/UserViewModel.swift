@@ -24,6 +24,7 @@ class UserViewModel: ObservableObject {
         login = Defaults().get(for: .login) == "" ? false : true
     }
     // TODO: 第一次进入的时候当没网的时候，处理
+    // 登录
     func login(appleUserId: String, identityToken: String, email: String, fullName: String, _ success: @escaping (Bool) -> Void) {
         print(email)
         print(fullName)
@@ -39,26 +40,10 @@ class UserViewModel: ObservableObject {
                 Defaults().set(user.data.token, for: .login)
                 success(true)
             case .failure(let error):
-                print("Api Reqeust Error: \(error)")
+                print("登录报错: \(error)")
                 break
             }
         }
-    }
-    
-    func uploadPics(pics: [UploadData], _ success: @escaping (Bool) -> Void) {
-        AF.request("\(baseURL)\(APIService.URLPath.upload.path)", method: .post, parameters: ["userPicList" : pics], encoder: JSONParameterEncoder.prettyPrinted, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"])
-                    .response { response in
-                    print(pics)
-                    switch response.result {
-                    case .success(let user):
-                        success(true)
-                        self.uploading = false
-                    case .failure(let error):
-                        print(error)
-                        success(false)
-                        self.error = true
-                    }
-                }
     }
     
     // MARK: 上传图片
@@ -97,6 +82,24 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    // 上传完图片之后，将图片 URL 和其他信息一起上传
+    func uploadPics(pics: [UploadData], _ success: @escaping (Bool) -> Void) {
+        AF.request("\(baseURL)\(APIService.URLPath.upload.path)", method: .post, parameters: ["userPicList" : pics], encoder: JSONParameterEncoder.prettyPrinted, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(token)"])
+                    .response { response in
+                    print(pics)
+                    switch response.result {
+                    case .success(let user):
+                        success(true)
+                        self.uploading = false
+                    case .failure(let error):
+                        print(error)
+                        success(false)
+                        self.error = true
+                    }
+                }
+    }
+    
+    // 退出登录
     func logout() async {
         APIService.shared.POST(url: .logout, params: nil) { (result: Result<Response, APIService.APIError>) in
             switch result {
@@ -106,7 +109,7 @@ class UserViewModel: ObservableObject {
                 APIService.token = ""
                 Defaults().set("", for: .login)
             case .failure(let error):
-                print("Api Reqeust Error: \(error)")
+                print("退出登录错误: \(error)")
                 break
             }
         }

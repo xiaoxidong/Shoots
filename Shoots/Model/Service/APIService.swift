@@ -43,6 +43,8 @@ struct APIService {
         case report
         case searchPattern
         case logout
+        case selfAppPic
+        case selfPatternPic
         
         var path: String {
             switch self {
@@ -92,6 +94,10 @@ struct APIService {
                 return "/app/pic/pageByPatternName"
             case .logout:
                 return "/app/logout"
+            case .selfAppPic:
+                return "/app/application/picsForProfile"
+            case .selfPatternPic:
+                return "/app/pic/pageByPatternIdForProfile"
             }
         }
     }
