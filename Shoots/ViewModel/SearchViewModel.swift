@@ -19,6 +19,8 @@ class SearchViewModel: ObservableObject {
             }
         }
     }
+    @Published var appStoreID: String? = nil
+    
     @Published var patternID: String? = nil {
         didSet {
             if patternID != nil {

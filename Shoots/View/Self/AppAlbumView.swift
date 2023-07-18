@@ -172,7 +172,7 @@ struct AppAlbumView: View {
     
     func getData() {
         Task {
-            await self.selfAppDetail.nextPage(id: id)
+            await self.selfAppDetail.appPics(id: id)
         }
     }
     

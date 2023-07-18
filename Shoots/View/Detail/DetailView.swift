@@ -150,7 +150,7 @@ struct DetailView: View {
                 .sheet(isPresented: $showApp) {
                     #if os(iOS)
                     NavigationView {
-                        AppView(id: shoot.linkApplicationId ?? "")
+                        AppView(id: shoot.linkApplicationId ?? "", appID: detail.detail?.appStoreId)
                             .navigationTitle(detail.detail?.linkApplicationName ?? "图片详情")
                             .navigationBarTitleDisplayMode(.inline)
                             .toolbar {
@@ -170,7 +170,7 @@ struct DetailView: View {
                             Spacer()
                             MacCloseButton()
                         }.padding([.horizontal, .top], 36)
-                        AppView(id: shoot.linkApplicationId ?? "")
+                        AppView(id: shoot.linkApplicationId ?? "", appID: detail.detail?.appStoreId)
                     }.sheetFrameForMac()
                     #endif
                 }

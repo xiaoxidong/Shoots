@@ -11,6 +11,7 @@ import Social
 
 class CustomShareViewController: UIViewController {
     private let typeImage = String(kUTTypeImage)
+    
     var images: [UIImage] = []
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -20,8 +21,9 @@ class CustomShareViewController: UIViewController {
         } shareDoneAction: {
             self.doneAction()
         } uploadAction: {
-            
+
         }
+        
         view = UIHostingView(rootView: contentView)
         view.isOpaque = true
         view.backgroundColor = .systemBackground
@@ -45,33 +47,29 @@ class CustomShareViewController: UIViewController {
         // Check if object is of type text
         // https://medium.com/@damisipikuda/how-to-receive-a-shared-content-in-an-ios-application-4d5964229701
         if itemProvider.hasItemConformingToTypeIdentifier(typeImage) {
-            get()
+            share()
         } else {
             print("Error: No url or text found")
             self.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
         }
     }
     
-    func get() {
-        let content = extensionContext!.inputItems[0] as! NSExtensionItem
-        let contentType = kUTTypeImage as String
-        for attachment in content.attachments! {
-            if attachment.hasItemConformingToTypeIdentifier(contentType) {
-                attachment.loadItem(forTypeIdentifier: contentType, options: nil) { [self] data, error in
-                    if error == nil {
-                        let url = data as! NSURL
-                        if let imageData = NSData(contentsOf: url as URL) {
-                            images.append(UIImage(data: imageData as Data)!)
-                        }
-                    } else {
-                        
-                    }
+    func share() {
+        let inputItem = extensionContext!.inputItems.first! as! NSExtensionItem
+        let attachment = inputItem.attachments!.first as! NSItemProvider
+        if attachment.hasItemConformingToTypeIdentifier( kUTTypeImage as String) {
+            attachment.loadItem(forTypeIdentifier: kUTTypeImage as String, options: [:]) { (data, error) in
+                var image: UIImage?
+                if let someURl = data as? URL {
+                    image = UIImage(contentsOfFile: someURl.path)
+                } else if let someImage = data as? UIImage {
+                    image = someImage
                 }
             }
+            
         }
-        
     }
-
+    
     private func setupNavBar() {
         self.navigationItem.title = ""
         self.navigationController?.isNavigationBarHidden = true

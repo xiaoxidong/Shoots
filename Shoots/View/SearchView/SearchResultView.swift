@@ -12,7 +12,7 @@ struct SearchResultView: View {
     @EnvironmentObject var search: SearchViewModel
     var body: some View {
         if let id = search.appID {
-            AppView(id: id)
+            AppView(id: id, appID: search.appStoreID)
                 .frame(maxWidth: 1060)
         } else if let id = search.patternID {
             ScrollView {

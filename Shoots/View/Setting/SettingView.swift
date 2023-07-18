@@ -125,7 +125,7 @@ struct SettingView: View {
                     }
                     
                     if user.login {
-                        SettingCellView(image: "yinsi", text: "退出登录") {
+                        SettingCellView(image: "logout", text: "退出登录") {
                             withAnimation(.spring()) {
                                 logout = true
                             }

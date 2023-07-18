@@ -22,6 +22,7 @@ struct SearchSuggestionView: View {
                     Button {
                         searchText = app.linkApplicationName
                         search.appID = app.id
+                        search.appStoreID = app.appStoreId
                     } label: {
                         HStack {
                             Image(systemName: "app.badge.fill")

@@ -59,8 +59,8 @@ final class UIHostingView<Content: View>: UIView {
         rootViewHostingController.sizeThatFits(in: targetSize)
     }
 }
+
 extension View {
-    
     public func shadow(
         color: Color = .black,
         x: CGFloat,

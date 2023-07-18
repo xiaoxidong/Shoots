@@ -25,11 +25,11 @@ struct UploadAblum: Codable, Identifiable {
         
         if previewPics.count <= 3 {
             for pic in previewPics {
-                urls.insert(pic.picUrl, at: 0)
+                urls.append(pic.picUrl)
             }
         } else {
             for pic in previewPics.prefix(3) {
-                urls.insert(pic.picUrl, at: 0)
+                urls.append(pic.picUrl)
             }
         }
         return urls

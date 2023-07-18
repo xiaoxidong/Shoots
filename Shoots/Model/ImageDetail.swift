@@ -15,6 +15,7 @@ struct ImageDetail: Codable {
     var fileName: String
     var fileSuffix: String
     var linkApplicationName: String?
+    var appStoreId: String?
     var description: String?
     var appUrl: String?
     var appLogoUrl: String?

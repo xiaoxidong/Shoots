@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 struct AppView: View {
     var id: String
+    var appID: String?
     var topPadding: CGFloat = 0
     
     @StateObject var app: AppViewModel = AppViewModel()
@@ -42,7 +43,10 @@ struct AppView: View {
     }
     
     func loadData() async {
-        await app.info(id: "6446901002")
+        if let appID = appID {
+            await app.info(id: appID)
+        }
+        
         await app.getAppDetail(id: id) { success in
             
         }
@@ -56,29 +60,31 @@ struct AppView: View {
         if let info = app.info {
             VStack(spacing: 16) {
                 HStack(spacing: 16) {
-                    WebImage(url: URL(string: info.artworkUrl512)!)
-                        // Supports options and context, like `.delayPlaceholder` to show placeholder only when error
-                        .onSuccess { image, data, cacheType in
-                            // Success
-                            // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
-                        }
-                        .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
-                        
-                        // Supports ViewBuilder as well
-                        .placeholder {
-                            Rectangle()
-                                .foregroundColor(.gray.opacity(0.1))
-                                .overlay {
-                                    Image(systemName: "photo")
-                                        .font(.system(size: 20))
-                                        .foregroundColor(.gray.opacity(0.8))
-                                }
-                        }
-                        .indicator(.activity) // Activity Indicator
-                        .transition(.fade(duration: 0.5)) // Fade Transition with duration
-                        .scaledToFit()
+//                    WebImage(url: URL(string: info.artworkUrl512)!)
+//                        // Supports options and context, like `.delayPlaceholder` to show placeholder only when error
+//                        .onSuccess { image, data, cacheType in
+//                            // Success
+//                            // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
+//                        }
+//                        .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
+//
+//                        // Supports ViewBuilder as well
+//                        .placeholder {
+//                            Rectangle()
+//                                .foregroundColor(.gray.opacity(0.1))
+//                                .overlay {
+//                                    Image(systemName: "photo")
+//                                        .font(.system(size: 20))
+//                                        .foregroundColor(.gray.opacity(0.8))
+//                                }
+//                        }
+//                        .indicator(.activity) // Activity Indicator
+//                        .transition(.fade(duration: 0.5)) // Fade Transition with duration
+//                        .scaledToFit()
+                    ImageView(urlString: info.artworkUrl512, image: .constant(nil))
                         .frame(width: 86, height: 86)
                         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+                        .shadow(color: Color.gray.opacity(0.2), radius: 8, x: 0, y: 0)
                     
                     VStack(alignment: .leading) {
                         Text(info.trackName)
@@ -182,15 +188,15 @@ struct AppView: View {
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            AppView(id: "")
+            AppView(id: "", appID: "6446901002")
         }
-            .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh-cn"))
+        .previewDisplayName("Chinese")
+        .environment(\.locale, .init(identifier: "zh-cn"))
         
         NavigationView {
-            AppView(id: "")
+            AppView(id: "", appID: "6446901002")
         }
-            .previewDisplayName("English")
-            .environment(\.locale, .init(identifier: "en"))
+        .previewDisplayName("English")
+        .environment(\.locale, .init(identifier: "en"))
     }
 }

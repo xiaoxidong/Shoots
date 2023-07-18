@@ -40,17 +40,25 @@ struct SearchView: View {
         ScrollView {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 26) {
-                    ForEach(info.apps) { app in
+                    ForEach(info.suggestionApps) { app in
                         Button {
                             searchText = app.linkApplicationName
                             search.appID = app.id
+                            search.appStoreID = app.appStoreId
                         } label: {
                             VStack {
-                                Image("Instagram")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 66, height: 66)
-                                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                if let logo = app.appLogoUrl {
+                                    ImageView(urlString: logo, image: .constant(nil))
+                                        .frame(width: 66, height: 66)
+                                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                } else {
+                                    Image("Instagram")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 66, height: 66)
+                                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                }
+                                
                                 Text(app.linkApplicationName)
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(.shootBlack)

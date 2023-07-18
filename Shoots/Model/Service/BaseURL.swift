@@ -10,6 +10,7 @@ import SwiftUI
 #if DEBUG
 #error("输入服务器地址")
 let baseURL: String = ""
+
 #else
 let baseURL: String = ""
 #endif
