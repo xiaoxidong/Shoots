@@ -60,27 +60,6 @@ struct AppView: View {
         if let info = app.info {
             VStack(spacing: 16) {
                 HStack(spacing: 16) {
-//                    WebImage(url: URL(string: info.artworkUrl512)!)
-//                        // Supports options and context, like `.delayPlaceholder` to show placeholder only when error
-//                        .onSuccess { image, data, cacheType in
-//                            // Success
-//                            // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
-//                        }
-//                        .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
-//
-//                        // Supports ViewBuilder as well
-//                        .placeholder {
-//                            Rectangle()
-//                                .foregroundColor(.gray.opacity(0.1))
-//                                .overlay {
-//                                    Image(systemName: "photo")
-//                                        .font(.system(size: 20))
-//                                        .foregroundColor(.gray.opacity(0.8))
-//                                }
-//                        }
-//                        .indicator(.activity) // Activity Indicator
-//                        .transition(.fade(duration: 0.5)) // Fade Transition with duration
-//                        .scaledToFit()
                     ImageView(urlString: info.artworkUrl512, image: .constant(nil))
                         .frame(width: 86, height: 86)
                         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))

@@ -19,28 +19,6 @@ struct ImageCardView: View {
     @Environment(\.requestReview) var requestReview
     
     var body: some View {
-//        WebImage(url: URL(string: shoot.compressedPicUrl)!)
-//            // Supports options and context, like `.delayPlaceholder` to show placeholder only when error
-//            .onSuccess { image, data, cacheType in
-//                // Success
-//                // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
-//            }
-//            .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
-//
-//            // Supports ViewBuilder as well
-//            .placeholder {
-//                Rectangle()
-//                    .foregroundColor(.gray.opacity(0.1))
-//                    .overlay {
-//                        Image(systemName: "photo")
-//                            .font(.system(size: 20))
-//                            .foregroundColor(.gray.opacity(0.8))
-//                    }
-//            }
-////            .placeholder(Image(systemName: "photo")) // Placeholder Image
-//            .indicator(.activity) // Activity Indicator
-//            .transition(.fade(duration: 0.5)) // Fade Transition with duration
-//            .scaledToFit()
         ImageView(urlString: shoot.compressedPicUrl, image: .constant(nil))
             .sheet(isPresented: $showDetail) {
                 DetailView(shoot: shoot)
