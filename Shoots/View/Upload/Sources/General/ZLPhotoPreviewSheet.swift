@@ -39,7 +39,7 @@ public class ZLPhotoPreviewSheet: UIView {
     
     private lazy var baseView: UIView = {
         let view = UIView()
-        view.backgroundColor = .zll.rgba(230, 230, 230, 0)
+        view.backgroundColor = UIColor(named: "shootBlack")
         return view
     }()
     
@@ -75,19 +75,23 @@ public class ZLPhotoPreviewSheet: UIView {
     
     private lazy var photoLibraryBtn: UIButton = {
         let btn = createBtn(localLanguageTextValue(.previewAlbum))
+        btn.setTitleColor(UIColor(named: "shootBlack"), for: .normal)
+        btn.backgroundColor = UIColor(named: "shootWhite")
         btn.addTarget(self, action: #selector(photoLibraryBtnClick), for: .touchUpInside)
         return btn
     }()
     
     private lazy var cancelBtn: UIButton = {
         let btn = createBtn(localLanguageTextValue(.cancel))
+        btn.setTitleColor(UIColor(named: "shootBlack"), for: .normal)
+        btn.backgroundColor = UIColor(named: "shootWhite")
         btn.addTarget(self, action: #selector(cancelBtnClick), for: .touchUpInside)
         return btn
     }()
     
     private lazy var flexibleView: UIView = {
         let view = UIView()
-        view.backgroundColor = .zll.previewBtnBgColor
+        view.backgroundColor = UIColor(named: "shootWhite")
         return view
     }()
     

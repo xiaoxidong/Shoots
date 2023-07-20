@@ -22,12 +22,6 @@ struct AppView: View {
                     flowView
                 }
                 imagesView
-                
-                LoadMoreView(footerRefreshing: $app.footerRefreshing, noMore: $app.noMore) {
-                    Task {
-                        await app.nextPage(id: id)
-                    }
-                }
             }.frame(maxWidth: 1060)
                 .frame(maxWidth: .infinity)
         }.enableRefresh()
@@ -152,14 +146,30 @@ struct AppView: View {
     }
     
     var imagesView: some View {
-        VStack {
+        VStack(spacing: 0) {
             Text("应用截图")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.shootBlack)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading)
+                .padding(.bottom)
             
-            FeedView(shoots: app.appFeed)
+            if app.loading {
+                LoadingView()
+                    .frame(height: 360)
+            } else {
+                if app.appFeed.isEmpty {
+                    ShootEmptyView()
+                        .frame(height: 360)
+                } else {
+                    FeedView(shoots: app.appFeed)
+                    LoadMoreView(footerRefreshing: $app.footerRefreshing, noMore: $app.noMore) {
+                        Task {
+                            await app.nextPage(id: id)
+                        }
+                    }
+                }
+            }
         }.padding(.top, 26)
     }
 }

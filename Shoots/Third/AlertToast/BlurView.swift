@@ -32,14 +32,16 @@ public struct BlurView: NSViewRepresentable {
 
 @available(iOS 13, *)
 public struct BlurView: UIViewRepresentable {
+    var style: UIBlurEffect.Style = .systemMaterial
     public typealias UIViewType = UIVisualEffectView
     
     public func makeUIView(context: Context) -> UIVisualEffectView {
-        return UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialLight))
+        return UIVisualEffectView(effect: UIBlurEffect(style: style))
+        //systemUltraThinMaterialLight
     }
     
     public func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
-        uiView.effect = UIBlurEffect(style: .systemUltraThinMaterialLight)
+        uiView.effect = UIBlurEffect(style: style)
     }
 }
 

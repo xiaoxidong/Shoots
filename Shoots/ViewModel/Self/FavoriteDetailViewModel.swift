@@ -75,8 +75,10 @@ class FavoriteDetailViewModel: ObservableObject {
                         self.favoriteFeed.remove(at: index)
                     }
                 }
+                success(true)
             case .failure(let error):
                 print("移除系列错误: \(error)")
+                success(false)
                 break
             }
         }

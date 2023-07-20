@@ -9,6 +9,8 @@ import SwiftUI
 import Alamofire
 
 class AppViewModel: ObservableObject {
+    @Published var loading = false
+    
     @Published var app: AppDetail? = nil
     @Published var appFeed: [Picture] = []
     
@@ -54,8 +56,12 @@ class AppViewModel: ObservableObject {
     @Published var noMore = false
     // 图片详情页获取所有的图片
     func appPics(id: String) async {
-        self.noMore = false
-        self.footerRefreshing = false
+        DispatchQueue.main.async {
+            self.loading = true
+            self.noMore = false
+            self.footerRefreshing = false
+        }
+        
         self.page = 1
         
         AF.request("\(baseURL)\(APIService.URLPath.appPics.path)", method: .post, parameters: ["pageSize" : numberPerpage, "pageNum" : page, "linkApplicationId" : id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: AppImageResponseData.self) { response in
@@ -69,6 +75,9 @@ class AppViewModel: ObservableObject {
                 }
             case .failure(let error):
                 print(error)
+            }
+            DispatchQueue.main.async {
+                self.loading = false
             }
         }
     }

@@ -45,12 +45,14 @@ struct SearchView: View {
                             searchText = app.linkApplicationName
                             search.appID = app.id
                             search.appStoreID = app.appStoreId
+                            self.resignFirstResponder()
                         } label: {
                             VStack {
                                 if let logo = app.appLogoUrl {
                                     ImageView(urlString: logo, image: .constant(nil))
                                         .frame(width: 66, height: 66)
                                         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                        .shadow(color: Color.gray.opacity(0.2), radius: 8, x: 0, y: 0)
                                 } else {
                                     Image("Instagram")
                                         .resizable()
@@ -78,6 +80,7 @@ struct SearchView: View {
                         Task {
                             await search.getPatternPics(id: pattern.id)
                         }
+                        self.resignFirstResponder()
                     } label: {
                         VStack(spacing: 20) {
                             Text(pattern.designPatternName)

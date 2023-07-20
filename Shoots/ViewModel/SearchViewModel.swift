@@ -9,6 +9,7 @@ import SwiftUI
 import Alamofire
 
 class SearchViewModel: ObservableObject {
+    @Published var update = false
     @Published var searchResults: [Picture] = []
     @Published var appID: String? = nil {
         didSet {
@@ -16,6 +17,7 @@ class SearchViewModel: ObservableObject {
                 showResult = true
                 patternID = nil
                 patternName = nil
+                update.toggle()
             }
         }
     }
@@ -65,8 +67,10 @@ class SearchViewModel: ObservableObject {
     @Published var noMore = false
     // 根据设计模式 ID 获取设计模式下的图片
     func getPatternPics(id: String) async {
-        self.noMore = false
-        self.footerRefreshing = false
+        DispatchQueue.main.async {
+            self.noMore = false
+            self.footerRefreshing = false
+        }
         self.page = 1
         
         AF.request("\(baseURL)\(APIService.URLPath.patternPics.path)", method: .post, parameters: ["pageSize" : numberPerpage, "pageNum": 1, "designPatternId": id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: FeedResponseData.self) { response in

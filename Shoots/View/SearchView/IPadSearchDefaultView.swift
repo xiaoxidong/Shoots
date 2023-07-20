@@ -26,12 +26,14 @@ struct IPadSearchDefaultView: View {
                             searchText = app.linkApplicationName
                             search.appID = app.id
                             search.appStoreID = app.appStoreId
+                            self.resignFirstResponder()
                         } label: {
                             VStack {
                                 if let logo = app.appLogoUrl {
                                     ImageView(urlString: logo, image: .constant(nil))
                                         .frame(width: 66, height: 66)
                                         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                        .shadow(color: Color.gray.opacity(0.2), radius: 8, x: 0, y: 0)
                                 } else {
                                     Image("Instagram")
                                         .resizable()
@@ -42,6 +44,8 @@ struct IPadSearchDefaultView: View {
                                 Text(app.linkApplicationName)
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(.shootBlack)
+                                    .frame(width: 66)
+                                    .lineLimit(1)
                             }
                         }.buttonStyle(.plain)
                     }
@@ -59,6 +63,7 @@ struct IPadSearchDefaultView: View {
                     Task {
                         await search.getPatternPics(id: pattern.id)
                     }
+                    self.resignFirstResponder()
                 } label: {
                     HStack(spacing: 2) {
                         Text(pattern.designPatternName)
@@ -69,8 +74,9 @@ struct IPadSearchDefaultView: View {
                             .foregroundColor(.shootGray)
                     }.padding(.horizontal, 10)
                         .padding(.vertical, 6)
-                        .background(Color.shootBlue.opacity(0.12))
+                        .background(Color.shootBlue.opacity(0.2))
                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .padding(.vertical, 1)
                 }.buttonStyle(.plain)
             }.padding(.top)
                 .padding(.horizontal)

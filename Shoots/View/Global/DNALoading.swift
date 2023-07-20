@@ -37,11 +37,11 @@ struct DNALoading: View {
     }
     
     // MARK: - Drawing Constents
-    let numberOfBalls: Int = 5
+    var numberOfBalls: Int = 5
     let spacing: CGFloat = 6
     let ballSpeed: Double = 0.55
-    let ballSize: CGFloat = 16
-    let frameHeight: CGFloat = 20
+    var ballSize: CGFloat = 16
+    var frameHeight: CGFloat = 20
     let firstBallColor: LinearGradient = LinearGradient(gradient: Gradient(colors: [firstC, secondC]), startPoint: .top, endPoint: .bottom)
     let secondBallColor: LinearGradient = LinearGradient(gradient: Gradient(colors: [firstC1, secondC2]), startPoint: .top, endPoint: .bottom)
     

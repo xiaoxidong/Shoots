@@ -402,6 +402,13 @@
 		4E99D1E02A320D410086BFC2 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99D1DE2A320D410086BFC2 /* Report.swift */; };
 		4E99D1E12A320D410086BFC2 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99D1DE2A320D410086BFC2 /* Report.swift */; };
 		4E9B1F6729C7EA4F00A772CE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B1F6629C7EA4F00A772CE /* DetailView.swift */; };
+		4E9B289C2A68CD12002B54FA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B289B2A68CD12002B54FA /* LoadingView.swift */; };
+		4E9B289D2A68CD12002B54FA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B289B2A68CD12002B54FA /* LoadingView.swift */; };
+		4E9B289F2A68D73C002B54FA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B289E2A68D73C002B54FA /* ErrorView.swift */; };
+		4E9B28A02A68D73C002B54FA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B289E2A68D73C002B54FA /* ErrorView.swift */; };
+		4E9B28A52A6908B6002B54FA /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B28A42A6908B6002B54FA /* Collection+Extension.swift */; };
+		4E9B28A62A6908B6002B54FA /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B28A42A6908B6002B54FA /* Collection+Extension.swift */; };
+		4E9B28A72A690ABF002B54FA /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B28A42A6908B6002B54FA /* Collection+Extension.swift */; };
 		4EA4E59E29F4F75A00936451 /* CustomShareNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4E59D29F4F75A00936451 /* CustomShareNavigationController.swift */; };
 		4EA73AF529D59A59002901AE /* MacSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA73AF429D59A59002901AE /* MacSettingsView.swift */; };
 		4EA73AF929D5BB6A002901AE /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA73AF829D5BB6A002901AE /* Bundle+Extension.swift */; };
@@ -899,6 +906,9 @@
 		4E99304C29CA075D00D99DA9 /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 		4E99D1DE2A320D410086BFC2 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		4E9B1F6629C7EA4F00A772CE /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		4E9B289B2A68CD12002B54FA /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		4E9B289E2A68D73C002B54FA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		4E9B28A42A6908B6002B54FA /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		4EA4E59D29F4F75A00936451 /* CustomShareNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShareNavigationController.swift; sourceTree = "<group>"; };
 		4EA73AF429D59A59002901AE /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
 		4EA73AF829D5BB6A002901AE /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
@@ -1275,6 +1285,8 @@
 			children = (
 				4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */,
 				4E58F91C29CB37000087E902 /* DNALoading.swift */,
+				4E9B289B2A68CD12002B54FA /* LoadingView.swift */,
+				4E9B289E2A68D73C002B54FA /* ErrorView.swift */,
 				4E58F91F29CB38CE0087E902 /* ShootEmptyView.swift */,
 			);
 			path = Global;
@@ -1982,6 +1994,7 @@
 				4E99304A29CA003100D99DA9 /* String+Extension.swift */,
 				4E62A49229D158C400B09493 /* Data+Extension.swift */,
 				4E07F81E29E0300800E72CCD /* UIImage+Extension.swift */,
+				4E9B28A42A6908B6002B54FA /* Collection+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -2389,6 +2402,7 @@
 				4E5CF67829CD58D100A4E0DE /* OS.swift in Sources */,
 				4E2B6ED12A189F65000BC713 /* FeedResponseData.swift in Sources */,
 				4E5CF69329CD58D100A4E0DE /* VibrancyEffectModifier.swift in Sources */,
+				4E9B289C2A68CD12002B54FA /* LoadingView.swift in Sources */,
 				4E5CF67D29CD58D100A4E0DE /* AppleReceiptValidator.swift in Sources */,
 				4E5CF70729CD5AC000A4E0DE /* TimePeriodGroup.swift in Sources */,
 				4E4940D929E3B2EA0058391E /* ImageStickerContainerView.swift in Sources */,
@@ -2405,6 +2419,7 @@
 				4E49408429E3A7200058391E /* ZLFetchImageOperation.swift in Sources */,
 				4E5CF6CB29CD597900A4E0DE /* PrivacyView.swift in Sources */,
 				4E49409B29E3A7200058391E /* ZLCustomCamera.swift in Sources */,
+				4E9B289F2A68D73C002B54FA /* ErrorView.swift in Sources */,
 				4E5CF69929CD58D100A4E0DE /* SPAlertIconHeartView.swift in Sources */,
 				4E5CF67C29CD58D100A4E0DE /* SKProductDiscount+LocalizedPrice.swift in Sources */,
 				4EDDD66529DC238E00C4E14D /* ZLImageEditorLanguageDefine.swift in Sources */,
@@ -2549,6 +2564,7 @@
 				4EDDD67029DC238E00C4E14D /* ZLWeakProxy.swift in Sources */,
 				4E49409429E3A7200058391E /* ZLThumbnailPhotoCell.swift in Sources */,
 				4E5CF72929CD623600A4E0DE /* ShootColorScheme.swift in Sources */,
+				4E9B28A52A6908B6002B54FA /* Collection+Extension.swift in Sources */,
 				4E5CF69F29CD58D100A4E0DE /* AlertActivityIndicatorView.swift in Sources */,
 				4E49409F29E3A7200058391E /* UIView+ZLPhotoBrowser.swift in Sources */,
 				4EDDD67229DC238E00C4E14D /* ZLProgressHUD.swift in Sources */,
@@ -2694,6 +2710,7 @@
 				4EE7C0A22A3974B300140FFD /* InfoViewModel.swift in Sources */,
 				4EF6648729F4CB76005C3BD1 /* ZLBaseStickerView.swift in Sources */,
 				4EE7C0962A39654800140FFD /* Response.swift in Sources */,
+				4E9B28A72A690ABF002B54FA /* Collection+Extension.swift in Sources */,
 				4EF6648629F4CB76005C3BD1 /* ZLWeakProxy.swift in Sources */,
 				4E2B6EBE2A177A18000BC713 /* DefaultsKey+Extension.swift in Sources */,
 				4EF6647829F4CB76005C3BD1 /* ZLClipImageViewController.swift in Sources */,
@@ -2733,6 +2750,7 @@
 				4E42A72329D14B1700BEC185 /* Calendars.swift in Sources */,
 				4E42A6EB29D1315B00BEC185 /* ShootEmptyView.swift in Sources */,
 				4E42A71529D143A000BEC185 /* ProViews.swift in Sources */,
+				4E9B289D2A68CD12002B54FA /* LoadingView.swift in Sources */,
 				4E42A71929D14B1200BEC185 /* SwiftDate.swift in Sources */,
 				4EE7C0D02A3ABC6500140FFD /* SearchSuggestionView.swift in Sources */,
 				4E42A6F829D131F100BEC185 /* RoundedCornersShape.swift in Sources */,
@@ -2784,6 +2802,7 @@
 				4E42A73429D14B2A00BEC185 /* DotNetParserFormatter.swift in Sources */,
 				4E42A72529D14B1700BEC185 /* AssociatedValues.swift in Sources */,
 				4E42A6E829D1315500BEC185 /* PrivacyView.swift in Sources */,
+				4E9B28A02A68D73C002B54FA /* ErrorView.swift in Sources */,
 				4E010E1529DB0A9100A4B231 /* AppIconView.swift in Sources */,
 				4E42A73A29D14B5200BEC185 /* Keychain.swift in Sources */,
 				4E42A73329D14B2A00BEC185 /* ISOFormatter.swift in Sources */,
@@ -2874,6 +2893,7 @@
 				4EE7C08D2A3770D000140FFD /* UploadResponseData.swift in Sources */,
 				4E42A6A929D12DCD00BEC185 /* ShootsApp.swift in Sources */,
 				4E42A70C29D1333300BEC185 /* SlimRectangle.swift in Sources */,
+				4E9B28A62A6908B6002B54FA /* Collection+Extension.swift in Sources */,
 				4E42A6D929D1314500BEC185 /* ActionTitleButtonView.swift in Sources */,
 				4E42A72A29D14B2100BEC185 /* TimePeriodGroup.swift in Sources */,
 				4E42A72729D14B1D00BEC185 /* TimePeriod.swift in Sources */,
@@ -3041,7 +3061,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3091,7 +3111,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3286,7 +3306,7 @@
 				CODE_SIGN_ENTITLEMENTS = Shoots_Mac/Shoots_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots_Mac/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3325,7 +3345,7 @@
 				CODE_SIGN_ENTITLEMENTS = Shoots_Mac/Shoots_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots_Mac/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;

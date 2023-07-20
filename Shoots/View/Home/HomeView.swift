@@ -21,7 +21,22 @@ struct HomeView: View {
     @State var reachability = Reachability()
     var body: some View {
         ZStack {
-            feed
+            if home.loading {
+                LoadingView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .onChange(of: reachability.isConnectedToNetwork(), perform: { newValue in
+                        // 第一次打开的时候没有网络授权，授权之后再次请求网络
+                        if newValue {
+                            loadData()
+                        }
+                    })
+                    .task {
+                        loadData()
+                    }
+            } else {
+                feed
+            }
+            
             if isSearching || searchText != "" {
                 #if os(iOS)
                 if horizontalSizeClass == .compact {
@@ -74,15 +89,6 @@ struct HomeView: View {
 //                        }
 //                    })
 //            )
-            .onChange(of: reachability.isConnectedToNetwork(), perform: { newValue in
-                // 第一次打开的时候没有网络授权，授权之后再次请求网络
-                if newValue {
-                    loadData()
-                }
-            })
-            .task {
-                loadData()
-            }
     }
     
     func loadData() {

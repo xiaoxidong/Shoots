@@ -88,7 +88,7 @@ class UserViewModel: ObservableObject {
                     .response { response in
                     print(pics)
                     switch response.result {
-                    case .success(let user):
+                    case .success(let _):
                         success(true)
                         self.uploading = false
                     case .failure(let error):

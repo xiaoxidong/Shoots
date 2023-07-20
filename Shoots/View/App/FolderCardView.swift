@@ -21,7 +21,7 @@ struct FolderCardView: View {
                         ImageView(urlString: images[2], image: .constant(nil))
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             .rotationEffect(Angle(degrees: hover ? -16 : -8))
-                                .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
+                                .shadow(color: Color.shootBlack.opacity(0.03), radius: 6)
                     } else {
                         two
                             .rotationEffect(Angle(degrees: hover ? -8 : -4))
@@ -30,9 +30,9 @@ struct FolderCardView: View {
                 two
                 one.rotationEffect(Angle(degrees: hover ? 4 : 0))
             }
-            .frame(maxWidth: 156, maxHeight: 286)
+            .frame(minWidth: 126, maxWidth: 200, minHeight: 120, maxHeight: 286)
             .padding(.top)
-//            .shadow(color: Color.shootLight.opacity(0.1), radius: 8)
+//            .shadow(color: Color.shootLight.opacity(0.1), radius: 6)
             .overlay(alignment: .bottomLeading) {
                 Text("\(picCount) 张")
                     .font(.system(size: 14, weight: .bold))
@@ -67,7 +67,7 @@ struct FolderCardView: View {
                 Color.shootWhite
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     .contentShape(Rectangle())
-                    .shadow(color: Color.shootBlack.opacity(0.06), radius: 10)
+                    .shadow(color: Color.shootBlack.opacity(0.03), radius: 10)
             }
         }
     }
@@ -81,7 +81,7 @@ struct FolderCardView: View {
                 one
             }
         }.rotationEffect(Angle(degrees: hover ? -6 : -4))
-            .shadow(color: Color.shootBlack.opacity(0.1), radius: 8)
+            .shadow(color: Color.shootBlack.opacity(0.03), radius: 6)
     }
 }
 

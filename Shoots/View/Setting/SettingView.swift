@@ -144,7 +144,9 @@ struct SettingView: View {
                 SettingRateView()
                     .padding(.top)
                 
-                Text("🎈A YUANXIAODONG PRODUCT MADE WITH ♥️")
+                Text("🎈A YUANXIAODONG and bo PRODUCT MADE WITH ♥️")
+                    .textCase(.uppercase)
+                    .multilineTextAlignment(.center)
                     .font(.system(size: 10, weight: .bold))
                     .foregroundColor(Color.gray)
                     .padding(.top, 86)

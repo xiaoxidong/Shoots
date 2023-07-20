@@ -122,7 +122,7 @@ struct UberaboutView: View {
                 Button {
                     
                 } label: {
-                    Text("Xiaodong")
+                    Text("Bo")
                 }.buttonStyle(UberaboutWindowButtonStyle())
             }
         }

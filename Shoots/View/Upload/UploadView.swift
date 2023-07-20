@@ -27,7 +27,7 @@ struct UploadView: View {
     @EnvironmentObject var info: InfoViewModel
     @State var showToast = false
     @State var toastText = ""
-    @State var alertType: AlertToast.AlertType = .success(.black)
+    @State var alertType: AlertToast.AlertType = .success(Color.shootBlack)
     var body: some View {
         TabView(selection: $selection) {
             ForEach(uploadData.indices, id: \.self) { indice in
@@ -103,7 +103,7 @@ struct UploadView: View {
                         .font(.system(size: 14, weight: .medium))
                 } else {
                     if updateIndicator {
-                        TitlePageControll(progress: selection, numberOfPages: uploadData.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
+                        TitlePageControll(progress: selection, numberOfPages: uploadData.count, tintColor: UIColor(Color.shootBlack), currentPageTintColor: UIColor(Color.shootBlue))
                             .frame(height: 24)
                     } else {
                         TitlePageControll(progress: selection, numberOfPages: uploadData.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
@@ -217,10 +217,13 @@ struct UploadView: View {
                 HStack(spacing: 8) {
                     TextField("应用名称", text: $uploadData[selection].app)
                         .focused($appFocused)
+                        .font(.system(size: 14, weight: .medium))
+                        .frame(width: 106)
                     Divider()
                         .frame(height: 36)
-                    TextField("设计模式", text: $uploadData[selection].pattern)
+                    TextField("设计模式，多个以逗号分隔", text: $uploadData[selection].pattern)
                         .focused($tagFocused)
+                        .font(.system(size: 14, weight: .medium))
                     Button {
                         showBluer.toggle()
                     } label: {
@@ -231,13 +234,12 @@ struct UploadView: View {
 
                     Button {
                         showCombine.toggle()
-                        print("-------")
                     } label: {
                         Image("connect")
                             .padding(4)
                             .contentShape(Rectangle())
                     }
-                }.padding(.horizontal)
+                }.padding(.horizontal, 8)
             }
                 .background(Color.shootWhite)
                 .shadow(color: Color.shootBlack.opacity(appFocused || tagFocused ? 0 : 0.06), x: 0, y: -6, blur: 10)

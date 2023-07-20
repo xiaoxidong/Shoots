@@ -23,6 +23,7 @@ struct SearchSuggestionView: View {
                         searchText = app.linkApplicationName
                         search.appID = app.id
                         search.appStoreID = app.appStoreId
+                        self.resignFirstResponder()
                     } label: {
                         HStack {
                             Image(systemName: "app.badge.fill")
@@ -47,6 +48,7 @@ struct SearchSuggestionView: View {
                         Task {
                             await search.getPatternPics(id: pattern.id)
                         }
+                        self.resignFirstResponder()
                     } label: {
                         HStack {
                             Image(systemName: "number")

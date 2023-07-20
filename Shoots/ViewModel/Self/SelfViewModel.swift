@@ -8,7 +8,7 @@
 import SwiftUI
 
 class SelfViewModel: ObservableObject {
-    
+    @Published var loading = true
     @Published var favorites: [Favorite] = []
     @Published var apps: [UploadAblum] = []
     
@@ -49,11 +49,15 @@ class SelfViewModel: ObservableObject {
                 print("获取所有上传的应用错误: \(error)")
                 break
             }
+            DispatchQueue.main.async {
+                self.loading = false
+            }
         }
     }
     
     @Published var userPattern: [Pattern] = []
     // 用户上传和收藏的截图，按照设计模式的分类
+    @Published var loadingPattern = false
     func getUserPattern() async {
         APIService.shared.GET(url: .userPattern, params: nil) { (result: Result<UserPatternResponseData, APIService.APIError>) in
             switch result {
@@ -74,9 +78,11 @@ class SelfViewModel: ObservableObject {
     @Published var noMore = false
     // 根据设计模式 ID 获取个人在该设计模式下的截图
     func getPatternPics(id: String) async {
-        self.noMore = false
-        self.footerRefreshing = false
-        self.page = 1
+        DispatchQueue.main.async {
+            self.noMore = false
+            self.footerRefreshing = false
+            self.page = 1
+        }
         
         APIService.shared.POST(url: .selfPatternPic, params: ["pageSize" : numberPerpage, "pageNum": 1, "designPatternId": id]) { (result: Result<FeedResponseData, APIService.APIError>) in
             switch result {
@@ -90,6 +96,10 @@ class SelfViewModel: ObservableObject {
             case .failure(let error):
                 print("个人中心获取分类下的图片错误: \(error)")
                 break
+            }
+            
+            DispatchQueue.main.async {
+                self.loadingPattern = false
             }
         }
     }

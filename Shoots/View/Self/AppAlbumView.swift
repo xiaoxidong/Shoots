@@ -18,7 +18,7 @@ struct AppAlbumView: View {
     @EnvironmentObject var user: UserViewModel
     @State var showToast = false
     @State var toastText = ""
-    @State var alertType: AlertToast.AlertType = .success(.black)
+    @State var alertType: AlertToast.AlertType = .success(Color.shootBlack)
     var body: some View {
         #if os(iOS)
         content
@@ -242,8 +242,8 @@ struct AppAlbumView: View {
                         .font(.system(size: 14, weight: .medium))
                         .padding(.horizontal, 22)
                         .padding(.vertical, 10)
-                        .foregroundColor(.black)
-                        .background(Color.shootLight.opacity(0.4))
+                        .foregroundColor(.white)
+                        .background(Color.shootBlack.opacity(0.4))
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }.buttonStyle(.plain)
                 Button {
@@ -251,7 +251,7 @@ struct AppAlbumView: View {
                         await selfAppDetail.deletePics(ids: selected, { success in
                             if success {
                                 toastText = "成功删除"
-                                alertType = .success(.black)
+                                alertType = .success(Color.shootBlack)
                                 showToast = true
                             } else {
                                 toastText = "删除失败，请重试"

@@ -27,7 +27,7 @@ struct ContentView: View {
     @State var showUploadAction = false
     @State var showToast = false
     @State var toastText = ""
-    @State var alertType: AlertToast.AlertType = .success(.black)
+    @State var alertType: AlertToast.AlertType = .success(Color.shootBlack)
     #endif
     var body: some View {
         NavigationView {
@@ -272,7 +272,9 @@ struct ContentView: View {
                     } label: {
                         // 登录和未登录状态设置
                         Image("self")
+                            .renderingMode(.template)
                             .resizable()
+                            .foregroundColor(.shootBlack)
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 16, height: 16)
                             .clipShape(Circle())
@@ -284,6 +286,7 @@ struct ContentView: View {
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "搜索应用或设计模式")
             .onSubmit(of: .search) {
                 search.search(text: searchText)
+                self.resignFirstResponder()
             }
             .overlay(
                 Group {

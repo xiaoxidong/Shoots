@@ -66,19 +66,50 @@ struct SelfView: View {
     
     @ViewBuilder
     var content: some View {
+        if selfPic.loading {
+            VStack {
+                Spacer()
+                LoadingView()
+                    .onAppear {
+                        Task {
+                            await selfPic.getFavorites()
+                            await selfPic.uploadPicGroup()
+                        }
+                    }
+                Spacer()
+            }
+        } else {
+            if selfPic.apps.isEmpty && selfPic.favorites.isEmpty {
+                VStack {
+                    Spacer()
+                    ShootEmptyView(text: "还没有上传和收藏过任何截图")
+                    Spacer()
+                }
+            } else {
+                picView
+            }
+        }
+    }
+    
+    var picView: some View {
         VStack(spacing: 0) {
             if showTag {
                 tagView
-                ScrollView {
-                    VStack(spacing: 0) {
-                        // 列表
-                        FeedView(shoots: selfPic.patternFeed)
-                        
-                        LoadMoreView(footerRefreshing: self.$selfPic.footerRefreshing, noMore: self.$selfPic.noMore) {
-                            loadMore()
+                if selfPic.loadingPattern {
+                    LoadingView()
+                        .frame(maxHeight: .infinity, alignment: .center)
+                } else {
+                    ScrollView {
+                        VStack(spacing: 0) {
+                            // 列表
+                            FeedView(shoots: selfPic.patternFeed)
+                            
+                            LoadMoreView(footerRefreshing: self.$selfPic.footerRefreshing, noMore: self.$selfPic.noMore) {
+                                loadMore()
+                            }
                         }
-                    }
-                }.enableRefresh()
+                    }.enableRefresh()
+                }
             } else {
                 VStack {
                     HStack {
@@ -106,12 +137,6 @@ struct SelfView: View {
                 ScrollView {
                     folderView
                 }
-            }
-        }
-        .onAppear {
-            Task {
-                await selfPic.getFavorites()
-                await selfPic.uploadPicGroup()
             }
         }
     }

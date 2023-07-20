@@ -14,13 +14,14 @@ struct FavoriteAlbumView: View {
     
     @State var edit = false
     @State var showEditName = false
-    @State var delete = false
+    @State var removeFavorite = false
+    @State var deleteFavorite = false
     @Environment(\.dismiss) var dismiss
     @StateObject var favoriteDetail = FavoriteDetailViewModel()
     @EnvironmentObject var user: UserViewModel
     @State var showToast = false
     @State var toastText = ""
-    @State var alertType: AlertToast.AlertType = .success(.black)
+    @State var alertType: AlertToast.AlertType = .success(Color.shootBlack)
     var body: some View {
         #if os(iOS)
         content
@@ -28,23 +29,8 @@ struct FavoriteAlbumView: View {
             .safeAreaInset(edge: .bottom) {
                 if edit {
                     Button {
-                        Task {
-                            await favoriteDetail.deleteFavorite(id: id) { success in
-                                if success {
-                                    toastText = "成功删除"
-                                    alertType = .success(.black)
-                                    showToast = true
-                                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                                        DispatchQueue.main.async {
-                                            dismiss()
-                                        }
-                                    }
-                                } else {
-                                    toastText = "删除失败，请重试"
-                                    alertType = .error(.red)
-                                    showToast = true
-                                }
-                            }
+                        withAnimation(.spring()) {
+                            deleteFavorite.toggle()
                         }
                     } label: {
                         Text("删除系列")
@@ -66,7 +52,7 @@ struct FavoriteAlbumView: View {
                     Button {
                         if edit {
                             withAnimation(.spring()) {
-                                delete.toggle()
+                                removeFavorite.toggle()
                             }
                         } else {
                             dismiss()
@@ -87,7 +73,7 @@ struct FavoriteAlbumView: View {
                 ToolbarItem(placement: .principal) {
                     Button {
                         editName = name
-                        withAnimation(.easeInOut(duration: 0.2)) {
+                        withAnimation(.spring()) {
                             showEditName.toggle()
                         }
                     } label: {
@@ -129,7 +115,7 @@ struct FavoriteAlbumView: View {
                 
                 Spacer()
                 Button {
-                    withAnimation(.easeInOut(duration: 0.2)) {
+                    withAnimation(.spring()) {
                         showEditName.toggle()
                     }
                 } label: {
@@ -145,7 +131,7 @@ struct FavoriteAlbumView: View {
                 Button {
                     if edit {
                         withAnimation(.spring()) {
-                            delete.toggle()
+                            removeFavorite.toggle()
                         }
                     } else {
                         dismiss()
@@ -180,19 +166,24 @@ struct FavoriteAlbumView: View {
             Group {
                 Color.black
                     .ignoresSafeArea()
-                    .opacity(showEditName || delete ? 0.2 : 0)
+                    .opacity(showEditName || removeFavorite || deleteFavorite ? 0.2 : 0)
                     .onTapGesture {
                         withAnimation(.spring()) {
                             showEditName = false
-                            delete = false
+                            removeFavorite = false
+                            deleteFavorite = false
                         }
                     }
                 if showEditName {
                     editNameView
-                        .transition(.scale(scale: 0.6).combined(with: .opacity))
+                        .transition(.scale(scale: 0.9).combined(with: .opacity))
                 }
-                if delete {
-                    deleteView
+                if removeFavorite {
+                    removeFavoriteView
+                        .transition(.scale(scale: 0.9).combined(with: .opacity))
+                }
+                if deleteFavorite {
+                    deleteFavoriteView
                         .transition(.scale(scale: 0.9).combined(with: .opacity))
                 }
             }
@@ -285,6 +276,7 @@ struct FavoriteAlbumView: View {
     }
     
     @State var editName: String = ""
+    @FocusState var focused: Bool
     var editNameView: some View {
         VStack(spacing: 26) {
             Text("编辑系列")
@@ -293,6 +285,7 @@ struct FavoriteAlbumView: View {
             
             VStack {
                 TextField("输入系列名称", text: $editName)
+                    .focused($focused)
                     .textFieldStyle(.plain)
                     .padding(.horizontal)
                 Divider()
@@ -300,7 +293,7 @@ struct FavoriteAlbumView: View {
             
             HStack(spacing: 56) {
                 Button {
-                    withAnimation(.easeInOut(duration: 0.2)) {
+                    withAnimation(.spring()) {
                         showEditName.toggle()
                     }
                 } label: {
@@ -308,8 +301,8 @@ struct FavoriteAlbumView: View {
                         .font(.system(size: 14, weight: .medium))
                         .padding(.horizontal, 22)
                         .padding(.vertical, 10)
-                        .foregroundColor(.black)
-                        .background(Color.shootGray.opacity(0.4))
+                        .foregroundColor(.white)
+                        .background(Color.shootBlack.opacity(0.4))
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }.buttonStyle(.plain)
                 Button {
@@ -317,7 +310,7 @@ struct FavoriteAlbumView: View {
                         await favoriteDetail.editFavoriteName(id: id, name: editName) { success in
                             if success {
                                 name = editName
-                                withAnimation(.easeInOut(duration: 0.2)) {
+                                withAnimation(.spring()) {
                                     showEditName.toggle()
                                 }
                             }
@@ -340,9 +333,12 @@ struct FavoriteAlbumView: View {
             .background(Color.shootWhite)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .padding()
+            .onAppear {
+                focused = true
+            }
     }
     
-    var deleteView: some View {
+    var removeFavoriteView: some View {
         VStack(spacing: 26) {
             Text("确认移除系列？")
                 .font(.system(size: 16, weight: .bold))
@@ -355,15 +351,15 @@ struct FavoriteAlbumView: View {
             HStack(spacing: 56) {
                 Button {
                     withAnimation(.spring()) {
-                        delete = false
+                        removeFavorite = false
                     }
                 } label: {
                     Text("取消")
                         .font(.system(size: 14, weight: .medium))
                         .padding(.horizontal, 22)
                         .padding(.vertical, 10)
-                        .foregroundColor(.black)
-                        .background(Color.shootLight.opacity(0.4))
+                        .foregroundColor(.white)
+                        .background(Color.shootBlack.opacity(0.4))
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }.buttonStyle(.plain)
                 Button {
@@ -371,8 +367,9 @@ struct FavoriteAlbumView: View {
                         await favoriteDetail.removeFavorite(pics: selected, id: id) { success in
                             if success {
                                 toastText = "移除系列"
-                                alertType = .success(.black)
+                                alertType = .success(Color.shootBlack)
                                 showToast = true
+                                selected.removeAll()
                             } else {
                                 toastText = "移除失败，请重试"
                                 alertType = .error(.red)
@@ -381,7 +378,71 @@ struct FavoriteAlbumView: View {
                         }
                     }
                     withAnimation(.spring()) {
-                        delete = false
+                        removeFavorite = false
+                    }
+                } label: {
+                    Text("确认")
+                        .font(.system(size: 14, weight: .medium))
+                        .padding(.horizontal, 22)
+                        .padding(.vertical, 10)
+                        .foregroundColor(.white)
+                        .background(Color.shootRed)
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                }.buttonStyle(.plain)
+            }
+        }.padding()
+            .padding(.vertical)
+            .frame(maxWidth: 460)
+            .background(Color.shootWhite)
+            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .padding()
+    }
+    
+    var deleteFavoriteView: some View {
+        VStack(spacing: 26) {
+            Text("确认删除系列？")
+                .font(.system(size: 16, weight: .bold))
+                .foregroundColor(.shootBlack)
+            
+            Text("删除之后将无法恢复，确认删除？")
+                .font(.system(size: 15, weight: .medium))
+                .foregroundColor(.shootBlack)
+            
+            HStack(spacing: 56) {
+                Button {
+                    withAnimation(.spring()) {
+                        deleteFavorite = false
+                    }
+                } label: {
+                    Text("取消")
+                        .font(.system(size: 14, weight: .medium))
+                        .padding(.horizontal, 22)
+                        .padding(.vertical, 10)
+                        .foregroundColor(.white)
+                        .background(Color.shootBlack.opacity(0.4))
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                }.buttonStyle(.plain)
+                Button {
+                    Task {
+                        await favoriteDetail.deleteFavorite(id: id) { success in
+                            if success {
+                                toastText = "成功删除"
+                                alertType = .success(Color.shootBlack)
+                                showToast = true
+                                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                                    DispatchQueue.main.async {
+                                        dismiss()
+                                    }
+                                }
+                            } else {
+                                toastText = "删除失败，请重试"
+                                alertType = .error(.red)
+                                showToast = true
+                            }
+                        }
+                    }
+                    withAnimation(.spring()) {
+                        deleteFavorite = false
                     }
                 } label: {
                     Text("确认")

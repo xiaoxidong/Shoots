@@ -9,6 +9,7 @@ import SwiftUI
 import Alamofire
 
 class HomeFeedViewModel: ObservableObject {
+    @Published var loading = true
     // 首页数据
     @Published var homeFeed: [Picture] = []
     var page: Int = 1
@@ -18,8 +19,12 @@ class HomeFeedViewModel: ObservableObject {
     
     // 首页第一页数据
     func getHomeFirstPageFeed() {
-        self.noMore = false
-        self.footerRefreshing = false
+        DispatchQueue.main.async {
+            self.loading = true
+            self.noMore = false
+            self.footerRefreshing = false
+        }
+        
         self.page = 1
         APIService.shared.POST(url: .feed, params: ["pageSize" : numberPerpage, "pageNum" : 1]) { (result: Result<FeedResponseData, APIService.APIError>) in
             switch result {
@@ -33,6 +38,9 @@ class HomeFeedViewModel: ObservableObject {
             case .failure(let error):
                 print("首页信息流第一页错误: \(error)")
                 break
+            }
+            DispatchQueue.main.async {
+                self.loading = false
             }
         }
     }
