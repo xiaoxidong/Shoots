@@ -24,7 +24,7 @@ struct ImageDetail: Codable {
     var uploadNum: String
     var favoriteNum: String
     var designPatternList: [PatternName]
-    
+
     struct PatternName: Codable, Identifiable, Hashable {
         var id: String
         var designPatternName: String

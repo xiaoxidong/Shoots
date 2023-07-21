@@ -24,31 +24,30 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
 import Photos
+import UIKit
 
 class ZLImageNavController: UINavigationController {
-    
     var isSelectedOriginal: Bool = false
-    
+
     var arrSelectedModels: [ZLPhotoModel] = []
-    
+
     var selectImageBlock: (() -> Void)?
-    
+
     var cancelBlock: (() -> Void)?
-    
+
     deinit {
         zl_debugPrint("ZLImageNavController deinit")
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return ZLPhotoUIConfiguration.default().statusBarStyle
     }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+
+    override init(nibName _: String?, bundle _: Bundle?) {
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         navigationBar.barStyle = .black
@@ -56,16 +55,15 @@ class ZLImageNavController: UINavigationController {
         modalPresentationStyle = .fullScreen
         isNavigationBarHidden = true
     }
-    
+
     @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
 }

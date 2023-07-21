@@ -3,7 +3,6 @@
 import SwiftUI
 
 struct ElegantListView<List>: View, ElegantListManagerDirectAccess, PageTurnTypeDirectAccess where List: View {
-
     @State private var translation: CGFloat = .zero
     @State private var isTurningPage = false
 
@@ -42,11 +41,9 @@ struct ElegantListView<List>: View, ElegantListManagerDirectAccess, PageTurnType
                     }
             )
     }
-
 }
 
 private extension ElegantListView {
-
     var offset: CGSize {
         if isHorizontal {
             return CGSize(width: horizontalScrollOffset, height: 0.0)
@@ -75,16 +72,15 @@ private extension ElegantListView {
         guard !bounces else { return translation }
 
         if (activeIndex == 0 && translation > 0) ||
-            (activeIndex == maxPageIndex && translation < 0) {
+            (activeIndex == maxPageIndex && translation < 0)
+        {
             return 0
         }
         return translation
     }
-
 }
 
 private extension ElegantListView {
-
     func setTranslationForOffset(_ offset: CGFloat) {
         switch pageTurnType {
         case .regular:
@@ -101,11 +97,11 @@ private extension ElegantListView {
         case let .earlyCutoff(config):
             guard !isTurningPage else { return }
 
-            if offset > 0 && offset > config.pageTurnCutOff {
+            if offset > 0, offset > config.pageTurnCutOff {
                 guard activeIndex != 0 else { return }
 
                 scroll(direction: .backward)
-            } else if offset < 0 && offset < -config.pageTurnCutOff {
+            } else if offset < 0, offset < -config.pageTurnCutOff {
                 guard activeIndex != maxPageIndex else { return }
 
                 scroll(direction: .forward)
@@ -130,7 +126,7 @@ private extension ElegantListView {
             let dragDelta = offset / axisLength
 
             if abs(dragDelta) > delta {
-                let properNewIndex = (dragDelta > 0 ? activeIndex-1 : activeIndex+1).clamped(to: 0...maxPageIndex)
+                let properNewIndex = (dragDelta > 0 ? activeIndex - 1 : activeIndex + 1).clamped(to: 0 ... maxPageIndex)
                 manager.activeIndex = properNewIndex
                 manager.setCurrentPageToBeRearranged()
             }
@@ -138,5 +134,4 @@ private extension ElegantListView {
             isTurningPage = false
         }
     }
-
 }

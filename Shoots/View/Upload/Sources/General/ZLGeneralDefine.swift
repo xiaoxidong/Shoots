@@ -30,15 +30,15 @@ let ZLMaxImageWidth: CGFloat = 500
 
 enum ZLLayout {
     static let navTitleFont: UIFont = .zll.font(ofSize: 17)
-    
+
     static let bottomToolViewH: CGFloat = 55
-    
+
     static let bottomToolBtnH: CGFloat = 34
-    
+
     static let bottomToolBtnY: CGFloat = 10
-    
+
     static let bottomToolTitleFont: UIFont = .zll.font(ofSize: 17)
-    
+
     static let bottomToolBtnCornerRadius: CGFloat = 5
 }
 
@@ -46,19 +46,19 @@ func markSelected(source: inout [ZLPhotoModel], selected: inout [ZLPhotoModel]) 
     guard selected.count > 0 else {
         return
     }
-    
+
     var selIds: [String: Bool] = [:]
     var selEditImage: [String: UIImage] = [:]
     var selEditModel: [String: ZLEditImageModel] = [:]
     var selIdAndIndex: [String: Int] = [:]
-    
+
     for (index, m) in selected.enumerated() {
         selIds[m.ident] = true
         selEditImage[m.ident] = m.editImage
         selEditModel[m.ident] = m.editImageModel
         selIdAndIndex[m.ident] = index
     }
-    
+
     source.forEach { m in
         if selIds[m.ident] == true {
             m.isSelected = true
@@ -92,15 +92,15 @@ func deviceIsiPad() -> Bool {
     return UIDevice.current.userInterfaceIdiom == .pad
 }
 
-//func deviceSafeAreaInsets() -> UIEdgeInsets {
+// func deviceSafeAreaInsets() -> UIEdgeInsets {
 //    var insets: UIEdgeInsets = .zero
-//    
+//
 //    if #available(iOS 11, *) {
 //        insets = UIApplication.shared.keyWindow?.safeAreaInsets ?? .zero
 //    }
-//    
+//
 //    return insets
-//}
+// }
 
 func deviceIsFringeScreen() -> Bool {
     return deviceSafeAreaInsets().top > 0
@@ -122,7 +122,7 @@ func showAlertController(title: String?, message: String?, style: ZLCustomAlertS
         alert.show(with: sender)
         return
     }
-    
+
     let alert = UIAlertController(title: title, message: message, preferredStyle: style.toSystemAlertStyle)
     actions
         .map { $0.toSystemAlertAction() }
@@ -137,7 +137,7 @@ func canAddModel(_ model: ZLPhotoModel, currentSelectCount: Int, sender: UIViewC
     guard ZLPhotoConfiguration.default().canSelectAsset?(model.asset) ?? true else {
         return false
     }
-    
+
     if currentSelectCount >= ZLPhotoConfiguration.default().maxSelectCount {
         if showAlert {
             let message = String(format: localLanguageTextValue(.exceededMaxSelectCount), ZLPhotoConfiguration.default().maxSelectCount)
@@ -185,7 +185,7 @@ func ZLMainAsync(after: TimeInterval = 0, handler: @escaping (() -> Void)) {
     }
 }
 
-func zl_debugPrint(_ message: Any...) {
+func zl_debugPrint(_: Any...) {
 //    message.forEach { debugPrint($0) }
 }
 

@@ -24,52 +24,52 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
 import Foundation
 import Photos
+import UIKit
 
-//let version = "4.4.0"
+// let version = "4.4.0"
 
 public struct ZLPhotoBrowserWrapper<Base> {
     public let base: Base
-    
+
     public init(_ base: Base) {
         self.base = base
     }
 }
 
-public protocol ZLPhotoBrowserCompatible: AnyObject { }
+public protocol ZLPhotoBrowserCompatible: AnyObject {}
 
-public protocol ZLPhotoBrowserCompatibleValue { }
+public protocol ZLPhotoBrowserCompatibleValue {}
 
-extension ZLPhotoBrowserCompatible {
-    public var zll: ZLPhotoBrowserWrapper<Self> {
+public extension ZLPhotoBrowserCompatible {
+    var zll: ZLPhotoBrowserWrapper<Self> {
         get { ZLPhotoBrowserWrapper(self) }
-        set { }
+        set {}
     }
-    
-    public static var zll: ZLPhotoBrowserWrapper<Self>.Type {
+
+    static var zll: ZLPhotoBrowserWrapper<Self>.Type {
         get { ZLPhotoBrowserWrapper<Self>.self }
-        set { }
+        set {}
     }
 }
 
-extension ZLPhotoBrowserCompatibleValue {
-    public var zll: ZLPhotoBrowserWrapper<Self> {
+public extension ZLPhotoBrowserCompatibleValue {
+    var zll: ZLPhotoBrowserWrapper<Self> {
         get { ZLPhotoBrowserWrapper(self) }
-        set { }
+        set {}
     }
 }
 
-extension UIViewController: ZLPhotoBrowserCompatible { }
-extension UIColor: ZLPhotoBrowserCompatible { }
-extension UIImage: ZLPhotoBrowserCompatible { }
-extension CIImage: ZLPhotoBrowserCompatible { }
-extension PHAsset: ZLPhotoBrowserCompatible { }
-extension UIFont: ZLPhotoBrowserCompatible { }
-extension UIView: ZLPhotoBrowserCompatible { }
+extension UIViewController: ZLPhotoBrowserCompatible {}
+extension UIColor: ZLPhotoBrowserCompatible {}
+extension UIImage: ZLPhotoBrowserCompatible {}
+extension CIImage: ZLPhotoBrowserCompatible {}
+extension PHAsset: ZLPhotoBrowserCompatible {}
+extension UIFont: ZLPhotoBrowserCompatible {}
+extension UIView: ZLPhotoBrowserCompatible {}
 
-extension Array: ZLPhotoBrowserCompatibleValue { }
-extension String: ZLPhotoBrowserCompatibleValue { }
-extension CGFloat: ZLPhotoBrowserCompatibleValue { }
-extension Bool: ZLPhotoBrowserCompatibleValue { }
+extension Array: ZLPhotoBrowserCompatibleValue {}
+extension String: ZLPhotoBrowserCompatibleValue {}
+extension CGFloat: ZLPhotoBrowserCompatibleValue {}
+extension Bool: ZLPhotoBrowserCompatibleValue {}

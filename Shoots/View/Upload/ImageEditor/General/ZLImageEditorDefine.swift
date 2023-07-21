@@ -28,9 +28,9 @@ import UIKit
 
 struct ZLImageEditorLayout {
     static let bottomToolBtnH: CGFloat = 34
-    
+
     static let bottomToolTitleFont = UIFont.systemFont(ofSize: 17)
-    
+
     static let bottomToolBtnCornerRadius: CGFloat = 5
 }
 
@@ -50,14 +50,14 @@ func getImage(_ named: String) -> UIImage? {
 
 func deviceSafeAreaInsets() -> UIEdgeInsets {
     var insets: UIEdgeInsets = .zero
-    
+
     if #available(iOS 11, *) {
         insets = UIApplication.shared.keyWindow?.safeAreaInsets ?? .zero
     }
-    
+
     return insets
 }
 
-func zl_debugPrint(_ message: Any) {
+func zl_debugPrint(_: Any) {
 //    debugPrint(message)
 }

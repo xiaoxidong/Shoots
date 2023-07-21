@@ -5,18 +5,18 @@
 //  Created by XiaoDong Yuan on 2023/3/27.
 //
 
-import SwiftUI
 import Refresh
+import SwiftUI
 
 struct MenuBarExtraView: View {
     @Binding var isInserted: Bool
     @Binding var isMenuPresented: Bool
-    
+
     @State var searchText = ""
     @Environment(\.openWindow) var openWindow
     @AppStorage("showAI") var showAI = true
-    @StateObject var home: HomeFeedViewModel = HomeFeedViewModel()
-    
+    @StateObject var home: HomeFeedViewModel = .init()
+
     var body: some View {
         VStack {
             HStack {
@@ -49,7 +49,7 @@ struct MenuBarExtraView: View {
                     .padding(4)
                     .contentShape(Rectangle())
                 }.buttonStyle(.plain)
-                
+
                 Button {
                     NSApp.setActivationPolicy(.regular)
                     isMenuPresented.toggle()
@@ -66,7 +66,7 @@ struct MenuBarExtraView: View {
                         .contentShape(Rectangle())
                 }.buttonStyle(.plain)
             }.padding([.horizontal, .top], 14)
-            
+
             ZStack {
                 feed
                 SearchView(searchText: $searchText, showSearchDefault: false)
@@ -75,12 +75,12 @@ struct MenuBarExtraView: View {
             load()
         }
     }
-   
+
     var feed: some View {
         ScrollView {
             VStack(spacing: 0) {
                 FeedView(shoots: home.homeFeed)
-                
+
                 LoadMoreView(footerRefreshing: $home.footerRefreshing, noMore: $home.noMore) {
                     if self.home.page + 1 > self.home.mostPages {
                         self.home.footerRefreshing = false
@@ -98,7 +98,7 @@ struct MenuBarExtraView: View {
                 load()
             }
     }
-    
+
     func load() {
         home.getHomeFirstPageFeed()
     }

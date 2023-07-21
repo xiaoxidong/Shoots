@@ -27,36 +27,34 @@ import StoreKit
 
 @available(iOSApplicationExtension 11.2, iOS 11.2, OSX 10.13.2, tvOS 11.2, watchOS 4.2, macCatalyst 13.0, *)
 public extension SKProductDiscount {
-    
     /// The formatted discount price of the product using the local currency.
     var localizedPrice: String? {
         return priceFormatter(locale: priceLocale).string(from: price)
     }
-    
+
     private func priceFormatter(locale: Locale) -> NumberFormatter {
         let formatter = NumberFormatter()
         formatter.locale = locale
         formatter.numberStyle = .currency
         return formatter
     }
-    
+
     /// The formatted, localized period / date for the product discount.
     /// - note: The subscription period for the discount is independent of the product's regular subscription period, and does not have to match in units or duration.
     var localizedSubscriptionPeriod: String {
         let dateComponents: DateComponents
-        
+
         switch subscriptionPeriod.unit {
         case .day: dateComponents = DateComponents(day: subscriptionPeriod.numberOfUnits)
         case .week: dateComponents = DateComponents(weekOfMonth: subscriptionPeriod.numberOfUnits)
         case .month: dateComponents = DateComponents(month: subscriptionPeriod.numberOfUnits)
         case .year: dateComponents = DateComponents(year: subscriptionPeriod.numberOfUnits)
-        @unknown default: 
+        @unknown default:
             print("WARNING: SwiftyStoreKit localizedSubscriptionPeriod does not handle all SKProduct.PeriodUnit cases.")
             // Default to month units in the unlikely event a different unit type is added to a future OS version
-            dateComponents = DateComponents(month: subscriptionPeriod.numberOfUnits) 
+            dateComponents = DateComponents(month: subscriptionPeriod.numberOfUnits)
         }
-        
+
         return DateComponentsFormatter.localizedString(from: dateComponents, unitsStyle: .full) ?? ""
     }
-    
 }

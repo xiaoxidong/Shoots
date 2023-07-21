@@ -12,20 +12,21 @@ struct SettingCellView: View {
     var text: String
     let action: () -> Void
     #if os(iOS)
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @Environment(\.verticalSizeClass) var verticalSizeClass
+        @Environment(\.horizontalSizeClass) var horizontalSizeClass
+        @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
     var padding: CGFloat {
         #if os(iOS)
-        if horizontalSizeClass == .regular && verticalSizeClass == .compact {
-            return 56
-        } else {
-            return 16
-        }
+            if horizontalSizeClass == .regular, verticalSizeClass == .compact {
+                return 56
+            } else {
+                return 16
+            }
         #else
-        return 16
+            return 16
         #endif
     }
+
     var body: some View {
         VStack(spacing: 0) {
             Button {
@@ -39,8 +40,8 @@ struct SettingCellView: View {
                         .foregroundColor(Color.shootBlack)
                     Spacer()
                 }.frame(height: 56)
-                .contentShape(Rectangle())
-                
+                    .contentShape(Rectangle())
+
             }.buttonStyle(PlainButtonStyle())
 
             Divider()
@@ -50,15 +51,11 @@ struct SettingCellView: View {
 
 struct SettingCellView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingCellView(image: "pro", text: "支持开发者") {
-            
-        }
+        SettingCellView(image: "pro", text: "支持开发者") {}
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        
-        SettingCellView(image: "pro", text: "支持开发者") {
-            
-        }
+
+        SettingCellView(image: "pro", text: "支持开发者") {}
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
     }

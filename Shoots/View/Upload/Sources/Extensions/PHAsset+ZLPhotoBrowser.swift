@@ -33,7 +33,7 @@ extension ZLPhotoBrowserWrapper where Base: PHAsset {
         }
         return !(resource.value(forKey: "locallyAvailable") as? Bool ?? true)
     }
-    
+
     var resource: PHAssetResource? {
         return PHAssetResource.assetResources(for: base).first
     }

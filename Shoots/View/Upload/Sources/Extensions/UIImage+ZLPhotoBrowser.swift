@@ -24,9 +24,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
 import Accelerate
 import MobileCoreServices
+import UIKit
 
 // MARK: data 转 gif image
 
@@ -35,41 +35,41 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         // Kingfisher
         let info: [String: Any] = [
             kCGImageSourceShouldCache as String: true,
-            kCGImageSourceTypeIdentifierHint as String: kUTTypeGIF
+            kCGImageSourceTypeIdentifierHint as String: kUTTypeGIF,
         ]
-        
+
         guard let imageSource = CGImageSourceCreateWithData(data as CFData, info as CFDictionary) else {
             return UIImage(data: data)
         }
-        
+
         var frameCount = CGImageSourceGetCount(imageSource)
         guard frameCount > 1 else {
             return UIImage(data: data)
         }
-        
+
         let maxFrameCount = ZLPhotoConfiguration.default().maxFrameCountForGIF
-        
+
         let ratio = CGFloat(max(frameCount, maxFrameCount)) / CGFloat(maxFrameCount)
         frameCount = min(frameCount, maxFrameCount)
-        
+
         var images = [UIImage]()
         var frameDuration = [Int]()
-        
-        for i in 0..<frameCount {
+
+        for i in 0 ..< frameCount {
             let index = Int(floor(CGFloat(i) * ratio))
-            
+
             guard let imageRef = CGImageSourceCreateImageAtIndex(imageSource, index, info as CFDictionary) else {
                 return nil
             }
-            
+
             // Get current animated GIF frame duration
             let currFrameDuration = getFrameDuration(from: imageSource, at: index) * min(ratio, 3)
             // Second to ms
             frameDuration.append(Int(currFrameDuration * 1000))
-            
+
             images.append(UIImage(cgImage: imageRef, scale: 1, orientation: .up))
         }
-        
+
         // https://github.com/kiritmodi2702/GIF-Swift
         let duration: Int = {
             var sum = 0
@@ -78,24 +78,24 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
             }
             return sum
         }()
-        
+
         // 求出每一帧的最大公约数
         let gcd = gcdForArray(frameDuration)
         var frames = [UIImage]()
 
-        for i in 0..<frameCount {
+        for i in 0 ..< frameCount {
             let frameImage = images[i]
             // 每张图片的时长除以最大公约数，得出需要展示的张数
             let count = Int(frameDuration[i] / gcd)
 
-            for _ in 0..<count {
+            for _ in 0 ..< count {
                 frames.append(frameImage)
             }
         }
-        
+
         return .animatedImage(with: frames, duration: TimeInterval(duration) / 1000)
     }
-    
+
     /// Calculates frame duration at a specific index for a gif from an `imageSource`.
     static func getFrameDuration(from imageSource: CGImageSource, at index: Int) -> TimeInterval {
         guard let properties = CGImageSourceCopyPropertiesAtIndex(imageSource, index, nil)
@@ -104,22 +104,22 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         let gifInfo = properties[kCGImagePropertyGIFDictionary as String] as? [String: Any]
         return getFrameDuration(from: gifInfo)
     }
-    
+
     /// Calculates frame duration for a gif frame out of the kCGImagePropertyGIFDictionary dictionary.
     static func getFrameDuration(from gifInfo: [String: Any]?) -> TimeInterval {
         let defaultFrameDuration = 0.1
         guard let gifInfo = gifInfo else { return defaultFrameDuration }
-        
+
         let unclampedDelayTime = gifInfo[kCGImagePropertyGIFUnclampedDelayTime as String] as? NSNumber
         let delayTime = gifInfo[kCGImagePropertyGIFDelayTime as String] as? NSNumber
         let duration = unclampedDelayTime ?? delayTime
-        
+
         guard let frameDuration = duration else {
             return defaultFrameDuration
         }
         return frameDuration.doubleValue > 0.011 ? frameDuration.doubleValue : defaultFrameDuration
     }
-    
+
     private static func gcdForArray(_ array: [Int]) -> Int {
         if array.isEmpty {
             return 1
@@ -138,7 +138,7 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         guard var num1 = num1, var num2 = num2 else {
             return num1 ?? (num2 ?? 0)
         }
-        
+
         if num1 < num2 {
             swap(&num1, &num2)
         }
@@ -165,9 +165,9 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         if base.imageOrientation == .up {
             return base
         }
-        
+
         var transform = CGAffineTransform.identity
-        
+
         switch base.imageOrientation {
         case .down, .downMirrored:
             transform = CGAffineTransform(translationX: width, y: height)
@@ -181,7 +181,7 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         default:
             break
         }
-        
+
         switch base.imageOrientation {
         case .upMirrored, .downMirrored:
             transform = transform.translatedBy(x: width, y: 0)
@@ -192,7 +192,7 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         default:
             break
         }
-        
+
         guard let cgImage = base.cgImage, let colorSpace = cgImage.colorSpace else {
             return base
         }
@@ -212,7 +212,7 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         default:
             context?.draw(cgImage, in: CGRect(x: 0, y: 0, width: width, height: height))
         }
-        
+
         guard let newCgImage = context?.makeImage() else {
             return base
         }
@@ -225,11 +225,11 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
             return base
         }
         let rect = CGRect(origin: .zero, size: CGSize(width: CGFloat(imagRef.width), height: CGFloat(imagRef.height)))
-        
+
         var bnds = rect
-        
+
         var transform = CGAffineTransform.identity
-        
+
         switch orientation {
         case .up:
             return base
@@ -262,7 +262,7 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         @unknown default:
             return base
         }
-        
+
         UIGraphicsBeginImageContext(bnds.size)
         let context = UIGraphicsGetCurrentContext()
         switch orientation {
@@ -277,63 +277,63 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         context?.draw(imagRef, in: rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         return newImage ?? base
     }
-    
+
     func swapRectWidthAndHeight(_ rect: CGRect) -> CGRect {
         var r = rect
         r.size.width = rect.height
         r.size.height = rect.width
         return r
     }
-    
+
     func rotate(degress: CGFloat) -> UIImage {
         guard degress != 0, let cgImage = base.cgImage else {
             return base
         }
-        
+
         let rotatedViewBox = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
         let t = CGAffineTransform(rotationAngle: degress)
         rotatedViewBox.transform = t
         let rotatedSize = rotatedViewBox.frame.size
 
         UIGraphicsBeginImageContext(rotatedSize)
-        
+
         let bitmap = UIGraphicsGetCurrentContext()
         bitmap?.translateBy(x: rotatedSize.width / 2, y: rotatedSize.height / 2)
         bitmap?.rotate(by: degress)
         bitmap?.scaleBy(x: 1.0, y: -1.0)
-        
+
         bitmap?.draw(cgImage, in: CGRect(x: -width / 2, y: -height / 2, width: width, height: height))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         return newImage ?? base
     }
-    
+
     /// 加马赛克
     func mosaicImage() -> UIImage? {
         guard let cgImage = base.cgImage else {
             return nil
         }
-        
+
         let scale = 8 * width / UIScreen.main.bounds.width
         let currCiImage = CIImage(cgImage: cgImage)
         let filter = CIFilter(name: "CIPixellate")
         filter?.setValue(currCiImage, forKey: kCIInputImageKey)
         filter?.setValue(scale, forKey: kCIInputScaleKey)
         guard let outputImage = filter?.outputImage else { return nil }
-        
+
         let context = CIContext()
-        
+
         if let cgImage = context.createCGImage(outputImage, from: CGRect(origin: .zero, size: base.size)) {
             return UIImage(cgImage: cgImage)
         } else {
             return nil
         }
     }
-    
+
     func resize(_ size: CGSize) -> UIImage? {
         if size.width <= 0 || size.height <= 0 {
             return nil
@@ -344,11 +344,11 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         UIGraphicsEndImageContext()
         return temp
     }
-    
+
     /// Processing speed is better than resize(:) method
     func resize_vI(_ size: CGSize) -> UIImage? {
         guard let cgImage = base.cgImage else { return nil }
-        
+
         var format = vImage_CGImageFormat(
             bitsPerComponent: 8,
             bitsPerPixel: 32,
@@ -358,7 +358,7 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
             decode: nil,
             renderingIntent: .defaultIntent
         )
-        
+
         var sourceBuffer = vImage_Buffer()
         defer {
             if #available(iOS 13.0, *) {
@@ -367,33 +367,33 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
                 sourceBuffer.data.deallocate()
             }
         }
-        
+
         var error = vImageBuffer_InitWithCGImage(&sourceBuffer, &format, nil, cgImage, numericCast(kvImageNoFlags))
         guard error == kvImageNoError else { return nil }
-        
+
         let destWidth = Int(size.width)
         let destHeight = Int(size.height)
         let bytesPerPixel = cgImage.bitsPerPixel / 8
         let destBytesPerRow = destWidth * bytesPerPixel
-        
+
         let destData = UnsafeMutablePointer<UInt8>.allocate(capacity: destHeight * destBytesPerRow)
         defer {
             destData.deallocate()
         }
         var destBuffer = vImage_Buffer(data: destData, height: vImagePixelCount(destHeight), width: vImagePixelCount(destWidth), rowBytes: destBytesPerRow)
-        
+
         // scale the image
         error = vImageScale_ARGB8888(&sourceBuffer, &destBuffer, nil, numericCast(kvImageHighQualityResampling))
         guard error == kvImageNoError else { return nil }
-        
+
         // create a CGImage from vImage_Buffer
         guard let destCGImage = vImageCreateCGImageFromBuffer(&destBuffer, &format, nil, nil, numericCast(kvImageNoFlags), &error)?.takeRetainedValue() else { return nil }
         guard error == kvImageNoError else { return nil }
-        
+
         // create a UIImage
         return UIImage(cgImage: destCGImage, scale: base.scale, orientation: base.imageOrientation)
     }
-    
+
     func toCIImage() -> CIImage? {
         var ciImage = base.ciImage
         if ciImage == nil, let cgImage = base.cgImage {
@@ -401,7 +401,7 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         }
         return ciImage
     }
-    
+
     func clipImage(angle: CGFloat, editRect: CGRect, isCircle: Bool) -> UIImage? {
         let a = ((Int(angle) % 360) - 360) % 360
         var newImage: UIImage = base
@@ -431,7 +431,7 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         let clipImage = UIImage(cgImage: cgi, scale: newImage.scale, orientation: .up)
         return clipImage
     }
-    
+
     func blurImage(level: CGFloat) -> UIImage? {
         guard let ciImage = toCIImage() else {
             return nil
@@ -439,7 +439,7 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         let blurFilter = CIFilter(name: "CIGaussianBlur")
         blurFilter?.setValue(ciImage, forKey: "inputImage")
         blurFilter?.setValue(level, forKey: "inputRadius")
-        
+
         guard let outputImage = blurFilter?.outputImage else {
             return nil
         }
@@ -461,7 +461,7 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         guard let ciImage = toCIImage() else {
             return base
         }
-        
+
         let filter = CIFilter(name: "CIColorControls")
         filter?.setValue(ciImage, forKey: kCIInputImageKey)
         filter?.setValue(ZLEditImageConfiguration.AdjustTool.brightness.filterValue(brightness), forKey: ZLEditImageConfiguration.AdjustTool.brightness.key)
@@ -483,7 +483,7 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         UIGraphicsEndImageContext()
         return image
     }
-    
+
     func fillColor(_ color: UIColor) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(base.size, false, base.scale)
         let drawRect = CGRect(x: 0, y: 0, width: base.zll.width, height: base.zll.height)
@@ -494,7 +494,6 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
         let tintedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return tintedImage
-
     }
 }
 
@@ -502,7 +501,7 @@ public extension ZLPhotoBrowserWrapper where Base: UIImage {
     var width: CGFloat {
         base.size.width
     }
-    
+
     var height: CGFloat {
         base.size.height
     }

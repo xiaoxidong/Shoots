@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewAppView: View {
     let appID: String
-    
+
     var body: some View {
         Text("Hello, World!")
     }

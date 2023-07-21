@@ -32,7 +32,7 @@ class ZLAnimationUtils: NSObject {
         case scale = "transform.scale"
         case rotate = "transform.rotation"
     }
-    
+
     class func animation(
         type: ZLAnimationUtils.AnimationType,
         fromValue: CGFloat,
@@ -47,13 +47,13 @@ class ZLAnimationUtils: NSObject {
         animation.isRemovedOnCompletion = false
         return animation
     }
-    
+
     class func springAnimation() -> CAKeyframeAnimation {
         let animate = CAKeyframeAnimation(keyPath: "transform")
         animate.duration = ZLPhotoConfiguration.default().selectBtnAnimationDuration
         animate.isRemovedOnCompletion = true
         animate.fillMode = .forwards
-        
+
         animate.values = [
             CATransform3DMakeScale(0.7, 0.7, 1),
             CATransform3DMakeScale(1.2, 1.2, 1),

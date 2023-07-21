@@ -10,7 +10,7 @@ import SwiftUI
 struct AppAlbumView: View {
     var id: String
     var name: String
-    
+
     @State var edit = false
     @State var delete = false
     @Environment(\.dismiss) var dismiss
@@ -21,10 +21,70 @@ struct AppAlbumView: View {
     @State var alertType: AlertToast.AlertType = .success(Color.shootBlack)
     var body: some View {
         #if os(iOS)
-        content
-            .navigationBarBackButtonHidden()
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+            content
+                .navigationBarBackButtonHidden()
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            if edit {
+                                withAnimation(.spring()) {
+                                    delete.toggle()
+                                }
+                            } else {
+                                dismiss()
+                            }
+                        } label: {
+                            if edit {
+                                Text("删除")
+                                    .bold()
+                                    .foregroundColor(selected.isEmpty ? .shootGray : .shootRed)
+                            } else {
+                                Image(systemName: "chevron.left")
+                                    .foregroundColor(.shootBlack)
+                                    .font(.system(size: 16, weight: .semibold))
+                            }
+                        }.disabled(edit && selected.isEmpty)
+                    }
+
+                    ToolbarItem(placement: .principal) {
+                        Text(name)
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.shootBlack)
+                            .lineLimit(1)
+                            .frame(maxWidth: 200)
+                    }
+
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            withAnimation(.spring()) {
+                                edit.toggle()
+                            }
+                        } label: {
+                            Text(edit ? "完成" : "管理")
+                                .bold()
+                                .foregroundColor(.shootBlue)
+                        }
+                    }
+                }
+        #else
+            VStack {
+                HStack {
+                    Button {
+                        withAnimation(.spring()) {
+                            edit.toggle()
+                        }
+                    } label: {
+                        Text(edit ? "完成" : "管理")
+                            .bold()
+                            .foregroundColor(.shootBlue)
+                    }.buttonStyle(.plain)
+
+                    Spacer()
+                    Text(name)
+                        .font(.largeTitle)
+                        .bold()
+                        .foregroundColor(.shootBlack)
+                    Spacer()
                     Button {
                         if edit {
                             withAnimation(.spring()) {
@@ -39,79 +99,18 @@ struct AppAlbumView: View {
                                 .bold()
                                 .foregroundColor(selected.isEmpty ? .shootGray : .shootRed)
                         } else {
-                            Image(systemName: "chevron.left")
-                                .foregroundColor(.shootBlack)
-                                .font(.system(size: 16, weight: .semibold))
+                            MacCloseButton()
                         }
                     }.disabled(edit && selected.isEmpty)
-                }
-                
-                ToolbarItem(placement: .principal) {
-                    Text(name)
-                        .font(.system(size: 16, weight: .medium))
-                        .foregroundColor(.shootBlack)
-                        .lineLimit(1)
-                        .frame(maxWidth: 200)
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        withAnimation(.spring()) {
-                            edit.toggle()
-                        }
-                    } label: {
-                        Text(edit ? "完成" : "管理")
-                            .bold()
-                            .foregroundColor(.shootBlue)
-                    }
-                }
+                        .buttonStyle(.plain)
+
+                }.padding(.top, 36)
+                    .padding(.horizontal)
+                content
             }
-        #else
-        VStack {
-            HStack {
-                Button {
-                    withAnimation(.spring()) {
-                        edit.toggle()
-                    }
-                } label: {
-                    Text(edit ? "完成" : "管理")
-                        .bold()
-                        .foregroundColor(.shootBlue)
-                }.buttonStyle(.plain)
-                
-                Spacer()
-                Text(name)
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundColor(.shootBlack)
-                Spacer()
-                Button {
-                    if edit {
-                        withAnimation(.spring()) {
-                            delete.toggle()
-                        }
-                    } else {
-                        dismiss()
-                    }
-                } label: {
-                    if edit {
-                        Text("删除")
-                            .bold()
-                            .foregroundColor(selected.isEmpty ? .shootGray : .shootRed)
-                    } else {
-                        MacCloseButton()
-                    }
-                }.disabled(edit && selected.isEmpty)
-                    .buttonStyle(.plain)
-                
-            }.padding(.top, 36)
-                .padding(.horizontal)
-            content
-        }
         #endif
-            
     }
-    
+
     var content: some View {
         VStack {
             if edit {
@@ -142,12 +141,12 @@ struct AppAlbumView: View {
             getData()
         }
     }
-    
+
     var feed: some View {
         ScrollView {
             VStack(spacing: 0) {
                 FeedView(shoots: selfAppDetail.appFeed)
-                
+
                 LoadMoreView(footerRefreshing: $selfAppDetail.footerRefreshing, noMore: $selfAppDetail.noMore) {
                     loadMore()
                 }
@@ -158,48 +157,48 @@ struct AppAlbumView: View {
                 getData()
             }
     }
-    
+
     func loadMore() {
-        if self.selfAppDetail.page + 1 > self.selfAppDetail.mostPages {
-            self.selfAppDetail.footerRefreshing = false
-            self.selfAppDetail.noMore = true
+        if selfAppDetail.page + 1 > selfAppDetail.mostPages {
+            selfAppDetail.footerRefreshing = false
+            selfAppDetail.noMore = true
         } else {
             Task {
                 await self.selfAppDetail.nextPage(id: id)
             }
         }
     }
-    
+
     func getData() {
         Task {
             await self.selfAppDetail.appPics(id: id)
         }
     }
-    
+
     #if os(iOS)
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @Environment(\.verticalSizeClass) var verticalSizeClass
+        @Environment(\.horizontalSizeClass) var horizontalSizeClass
+        @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
-    
+
     var columns: [GridItem] {
         #if os(iOS)
-        if horizontalSizeClass == .compact {
-            return [GridItem(.adaptive(minimum: 120, maximum: 260), spacing: 2)]
-        } else {
-            return [GridItem(.adaptive(minimum: 220, maximum: 360), spacing: 2)]
-        }
+            if horizontalSizeClass == .compact {
+                return [GridItem(.adaptive(minimum: 120, maximum: 260), spacing: 2)]
+            } else {
+                return [GridItem(.adaptive(minimum: 220, maximum: 360), spacing: 2)]
+            }
         #else
-        return [GridItem(.adaptive(minimum: 120, maximum: 260), spacing: 2)]
+            return [GridItem(.adaptive(minimum: 120, maximum: 260), spacing: 2)]
         #endif
     }
-    
+
     @State var selected: [String] = []
     var editView: some View {
         ScrollView {
             LazyVGrid(columns: columns, alignment: .leading, spacing: 2) {
                 ForEach(selfAppDetail.appFeed) { shoot in
                     Button(action: {
-                        //选择和取消选择截图
+                        // 选择和取消选择截图
                         withAnimation(.spring()) {
                             if selected.contains(shoot.id), let index = selected.firstIndex(of: shoot.id) {
                                 selected.remove(at: index)
@@ -221,17 +220,17 @@ struct AppAlbumView: View {
             }
         }.background(Color.shootLight.opacity(0.06))
     }
-    
+
     var deleteView: some View {
         VStack(spacing: 26) {
             Text("确认删除？")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.shootBlack)
-            
+
             Text("删除之后将无法恢复，确认删除？")
                 .font(.system(size: 15, weight: .medium))
                 .foregroundColor(.shootBlack)
-            
+
             HStack(spacing: 56) {
                 Button {
                     withAnimation(.spring()) {
@@ -248,7 +247,7 @@ struct AppAlbumView: View {
                 }.buttonStyle(.plain)
                 Button {
                     Task {
-                        await selfAppDetail.deletePics(ids: selected, { success in
+                        await selfAppDetail.deletePics(ids: selected) { success in
                             if success {
                                 toastText = "成功删除"
                                 alertType = .success(Color.shootBlack)
@@ -258,7 +257,7 @@ struct AppAlbumView: View {
                                 alertType = .error(.red)
                                 showToast = true
                             }
-                        })
+                        }
                     }
                     withAnimation(.spring()) {
                         delete = false

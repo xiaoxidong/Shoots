@@ -2091,6 +2091,7 @@
 				4E195ED729C040C600E97522 /* Frameworks */,
 				4E195ED829C040C600E97522 /* Resources */,
 				4E3BEFD629E6D1840024AB99 /* Embed Foundation Extensions */,
+				4E5D722B2A6A371B0082E325 /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -2178,6 +2179,7 @@
 				4E42A69629D12DA900BEC185 /* Sources */,
 				4E42A69729D12DA900BEC185 /* Frameworks */,
 				4E42A69829D12DA900BEC185 /* Resources */,
+				4E5D722A2A6A32EF0082E325 /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -2313,6 +2315,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4E5D722A2A6A32EF0082E325 /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftformat >/dev/null; then\nswiftformat .\nelse\necho \"error: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nexit 1\nfi\n";
+		};
+		4E5D722B2A6A371B0082E325 /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftformat >/dev/null; then\nswiftformat .\nelse\necho \"error: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nexit 1\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4E195ED629C040C600E97522 /* Sources */ = {

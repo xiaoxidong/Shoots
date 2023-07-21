@@ -5,20 +5,20 @@
 //  Created by XiaoDong Yuan on 2023/6/14.
 //
 
-import SwiftUI
 import Alamofire
+import SwiftUI
 
 struct APIService {
     public static let shared = APIService()
-    
+
     public static var token: String = Defaults().get(for: .login) ?? ""
-    
+
     public enum APIError: Error {
         case noResponse
         case jsonDecodingError(error: Error)
         case networkError(error: Error)
     }
-    
+
     enum URLPath {
         case login
         case feed
@@ -45,7 +45,7 @@ struct APIService {
         case logout
         case selfAppPic
         case selfPatternPic
-        
+
         var path: String {
             switch self {
             case .login:
@@ -76,9 +76,9 @@ struct APIService {
                 return "/system/oss/upload"
             case .deleteImage:
                 return "/app/pic/delete"
-            case .imageDetail(let id):
+            case let .imageDetail(id):
                 return "/app/pic/detail/\(id)"
-            case .appDetail(let id):
+            case let .appDetail(id):
                 return "/app/application/detail/\(id)"
             case .appPics:
                 return "/app/application/pics"
@@ -101,26 +101,26 @@ struct APIService {
             }
         }
     }
-    
+
     public func POST<T: Codable>(url: URLPath, params: [String: Any]?, completionHandler: @escaping (Result<T, APIError>) -> Void) {
         print(APIService.token)
-        AF.request("\(baseURL)\(url.path)", method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(APIService.token)"]).responseDecodable(of: T.self) { response in
+        AF.request("\(baseURL)\(url.path)", method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization": "Bearer \(APIService.token)"]).responseDecodable(of: T.self) { response in
             switch response.result {
-            case .success(let object):
+            case let .success(object):
                 completionHandler(.success(object))
-            case .failure(let error):
+            case let .failure(error):
                 print(error)
                 completionHandler(.failure(.jsonDecodingError(error: error)))
             }
         }
     }
-    
+
     public func GET<T: Codable>(url: URLPath, params: [String: String]?, completionHandler: @escaping (Result<T, APIError>) -> Void) {
-        AF.request("\(baseURL)\(url.path)", method: .get, parameters: params, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization" : "Bearer \(APIService.token)"]).responseDecodable(of: T.self) { response in
+        AF.request("\(baseURL)\(url.path)", method: .get, parameters: params, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization": "Bearer \(APIService.token)"]).responseDecodable(of: T.self) { response in
             switch response.result {
-            case .success(let object):
+            case let .success(object):
                 completionHandler(.success(object))
-            case .failure(let error):
+            case let .failure(error):
                 print(error)
                 completionHandler(.failure(.jsonDecodingError(error: error)))
             }

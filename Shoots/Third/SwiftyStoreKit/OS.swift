@@ -25,32 +25,33 @@
 import StoreKit
 
 // MARK: - Missing SKMutablePayment init with product on macOS
+
 #if os(OSX)
     extension SKMutablePayment {
         convenience init(product: SKProduct) {
             self.init()
-            self.productIdentifier = product.productIdentifier
+            productIdentifier = product.productIdentifier
         }
     }
 #endif
 
 // MARK: - Missing SKError on watchOS
-#if os(watchOS) && swift(<5.3)
-public struct SKError: Error {
-    
-    public typealias Code = SKErrorCode
-    
-    let _nsError: NSError
 
-    init(_nsError: NSError) {
-        self._nsError = _nsError
+#if os(watchOS) && swift(<5.3)
+    public struct SKError: Error {
+        public typealias Code = SKErrorCode
+
+        let _nsError: NSError
+
+        init(_nsError: NSError) {
+            self._nsError = _nsError
+        }
+
+        public var code: Code {
+            return Code(rawValue: _nsError.code) ?? .unknown
+        }
+
+        static var unknown: Code = .unknown
+        static var paymentInvalid: Code = .paymentInvalid
     }
-    
-    public var code: Code {
-        return Code(rawValue: _nsError.code) ?? .unknown
-    }
-    
-    static var unknown: Code = .unknown
-    static var paymentInvalid: Code = .paymentInvalid
-}
 #endif

@@ -58,18 +58,18 @@ class ZLEditToolCell: UICollectionViewCell {
             }
         }
     }
-    
+
     var icon: UIImageView!
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         icon = UIImageView(frame: contentView.bounds)
         contentView.addSubview(icon)
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
@@ -78,18 +78,18 @@ class ZLEditToolCell: UICollectionViewCell {
 
 class ZLDrawColorCell: UICollectionViewCell {
     var bgWhiteView: UIView!
-    
+
     var colorView: UIView!
-    
+
     var color: UIColor! {
         didSet {
             self.colorView.backgroundColor = color
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         bgWhiteView = UIView()
         bgWhiteView.backgroundColor = .white
         bgWhiteView.layer.cornerRadius = 10
@@ -97,7 +97,7 @@ class ZLDrawColorCell: UICollectionViewCell {
         bgWhiteView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         bgWhiteView.center = CGPoint(x: bounds.midX, y: bounds.midY)
         contentView.addSubview(bgWhiteView)
-        
+
         colorView = UIView()
         colorView.layer.cornerRadius = 8
         colorView.layer.masksToBounds = true
@@ -105,9 +105,9 @@ class ZLDrawColorCell: UICollectionViewCell {
         colorView.center = CGPoint(x: bounds.midX, y: bounds.midY)
         contentView.addSubview(colorView)
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
@@ -116,12 +116,12 @@ class ZLDrawColorCell: UICollectionViewCell {
 
 class ZLFilterImageCell: UICollectionViewCell {
     var nameLabel: UILabel!
-    
+
     var imageView: UIImageView!
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         nameLabel = UILabel(frame: CGRect(x: 0, y: bounds.height - 20, width: bounds.width, height: 20))
         nameLabel.font = UIFont.systemFont(ofSize: 12)
         nameLabel.textColor = .white
@@ -132,15 +132,15 @@ class ZLFilterImageCell: UICollectionViewCell {
         nameLabel.adjustsFontSizeToFitWidth = true
         nameLabel.minimumScaleFactor = 0.5
         contentView.addSubview(nameLabel)
-        
+
         imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.width))
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         contentView.addSubview(imageView)
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
@@ -149,9 +149,9 @@ class ZLFilterImageCell: UICollectionViewCell {
 
 class ZLAdjustToolCell: UICollectionViewCell {
     lazy var nameLabel = UILabel()
-    
+
     lazy var imageView = UIImageView()
-    
+
     var adjustTool: ZLImageEditorConfiguration.AdjustTool = .brightness {
         didSet {
             switch adjustTool {
@@ -174,10 +174,10 @@ class ZLAdjustToolCell: UICollectionViewCell {
             }
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         nameLabel.frame = CGRect(x: 0, y: bounds.height - 30, width: bounds.width, height: 30)
         nameLabel.font = UIFont.systemFont(ofSize: 12)
         nameLabel.textColor = .white
@@ -196,9 +196,9 @@ class ZLAdjustToolCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         contentView.addSubview(imageView)
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

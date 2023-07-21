@@ -26,13 +26,11 @@ import Foundation
 import StoreKit
 
 protocol TransactionController {
-    
     /// Process the supplied transactions on a given queue.
     /// - parameter transactions: transactions to process
     /// - parameter paymentQueue: payment queue for finishing transactions
     /// - returns: array of unhandled transactions
     func processTransactions(_ transactions: [SKPaymentTransaction], on paymentQueue: PaymentQueue) -> [SKPaymentTransaction]
-    
 }
 
 public enum TransactionResult {
@@ -42,43 +40,37 @@ public enum TransactionResult {
 }
 
 public protocol PaymentQueue: class {
-    
     func add(_ observer: SKPaymentTransactionObserver)
     func remove(_ observer: SKPaymentTransactionObserver)
-    
+
     func add(_ payment: SKPayment)
-    
+
     func start(_ downloads: [SKDownload])
     func pause(_ downloads: [SKDownload])
     func resume(_ downloads: [SKDownload])
     func cancel(_ downloads: [SKDownload])
-    
+
     func restoreCompletedTransactions(withApplicationUsername username: String?)
-    
+
     func finishTransaction(_ transaction: SKPaymentTransaction)
 }
 
 extension SKPaymentQueue: PaymentQueue {
-    
     #if os(watchOS) && swift(<5.3)
-    public func resume(_ downloads: [SKDownload]) {
-        resumeDownloads(downloads)
-    }
+        public func resume(_ downloads: [SKDownload]) {
+            resumeDownloads(downloads)
+        }
     #endif
-    
 }
 
 extension SKPaymentTransaction {
-    
-    open override var debugDescription: String {
+    override open var debugDescription: String {
         let transactionId = transactionIdentifier ?? "null"
         return "productId: \(payment.productIdentifier), transactionId: \(transactionId), state: \(transactionState), date: \(String(describing: transactionDate))"
     }
-    
 }
 
 extension SKPaymentTransactionState: CustomDebugStringConvertible {
-    
     public var debugDescription: String {
         switch self {
         case .purchasing: return "purchasing"
@@ -93,29 +85,28 @@ extension SKPaymentTransactionState: CustomDebugStringConvertible {
 
 struct EntitlementRevocation {
     let callback: ([String]) -> Void
-    
+
     init(callback: @escaping ([String]) -> Void) {
         self.callback = callback
     }
 }
 
 class PaymentQueueController: NSObject, SKPaymentTransactionObserver {
-    
     private let paymentsController: PaymentsController
     private let restorePurchasesController: RestorePurchasesController
     private let completeTransactionsController: CompleteTransactionsController
     unowned let paymentQueue: PaymentQueue
     private var entitlementRevocation: EntitlementRevocation?
-    
+
     deinit {
         paymentQueue.remove(self)
     }
-    
+
     init(paymentQueue: PaymentQueue = SKPaymentQueue.default(),
          paymentsController: PaymentsController = PaymentsController(),
          restorePurchasesController: RestorePurchasesController = RestorePurchasesController(),
-         completeTransactionsController: CompleteTransactionsController = CompleteTransactionsController()) {
-        
+         completeTransactionsController: CompleteTransactionsController = CompleteTransactionsController())
+    {
         self.paymentQueue = paymentQueue
         self.paymentsController = paymentsController
         self.restorePurchasesController = restorePurchasesController
@@ -123,67 +114,66 @@ class PaymentQueueController: NSObject, SKPaymentTransactionObserver {
         super.init()
         paymentQueue.add(self)
     }
-    
+
     private func assertCompleteTransactionsWasCalled() {
-        
         let message = "SwiftyStoreKit.completeTransactions() must be called when the app launches."
         assert(completeTransactionsController.completeTransactions != nil, message)
     }
-    
+
     func startPayment(_ payment: Payment) {
         assertCompleteTransactionsWasCalled()
-        
+
         let skPayment = SKMutablePayment(product: payment.product)
         skPayment.applicationUsername = payment.applicationUsername
         skPayment.quantity = payment.quantity
-        
+
         if #available(iOS 12.2, tvOS 12.2, OSX 10.14.4, watchOS 6.2, *) {
             if let discount = payment.paymentDiscount?.discount as? SKPaymentDiscount {
                 skPayment.paymentDiscount = discount
             }
         }
-        
+
         #if os(iOS) || os(tvOS) || os(watchOS)
-        if #available(iOS 8.3, watchOS 6.2, *) {
-            skPayment.simulatesAskToBuyInSandbox = payment.simulatesAskToBuyInSandbox
-        }
+            if #available(iOS 8.3, watchOS 6.2, *) {
+                skPayment.simulatesAskToBuyInSandbox = payment.simulatesAskToBuyInSandbox
+            }
         #endif
-        
+
         paymentQueue.add(skPayment)
-        
+
         paymentsController.append(payment)
     }
-    
+
     func onEntitlementRevocation(_ revocation: EntitlementRevocation) {
         guard entitlementRevocation == nil else {
             print("SwiftyStoreKit.onEntitlementRevocation() should only be called once when the app launches. Ignoring this call")
             return
         }
-        
-        self.entitlementRevocation = revocation
+
+        entitlementRevocation = revocation
     }
-    
+
     func restorePurchases(_ restorePurchases: RestorePurchases) {
         assertCompleteTransactionsWasCalled()
-        
+
         if restorePurchasesController.restorePurchases != nil {
             return
         }
-        
+
         paymentQueue.restoreCompletedTransactions(withApplicationUsername: restorePurchases.applicationUsername)
-        
+
         restorePurchasesController.restorePurchases = restorePurchases
     }
-    
+
     func completeTransactions(_ completeTransactions: CompleteTransactions) {
         guard completeTransactionsController.completeTransactions == nil else {
             print("SwiftyStoreKit.completeTransactions() should only be called once when the app launches. Ignoring this call")
             return
         }
-        
+
         completeTransactionsController.completeTransactions = completeTransactions
     }
-    
+
     func finishTransaction(_ transaction: PaymentTransaction) {
         guard let skTransaction = transaction as? SKPaymentTransaction else {
             print("Object is not a SKPaymentTransaction: \(transaction)")
@@ -191,30 +181,29 @@ class PaymentQueueController: NSObject, SKPaymentTransactionObserver {
         }
         paymentQueue.finishTransaction(skTransaction)
     }
-    
+
     func start(_ downloads: [SKDownload]) {
         paymentQueue.start(downloads)
     }
-    
+
     func pause(_ downloads: [SKDownload]) {
         paymentQueue.pause(downloads)
     }
-    
+
     func resume(_ downloads: [SKDownload]) {
         paymentQueue.resume(downloads)
     }
-    
+
     func cancel(_ downloads: [SKDownload]) {
         paymentQueue.cancel(downloads)
     }
-    
+
     var shouldAddStorePaymentHandler: ShouldAddStorePaymentHandler?
     var updatedDownloadsHandler: UpdatedDownloadsHandler?
-    
-    
+
     // MARK: - SKPaymentTransactionObserver
-    
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+
+    func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         /*
          * Some notes about how requests are processed by SKPaymentQueue:
          *
@@ -237,44 +226,41 @@ class PaymentQueueController: NSObject, SKPaymentTransactionObserver {
          * Any transactions where state == .purchasing are ignored.
          */
         var unhandledTransactions = transactions.filter { $0.transactionState != .purchasing }
-        
+
         if unhandledTransactions.count > 0 {
-            
             unhandledTransactions = paymentsController.processTransactions(transactions, on: paymentQueue)
-            
+
             unhandledTransactions = restorePurchasesController.processTransactions(unhandledTransactions, on: paymentQueue)
-            
+
             unhandledTransactions = completeTransactionsController.processTransactions(unhandledTransactions, on: paymentQueue)
-            
+
             if unhandledTransactions.count > 0 {
                 let strings = unhandledTransactions.map { $0.debugDescription }.joined(separator: "\n")
                 print("unhandledTransactions:\n\(strings)")
             }
         }
     }
-    
-    func paymentQueue(_ queue: SKPaymentQueue, didRevokeEntitlementsForProductIdentifiers productIdentifiers: [String]) {
-        self.entitlementRevocation?.callback(productIdentifiers)
+
+    func paymentQueue(_: SKPaymentQueue, didRevokeEntitlementsForProductIdentifiers productIdentifiers: [String]) {
+        entitlementRevocation?.callback(productIdentifiers)
     }
-    
-    func paymentQueue(_ queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction]) {
-        
-    }
-    
-    func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+
+    func paymentQueue(_: SKPaymentQueue, removedTransactions _: [SKPaymentTransaction]) {}
+
+    func paymentQueue(_: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
         restorePurchasesController.restoreCompletedTransactionsFailed(withError: error)
     }
-    
-    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+
+    func paymentQueueRestoreCompletedTransactionsFinished(_: SKPaymentQueue) {
         restorePurchasesController.restoreCompletedTransactionsFinished()
     }
-    
-    func paymentQueue(_ queue: SKPaymentQueue, updatedDownloads downloads: [SKDownload]) {
+
+    func paymentQueue(_: SKPaymentQueue, updatedDownloads downloads: [SKDownload]) {
         updatedDownloadsHandler?(downloads)
     }
-    
+
     // #if os(iOS) && !targetEnvironment(macCatalyst)
-    func paymentQueue(_ queue: SKPaymentQueue, shouldAddStorePayment payment: SKPayment, for product: SKProduct) -> Bool {
+    func paymentQueue(_: SKPaymentQueue, shouldAddStorePayment payment: SKPayment, for product: SKProduct) -> Bool {
         return shouldAddStorePaymentHandler?(payment, product) ?? false
     }
     // #endif

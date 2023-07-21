@@ -30,31 +30,31 @@ extension ZLImageEditorWrapper where Base: UIColor {
     static var adjustSliderNormalColor: UIColor {
         ZLImageEditorUIConfiguration.default().adjustSliderNormalColor
     }
-    
+
     static var adjustSliderTintColor: UIColor {
         ZLImageEditorUIConfiguration.default().adjustSliderTintColor
     }
-    
+
     static var editDoneBtnBgColor: UIColor {
         ZLImageEditorUIConfiguration.default().editDoneBtnBgColor
     }
-    
+
     static var editDoneBtnTitleColor: UIColor {
         ZLImageEditorUIConfiguration.default().editDoneBtnTitleColor
     }
-    
+
     static var ashbinNormalBgColor: UIColor {
         ZLImageEditorUIConfiguration.default().ashbinNormalBgColor
     }
-    
+
     static var ashbinTintBgColor: UIColor {
         ZLImageEditorUIConfiguration.default().ashbinTintBgColor
     }
-    
+
     static var toolTitleNormalColor: UIColor {
         ZLImageEditorUIConfiguration.default().toolTitleNormalColor
     }
-    
+
     static var toolTitleTintColor: UIColor {
         ZLImageEditorUIConfiguration.default().toolTitleTintColor
     }

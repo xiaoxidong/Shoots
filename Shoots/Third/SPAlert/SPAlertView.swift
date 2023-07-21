@@ -23,26 +23,25 @@ import UIKit
 
 /**
  SPAlert: Main view. Can be customisable if need.
- 
+
  For change duration, check method `present` and pass duration and other specific property if need customise.
- 
+
  Here available set window on which shoud be present.
  If you have some windows, you shoud configure it. Check property `presentWindow`.
- 
+
  For disable dismiss by tap, check property `.dismissByTap`.
- 
+
  Recomended call `SPAlert` and choose style func.
  */
 open class SPAlertView: UIView {
-    
     // MARK: - Views
-    
+
     open var titleLabel: UILabel?
-    
+
     open var subtitleLabel: UILabel?
-    
+
     open var iconView: UIView?
-    
+
     private lazy var backgroundView: UIVisualEffectView = {
         let view: UIVisualEffectView = {
             if #available(iOS 13.0, *) {
@@ -54,17 +53,17 @@ open class SPAlertView: UIView {
         view.isUserInteractionEnabled = false
         return view
     }()
-    
-    weak open var presentWindow: UIWindow? = UIApplication.shared.windows.first
-    
+
+    open weak var presentWindow: UIWindow? = UIApplication.shared.windows.first
+
     // MARK: - Properties
-    
+
     open var dismissByTap: Bool = true
-    
+
     open var completion: (() -> Void)? = nil
-    
+
     // MARK: - Initializers
-    
+
     public init(title: String, message: String? = nil, preset: SPAlertIconPreset) {
         super.init(frame: CGRect.zero)
         commonInit()
@@ -75,21 +74,21 @@ open class SPAlertView: UIView {
         }
         setIcon(for: preset)
     }
-    
+
     public init(message: String) {
         super.init(frame: CGRect.zero)
         commonInit()
         layout = SPAlertLayout.message()
         setMessage(message)
     }
-    
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
-    
+
     // MARK: Configure
-    
+
     private func setTitle(_ text: String) {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 22)
@@ -101,7 +100,7 @@ open class SPAlertView: UIView {
         titleLabel = label
         addSubview(label)
     }
-    
+
     private func setMessage(_ text: String) {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
@@ -113,13 +112,13 @@ open class SPAlertView: UIView {
         subtitleLabel = label
         addSubview(label)
     }
-    
+
     private func setIcon(for preset: SPAlertIconPreset) {
         let view = preset.createView()
-        self.iconView = view
+        iconView = view
         addSubview(view)
     }
-    
+
     private func commonInit() {
         preservesSuperviewLayoutMargins = false
         if #available(iOS 11.0, *) {
@@ -129,18 +128,18 @@ open class SPAlertView: UIView {
         layer.cornerRadius = 8
         backgroundColor = .clear
         addSubview(backgroundView)
-        
+
         if dismissByTap {
             let tapGesterRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismisss))
             addGestureRecognizer(tapGesterRecognizer)
         }
     }
-    
+
     // MARK: - Present
-    
+
     fileprivate var presentDismissDuration: TimeInterval = 0.2
     fileprivate var presentDismissScale: CGFloat = 0.8
-    
+
     fileprivate var defaultContentColor: UIColor {
         let darkColor = UIColor(red: 127 / 255, green: 127 / 255, blue: 129 / 255, alpha: 1)
         let lightColor = UIColor(red: 88 / 255, green: 87 / 255, blue: 88 / 255, alpha: 1)
@@ -158,32 +157,32 @@ open class SPAlertView: UIView {
             return lightColor
         }
     }
-    
+
     open func present(duration: TimeInterval = 1.5, haptic: SPAlertHaptic = .success, completion: (() -> Void)? = nil) {
-        guard let window = self.presentWindow else { return }
+        guard let window = presentWindow else { return }
         window.addSubview(self)
-        
+
         // Prepare for present
-        
+
         self.completion = completion
-        
+
         let contentСolor = defaultContentColor
         titleLabel?.textColor = contentСolor
         subtitleLabel?.textColor = contentСolor
         iconView?.tintColor = contentСolor
-        
+
         alpha = 0
         setFrame()
-        transform = transform.scaledBy(x: self.presentDismissScale, y: self.presentDismissScale)
-        
+        transform = transform.scaledBy(x: presentDismissScale, y: presentDismissScale)
+
         // Present
-        
+
         haptic.impact()
-        
+
         UIView.animate(withDuration: presentDismissDuration, animations: {
             self.alpha = 1
             self.transform = CGAffineTransform.identity
-        }, completion: { finished in
+        }, completion: { _ in
             if let iconView = self.iconView as? SPAlertIconAnimatable {
                 iconView.animate()
             }
@@ -192,44 +191,44 @@ open class SPAlertView: UIView {
             }
         })
     }
-    
+
     @objc open func dismisss() {
         UIView.animate(withDuration: presentDismissDuration, animations: {
             self.alpha = 0
             self.transform = self.transform.scaledBy(x: self.presentDismissScale, y: self.presentDismissScale)
-        }, completion: { [weak self] finished in
+        }, completion: { [weak self] _ in
             self?.removeFromSuperview()
             self?.completion?()
         })
     }
-    
+
     // MARK: - Layout
-    
+
     open var layout: SPAlertLayout = .init()
-    
+
     fileprivate func setFrame() {
-        guard let window = self.presentWindow else { return }
-        frame = CGRect.init(x: 0, y: 0, width: 250, height: 100)
+        guard let window = presentWindow else { return }
+        frame = CGRect(x: 0, y: 0, width: 250, height: 100)
         center = .init(x: window.frame.midX, y: window.frame.midY)
         layoutMargins = layout.margins
         sizeToFit()
         center = .init(x: window.frame.midX, y: window.frame.midY)
     }
-    
-    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+
+    override open func sizeThatFits(_: CGSize) -> CGSize {
         layoutSubviews()
         let bottomY = [subtitleLabel, titleLabel, iconView].first(where: { $0 != nil })??.frame.maxY ?? 150
-        return CGSize.init(width: frame.width, height: bottomY + layoutMargins.bottom)
+        return CGSize(width: frame.width, height: bottomY + layoutMargins.bottom)
     }
-    
-    open override func layoutSubviews() {
+
+    override open func layoutSubviews() {
         super.layoutSubviews()
         backgroundView.frame = bounds
-        if let iconView = self.iconView {
+        if let iconView = iconView {
             iconView.frame = .init(origin: .init(x: 0, y: layoutMargins.top), size: layout.iconSize)
             iconView.center.x = bounds.midX
         }
-        if let titleLabel = self.titleLabel {
+        if let titleLabel = titleLabel {
             layout(
                 label: titleLabel,
                 x: layoutMargins.left,
@@ -237,7 +236,7 @@ open class SPAlertView: UIView {
                 width: frame.width - layoutMargins.left - layoutMargins.right
             )
         }
-        if let subtitleLabel = self.subtitleLabel {
+        if let subtitleLabel = subtitleLabel {
             let yPosition: CGFloat = {
                 if let titleLabel = self.titleLabel {
                     return titleLabel.frame.maxY + 4
@@ -253,8 +252,8 @@ open class SPAlertView: UIView {
             )
         }
     }
-    
-    private func layout(label: UILabel, x: CGFloat, y: CGFloat,  width: CGFloat) {
+
+    private func layout(label: UILabel, x: CGFloat, y: CGFloat, width: CGFloat) {
         label.frame = .init(x: x, y: y, width: width, height: label.frame.height)
         label.sizeToFit()
         label.frame = .init(x: x, y: y, width: width, height: label.frame.height)

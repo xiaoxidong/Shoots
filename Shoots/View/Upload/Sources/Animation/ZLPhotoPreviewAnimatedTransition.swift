@@ -27,9 +27,9 @@
 import UIKit
 
 class ZLPhotoPreviewAnimatedTransition: NSObject, UIViewControllerAnimatedTransitioning {
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    func transitionDuration(using _: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
-    
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {}
+
+    func animateTransition(using _: UIViewControllerContextTransitioning) {}
 }

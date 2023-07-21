@@ -5,8 +5,8 @@
 //  Created by XiaoDong Yuan on 2023/6/15.
 //
 
-import SwiftUI
 import Alamofire
+import SwiftUI
 
 class SearchViewModel: ObservableObject {
     @Published var update = false
@@ -21,8 +21,9 @@ class SearchViewModel: ObservableObject {
             }
         }
     }
+
     @Published var appStoreID: String? = nil
-    
+
     @Published var patternID: String? = nil {
         didSet {
             if patternID != nil {
@@ -32,7 +33,7 @@ class SearchViewModel: ObservableObject {
             }
         }
     }
-    
+
     @Published var patternName: String? = nil {
         didSet {
             if patternName != nil {
@@ -42,7 +43,7 @@ class SearchViewModel: ObservableObject {
             }
         }
     }
-    
+
     @Published var showResult = false {
         didSet {
             if !showResult {
@@ -52,14 +53,14 @@ class SearchViewModel: ObservableObject {
             }
         }
     }
-    
+
     func search(text: String) {
         patternName = text
         Task {
             await getPatternNamePics(name: text)
         }
     }
-    
+
     @Published var patternFeed: [Picture] = []
     var page: Int = 1
     var mostPages: Int = 1
@@ -71,11 +72,11 @@ class SearchViewModel: ObservableObject {
             self.noMore = false
             self.footerRefreshing = false
         }
-        self.page = 1
-        
-        AF.request("\(baseURL)\(APIService.URLPath.patternPics.path)", method: .post, parameters: ["pageSize" : numberPerpage, "pageNum": 1, "designPatternId": id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: FeedResponseData.self) { response in
+        page = 1
+
+        AF.request("\(baseURL)\(APIService.URLPath.patternPics.path)", method: .post, parameters: ["pageSize": numberPerpage, "pageNum": 1, "designPatternId": id], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: FeedResponseData.self) { response in
             switch response.result {
-            case .success(let pattern):
+            case let .success(pattern):
                 self.patternFeed = pattern.rows
                 self.objectWillChange.send()
                 self.mostPages = pattern.total / numberPerpage + 1
@@ -83,38 +84,37 @@ class SearchViewModel: ObservableObject {
                     self.noMore = true
                     self.footerRefreshing = false
                 }
-            case .failure(let error):
+            case let .failure(error):
                 print("根据 ID 获取设计模式图片错误: \(error)")
-                break
             }
         }
     }
+
     // 根据设计模式 ID 获取设计模式下的图片，下一页
     func nextPage(id: String) async {
-        self.page += 1
-        APIService.shared.POST(url: .patternPics, params: ["pageSize" : numberPerpage, "pageNum": page, "designPatternId": id]) { (result: Result<FeedResponseData, APIService.APIError>) in
+        page += 1
+        APIService.shared.POST(url: .patternPics, params: ["pageSize": numberPerpage, "pageNum": page, "designPatternId": id]) { (result: Result<FeedResponseData, APIService.APIError>) in
             switch result {
-            case .success(let pattern):
+            case let .success(pattern):
                 DispatchQueue.main.async {
                     self.patternFeed.append(contentsOf: pattern.rows)
                     self.footerRefreshing = false
                 }
-            case .failure(let error):
+            case let .failure(error):
                 print("根据 ID 获取设计模式图片下一页错误: \(error)")
-                break
             }
         }
     }
-    
+
     // 根据名称获取设计模式下的图片
     func getPatternNamePics(name: String) async {
-        self.noMore = false
-        self.footerRefreshing = false
-        self.page = 1
-        
-        AF.request("\(baseURL)\(APIService.URLPath.patternPics.path)", method: .post, parameters: ["pageSize" : numberPerpage, "pageNum": 1, "designPatternName": name], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: FeedResponseData.self) { response in
+        noMore = false
+        footerRefreshing = false
+        page = 1
+
+        AF.request("\(baseURL)\(APIService.URLPath.patternPics.path)", method: .post, parameters: ["pageSize": numberPerpage, "pageNum": 1, "designPatternName": name], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: FeedResponseData.self) { response in
             switch response.result {
-            case .success(let pattern):
+            case let .success(pattern):
                 self.patternFeed = pattern.rows
                 self.objectWillChange.send()
                 self.mostPages = pattern.total / numberPerpage + 1
@@ -122,26 +122,24 @@ class SearchViewModel: ObservableObject {
                     self.noMore = true
                     self.footerRefreshing = false
                 }
-            case .failure(let error):
+            case let .failure(error):
                 print("根据名称获取设计模式下的图片错误: \(error)")
-                break
             }
         }
     }
-    
+
     // 根据名称获取设计模式下的图片，下一页
     func nextPatternNamePage(name: String) async {
-        self.page += 1
-        APIService.shared.POST(url: .patternPics, params: ["pageSize" : numberPerpage, "pageNum": page, "designPatternName": name]) { (result: Result<FeedResponseData, APIService.APIError>) in
+        page += 1
+        APIService.shared.POST(url: .patternPics, params: ["pageSize": numberPerpage, "pageNum": page, "designPatternName": name]) { (result: Result<FeedResponseData, APIService.APIError>) in
             switch result {
-            case .success(let pattern):
+            case let .success(pattern):
                 DispatchQueue.main.async {
                     self.patternFeed.append(contentsOf: pattern.rows)
                     self.footerRefreshing = false
                 }
-            case .failure(let error):
+            case let .failure(error):
                 print("根据名称获取设计模式下的图片下一页错误: \(error)")
-                break
             }
         }
     }

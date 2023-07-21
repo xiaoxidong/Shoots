@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ErrorView: View {
     let action: () -> Void
-    
+
     var body: some View {
         VStack(spacing: 12) {
             Image("error")
@@ -23,8 +23,6 @@ struct ErrorView: View {
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView() {
-            
-        }
+        ErrorView {}
     }
 }

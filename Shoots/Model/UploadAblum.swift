@@ -12,17 +12,17 @@ struct UploadAblum: Codable, Identifiable {
     var linkApplicationName: String
     var countPics: Int
     var previewPics: [Pic]
-    
+
     struct Pic: Codable {
         var id: String
         var picUrl: String
         var linkApplicationId: String
         var linkApplicationOfficialId: String?
     }
-    
+
     var pics: [String] {
         var urls: [String] = []
-        
+
         if previewPics.count <= 3 {
             for pic in previewPics {
                 urls.append(pic.picUrl)

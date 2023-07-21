@@ -10,32 +10,32 @@ import SwiftUI
 struct ReportView: View {
     var shoot: Picture
     let action: () -> Void
-    
+
     @Environment(\.dismiss) var dismiss
     var body: some View {
         #if os(iOS)
-        NavigationView {
-            content
-                .navigationTitle("报告问题")
-        }
+            NavigationView {
+                content
+                    .navigationTitle("报告问题")
+            }
         #else
-        VStack {
-            HStack {
-                Text("报告问题")
-                    .font(.largeTitle)
-                    .bold()
-                Spacer()
-                MacCloseButton()
-            }.padding(.top, 36)
-                .padding(.horizontal)
-            content
-        }
+            VStack {
+                HStack {
+                    Text("报告问题")
+                        .font(.largeTitle)
+                        .bold()
+                    Spacer()
+                    MacCloseButton()
+                }.padding(.top, 36)
+                    .padding(.horizontal)
+                content
+            }
         #endif
     }
-    
+
     @State var text = ""
     @State var type = "包含敏感信息"
-    @StateObject var report: ReportViewModel = ReportViewModel()
+    @StateObject var report: ReportViewModel = .init()
     var content: some View {
         ScrollView(showsIndicators: false) {
             Text("问题类型")
@@ -58,24 +58,23 @@ struct ReportView: View {
                 } label: {
                     Text("包含黄色信息")
                 }
-                
+
                 Button {
                     type = "包含敏感信息"
                 } label: {
                     Text("包含敏感信息")
                 }
 
-                    
             } label: {
                 Text(type)
             }.frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 26)
-            
+
             Text("问题描述")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 26)
                 .padding(.top, 36)
-            
+
             TextEditor(text: $text)
                 .padding(.horizontal, 8)
                 .frame(height: 260)
@@ -117,7 +116,7 @@ struct ReportView: View {
     }
 }
 
-//struct ReportView_Previews: PreviewProvider {
+// struct ReportView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ReportView(shoot: singleShoot) { }
 //            .previewDisplayName("Chinese")
@@ -126,4 +125,4 @@ struct ReportView: View {
 //            .previewDisplayName("English")
 //            .environment(\.locale, .init(identifier: "en"))
 //    }
-//}
+// }

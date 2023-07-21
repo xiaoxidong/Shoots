@@ -14,4 +14,4 @@ struct Flow: Identifiable, Codable {
     var description: String
 }
 
-var flow: Flow = Flow(images: ["s9", "s10", "s3", "s4", "s5"], name: "注册用户", description: "DISCOVER MILLIONS OF POSSIBILITIES.Choose from unique homes—near or far—in many countries around the world. Find everything from getaways near national parks to apartments in the hea...")
+var flow: Flow = .init(images: ["s9", "s10", "s3", "s4", "s5"], name: "注册用户", description: "DISCOVER MILLIONS OF POSSIBILITIES.Choose from unique homes—near or far—in many countries around the world. Find everything from getaways near national parks to apartments in the hea...")

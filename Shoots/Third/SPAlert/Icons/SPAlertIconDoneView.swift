@@ -22,14 +22,13 @@
 import UIKit
 
 public class SPAlertIconDoneView: UIView, SPAlertIconAnimatable {
-
     public func animate() {
         let length = frame.width
         let animatablePath = UIBezierPath()
         animatablePath.move(to: CGPoint(x: length * 0.196, y: length * 0.527))
         animatablePath.addLine(to: CGPoint(x: length * 0.47, y: length * 0.777))
         animatablePath.addLine(to: CGPoint(x: length * 0.99, y: length * 0.25))
-        
+
         let animatableLayer = CAShapeLayer()
         animatableLayer.path = animatablePath.cgPath
         animatableLayer.fillColor = UIColor.clear.cgColor
@@ -39,7 +38,7 @@ public class SPAlertIconDoneView: UIView, SPAlertIconAnimatable {
         animatableLayer.lineJoin = .round
         animatableLayer.strokeEnd = 0
         layer.addSublayer(animatableLayer)
-        
+
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.duration = 0.3
         animation.fromValue = 0

@@ -26,11 +26,11 @@ import UIKit
 
 class ZLAdjustSlider: UIView {
     static let maximumValue: Float = 1
-    
+
     static let minimumValue: Float = -1
-    
+
     let sliderWidth: CGFloat = 5
-    
+
     lazy var valueLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
@@ -43,13 +43,13 @@ class ZLAdjustSlider: UIView {
         label.minimumScaleFactor = 0.6
         return label
     }()
-    
+
     lazy var separator: UIView = {
         let view = UIView()
         view.backgroundColor = zlRGB(230, 230, 230)
         return view
     }()
-    
+
     lazy var shadowView: UIView = {
         let view = UIView()
         view.backgroundColor = .zl.adjustSliderNormalColor
@@ -60,7 +60,7 @@ class ZLAdjustSlider: UIView {
         view.layer.shadowRadius = 3
         return view
     }()
-    
+
     lazy var whiteView: UIView = {
         let view = UIView()
         view.backgroundColor = .zl.adjustSliderNormalColor
@@ -68,51 +68,51 @@ class ZLAdjustSlider: UIView {
         view.layer.masksToBounds = true
         return view
     }()
-    
+
     lazy var tintView: UIView = {
         let view = UIView()
         view.backgroundColor = .zl.adjustSliderTintColor
         return view
     }()
-    
+
     lazy var pan = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
-    
+
     var value: Float = 0 {
         didSet {
             valueLabel.text = String(Int(roundf(value * 100)))
             tintView.frame = calculateTintFrame()
         }
     }
-    
+
     private var valueForPanBegan: Float = 0
-    
+
     private var isVertical = ZLImageEditorUIConfiguration.default().adjustSliderType == .vertical
-    
+
     var beginAdjust: (() -> Void)?
-    
+
     var valueChanged: ((Float) -> Void)?
-    
+
     var endAdjust: (() -> Void)?
-    
+
     deinit {
         zl_debugPrint("ZLAdjustSlider deinit")
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        
+
         addGestureRecognizer(pan)
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         if isVertical {
             shadowView.frame = CGRect(x: 40, y: 0, width: sliderWidth, height: bounds.height)
             whiteView.frame = shadowView.frame
@@ -129,7 +129,7 @@ class ZLAdjustSlider: UIView {
             separator.frame = CGRect(x: (zl.width - separatorW) / 2, y: 0, width: separatorW, height: sliderWidth)
         }
     }
-    
+
     private func setupUI() {
         addSubview(shadowView)
         addSubview(whiteView)
@@ -137,7 +137,7 @@ class ZLAdjustSlider: UIView {
         whiteView.addSubview(separator)
         addSubview(valueLabel)
     }
-    
+
     private func calculateTintFrame() -> CGRect {
         if isVertical {
             let totalH = zl.height / 2
@@ -157,10 +157,10 @@ class ZLAdjustSlider: UIView {
             }
         }
     }
-    
+
     @objc private func panAction(_ pan: UIPanGestureRecognizer) {
         let translation = pan.translation(in: self)
-        
+
         if pan.state == .began {
             valueForPanBegan = value
             beginAdjust?()
@@ -169,19 +169,20 @@ class ZLAdjustSlider: UIView {
             let totalLength = isVertical ? zl.height / 2 : zl.width / 2
             var temp = valueForPanBegan + Float(transValue / totalLength)
             temp = max(ZLAdjustSlider.minimumValue, min(ZLAdjustSlider.maximumValue, temp))
-            
-            if (-0.0049..<0.005) ~= temp {
+
+            if (-0.0049 ..< 0.005) ~= temp {
                 temp = 0
             }
-            
+
             guard value != temp else { return }
-            
+
             value = temp
             valueChanged?(value)
-            
+
             guard #available(iOS 10.0, *) else { return }
             if value == 0,
-               ZLImageEditorConfiguration.default().impactFeedbackWhenAdjustSliderValueIsZero {
+               ZLImageEditorConfiguration.default().impactFeedbackWhenAdjustSliderValueIsZero
+            {
                 let style = ZLImageEditorConfiguration.default().impactFeedbackStyle.uiFeedback
                 UIImpactFeedbackGenerator(style: style).impactOccurred()
             }

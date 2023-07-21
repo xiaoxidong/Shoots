@@ -26,24 +26,22 @@ import UIKit
  Included default styles and can be custom image.
  */
 public enum SPAlertIconPreset {
-    
     case done
     case error
     case heart
-    
+
     case custom(_ image: UIImage)
 }
 
 // Get view by preset
 
 public extension SPAlertIconPreset {
-    
     func createView() -> UIView {
         switch self {
         case .done: return SPAlertIconDoneView()
         case .error: return SPAlertIconErrorView()
         case .heart: return SPAlertIconHeartView()
-        case .custom(let image):
+        case let .custom(image):
             let imageView = UIImageView(image: image)
             imageView.contentMode = .scaleAspectFit
             return imageView
@@ -54,7 +52,6 @@ public extension SPAlertIconPreset {
 // Get haptic by preset
 
 public extension SPAlertIconPreset {
-    
     func getHaptic() -> SPAlertHaptic {
         switch self {
         case .error: return .error
@@ -66,17 +63,16 @@ public extension SPAlertIconPreset {
 // Get layout by preset
 
 public extension SPAlertLayout {
-    
     convenience init() {
         self.init(iconSize: .init(width: 100, height: 100), margins: .init(top: 43, left: 16, bottom: 25, right: 16), spaceBetweenIconAndTitle: 41)
     }
-    
+
     static func message() -> SPAlertLayout {
         let layout = SPAlertLayout()
         layout.margins = UIEdgeInsets(top: 23, left: 16, bottom: 23, right: 16)
         return layout
     }
-    
+
     convenience init(for preset: SPAlertIconPreset) {
         switch preset {
         case .done:
@@ -121,7 +117,7 @@ public extension SPAlertLayout {
                 ),
                 spaceBetweenIconAndTitle: 39
             )
-        case .custom(_):
+        case .custom:
             self.init(
                 iconSize: .init(
                     width: 100,
@@ -137,6 +133,6 @@ public extension SPAlertLayout {
             )
         }
     }
-    
+
     private static var defaultHorizontalInset: CGFloat { return 16 }
 }

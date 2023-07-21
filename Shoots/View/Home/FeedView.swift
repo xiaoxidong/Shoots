@@ -5,14 +5,14 @@
 //  Created by XiaoDong Yuan on 2023/3/21.
 //
 
+import Grid
+import Refresh
 import SwiftUI
 import WaterfallGrid
-import Refresh
-import Grid
 
 struct FeedView: View {
     var shoots: [Picture]
-    
+
     @AppStorage("homeModel") var homeModel = 0
     @State var footerRefreshing = false
     @State var noMore = false
@@ -25,7 +25,7 @@ struct FeedView: View {
             } else {
                 singleLineView
             }
-            
+
 //            ScrollView {
 //                // 上拉加载更多
 //                RefreshFooter(refreshing: $footerRefreshing, action: loadMore) {
@@ -45,7 +45,7 @@ struct FeedView: View {
 //                }
         }.background(Color.shootLight.opacity(0.06))
     }
-    
+
     @ViewBuilder
     func waterfallView(columns: Int) -> some View {
         if shoots.count < 4 {
@@ -66,10 +66,9 @@ struct FeedView: View {
                     }
                 }
             }.gridStyle(StaggeredGridStyle(tracks: .count(columns)))
-            .frame(maxWidth: 1060)
+                .frame(maxWidth: 1060)
         }
-        
-        
+
 //        WaterfallGrid(shoots) { shoot in
 //            Group {
 //                if shoot.id == "s" {
@@ -83,7 +82,7 @@ struct FeedView: View {
 //        .gridStyle(spacing: 0)
 //        .frame(maxWidth: 1060)
     }
-    
+
     var singleLineView: some View {
         VStack(spacing: 2) {
             ForEach(shoots) { shoot in
@@ -92,19 +91,17 @@ struct FeedView: View {
             }
         }
     }
-    
+
     func loadMore() {
         Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
             footerRefreshing = false
         }
     }
-    
-    func reload() {
-        
-    }
+
+    func reload() {}
 }
 
-//struct FeedView_Previews: PreviewProvider {
+// struct FeedView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        FeedView(shoots: homeData)
 //            .previewDisplayName("Chinese")
@@ -113,4 +110,4 @@ struct FeedView: View {
 //            .previewDisplayName("English")
 //            .environment(\.locale, .init(identifier: "en"))
 //    }
-//}
+// }

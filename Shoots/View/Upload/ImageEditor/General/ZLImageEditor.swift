@@ -31,39 +31,39 @@ let version = "1.1.7"
 
 public struct ZLImageEditorWrapper<Base> {
     public let base: Base
-    
+
     public init(_ base: Base) {
         self.base = base
     }
 }
 
-public protocol ZLImageEditorCompatible: AnyObject { }
+public protocol ZLImageEditorCompatible: AnyObject {}
 
-public protocol ZLImageEditorCompatibleValue { }
+public protocol ZLImageEditorCompatibleValue {}
 
-extension ZLImageEditorCompatible {
-    public var zl: ZLImageEditorWrapper<Self> {
+public extension ZLImageEditorCompatible {
+    var zl: ZLImageEditorWrapper<Self> {
         get { ZLImageEditorWrapper(self) }
-        set { }
+        set {}
     }
-    
-    public static var zl: ZLImageEditorWrapper<Self>.Type {
+
+    static var zl: ZLImageEditorWrapper<Self>.Type {
         get { ZLImageEditorWrapper<Self>.self }
-        set { }
+        set {}
     }
 }
 
-extension ZLImageEditorCompatibleValue {
-    public var zl: ZLImageEditorWrapper<Self> {
+public extension ZLImageEditorCompatibleValue {
+    var zl: ZLImageEditorWrapper<Self> {
         get { ZLImageEditorWrapper(self) }
-        set { }
+        set {}
     }
 }
 
-extension UIImage: ZLImageEditorCompatible { }
-extension CIImage: ZLImageEditorCompatible { }
-extension UIColor: ZLImageEditorCompatible { }
-extension UIView: ZLImageEditorCompatible { }
+extension UIImage: ZLImageEditorCompatible {}
+extension CIImage: ZLImageEditorCompatible {}
+extension UIColor: ZLImageEditorCompatible {}
+extension UIView: ZLImageEditorCompatible {}
 
-extension String: ZLImageEditorCompatibleValue { }
-extension CGFloat: ZLImageEditorCompatibleValue { }
+extension String: ZLImageEditorCompatibleValue {}
+extension CGFloat: ZLImageEditorCompatibleValue {}

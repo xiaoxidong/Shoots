@@ -5,5 +5,5 @@ extension Bool: Identifiable {
 }
 
 extension URL: Identifiable {
-    public var id: String { self.absoluteString }
+    public var id: String { absoluteString }
 }

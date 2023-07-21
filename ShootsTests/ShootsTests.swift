@@ -8,7 +8,6 @@
 import XCTest
 
 final class ShootsTests: XCTestCase {
-
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -31,5 +30,4 @@ final class ShootsTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }

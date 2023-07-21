@@ -3,9 +3,7 @@
 import Foundation
 
 enum PageState: Equatable {
-
     case rearrange
     case scroll(animated: Bool)
     case completed
-
 }

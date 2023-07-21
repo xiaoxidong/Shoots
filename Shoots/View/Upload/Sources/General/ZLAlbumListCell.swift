@@ -27,7 +27,6 @@
 import UIKit
 
 class ZLAlbumListCell: UITableViewCell {
-    
     private lazy var coverImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
@@ -38,7 +37,7 @@ class ZLAlbumListCell: UITableViewCell {
         }
         return view
     }()
-    
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .zll.font(ofSize: 17)
@@ -46,20 +45,20 @@ class ZLAlbumListCell: UITableViewCell {
         label.lineBreakMode = .byTruncatingTail
         return label
     }()
-    
+
     private lazy var countLabel: UILabel = {
         let label = UILabel()
         label.font = .zll.font(ofSize: 16)
         label.textColor = .zll.albumListCountColor
         return label
     }()
-    
+
     private var imageIdentifier: String?
-    
+
     private var model: ZLAlbumListModel!
-    
+
     private var style: ZLPhotoBrowserStyle = .embedAlbumList
-    
+
     lazy var selectBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.isUserInteractionEnabled = false
@@ -67,7 +66,7 @@ class ZLAlbumListCell: UITableViewCell {
         btn.setImage(.zll.getImage("zl_albumSelect"), for: .selected)
         return btn
     }()
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -77,22 +76,22 @@ class ZLAlbumListCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         let imageViewX: CGFloat
         if style == .embedAlbumList {
             imageViewX = 0
         } else {
             imageViewX = 12
         }
-        
+
         coverImageView.frame = CGRect(x: imageViewX, y: 2, width: bounds.height - 4, height: bounds.height - 4)
         if let m = model {
             let titleW = min(
@@ -103,7 +102,7 @@ class ZLAlbumListCell: UITableViewCell {
                 ).width
             )
             titleLabel.frame = CGRect(x: coverImageView.frame.maxX + 10, y: (bounds.height - 30) / 2, width: titleW, height: 30)
-            
+
             let countSize = ("(" + String(model.count) + ")").zll
                 .boundingRect(
                     font: .zll.font(ofSize: 16),
@@ -113,24 +112,24 @@ class ZLAlbumListCell: UITableViewCell {
         }
         selectBtn.frame = CGRect(x: bounds.width - 20 - 20, y: (bounds.height - 20) / 2, width: 20, height: 20)
     }
-    
+
     func setupUI() {
         backgroundColor = .zll.albumListBgColor
         selectionStyle = .none
-        
+
         contentView.addSubview(coverImageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(countLabel)
         contentView.addSubview(selectBtn)
     }
-    
+
     func configureCell(model: ZLAlbumListModel, style: ZLPhotoBrowserStyle) {
         self.model = model
         self.style = style
-        
+
         titleLabel.text = self.model.title
         countLabel.text = "(" + String(self.model.count) + ")"
-        
+
         if style == .embedAlbumList {
             accessoryType = .none
             selectBtn.isHidden = false
@@ -138,7 +137,7 @@ class ZLAlbumListCell: UITableViewCell {
             accessoryType = .disclosureIndicator
             selectBtn.isHidden = true
         }
-        
+
         imageIdentifier = self.model.headImageAsset?.localIdentifier
         if let asset = self.model.headImageAsset {
             let w = bounds.height * 2.5
@@ -149,5 +148,4 @@ class ZLAlbumListCell: UITableViewCell {
             }
         }
     }
-    
 }

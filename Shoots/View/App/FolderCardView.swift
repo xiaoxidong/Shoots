@@ -11,7 +11,7 @@ struct FolderCardView: View {
     var images: [String]
     var name: String
     var picCount: Int
-    
+
     @State var hover = false
     var body: some View {
         VStack(spacing: 12) {
@@ -21,7 +21,7 @@ struct FolderCardView: View {
                         ImageView(urlString: images[2], image: .constant(nil))
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             .rotationEffect(Angle(degrees: hover ? -16 : -8))
-                                .shadow(color: Color.shootBlack.opacity(0.03), radius: 6)
+                            .shadow(color: Color.shootBlack.opacity(0.03), radius: 6)
                     } else {
                         two
                             .rotationEffect(Angle(degrees: hover ? -8 : -4))
@@ -44,7 +44,7 @@ struct FolderCardView: View {
                     .padding(6)
                     .offset(x: -4)
             }
-            
+
             Text(name)
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.shootBlack)
@@ -56,13 +56,13 @@ struct FolderCardView: View {
             }
         }
     }
-    
+
     var one: some View {
         Group {
             if images.count >= 1 {
                 ImageView(urlString: images[0], image: .constant(nil))
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                    
+
             } else {
                 Color.shootWhite
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
@@ -71,7 +71,7 @@ struct FolderCardView: View {
             }
         }
     }
-    
+
     var two: some View {
         Group {
             if images.count >= 2 {
@@ -90,7 +90,7 @@ struct FolderCardView_Previews: PreviewProvider {
         FolderCardView(images: ["s2", "s1"], name: "注册", picCount: 10)
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        
+
         FolderCardView(images: ["s2", "s1"], name: "注册", picCount: 10)
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

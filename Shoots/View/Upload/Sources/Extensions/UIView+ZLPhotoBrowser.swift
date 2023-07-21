@@ -30,35 +30,34 @@ extension ZLPhotoBrowserWrapper where Base: UIView {
     var top: CGFloat {
         base.frame.minY
     }
-    
+
     var bottom: CGFloat {
         base.frame.maxY
     }
-    
+
     var left: CGFloat {
         base.frame.minX
     }
-    
+
     var right: CGFloat {
         base.frame.maxX
     }
-    
+
     var width: CGFloat {
         base.frame.width
     }
-    
+
     var height: CGFloat {
         base.frame.height
     }
-    
+
     func setCornerRadius(_ radius: CGFloat) {
         base.layer.cornerRadius = radius
         base.layer.masksToBounds = true
     }
-    
+
     func addBorder(color: UIColor, width: CGFloat) {
         base.layer.borderColor = color.cgColor
         base.layer.borderWidth = width
     }
 }
-

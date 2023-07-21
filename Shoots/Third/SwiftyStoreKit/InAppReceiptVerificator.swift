@@ -26,7 +26,6 @@
 import Foundation
 
 class InAppReceiptVerificator: NSObject {
-
     let appStoreReceiptURL: URL?
     init(appStoreReceiptURL: URL? = Bundle.main.appStoreReceiptURL) {
         self.appStoreReceiptURL = appStoreReceiptURL
@@ -34,7 +33,8 @@ class InAppReceiptVerificator: NSObject {
 
     var appStoreReceiptData: Data? {
         guard let receiptDataURL = appStoreReceiptURL,
-            let data = try? Data(contentsOf: receiptDataURL) else {
+              let data = try? Data(contentsOf: receiptDataURL)
+        else {
             return nil
         }
         return data
@@ -53,18 +53,18 @@ class InAppReceiptVerificator: NSObject {
     public func verifyReceipt(using validator: ReceiptValidator,
                               forceRefresh: Bool,
                               refresh: InAppReceiptRefreshRequest.ReceiptRefresh = InAppReceiptRefreshRequest.refresh,
-                              completion: @escaping (VerifyReceiptResult) -> Void) -> InAppRequest? {
-        
+                              completion: @escaping (VerifyReceiptResult) -> Void) -> InAppRequest?
+    {
         return fetchReceipt(forceRefresh: forceRefresh, refresh: refresh) { result in
             switch result {
-            case .success(let receiptData):
+            case let .success(receiptData):
                 self.verify(receiptData: receiptData, using: validator, completion: completion)
-            case .error(let error):
+            case let .error(error):
                 completion(.error(error: error))
             }
         }
     }
-    
+
     /**
      *  Fetch application receipt. This method does two things:
      *  * If the receipt is missing, refresh it
@@ -76,17 +76,16 @@ class InAppReceiptVerificator: NSObject {
     @discardableResult
     public func fetchReceipt(forceRefresh: Bool,
                              refresh: InAppReceiptRefreshRequest.ReceiptRefresh = InAppReceiptRefreshRequest.refresh,
-                             completion: @escaping (FetchReceiptResult) -> Void) -> InAppRequest? {
-
+                             completion: @escaping (FetchReceiptResult) -> Void) -> InAppRequest?
+    {
         if let receiptData = appStoreReceiptData, forceRefresh == false {
             completion(.success(receiptData: receiptData))
             return nil
         } else {
-            
             receiptRefreshRequest = refresh(nil) { result in
-                
+
                 self.receiptRefreshRequest = nil
-                
+
                 switch result {
                 case .success:
                     if let receiptData = self.appStoreReceiptData {
@@ -94,23 +93,22 @@ class InAppReceiptVerificator: NSObject {
                     } else {
                         completion(.error(error: .noReceiptData))
                     }
-                case .error(let e):
+                case let .error(e):
                     completion(.error(error: .networkError(error: e)))
                 }
             }
             return receiptRefreshRequest
         }
     }
-    
+
     /**
      *  - Parameter receiptData: encrypted receipt data
      *  - Parameter validator: Validator to check the encrypted receipt and return the receipt in readable format
      *  - Parameter completion: handler for result
      */
     private func verify(receiptData: Data, using validator: ReceiptValidator, completion: @escaping (VerifyReceiptResult) -> Void) {
-     
         validator.validate(receiptData: receiptData) { result in
-            
+
             DispatchQueue.main.async {
                 completion(result)
             }

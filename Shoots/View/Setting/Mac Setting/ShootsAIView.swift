@@ -25,7 +25,7 @@ struct ShootsAIView_Previews: PreviewProvider {
         ShootsAIView()
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        
+
         ShootsAIView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

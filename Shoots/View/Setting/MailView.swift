@@ -5,28 +5,28 @@
 //  Created by XiaoDong Yuan on 2023/3/24.
 //
 
-import SwiftUI
 import MessageUI
+import SwiftUI
 
 struct MailView: UIViewControllerRepresentable {
-    
     @Environment(\.presentationMode) var presentation
     @Binding var result: Result<MFMailComposeResult, Error>?
-    
+
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
-        
         @Binding var presentation: PresentationMode
         @Binding var result: Result<MFMailComposeResult, Error>?
-        
+
         init(presentation: Binding<PresentationMode>,
-             result: Binding<Result<MFMailComposeResult, Error>?>) {
+             result: Binding<Result<MFMailComposeResult, Error>?>)
+        {
             _presentation = presentation
             _result = result
         }
-        
-        func mailComposeController(_ controller: MFMailComposeViewController,
+
+        func mailComposeController(_: MFMailComposeViewController,
                                    didFinishWith result: MFMailComposeResult,
-                                   error: Error?) {
+                                   error: Error?)
+        {
             defer {
                 $presentation.wrappedValue.dismiss()
             }
@@ -37,12 +37,12 @@ struct MailView: UIViewControllerRepresentable {
             self.result = .success(result)
         }
     }
-    
+
     func makeCoordinator() -> Coordinator {
         return Coordinator(presentation: presentation,
                            result: $result)
     }
-    
+
     func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
         let vc = MFMailComposeViewController()
         //        vc.setMessageBody("请输入内容的啊", isHTML: false)
@@ -51,9 +51,7 @@ struct MailView: UIViewControllerRepresentable {
         vc.mailComposeDelegate = context.coordinator
         return vc
     }
-    
-    func updateUIViewController(_ uiViewController: MFMailComposeViewController,
-                                context: UIViewControllerRepresentableContext<MailView>) {
-        
-    }
+
+    func updateUIViewController(_: MFMailComposeViewController,
+                                context _: UIViewControllerRepresentableContext<MailView>) {}
 }

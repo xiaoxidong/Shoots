@@ -5,19 +5,19 @@
 //  Created by XiaoDong Yuan on 2023/3/15.
 //
 
-import SwiftUI
 import Refresh
+import SwiftUI
 
 struct HomeView: View {
     @Binding var searchText: String
     @Binding var showNavigation: Bool
-    
+
     @Environment(\.isSearching) var isSearching
     #if os(iOS)
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @Environment(\.verticalSizeClass) var verticalSizeClass
+        @Environment(\.horizontalSizeClass) var horizontalSizeClass
+        @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
-    @StateObject var home: HomeFeedViewModel = HomeFeedViewModel()
+    @StateObject var home: HomeFeedViewModel = .init()
     @State var reachability = Reachability()
     var body: some View {
         ZStack {
@@ -36,26 +36,26 @@ struct HomeView: View {
             } else {
                 feed
             }
-            
+
             if isSearching || searchText != "" {
                 #if os(iOS)
-                if horizontalSizeClass == .compact {
-                    SearchView(searchText: $searchText)
-                } else {
-                    SearchView(searchText: $searchText, showSearchDefault: false)
-                }
+                    if horizontalSizeClass == .compact {
+                        SearchView(searchText: $searchText)
+                    } else {
+                        SearchView(searchText: $searchText, showSearchDefault: false)
+                    }
                 #else
-                SearchView(searchText: $searchText, showSearchDefault: false)
+                    SearchView(searchText: $searchText, showSearchDefault: false)
                 #endif
             }
         }
     }
-    
+
     var feed: some View {
         ScrollView {
             VStack(spacing: 0) {
                 FeedView(shoots: home.homeFeed)
-                
+
                 LoadMoreView(footerRefreshing: $home.footerRefreshing, noMore: $home.noMore) {
                     if self.home.page + 1 > self.home.mostPages {
                         self.home.footerRefreshing = false
@@ -90,7 +90,7 @@ struct HomeView: View {
 //                    })
 //            )
     }
-    
+
     func loadData() {
         if home.homeFeed.isEmpty {
             home.getHomeFirstPageFeed()

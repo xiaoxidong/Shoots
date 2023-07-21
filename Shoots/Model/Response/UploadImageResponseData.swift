@@ -11,7 +11,7 @@ struct UploadImageResponseData: Codable {
     var code: Int
     var msg: String
     var data: Upload
-    
+
     struct Upload: Codable {
         var url: String
         var fileName: String

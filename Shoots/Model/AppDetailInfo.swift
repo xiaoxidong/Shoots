@@ -18,7 +18,7 @@ struct Info: Codable {
     var genres: [String]
     var description: String
     var trackViewUrl: String
-    
+
     var descriptionWithoutSpace: String {
         description.replacingOccurrences(of: "\n\n", with: "\n")
     }

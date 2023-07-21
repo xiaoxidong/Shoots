@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ShootEmptyView: View {
     var text: String = "这里什么都没有呢"
-    
+
     var body: some View {
         VStack(spacing: 16) {
             Image("empty")
@@ -25,7 +25,7 @@ struct ShootEmptyView_Previews: PreviewProvider {
         ShootEmptyView()
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        
+
         ShootEmptyView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

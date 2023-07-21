@@ -3,7 +3,6 @@
 import SwiftUI
 
 struct ElegantPagesView<Stack>: View, ElegantPagesManagerDirectAccess where Stack: View {
-
     @State private var translation: CGFloat = .zero
     @State private var isDragging = false
     @State private var isTurningPage = false
@@ -17,9 +16,9 @@ struct ElegantPagesView<Stack>: View, ElegantPagesManagerDirectAccess where Stac
 
     private var minDragDistance: CGFloat {
         switch pageTurnType {
-        case .regular(let delta):
-            return delta*screen.width / 5
-        case .earlyCutoff(let config):
+        case let .regular(delta):
+            return delta * screen.width / 5
+        case let .earlyCutoff(config):
             return config.pageTurnCutOff / 5
         }
     }
@@ -58,15 +57,13 @@ struct ElegantPagesView<Stack>: View, ElegantPagesManagerDirectAccess where Stac
                         withAnimation(self.pageTurnAnimation) {
                             self.turnPageIfNeededForEndOffset(axisOffset)
                         }
-                },
+                    },
                 including: isDragging ? .gesture : .all
             )
     }
-
 }
 
 private extension ElegantPagesView {
-
     var offset: CGSize {
         if isHorizontal {
             return CGSize(width: horizontalScrollOffset, height: 0.0)
@@ -95,16 +92,15 @@ private extension ElegantPagesView {
         guard !bounces else { return translation }
 
         if (currentPage == 0 && translation > 0) ||
-            (currentPage == pageCount-1 && translation < 0) {
+            (currentPage == pageCount - 1 && translation < 0)
+        {
             return 0
         }
         return translation
     }
-
 }
 
 private extension ElegantPagesView {
-
     private func setTranslationForOffset(_ offset: CGFloat) {
         switch pageTurnType {
         case .regular:
@@ -121,12 +117,12 @@ private extension ElegantPagesView {
         case let .earlyCutoff(config):
             guard !isTurningPage else { return }
 
-            if offset > 0 && offset > config.pageTurnCutOff {
+            if offset > 0, offset > config.pageTurnCutOff {
                 guard currentPage != 0 else { return }
 
                 scroll(direction: .backward)
-            } else if offset < 0 && offset < -config.pageTurnCutOff {
-                guard currentPage != pageCount-1 else { return }
+            } else if offset < 0, offset < -config.pageTurnCutOff {
+                guard currentPage != pageCount - 1 else { return }
 
                 scroll(direction: .forward)
             }
@@ -149,7 +145,7 @@ private extension ElegantPagesView {
             let dragDelta = offset / axisLength
 
             if abs(dragDelta) > delta {
-                let properNewIndex = (dragDelta > 0 ? currentPage-1 : currentPage+1).clamped(to: 0...pageCount-1)
+                let properNewIndex = (dragDelta > 0 ? currentPage - 1 : currentPage + 1).clamped(to: 0 ... pageCount - 1)
                 if properNewIndex != currentPage {
                     manager.currentPage = properNewIndex
                 }
@@ -158,5 +154,4 @@ private extension ElegantPagesView {
             isTurningPage = false
         }
     }
-
 }

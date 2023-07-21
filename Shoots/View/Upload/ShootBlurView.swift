@@ -5,9 +5,9 @@
 ////  Created by XiaoDong Yuan on 2023/3/24.
 ////
 //
-//import SwiftUI
+// import SwiftUI
 //
-//struct ShootBlurView: View {
+// struct ShootBlurView: View {
 //    @Environment(\.dismiss) var dismiss
 //    var body: some View {
 //        NavigationView {
@@ -33,7 +33,7 @@
 //                ToolbarItem(placement: .navigationBarTrailing) {
 //                    Button {
 //                        // 保存截图
-//                        
+//
 //                        dismiss()
 //                    } label: {
 //                        Text("保存")
@@ -44,10 +44,10 @@
 //            }
 //        }
 //    }
-//}
+// }
 //
-//struct ShootBlurView_Previews: PreviewProvider {
+// struct ShootBlurView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ShootBlurView()
 //    }
-//}
+// }

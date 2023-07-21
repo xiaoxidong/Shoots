@@ -5,8 +5,8 @@
 //  Created by XiaoDong Yuan on 2023/4/3.
 //
 
-import SwiftUI
 import Foundation
+import SwiftUI
 
 enum FeedbackManager {
     static func mediumFeedback() {
@@ -14,7 +14,7 @@ enum FeedbackManager {
         generator.prepare()
         generator.impactOccurred()
     }
-    
+
     static func haptic(type: UINotificationFeedbackGenerator.FeedbackType) {
         UINotificationFeedbackGenerator().notificationOccurred(type)
     }

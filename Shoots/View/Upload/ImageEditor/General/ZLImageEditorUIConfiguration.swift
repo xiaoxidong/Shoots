@@ -28,37 +28,37 @@ import UIKit
 
 public class ZLImageEditorUIConfiguration: NSObject {
     private static var single = ZLImageEditorUIConfiguration()
-    
+
     @objc public class func `default`() -> ZLImageEditorUIConfiguration {
         return ZLImageEditorUIConfiguration.single
     }
-    
+
     @objc public class func resetConfiguration() {
         ZLImageEditorUIConfiguration.single = ZLImageEditorUIConfiguration()
     }
-    
+
     /// HUD style. Defaults to dark.
     @objc public var hudStyle: ZLProgressHUD.HUDStyle = .dark
-    
+
     /// Adjust Slider Type
     @objc public var adjustSliderType: ZLAdjustSliderType = .vertical
-    
+
     // MARK: Language properties
-    
+
     /// Language for framework.
     @objc public var languageType: ZLImageEditorLanguageType = .system {
         didSet {
             Bundle.resetLanguage()
         }
     }
-    
+
     /// Developers can customize languages.
     /// - example: If you needs to replace
     /// key: .hudLoading, value: "loading, waiting please" language,
     /// The dictionary that needs to be passed in is [.hudLoading: "text to be replaced"].
     /// - warning: Please pay attention to the placeholders contained in languages when changing, such as %ld, %@.
     public var customLanguageConfig: [ZLLocalLanguageKey: String] = [:]
-    
+
     /// Developers can customize languages (This property is only for objc).
     /// - example: If you needs to replace
     /// key: @"loading", value: @"loading, waiting please" language,
@@ -73,7 +73,7 @@ public class ZLImageEditorUIConfiguration: NSObject {
             customLanguageConfig = swiftParams
         }
     }
-    
+
     /// Developers can customize images, but the name of the custom image resource must be consistent with the image name in the replaced bundle.
     /// - example: Developers need to replace the selected and unselected image resources, and the array that needs to be passed in is
     /// ["zl_btn_selected", "zl_btn_unselected"].
@@ -82,7 +82,7 @@ public class ZLImageEditorUIConfiguration: NSObject {
             ZLCustomImageDeploy.imageNames = customImageNames
         }
     }
-    
+
     /// Developers can customize images, but the name of the custom image resource must be consistent with the image name in the replaced bundle.
     /// - example: Developers need to replace the selected and unselected image resources, and the array that needs to be passed in is
     /// ["zl_btn_selected": selectedImage, "zl_btn_unselected": unselectedImage].
@@ -91,7 +91,7 @@ public class ZLImageEditorUIConfiguration: NSObject {
             customImageForKey.forEach { ZLCustomImageDeploy.imageForKey[$0.key] = $0.value }
         }
     }
-    
+
     /// Developers can customize images, but the name of the custom image resource must be consistent with the image name in the replaced bundle.
     /// - example: Developers need to replace the selected and unselected image resources, and the array that needs to be passed in is
     /// ["zl_btn_selected": selectedImage, "zl_btn_unselected": unselectedImage].
@@ -100,30 +100,30 @@ public class ZLImageEditorUIConfiguration: NSObject {
             ZLCustomImageDeploy.imageForKey = customImageForKey_objc
         }
     }
-    
+
     // MARK: Color properties
-    
+
     /// The normal color of adjust slider.
     @objc public var adjustSliderNormalColor = UIColor.white
-    
+
     /// The tint color of adjust slider.
     @objc public var adjustSliderTintColor = zlRGB(80, 169, 56)
-    
+
     /// The background color of edit done button.
     @objc public var editDoneBtnBgColor = zlRGB(80, 169, 56)
-    
+
     /// The title color of edit done button.
     @objc public var editDoneBtnTitleColor = UIColor.white
-    
+
     /// The normal background color of ashbin.
     @objc public var ashbinNormalBgColor = zlRGB(40, 40, 40).withAlphaComponent(0.8)
-    
+
     /// The tint background color of ashbin.
     @objc public var ashbinTintBgColor = zlRGB(241, 79, 79).withAlphaComponent(0.98)
-    
+
     /// The normal color of the title below the various tools in the image editor.
     @objc public var toolTitleNormalColor = zlRGB(160, 160, 160)
-    
+
     /// The tint color of the title below the various tools in the image editor.
     @objc public var toolTitleTintColor = UIColor.white
 
@@ -133,11 +133,11 @@ public class ZLImageEditorUIConfiguration: NSObject {
 
 // MARK: Image source deploy
 
-//enum ZLCustomImageDeploy {
+// enum ZLCustomImageDeploy {
 //    static var imageNames: [String] = []
-//    
+//
 //    static var imageForKey: [String: UIImage] = [:]
-//}
+// }
 
 @objc public enum ZLAdjustSliderType: Int {
     case vertical

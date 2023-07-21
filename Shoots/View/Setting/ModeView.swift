@@ -10,13 +10,13 @@ import SwiftUI
 struct ModeView: View {
     @AppStorage("colorMode") private var colorMode: ShootColorScheme = .none
     @Environment(\.colorScheme) var colorScheme
-    
+
     var body: some View {
         VStack(spacing: 0) {
             Text("选择主题模式")
                 .font(.system(size: 18, weight: .medium))
                 .foregroundColor(Color.shootBlack)
-            
+
             Button(action: {
                 colorMode = .none
             }) {
@@ -36,7 +36,7 @@ struct ModeView: View {
                 .padding(.horizontal, 20)
                 .padding(.vertical, 20)
             Divider()
-            
+
             Button(action: {
                 colorMode = .light
             }) {
@@ -52,13 +52,13 @@ struct ModeView: View {
                             .foregroundColor(Color.shootRed)
                     }
                 }.contentShape(Rectangle())
-                
+
             }.buttonStyle(PlainButtonStyle())
                 .padding(.horizontal, 20)
                 .padding(.vertical, 20)
-            
+
             Divider()
-            
+
             Button(action: {
                 colorMode = .dark
             }) {
@@ -90,7 +90,7 @@ struct ModeView_Previews: PreviewProvider {
         ModeView()
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        
+
         ModeView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

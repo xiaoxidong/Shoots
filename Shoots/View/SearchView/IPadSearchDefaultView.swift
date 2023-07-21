@@ -10,11 +10,11 @@ import SwiftUIFlowLayout
 
 struct IPadSearchDefaultView: View {
     @Binding var searchText: String
-    
+
     let rows = [
-            GridItem(.fixed(90.00), spacing: 20),
-            GridItem(.fixed(90.00), spacing: 20),
-        ]
+        GridItem(.fixed(90.00), spacing: 20),
+        GridItem(.fixed(90.00), spacing: 20),
+    ]
     @EnvironmentObject var info: InfoViewModel
     @EnvironmentObject var search: SearchViewModel
     var body: some View {
@@ -52,11 +52,12 @@ struct IPadSearchDefaultView: View {
                 }.padding(.horizontal)
                     .padding(.top)
             }
-            
+
             // Tag
             FlowLayout(mode: .vstack,
                        items: info.patterns,
-                       itemSpacing: 4) { pattern in
+                       itemSpacing: 4)
+            { pattern in
                 Button {
                     searchText = pattern.designPatternName
                     search.patternID = pattern.id
@@ -69,7 +70,7 @@ struct IPadSearchDefaultView: View {
                         Text(pattern.designPatternName)
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.shootBlack)
-                        + Text(" (\(pattern.count))")
+                            + Text(" (\(pattern.count))")
                             .font(.system(size: 14, weight: .regular))
                             .foregroundColor(.shootGray)
                     }.padding(.horizontal, 10)

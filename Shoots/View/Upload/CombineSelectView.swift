@@ -9,13 +9,13 @@ import SwiftUI
 
 struct CombineSelectView: View {
     @Binding var uploadImages: [LocalImageData]
-    
+
     @Environment(\.dismiss) var dismiss
     #if os(iOS)
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @Environment(\.verticalSizeClass) var verticalSizeClass
+        @Environment(\.horizontalSizeClass) var horizontalSizeClass
+        @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
-    
+
     @State var combinedImage: LocalImageData? = nil
     @State var showCombine = false
     @State var showAlert = false
@@ -79,7 +79,7 @@ struct CombineSelectView: View {
             }
         }
     }
-    
+
     var columns: [GridItem] {
         if horizontalSizeClass == .compact {
             return [GridItem(.adaptive(minimum: 120, maximum: 260), spacing: 2)]
@@ -87,13 +87,14 @@ struct CombineSelectView: View {
             return [GridItem(.adaptive(minimum: 220, maximum: 360), spacing: 2)]
         }
     }
+
     @State var selected: [LocalImageData] = []
     var selectView: some View {
         ScrollView {
             LazyVGrid(columns: columns, alignment: .leading, spacing: 2) {
                 ForEach(uploadImages, id: \.self) { image in
                     Button(action: {
-                        //选择和取消选择截图
+                        // 选择和取消选择截图
                         withAnimation(.spring()) {
                             if selected.contains(image), let index = selected.firstIndex(of: image) {
                                 selected.remove(at: index)
@@ -117,7 +118,7 @@ struct CombineSelectView: View {
             }
         }
     }
-    
+
     func chectSameSize() -> Bool {
         var width: CGFloat? = nil
         var same = true
@@ -141,7 +142,7 @@ struct CombineSelectView_Previews: PreviewProvider {
         CombineSelectView(uploadImages: .constant([]))
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        
+
         CombineSelectView(uploadImages: .constant([]))
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

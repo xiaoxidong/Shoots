@@ -12,7 +12,7 @@ struct ActionTitleButtonView: View {
     var systemImage: String = ""
     var title: String
     let action: () -> Void
-    
+
     var body: some View {
         Button {
             action()
@@ -39,10 +39,10 @@ struct ActionTitleButtonView: View {
 
 struct ActionTitleButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ActionTitleButtonView(image: "saved", title: "已收藏") { }
+        ActionTitleButtonView(image: "saved", title: "已收藏") {}
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        ActionTitleButtonView(image: "saved", title: "已收藏") { }
+        ActionTitleButtonView(image: "saved", title: "已收藏") {}
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
     }

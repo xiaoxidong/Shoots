@@ -11,14 +11,14 @@ struct SelfView: View {
     @State var showTag = false
     @Environment(\.dismiss) var dismiss
     #if os(iOS)
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @Environment(\.verticalSizeClass) var verticalSizeClass
+        @Environment(\.horizontalSizeClass) var horizontalSizeClass
+        @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
-    @StateObject var selfPic: SelfViewModel = SelfViewModel()
+    @StateObject var selfPic: SelfViewModel = .init()
     var body: some View {
         #if os(iOS)
-        content
-            .navigationTitle("我的图片")
+            content
+                .navigationTitle("我的图片")
                 .navigationBarBackButtonHidden()
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -34,7 +34,7 @@ struct SelfView: View {
                                 .contentShape(Rectangle())
                         }
                     }
-                    
+
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink {
                             SettingView()
@@ -46,24 +46,23 @@ struct SelfView: View {
                                 .padding(.leading, 6)
                                 .contentShape(Rectangle())
                         }
-                        
                     }
                 }
         #else
-        VStack {
-            HStack {
-                Text("我的图片")
-                    .font(.largeTitle)
-                    .bold()
-                Spacer()
-                MacCloseButton()
-            }.padding(.top, 36)
-                .padding(.horizontal)
-            content
-        }
+            VStack {
+                HStack {
+                    Text("我的图片")
+                        .font(.largeTitle)
+                        .bold()
+                    Spacer()
+                    MacCloseButton()
+                }.padding(.top, 36)
+                    .padding(.horizontal)
+                content
+            }
         #endif
     }
-    
+
     @ViewBuilder
     var content: some View {
         if selfPic.loading {
@@ -90,7 +89,7 @@ struct SelfView: View {
             }
         }
     }
-    
+
     var picView: some View {
         VStack(spacing: 0) {
             if showTag {
@@ -103,7 +102,7 @@ struct SelfView: View {
                         VStack(spacing: 0) {
                             // 列表
                             FeedView(shoots: selfPic.patternFeed)
-                            
+
                             LoadMoreView(footerRefreshing: self.$selfPic.footerRefreshing, noMore: self.$selfPic.noMore) {
                                 loadMore()
                             }
@@ -130,26 +129,26 @@ struct SelfView: View {
                             Image("tags")
                         }.buttonStyle(.plain)
                     }.padding(.top)
-                        
+
                     Divider()
                 }.padding(.horizontal)
-                
+
                 ScrollView {
                     folderView
                 }
             }
         }
     }
-    
+
     let columns = [
         GridItem(.flexible(minimum: 100, maximum: 160), spacing: 26),
         GridItem(.flexible(minimum: 100, maximum: 160), spacing: 26),
-        GridItem(.flexible(minimum: 100, maximum: 160), spacing: 26)
+        GridItem(.flexible(minimum: 100, maximum: 160), spacing: 26),
     ]
     let rows = [
-        GridItem(.flexible(minimum: 400, maximum: 400), spacing: 26.0)
+        GridItem(.flexible(minimum: 400, maximum: 400), spacing: 26.0),
     ]
-    
+
     @State var selected = ""
     var tagView: some View {
         HStack {
@@ -160,7 +159,7 @@ struct SelfView: View {
                             withAnimation(.spring()) {
                                 selected = pattern.designPatternName
                             }
-                            
+
                             Task {
                                 await selfPic.getPatternPics(id: pattern.id)
                             }
@@ -191,20 +190,20 @@ struct SelfView: View {
                 .padding(.trailing)
         }.padding(.top)
     }
-    
+
     @State var showMacFolderView = false
     var folderView: some View {
         VStack(alignment: .leading) {
             if !selfPic.apps.isEmpty {
                 upload
             }
-            
+
             if !selfPic.favorites.isEmpty {
                 favorite
             }
         }
     }
-    
+
     @State var id: String = ""
     @State var name: String = ""
     @ViewBuilder
@@ -218,21 +217,10 @@ struct SelfView: View {
                 .foregroundColor(.shootGray)
         }.padding(.horizontal)
             .padding(.top, 16)
-        
+
         #if os(iOS)
-        if horizontalSizeClass == .compact {
-            LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
-                ForEach(selfPic.apps) { app in
-                    NavigationLink {
-                        AppAlbumView(id: app.id, name: app.linkApplicationName)
-                    } label: {
-                        FolderCardView(images: app.pics, name: app.linkApplicationName, picCount: app.countPics)
-                    }
-                }
-            }.padding(.horizontal)
-        } else {
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
+            if horizontalSizeClass == .compact {
+                LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
                     ForEach(selfPic.apps) { app in
                         NavigationLink {
                             AppAlbumView(id: app.id, name: app.linkApplicationName)
@@ -240,29 +228,40 @@ struct SelfView: View {
                             FolderCardView(images: app.pics, name: app.linkApplicationName, picCount: app.countPics)
                         }
                     }
-                }.padding(.horizontal, 36)
-            }.frame(height: 286)
-                .padding(.vertical)
-        }
+                }.padding(.horizontal)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
+                        ForEach(selfPic.apps) { app in
+                            NavigationLink {
+                                AppAlbumView(id: app.id, name: app.linkApplicationName)
+                            } label: {
+                                FolderCardView(images: app.pics, name: app.linkApplicationName, picCount: app.countPics)
+                            }
+                        }
+                    }.padding(.horizontal, 36)
+                }.frame(height: 286)
+                    .padding(.vertical)
+            }
         #else
-        LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
-            ForEach(selfPic.apps) { app in
-                Button {
-                    id = app.id
-                    name = app.linkApplicationName
-                    showMacFolderView.toggle()
-                } label: {
-                    FolderCardView(images: app.pics, name: app.linkApplicationName, picCount: app.countPics)
-                }.buttonStyle(.plain)
-            }
-        }.padding(.horizontal)
-            .sheet(isPresented: $showMacFolderView) {
-                FavoriteAlbumView(id: "", name: .constant(""))
-                    .sheetFrameForMac()
-            }
+            LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
+                ForEach(selfPic.apps) { app in
+                    Button {
+                        id = app.id
+                        name = app.linkApplicationName
+                        showMacFolderView.toggle()
+                    } label: {
+                        FolderCardView(images: app.pics, name: app.linkApplicationName, picCount: app.countPics)
+                    }.buttonStyle(.plain)
+                }
+            }.padding(.horizontal)
+                .sheet(isPresented: $showMacFolderView) {
+                    FavoriteAlbumView(id: "", name: .constant(""))
+                        .sheetFrameForMac()
+                }
         #endif
     }
-    
+
     @ViewBuilder
     var favorite: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -274,21 +273,10 @@ struct SelfView: View {
                 .foregroundColor(.shootGray)
         }.padding(.horizontal)
             .padding(.top, 36)
-        
+
         #if os(iOS)
-        if horizontalSizeClass == .compact {
-            LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
-                ForEach($selfPic.favorites) { $favorite in
-                    NavigationLink {
-                        FavoriteAlbumView(id: favorite.id, name: $favorite.favoriteFileName)
-                    } label: {
-                        FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
-                    }
-                }
-            }.padding(.horizontal)
-        } else {
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
+            if horizontalSizeClass == .compact {
+                LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
                     ForEach($selfPic.favorites) { $favorite in
                         NavigationLink {
                             FavoriteAlbumView(id: favorite.id, name: $favorite.favoriteFileName)
@@ -296,33 +284,44 @@ struct SelfView: View {
                             FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
                         }
                     }
-                }.padding(.horizontal, 36)
-            }.frame(height: 286)
-                .padding(.vertical)
-        }
-        #else
-        LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
-            ForEach(selfPic.favorites) { favorite in
-                Button {
-                    id = favorite.id
-                    name = favorite.favoriteFileName
-                    showMacFolderView.toggle()
-                } label: {
-                    FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
-                }.buttonStyle(.plain)
+                }.padding(.horizontal)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
+                        ForEach($selfPic.favorites) { $favorite in
+                            NavigationLink {
+                                FavoriteAlbumView(id: favorite.id, name: $favorite.favoriteFileName)
+                            } label: {
+                                FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
+                            }
+                        }
+                    }.padding(.horizontal, 36)
+                }.frame(height: 286)
+                    .padding(.vertical)
             }
-        }.padding(.horizontal)
-        .sheet(isPresented: $showMacFolderView) {
-            FavoriteAlbumView(id: "", name: .constant(""))
-                .sheetFrameForMac()
-        }
+        #else
+            LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
+                ForEach(selfPic.favorites) { favorite in
+                    Button {
+                        id = favorite.id
+                        name = favorite.favoriteFileName
+                        showMacFolderView.toggle()
+                    } label: {
+                        FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
+                    }.buttonStyle(.plain)
+                }
+            }.padding(.horizontal)
+                .sheet(isPresented: $showMacFolderView) {
+                    FavoriteAlbumView(id: "", name: .constant(""))
+                        .sheetFrameForMac()
+                }
         #endif
     }
-    
+
     func loadMore() {
-        if !self.selfPic.noMore, self.selfPic.page + 1 > self.selfPic.mostPages {
-            self.selfPic.footerRefreshing = false
-            self.selfPic.noMore = true
+        if !selfPic.noMore, selfPic.page + 1 > selfPic.mostPages {
+            selfPic.footerRefreshing = false
+            selfPic.noMore = true
         } else {
             Task {
                 await selfPic.nextPage(id: selected)
@@ -336,13 +335,13 @@ struct SelfView_Previews: PreviewProvider {
         NavigationView {
             SelfView()
         }
-            .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh-cn"))
-        
+        .previewDisplayName("Chinese")
+        .environment(\.locale, .init(identifier: "zh-cn"))
+
         NavigationView {
             SelfView()
         }
-            .previewDisplayName("English")
-            .environment(\.locale, .init(identifier: "en"))
+        .previewDisplayName("English")
+        .environment(\.locale, .init(identifier: "en"))
     }
 }

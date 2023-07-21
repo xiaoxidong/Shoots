@@ -26,7 +26,7 @@ struct FullScreenSearchView: View {
                     }.padding(.horizontal)
                     Divider()
                 }
-                
+
                 // 搜索结果
                 SearchView(searchText: $searchText)
             }

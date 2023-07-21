@@ -5,8 +5,8 @@
 //  Created by XiaoDong Yuan on 2023/3/21.
 //
 
-import SwiftUI
 import Alamofire
+import SwiftUI
 
 struct UploadView: View {
     @Binding var uploadData: [LocalImageData]
@@ -14,7 +14,7 @@ struct UploadView: View {
     let shareCancellAction: () -> Void
     let shareDoneAction: () -> Void
     let uploadAction: () -> Void
-    
+
     @Environment(\.dismiss) var dismiss
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
@@ -71,18 +71,18 @@ struct UploadView: View {
             .toast(isPresenting: $showToast) {
                 AlertToast(displayMode: .alert, type: alertType, title: toastText)
             }
-            .onChange(of: uploadData) { newValue in
+            .onChange(of: uploadData) { _ in
                 withAnimation(.spring()) {
                     updateIndicator.toggle()
                 }
             }
             .onAppear {
                 #if DEBUG
-                showBlurNewGuide = true
+                    showBlurNewGuide = true
                 #endif
             }
     }
-    
+
     @State var showLogin = false
     var topActions: some View {
         VStack(spacing: 12) {
@@ -133,26 +133,28 @@ struct UploadView: View {
             Divider()
         }.padding(.top, shareExtension ? 16 : 0)
     }
-    
+
     @State var showBluer = false
     @State var showCombine = false
     var appRsults: [AppInfo] {
         if uploadData[selection].app == "" {
             return info.apps
         } else {
-            return info.apps.filter({ $0.linkApplicationName.transToLowercasedPinYin().contains(uploadData[selection].app.transToLowercasedPinYin()) })
+            return info.apps.filter { $0.linkApplicationName.transToLowercasedPinYin().contains(uploadData[selection].app.transToLowercasedPinYin()) }
         }
     }
+
     var tagRsults: [Pattern] {
         if uploadData[selection].pattern.components(separatedBy: ",").last == "" {
             return info.patterns
         } else {
-            return info.patterns.filter({ $0.designPatternName.transToLowercasedPinYin().contains(uploadData[selection].pattern.components(separatedBy: ",").last?.transToLowercasedPinYin() ?? "") })
+            return info.patterns.filter { $0.designPatternName.transToLowercasedPinYin().contains(uploadData[selection].pattern.components(separatedBy: ",").last?.transToLowercasedPinYin() ?? "") }
         }
     }
+
     @FocusState var appFocused: Bool
     @FocusState var tagFocused: Bool
-    
+
     var bottomActions: some View {
         VStack(spacing: 0) {
             if appFocused {
@@ -241,29 +243,28 @@ struct UploadView: View {
                     }
                 }.padding(.horizontal, 8)
             }
-                .background(Color.shootWhite)
-                .shadow(color: Color.shootBlack.opacity(appFocused || tagFocused ? 0 : 0.06), x: 0, y: -6, blur: 10)
-
+            .background(Color.shootWhite)
+            .shadow(color: Color.shootBlack.opacity(appFocused || tagFocused ? 0 : 0.06), x: 0, y: -6, blur: 10)
         }
-            .fullScreenCover(isPresented: $showBluer) {
-                ImageBlurView(image: $uploadData[selection].image)
-                    .ignoresSafeArea()
-                    .overlay(alignment: .center) {
-                        blurNew
-                    }
-            }
-            .fullScreenCover(isPresented: $showCombine, onDismiss: {
-                if selection > uploadData.count + 1 {
-                    selection = uploadData.count
+        .fullScreenCover(isPresented: $showBluer) {
+            ImageBlurView(image: $uploadData[selection].image)
+                .ignoresSafeArea()
+                .overlay(alignment: .center) {
+                    blurNew
                 }
-            }, content: {
-                CombineSelectView(uploadImages: $uploadData)
-            })
-            .onAppear {
-                appFocused = true
+        }
+        .fullScreenCover(isPresented: $showCombine, onDismiss: {
+            if selection > uploadData.count + 1 {
+                selection = uploadData.count
             }
+        }, content: {
+            CombineSelectView(uploadImages: $uploadData)
+        })
+        .onAppear {
+            appFocused = true
+        }
     }
-    
+
     var blurNew: some View {
         Group {
             if showBlurNewGuide {
@@ -278,8 +279,7 @@ struct UploadView: View {
                     Text("手指滑动打码敏感信息")
                         .font(.system(size: 18, weight: .medium))
                         .foregroundColor(.white)
-                    
-                    
+
                     Button {
                         withAnimation(.spring()) {
                             showBlurNewGuide.toggle()
@@ -296,13 +296,13 @@ struct UploadView: View {
                 }
             }
         }.ignoresSafeArea()
-        .onTapGesture {
-            withAnimation(.spring()) {
-                showBlurNewGuide = false
+            .onTapGesture {
+                withAnimation(.spring()) {
+                    showBlurNewGuide = false
+                }
             }
-        }
     }
-    
+
     func upload() {
         if let index = uploadData.firstIndex(where: { $0.app == "" }) {
             // 提示需要填写应用名称
@@ -312,15 +312,13 @@ struct UploadView: View {
             showToast = true
         } else {
             if shareExtension {
-                //上传截图
+                // 上传截图
                 Task {
                     user.uploadImages(localDatas: uploadData) { pics in
                         user.uploadPics(pics: pics) { success in
                             if success {
                                 uploadData.removeAll()
-                            } else {
-                                
-                            }
+                            } else {}
                         }
                     }
                 }
@@ -329,7 +327,7 @@ struct UploadView: View {
             } else {
                 // 上传
                 dismiss()
-                //TODO: 后台上传截图
+                // TODO: 后台上传截图
                 uploadAction()
             }
         }
@@ -339,27 +337,15 @@ struct UploadView: View {
 struct UploadView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UploadView(uploadData: .constant([])) {
-                
-            } shareDoneAction: {
-                
-            } uploadAction: {
-                
-            }
+            UploadView(uploadData: .constant([])) {} shareDoneAction: {} uploadAction: {}
         }
-            .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh-cn"))
-        
+        .previewDisplayName("Chinese")
+        .environment(\.locale, .init(identifier: "zh-cn"))
+
         NavigationView {
-            UploadView(uploadData: .constant([])) {
-                
-            } shareDoneAction: {
-                
-            } uploadAction: {
-                
-            }
+            UploadView(uploadData: .constant([])) {} shareDoneAction: {} uploadAction: {}
         }
-            .previewDisplayName("English")
-            .environment(\.locale, .init(identifier: "en"))
+        .previewDisplayName("English")
+        .environment(\.locale, .init(identifier: "en"))
     }
 }

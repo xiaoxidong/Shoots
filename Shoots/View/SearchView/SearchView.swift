@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchView: View {
     @Binding var searchText: String
     var showSearchDefault: Bool = true
-    
+
     @EnvironmentObject var info: InfoViewModel
     @EnvironmentObject var search: SearchViewModel
     var body: some View {
@@ -21,21 +21,21 @@ struct SearchView: View {
                 if showSearchDefault {
                     defaultView
                 }
-                
+
                 #if os(iOS)
-                if searchText != "" {
-                    SearchSuggestionView(searchText: $searchText)
-                }
+                    if searchText != "" {
+                        SearchSuggestionView(searchText: $searchText)
+                    }
                 #endif
             }
         }.background(Color.shootWhite)
-        .onChange(of: searchText) { newValue in
-            if newValue == "" {
-                search.showResult = false
+            .onChange(of: searchText) { newValue in
+                if newValue == "" {
+                    search.showResult = false
+                }
             }
-        }
     }
-    
+
     var defaultView: some View {
         ScrollView {
             ScrollView(.horizontal, showsIndicators: false) {
@@ -60,7 +60,7 @@ struct SearchView: View {
                                         .frame(width: 66, height: 66)
                                         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                                 }
-                                
+
                                 Text(app.linkApplicationName)
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(.shootBlack)
@@ -70,7 +70,7 @@ struct SearchView: View {
                 }.padding(.horizontal)
                     .padding(.top)
             }
-            
+
             // Tag
             VStack(spacing: 0) {
                 ForEach(info.patterns) { pattern in
@@ -86,7 +86,7 @@ struct SearchView: View {
                             Text(pattern.designPatternName)
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(.shootBlack)
-                            + Text(" (\(pattern.count))")
+                                + Text(" (\(pattern.count))")
                                 .font(.system(size: 14, weight: .regular))
                                 .foregroundColor(.shootGray)
                             Divider()

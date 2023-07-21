@@ -20,15 +20,15 @@ struct PrivacyView: View {
                         .foregroundColor(Color.shootBlack)
                     Spacer()
                     #if os(iOS)
-                    closeButton
+                        closeButton
                     #else
-                    MacCloseButton()
+                        MacCloseButton()
                     #endif
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 6)
                 .padding(.top, 36)
-                
+
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 10) {
                         Group {
@@ -36,7 +36,7 @@ struct PrivacyView: View {
                             Spacer().frame(height: 10)
                             Text("1.数据使用范围").bold().font(.headline)
                             Text("所有数据仅供用户自己及用户共享的用户查看，应用不会分享用户产品数据给第三方。")
-                            
+
                             Spacer().frame(height: 10)
                             Text("2.信息披露").bold().font(.headline)
                             Text("a)本软件不会将您的信息披露给不受信任的第三方。")
@@ -51,45 +51,43 @@ struct PrivacyView: View {
                         Spacer().frame(height: 10)
                         Text("5.联系我们").bold().font(.headline)
                         Text("如果您对我们的隐私政策有任何疑问或建议，请随时通过设置页的联系我们与我们联系。")
-                        
-                        
+
                     }.padding()
-                    .font(.subheadline)
-                    .foregroundColor(Color.shootBlack)
-                    .lineSpacing(6)
-                    
+                        .font(.subheadline)
+                        .foregroundColor(Color.shootBlack)
+                        .lineSpacing(6)
                 }
                 Spacer()
             }
         }
     }
+
     #if os(iOS)
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-    @Environment(\.dismiss) var dismiss
-    var closeButton: some View {
-        Group {
-            if horizontalSizeClass == .regular && verticalSizeClass == .compact {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 18))
-                        .foregroundColor(Color.shootRed)
-                }.padding(.bottom, 12)
+        @Environment(\.horizontalSizeClass) var horizontalSizeClass
+        @Environment(\.verticalSizeClass) var verticalSizeClass
+        @Environment(\.dismiss) var dismiss
+        var closeButton: some View {
+            Group {
+                if horizontalSizeClass == .regular && verticalSizeClass == .compact {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 18))
+                            .foregroundColor(Color.shootRed)
+                    }.padding(.bottom, 12)
+                }
             }
         }
-    }
     #endif
 }
-
 
 struct PrivacyView_Previews: PreviewProvider {
     static var previews: some View {
         PrivacyView(showPrivacy: .constant(true))
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        
+
         PrivacyView(showPrivacy: .constant(true))
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

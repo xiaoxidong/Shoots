@@ -27,7 +27,7 @@ import StoreKit
 // MARK: Purchases
 
 /// The Purchased protocol allows different purchase flows to be handled by common code in simple cases
-/// 
+///
 /// For example you could route through to
 ///
 ///     func didPurchase<P:Purchased>(item:P) { ... }
@@ -47,7 +47,7 @@ extension Purchase: Purchased {
         guard let date = originalTransaction?.transactionDate ?? transaction.transactionDate else {
             fatalError("there should always be a transaction date, so this should not happen...")
         }
-        return  date
+        return date
     }
 }
 
@@ -56,7 +56,7 @@ extension PurchaseDetails: Purchased {
         guard let date = originalTransaction?.transactionDate ?? transaction.transactionDate else {
             fatalError("there should always be a transaction date, so this should not happen...")
         }
-        return  date
+        return date
     }
 }
 
@@ -67,7 +67,7 @@ public struct Purchase {
     public let transaction: PaymentTransaction
     public let originalTransaction: PaymentTransaction?
     public let needsFinishTransaction: Bool
-    
+
     public init(productId: String, quantity: Int, transaction: PaymentTransaction, originalTransaction: PaymentTransaction?, needsFinishTransaction: Bool) {
         self.productId = productId
         self.quantity = quantity
@@ -85,7 +85,7 @@ public struct PurchaseDetails {
     public let transaction: PaymentTransaction
     public let originalTransaction: PaymentTransaction?
     public let needsFinishTransaction: Bool
-    
+
     public init(productId: String, quantity: Int, product: SKProduct, transaction: PaymentTransaction, originalTransaction: PaymentTransaction?, needsFinishTransaction: Bool) {
         self.productId = productId
         self.quantity = quantity
@@ -98,7 +98,7 @@ public struct PurchaseDetails {
 
 /// Conform to this protocol to provide custom receipt validator
 public protocol ReceiptValidator {
-	func validate(receiptData: Data, completion: @escaping (VerifyReceiptResult) -> Void)
+    func validate(receiptData: Data, completion: @escaping (VerifyReceiptResult) -> Void)
 }
 
 /// Payment transaction
@@ -110,14 +110,14 @@ public protocol PaymentTransaction {
 }
 
 /// Add PaymentTransaction conformance to SKPaymentTransaction
-extension SKPaymentTransaction: PaymentTransaction { }
+extension SKPaymentTransaction: PaymentTransaction {}
 
 /// Products information
 public struct RetrieveResults {
     public let retrievedProducts: Set<SKProduct>
     public let invalidProductIDs: Set<String>
     public let error: Error?
-    
+
     public init(retrievedProducts: Set<SKProduct>, invalidProductIDs: Set<String>, error: Error?) {
         self.retrievedProducts = retrievedProducts
         self.invalidProductIDs = invalidProductIDs
@@ -135,7 +135,7 @@ public enum PurchaseResult {
 public struct RestoreResults {
     public let restoredPurchases: [Purchase]
     public let restoreFailedPurchases: [(SKError, String?)]
-    
+
     public init(restoredPurchases: [Purchase], restoreFailedPurchases: [(SKError, String?)]) {
         self.restoredPurchases = restoredPurchases
         self.restoreFailedPurchases = restoreFailedPurchases
@@ -181,44 +181,43 @@ public enum SubscriptionType: Hashable {
 }
 
 public struct ReceiptItem: Purchased, Codable {
-    
     /// The product identifier of the item that was purchased. This value corresponds to the `productIdentifier` property of the `SKPayment` object stored in the transaction’s payment property.
     public var productId: String
-    
+
     /// The number of items purchased. This value corresponds to the `quantity` property of the `SKPayment` object stored in the transaction’s payment property.
     public var quantity: Int
-    
+
     /// The transaction identifier of the item that was purchased. This value corresponds to the transaction’s `transactionIdentifier` property.
     public var transactionId: String
-    
-    /// For a transaction that restores a previous transaction, the transaction identifier of the original transaction. 
-    /// 
+
+    /// For a transaction that restores a previous transaction, the transaction identifier of the original transaction.
+    ///
     /// Otherwise, identical to the transaction identifier. This value corresponds to the original transaction’s `transactionIdentifier` property. All receipts in a chain of renewals for an auto-renewable subscription have the same value for this field.
     public var originalTransactionId: String
-    
+
     /// The date and time that the item was purchased. This value corresponds to the transaction’s `transactionDate` property.
     public var purchaseDate: Date
-    
+
     /// For a transaction that restores a previous transaction, the date of the original transaction. This value corresponds to the original transaction’s `transactionDate` property. In an auto-renewable subscription receipt, this indicates the beginning of the subscription period, even if the subscription has been renewed.
     public var originalPurchaseDate: Date
-    
+
     /// The primary key for identifying subscription purchases.
     public var webOrderLineItemId: String?
-    
+
     /// The expiration date for the subscription, expressed as the number of milliseconds since January 1, 1970, 00:00:00 GMT. This key is **only** present for **auto-renewable** subscription receipts.
     public var subscriptionExpirationDate: Date?
-    
-    /// For a transaction that was canceled by Apple customer support, the time and date of the cancellation. 
-    /// 
+
+    /// For a transaction that was canceled by Apple customer support, the time and date of the cancellation.
+    ///
     /// Treat a canceled receipt the same as if no purchase had ever been made.
     public var cancellationDate: Date?
-    
+
     /// Indicates whether or not the subscription item is currently within a given trial period.
     public var isTrialPeriod: Bool
-    
+
     /// Indicates whether or not the subscription item is currently within an intro offer period.
     public var isInIntroOfferPeriod: Bool
-    
+
     public init(productId: String, quantity: Int, transactionId: String, originalTransactionId: String, purchaseDate: Date, originalPurchaseDate: Date, webOrderLineItemId: String?, subscriptionExpirationDate: Date?, cancellationDate: Date?, isTrialPeriod: Bool, isInIntroOfferPeriod: Bool) {
         self.productId = productId
         self.quantity = quantity
@@ -251,7 +250,7 @@ public enum ReceiptError: Swift.Error {
 }
 
 /// Status code returned by remote server
-/// 
+///
 /// See Table 2-1  Status codes
 public enum ReceiptStatus: Int {
     /// Not decodable status
@@ -277,7 +276,7 @@ public enum ReceiptStatus: Int {
     /// This receipt is from the production environment, but it was sent to the test environment for verification. Send it to the production environment instead.
     case productionEnvironment = 21008
 
-    var isValid: Bool { return self == .valid}
+    var isValid: Bool { return self == .valid }
 }
 
 // Receipt field as defined in : https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html#//apple_ref/doc/uid/TP40010573-CH106-SW1
@@ -314,8 +313,8 @@ public enum ReceiptInfoField: String {
         /// For a transaction that was canceled by Apple customer support, the time and date of the cancellation. Treat a canceled receipt the same as if no purchase had ever been made.
         case cancellation_date
         #if os(iOS) || os(tvOS)
-        /// A string that the App Store uses to uniquely identify the application that created the transaction. If your server supports multiple applications, you can use this value to differentiate between them. Apps are assigned an identifier only in the production environment, so this key is not present for receipts created in the test environment. This field is not present for Mac apps. See also Bundle Identifier.
-        case app_item_id
+            /// A string that the App Store uses to uniquely identify the application that created the transaction. If your server supports multiple applications, you can use this value to differentiate between them. Apps are assigned an identifier only in the production environment, so this key is not present for receipts created in the test environment. This field is not present for Mac apps. See also Bundle Identifier.
+            case app_item_id
         #endif
         /// An arbitrary number that uniquely identifies a revision of your application. This key is not present for receipts created in the test environment.
         case version_external_identifier

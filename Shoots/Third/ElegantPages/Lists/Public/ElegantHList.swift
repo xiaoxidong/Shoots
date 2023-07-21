@@ -3,20 +3,20 @@
 import SwiftUI
 
 public struct ElegantHList: View, ElegantListManagerDirectAccess {
-
     @ObservedObject public var manager: ElegantListManager
     public let pageTurnType: PageTurnType
     public let bounces: Bool
     public let viewForPage: (Int) -> AnyView
 
     private var pagerWidth: CGFloat {
-        screen.width * CGFloat(maxPageIndex+1)
+        screen.width * CGFloat(maxPageIndex + 1)
     }
 
     public init(manager: ElegantListManager,
                 pageTurnType: PageTurnType,
                 bounces: Bool = false,
-                viewForPage: @escaping (Int) -> AnyView) {
+                viewForPage: @escaping (Int) -> AnyView)
+    {
         self.manager = manager
         self.pageTurnType = pageTurnType
         self.bounces = bounces
@@ -44,12 +44,10 @@ public struct ElegantHList: View, ElegantListManagerDirectAccess {
         }
         .frame(width: screen.width, height: geometry.size.height, alignment: .leading)
     }
-
 }
 
-extension ElegantHList {
-
-    public func onPageChanged(_ callback: ((Int) -> Void)?) -> Self {
+public extension ElegantHList {
+    func onPageChanged(_ callback: ((Int) -> Void)?) -> Self {
         manager.anyCancellable = manager.$currentPage
             .dropFirst()
             .filter { $0.state == .completed }
@@ -59,5 +57,4 @@ extension ElegantHList {
             }
         return self
     }
-
 }

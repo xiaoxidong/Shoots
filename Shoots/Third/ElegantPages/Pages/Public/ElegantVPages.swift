@@ -3,17 +3,17 @@
 import SwiftUI
 
 public struct ElegantVPages<Pages>: View where Pages: View {
-
     public let manager: ElegantPagesManager
     public let bounces: Bool
     public let pages: PageContainer<Pages>
 
     public init(manager: ElegantPagesManager,
                 bounces: Bool = false,
-                @PageViewBuilder builder: () -> PageContainer<Pages>) {
+                @PageViewBuilder builder: () -> PageContainer<Pages>)
+    {
         self.manager = manager
         self.bounces = bounces
-        self.pages = builder()
+        pages = builder()
     }
 
     public var body: some View {
@@ -23,11 +23,9 @@ public struct ElegantVPages<Pages>: View where Pages: View {
                          isHorizontal: false,
                          bounces: bounces)
     }
-
 }
 
 private struct VerticalStack<Pages>: View where Pages: View {
-
     let pages: Pages
 
     var body: some View {
@@ -37,12 +35,10 @@ private struct VerticalStack<Pages>: View where Pages: View {
         }
         .frame(width: screen.width, height: screen.height, alignment: .top)
     }
-
 }
 
-extension ElegantVPages {
-
-    public func onPageChanged(_ callback: ((Int) -> Void)?) -> Self {
+public extension ElegantVPages {
+    func onPageChanged(_ callback: ((Int) -> Void)?) -> Self {
         manager.anyCancellable = manager.$currentPage
             .dropFirst()
             .sink { page in
@@ -50,5 +46,4 @@ extension ElegantVPages {
             }
         return self
     }
-
 }

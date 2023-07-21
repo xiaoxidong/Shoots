@@ -15,9 +15,9 @@ struct AddsView: View {
             .aspectRatio(contentMode: .fit)
             .onTapGesture {
                 #if os(iOS)
-                showAdds.toggle()
+                    showAdds.toggle()
                 #else
-                // Mac 下直接打开链接
+                    // Mac 下直接打开链接
                 #endif
             }
         #if os(iOS)

@@ -11,16 +11,16 @@ struct IconView: View {
     let columns = [
         GridItem(.flexible(minimum: 100, maximum: 260), spacing: 12),
         GridItem(.flexible(minimum: 100, maximum: 260), spacing: 12),
-        GridItem(.flexible(minimum: 100, maximum: 260), spacing: 12)
+        GridItem(.flexible(minimum: 100, maximum: 260), spacing: 12),
     ]
     var body: some View {
         VStack(spacing: 16) {
             Text("选择图标")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.shootBlack)
-            
+
             LazyVGrid(columns: columns, alignment: .leading, spacing: 12) {
-                ForEach(1...6, id: \.self) { index in
+                ForEach(1 ... 6, id: \.self) { _ in
                     Image("Instagram")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -28,7 +28,7 @@ struct IconView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 36, style: .continuous))
                 }
             }
-            
+
         }.frame(maxWidth: .infinity)
             .padding()
             .background(Color.shootWhite)
@@ -42,7 +42,7 @@ struct IconView_Previews: PreviewProvider {
         IconView()
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        
+
         IconView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

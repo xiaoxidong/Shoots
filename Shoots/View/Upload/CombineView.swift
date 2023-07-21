@@ -11,7 +11,7 @@ struct CombineView: View {
     @State var images: [LocalImageData]
     @Binding var combinedImage: LocalImageData?
     let action: () -> Void
-    
+
     @State var selected: UIImage? = nil
     @State var topOffsets: [CGFloat] = [0, 0]
     @State var bottomOffsets: [CGFloat] = [0, 0]
@@ -19,7 +19,7 @@ struct CombineView: View {
     @State var topOffset: CGFloat = 0
     @State var bottomOffset: CGFloat = 0
     @State var scrollDisabled = false
-    
+
     @Environment(\.dismiss) var dismiss
     @State var move = false
     var body: some View {
@@ -31,48 +31,48 @@ struct CombineView: View {
             }
         }.background(Color.shootLight.opacity(0.1))
             .navigationTitle(move ? "拖动排序" : "点击裁剪，长按排序")
-        .navigationBarBackButtonHidden()
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                if !move {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundColor(.shootBlack)
-                    }
-                }
-            }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    if move {
-                        withAnimation(.spring()) {
-                            move.toggle()
+            .navigationBarBackButtonHidden()
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    if !move {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundColor(.shootBlack)
                         }
-                    } else {
-                        combinedImage = UIImage.combine(images: images)
-                        dismiss()
-                        action()
                     }
-                } label: {
-                    Text(move ? "完成" : "保存")
-                        .font(.system(size: 16, weight: .semibold))
-                        .tint(.shootBlue)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        if move {
+                            withAnimation(.spring()) {
+                                move.toggle()
+                            }
+                        } else {
+                            combinedImage = UIImage.combine(images: images)
+                            dismiss()
+                            action()
+                        }
+                    } label: {
+                        Text(move ? "完成" : "保存")
+                            .font(.system(size: 16, weight: .semibold))
+                            .tint(.shootBlue)
+                    }
                 }
             }
-        }
-        .onAppear {
-            orignalimages = images
-            topOffsets.removeAll()
-            topOffsets.append(contentsOf: Array(repeating: 0, count: images.count))
-        }
+            .onAppear {
+                orignalimages = images
+                topOffsets.removeAll()
+                topOffsets.append(contentsOf: Array(repeating: 0, count: images.count))
+            }
     }
-    
+
     var content: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 12) {
-                ForEach(images.indices, id:\.self) { indice in
+                ForEach(images.indices, id: \.self) { indice in
                     Image(uiImage: UIImage(data: images[indice].image)!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -94,14 +94,14 @@ struct CombineView: View {
                                                     scrollDisabled = true
                                                     topOffset = value.translation.height
                                                 }
-                                                .onEnded { value in
+                                                .onEnded { _ in
                                                     scrollDisabled = false
                                                     // 裁剪原图
                                                     topOffsets[indice] += topOffset
                                                     if topOffsets[indice] < 0 {
                                                         topOffsets[indice] = 0
                                                     }
-                                                    
+
                                                     crop(indice: indice)
                                                     // 完成之后设置为初始值
                                                     topOffset = 0
@@ -117,14 +117,14 @@ struct CombineView: View {
                                                     scrollDisabled = true
                                                     bottomOffset = value.translation.height
                                                 }
-                                                .onEnded { value in
+                                                .onEnded { _ in
                                                     scrollDisabled = false
                                                     // 裁剪原图
                                                     bottomOffsets[indice] += bottomOffset
                                                     if bottomOffsets[indice] > 0 {
                                                         bottomOffsets[indice] = 0
                                                     }
-                                                    
+
                                                     crop(indice: indice)
                                                     // 完成之后设置为初始值
                                                     bottomOffset = 0
@@ -149,7 +149,7 @@ struct CombineView: View {
                 }
             }
     }
-    
+
     @State var editMode = EditMode.active
     var moveView: some View {
         List {
@@ -165,19 +165,19 @@ struct CombineView: View {
         }.listStyle(.plain)
             .environment(\.editMode, $editMode)
     }
-    
+
     func crop(indice: Int) {
         var image = UIImage(data: orignalimages[indice].image)!
         let height = image.size.height * (UIScreen.main.bounds.width - 24) / image.size.width
         let rec = CGRect(x: 0, y: topOffsets[indice], width: UIScreen.main.bounds.width - 24, height: height + bottomOffsets[indice] - topOffsets[indice])
-        
+
         image = cropImage(image, toRect: rec, viewWidth: UIScreen.main.bounds.width - 24, viewHeight: height)!
-        
+
         orignalimages[indice].image = image.pngData()!
         selected = image
     }
-    
-    func clipButton(top: Bool) -> some View {
+
+    func clipButton(top _: Bool) -> some View {
         ZStack {
             Rectangle()
                 .stroke(Color.white, style: StrokeStyle(lineWidth: 1, lineCap: .round, lineJoin: .round, miterLimit: 0.0, dash: [12.0], dashPhase: 7.5))
@@ -194,28 +194,28 @@ struct CombineView: View {
             }
         }.contentShape(Rectangle())
     }
-    
+
     // 裁剪图片 https://developer.apple.com/documentation/coregraphics/cgimage/1454683-cropping
     func cropImage(_ inputImage: UIImage, toRect cropRect: CGRect, viewWidth: CGFloat, viewHeight: CGFloat) -> UIImage? {
         let imageViewScale = max(inputImage.size.width / viewWidth,
                                  inputImage.size.height / viewHeight)
-        
+
         // Scale cropRect to handle images larger than shown-on-screen size
         let cropZone = CGRect(x: cropRect.origin.x * imageViewScale,
                               y: cropRect.origin.y * imageViewScale,
                               width: cropRect.size.width * imageViewScale,
                               height: cropRect.size.height * imageViewScale)
-        
+
         // Perform cropping in Core Graphics
-        guard let cutImageRef: CGImage = inputImage.cgImage?.cropping(to:cropZone) else {
+        guard let cutImageRef: CGImage = inputImage.cgImage?.cropping(to: cropZone) else {
             return nil
         }
-        
+
         // Return image to UIImage
-        let croppedImage: UIImage = UIImage(cgImage: cutImageRef)
+        let croppedImage = UIImage(cgImage: cutImageRef)
         return croppedImage
     }
-    
+
     func move(from source: IndexSet, to destination: Int) {
         images.move(fromOffsets: source, toOffset: destination)
     }
@@ -224,21 +224,17 @@ struct CombineView: View {
 struct CombineView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CombineView(images: [], combinedImage: .constant(nil)) {
-                
-            }
+            CombineView(images: [], combinedImage: .constant(nil)) {}
                 .navigationBarTitleDisplayMode(.inline)
         }
-            .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh-cn"))
-        
+        .previewDisplayName("Chinese")
+        .environment(\.locale, .init(identifier: "zh-cn"))
+
         NavigationView {
-            CombineView(images: [], combinedImage: .constant(nil)) {
-                
-            }
+            CombineView(images: [], combinedImage: .constant(nil)) {}
                 .navigationBarTitleDisplayMode(.inline)
         }
-            .previewDisplayName("English")
-            .environment(\.locale, .init(identifier: "en"))
+        .previewDisplayName("English")
+        .environment(\.locale, .init(identifier: "en"))
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AppIconPlaceholder: View {
-    private let cornerSize: CGSize = CGSize(width: 24.0, height: 24.0)
+    private let cornerSize: CGSize = .init(width: 24.0, height: 24.0)
     var body: some View {
         return RoundedRectangle(cornerSize: self.cornerSize, style: .continuous)
             .foregroundColor(Color.secondary)

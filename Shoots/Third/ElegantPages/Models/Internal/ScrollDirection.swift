@@ -3,12 +3,10 @@
 import Foundation
 
 enum ScrollDirection {
-
     case backward
     case forward
 
     var additiveFactor: Int {
         self == .backward ? -1 : 1
     }
-
 }

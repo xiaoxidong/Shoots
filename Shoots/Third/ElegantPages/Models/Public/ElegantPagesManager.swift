@@ -4,18 +4,17 @@ import Combine
 import SwiftUI
 
 public class ElegantPagesManager: ObservableObject, PageTurnTypeDirectAccess {
-
     /**
-        The index of current page 0...N-1.
+         The index of current page 0...N-1.
 
-        To set a new current page with animation, use `scroll(to:)`.
-        If you want a `Binding` variable, you can create a custom `Binding` through:
-        ```
-        let binding = Binding(
-            get: { self.manager.currentPage },
-            set: { self.manager.scroll(to: $0) })
-        ```
-    */
+         To set a new current page with animation, use `scroll(to:)`.
+         If you want a `Binding` variable, you can create a custom `Binding` through:
+         ```
+         let binding = Binding(
+             get: { self.manager.currentPage },
+             set: { self.manager.scroll(to: $0) })
+         ```
+     */
     @Published public var currentPage: Int
 
     public let pageTurnType: PageTurnType
@@ -32,18 +31,14 @@ public class ElegantPagesManager: ObservableObject, PageTurnTypeDirectAccess {
             currentPage = page
         }
     }
-
 }
 
 protocol ElegantPagesManagerDirectAccess: PageTurnTypeDirectAccess {
-
     var manager: ElegantPagesManager { get }
     var pageTurnType: PageTurnType { get }
-
 }
 
 extension ElegantPagesManagerDirectAccess {
-
     var currentPage: Int {
         manager.currentPage
     }
@@ -51,5 +46,4 @@ extension ElegantPagesManagerDirectAccess {
     var pageTurnType: PageTurnType {
         manager.pageTurnType
     }
-
 }

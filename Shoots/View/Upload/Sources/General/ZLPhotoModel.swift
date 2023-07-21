@@ -24,11 +24,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
 import Photos
+import UIKit
 
 public extension ZLPhotoModel {
-    
     enum MediaType: Int {
         case unknown = 0
         case image
@@ -36,23 +35,21 @@ public extension ZLPhotoModel {
         case livePhoto
         case video
     }
-    
 }
 
 public class ZLPhotoModel: NSObject {
-    
     public let ident: String
-    
+
     public let asset: PHAsset
-    
+
     public var type: ZLPhotoModel.MediaType = .unknown
-    
+
     public var duration: String = ""
-    
+
     public var isSelected: Bool = false
-    
+
     private var pri_editImage: UIImage?
-    
+
     public var editImage: UIImage? {
         set {
             pri_editImage = newValue
@@ -65,18 +62,18 @@ public class ZLPhotoModel: NSObject {
             }
         }
     }
-    
+
     public var second: Second {
         guard type == .video else {
             return 0
         }
         return Int(round(asset.duration))
     }
-    
+
     public var whRatio: CGFloat {
         return CGFloat(asset.pixelWidth) / CGFloat(asset.pixelHeight)
     }
-    
+
     public var previewSize: CGSize {
         let scale: CGFloat = UIScreen.main.scale
         if whRatio > 1 {
@@ -89,21 +86,21 @@ public class ZLPhotoModel: NSObject {
             return CGSize(width: w, height: h)
         }
     }
-    
+
     // Content of the last edit.
     public var editImageModel: ZLEditImageModel?
-    
+
     public init(asset: PHAsset) {
         ident = asset.localIdentifier
         self.asset = asset
         super.init()
-        
+
         type = transformAssetType(for: asset)
         if type == .video {
             duration = transformDuration(for: asset)
         }
     }
-    
+
     public func transformAssetType(for asset: PHAsset) -> ZLPhotoModel.MediaType {
         switch asset.mediaType {
         case .video:
@@ -122,14 +119,14 @@ public class ZLPhotoModel: NSObject {
             return .unknown
         }
     }
-    
+
     public func transformDuration(for asset: PHAsset) -> String {
         let dur = Int(round(asset.duration))
-        
+
         switch dur {
-        case 0..<60:
+        case 0 ..< 60:
             return String(format: "00:%02d", dur)
-        case 60..<3600:
+        case 60 ..< 3600:
             let m = dur / 60
             let s = dur % 60
             return String(format: "%02d:%02d", m, s)
@@ -142,13 +139,10 @@ public class ZLPhotoModel: NSObject {
             return ""
         }
     }
-    
 }
 
 public extension ZLPhotoModel {
-    
-    static func ==(lhs: ZLPhotoModel, rhs: ZLPhotoModel) -> Bool {
+    static func == (lhs: ZLPhotoModel, rhs: ZLPhotoModel) -> Bool {
         return lhs.ident == rhs.ident
     }
-    
 }

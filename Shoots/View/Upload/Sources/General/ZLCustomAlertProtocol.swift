@@ -15,9 +15,9 @@ public enum ZLCustomAlertStyle {
 public protocol ZLCustomAlertProtocol: AnyObject {
     /// Should return an instance of ZLCustomAlertProtocol
     static func alert(title: String?, message: String, style: ZLCustomAlertStyle) -> ZLCustomAlertProtocol
-    
+
     func addAction(_ action: ZLCustomAlertAction)
-    
+
     func show(with parentVC: UIViewController?)
 }
 
@@ -28,17 +28,17 @@ public class ZLCustomAlertAction: NSObject {
         case cancel
         case destructive
     }
-    
+
     public let title: String
-    
+
     public let style: ZLCustomAlertAction.Style
-    
+
     public let handler: ((ZLCustomAlertAction) -> Void)?
-    
+
     deinit {
         zl_debugPrint("ZLCustomAlertAction deinit")
     }
-    
+
     public init(title: String, style: ZLCustomAlertAction.Style, handler: ((ZLCustomAlertAction) -> Void)?) {
         self.title = title
         self.style = style

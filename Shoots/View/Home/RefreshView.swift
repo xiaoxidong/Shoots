@@ -5,17 +5,17 @@
 //  Created by XiaoDong Yuan on 2023/3/28.
 //
 
-import SwiftUI
 import Refresh
+import SwiftUI
 
 struct RefreshView: View {
     @State var headerRefreshing = false
     @State var footerRefreshing = false
     @State var noMore = false
-    
+
     var body: some View {
         ScrollView {
-            RefreshHeader(refreshing: $headerRefreshing, action: reload) { progress in
+            RefreshHeader(refreshing: $headerRefreshing, action: reload) { _ in
                 if self.headerRefreshing {
                     Text("refreshing...")
                 } else {
@@ -23,7 +23,7 @@ struct RefreshView: View {
                 }
             }
 
-            ForEach(1...100, id: \.self) { item in
+            ForEach(1 ... 100, id: \.self) { _ in
                 Text("dddd")
             }
 
@@ -39,14 +39,10 @@ struct RefreshView: View {
         }
         .enableRefresh()
     }
-    
-    func loadMore() {
-        
-    }
-    
-    func reload() {
-        
-    }
+
+    func loadMore() {}
+
+    func reload() {}
 }
 
 struct RefreshView_Previews: PreviewProvider {

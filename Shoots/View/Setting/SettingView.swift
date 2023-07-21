@@ -7,7 +7,7 @@
 
 import SwiftUI
 #if os(iOS)
-import MessageUI
+    import MessageUI
 #endif
 
 struct SettingView: View {
@@ -21,7 +21,7 @@ struct SettingView: View {
     @State var showModeSetting = false
     @State var showIconSetting = false
     #if os(iOS)
-    @State var result: Result<MFMailComposeResult, Error>? = nil
+        @State var result: Result<MFMailComposeResult, Error>? = nil
     #endif
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var user: UserViewModel
@@ -40,7 +40,7 @@ struct SettingView: View {
 //                            customUpload.toggle()
 //                        }
 //                    }
-                    
+
                     // 基础设置
                     Text("基础设置")
                         .font(.system(size: 14, weight: .medium))
@@ -55,7 +55,7 @@ struct SettingView: View {
                         showIconSetting.toggle()
                     }
                 }
-                
+
                 Group {
                     Text("支持我们")
                         .font(.system(size: 14, weight: .medium))
@@ -80,13 +80,13 @@ struct SettingView: View {
                     }
                     SettingCellView(image: "feedback", text: "问题反馈") {
                         #if os(iOS)
-                        if MFMailComposeViewController.canSendMail() {
-                            self.showMail = true
-                        } else {
-                            showToast = true
-                        }
+                            if MFMailComposeViewController.canSendMail() {
+                                self.showMail = true
+                            } else {
+                                showToast = true
+                            }
                         #else
-                        
+
                         #endif
                     }
                     #if os(iOS)
@@ -100,13 +100,12 @@ struct SettingView: View {
                         if UIApplication.shared.canOpenURL(url!) {
                             UIApplication.shared.open(url!)
                         } else {
-                            //提示没有安装 BasicGrammar app
+                            // 提示没有安装 BasicGrammar app
                             openWeibToast = true
                             UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                         }
                     }
-                    
-                    
+
                     Text("隐私协议")
                         .font(.system(size: 14, weight: .medium))
                         .foregroundColor(.shootGray)
@@ -123,7 +122,7 @@ struct SettingView: View {
                     }.sheet(isPresented: self.$showAgreement) {
                         AgreementView(showAgreement: $showAgreement)
                     }
-                    
+
                     if user.login {
                         SettingCellView(image: "logout", text: "退出登录") {
                             withAnimation(.spring()) {
@@ -131,7 +130,7 @@ struct SettingView: View {
                             }
                         }.padding(.top, 36)
                             .alert("确认退出？", isPresented: $logout) {
-                                Button("取消", role: .cancel) { }
+                                Button("取消", role: .cancel) {}
                                 Button("退出") {
                                     Task {
                                         await user.logout()
@@ -140,10 +139,10 @@ struct SettingView: View {
                             }
                     }
                 }
-                
+
                 SettingRateView()
                     .padding(.top)
-                
+
                 Text("🎈A YUANXIAODONG and bo PRODUCT MADE WITH ♥️")
                     .textCase(.uppercase)
                     .multilineTextAlignment(.center)
@@ -156,38 +155,38 @@ struct SettingView: View {
         .navigationTitle("设置")
         .navigationBarBackButtonHidden()
         #if os(iOS)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.shootBlack)
-                        .font(.system(size: 16, weight: .semibold))
-                        .padding(.vertical, 6)
-                        .padding(.trailing, 6)
-                        .contentShape(Rectangle())
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.shootBlack)
+                            .font(.system(size: 16, weight: .semibold))
+                            .padding(.vertical, 6)
+                            .padding(.trailing, 6)
+                            .contentShape(Rectangle())
+                    }
                 }
             }
-        }
         #endif
-        .sheet(isPresented: $showPro) {
-            #if os(iOS)
-            ProView()
-            #endif
-        }
-        .toast(isPresenting: $showToast) {
-            AlertToast(displayMode: .alert, type: .systemImage("drop.triangle.fill", .red), title: "您的手机暂时无法发送邮件，可通过联系我们联系！")
-        }
-        .bottomSlideOverCard(isPresented: $showModeSetting) {
-            ModeView()
-        }
-        .bottomSlideOverCard(isPresented: $showIconSetting) {
-            IconView()
-        }
-        .fullScreenCover(isPresented: $customUpload, content: {
-            CustomUploadView()
-        })
+            .sheet(isPresented: $showPro) {
+                #if os(iOS)
+                    ProView()
+                #endif
+            }
+            .toast(isPresenting: $showToast) {
+                AlertToast(displayMode: .alert, type: .systemImage("drop.triangle.fill", .red), title: "您的手机暂时无法发送邮件，可通过联系我们联系！")
+            }
+            .bottomSlideOverCard(isPresented: $showModeSetting) {
+                ModeView()
+            }
+            .bottomSlideOverCard(isPresented: $showIconSetting) {
+                IconView()
+            }
+            .fullScreenCover(isPresented: $customUpload, content: {
+                CustomUploadView()
+            })
     }
 }
 
@@ -196,13 +195,13 @@ struct SettingView_Previews: PreviewProvider {
         NavigationView {
             SettingView()
         }
-            .previewDisplayName("Chinese")
-            .environment(\.locale, .init(identifier: "zh-cn"))
-        
+        .previewDisplayName("Chinese")
+        .environment(\.locale, .init(identifier: "zh-cn"))
+
         NavigationView {
             SettingView()
         }
-            .previewDisplayName("English")
-            .environment(\.locale, .init(identifier: "en"))
+        .previewDisplayName("English")
+        .environment(\.locale, .init(identifier: "en"))
     }
 }

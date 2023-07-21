@@ -2,10 +2,9 @@
 
 import SwiftUI
 
-private class UpdateUIViewControllerBugFixClass { }
+private class UpdateUIViewControllerBugFixClass {}
 
 struct ElegantListController: UIViewControllerRepresentable, ElegantListManagerDirectAccess, PageTurnTypeDirectAccess {
-
     typealias UIViewControllerType = ElegantTriadPagesController
 
     // See https://stackoverflow.com/questions/58635048/in-a-uiviewcontrollerrepresentable-how-can-i-pass-an-observedobjects-value-to
@@ -18,14 +17,14 @@ struct ElegantListController: UIViewControllerRepresentable, ElegantListManagerD
     let pageTurnType: PageTurnType
     let viewForPage: (Int) -> AnyView
 
-    func makeUIViewController(context: Context) -> ElegantTriadPagesController {
+    func makeUIViewController(context _: Context) -> ElegantTriadPagesController {
         ElegantTriadPagesController(manager: manager,
                                     axis: axis,
                                     length: length,
                                     viewForPage: viewForPage)
     }
 
-    func updateUIViewController(_ controller: ElegantTriadPagesController, context: Context) {
+    func updateUIViewController(_ controller: ElegantTriadPagesController, context _: Context) {
         controller.viewForPage = viewForPage
         DispatchQueue.main.async {
             self.setProperPage(for: controller)
@@ -40,7 +39,7 @@ struct ElegantListController: UIViewControllerRepresentable, ElegantListManagerD
             }
         case let .scroll(animated):
             let isFirstPage = currentPage.index == 0
-            let isLastPage = currentPage.index == pageCount-1
+            let isLastPage = currentPage.index == pageCount - 1
 
             if isFirstPage || isLastPage {
                 let pageToTurnTo = isFirstPage ? 0 : maxPageIndex
@@ -69,11 +68,9 @@ struct ElegantListController: UIViewControllerRepresentable, ElegantListManagerD
             manager.currentPage.state = .completed
         }
     }
-
 }
 
 class ElegantTriadPagesController: UIViewController {
-
     private var controllers: [UIHostingController<AnyView>]
     private(set) var previousPage: Int
 
@@ -83,7 +80,8 @@ class ElegantTriadPagesController: UIViewController {
     init(manager: ElegantListManager,
          axis: Axis,
          length: CGFloat,
-         viewForPage: @escaping (Int) -> AnyView) {
+         viewForPage: @escaping (Int) -> AnyView)
+    {
         self.axis = axis
         self.viewForPage = viewForPage
         previousPage = manager.currentPage.index
@@ -113,7 +111,8 @@ class ElegantTriadPagesController: UIViewController {
         }
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -126,8 +125,8 @@ class ElegantTriadPagesController: UIViewController {
         guard manager.currentPage.index != previousPage && // not same page
             (previousPage != 0 &&
                 manager.currentPage.index != 0) && // not 1st or 2nd page
-            (previousPage != manager.pageCount-1 &&
-                manager.currentPage.index != manager.pageCount-1) // not last page or 2nd to last page
+            (previousPage != manager.pageCount - 1 &&
+                manager.currentPage.index != manager.pageCount - 1) // not last page or 2nd to last page
         else {
             manager.currentPage.state = .completed
             return
@@ -141,10 +140,10 @@ class ElegantTriadPagesController: UIViewController {
     private func rearrangeControllersAndUpdatePage(manager: ElegantListManager) {
         if manager.currentPage.index > previousPage { // scrolled down
             controllers.append(controllers.removeFirst())
-            controllers.last!.rootView = viewForPage(manager.currentPage.index+1)
+            controllers.last!.rootView = viewForPage(manager.currentPage.index + 1)
         } else { // scrolled up
             controllers.insert(controllers.removeLast(), at: 0)
-            controllers.first!.rootView = viewForPage(manager.currentPage.index-1)
+            controllers.first!.rootView = viewForPage(manager.currentPage.index - 1)
         }
     }
 
@@ -169,23 +168,20 @@ class ElegantTriadPagesController: UIViewController {
 
         completion?()
     }
-
 }
 
 private extension ElegantListManager {
-
     var pageRange: ClosedRange<Int> {
         let startingPage: Int
 
-        if currentPage.index == pageCount-1 {
-            startingPage = (pageCount-3).clamped(to: 0...pageCount-1)
+        if currentPage.index == pageCount - 1 {
+            startingPage = (pageCount - 3).clamped(to: 0 ... pageCount - 1)
         } else {
-            startingPage = (currentPage.index-1).clamped(to: 0...pageCount-1)
+            startingPage = (currentPage.index - 1).clamped(to: 0 ... pageCount - 1)
         }
 
-        let trailingPage = (startingPage+2).clamped(to: 0...pageCount-1)
+        let trailingPage = (startingPage + 2).clamped(to: 0 ... pageCount - 1)
 
-        return startingPage...trailingPage
+        return startingPage ... trailingPage
     }
-
 }

@@ -30,33 +30,30 @@ protocol InAppProductRequestBuilder: class {
 }
 
 class InAppProductQueryRequestBuilder: InAppProductRequestBuilder {
-    
     func request(productIds: Set<String>, callback: @escaping InAppProductRequestCallback) -> InAppProductRequest {
         return InAppProductQueryRequest(productIds: productIds, callback: callback)
     }
 }
 
 class ProductsInfoController: NSObject {
-
     struct InAppProductQuery {
         let request: InAppProductRequest
         var completionHandlers: [InAppProductRequestCallback]
     }
-    
+
     let inAppProductRequestBuilder: InAppProductRequestBuilder
     init(inAppProductRequestBuilder: InAppProductRequestBuilder = InAppProductQueryRequestBuilder()) {
         self.inAppProductRequestBuilder = inAppProductRequestBuilder
     }
-    
+
     // As we can have multiple inflight requests, we store them in a dictionary by product ids
     private var inflightRequests: [Set<String>: InAppProductQuery] = [:]
 
     @discardableResult
     func retrieveProductsInfo(_ productIds: Set<String>, completion: @escaping (RetrieveResults) -> Void) -> InAppProductRequest {
-
         if inflightRequests[productIds] == nil {
             let request = inAppProductRequestBuilder.request(productIds: productIds) { results in
-                
+
                 if let query = self.inflightRequests[productIds] {
                     for completion in query.completionHandlers {
                         completion(results)
@@ -73,7 +70,6 @@ class ProductsInfoController: NSObject {
             return request
 
         } else {
-            
             inflightRequests[productIds]!.completionHandlers.append(completion)
 
             let query = inflightRequests[productIds]!

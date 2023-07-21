@@ -31,7 +31,7 @@ extension ZLPhotoBrowserWrapper where Base: UIFont {
         guard let name = ZLCustomFontDeploy.fontName else {
             return UIFont.systemFont(ofSize: fontSize)
         }
-        
+
         return UIFont(name: name, size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)
     }
 }

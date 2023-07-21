@@ -9,7 +9,6 @@
 import SwiftUI
 
 public struct ActivityIndicatorView: View {
-
     public enum IndicatorType {
         case `default`
         case arcs
@@ -28,7 +27,7 @@ public struct ActivityIndicatorView: View {
     var text: String = "加载中..."
     var width: CGFloat = 36
     public init(isVisible: Binding<Bool>, type: IndicatorType, text: String = "加载中...", width: CGFloat = 36) {
-        self._isVisible = isVisible
+        _isVisible = isVisible
         self.type = type
         self.width = width
         self.text = text
@@ -72,11 +71,11 @@ public struct ActivityIndicatorView: View {
             return AnyView(OpacityDotsIndicatorView())
         case .equalizer:
             return AnyView(EqualizerIndicatorView())
-        case .growingArc(let color):
+        case let .growingArc(color):
             return AnyView(GrowingArcIndicatorView(color: color))
         case .growingCircle:
             return AnyView(GrowingCircleIndicatorView())
-        case .gradient(let colors, let lineCap):
+        case let .gradient(colors, lineCap):
             return AnyView(GradientIndicatorView(colors: colors, lineCap: lineCap))
         }
     }

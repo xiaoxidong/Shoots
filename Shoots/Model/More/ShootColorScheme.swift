@@ -11,7 +11,7 @@ enum ShootColorScheme: String, Codable {
     case light
     case dark
     case none
-    
+
     var colorScheme: ColorScheme? {
         switch self {
         case .light:
@@ -22,7 +22,7 @@ enum ShootColorScheme: String, Codable {
             return .none
         }
     }
-    
+
     func colorScheme(_ colorScheme: ColorScheme) -> ColorScheme {
         if self == .light {
             return .light
@@ -36,35 +36,36 @@ enum ShootColorScheme: String, Codable {
             }
         }
     }
-    
+
     #if os(iOS)
-    func system(_ systemStyle: Bool) -> UIStatusBarStyle {
-        if systemStyle {
-            return systemStatusStyle
-        } else {
-            return antiSystemStatusStyle
+        func system(_ systemStyle: Bool) -> UIStatusBarStyle {
+            if systemStyle {
+                return systemStatusStyle
+            } else {
+                return antiSystemStatusStyle
+            }
         }
-    }
-    var systemStatusStyle: UIStatusBarStyle {
-        switch self {
-        case .light:
-            return .darkContent
-        case .dark:
-            return .lightContent
-        case .none:
-            return .darkContent
+
+        var systemStatusStyle: UIStatusBarStyle {
+            switch self {
+            case .light:
+                return .darkContent
+            case .dark:
+                return .lightContent
+            case .none:
+                return .darkContent
+            }
         }
-    }
-    
-    var antiSystemStatusStyle: UIStatusBarStyle {
-        switch self {
-        case .light:
-            return .lightContent
-        case .dark:
-            return .darkContent
-        case .none:
-            return .lightContent
+
+        var antiSystemStatusStyle: UIStatusBarStyle {
+            switch self {
+            case .light:
+                return .lightContent
+            case .dark:
+                return .darkContent
+            case .none:
+                return .lightContent
+            }
         }
-    }
     #endif
 }

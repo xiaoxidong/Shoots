@@ -18,14 +18,14 @@ final class UIHostingView<Content: View>: UIView {
     }
 
     required init(rootView: Content) {
-        self.rootViewHostingController = UIHostingController(rootView: rootView)
+        rootViewHostingController = UIHostingController(rootView: rootView)
         super.init(frame: .zero)
         rootViewHostingController.view.backgroundColor = .clear
         addSubview(rootViewHostingController.view)
     }
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -53,15 +53,15 @@ final class UIHostingView<Content: View>: UIView {
 
     override func systemLayoutSizeFitting(
         _ targetSize: CGSize,
-        withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority,
-        verticalFittingPriority: UILayoutPriority
+        withHorizontalFittingPriority _: UILayoutPriority,
+        verticalFittingPriority _: UILayoutPriority
     ) -> CGSize {
         rootViewHostingController.sizeThatFits(in: targetSize)
     }
 }
 
-extension View {
-    public func shadow(
+public extension View {
+    func shadow(
         color: Color = .black,
         x: CGFloat,
         y: CGFloat,

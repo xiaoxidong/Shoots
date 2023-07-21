@@ -5,8 +5,8 @@
 //  Created by XiaoDong Yuan on 2023/3/30.
 //
 
-import SwiftUI
 import LaunchAtLogin
+import SwiftUI
 
 struct MacSettingsView: View {
     @State var selection = 1
@@ -29,7 +29,7 @@ struct MacSettingsView: View {
                 .tag(2)
         }.frame(width: 520, height: 520)
     }
-    
+
     @AppStorage("colorMode") private var colorMode: ShootColorScheme = .none
     @AppStorage("statusIcon") var statusIcon: String = "photo.fill.on.rectangle.fill"
     @Environment(\.colorScheme) var colorScheme
@@ -54,7 +54,7 @@ struct MacSettingsView: View {
                         }
                     }.padding(.vertical, 6)
                         .padding(.top, 36)
-                    
+
                     LabeledContent("外观设置：") {
                         Menu {
                             Button(action: {
@@ -62,13 +62,13 @@ struct MacSettingsView: View {
                             }) {
                                 Text("🌓 跟随系统")
                             }
-                            
+
                             Button(action: {
                                 colorMode = .light
                             }) {
                                 Text("🌕 浅色模式")
                             }
-                            
+
                             Button(action: {
                                 colorMode = .dark
                             }) {
@@ -84,7 +84,7 @@ struct MacSettingsView: View {
                             }
                         }.frame(width: 120)
                     }.padding(.vertical, 6)
-                    
+
                     LabeledContent("状态栏图标：") {
                         Menu {
                             Button(action: {
@@ -92,13 +92,13 @@ struct MacSettingsView: View {
                             }) {
                                 Image(systemName: "theatermask.and.paintbrush.fill")
                             }
-                            
+
                             Button(action: {
                                 statusIcon = "photo.fill.on.rectangle.fill"
                             }) {
                                 Image(systemName: "photo.fill.on.rectangle.fill")
                             }
-                            
+
                             Button(action: {
                                 statusIcon = "photo.stack.fill"
                             }) {
@@ -132,7 +132,7 @@ struct MacSettingsView: View {
                         }
                     }.padding(.vertical, 6)
                         .padding(.top)
-                    
+
                     LabeledContent("评价应用：") {
                         Button {
                             let urlString = "itms-apps://itunes.apple.com/app/id1140397642?action=write-review"
@@ -164,16 +164,16 @@ struct MacSettingsView: View {
                                     Text("邮件反馈")
                                 }
                             }
-                            
+
                             Text("微信小助手：")
                                 .font(.system(size: 12, weight: .regular))
                                 .foregroundColor(.shootGray)
-                            + Text("Poke202020")
+                                + Text("Poke202020")
                                 .font(.system(size: 12, weight: .bold))
                                 .foregroundColor(.shootGray)
                         }
                     }.padding(.vertical, 6)
-                    
+
                     LabeledContent("社交媒体：") {
                         Button {
                             let urlStr = "https://weibo.com/u/5682979153"
@@ -190,7 +190,7 @@ struct MacSettingsView: View {
                         }
                     }.padding(.vertical, 6)
                 }
-                
+
                 LabeledContent {
                     Rectangle()
                         .frame(width: 200, height: 1)
@@ -203,7 +203,7 @@ struct MacSettingsView: View {
                 Section {
                     LabeledContent("开机启动：") {
                         // 不知道为什么，添加了登录自动开启之后，iOS 的预览就不能使用，所以这里暂时注销了，可以添加下面的 SPM，然后引入库即可。
-                        //https://github.com/sindresorhus/LaunchAtLogin
+                        // https://github.com/sindresorhus/LaunchAtLogin
                         LaunchAtLogin.Toggle {
                             Text("开启")
                         }
@@ -216,7 +216,7 @@ struct MacSettingsView: View {
                             Text("关闭 Shoots")
                         }
                     }.padding(.vertical, 6)
-                    
+
                     if user.login {
                         LabeledContent("已登录：") {
                             Button {
@@ -228,7 +228,7 @@ struct MacSettingsView: View {
                             }
                         }.padding(.vertical, 6)
                             .alert("确认退出？", isPresented: $logout) {
-                                Button("取消", role: .cancel) { }
+                                Button("取消", role: .cancel) {}
                                 Button("退出") {
                                     Task {
                                         await user.logout()
@@ -238,11 +238,11 @@ struct MacSettingsView: View {
                     }
                 }
             }
-            
+
             SettingRateView()
                 .padding(.top)
                 .frame(width: 460)
-            
+
             Text("🎈A YUANXIAODONG and bo PRODUCT MADE WITH ♥️")
                 .textCase(.uppercase)
                 .multilineTextAlignment(.center)
@@ -262,7 +262,7 @@ struct MacSettingsView_Previews: PreviewProvider {
         MacSettingsView()
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        
+
         MacSettingsView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

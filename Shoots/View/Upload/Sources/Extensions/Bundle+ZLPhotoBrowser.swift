@@ -30,21 +30,21 @@ private class BundleFinder {}
 
 extension Bundle {
     private static var bundle: Bundle?
-    
+
     static var normalModule: Bundle? = {
         let bundleName = "ZLPhotoBrowser"
 
         var candidates = [
             // Bundle should be present here when the package is linked into an App.
             Bundle.main.resourceURL,
-            
+
             // Bundle should be present here when the package is linked into a framework.
             Bundle(for: ZLPhotoPreviewSheet.self).resourceURL,
-            
+
             // For command-line tools.
             Bundle.main.bundleURL,
         ]
-        
+
         #if SWIFT_PACKAGE
             // For SWIFT_PACKAGE.
             candidates.append(Bundle.module.bundleURL)
@@ -56,20 +56,20 @@ extension Bundle {
                 return bundle
             }
         }
-        
+
         return nil
     }()
-    
+
     static var spmModule: Bundle? = {
         let bundleName = "ZLPhotoBrowser_ZLPhotoBrowser"
 
         let candidates = [
             // Bundle should be present here when the package is linked into an App.
             Bundle.main.resourceURL,
-            
+
             // Bundle should be present here when the package is linked into a framework.
             Bundle(for: BundleFinder.self).resourceURL,
-            
+
             // For command-line tools.
             Bundle.main.bundleURL,
         ]
@@ -80,18 +80,18 @@ extension Bundle {
                 return bundle
             }
         }
-        
+
         return nil
     }()
-    
+
     static var zlPhotoBrowserBundle: Bundle? {
         return normalModule ?? spmModule
     }
-    
+
 //    class func resetLanguage() {
 //        bundle = nil
 //    }
-    
+
 //    class func zlLocalizedString(_ key: String) -> String {
 //        if bundle == nil {
 //            guard let path = Bundle.zlPhotoBrowserBundle?.path(forResource: getLanguage(), ofType: "lproj") else {
@@ -103,7 +103,7 @@ extension Bundle {
 //        let value = bundle?.localizedString(forKey: key, value: nil, table: nil)
 //        return Bundle.main.localizedString(forKey: key, value: value, table: nil)
 //    }
-    
+
 //    private class func getLanguage() -> String {
 //        var language = "en"
 //

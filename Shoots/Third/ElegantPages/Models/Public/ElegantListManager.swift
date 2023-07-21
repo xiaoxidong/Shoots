@@ -4,7 +4,6 @@ import Combine
 import SwiftUI
 
 public class ElegantListManager: ObservableObject {
-
     @Published var currentPage: (index: Int, state: PageState)
     @Published var activeIndex: Int
 
@@ -23,11 +22,11 @@ public class ElegantListManager: ObservableObject {
 
         currentPage = (startingPage, .completed)
         self.pageCount = pageCount
-        maxPageIndex = (pageCount-1).clamped(to: 0...2)
+        maxPageIndex = (pageCount - 1).clamped(to: 0 ... 2)
 
         if startingPage == 0 {
             activeIndex = 0
-        } else if startingPage == pageCount-1 {
+        } else if startingPage == pageCount - 1 {
             activeIndex = maxPageIndex
         } else {
             activeIndex = 1
@@ -51,7 +50,7 @@ public class ElegantListManager: ObservableObject {
             if currentIndex == 0 {
                 // just scrolled from first page to second page
                 currentIndex += 1
-            } else if currentIndex == pageCount-1 {
+            } else if currentIndex == pageCount - 1 {
                 // just scrolled from last page to second to last page
                 currentIndex -= 1
             } else {
@@ -64,24 +63,20 @@ public class ElegantListManager: ObservableObject {
                 currentIndex -= 1
             } else if activeIndex == 2 {
                 // case where you're on the last page and you drag and stay on the last page
-                guard currentIndex != pageCount-1 else { return }
+                guard currentIndex != pageCount - 1 else { return }
                 currentIndex += 1
             }
         }
 
         currentPage = (currentIndex, .rearrange)
     }
-
 }
 
 protocol ElegantListManagerDirectAccess {
-
     var manager: ElegantListManager { get }
-
 }
 
 extension ElegantListManagerDirectAccess {
-
     var currentPage: (index: Int, state: PageState) {
         manager.currentPage
     }
@@ -97,5 +92,4 @@ extension ElegantListManagerDirectAccess {
     var maxPageIndex: Int {
         manager.maxPageIndex
     }
-
 }

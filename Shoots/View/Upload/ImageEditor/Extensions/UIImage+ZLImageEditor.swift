@@ -24,8 +24,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
 import Accelerate
+import UIKit
 
 extension ZLImageEditorWrapper where Base: UIImage {
     // 修复转向
@@ -33,39 +33,39 @@ extension ZLImageEditorWrapper where Base: UIImage {
         if base.imageOrientation == .up {
             return base
         }
-        
+
         var transform = CGAffineTransform.identity
-        
+
         switch base.imageOrientation {
         case .down, .downMirrored:
             transform = CGAffineTransform(translationX: width, y: height)
             transform = transform.rotated(by: .pi)
-        
+
         case .left, .leftMirrored:
             transform = CGAffineTransform(translationX: width, y: 0)
             transform = transform.rotated(by: CGFloat.pi / 2)
-            
+
         case .right, .rightMirrored:
             transform = CGAffineTransform(translationX: 0, y: height)
             transform = transform.rotated(by: -CGFloat.pi / 2)
-            
+
         default:
             break
         }
-        
+
         switch base.imageOrientation {
         case .upMirrored, .downMirrored:
             transform = transform.translatedBy(x: width, y: 0)
             transform = transform.scaledBy(x: -1, y: 1)
-            
+
         case .leftMirrored, .rightMirrored:
             transform = transform.translatedBy(x: height, y: 0)
             transform = transform.scaledBy(x: -1, y: 1)
-        
+
         default:
             break
         }
-        
+
         guard let cgImage = base.cgImage, let colorSpace = cgImage.colorSpace else {
             return base
         }
@@ -77,23 +77,23 @@ extension ZLImageEditorWrapper where Base: UIImage {
         default:
             context?.draw(cgImage, in: CGRect(x: 0, y: 0, width: width, height: height))
         }
-        
+
         guard let newCgImage = context?.makeImage() else {
             return base
         }
         return UIImage(cgImage: newCgImage)
     }
-    
+
     func rotate(orientation: UIImage.Orientation) -> UIImage {
         guard let imagRef = base.cgImage else {
             return base
         }
         let rect = CGRect(origin: .zero, size: CGSize(width: CGFloat(imagRef.width), height: CGFloat(imagRef.height)))
-        
+
         var bnds = rect
-        
+
         var transform = CGAffineTransform.identity
-        
+
         switch orientation {
         case .up:
             return base
@@ -126,7 +126,7 @@ extension ZLImageEditorWrapper where Base: UIImage {
         @unknown default:
             return base
         }
-        
+
         UIGraphicsBeginImageContext(bnds.size)
         let context = UIGraphicsGetCurrentContext()
         switch orientation {
@@ -141,22 +141,22 @@ extension ZLImageEditorWrapper where Base: UIImage {
         context?.draw(imagRef, in: rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         return newImage ?? base
     }
-    
+
     func swapRectWidthAndHeight(_ rect: CGRect) -> CGRect {
         var r = rect
         r.size.width = rect.height
         r.size.height = rect.width
         return r
     }
-    
+
     func rotate(degree: CGFloat) -> UIImage? {
         guard let cgImage = base.cgImage else {
             return nil
         }
-        
+
         let rotatedViewBox = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
         let t = CGAffineTransform(rotationAngle: degree)
         rotatedViewBox.transform = t
@@ -177,28 +177,28 @@ extension ZLImageEditorWrapper where Base: UIImage {
 
         return newImage
     }
-    
+
     func mosaicImage() -> UIImage? {
         guard let currCgImage = base.cgImage else {
             return nil
         }
-        
+
         let scale = 8 * width / UIScreen.main.bounds.width
         let currCiImage = CIImage(cgImage: currCgImage)
         let filter = CIFilter(name: "CIPixellate")
         filter?.setValue(currCiImage, forKey: kCIInputImageKey)
         filter?.setValue(scale, forKey: kCIInputScaleKey)
         guard let outputImage = filter?.outputImage else { return nil }
-        
+
         let context = CIContext()
-        
+
         if let cgImg = context.createCGImage(outputImage, from: CGRect(origin: .zero, size: base.size)) {
             return UIImage(cgImage: cgImg)
         } else {
             return nil
         }
     }
-    
+
     func resize(_ size: CGSize) -> UIImage? {
         if size.width <= 0 || size.height <= 0 {
             return nil
@@ -209,18 +209,18 @@ extension ZLImageEditorWrapper where Base: UIImage {
         UIGraphicsEndImageContext()
         return temp
     }
-    
+
     /// Processing speed is better than resize(:) method
     /// bitsPerPixel = bitsPerComponent * 4
     func resize_vI(_ size: CGSize, bitsPerComponent: UInt32 = 8, bitsPerPixel: UInt32 = 32) -> UIImage? {
         guard let cgImage = base.cgImage else { return nil }
-        
+
         var format = vImage_CGImageFormat(
             bitsPerComponent: bitsPerComponent, bitsPerPixel: bitsPerPixel, colorSpace: nil,
             bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.first.rawValue),
             version: 0, decode: nil, renderingIntent: .defaultIntent
         )
-        
+
         var sourceBuffer = vImage_Buffer()
         defer {
             if #available(iOS 13.0, *) {
@@ -229,33 +229,33 @@ extension ZLImageEditorWrapper where Base: UIImage {
                 sourceBuffer.data.deallocate()
             }
         }
-        
+
         var error = vImageBuffer_InitWithCGImage(&sourceBuffer, &format, nil, cgImage, numericCast(kvImageNoFlags))
         guard error == kvImageNoError else { return nil }
-        
+
         let destWidth = Int(size.width)
         let destHeight = Int(size.height)
         let bytesPerPixel = cgImage.bitsPerPixel / 8
         let destBytesPerRow = destWidth * bytesPerPixel
-        
+
         let destData = UnsafeMutablePointer<UInt8>.allocate(capacity: destHeight * destBytesPerRow)
         defer {
             destData.deallocate()
         }
         var destBuffer = vImage_Buffer(data: destData, height: vImagePixelCount(destHeight), width: vImagePixelCount(destWidth), rowBytes: destBytesPerRow)
-        
+
         // scale the image
         error = vImageScale_ARGB8888(&sourceBuffer, &destBuffer, nil, numericCast(kvImageHighQualityResampling))
         guard error == kvImageNoError else { return nil }
-        
+
         // create a CGImage from vImage_Buffer
         guard let destCGImage = vImageCreateCGImageFromBuffer(&destBuffer, &format, nil, nil, numericCast(kvImageNoFlags), &error)?.takeRetainedValue() else { return nil }
         guard error == kvImageNoError else { return nil }
-        
+
         // create a UIImage
         return UIImage(cgImage: destCGImage, scale: base.scale, orientation: base.imageOrientation)
     }
-    
+
     func toCIImage() -> CIImage? {
         var ciImage = base.ciImage
         if ciImage == nil, let cgImage = base.cgImage {
@@ -263,7 +263,7 @@ extension ZLImageEditorWrapper where Base: UIImage {
         }
         return ciImage
     }
-    
+
     func clipImage(angle: CGFloat, editRect: CGRect, isCircle: Bool) -> UIImage? {
         let a = ((Int(angle) % 360) - 360) % 360
         var newImage: UIImage = base
@@ -293,7 +293,7 @@ extension ZLImageEditorWrapper where Base: UIImage {
         let clipImage = UIImage(cgImage: cgi, scale: newImage.scale, orientation: .up)
         return clipImage
     }
-    
+
     func blurImage(level: CGFloat) -> UIImage? {
         guard let ciImage = toCIImage() else {
             return nil
@@ -301,7 +301,7 @@ extension ZLImageEditorWrapper where Base: UIImage {
         let blurFilter = CIFilter(name: "CIGaussianBlur")
         blurFilter?.setValue(ciImage, forKey: "inputImage")
         blurFilter?.setValue(level, forKey: "inputRadius")
-        
+
         guard let outputImage = blurFilter?.outputImage else {
             return nil
         }
@@ -311,7 +311,7 @@ extension ZLImageEditorWrapper where Base: UIImage {
         }
         return UIImage(cgImage: cgImage)
     }
-    
+
     /// Compress an image to the max size
     /// - Warning: If the image has a transparent background color, this method will change it as jpeg doesn't support it.
     func compress(to maxSize: Int) -> UIImage {
@@ -321,7 +321,7 @@ extension ZLImageEditorWrapper where Base: UIImage {
         var min: CGFloat = 0
         var max: CGFloat = 1
         var data: Data?
-        for _ in 0..<6 {
+        for _ in 0 ..< 6 {
             let mid = (min + max) / 2
             data = base.jpegData(compressionQuality: mid)
             let compressSize = data?.count ?? 0
@@ -356,7 +356,7 @@ extension ZLImageEditorWrapper where Base: UIImage {
     var width: CGFloat {
         base.size.width
     }
-    
+
     var height: CGFloat {
         base.size.height
     }
@@ -372,7 +372,7 @@ extension ZLImageEditorWrapper where Base: UIImage {
         guard let ciImage = toCIImage() else {
             return base
         }
-        
+
         let filter = CIFilter(name: "CIColorControls")
         filter?.setValue(ciImage, forKey: kCIInputImageKey)
         filter?.setValue(ZLImageEditorConfiguration.AdjustTool.brightness.filterValue(brightness), forKey: ZLImageEditorConfiguration.AdjustTool.brightness.key)

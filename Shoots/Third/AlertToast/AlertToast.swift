@@ -1,24 +1,23 @@
 import SwiftUI
 
 @available(iOS 13, macOS 11, *)
-fileprivate struct AnimatedCheckmark: View {
-    
-    ///Checkmark color
+private struct AnimatedCheckmark: View {
+    /// Checkmark color
     var color: Color = .black
-    
-    ///Checkmark color
+
+    /// Checkmark color
     var size: Int = 50
-    
+
     var height: CGFloat {
         return CGFloat(size)
     }
-    
+
     var width: CGFloat {
         return CGFloat(size)
     }
-    
+
     @State private var percentage: CGFloat = .zero
-    
+
     var body: some View {
         Path { path in
             path.move(to: CGPoint(x: 0, y: height / 2))
@@ -36,28 +35,27 @@ fileprivate struct AnimatedCheckmark: View {
 }
 
 @available(iOS 13, macOS 11, *)
-fileprivate struct AnimatedXmark: View {
-    
-    ///xmark color
+private struct AnimatedXmark: View {
+    /// xmark color
     var color: Color = .black
-    
-    ///xmark size
+
+    /// xmark size
     var size: Int = 50
-    
+
     var height: CGFloat {
         return CGFloat(size)
     }
-    
+
     var width: CGFloat {
         return CGFloat(size)
     }
-    
-    var rect: CGRect{
+
+    var rect: CGRect {
         return CGRect(x: 0, y: 0, width: size, height: size)
     }
-    
+
     @State private var percentage: CGFloat = .zero
-    
+
     var body: some View {
         Path { path in
             path.move(to: CGPoint(x: rect.minX, y: rect.minY))
@@ -76,150 +74,147 @@ fileprivate struct AnimatedXmark: View {
 }
 
 @available(iOS 13, macOS 11, *)
-public struct AlertToast: View{
+public struct AlertToast: View {
     @State var animate = false
     /// Determine how the alert will be display
-    public enum DisplayMode: Equatable{
-        
-        ///Present at the center of the screen
+    public enum DisplayMode: Equatable {
+        /// Present at the center of the screen
         case alert
-        
-        ///Drop from the top of the screen
+
+        /// Drop from the top of the screen
         case hud
     }
-    
+
     /// Determine what the alert will display
-    public enum AlertType: Equatable{
-        
-        ///Animated checkmark
+    public enum AlertType: Equatable {
+        /// Animated checkmark
         case success(_ color: Color? = Color.green)
-        
-        ///Animated xmark
+
+        /// Animated xmark
         case error(_ color: Color? = Color.red)
-        
-        ///System image from `SFSymbols`
+
+        /// System image from `SFSymbols`
         case systemImage(_ name: String, _ color: Color)
-        
-        ///Image from Assets
+
+        /// Image from Assets
         case image(_ name: String, _ color: Color)
-        
-        ///Loading indicator (Circular)
+
+        /// Loading indicator (Circular)
         case loading
-        
-        ///Only text alert
+
+        /// Only text alert
         case regular
     }
-    
+
     /// Customize Alert Appearance
-    public enum AlertCustom: Equatable{
-        
+    public enum AlertCustom: Equatable {
         case custom(backgroundColor: Color? = nil,
                     titleColor: Color? = nil,
                     subTitleColor: Color? = nil,
                     titleFont: Font? = nil,
                     subTitleFont: Font? = nil)
-        
-        ///Get background color
+
+        /// Get background color
         var backgroundColor: Color? {
-            switch self{
-            case .custom(backgroundColor: let color, _, _, _, _):
+            switch self {
+            case let .custom(backgroundColor: color, _, _, _, _):
                 return color
             }
         }
-        
+
         /// Get title color
         var titleColor: Color? {
-            switch self{
-            case .custom(_,let color, _,_,_):
-            return color
-            }
-        }
-        
-        /// Get subTitle color
-        var subtitleColor: Color? {
-            switch self{
-            case .custom(_,_, let color, _,_):
+            switch self {
+            case let .custom(_, color, _, _, _):
                 return color
             }
         }
-        
+
+        /// Get subTitle color
+        var subtitleColor: Color? {
+            switch self {
+            case let .custom(_, _, color, _, _):
+                return color
+            }
+        }
+
         /// Get title font
         var titleFont: Font? {
             switch self {
-            case .custom(_, _, _, titleFont: let font, _):
+            case let .custom(_, _, _, titleFont: font, _):
                 return font
             }
         }
-        
+
         /// Get subTitle font
         var subTitleFont: Font? {
             switch self {
-            case .custom(_, _, _, _, subTitleFont: let font):
+            case let .custom(_, _, _, _, subTitleFont: font):
                 return font
             }
         }
     }
-    
-    ///The display mode
-    ///`.alert`
-    ///`.hud`
+
+    /// The display mode
+    /// `.alert`
+    /// `.hud`
     public var displayMode: DisplayMode = .alert
-    
-    ///What the alert would show
-    ///`complete`, `error`, `systemImage`, `image`, `loading`, `regular`
+
+    /// What the alert would show
+    /// `complete`, `error`, `systemImage`, `image`, `loading`, `regular`
     public var type: AlertType
-    
-    ///The title of the alert (`Optional(String)`)
+
+    /// The title of the alert (`Optional(String)`)
     public var title: String? = nil
-    
-    ///The subtitle of the alert (`Optional(String)`)
+
+    /// The subtitle of the alert (`Optional(String)`)
     public var subTitle: String? = nil
-    
-    ///Customize your alert appearance
+
+    /// Customize your alert appearance
     public var custom: AlertCustom?
-    
-    ///Full init
+
+    /// Full init
     public init(displayMode: DisplayMode = .alert,
                 type: AlertType,
                 title: String? = nil,
                 subTitle: String? = nil,
-                custom: AlertCustom? = nil){
-        
+                custom: AlertCustom? = nil)
+    {
         self.displayMode = displayMode
         self.type = type
         self.title = title
         self.subTitle = subTitle
         self.custom = custom
     }
-    
-    ///Short init with most used parameters
+
+    /// Short init with most used parameters
     public init(displayMode: DisplayMode,
                 type: AlertType,
-                title: String? = nil){
-        
+                title: String? = nil)
+    {
         self.displayMode = displayMode
         self.type = type
         self.title = title
     }
-    
-    ///HUD View
-    public var hud: some View{
-        Group{
-            HStack(spacing: 10){
-                switch type{
-                case .success(let color):
+
+    /// HUD View
+    public var hud: some View {
+        Group {
+            HStack(spacing: 10) {
+                switch type {
+                case let .success(color):
                     Image(systemName: "checkmark.seal.fill")
                         .hudModifier()
                         .foregroundColor(color ?? Color.green)
-                case .error(let color):
+                case let .error(color):
                     Image(systemName: "drop.triangle.fill")
                         .hudModifier()
                         .foregroundColor(color ?? Color.red)
-                case .systemImage(let name, let color):
+                case let .systemImage(name, color):
                     Image(systemName: name)
                         .hudModifier()
                         .foregroundColor(color)
-                case .image(let name, let color):
+                case let .image(name, color):
                     Image(name)
                         .hudModifier()
                         .foregroundColor(color)
@@ -228,20 +223,20 @@ public struct AlertToast: View{
                     ActivityIndicatorView(isVisible: $animate, type: .equalizer)
                         .frame(width: 26, height: 20)
                         .foregroundColor(.red)
-                    
+
                 case .regular:
                     EmptyView()
                 }
-                
-                if title != nil || subTitle != nil{
-                    VStack(alignment: type == .regular ? .center : .leading, spacing: 2){
-                        if title != nil{
+
+                if title != nil || subTitle != nil {
+                    VStack(alignment: type == .regular ? .center : .leading, spacing: 2) {
+                        if title != nil {
                             Text(LocalizedStringKey(title ?? ""))
                                 .font(custom?.titleFont ?? Font.callout.bold())
                                 .multilineTextAlignment(.center)
                                 .textColor(custom?.titleColor ?? Color.shootBlack)
                         }
-                        if subTitle != nil{
+                        if subTitle != nil {
                             Text(LocalizedStringKey(subTitle ?? ""))
                                 .font(custom?.subTitleFont ?? Font.footnote)
                                 .opacity(0.7)
@@ -262,20 +257,20 @@ public struct AlertToast: View{
         }
         .padding(.top)
     }
-    
-    ///Alert View
-    public var alert: some View{
+
+    /// Alert View
+    public var alert: some View {
         VStack {
-            switch type{
-            case .success(let color):
+            switch type {
+            case let .success(color):
                 Spacer()
                 AnimatedCheckmark(color: color ?? Color.green)
                 Spacer()
-            case .error(let color):
+            case let .error(color):
                 Spacer()
                 AnimatedXmark(color: color ?? Color.red)
                 Spacer()
-            case .systemImage(let name, let color):
+            case let .systemImage(name, color):
                 Spacer()
                 Image(systemName: name)
                     .renderingMode(.template)
@@ -286,7 +281,7 @@ public struct AlertToast: View{
                     .foregroundColor(color)
                     .padding(.bottom)
                 Spacer()
-            case .image(let name, let color):
+            case let .image(name, color):
                 Spacer()
                 Image(name)
                     .resizable()
@@ -307,16 +302,16 @@ public struct AlertToast: View{
                 Spacer()
                 EmptyView()
             }
-            
-            VStack(spacing: type == .regular ? 8 : 2){
-                if title != nil{
+
+            VStack(spacing: type == .regular ? 8 : 2) {
+                if title != nil {
                     Text(LocalizedStringKey(title ?? ""))
                         .font(custom?.titleFont ?? Font.callout.bold())
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
                         .textColor(custom?.titleColor ?? Color.shootBlack)
                 }
-                if subTitle != nil{
+                if subTitle != nil {
                     Text(LocalizedStringKey(subTitle ?? ""))
                         .font(custom?.subTitleFont ?? Font.footnote)
                         .opacity(0.7)
@@ -332,10 +327,10 @@ public struct AlertToast: View{
         .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
         .onAppear { animate = true }
     }
-    
-    ///Body init determine by `displayMode`
-    public var body: some View{
-        switch displayMode{
+
+    /// Body init determine by `displayMode`
+    public var body: some View {
+        switch displayMode {
         case .alert:
             alert
         case .hud:
@@ -345,81 +340,78 @@ public struct AlertToast: View{
 }
 
 @available(iOS 13, macOS 11, *)
-public struct AlertToastModifier: ViewModifier{
-    
-    ///Presentation `Binding<Bool>`
+public struct AlertToastModifier: ViewModifier {
+    /// Presentation `Binding<Bool>`
     @Binding var isPresenting: Bool
-    
-    ///Duration time to display the alert
+
+    /// Duration time to display the alert
     @State var duration: Double = 2
-    
-    ///Tap to dismiss alert
+
+    /// Tap to dismiss alert
     @State var tapToDismiss: Bool = true
-    
-    ///Init `AlertToast` View
+
+    /// Init `AlertToast` View
     var alert: () -> AlertToast
-    
-    ///Completion block returns `true` after dismiss
-    var completion: ((Bool) -> ())? = nil
-    
+
+    /// Completion block returns `true` after dismiss
+    var completion: ((Bool) -> Void)? = nil
+
     @State private var hostRect: CGRect = .zero
     @State private var alertRect: CGRect = .zero
-    
+
     private var screen: CGRect {
         #if os(iOS)
-        return UIScreen.main.bounds
+            return UIScreen.main.bounds
         #else
-        return NSScreen.main?.frame ?? .zero
+            return NSScreen.main?.frame ?? .zero
         #endif
     }
-    
-    private var offset: CGFloat{
+
+    private var offset: CGFloat {
         #if os(iOS)
-        return -hostRect.midY + alertRect.height
+            return -hostRect.midY + alertRect.height
         #else
-        return (-hostRect.midY + screen.midY) + alertRect.height
+            return (-hostRect.midY + screen.midY) + alertRect.height
         #endif
     }
-    
+
     @ViewBuilder
     public func body(content: Content) -> some View {
         content
             .overlay(
-                GeometryReader{ geo -> AnyView in
+                GeometryReader { geo -> AnyView in
                     let rect = geo.frame(in: .global)
-                    
-                    if rect.integral != hostRect.integral{
+
+                    if rect.integral != hostRect.integral {
                         DispatchQueue.main.async {
                             self.hostRect = rect
                         }
                     }
-                    
+
                     return AnyView(EmptyView())
                 }
-                .overlay(ZStack{
-                    if isPresenting{
-                        
-                        switch alert().displayMode{
+                .overlay(ZStack {
+                    if isPresenting {
+                        switch alert().displayMode {
                         case .alert:
                             alert()
                                 .onAppear {
-                                    
-                                    if alert().type == .loading{
+                                    if alert().type == .loading {
                                         duration = 0
                                         tapToDismiss = false
                                     }
-                                    
+
                                     if duration > 0 {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-                                            withAnimation(.spring()){
+                                            withAnimation(.spring()) {
                                                 isPresenting = false
                                             }
                                         }
                                     }
                                 }
                                 .onTapGesture {
-                                    if tapToDismiss{
-                                        withAnimation(.spring()){
+                                    if tapToDismiss {
+                                        withAnimation(.spring()) {
                                             isPresenting = false
                                         }
                                     }
@@ -431,37 +423,34 @@ public struct AlertToastModifier: ViewModifier{
                         case .hud:
                             alert()
                                 .overlay(
-                                    GeometryReader{ geo -> AnyView in
+                                    GeometryReader { geo -> AnyView in
                                         let rect = geo.frame(in: .global)
-                                        
-                                        if rect.integral != alertRect.integral{
-                                            
+
+                                        if rect.integral != alertRect.integral {
                                             DispatchQueue.main.async {
-                                            
-                                            self.alertRect = rect
+                                                self.alertRect = rect
                                             }
                                         }
                                         return AnyView(EmptyView())
                                     }
                                 )
                                 .onAppear {
-                                    
-                                    if alert().type == .loading{
+                                    if alert().type == .loading {
                                         duration = 0
                                         tapToDismiss = false
                                     }
-                                    
+
                                     if duration > 0 {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-                                            withAnimation(.spring()){
+                                            withAnimation(.spring()) {
                                                 isPresenting = false
                                             }
                                         }
                                     }
                                 }
                                 .onTapGesture {
-                                    if tapToDismiss{
-                                        withAnimation(.spring()){
+                                    if tapToDismiss {
+                                        withAnimation(.spring()) {
                                             isPresenting = false
                                         }
                                     }
@@ -481,71 +470,65 @@ public struct AlertToastModifier: ViewModifier{
                 }
                 )
             )
-        
     }
 }
 
-///Fileprivate View Modifier for dynamic frame when alert type is `.regular` / `.loading`
+/// Fileprivate View Modifier for dynamic frame when alert type is `.regular` / `.loading`
 @available(iOS 13, macOS 11, *)
-fileprivate struct WithFrameModifier: ViewModifier{
-    
+private struct WithFrameModifier: ViewModifier {
     var withFrame: Bool
-    
+
     var maxWidth: CGFloat = 185
     var maxHeight: CGFloat = 175
-    
+
     @ViewBuilder
     func body(content: Content) -> some View {
-        if withFrame{
+        if withFrame {
             content
                 .frame(maxWidth: maxWidth, maxHeight: maxHeight, alignment: .center)
-        }else{
+        } else {
             content
         }
     }
 }
 
-///Fileprivate View Modifier to change the alert background
+/// Fileprivate View Modifier to change the alert background
 @available(iOS 13, macOS 11, *)
-fileprivate struct BackgroundModifier: ViewModifier{
-    
+private struct BackgroundModifier: ViewModifier {
     var color: Color?
-    
+
     @ViewBuilder
     func body(content: Content) -> some View {
-        if color != nil{
+        if color != nil {
             content
                 .background(color)
-        }else{
+        } else {
             content
                 .background(BlurView())
         }
     }
 }
 
-///Fileprivate View Modifier to change the text colors
+/// Fileprivate View Modifier to change the text colors
 @available(iOS 13, macOS 11, *)
-fileprivate struct TextForegroundModifier: ViewModifier{
-    
+private struct TextForegroundModifier: ViewModifier {
     var color: Color?
-    
+
     @ViewBuilder
     func body(content: Content) -> some View {
-        if color != nil{
+        if color != nil {
             content
                 .foregroundColor(color)
-        }else{
+        } else {
             content
         }
     }
 }
 
 @available(iOS 13, macOS 11, *)
-fileprivate extension Image{
-    
-    func hudModifier() -> some View{
-        self
-            .renderingMode(.template)
+private extension Image {
+    func hudModifier() -> some View {
+        renderingMode(.template)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(maxWidth: 26, maxHeight: 26, alignment: .center)
@@ -553,36 +536,35 @@ fileprivate extension Image{
 }
 
 @available(iOS 13, macOS 11, *)
-public extension View{
-    
+public extension View {
     /// Return some view w/o frame depends on the condition.
     /// This view modifier function is set by default to:
     /// - `maxWidth`: 175
     /// - `maxHeight`: 175
-    fileprivate func withFrame(_ withFrame: Bool) -> some View{
+    fileprivate func withFrame(_ withFrame: Bool) -> some View {
         modifier(WithFrameModifier(withFrame: withFrame))
     }
-    
+
     /// Present `AlertToast`.
     /// - Parameters:
     ///   - show: Binding<Bool>
     ///   - alert: () -> AlertToast
     /// - Returns: `AlertToast`
-    func toast(isPresenting: Binding<Bool>, duration: Double = 2, tapToDismiss: Bool = true, alert: @escaping () -> AlertToast, completion: ((Bool) -> ())? = nil) -> some View{
+    func toast(isPresenting: Binding<Bool>, duration: Double = 2, tapToDismiss: Bool = true, alert: @escaping () -> AlertToast, completion: ((Bool) -> Void)? = nil) -> some View {
         modifier(AlertToastModifier(isPresenting: isPresenting, duration: duration, tapToDismiss: tapToDismiss, alert: alert, completion: completion))
     }
-    
+
     /// Choose the alert background
     /// - Parameter color: Some Color, if `nil` return `VisualEffectBlur`
     /// - Returns: some View
-    fileprivate func alertBackground(_ color: Color? = nil) -> some View{
+    fileprivate func alertBackground(_ color: Color? = nil) -> some View {
         modifier(BackgroundModifier(color: color))
     }
-    
+
     /// Choose the alert background
     /// - Parameter color: Some Color, if `nil` return `.black`/`.white` depends on system theme
     /// - Returns: some View
-    fileprivate func textColor(_ color: Color? = nil) -> some View{
+    fileprivate func textColor(_ color: Color? = nil) -> some View {
         modifier(TextForegroundModifier(color: color))
     }
 }

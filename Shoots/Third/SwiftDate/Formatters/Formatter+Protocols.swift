@@ -13,11 +13,11 @@
 import Foundation
 
 public protocol DateToStringTrasformable {
-	static func format(_ date: DateRepresentable, options: Any?) -> String
+    static func format(_ date: DateRepresentable, options: Any?) -> String
 }
 
 public protocol StringToDateTransformable {
-	static func parse(_ string: String, region: Region?, options: Any?) -> DateInRegion?
+    static func parse(_ string: String, region: Region?, options: Any?) -> DateInRegion?
 }
 
 // MARK: - Formatters
@@ -36,57 +36,56 @@ public protocol StringToDateTransformable {
 /// - time: Time only format (short = "2:22 PM", medium = "2:22:06 PM", long = "2:22:06 PM EST", full = "2:22:06 PM Eastern Standard Time"
 /// - dateTime: Date/Time format (short = "2/27/17, 2:22 PM", medium = "Feb 27, 2017, 2:22:06 PM", long = "February 27, 2017 at 2:22:06 PM EST", full = "Monday, February 27, 2017 at 2:22:06 PM Eastern Standard Time"
 public enum DateToStringStyles {
-	case iso(_: ISOFormatter.Options)
-	case extended
-	case rss
-	case altRSS
-	case dotNet
-	case httpHeader
-	case sql
-	case date(_: DateFormatter.Style)
-	case time(_: DateFormatter.Style)
-	case dateTime(_: DateFormatter.Style)
+    case iso(_: ISOFormatter.Options)
+    case extended
+    case rss
+    case altRSS
+    case dotNet
+    case httpHeader
+    case sql
+    case date(_: DateFormatter.Style)
+    case time(_: DateFormatter.Style)
+    case dateTime(_: DateFormatter.Style)
     case dateTimeMixed(dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style)
-	case custom(_: String)
-	case standard
+    case custom(_: String)
+    case standard
     case relative(style: RelativeDateTimeFormatter.DateTimeStyle = .named, unitsStyle: RelativeDateTimeFormatter.UnitsStyle = .short)
 
-	public func toString(_ date: DateRepresentable) -> String {
-		switch self {
-		case .iso(let opts):			return ISOFormatter.format(date, options: opts)
-		case .extended:					return date.formatterForRegion(format: DateFormats.extended).string(from: date.date)
-		case .rss:						return date.formatterForRegion(format: DateFormats.rss).string(from: date.date)
-		case .altRSS:					return date.formatterForRegion(format: DateFormats.altRSS).string(from: date.date)
-		case .sql:						return date.formatterForRegion(format: DateFormats.sql).string(from: date.date)
-		case .dotNet:					return DOTNETFormatter.format(date, options: nil)
-		case .httpHeader:				return date.formatterForRegion(format: DateFormats.httpHeader).string(from: date.date)
-		case .custom(let format):		return date.formatterForRegion(format: format).string(from: date.date)
-		case .standard:					return date.formatterForRegion(format: DateFormats.standard).string(from: date.date)
-		case .date(let style):
-			return date.formatterForRegion(format: nil, configuration: {
-				$0.dateStyle = style
-				$0.timeStyle = .none
-			}).string(from: date.date)
-		case .time(let style):
-			return date.formatterForRegion(format: nil, configuration: {
-				$0.dateStyle = .none
-				$0.timeStyle = style
-			}).string(from: date.date)
-		case .dateTime(let style):
-			return date.formatterForRegion(format: nil, configuration: {
-				$0.dateStyle = style
-				$0.timeStyle = style
-			}).string(from: date.date)
-        case .dateTimeMixed(let dateStyle, let timeStyle):
+    public func toString(_ date: DateRepresentable) -> String {
+        switch self {
+        case let .iso(opts): return ISOFormatter.format(date, options: opts)
+        case .extended: return date.formatterForRegion(format: DateFormats.extended).string(from: date.date)
+        case .rss: return date.formatterForRegion(format: DateFormats.rss).string(from: date.date)
+        case .altRSS: return date.formatterForRegion(format: DateFormats.altRSS).string(from: date.date)
+        case .sql: return date.formatterForRegion(format: DateFormats.sql).string(from: date.date)
+        case .dotNet: return DOTNETFormatter.format(date, options: nil)
+        case .httpHeader: return date.formatterForRegion(format: DateFormats.httpHeader).string(from: date.date)
+        case let .custom(format): return date.formatterForRegion(format: format).string(from: date.date)
+        case .standard: return date.formatterForRegion(format: DateFormats.standard).string(from: date.date)
+        case let .date(style):
+            return date.formatterForRegion(format: nil, configuration: {
+                $0.dateStyle = style
+                $0.timeStyle = .none
+            }).string(from: date.date)
+        case let .time(style):
+            return date.formatterForRegion(format: nil, configuration: {
+                $0.dateStyle = .none
+                $0.timeStyle = style
+            }).string(from: date.date)
+        case let .dateTime(style):
+            return date.formatterForRegion(format: nil, configuration: {
+                $0.dateStyle = style
+                $0.timeStyle = style
+            }).string(from: date.date)
+        case let .dateTimeMixed(dateStyle, timeStyle):
             return date.formatterForRegion(format: nil, configuration: {
                 $0.dateStyle = dateStyle
                 $0.timeStyle = timeStyle
             }).string(from: date.date)
-		case .relative(let style, let unitStyle):
-            return date.toRelative(since: DateInRegion(),  dateTimeStyle: style, unitsStyle: unitStyle)
-		}
-	}
-
+        case let .relative(style, unitStyle):
+            return date.toRelative(since: DateInRegion(), dateTimeStyle: style, unitsStyle: unitStyle)
+        }
+    }
 }
 
 // MARK: - Parsers
@@ -103,33 +102,33 @@ public enum DateToStringStyles {
 /// - custom: custom string format
 /// - standard: A generic standard format date i.e. "EEE MMM dd HH:mm:ss Z yyyy"
 public enum StringToDateStyles {
-	case iso(_: ISOParser.Options)
-	case extended
-	case rss
-	case altRSS
-	case dotNet
-	case sql
-	case httpHeader
-	case strict(_: String)
-	case custom(_: String)
-	case standard
+    case iso(_: ISOParser.Options)
+    case extended
+    case rss
+    case altRSS
+    case dotNet
+    case sql
+    case httpHeader
+    case strict(_: String)
+    case custom(_: String)
+    case standard
 
-	public func toDate(_ string: String, region: Region) -> DateInRegion? {
-		switch self {
-		case .iso(let options):				return ISOParser.parse(string, region: region, options: options)
-		case .custom(let format):			return DateInRegion(string, format: format, region: region)
-		case .extended:						return DateInRegion(string, format: DateFormats.extended, region: region)
-		case .sql:							return DateInRegion(string, format: DateFormats.sql, region: region)
-		case .rss:							return DateInRegion(string, format: DateFormats.rss, region: Region.ISO)?.convertTo(locale: region.locale)
-		case .altRSS:						return DateInRegion(string, format: DateFormats.altRSS, region: Region.ISO)?.convertTo(locale: region.locale)
-		case .dotNet:						return DOTNETParser.parse(string, region: region, options: nil)
-		case .httpHeader:					return DateInRegion(string, format: DateFormats.httpHeader, region: region)
-		case .standard:						return DateInRegion(string, format: DateFormats.standard, region: region)
-		case .strict(let format):
-			let formatter = DateFormatter.sharedFormatter(forRegion: region, format: format)
-			formatter.isLenient = false
-			guard let absDate = formatter.date(from: string) else { return nil }
-			return DateInRegion(absDate, region: region)
-		}
-	}
+    public func toDate(_ string: String, region: Region) -> DateInRegion? {
+        switch self {
+        case let .iso(options): return ISOParser.parse(string, region: region, options: options)
+        case let .custom(format): return DateInRegion(string, format: format, region: region)
+        case .extended: return DateInRegion(string, format: DateFormats.extended, region: region)
+        case .sql: return DateInRegion(string, format: DateFormats.sql, region: region)
+        case .rss: return DateInRegion(string, format: DateFormats.rss, region: Region.ISO)?.convertTo(locale: region.locale)
+        case .altRSS: return DateInRegion(string, format: DateFormats.altRSS, region: Region.ISO)?.convertTo(locale: region.locale)
+        case .dotNet: return DOTNETParser.parse(string, region: region, options: nil)
+        case .httpHeader: return DateInRegion(string, format: DateFormats.httpHeader, region: region)
+        case .standard: return DateInRegion(string, format: DateFormats.standard, region: region)
+        case let .strict(format):
+            let formatter = DateFormatter.sharedFormatter(forRegion: region, format: format)
+            formatter.isLenient = false
+            guard let absDate = formatter.date(from: string) else { return nil }
+            return DateInRegion(absDate, region: region)
+        }
+    }
 }

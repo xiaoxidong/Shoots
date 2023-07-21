@@ -1,6 +1,6 @@
 //
 //  View+ConfettiCannon.swift
-//  
+//
 //
 //  Created by Abdullah Alhaider on 24/03/2022.
 //
@@ -8,7 +8,6 @@
 import SwiftUI
 
 public extension View {
-    
     /// renders configurable confetti animaiton
     ///
     /// - Usage:

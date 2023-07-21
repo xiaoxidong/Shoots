@@ -29,26 +29,26 @@ import UIKit
 protocol ZLStickerViewDelegate: NSObject {
     // Called when scale or rotate or move.
     func stickerBeginOperation(_ sticker: UIView)
-    
+
     // Called during scale or rotate or move.
     func stickerOnOperation(_ sticker: UIView, panGes: UIPanGestureRecognizer)
-    
+
     // Called after scale or rotate or move.
     func stickerEndOperation(_ sticker: UIView, panGes: UIPanGestureRecognizer)
-    
+
     // Called when tap sticker.
     func stickerDidTap(_ sticker: UIView)
-    
+
     func sticker(_ textSticker: ZLTextStickerView, editText text: String)
 }
 
 protocol ZLStickerViewAdditional: NSObject {
     var gesIsEnabled: Bool { get set }
-    
+
     func resetState()
-    
+
     func moveToAshbin()
-    
+
     func addScale(_ scale: CGFloat)
 }
 
@@ -64,61 +64,61 @@ class ZLBaseStickerView<T>: UIView, UIGestureRecognizerDelegate {
         case bottom = 180
         case left = 270
     }
-    
+
     var firstLayout = true
-    
+
     let originScale: CGFloat
-    
+
     let originAngle: CGFloat
-    
+
     var originTransform: CGAffineTransform = .identity
-    
+
     var timer: Timer?
-    
+
     var totalTranslationPoint: CGPoint = .zero
-    
+
     var gesTranslationPoint: CGPoint = .zero
-    
+
     var gesRotation: CGFloat = 0
-    
+
     var gesScale: CGFloat = 1
-    
+
     var maxGesScale: CGFloat = 4
-    
+
     var onOperation = false
-    
+
     var gesIsEnabled = true
-    
+
     var originFrame: CGRect
-    
+
     lazy var tapGes = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
-    
+
     lazy var pinchGes: UIPinchGestureRecognizer = {
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pinchAction(_:)))
         pinch.delegate = self
         return pinch
     }()
-    
+
     lazy var panGes: UIPanGestureRecognizer = {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
         pan.delegate = self
         return pan
     }()
-    
+
     var state: T {
         fatalError()
     }
-    
+
     var borderView: UIView {
         return self
     }
-    
+
     weak var delegate: ZLStickerViewDelegate?
-    
+
     deinit {
         cleanTimer()
     }
-    
+
     init(
         originScale: CGFloat,
         originAngle: CGFloat,
@@ -132,43 +132,43 @@ class ZLBaseStickerView<T>: UIView, UIGestureRecognizerDelegate {
         self.originAngle = originAngle
         self.originFrame = originFrame
         super.init(frame: .zero)
-        
+
         self.gesScale = gesScale
         self.gesRotation = gesRotation
         self.totalTranslationPoint = totalTranslationPoint
-        
+
         borderView.layer.borderWidth = ZLStickerLayout.borderWidth
         hideBorder()
         if showBorder {
             startTimer()
         }
-        
+
         addGestureRecognizer(tapGes)
         addGestureRecognizer(pinchGes)
-        
+
         let rotationGes = UIRotationGestureRecognizer(target: self, action: #selector(rotationAction(_:)))
         rotationGes.delegate = self
         addGestureRecognizer(rotationGes)
-        
+
         addGestureRecognizer(panGes)
         tapGes.require(toFail: panGes)
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         guard firstLayout else {
             return
         }
-        
+
         // Rotate must be first when first layout.
         transform = transform.rotated(by: originAngle.zl.toPi)
-        
+
         if totalTranslationPoint != .zero {
             let direction = direction(for: originAngle)
             if direction == .right {
@@ -181,41 +181,41 @@ class ZLBaseStickerView<T>: UIView, UIGestureRecognizerDelegate {
                 transform = transform.translatedBy(x: totalTranslationPoint.x, y: totalTranslationPoint.y)
             }
         }
-        
+
         transform = transform.scaledBy(x: originScale, y: originScale)
-        
+
         originTransform = transform
-        
+
         if gesScale != 1 {
             transform = transform.scaledBy(x: gesScale, y: gesScale)
         }
         if gesRotation != 0 {
             transform = transform.rotated(by: gesRotation)
         }
-        
+
         firstLayout = false
         setupUIFrameWhenFirstLayout()
     }
-    
+
     func setupUIFrameWhenFirstLayout() {}
-    
+
     private func direction(for angle: CGFloat) -> ZLBaseStickerView.Direction {
         // 将角度转换为0~360，并对360取余
         let angle = ((Int(angle) % 360) + 360) % 360
         return ZLBaseStickerView.Direction(rawValue: angle) ?? .up
     }
-    
-    @objc func tapAction(_ ges: UITapGestureRecognizer) {
+
+    @objc func tapAction(_: UITapGestureRecognizer) {
         guard gesIsEnabled else { return }
-        
+
         superview?.bringSubviewToFront(self)
         delegate?.stickerDidTap(self)
         startTimer()
     }
-    
+
     @objc func pinchAction(_ ges: UIPinchGestureRecognizer) {
         guard gesIsEnabled else { return }
-        
+
         let scale = min(maxGesScale, gesScale * ges.scale)
         ges.scale = 1
 
@@ -224,7 +224,7 @@ class ZLBaseStickerView<T>: UIView, UIGestureRecognizerDelegate {
         }
 
         gesScale = scale
-        
+
         if ges.state == .began {
             setOperation(true)
         } else if ges.state == .changed {
@@ -233,13 +233,13 @@ class ZLBaseStickerView<T>: UIView, UIGestureRecognizerDelegate {
             setOperation(false)
         }
     }
-    
+
     @objc func rotationAction(_ ges: UIRotationGestureRecognizer) {
         guard gesIsEnabled else { return }
-        
+
         gesRotation += ges.rotation
         ges.rotation = 0
-        
+
         if ges.state == .began {
             setOperation(true)
         } else if ges.state == .changed {
@@ -248,13 +248,13 @@ class ZLBaseStickerView<T>: UIView, UIGestureRecognizerDelegate {
             setOperation(false)
         }
     }
-    
+
     @objc func panAction(_ ges: UIPanGestureRecognizer) {
         guard gesIsEnabled else { return }
-        
+
         let point = ges.translation(in: superview)
         gesTranslationPoint = CGPoint(x: point.x / originScale, y: point.y / originScale)
-        
+
         if ges.state == .began {
             setOperation(true)
         } else if ges.state == .changed {
@@ -276,7 +276,7 @@ class ZLBaseStickerView<T>: UIView, UIGestureRecognizerDelegate {
             gesTranslationPoint = .zero
         }
     }
-    
+
     func setOperation(_ isOn: Bool) {
         if isOn, !onOperation {
             onOperation = true
@@ -290,10 +290,10 @@ class ZLBaseStickerView<T>: UIView, UIGestureRecognizerDelegate {
             delegate?.stickerEndOperation(self, panGes: panGes)
         }
     }
-    
+
     func updateTransform() {
         var transform = originTransform
-        
+
         let direction = direction(for: originAngle)
         if direction == .right {
             transform = transform.translatedBy(x: gesTranslationPoint.y, y: -gesTranslationPoint.x)
@@ -309,29 +309,29 @@ class ZLBaseStickerView<T>: UIView, UIGestureRecognizerDelegate {
         // Rotate must after scale.
         transform = transform.rotated(by: gesRotation)
         self.transform = transform
-        
+
         delegate?.stickerOnOperation(self, panGes: panGes)
     }
-    
+
     @objc private func hideBorder() {
         borderView.layer.borderColor = UIColor.clear.cgColor
     }
-    
+
     func startTimer() {
         cleanTimer()
         borderView.layer.borderColor = UIColor.white.cgColor
         timer = Timer.scheduledTimer(timeInterval: 2, target: ZLWeakProxy(target: self), selector: #selector(hideBorder), userInfo: nil, repeats: false)
         RunLoop.current.add(timer!, forMode: .common)
     }
-    
+
     private func cleanTimer() {
         timer?.invalidate()
         timer = nil
     }
-    
+
     // MARK: UIGestureRecognizerDelegate
 
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith _: UIGestureRecognizer) -> Bool {
         return true
     }
 }
@@ -342,12 +342,12 @@ extension ZLBaseStickerView: ZLStickerViewAdditional {
         cleanTimer()
         hideBorder()
     }
-    
+
     func moveToAshbin() {
         cleanTimer()
         removeFromSuperview()
     }
-    
+
     func addScale(_ scale: CGFloat) {
         // Revert zoom scale.
         transform = transform.scaledBy(x: 1 / originScale, y: 1 / originScale)
@@ -355,16 +355,16 @@ extension ZLBaseStickerView: ZLStickerViewAdditional {
         transform = transform.scaledBy(x: 1 / gesScale, y: 1 / gesScale)
         // Revert ges rotation.
         transform = transform.rotated(by: -gesRotation)
-        
+
         var origin = frame.origin
         origin.x *= scale
         origin.y *= scale
-        
+
         let newSize = CGSize(width: frame.width * scale, height: frame.height * scale)
         let newOrigin = CGPoint(x: frame.minX + (frame.width - newSize.width) / 2, y: frame.minY + (frame.height - newSize.height) / 2)
         let diffX: CGFloat = (origin.x - newOrigin.x)
         let diffY: CGFloat = (origin.y - newOrigin.y)
-        
+
         let direction = direction(for: originAngle)
         if direction == .right {
             transform = transform.translatedBy(x: diffY, y: -diffX)
@@ -381,16 +381,16 @@ extension ZLBaseStickerView: ZLStickerViewAdditional {
         }
         totalTranslationPoint.x += diffX
         totalTranslationPoint.y += diffY
-        
+
         transform = transform.scaledBy(x: scale, y: scale)
-        
+
         // Readd zoom scale.
         transform = transform.scaledBy(x: originScale, y: originScale)
         // Readd ges scale.
         transform = transform.scaledBy(x: gesScale, y: gesScale)
         // Readd ges rotation.
         transform = transform.rotated(by: gesRotation)
-        
+
         gesScale *= scale
         maxGesScale *= scale
     }

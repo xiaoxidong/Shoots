@@ -32,79 +32,79 @@ public extension ZLImageEditorUIConfiguration {
         hudStyle = style
         return self
     }
-    
+
     @discardableResult
     func adjustSliderType(_ type: ZLAdjustSliderType) -> ZLImageEditorUIConfiguration {
         adjustSliderType = type
         return self
     }
-    
+
     @discardableResult
     func languageType(_ type: ZLImageEditorLanguageType) -> ZLImageEditorUIConfiguration {
         languageType = type
         return self
     }
-    
+
     @discardableResult
     func customLanguageConfig(_ config: [ZLLocalLanguageKey: String]) -> ZLImageEditorUIConfiguration {
         customLanguageConfig = config
         return self
     }
-    
+
     @discardableResult
     func customImageNames(_ names: [String]) -> ZLImageEditorUIConfiguration {
         customImageNames = names
         return self
     }
-    
+
     @discardableResult
     func customImageForKey(_ map: [String: UIImage?]) -> ZLImageEditorUIConfiguration {
         customImageForKey = map
         return self
     }
-    
+
     @discardableResult
     func adjustSliderNormalColor(_ color: UIColor) -> ZLImageEditorUIConfiguration {
         adjustSliderNormalColor = color
         return self
     }
-    
+
     @discardableResult
     func adjustSliderTintColor(_ color: UIColor) -> ZLImageEditorUIConfiguration {
         adjustSliderTintColor = color
         return self
     }
-    
+
     @discardableResult
     func editDoneBtnBgColor(_ color: UIColor) -> ZLImageEditorUIConfiguration {
         editDoneBtnBgColor = color
         return self
     }
-    
+
     @discardableResult
     func editDoneBtnTitleColor(_ color: UIColor) -> ZLImageEditorUIConfiguration {
         editDoneBtnTitleColor = color
         return self
     }
-    
+
     @discardableResult
     func ashbinNormalBgColor(_ color: UIColor) -> ZLImageEditorUIConfiguration {
         ashbinNormalBgColor = color
         return self
     }
-    
+
     @discardableResult
     func ashbinTintBgColor(_ color: UIColor) -> ZLImageEditorUIConfiguration {
         ashbinTintBgColor = color
         return self
     }
-    
+
     @discardableResult
     func toolTitleNormalColor(_ color: UIColor) -> ZLImageEditorUIConfiguration {
         toolTitleNormalColor = color
         return self
     }
-    
+
     @discardableResult
     func toolTitleTintColor(_ color: UIColor) -> ZLImageEditorUIConfiguration {
         toolTitleTintColor = color

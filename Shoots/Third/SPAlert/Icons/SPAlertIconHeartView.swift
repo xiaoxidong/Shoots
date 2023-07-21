@@ -22,24 +22,23 @@
 import UIKit
 
 public class SPAlertIconHeartView: UIView {
-        
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = .clear
+        backgroundColor = .clear
     }
-    
-    required init?(coder aDecoder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    public override func draw(_ rect: CGRect) {
+
+    override public func draw(_ rect: CGRect) {
         super.draw(rect)
-        HeartDraw.draw(frame: rect, resizing: .aspectFit, fillColor: self.tintColor)
+        HeartDraw.draw(frame: rect, resizing: .aspectFit, fillColor: tintColor)
     }
-    
+
     class HeartDraw: NSObject {
-        
-        @objc dynamic public class func draw(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 510, height: 470), resizing: ResizingBehavior = .aspectFit, fillColor: UIColor = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 1.000)) {
+        @objc public dynamic class func draw(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 510, height: 470), resizing: ResizingBehavior = .aspectFit, fillColor: UIColor = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 1.000)) {
             let context = UIGraphicsGetCurrentContext()!
             context.saveGState()
             let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 510, height: 470), target: targetFrame)
@@ -60,24 +59,23 @@ public class SPAlertIconHeartView: UIView {
             bezierPath.fill()
             context.restoreGState()
         }
-        
+
         @objc(HeartStyleKitResizingBehavior)
         public enum ResizingBehavior: Int {
-            
             case aspectFit
             case aspectFill
             case stretch
             case center
-            
+
             public func apply(rect: CGRect, target: CGRect) -> CGRect {
                 if rect == target || target == CGRect.zero {
                     return rect
                 }
-                
+
                 var scales = CGSize.zero
                 scales.width = abs(target.width / rect.width)
                 scales.height = abs(target.height / rect.height)
-                
+
                 switch self {
                 case .aspectFit:
                     scales.width = min(scales.width, scales.height)
@@ -91,7 +89,7 @@ public class SPAlertIconHeartView: UIView {
                     scales.width = 1
                     scales.height = 1
                 }
-                
+
                 var result = rect.standardized
                 result.size.width *= scales.width
                 result.size.height *= scales.height
@@ -102,4 +100,3 @@ public class SPAlertIconHeartView: UIView {
         }
     }
 }
-

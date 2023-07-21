@@ -5,14 +5,14 @@
 //  Created by XiaoDong Yuan on 2023/5/20.
 //
 
-import SwiftUI
 import _AuthenticationServices_SwiftUI
+import SwiftUI
 
 struct LoginView: View {
     @Binding var login: Bool
     var showBG: Bool = true
     let successAction: () -> Void
-    
+
     @EnvironmentObject var user: UserViewModel
     var body: some View {
         if showBG {
@@ -21,7 +21,7 @@ struct LoginView: View {
             contentWithoutBG
         }
     }
-    
+
     var content: some View {
         Group {
             Color.black.opacity(login ? 0.02 : 0)
@@ -45,7 +45,7 @@ struct LoginView: View {
             }.frame(maxWidth: 460)
         }
     }
-    
+
     var contentWithoutBG: some View {
 //        VStack {
 //            Spacer()
@@ -67,7 +67,7 @@ struct LoginView: View {
                 .offset(y: login ? 0 : 1000)
         }.frame(maxWidth: 460)
     }
-    
+
     let url = URL(string: "https://productpoke.notion.site/Shoots-e6565357d2704e3694aa622a0d854b46")!
     var button: some View {
         Group {
@@ -75,16 +75,16 @@ struct LoginView: View {
                 request.requestedScopes = [.fullName, .email]
             }, onCompletion: { result in
                 switch result {
-                case .success(let authResults):
+                case let .success(authResults):
                     print("Authorization successful.")
                     guard let credentials = authResults.credential as? ASAuthorizationAppleIDCredential, let identityToken = credentials.identityToken, let identityTokenString = String(data: identityToken, encoding: .utf8) else { return }
-                    
+
                     let email = credentials.email
                     let userID = credentials.user
-                    
+
                     let firstName = credentials.fullName?.givenName
                     let lastName = credentials.fullName?.familyName
-                    
+
                     user.login(appleUserId: userID, identityToken: identityTokenString, email: email ?? "", fullName: "\(firstName ?? "") \(lastName ?? "")") { success in
                         withAnimation(.spring()) {
                             login.toggle()
@@ -93,34 +93,33 @@ struct LoginView: View {
                             // 提示登录失败
                         }
                     }
-                case .failure(let error):
+                case let .failure(error):
                     print("Authorization failed: " + error.localizedDescription)
                     withAnimation(.spring()) {
                         login.toggle()
                         // 提示登录失败
-                        
                     }
                 }
             })
-                .signInWithAppleButtonStyle(.black)
-                .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
-                .frame(height: 46)
-                .padding(.horizontal)
+            .signInWithAppleButtonStyle(.black)
+            .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
+            .frame(height: 46)
+            .padding(.horizontal)
             Button {
                 #if os(iOS)
-                UIApplication.shared.open(url)
+                    UIApplication.shared.open(url)
                 #else
-                NSWorkspace.shared.open(url)
+                    NSWorkspace.shared.open(url)
                 #endif
             } label: {
                 Text("注册即同意 ")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(Color.shootBlack)
-                + Text("Shoots 使用协议")
+                    + Text("Shoots 使用协议")
                     .font(.system(size: 15, weight: .bold))
                     .foregroundColor(Color.shootBlue)
             }.buttonStyle(.plain)
-            .padding(.bottom, 36)
+                .padding(.bottom, 36)
                 .padding(.top, 4)
         }
     }
@@ -128,8 +127,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(login: .constant(true)) {
-            
-        }
+        LoginView(login: .constant(true)) {}
     }
 }

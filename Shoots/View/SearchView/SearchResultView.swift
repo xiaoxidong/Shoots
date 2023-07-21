@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SearchResultView: View {
-    
     @EnvironmentObject var search: SearchViewModel
     var body: some View {
         if let id = search.appID {
@@ -27,7 +26,7 @@ struct SearchResultView: View {
             ScrollView {
                 VStack(spacing: 0) {
                     FeedView(shoots: search.patternFeed)
-                    
+
                     LoadMoreView(footerRefreshing: $search.footerRefreshing, noMore: $search.noMore) {
                         if self.search.page + 1 > self.search.mostPages {
                             self.search.footerRefreshing = false
@@ -49,19 +48,19 @@ struct SearchResultView: View {
                 .frame(maxWidth: 1060)
         }
     }
-    
+
     func appView(id: String) -> some View {
         AppView(id: id, appID: search.appStoreID)
             .frame(maxWidth: 860)
             .frame(maxWidth: .infinity)
             .padding(.top)
     }
-    
+
     func patternView(id: String) -> some View {
         ScrollView {
             VStack(spacing: 0) {
                 FeedView(shoots: search.patternFeed)
-                
+
                 LoadMoreView(footerRefreshing: $search.footerRefreshing, noMore: $search.noMore) {
                     if self.search.page + 1 > self.search.mostPages {
                         self.search.footerRefreshing = false

@@ -9,10 +9,10 @@ import SwiftUI
 
 struct SearchSuggestionView: View {
     @Binding var searchText: String
-    
+
     @State var patterns: [Pattern] = []
     @State var apps: [AppInfo] = []
-    
+
     @EnvironmentObject var info: InfoViewModel
     @EnvironmentObject var search: SearchViewModel
     var body: some View {
@@ -36,9 +36,9 @@ struct SearchSuggestionView: View {
                                 .bold()
                                 .foregroundColor(.shootGray)
                         }
-                            .padding(.horizontal)
-                            .padding(.vertical, 12)
-                            .contentShape(Rectangle())
+                        .padding(.horizontal)
+                        .padding(.vertical, 12)
+                        .contentShape(Rectangle())
                     }.buttonStyle(.plain)
                 }
                 ForEach(patterns) { pattern in
@@ -61,9 +61,9 @@ struct SearchSuggestionView: View {
                                 .bold()
                                 .foregroundColor(.shootGray)
                         }
-                            .padding(.horizontal)
-                            .padding(.vertical, 12)
-                            .contentShape(Rectangle())
+                        .padding(.horizontal)
+                        .padding(.vertical, 12)
+                        .contentShape(Rectangle())
                     }.buttonStyle(.plain)
                 }
             }
@@ -73,17 +73,17 @@ struct SearchSuggestionView: View {
             }
             .onAppear {
                 #if os(iOS)
-                update(newValue: searchText)
+                    update(newValue: searchText)
                 #else
-                patterns = info.patterns.filter({ $0.isOfficial == "1" })
-                apps = info.apps.filter({ $0.isOfficial == "1" })
+                    patterns = info.patterns.filter { $0.isOfficial == "1" }
+                    apps = info.apps.filter { $0.isOfficial == "1" }
                 #endif
             }
     }
-    
+
     func update(newValue: String) {
-        patterns = info.patterns.filter({ $0.designPatternName.lowercased().contains(newValue.lowercased()) }).sorted(by: { $0.isOfficial > $1.isOfficial })
-        apps = info.apps.filter({ $0.linkApplicationName.lowercased().contains(newValue.lowercased()) }).sorted(by: { $0.isOfficial > $1.isOfficial })
+        patterns = info.patterns.filter { $0.designPatternName.lowercased().contains(newValue.lowercased()) }.sorted(by: { $0.isOfficial > $1.isOfficial })
+        apps = info.apps.filter { $0.linkApplicationName.lowercased().contains(newValue.lowercased()) }.sorted(by: { $0.isOfficial > $1.isOfficial })
     }
 }
 

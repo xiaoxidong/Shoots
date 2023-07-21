@@ -17,11 +17,11 @@ extension NSStatusItem {
         //     which convinces MenuBarExtra to close the window and properly reset its state
         // let actionSelector = button?.action // "toggleWindow:" selector
         // button?.sendAction(actionSelector, to: button?.target)
-        
+
         button?.performClick(button)
         updateHighlight()
     }
-    
+
     /// Toggles the menu/window state by mimicking a menu item button press.
     @_disfavoredOverload
     internal func setPresented(state: Bool) {
@@ -33,7 +33,7 @@ extension NSStatusItem {
         }
         togglePresented()
     }
-    
+
     internal func updateHighlight() {
         let s = button?.state != .off
         button?.isHighlighted = s
@@ -43,10 +43,10 @@ extension NSStatusItem {
 // MARK: - KVO Observer
 
 extension NSStatusItem {
-    internal class ButtonStateObserver: NSObject {
+    class ButtonStateObserver: NSObject {
         private weak var objectToObserve: NSStatusBarButton?
         private var observation: NSKeyValueObservation?
-        
+
         init(
             object: NSStatusBarButton,
             _ handler: @escaping (_ change: NSKeyValueObservedChange<NSControl.StateValue>)
@@ -54,22 +54,22 @@ extension NSStatusItem {
         ) {
             objectToObserve = object
             super.init()
-            
+
             observation = object.observe(
                 \.cell!.state,
-                 options: [.initial, .new]
-            ) { ob, change in
+                options: [.initial, .new]
+            ) { _, change in
                 handler(change)
             }
         }
-        
+
         deinit {
-            //print("Observer deinit")
+            // print("Observer deinit")
             observation?.invalidate()
         }
     }
-    
-    internal func stateObserverMenuBased(
+
+    func stateObserverMenuBased(
         _ handler: @escaping (_ change: NSKeyValueObservedChange<NSControl.StateValue>) -> Void
     ) -> ButtonStateObserver? {
         guard let button else { return nil }
@@ -82,8 +82,8 @@ extension NSStatusItem {
 
 extension NSStatusItem {
     typealias ButtonStatePublisher = KeyValueObservingPublisher<NSStatusBarButton, NSControl.StateValue>
-    
-    internal func buttonStatePublisher() -> ButtonStatePublisher? {
+
+    func buttonStatePublisher() -> ButtonStatePublisher? {
         button?.publisher(for: \.cell!.state, options: [.initial, .new])
     }
 }

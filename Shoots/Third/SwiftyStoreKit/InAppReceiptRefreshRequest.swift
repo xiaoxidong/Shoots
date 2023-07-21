@@ -23,11 +23,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import StoreKit
 import Foundation
+import StoreKit
 
 class InAppReceiptRefreshRequest: NSObject, SKRequestDelegate, InAppRequest {
-
     enum ResultType {
         case success
         case error(e: Error)
@@ -51,32 +50,34 @@ class InAppReceiptRefreshRequest: NSObject, SKRequestDelegate, InAppRequest {
 
     init(receiptProperties: [String: Any]? = nil, callback: @escaping RequestCallback) {
         self.callback = callback
-        self.refreshReceiptRequest = SKReceiptRefreshRequest(receiptProperties: receiptProperties)
+        refreshReceiptRequest = SKReceiptRefreshRequest(receiptProperties: receiptProperties)
         super.init()
-        self.refreshReceiptRequest.delegate = self
+        refreshReceiptRequest.delegate = self
     }
 
     func start() {
-        self.refreshReceiptRequest.start()
+        refreshReceiptRequest.start()
     }
 
     func cancel() {
-        self.refreshReceiptRequest.cancel()
+        refreshReceiptRequest.cancel()
     }
-    
-    func requestDidFinish(_ request: SKRequest) {
-        /*if let resoreRequest = request as? SKReceiptRefreshRequest {
+
+    func requestDidFinish(_: SKRequest) {
+        /* if let resoreRequest = request as? SKReceiptRefreshRequest {
          let receiptProperties = resoreRequest.receiptProperties ?? [:]
          for (k, v) in receiptProperties {
          print("\(k): \(v)")
          }
-         }*/
+         } */
         performCallback(.success)
     }
-    func request(_ request: SKRequest, didFailWithError error: Error) {
+
+    func request(_: SKRequest, didFailWithError error: Error) {
         // XXX could here check domain and error code to return typed exception
         performCallback(.error(e: error))
     }
+
     private func performCallback(_ result: ResultType) {
         DispatchQueue.main.async {
             self.callback(result)

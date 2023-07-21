@@ -24,20 +24,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
 import Photos
+import UIKit
 
 class ZLThumbnailPhotoCell: UICollectionViewCell {
     private lazy var containerView = UIView()
-    
+
     private lazy var bottomShadowView = UIImageView(image: .zll.getImage("zl_shadow"))
-    
+
     private lazy var videoTag = UIImageView(image: .zll.getImage("zl_video"))
-    
+
     private lazy var livePhotoTag = UIImageView(image: .zll.getImage("zl_livePhoto"))
-    
+
     private lazy var editImageTag = UIImageView(image: .zll.getImage("zl_editImage_tag"))
-    
+
     private lazy var descLabel: UILabel = {
         let label = UILabel()
         label.font = .zll.font(ofSize: 13)
@@ -45,26 +45,26 @@ class ZLThumbnailPhotoCell: UICollectionViewCell {
         label.textColor = .white
         return label
     }()
-    
+
     private lazy var progressView: ZLProgressView = {
         let view = ZLProgressView()
         view.isHidden = true
         return view
     }()
-    
+
     private var imageIdentifier: String = ""
-    
+
     private var smallImageRequestID: PHImageRequestID = PHInvalidImageRequestID
-    
+
     private var bigImageReqeustID: PHImageRequestID = PHInvalidImageRequestID
-    
+
     lazy var imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         return view
     }()
-    
+
     lazy var btnSelect: ZLEnlargeButton = {
         let btn = ZLEnlargeButton(type: .custom)
 //        btn.setBackgroundImage(.zll.getImage("zl_btn_unselected"), for: .normal)
@@ -74,14 +74,14 @@ class ZLThumbnailPhotoCell: UICollectionViewCell {
         btn.enlargeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 10, right: 5)
         return btn
     }()
-    
+
     lazy var coverView: UIView = {
         let view = UIView()
         view.isUserInteractionEnabled = false
         view.isHidden = true
         return view
     }()
-    
+
     lazy var indexLabel: UILabel = {
         let label = UILabel()
         label.layer.cornerRadius = 23.0 / 2
@@ -94,37 +94,37 @@ class ZLThumbnailPhotoCell: UICollectionViewCell {
         label.textAlignment = .center
         return label
     }()
-    
+
     var enableSelect: Bool = true
-    
+
     var selectedBlock: ((Bool) -> Void)?
-    
+
     var model: ZLPhotoModel! {
         didSet {
             configureCell()
         }
     }
-    
+
     var index: Int = 0 {
         didSet {
             indexLabel.text = String(index)
         }
     }
-    
+
     deinit {
         zl_debugPrint("ZLThumbnailPhotoCell deinit")
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setupUI() {
         contentView.addSubview(imageView)
         contentView.addSubview(containerView)
@@ -137,15 +137,15 @@ class ZLThumbnailPhotoCell: UICollectionViewCell {
         bottomShadowView.addSubview(editImageTag)
         bottomShadowView.addSubview(descLabel)
         containerView.addSubview(progressView)
-        
+
         if ZLPhotoConfiguration.default().showSelectedBorder {
             layer.borderColor = UIColor.zll.selectedBorderColor.cgColor
         }
     }
-    
+
     override func layoutSubviews() {
         imageView.frame = bounds
-        
+
         containerView.frame = bounds
         coverView.frame = bounds
         btnSelect.frame = CGRect(x: bounds.width - 30, y: 8, width: 23, height: 23)
@@ -156,22 +156,22 @@ class ZLThumbnailPhotoCell: UICollectionViewCell {
         editImageTag.frame = CGRect(x: 5, y: -1, width: 20, height: 20)
         descLabel.frame = CGRect(x: 30, y: 1, width: bounds.width - 35, height: 17)
         progressView.frame = CGRect(x: (bounds.width - 20) / 2, y: (bounds.height - 20) / 2, width: 20, height: 20)
-        
+
         super.layoutSubviews()
     }
-    
+
     @objc func btnSelectClick() {
         if !enableSelect, ZLPhotoConfiguration.default().showInvalidMask {
             return
         }
-        
+
         btnSelect.layer.removeAllAnimations()
         if !btnSelect.isSelected, ZLPhotoConfiguration.default().animateSelectBtnWhenSelect {
             btnSelect.layer.add(ZLAnimationUtils.springAnimation(), forKey: nil)
         }
-        
+
         selectedBlock?(btnSelect.isSelected)
-        
+
         if btnSelect.isSelected {
             fetchBigImage()
         } else {
@@ -179,13 +179,13 @@ class ZLThumbnailPhotoCell: UICollectionViewCell {
             cancelFetchBigImage()
         }
     }
-    
+
     private func configureCell() {
         if ZLPhotoUIConfiguration.default().cellCornerRadio > 0 {
             layer.cornerRadius = ZLPhotoUIConfiguration.default().cellCornerRadio
             layer.masksToBounds = true
         }
-        
+
         if model.type == .video {
             bottomShadowView.isHidden = false
             videoTag.isHidden = false
@@ -215,7 +215,7 @@ class ZLThumbnailPhotoCell: UICollectionViewCell {
                 bottomShadowView.isHidden = true
             }
         }
-        
+
         let showSelBtn: Bool
         if ZLPhotoConfiguration.default().maxSelectCount > 1 {
             if !ZLPhotoConfiguration.default().allowMixSelect {
@@ -226,24 +226,24 @@ class ZLThumbnailPhotoCell: UICollectionViewCell {
         } else {
             showSelBtn = ZLPhotoConfiguration.default().showSelectBtnWhenSingleSelect
         }
-        
+
         btnSelect.isHidden = !showSelBtn
         btnSelect.isUserInteractionEnabled = showSelBtn
         btnSelect.isSelected = model.isSelected
-        
+
         if model.isSelected {
             fetchBigImage()
         } else {
             cancelFetchBigImage()
         }
-        
+
         if let ei = model.editImage {
             imageView.image = ei
         } else {
             fetchSmallImage()
         }
     }
-    
+
     private func fetchSmallImage() {
         let size: CGSize
         let maxSideLength = bounds.width * 1.2
@@ -254,11 +254,11 @@ class ZLThumbnailPhotoCell: UICollectionViewCell {
             let h = maxSideLength / model.whRatio
             size = CGSize(width: maxSideLength, height: h)
         }
-        
+
         if smallImageRequestID > PHInvalidImageRequestID {
             PHImageManager.default().cancelImageRequest(smallImageRequestID)
         }
-        
+
         imageIdentifier = model.ident
         imageView.image = nil
         smallImageRequestID = ZLPhotoManager.fetchImage(for: model.asset, size: size, completion: { [weak self] image, isDegraded in
@@ -270,10 +270,10 @@ class ZLThumbnailPhotoCell: UICollectionViewCell {
             }
         })
     }
-    
+
     private func fetchBigImage() {
         cancelFetchBigImage()
-        
+
         bigImageReqeustID = ZLPhotoManager.fetchOriginalImageData(for: model.asset, progress: { [weak self] progress, _, _, _ in
             if self?.model.isSelected == true {
                 self?.progressView.isHidden = false
@@ -289,17 +289,16 @@ class ZLThumbnailPhotoCell: UICollectionViewCell {
             self?.resetProgressViewStatus()
         })
     }
-    
+
     private func cancelFetchBigImage() {
         if bigImageReqeustID > PHInvalidImageRequestID {
             PHImageManager.default().cancelImageRequest(bigImageReqeustID)
         }
         resetProgressViewStatus()
     }
-    
+
     private func resetProgressViewStatus() {
         progressView.isHidden = true
         imageView.alpha = 1
     }
-    
 }

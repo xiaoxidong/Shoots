@@ -27,12 +27,12 @@ public func + (lhs: Date, rhs: DateComponents) -> Date {
 
 /// Adds date components to a date and returns a new date.
 public func + (lhs: DateComponents, rhs: Date) -> Date {
-    (rhs + lhs)
+    rhs + lhs
 }
 
 /// Subtracts date components from a date and returns a new date.
 public func - (lhs: Date, rhs: DateComponents) -> Date {
-    (lhs + (-rhs))
+    lhs + -rhs
 }
 
 public func + (lhs: Date, rhs: TimeInterval) -> Date {

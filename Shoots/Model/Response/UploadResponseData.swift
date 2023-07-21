@@ -10,5 +10,5 @@ import SwiftUI
 struct UploadResponseData: Codable {
     var code: Int
     var msg: String
-    var data: [UploadAblum]   
+    var data: [UploadAblum]
 }

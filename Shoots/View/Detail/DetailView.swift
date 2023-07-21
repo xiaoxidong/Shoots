@@ -8,12 +8,12 @@
 import SwiftUI
 import SwiftUIFlowLayout
 #if os(iOS)
-import Toast
+    import Toast
 #endif
 
 struct DetailView: View {
     var shoot: Picture
-    
+
     @State var showDetail = false
     @State var search: String? = nil
     @AppStorage("showDetailNew") var showDetailNew = true
@@ -21,14 +21,14 @@ struct DetailView: View {
     @State var alertText = ""
     @State var alertType: AlertToast.AlertType = .success(Color.shootBlack)
     @EnvironmentObject var user: UserViewModel
-    @StateObject var detail: DetailViewModel = DetailViewModel()
+    @StateObject var detail: DetailViewModel = .init()
     @State var showLogin = false
     #if os(iOS)
-    @State var image: UIImage? = nil
+        @State var image: UIImage? = nil
     #else
-    @State var image: NSImage? = nil
+        @State var image: NSImage? = nil
     #endif
-    
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             ImageView(urlString: shoot.compressedPicUrl, image: $image)
@@ -38,7 +38,7 @@ struct DetailView: View {
         }.background(Color.shootLight.opacity(0.1))
             .onTapGesture {
                 #if os(iOS)
-                FeedbackManager.impact(style: .medium)
+                    FeedbackManager.impact(style: .medium)
                 #endif
                 withAnimation(.spring()) {
                     if showSave {
@@ -48,7 +48,7 @@ struct DetailView: View {
                     } else {
                         if detail.detail == nil {
                             Task {
-                                await detail.getImageDetail(id: shoot.id) { success in
+                                await detail.getImageDetail(id: shoot.id) { _ in
                                     withAnimation(.spring()) {
                                         showDetail = true
                                     }
@@ -60,77 +60,74 @@ struct DetailView: View {
                     }
                 }
             }
-        .overlay(alignment: .bottom) {
-            infoView
-                .offset(y: showDetail ? 0 : 1000)
-        }
-        .overlay(alignment: .bottom) {
-            saveView
-                .offset(y: showSave ? 0 : 1000)
-        }
-        .overlay(
-            Group {
-                Color.black.opacity(showDetailNew ? 0.4 : 0)
-                VStack(spacing: 16) {
-                    Image("doubleclick")
-                    Text("点击查看截图详情信息")
-                        .font(.system(size: 16, weight: .medium))
-                        .foregroundColor(.white)
-                    
-                    Button {
-                        withAnimation(.spring()) {
-                            showDetailNew.toggle()
-                        }
-                    } label: {
-                        Text("知道了")
+            .overlay(alignment: .bottom) {
+                infoView
+                    .offset(y: showDetail ? 0 : 1000)
+            }
+            .overlay(alignment: .bottom) {
+                saveView
+                    .offset(y: showSave ? 0 : 1000)
+            }
+            .overlay(
+                Group {
+                    Color.black.opacity(showDetailNew ? 0.4 : 0)
+                    VStack(spacing: 16) {
+                        Image("doubleclick")
+                        Text("点击查看截图详情信息")
                             .font(.system(size: 16, weight: .medium))
                             .foregroundColor(.white)
-                            .padding(.horizontal, 56)
-                            .padding(.vertical, 12)
-                            .background(LinearGradient(colors: [.pink, .yellow], startPoint: .leading, endPoint: .trailing))
-                            .clipShape(Capsule())
-                    }.padding(.top)
-                }.opacity(showDetailNew ? 1 : 0)
-            }
-        )
-        .overlay(
-            Group {
-                Color.black
-                    .ignoresSafeArea()
-                    .opacity(showNewFolder ? 0.2 : 0)
-                    .onTapGesture {
-                        withAnimation(.spring()) {
-                            showNewFolder = false
-                        }
-                    }
-                if showNewFolder {
-                    newFoldereView
-                        .transition(.scale(scale: 0.9).combined(with: .opacity))
+
+                        Button {
+                            withAnimation(.spring()) {
+                                showDetailNew.toggle()
+                            }
+                        } label: {
+                            Text("知道了")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 56)
+                                .padding(.vertical, 12)
+                                .background(LinearGradient(colors: [.pink, .yellow], startPoint: .leading, endPoint: .trailing))
+                                .clipShape(Capsule())
+                        }.padding(.top)
+                    }.opacity(showDetailNew ? 1 : 0)
                 }
-            }
-        )
-        .overlay(
-            LoginView(login: $showLogin) {
-                
-            }, alignment: .bottom
-        )
-        .ignoresSafeArea()
+            )
+            .overlay(
+                Group {
+                    Color.black
+                        .ignoresSafeArea()
+                        .opacity(showNewFolder ? 0.2 : 0)
+                        .onTapGesture {
+                            withAnimation(.spring()) {
+                                showNewFolder = false
+                            }
+                        }
+                    if showNewFolder {
+                        newFoldereView
+                            .transition(.scale(scale: 0.9).combined(with: .opacity))
+                    }
+                }
+            )
+            .overlay(
+                LoginView(login: $showLogin) {}, alignment: .bottom
+            )
+            .ignoresSafeArea()
         #if os(iOS)
-        .fullScreenCover(item: $search) { search in
-            FullScreenSearchView(searchText: search)
-        }
+            .fullScreenCover(item: $search) { search in
+                FullScreenSearchView(searchText: search)
+            }
         #else
-        .overlay(alignment: .topTrailing) {
-            MacCloseButton()
-                .padding(26)
-        }
+            .overlay(alignment: .topTrailing) {
+                    MacCloseButton()
+                        .padding(26)
+                }
         #endif
-        .toast(isPresenting: $showAlert) {
-            AlertToast(displayMode: .alert, type: alertType, title: alertText)
-        }
+                .toast(isPresenting: $showAlert) {
+                    AlertToast(displayMode: .alert, type: alertType, title: alertText)
+                }
     }
-    
-    
+
     @State var showApp = false
     @State var showReport = false
     @State var designTypes: [String] = []
@@ -153,29 +150,29 @@ struct DetailView: View {
                     }.buttonStyle(.plain)
                         .sheet(isPresented: $showApp) {
                             #if os(iOS)
-                            NavigationView {
-                                AppView(id: shoot.linkApplicationId ?? "", appID: detail.appStoreId)
-                                    .navigationTitle(detail.linkApplicationName ?? "应用")
-                                    .navigationBarTitleDisplayMode(.inline)
-                                    .toolbar {
-                                        ToolbarItem(placement: .navigationBarTrailing) {
-        //                                    ShareLink(item: URL(string: shoot.app.url)!) {
-        //                                        Image(systemName: "square.and.arrow.up.fill")
-        //                                    }.tint(.shootRed)
+                                NavigationView {
+                                    AppView(id: shoot.linkApplicationId ?? "", appID: detail.appStoreId)
+                                        .navigationTitle(detail.linkApplicationName ?? "应用")
+                                        .navigationBarTitleDisplayMode(.inline)
+                                        .toolbar {
+                                            ToolbarItem(placement: .navigationBarTrailing) {
+                                                //                                    ShareLink(item: URL(string: shoot.app.url)!) {
+                                                //                                        Image(systemName: "square.and.arrow.up.fill")
+                                                //                                    }.tint(.shootRed)
+                                            }
                                         }
-                                    }
-                            }
+                                }
                             #else
-                            VStack {
-                                HStack {
-                                    Text(detail.linkApplicationName ?? "图片详情")
-                                        .font(.largeTitle)
-                                        .bold()
-                                    Spacer()
-                                    MacCloseButton()
-                                }.padding([.horizontal, .top], 36)
-                                AppView(id: shoot.linkApplicationId ?? "", appID: detail.appStoreId)
-                            }.sheetFrameForMac()
+                                VStack {
+                                    HStack {
+                                        Text(detail.linkApplicationName ?? "图片详情")
+                                            .font(.largeTitle)
+                                            .bold()
+                                        Spacer()
+                                        MacCloseButton()
+                                    }.padding([.horizontal, .top], 36)
+                                    AppView(id: shoot.linkApplicationId ?? "", appID: detail.appStoreId)
+                                }.sheetFrameForMac()
                             #endif
                         }
 
@@ -184,21 +181,21 @@ struct DetailView: View {
                         Image(systemName: "person.2.crop.square.stack")
                             .font(.system(size: 30, weight: .regular))
                             .foregroundColor(.shootBlack)
-                        
+
                         VStack(alignment: .leading, spacing: 8) {
                             Text(detail.userName ?? "上传用户")
                                 .font(.system(size: 16, weight: .bold))
                                 .foregroundColor(.shootBlack)
-                            
+
                             HStack(spacing: 4) {
                                 Image("upload")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 16, height: 16)
-                                
+
                                 Group {
                                     Text("\(detail.uploadNum)")
-                                    + Text(" 图片")
+                                        + Text(" 图片")
                                 }
                                 .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(.shootBlack)
@@ -209,7 +206,7 @@ struct DetailView: View {
                                     .frame(width: 16, height: 16)
                                 Group {
                                     Text("\(detail.favoriteNum)")
-                                    + Text(" 图片")
+                                        + Text(" 图片")
                                 }
                                 .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(.shootBlack)
@@ -217,11 +214,12 @@ struct DetailView: View {
                         }
                         Spacer()
                     }
-                    
+
                     // 设计模式
                     FlowLayout(mode: .vstack,
                                items: detail.designPatternList,
-                               itemSpacing: 4) { designPattern in
+                               itemSpacing: 4)
+                    { designPattern in
                         Button {
                             search = designPattern.designPatternName
                         } label: {
@@ -238,12 +236,12 @@ struct DetailView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                         }.buttonStyle(.plain)
                     }
-                    
+
                     // 操作按钮
                     HStack {
                         ActionTitleButtonView(systemImage: "sparkles.rectangle.stack.fill", title: "系列") {
                             #if os(iOS)
-                            FeedbackManager.impact(style: .medium)
+                                FeedbackManager.impact(style: .medium)
                             #endif
                             if user.login {
                                 withAnimation(.spring()) {
@@ -263,62 +261,62 @@ struct DetailView: View {
                         Spacer(minLength: 0)
                         if let image = image {
                             #if os(iOS)
-                            ShareLink(item: Image(uiImage: image), preview: SharePreview("Shoots", image: Image(uiImage: image))) {
-                                VStack {
-                                    Image(systemName: "square.and.arrow.up.circle.fill")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 30, height: 30)
-                                    Text("分享")
-                                        .font(.system(size: 14, weight: .medium))
-                                        .foregroundColor(.shootBlack)
-                                }
-                            }.buttonStyle(.plain)
+                                ShareLink(item: Image(uiImage: image), preview: SharePreview("Shoots", image: Image(uiImage: image))) {
+                                    VStack {
+                                        Image(systemName: "square.and.arrow.up.circle.fill")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 30, height: 30)
+                                        Text("分享")
+                                            .font(.system(size: 14, weight: .medium))
+                                            .foregroundColor(.shootBlack)
+                                    }
+                                }.buttonStyle(.plain)
                             #else
-                            ShareLink(item: Image(nsImage: image), preview: SharePreview("Shoots", image: Image(nsImage: image))) {
-                                VStack {
-                                    Image(systemName: "square.and.arrow.up.circle.fill")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 30, height: 30)
-                                    Text("分享")
-                                        .font(.system(size: 14, weight: .medium))
-                                        .foregroundColor(.shootBlack)
-                                }
-                            }.buttonStyle(.plain)
+                                ShareLink(item: Image(nsImage: image), preview: SharePreview("Shoots", image: Image(nsImage: image))) {
+                                    VStack {
+                                        Image(systemName: "square.and.arrow.up.circle.fill")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 30, height: 30)
+                                        Text("分享")
+                                            .font(.system(size: 14, weight: .medium))
+                                            .foregroundColor(.shootBlack)
+                                    }
+                                }.buttonStyle(.plain)
                             #endif
                             Spacer(minLength: 0)
                         }
-                        
+
                         ActionTitleButtonView(systemImage: "square.and.arrow.down.fill", title: "下载") {
                             if user.login {
                                 #if os(iOS)
-                                FeedbackManager.impact(style: .medium)
-                                
-                                let imageSaver = ImageSaver()
-                                imageSaver.successHandler = {
-                                    alertText = "成功保存到相册"
-                                    alertType = .success(Color.shootBlack)
-                                    showAlert = true
-                                }
-                                imageSaver.errorHandler = {
-                                    print("保存失败: \($0.localizedDescription)")
-                                    alertText = "保存失败"
-                                    alertType = .error(.red)
-                                    showAlert = true
-                                }
-                                
-                                guard let url = URL(string: shoot.picUrl) else { return }
-                                let task = URLSession.shared.dataTask(with: url) { data, response, error in
-                                    guard let data = data else { return }
-                                    imageSaver.writeToPhotoAlbum(image: UIImage(data: data)!)
-                                }
-                                task.resume()
-                                
+                                    FeedbackManager.impact(style: .medium)
+
+                                    let imageSaver = ImageSaver()
+                                    imageSaver.successHandler = {
+                                        alertText = "成功保存到相册"
+                                        alertType = .success(Color.shootBlack)
+                                        showAlert = true
+                                    }
+                                    imageSaver.errorHandler = {
+                                        print("保存失败: \($0.localizedDescription)")
+                                        alertText = "保存失败"
+                                        alertType = .error(.red)
+                                        showAlert = true
+                                    }
+
+                                    guard let url = URL(string: shoot.picUrl) else { return }
+                                    let task = URLSession.shared.dataTask(with: url) { data, _, _ in
+                                        guard let data = data else { return }
+                                        imageSaver.writeToPhotoAlbum(image: UIImage(data: data)!)
+                                    }
+                                    task.resume()
+
                                 #else
-                                if let url = showSavePanel() {
-                                    savePNG(imageName: "s1", path: url)
-                                }
+                                    if let url = showSavePanel() {
+                                        savePNG(imageName: "s1", path: url)
+                                    }
                                 #endif
                             } else {
                                 withAnimation(.spring()) {
@@ -336,13 +334,11 @@ struct DetailView: View {
                                 alertType = .success(Color.shootBlack)
                                 showAlert = true
                             }
-                                .sheetFrameForMac()
+                            .sheetFrameForMac()
                         }
                     }.padding(.horizontal)
                 } else {
-                    ErrorView() {
-                        
-                    }
+                    ErrorView {}
                 }
             }
         }.frame(maxWidth: 460, minHeight: 160)
@@ -355,6 +351,7 @@ struct DetailView: View {
             .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
             .contentShape(Rectangle())
     }
+
     @State var showSave = false
     @State var images = [["s7", "s2", "s4"], ["s5", "s2", "s4"]]
     var saveView: some View {
@@ -371,9 +368,9 @@ struct DetailView: View {
                     Image("add")
                 }.padding(.trailing)
                     .buttonStyle(.plain)
-                .frame(maxWidth: .infinity, alignment: .trailing)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
-            
+
             if detail.loadingFavorites {
                 LoadingView().frame(height: 286)
             } else {
@@ -401,7 +398,7 @@ struct DetailView: View {
                                     .onTapGesture {
                                         // 收藏
                                         Task {
-                                            await detail.savePics(pics: [shoot.id], favoriteFileId: favorite.id) { success in
+                                            await detail.savePics(pics: [shoot.id], favoriteFileId: favorite.id) { _ in
                                                 // 收藏成功
                                                 showSave = false
                                                 // 提示成功
@@ -417,16 +414,16 @@ struct DetailView: View {
                 }
             }
         }
-            .padding(.vertical)
-            .padding(.bottom)
-            .padding(.top, 8)
-            .frame(maxWidth: .infinity)
+        .padding(.vertical)
+        .padding(.bottom)
+        .padding(.top, 8)
+        .frame(maxWidth: .infinity)
         .background(Color.shootWhite)
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
         .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -10)
         .contentShape(Rectangle())
     }
-    
+
     @State var name: String = ""
     @State var showNewFolder = false
     @FocusState var focused: Bool
@@ -435,7 +432,7 @@ struct DetailView: View {
             Text("新建系列")
                 .font(.system(size: 16, weight: .medium))
                 .foregroundColor(.shootBlack)
-            
+
             VStack {
                 TextField("输入系列名称", text: $name)
                     .textFieldStyle(.plain)
@@ -443,7 +440,7 @@ struct DetailView: View {
                     .padding(.horizontal)
                 Divider()
             }
-            
+
             HStack(spacing: 56) {
                 Button {
                     withAnimation(.spring()) {
@@ -477,8 +474,6 @@ struct DetailView: View {
                                 }
                             }
                         }
-                        
-                        
                     }
                 } label: {
                     Text("确认")
@@ -500,35 +495,35 @@ struct DetailView: View {
                 focused = true
             }
     }
-    
+
     #if os(macOS)
-    func showSavePanel() -> URL? {
-        let savePanel = NSSavePanel()
-        savePanel.allowedContentTypes = [.png, .jpeg]
-        savePanel.canCreateDirectories = true
-        savePanel.isExtensionHidden = false
-        savePanel.title = "保存图片"
-        savePanel.message = "选择保存位置"
-        savePanel.nameFieldLabel = "名称："
-        
-        let response = savePanel.runModal()
-        return response == .OK ? savePanel.url : nil
-    }
-    
-    func savePNG(imageName: String, path: URL) {
-        let image = NSImage(named: imageName)!
-        let imageRepresentation = NSBitmapImageRep(data: image.tiffRepresentation!)
-        let pngData = imageRepresentation?.representation(using: .png, properties: [:])
-        do {
-            try pngData!.write(to: path)
-        } catch {
-            print(error)
+        func showSavePanel() -> URL? {
+            let savePanel = NSSavePanel()
+            savePanel.allowedContentTypes = [.png, .jpeg]
+            savePanel.canCreateDirectories = true
+            savePanel.isExtensionHidden = false
+            savePanel.title = "保存图片"
+            savePanel.message = "选择保存位置"
+            savePanel.nameFieldLabel = "名称："
+
+            let response = savePanel.runModal()
+            return response == .OK ? savePanel.url : nil
         }
-    }
+
+        func savePNG(imageName: String, path: URL) {
+            let image = NSImage(named: imageName)!
+            let imageRepresentation = NSBitmapImageRep(data: image.tiffRepresentation!)
+            let pngData = imageRepresentation?.representation(using: .png, properties: [:])
+            do {
+                try pngData!.write(to: path)
+            } catch {
+                print(error)
+            }
+        }
     #endif
 }
 
-//struct DetailView_Previews: PreviewProvider {
+// struct DetailView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        DetailView(shoot: singleShoot)
 //            .previewDisplayName("Chinese")
@@ -537,6 +532,4 @@ struct DetailView: View {
 //            .previewDisplayName("English")
 //            .environment(\.locale, .init(identifier: "en"))
 //    }
-//}
-
-
+// }

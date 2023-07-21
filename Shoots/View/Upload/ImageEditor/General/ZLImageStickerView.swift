@@ -28,14 +28,14 @@ import UIKit
 
 class ZLImageStickerView: ZLBaseStickerView<ZLImageStickerState> {
     private let image: UIImage
-    
+
     private lazy var imageView: UIImageView = {
         let view = UIImageView(image: image)
         view.contentMode = .scaleAspectFit
         view.clipsToBounds = true
         return view
     }()
-    
+
     // Convert all states to model.
     override var state: ZLImageStickerState {
         return ZLImageStickerState(
@@ -48,11 +48,11 @@ class ZLImageStickerView: ZLBaseStickerView<ZLImageStickerState> {
             totalTranslationPoint: totalTranslationPoint
         )
     }
-    
+
     deinit {
         zl_debugPrint("ZLImageStickerView deinit")
     }
-    
+
     convenience init(from state: ZLImageStickerState) {
         self.init(
             image: state.image,
@@ -65,7 +65,7 @@ class ZLImageStickerView: ZLBaseStickerView<ZLImageStickerState> {
             showBorder: false
         )
     }
-    
+
     init(
         image: UIImage,
         originScale: CGFloat,
@@ -86,19 +86,19 @@ class ZLImageStickerView: ZLBaseStickerView<ZLImageStickerState> {
             totalTranslationPoint: totalTranslationPoint,
             showBorder: showBorder
         )
-        
+
         addSubview(imageView)
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func setupUIFrameWhenFirstLayout() {
         imageView.frame = bounds.insetBy(dx: ZLStickerLayout.edgeInset, dy: ZLStickerLayout.edgeInset)
     }
-    
+
     class func calculateSize(image: UIImage, width: CGFloat) -> CGSize {
         let maxSide = width / 2
         let minSide: CGFloat = 100
@@ -127,7 +127,7 @@ public class ZLImageStickerState: NSObject {
     let gesScale: CGFloat
     let gesRotation: CGFloat
     let totalTranslationPoint: CGPoint
-    
+
     init(
         image: UIImage,
         originScale: CGFloat,

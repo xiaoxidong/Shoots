@@ -11,7 +11,7 @@ class SelfViewModel: ObservableObject {
     @Published var loading = true
     @Published var favorites: [Favorite] = []
     @Published var apps: [UploadAblum] = []
-    
+
     var favoritesPicNum: Int {
         var num = 0
         favorites.forEach { favorite in
@@ -19,58 +19,56 @@ class SelfViewModel: ObservableObject {
         }
         return num
     }
+
     // 获取所有系列
     func getFavorites() async {
         APIService.shared.GET(url: .allFavorite, params: nil) { (result: Result<FavoriteResponseData, APIService.APIError>) in
             switch result {
-            case .success(let favorite):
+            case let .success(favorite):
                 self.favorites = favorite.data
-            case .failure(let error):
+            case let .failure(error):
                 print("获取所有系列错误: \(error)")
-                break
             }
         }
     }
-    
+
     var appPicNum: Int {
-        var num: Int = 0
+        var num = 0
         apps.forEach { app in
             num += app.countPics
         }
         return num
     }
+
     // 个人上传和收藏的截图，按照应用的分类
     func uploadPicGroup() async {
         APIService.shared.GET(url: .uploadPicGroup, params: nil) { (result: Result<UploadResponseData, APIService.APIError>) in
             switch result {
-            case .success(let app):
+            case let .success(app):
                 self.apps = app.data
-            case .failure(let error):
+            case let .failure(error):
                 print("获取所有上传的应用错误: \(error)")
-                break
             }
             DispatchQueue.main.async {
                 self.loading = false
             }
         }
     }
-    
+
     @Published var userPattern: [Pattern] = []
     // 用户上传和收藏的截图，按照设计模式的分类
     @Published var loadingPattern = false
     func getUserPattern() async {
         APIService.shared.GET(url: .userPattern, params: nil) { (result: Result<UserPatternResponseData, APIService.APIError>) in
             switch result {
-            case .success(let userPattern):
+            case let .success(userPattern):
                 self.userPattern = userPattern.data
-            case .failure(let error):
+            case let .failure(error):
                 print("个人中心获取所有的设计模式错误: \(error)")
-                break
             }
         }
     }
-    
-    
+
     @Published var patternFeed: [Picture] = []
     var page: Int = 1
     var mostPages: Int = 1
@@ -83,39 +81,38 @@ class SelfViewModel: ObservableObject {
             self.footerRefreshing = false
             self.page = 1
         }
-        
-        APIService.shared.POST(url: .selfPatternPic, params: ["pageSize" : numberPerpage, "pageNum": 1, "designPatternId": id]) { (result: Result<FeedResponseData, APIService.APIError>) in
+
+        APIService.shared.POST(url: .selfPatternPic, params: ["pageSize": numberPerpage, "pageNum": 1, "designPatternId": id]) { (result: Result<FeedResponseData, APIService.APIError>) in
             switch result {
-            case .success(let pattern):
+            case let .success(pattern):
                 self.patternFeed = pattern.rows
                 self.mostPages = pattern.total / numberPerpage + 1
                 if pattern.rows.count < numberPerpage {
                     self.noMore = true
                     self.footerRefreshing = false
                 }
-            case .failure(let error):
+            case let .failure(error):
                 print("个人中心获取分类下的图片错误: \(error)")
-                break
             }
-            
+
             DispatchQueue.main.async {
                 self.loadingPattern = false
             }
         }
     }
+
     // 下一页数据
     func nextPage(id: String) async {
-        self.page += 1
-        APIService.shared.POST(url: .selfPatternPic, params: ["pageSize" : numberPerpage, "pageNum": page, "designPatternId": id]) { (result: Result<FeedResponseData, APIService.APIError>) in
+        page += 1
+        APIService.shared.POST(url: .selfPatternPic, params: ["pageSize": numberPerpage, "pageNum": page, "designPatternId": id]) { (result: Result<FeedResponseData, APIService.APIError>) in
             switch result {
-            case .success(let pattern):
+            case let .success(pattern):
                 DispatchQueue.main.async {
                     self.patternFeed.append(contentsOf: pattern.rows)
                     self.footerRefreshing = false
                 }
-            case .failure(let error):
+            case let .failure(error):
                 print("个人中心获取分类下的图片下一页错误: \(error)")
-                break
             }
         }
     }

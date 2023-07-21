@@ -20,13 +20,13 @@ extension View {
             self
         }
     }
-    
+
     func resignFirstResponder() {
         #if os(iOS)
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         #endif
     }
-    
+
     public func shadow(
         color: Color = .black,
         x: CGFloat,
@@ -35,13 +35,12 @@ extension View {
     ) -> some View {
         shadow(color: color, radius: blur / 2, x: x, y: y)
     }
-    
-    
+
     func sheetFrameForMac() -> some View {
         #if os(iOS)
-        self
+            self
         #else
-        self.frame(minWidth: 400, idealWidth: 600, maxWidth: 700, minHeight: 500, idealHeight: 800, maxHeight: 900)
+            frame(minWidth: 400, idealWidth: 600, maxWidth: 700, minHeight: 500, idealHeight: 800, maxHeight: 900)
         #endif
     }
 }

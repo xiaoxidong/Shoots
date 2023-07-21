@@ -57,16 +57,16 @@ struct CustomUploadView: View {
         .edgesIgnoringSafeArea(.bottom)
         .onAppear {
             #if DEBUG
-            Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
-                finish = true
-            }
+                Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+                    finish = true
+                }
             #endif
         }
     }
-    
+
     #if os(iOS)
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @Environment(\.verticalSizeClass) var verticalSizeClass
+        @Environment(\.horizontalSizeClass) var horizontalSizeClass
+        @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
     var columns: [GridItem] {
         if horizontalSizeClass == .compact {
@@ -75,7 +75,7 @@ struct CustomUploadView: View {
             return [GridItem(.adaptive(minimum: 220, maximum: 360), spacing: 2)]
         }
     }
-    
+
     var photoView: some View {
         ScrollView {
             LazyVGrid(columns: columns, alignment: .leading, spacing: 2) {
@@ -91,16 +91,14 @@ struct CustomUploadView: View {
             }
         }
     }
-    
+
     var addAppView: some View {
         Group {
             VStack(spacing: 0) {
                 HStack {
                     Text("选择操作")
                     Spacer()
-                    Button {
-                        
-                    } label: {
+                    Button {} label: {
                         Image(systemName: "plus")
                             .font(.system(size: 16, weight: .semibold))
                             .foregroundColor(.shootBlue)
@@ -108,7 +106,7 @@ struct CustomUploadView: View {
                             .contentShape(Rectangle())
                     }
                 }.padding()
-                
+
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         FolderCardView(images: ["s3", "s2"], name: "Instagram", picCount: 10)
@@ -121,7 +119,7 @@ struct CustomUploadView: View {
                             .frame(minWidth: 156)
                     }.padding(.horizontal)
                 }
-                
+
             }.frame(maxWidth: .infinity)
                 .padding(.bottom, 36)
                 .padding(.top, 8)
@@ -131,7 +129,6 @@ struct CustomUploadView: View {
                 .offset(y: !finish ? 1000 : 0)
         }
     }
-    
 }
 
 struct CustomUploadView_Previews: PreviewProvider {
@@ -139,7 +136,7 @@ struct CustomUploadView_Previews: PreviewProvider {
         CustomUploadView()
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        
+
         CustomUploadView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))

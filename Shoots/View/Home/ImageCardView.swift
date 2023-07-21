@@ -5,19 +5,19 @@
 //  Created by XiaoDong Yuan on 2023/3/20.
 //
 
+import SDWebImageSwiftUI
+import StoreKit
 import SwiftUI
 import UniformTypeIdentifiers
-import StoreKit
-import SDWebImageSwiftUI
 
 struct ImageCardView: View {
     var shoot: Picture
-    
+
     @AppStorage("homeModel") var homeModel = 0
     @AppStorage("showReviewAlert") var showReviewAlert = 0
     @State var showDetail: Bool = false
     @Environment(\.requestReview) var requestReview
-    
+
     var body: some View {
         ImageView(urlString: shoot.compressedPicUrl, image: .constant(nil))
             .sheet(isPresented: $showDetail) {
@@ -34,7 +34,7 @@ struct ImageCardView: View {
                     showReviewAlert = 11
                 }
             }
-            .highPriorityGesture (
+            .highPriorityGesture(
                 TapGesture(count: 2)
                     .onEnded {
                         if homeModel == 0 {
@@ -52,7 +52,7 @@ struct ImageCardView: View {
                 // TODO: 拖拽保存图片
                 let image = NSImage(named: "s1")
                 FileManager.default.createFile(atPath: fileURL.path, contents: image?.png)
-                
+
                 return NSItemProvider(item: fileURL as NSSecureCoding, typeIdentifier: UTType.fileURL.identifier)
             }
 //        #else
@@ -61,7 +61,7 @@ struct ImageCardView: View {
     }
 }
 
-//struct ImageCardView_Previews: PreviewProvider {
+// struct ImageCardView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ImageCardView(shoot: singleShoot)
 //            .previewDisplayName("Chinese")
@@ -70,4 +70,4 @@ struct ImageCardView: View {
 //            .previewDisplayName("English")
 //            .environment(\.locale, .init(identifier: "en"))
 //    }
-//}
+// }

@@ -5,21 +5,21 @@
 //  Created by XiaoDong Yuan on 2023/6/9.
 //
 
-import SwiftUI
 import SDWebImageSwiftUI
+import SwiftUI
 
 struct ImageView: View {
     var urlString: String
     #if os(iOS)
-    @Binding var image: UIImage?
+        @Binding var image: UIImage?
     #else
-    @Binding var image: NSImage?
+        @Binding var image: NSImage?
     #endif
-    
+
     var body: some View {
         WebImage(url: URL(string: urlString))
             // Supports options and context, like `.delayPlaceholder` to show placeholder only when error
-            .onSuccess { image, data, cacheType in
+            .onSuccess { image, _, _ in
                 self.image = image
                 // Success
                 // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data

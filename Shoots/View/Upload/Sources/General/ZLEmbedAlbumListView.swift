@@ -24,17 +24,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
 import Photos
+import UIKit
 
 class ZLEmbedAlbumListView: UIView {
-    
     static let rowH: CGFloat = 60
-    
+
     private var selectedAlbum: ZLAlbumListModel
-    
+
     private lazy var tableBgView = UIView()
-    
+
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
         view.backgroundColor = .zll.albumListBgColor
@@ -47,71 +46,71 @@ class ZLEmbedAlbumListView: UIView {
         ZLAlbumListCell.zll.register(view)
         return view
     }()
-    
+
     private var arrDataSource: [ZLAlbumListModel] = []
-    
+
     var selectAlbumBlock: ((ZLAlbumListModel) -> Void)?
-    
+
     var hideBlock: (() -> Void)?
-    
+
     private var orientation: UIInterfaceOrientation = UIApplication.shared.statusBarOrientation
-    
+
     init(selectedAlbum: ZLAlbumListModel) {
         self.selectedAlbum = selectedAlbum
         super.init(frame: .zero)
         setupUI()
         loadAlbumList()
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         let currOri = UIApplication.shared.statusBarOrientation
-        
+
         guard currOri != orientation else {
             return
         }
         orientation = currOri
-        
+
         guard !isHidden else {
             return
         }
-        
+
         let bgFrame = calculateBgViewBounds()
-        
+
         let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: frame.width, height: bgFrame.height), byRoundingCorners: [.bottomLeft, .bottomRight], cornerRadii: CGSize(width: 8, height: 8))
         tableBgView.layer.mask = nil
         let maskLayer = CAShapeLayer()
         maskLayer.path = path.cgPath
         tableBgView.layer.mask = maskLayer
-        
+
         tableBgView.frame = bgFrame
         tableView.frame = tableBgView.bounds
     }
-    
+
     private func setupUI() {
         clipsToBounds = true
-        
+
         backgroundColor = .zll.embedAlbumListTranslucentColor
-        
+
         addSubview(tableBgView)
         tableBgView.addSubview(tableView)
-        
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
         tap.delegate = self
         addGestureRecognizer(tap)
     }
-    
+
     private func loadAlbumList(completion: (() -> Void)? = nil) {
         DispatchQueue.global().async {
             ZLPhotoManager.getPhotoAlbumList(ascending: ZLPhotoConfiguration.default().sortAscending, allowSelectImage: ZLPhotoConfiguration.default().allowSelectImage, allowSelectVideo: ZLPhotoConfiguration.default().allowSelectVideo) { [weak self] albumList in
                 self?.arrDataSource.removeAll()
                 self?.arrDataSource.append(contentsOf: albumList)
-                
+
                 ZLMainAsync {
                     completion?()
                     self?.tableView.reloadData()
@@ -119,35 +118,35 @@ class ZLEmbedAlbumListView: UIView {
             }
         }
     }
-    
+
     private func calculateBgViewBounds() -> CGRect {
         let contentH = CGFloat(arrDataSource.count) * ZLEmbedAlbumListView.rowH
-        
+
         let maxH: CGFloat
         if UIApplication.shared.statusBarOrientation.isPortrait {
             maxH = min(frame.height * 0.7, contentH)
         } else {
             maxH = min(frame.height * 0.8, contentH)
         }
-        
+
         return CGRect(x: 0, y: 0, width: frame.width, height: maxH)
     }
-    
-    @objc private func tapAction(_ tap: UITapGestureRecognizer) {
+
+    @objc private func tapAction(_: UITapGestureRecognizer) {
         hide()
         hideBlock?()
     }
-    
+
     /// 这里不采用监听相册发生变化的方式，是因为每次变化，系统都会回调多次，造成重复获取相册列表
     func show(reloadAlbumList: Bool) {
         func animateShow() {
             let toFrame = calculateBgViewBounds()
-            
+
             isHidden = false
             alpha = 0
             var newFrame = toFrame
             newFrame.origin.y -= newFrame.height
-            
+
             if newFrame != tableBgView.frame {
                 let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: newFrame.width, height: newFrame.height), byRoundingCorners: [.bottomLeft, .bottomRight], cornerRadii: CGSize(width: 8, height: 8))
                 tableBgView.layer.mask = nil
@@ -155,7 +154,7 @@ class ZLEmbedAlbumListView: UIView {
                 maskLayer.path = path.cgPath
                 tableBgView.layer.mask = maskLayer
             }
-            
+
             tableBgView.frame = newFrame
             tableView.frame = tableBgView.bounds
             UIView.animate(withDuration: 0.25) {
@@ -163,7 +162,7 @@ class ZLEmbedAlbumListView: UIView {
                 self.tableBgView.frame = toFrame
             }
         }
-        
+
         if reloadAlbumList {
             if #available(iOS 14.0, *), PHPhotoLibrary.authorizationStatus(for: .readWrite) == .limited {
                 self.loadAlbumList {
@@ -177,11 +176,11 @@ class ZLEmbedAlbumListView: UIView {
             animateShow()
         }
     }
-    
+
     func hide() {
         var toFrame = tableBgView.frame
         toFrame.origin.y = -toFrame.height
-        
+
         UIView.animate(withDuration: 0.25, animations: {
             self.alpha = 0
             self.tableBgView.frame = toFrame
@@ -190,36 +189,32 @@ class ZLEmbedAlbumListView: UIView {
             self.alpha = 1
         }
     }
-    
 }
 
 extension ZLEmbedAlbumListView: UIGestureRecognizerDelegate {
-    
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         let point = gestureRecognizer.location(in: self)
         return !tableBgView.frame.contains(point)
     }
-    
 }
 
 extension ZLEmbedAlbumListView: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return arrDataSource.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ZLAlbumListCell.zll.identifier, for: indexPath) as! ZLAlbumListCell
-        
+
         let m = arrDataSource[indexPath.row]
-        
+
         cell.configureCell(model: m, style: .embedAlbumList)
-        
+
         cell.selectBtn.isSelected = m == selectedAlbum
-        
+
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let m = arrDataSource[indexPath.row]
         selectedAlbum = m
@@ -229,5 +224,4 @@ extension ZLEmbedAlbumListView: UITableViewDataSource, UITableViewDelegate {
             tableView.reloadRows(at: inx, with: .none)
         }
     }
-    
 }

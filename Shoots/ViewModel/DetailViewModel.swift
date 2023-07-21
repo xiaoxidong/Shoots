@@ -11,72 +11,68 @@ class DetailViewModel: ObservableObject {
     @Published var loading = false
     @Published var detail: ImageDetail? = nil
     @Published var favorites: [Favorite] = []
-    
+
     // 获取图片详情信息
     func getImageDetail(id: String, _ success: @escaping (Bool) -> Void) async {
         DispatchQueue.main.async {
             self.loading = true
         }
-       
+
         APIService.shared.GET(url: .imageDetail(id: id), params: nil) { (result: Result<ImageDetail, APIService.APIError>) in
             switch result {
-            case .success(let detail):
+            case let .success(detail):
                 self.detail = detail
                 success(true)
-            case .failure(let error):
+            case let .failure(error):
                 print("图片详情错误: \(error)")
-                break
             }
             DispatchQueue.main.async {
                 self.loading = false
             }
         }
     }
-    
+
     // 新建系列
     func addFavorites(name: String, _ success: @escaping (Bool) -> Void) async {
-        APIService.shared.POST(url: .addFavorite, params: ["favoriteFileName" : name]) { (result: Result<Response, APIService.APIError>) in
+        APIService.shared.POST(url: .addFavorite, params: ["favoriteFileName": name]) { (result: Result<Response, APIService.APIError>) in
             switch result {
-            case .success(_):
+            case .success:
                 Task {
                     await self.getFavorites()
                 }
                 success(true)
-            case .failure(let error):
+            case let .failure(error):
                 print("新建系列错误: \(error)")
-                break
             }
         }
     }
-    
+
     // 获取所有的系列
     @Published var loadingFavorites = true
     func getFavorites() async {
         APIService.shared.GET(url: .allFavorite, params: nil) { (result: Result<FavoriteResponseData, APIService.APIError>) in
             switch result {
-            case .success(let favorite):
+            case let .success(favorite):
                 self.favorites = favorite.data
-            case .failure(let error):
+            case let .failure(error):
                 print("获取所有系列错误: \(error)")
-                break
             }
-            
+
             DispatchQueue.main.async {
                 self.loadingFavorites = false
             }
         }
     }
-    
+
     // 添加图片到系列
     func savePics(pics: [String], favoriteFileId: String, _ success: @escaping (Bool) -> Void) async {
-        APIService.shared.POST(url: .addPicToFavorite, params: ["picIds" : pics, "favoriteFileId": favoriteFileId]) { (result: Result<Response, APIService.APIError>) in
+        APIService.shared.POST(url: .addPicToFavorite, params: ["picIds": pics, "favoriteFileId": favoriteFileId]) { (result: Result<Response, APIService.APIError>) in
             switch result {
-            case .success(let feeds):
+            case let .success(feeds):
                 print(feeds)
                 success(true)
-            case .failure(let error):
+            case let .failure(error):
                 print("添加图片到系列错误: \(error)")
-                break
             }
         }
     }

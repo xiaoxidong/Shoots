@@ -28,9 +28,9 @@ import UIKit
 /// 必须是UIView的子类遵循这个协议
 @objc public protocol ZLImageStickerContainerDelegate {
     @objc var selectImageBlock: ((UIImage) -> Void)? { get set }
-    
+
     @objc var hideBlock: (() -> Void)? { get set }
-    
+
     @objc func show(in view: UIView)
 }
 
@@ -44,12 +44,12 @@ public class ZLEditImageConfiguration: NSObject {
         case filter
         case adjust
     }
-    
+
     @objc public enum AdjustTool: Int, CaseIterable {
         case brightness
         case contrast
         case saturation
-        
+
         var key: String {
             switch self {
             case .brightness:
@@ -60,7 +60,7 @@ public class ZLEditImageConfiguration: NSObject {
                 return kCIInputSaturationKey
             }
         }
-        
+
         func filterValue(_ value: Float) -> Float {
             switch self {
             case .brightness:
@@ -81,7 +81,7 @@ public class ZLEditImageConfiguration: NSObject {
             }
         }
     }
-    
+
     private var pri_tools: [ZLEditImageConfiguration.EditTool] = ZLEditImageConfiguration.EditTool.allCases
     /// Edit image tools. (Default order is draw, clip, imageSticker, textSticker, mosaic, filtter)
     /// Because Objective-C Array can't contain Enum styles, so this property is invalid in Objective-C.
@@ -89,16 +89,16 @@ public class ZLEditImageConfiguration: NSObject {
     public var tools: [ZLEditImageConfiguration.EditTool] {
         get {
             if pri_tools.isEmpty {
-                return [.mosaic]// ZLEditImageConfiguration.EditTool.allCases
+                return [.mosaic] // ZLEditImageConfiguration.EditTool.allCases
             } else {
-                return [.mosaic]//pri_tools
+                return [.mosaic] // pri_tools
             }
         }
         set {
             pri_tools = newValue
         }
     }
-    
+
     /// Edit image tools.  (This property is only for objc).
     /// - warning: If you want to use the image sticker feature, you must provide a view that implements ZLImageStickerContainerDelegate.
     @objc public var tools_objc: [Int] = [] {
@@ -106,9 +106,9 @@ public class ZLEditImageConfiguration: NSObject {
             tools = tools_objc.compactMap { ZLEditImageConfiguration.EditTool(rawValue: $0) }
         }
     }
-    
+
     private static let defaultDrawColors: [UIColor] = [.white, .black, .zll.rgba(241, 79, 79), .zll.rgba(243, 170, 78), .zll.rgba(38, 191, 76), .zll.rgba(30, 183, 243), .zll.rgba(139, 105, 234)]
-    
+
     private var pri_drawColors: [UIColor] = ZLEditImageConfiguration.defaultDrawColors
     /// Draw colors for image editor.
     @objc public var drawColors: [UIColor] {
@@ -123,10 +123,10 @@ public class ZLEditImageConfiguration: NSObject {
             pri_drawColors = newValue
         }
     }
-    
+
     /// The default draw color. If this color not in editImageDrawColors, will pick the first color in editImageDrawColors as the default.
     @objc public var defaultDrawColor: UIColor = .zll.rgba(241, 79, 79)
-    
+
     private var pri_clipRatios: [ZLImageClipRatio] = [.custom]
     /// Edit ratios for image editor.
     @objc public var clipRatios: [ZLImageClipRatio] {
@@ -141,9 +141,9 @@ public class ZLEditImageConfiguration: NSObject {
             pri_clipRatios = newValue
         }
     }
-    
+
     private static let defaultTextStickerTextColors: [UIColor] = [.white, .black, .zll.rgba(241, 79, 79), .zll.rgba(243, 170, 78), .zll.rgba(38, 191, 76), .zll.rgba(30, 183, 243), .zll.rgba(139, 105, 234)]
-    
+
     private var pri_textStickerTextColors: [UIColor] = ZLEditImageConfiguration.defaultTextStickerTextColors
     /// Text sticker colors for image editor.
     @objc public var textStickerTextColors: [UIColor] {
@@ -158,10 +158,10 @@ public class ZLEditImageConfiguration: NSObject {
             pri_textStickerTextColors = newValue
         }
     }
-    
+
     /// The default text sticker color. If this color not in textStickerTextColors, will pick the first color in textStickerTextColors as the default.
     @objc public var textStickerDefaultTextColor = UIColor.white
-    
+
     private var pri_filters: [ZLFilter] = ZLFilter.all
     /// Filters for image editor.
     @objc public var filters: [ZLFilter] {
@@ -176,9 +176,9 @@ public class ZLEditImageConfiguration: NSObject {
             pri_filters = newValue
         }
     }
-    
+
     @objc public var imageStickerContainerView: (UIView & ZLImageStickerContainerDelegate)?
-    
+
     private var pri_adjustTools: [ZLEditImageConfiguration.AdjustTool] = ZLEditImageConfiguration.AdjustTool.allCases
     /// Adjust image tools. (Default order is brightness, contrast, saturation)
     /// Valid when the tools contain EditTool.adjust
@@ -195,7 +195,7 @@ public class ZLEditImageConfiguration: NSObject {
             pri_adjustTools = newValue
         }
     }
-    
+
     /// Adjust image tools.  (This property is only for objc).
     /// Valid when the tools contain EditTool.adjust
     @objc public var adjustTools_objc: [Int] = [] {
@@ -203,13 +203,13 @@ public class ZLEditImageConfiguration: NSObject {
             adjustTools = adjustTools_objc.compactMap { ZLEditImageConfiguration.AdjustTool(rawValue: $0) }
         }
     }
-    
+
     /// Give an impact feedback when the adjust slider value is zero. Defaults to true.
     @objc public var impactFeedbackWhenAdjustSliderValueIsZero = true
-    
+
     /// Impact feedback style. Defaults to .medium
     @objc public var impactFeedbackStyle: UIImpactFeedbackGenerator.FeedbackStyle = .medium
-    
+
     /// Whether to support redo in graffiti and mosaic tools. Defaults to false
     @objc public var canRedo = false
 }
@@ -222,66 +222,66 @@ public extension ZLEditImageConfiguration {
         self.tools = tools
         return self
     }
-    
+
     @discardableResult
     func drawColors(_ colors: [UIColor]) -> ZLEditImageConfiguration {
         drawColors = colors
         return self
     }
-    
+
     func defaultDrawColor(_ color: UIColor) -> ZLEditImageConfiguration {
         defaultDrawColor = color
         return self
     }
-    
+
     @discardableResult
     func clipRatios(_ ratios: [ZLImageClipRatio]) -> ZLEditImageConfiguration {
         clipRatios = ratios
         return self
     }
-    
+
     @discardableResult
     func textStickerTextColors(_ colors: [UIColor]) -> ZLEditImageConfiguration {
         textStickerTextColors = colors
         return self
     }
-    
+
     @discardableResult
     func textStickerDefaultTextColor(_ color: UIColor) -> ZLEditImageConfiguration {
         textStickerDefaultTextColor = color
         return self
     }
-    
+
     @discardableResult
     func filters(_ filters: [ZLFilter]) -> ZLEditImageConfiguration {
         self.filters = filters
         return self
     }
-    
+
     @discardableResult
     func imageStickerContainerView(_ view: (UIView & ZLImageStickerContainerDelegate)?) -> ZLEditImageConfiguration {
         imageStickerContainerView = view
         return self
     }
-    
+
     @discardableResult
     func adjustTools(_ tools: [ZLEditImageConfiguration.AdjustTool]) -> ZLEditImageConfiguration {
         adjustTools = tools
         return self
     }
-    
+
     @discardableResult
     func impactFeedbackWhenAdjustSliderValueIsZero(_ value: Bool) -> ZLEditImageConfiguration {
         impactFeedbackWhenAdjustSliderValueIsZero = value
         return self
     }
-    
+
     @discardableResult
     func impactFeedbackStyle(_ style: UIImpactFeedbackGenerator.FeedbackStyle) -> ZLEditImageConfiguration {
         impactFeedbackStyle = style
         return self
     }
-    
+
     @discardableResult
     func canRedo(_ value: Bool) -> ZLEditImageConfiguration {
         canRedo = value
@@ -291,7 +291,7 @@ public extension ZLEditImageConfiguration {
 
 // MARK: 裁剪比例
 
-//public class ZLImageClipRatio: NSObject {
+// public class ZLImageClipRatio: NSObject {
 //    @objc public var title: String
 //
 //    @objc public let whRatio: CGFloat
@@ -304,15 +304,15 @@ public extension ZLEditImageConfiguration {
 //        self.isCircle = isCircle
 //        super.init()
 //    }
-//}
+// }
 //
-//extension ZLImageClipRatio {
+// extension ZLImageClipRatio {
 //    static func ==(lhs: ZLImageClipRatio, rhs: ZLImageClipRatio) -> Bool {
 //        return lhs.whRatio == rhs.whRatio && lhs.title == rhs.title
 //    }
-//}
+// }
 //
-//public extension ZLImageClipRatio {
+// public extension ZLImageClipRatio {
 //    @objc static let custom = ZLImageClipRatio(title: "custom", whRatio: 0)
 //
 //    @objc static let circle = ZLImageClipRatio(title: "circle", whRatio: 1, isCircle: true)
@@ -330,4 +330,4 @@ public extension ZLEditImageConfiguration {
 //    @objc static let wh9x16 = ZLImageClipRatio(title: "9 : 16", whRatio: 9.0 / 16.0)
 //
 //    @objc static let wh16x9 = ZLImageClipRatio(title: "16 : 9", whRatio: 16.0 / 9.0)
-//}
+// }

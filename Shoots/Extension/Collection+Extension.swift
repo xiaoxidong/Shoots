@@ -9,6 +9,6 @@ import SwiftUI
 
 extension Array where Element == AppInfo {
     func choose(_ n: Int) -> [Element] {
-        return Array(self.shuffled().prefix(n))
+        return Array(shuffled().prefix(n))
     }
 }

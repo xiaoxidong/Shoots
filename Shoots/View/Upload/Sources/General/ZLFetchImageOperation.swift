@@ -24,18 +24,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
 import Photos
+import UIKit
 
 class ZLFetchImageOperation: Operation {
     private let model: ZLPhotoModel
-    
+
     private let isOriginal: Bool
-    
+
     private let progress: ((CGFloat, Error?, UnsafeMutablePointer<ObjCBool>, [AnyHashable: Any]?) -> Void)?
-    
+
     private let completion: (UIImage?, PHAsset?) -> Void
-    
+
     private var pri_isExecuting = false {
         willSet {
             self.willChangeValue(forKey: "isExecuting")
@@ -44,11 +44,11 @@ class ZLFetchImageOperation: Operation {
             self.didChangeValue(forKey: "isExecuting")
         }
     }
-    
+
     override var isExecuting: Bool {
         return pri_isExecuting
     }
-    
+
     private var pri_isFinished = false {
         willSet {
             self.willChangeValue(forKey: "isFinished")
@@ -57,11 +57,11 @@ class ZLFetchImageOperation: Operation {
             self.didChangeValue(forKey: "isFinished")
         }
     }
-    
+
     override var isFinished: Bool {
         return pri_isFinished
     }
-    
+
     private var pri_isCancelled = false {
         willSet {
             willChangeValue(forKey: "isCancelled")
@@ -70,13 +70,13 @@ class ZLFetchImageOperation: Operation {
             didChangeValue(forKey: "isCancelled")
         }
     }
-    
+
     private var requestImageID: PHImageRequestID = PHInvalidImageRequestID
-    
+
     override var isCancelled: Bool {
         return pri_isCancelled
     }
-    
+
     init(
         model: ZLPhotoModel,
         isOriginal: Bool,
@@ -89,7 +89,7 @@ class ZLFetchImageOperation: Operation {
         self.completion = completion
         super.init()
     }
-    
+
     override func start() {
         if isCancelled {
             fetchFinish()
@@ -97,7 +97,7 @@ class ZLFetchImageOperation: Operation {
         }
         zl_debugPrint("---- start fetch")
         pri_isExecuting = true
-        
+
         // 存在编辑的图片
         if let ei = model.editImage {
             if ZLPhotoConfiguration.default().saveNewImageAfterEdit {
@@ -113,7 +113,7 @@ class ZLFetchImageOperation: Operation {
             }
             return
         }
-        
+
         if ZLPhotoConfiguration.default().allowSelectGif, model.type == .gif {
             requestImageID = ZLPhotoManager.fetchOriginalImageData(for: model.asset) { [weak self] data, _, isDegraded in
                 if !isDegraded {
@@ -124,7 +124,7 @@ class ZLFetchImageOperation: Operation {
             }
             return
         }
-        
+
 //        if isOriginal {
 //            requestImageID = ZLPhotoManager.fetchOriginalImage(for: model.asset, progress: progress) { [weak self] image, isDegraded in
 //                if !isDegraded {
@@ -150,7 +150,7 @@ class ZLFetchImageOperation: Operation {
             }
         }
     }
-    
+
     override func cancel() {
         super.cancel()
         zl_debugPrint("---- cancel \(isExecuting) \(requestImageID)")
@@ -160,7 +160,7 @@ class ZLFetchImageOperation: Operation {
             fetchFinish()
         }
     }
-    
+
     private func scaleImage(_ image: UIImage?) -> UIImage? {
         guard let i = image else {
             return nil
@@ -169,18 +169,18 @@ class ZLFetchImageOperation: Operation {
             return i
         }
         let mUnit: CGFloat = 1024 * 1024
-        
+
         if data.count < Int(0.2 * mUnit) {
             return i
         }
         let scale: CGFloat = (data.count > Int(mUnit) ? 0.6 : 0.8)
-        
+
         guard let d = i.jpegData(compressionQuality: scale) else {
             return i
         }
         return UIImage(data: d)
     }
-    
+
     private func fetchFinish() {
         pri_isExecuting = false
         pri_isFinished = true
