@@ -341,11 +341,15 @@ struct UploadView_Previews: PreviewProvider {
         }
         .previewDisplayName("Chinese")
         .environment(\.locale, .init(identifier: "zh-cn"))
+        .environmentObject(InfoViewModel())
+        .environmentObject(UserViewModel())
 
         NavigationView {
             UploadView(uploadData: .constant([])) {} shareDoneAction: {} uploadAction: {}
         }
         .previewDisplayName("English")
         .environment(\.locale, .init(identifier: "en"))
+        .environmentObject(InfoViewModel())
+        .environmentObject(UserViewModel())
     }
 }

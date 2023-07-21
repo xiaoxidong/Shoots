@@ -470,9 +470,11 @@ struct ContentView_Previews: PreviewProvider {
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
             .environmentObject(user)
+            .environmentObject(InfoViewModel())
         ContentView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
             .environmentObject(user)
+            .environmentObject(InfoViewModel())
     }
 }

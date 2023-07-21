@@ -23,8 +23,8 @@ struct RefreshView: View {
                 }
             }
 
-            ForEach(1 ... 100, id: \.self) { _ in
-                Text("dddd")
+            ForEach(1 ... 100, id: \.self) { index in
+                Text("第 \(index) 行")
             }
 
             RefreshFooter(refreshing: $footerRefreshing, action: loadMore) {

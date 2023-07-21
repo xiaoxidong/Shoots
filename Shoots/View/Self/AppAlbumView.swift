@@ -284,5 +284,6 @@ struct AppAlbumView: View {
 struct AppAlbumView_Previews: PreviewProvider {
     static var previews: some View {
         AppAlbumView(id: "", name: "")
+            .environmentObject(UserViewModel())
     }
 }

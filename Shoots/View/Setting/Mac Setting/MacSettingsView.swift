@@ -202,7 +202,6 @@ struct MacSettingsView: View {
                 }
                 Section {
                     LabeledContent("开机启动：") {
-                        // 不知道为什么，添加了登录自动开启之后，iOS 的预览就不能使用，所以这里暂时注销了，可以添加下面的 SPM，然后引入库即可。
                         // https://github.com/sindresorhus/LaunchAtLogin
                         LaunchAtLogin.Toggle {
                             Text("开启")
@@ -262,9 +261,11 @@ struct MacSettingsView_Previews: PreviewProvider {
         MacSettingsView()
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
+            .environmentObject(UserViewModel())
 
         MacSettingsView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
+            .environmentObject(UserViewModel())
     }
 }

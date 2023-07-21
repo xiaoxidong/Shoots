@@ -90,8 +90,12 @@ struct IPadSearchDefaultView_Previews: PreviewProvider {
         IPadSearchDefaultView(searchText: .constant(""))
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
+            .environmentObject(InfoViewModel())
+            .environmentObject(SearchViewModel())
         IPadSearchDefaultView(searchText: .constant(""))
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
+            .environmentObject(InfoViewModel())
+            .environmentObject(SearchViewModel())
     }
 }

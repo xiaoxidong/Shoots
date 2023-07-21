@@ -90,5 +90,7 @@ struct SearchSuggestionView: View {
 struct SearchSuggestionView_Previews: PreviewProvider {
     static var previews: some View {
         SearchSuggestionView(searchText: .constant(""))
+            .environmentObject(InfoViewModel())
+            .environmentObject(SearchViewModel())
     }
 }

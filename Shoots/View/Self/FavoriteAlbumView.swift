@@ -472,6 +472,7 @@ struct AlbumView_Previews: PreviewProvider {
         }
         .previewDisplayName("Chinese")
         .environment(\.locale, .init(identifier: "zh-cn"))
+        .environmentObject(UserViewModel())
 
         NavigationView {
             FavoriteAlbumView(id: "", name: .constant(""))
@@ -481,5 +482,6 @@ struct AlbumView_Previews: PreviewProvider {
         }
         .previewDisplayName("English")
         .environment(\.locale, .init(identifier: "en"))
+        .environmentObject(UserViewModel())
     }
 }

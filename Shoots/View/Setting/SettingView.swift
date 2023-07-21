@@ -199,11 +199,13 @@ struct SettingView_Previews: PreviewProvider {
         }
         .previewDisplayName("Chinese")
         .environment(\.locale, .init(identifier: "zh-cn"))
+        .environmentObject(UserViewModel())
 
         NavigationView {
             SettingView()
         }
         .previewDisplayName("English")
         .environment(\.locale, .init(identifier: "en"))
+        .environmentObject(UserViewModel())
     }
 }

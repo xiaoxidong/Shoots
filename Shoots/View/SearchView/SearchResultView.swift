@@ -86,5 +86,6 @@ struct SearchResultView: View {
 struct SearchResultView_Previews: PreviewProvider {
     static var previews: some View {
         SearchResultView()
+            .environmentObject(SearchViewModel())
     }
 }

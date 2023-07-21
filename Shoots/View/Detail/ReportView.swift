@@ -116,13 +116,13 @@ struct ReportView: View {
     }
 }
 
-// struct ReportView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ReportView(shoot: singleShoot) { }
-//            .previewDisplayName("Chinese")
-//            .environment(\.locale, .init(identifier: "zh-cn"))
-//        ReportView(shoot: singleShoot) { }
-//            .previewDisplayName("English")
-//            .environment(\.locale, .init(identifier: "en"))
-//    }
-// }
+struct ReportView_Previews: PreviewProvider {
+    static var previews: some View {
+        ReportView(shoot: Picture(id: "", picUrl: "")) {}
+            .previewDisplayName("Chinese")
+            .environment(\.locale, .init(identifier: "zh-cn"))
+        ReportView(shoot: Picture(id: "", picUrl: "")) {}
+            .previewDisplayName("English")
+            .environment(\.locale, .init(identifier: "en"))
+    }
+}
