@@ -221,7 +221,7 @@ struct DetailView: View {
                                itemSpacing: 4)
                     { designPattern in
                         Button {
-                            search = designPattern.designPatternName
+//                            search = designPattern.designPatternName
                         } label: {
                             HStack(spacing: 2) {
                                 Image(systemName: "number")

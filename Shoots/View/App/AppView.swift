@@ -22,7 +22,7 @@ struct AppView: View {
                     flowView
                 }
                 imagesView
-            }.frame(maxWidth: 1060)
+            }.frame(maxWidth: 860)
                 .frame(maxWidth: .infinity)
         }.enableRefresh()
             .refreshable {

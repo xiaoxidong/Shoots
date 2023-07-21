@@ -11,6 +11,7 @@ import SwiftUI
 struct LoadMoreView: View {
     @Binding var footerRefreshing: Bool
     @Binding var noMore: Bool
+    var showBackground: Bool = true
     let action: () -> Void
 
     var body: some View {
@@ -40,7 +41,7 @@ struct LoadMoreView: View {
         .noMore(noMore)
         .preload(offset: 50)
         .padding(.vertical)
-        .background(Color.shootLight.opacity(0.06))
+        .background(showBackground ? Color.shootLight.opacity(0.06) : .clear)
     }
 }
 

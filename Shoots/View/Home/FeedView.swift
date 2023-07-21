@@ -12,6 +12,7 @@ import WaterfallGrid
 
 struct FeedView: View {
     var shoots: [Picture]
+    var showBackground: Bool = true
 
     @AppStorage("homeModel") var homeModel = 0
     @State var footerRefreshing = false
@@ -43,7 +44,7 @@ struct FeedView: View {
 //                    // 下拉刷新
 //                    reload()
 //                }
-        }.background(Color.shootLight.opacity(0.06))
+        }.background(showBackground ? Color.shootLight.opacity(0.06) : .clear)
     }
 
     @ViewBuilder

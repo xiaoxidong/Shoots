@@ -39,9 +39,24 @@ class UserViewModel: ObservableObject {
                 self.token = user.data.token
                 APIService.token = user.data.token
                 Defaults().set(user.data.token, for: .login)
+                // TODO: 登录成功之后需要判断是否有头像，如果没有则跳出编辑页面
+
                 success(true)
             case let .failure(error):
                 print("登录报错: \(error)")
+            }
+        }
+    }
+
+    @Published var editInfo = false
+    func updateInfo(name: String, pic: String) async {
+        APIService.shared.POST(url: .updateSelfInfo, params: ["avatar": pic, "userName": name]) { (result: Result<UserResponseData, APIService.APIError>) in
+            switch result {
+            case .success:
+                print("更新成功")
+                self.editInfo = false
+            case let .failure(error):
+                print("更新信息报错: \(error)")
             }
         }
     }
