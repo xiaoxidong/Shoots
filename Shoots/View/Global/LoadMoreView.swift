@@ -20,6 +20,7 @@ struct LoadMoreView: View {
                 Text("全部内容都展示完了")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(.shootGray)
+                    .padding(.top)
             } else {
                 #if os(iOS)
                     DNALoading()

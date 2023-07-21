@@ -66,7 +66,7 @@ struct ReportView: View {
                 }
 
             } label: {
-                Text(type)
+                Text(LocalizedStringKey(type))
             }.frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 26)
 

@@ -81,7 +81,7 @@ struct SelfView: View {
             if selfPic.apps.isEmpty && selfPic.favorites.isEmpty {
                 VStack {
                     Spacer()
-                    ShootEmptyView(text: "还没有上传和收藏过任何截图")
+                    ShootEmptyView(text: "还没有上传和添加到系列任何截图")
                     Spacer()
                 }
             } else {
@@ -212,7 +212,7 @@ struct SelfView: View {
             Text("上传截图")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.shootBlack)
-            Text("\(selfPic.apps.count) 个应用 \(selfPic.appPicNum) 张截图")
+            Text(String(format: NSLocalizedString("%d 个应用 %d 张截图", comment: ""), selfPic.apps.count, selfPic.appPicNum))
                 .font(.system(size: 13, weight: .regular))
                 .foregroundColor(.shootGray)
         }.padding(.horizontal)
@@ -268,7 +268,7 @@ struct SelfView: View {
             Text("系列")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.shootBlack)
-            Text("\(selfPic.favorites.count) 个系列 \(selfPic.favoritesPicNum) 张截图")
+            Text(String(format: NSLocalizedString("%d 个系列 %d 张截图", comment: ""), selfPic.favorites.count, selfPic.favoritesPicNum))
                 .font(.system(size: 13, weight: .regular))
                 .foregroundColor(.shootGray)
         }.padding(.horizontal)

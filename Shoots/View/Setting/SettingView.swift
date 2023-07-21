@@ -13,7 +13,6 @@ import SwiftUI
 struct SettingView: View {
     @State var showPro = false
     @State var showPrivacy = false
-    @State var showAgreement = false
     @State var openWeibToast = false
     @State var showToast = false
     @State var showMail = false
@@ -51,9 +50,9 @@ struct SettingView: View {
                     SettingCellView(image: "mode", text: "外观设置") {
                         showModeSetting.toggle()
                     }
-                    SettingCellView(image: "appicon", text: "应用图标") {
-                        showIconSetting.toggle()
-                    }
+//                    SettingCellView(image: "appicon", text: "应用图标") {
+//                        showIconSetting.toggle()
+//                    }
                 }
 
                 Group {
@@ -118,9 +117,12 @@ struct SettingView: View {
                         PrivacyView(showPrivacy: self.$showPrivacy)
                     }
                     SettingCellView(image: "xieyi", text: "使用协议") {
-                        showAgreement.toggle()
-                    }.sheet(isPresented: self.$showAgreement) {
-                        AgreementView(showAgreement: $showAgreement)
+                        let url = URL(string: "https://productpoke.notion.site/Shoots-e6565357d2704e3694aa622a0d854b46")!
+                        #if os(iOS)
+                            UIApplication.shared.open(url)
+                        #else
+                            NSWorkspace.shared.open(url)
+                        #endif
                     }
 
                     if user.login {

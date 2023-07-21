@@ -13,7 +13,6 @@ struct UberaboutView: View {
     var organizationLogo: Image? = nil
     @State private var copyrightFlipped: Bool = false
     @State var showPrivacy = false
-    @State var showAgreement = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -67,10 +66,6 @@ struct UberaboutView: View {
             }
 
             bottomView
-        }
-        .sheet(isPresented: self.$showAgreement) {
-            AgreementView(showAgreement: $showAgreement)
-                .sheetFrameForMac()
         }
         .sheet(isPresented: self.$showPrivacy) {
             PrivacyView(showPrivacy: self.$showPrivacy)
@@ -149,7 +144,12 @@ struct UberaboutView: View {
                 }
 
                 Button {
-                    showAgreement.toggle()
+                    let url = URL(string: "https://productpoke.notion.site/Shoots-e6565357d2704e3694aa622a0d854b46")!
+                    #if os(iOS)
+                        UIApplication.shared.open(url)
+                    #else
+                        NSWorkspace.shared.open(url)
+                    #endif
                 } label: {
                     Text("使用条款")
                 }

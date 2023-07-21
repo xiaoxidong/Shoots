@@ -14,7 +14,6 @@ struct ProView: View {
     @Environment(\.dismiss) var dismiss
 
     @State var showPrivacy = false
-    @State var showAgreement = false
     @State var showMail = false
     #if os(iOS)
         @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -153,14 +152,14 @@ struct ProView: View {
                         HStack {
                             Spacer()
                             Button(action: {
-                                self.showAgreement = true
+                                self.showPrivacy = true
                             }) {
                                 Text("隐私条款")
                                     .bold()
                                     .foregroundColor(Color.shootRed)
                                     .fixedSize()
                             }.buttonStyle(.plain)
-                                .sheet(isPresented: self.$showAgreement) {
+                                .sheet(isPresented: self.$showPrivacy) {
                                     PrivacyView(showPrivacy: self.$showPrivacy)
                                 }
 
@@ -172,16 +171,18 @@ struct ProView: View {
                             Spacer()
 
                             Button(action: {
-                                self.showPrivacy = true
+                                let url = URL(string: "https://productpoke.notion.site/Shoots-e6565357d2704e3694aa622a0d854b46")!
+                                #if os(iOS)
+                                    UIApplication.shared.open(url)
+                                #else
+                                    NSWorkspace.shared.open(url)
+                                #endif
                             }) {
                                 Text("使用协议")
                                     .bold()
                                     .foregroundColor(Color.shootRed)
                                     .fixedSize()
                             }.buttonStyle(.plain)
-                                .sheet(isPresented: self.$showPrivacy) {
-                                    AgreementView(showAgreement: self.$showAgreement)
-                                }
 
                             Group {
                                 Spacer()
@@ -322,11 +323,11 @@ struct ProView: View {
                     showBuyLoadingIndicator = false
                 }
                 #if os(iOS)
-                    let alertView = SPAlertView(title: "恢复购买失败".localized, message: "购买出现问题，请稍后重试！".localized, preset: .error)
+                    let alertView = SPAlertView(title: "恢复购买失败".localized, message: "恢复购买出现问题，请稍后重试！".localized, preset: .error)
                     alertView.backgroundColor = .gray
                     alertView.present()
                 #else
-                    toastText = "购买出现问题，请稍后重试！"
+                    toastText = "恢复购买出现问题，请稍后重试！"
                     showToast.toggle()
                 #endif
 

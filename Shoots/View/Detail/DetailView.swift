@@ -183,7 +183,7 @@ struct DetailView: View {
                             .foregroundColor(.shootBlack)
 
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(detail.userName ?? "上传用户")
+                            Text(LocalizedStringKey(detail.userName ?? "上传用户"))
                                 .font(.system(size: 16, weight: .bold))
                                 .foregroundColor(.shootBlack)
 

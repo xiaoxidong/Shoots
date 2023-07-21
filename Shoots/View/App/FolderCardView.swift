@@ -30,7 +30,7 @@ struct FolderCardView: View {
                 two
                 one.rotationEffect(Angle(degrees: hover ? 4 : 0))
             }
-            .frame(minWidth: 126, maxWidth: 200, minHeight: 120, maxHeight: 286)
+            .frame(minWidth: 100, maxWidth: 200, minHeight: 120, maxHeight: 286)
             .padding(.top)
 //            .shadow(color: Color.shootLight.opacity(0.1), radius: 6)
             .overlay(alignment: .bottomLeading) {

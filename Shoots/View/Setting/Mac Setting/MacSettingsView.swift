@@ -16,17 +16,17 @@ struct MacSettingsView: View {
                 .tabItem {
                     Label("  基础设置  ", systemImage: "gearshape.fill")
                 }
-                .tag(0)
-            ShootsAIView()
-                .tabItem {
-                    Label("  Shoots AI  ", systemImage: "theatermask.and.paintbrush.fill")
-                }
                 .tag(1)
-            UberaboutView(bundle: Bundle.main)
-                .tabItem {
-                    Label("  关于我们  ", systemImage: "app.badge.fill")
-                }
-                .tag(2)
+//            ShootsAIView()
+//                .tabItem {
+//                    Label("  Shoots AI  ", systemImage: "theatermask.and.paintbrush.fill")
+//                }
+//                .tag(1)
+//            UberaboutView(bundle: Bundle.main)
+//                .tabItem {
+//                    Label("  关于我们  ", systemImage: "app.badge.fill")
+//                }
+//                .tag(2)
         }.frame(width: 520, height: 520)
     }
 
@@ -60,27 +60,27 @@ struct MacSettingsView: View {
                             Button(action: {
                                 colorMode = .none
                             }) {
-                                Text("🌓 跟随系统")
+                                Text("🌓 ") + Text("跟随系统")
                             }
 
                             Button(action: {
                                 colorMode = .light
                             }) {
-                                Text("🌕 浅色模式")
+                                Text("🌕 ") + Text("浅色模式")
                             }
 
                             Button(action: {
                                 colorMode = .dark
                             }) {
-                                Text("🌑 深色模式")
+                                Text("🌑 ") + Text("深色模式")
                             }
                         } label: {
                             if colorMode == .none {
-                                Text("🌓 跟随系统")
+                                Text("🌓 ") + Text("跟随系统")
                             } else if colorMode == .light {
-                                Text("🌕 浅色模式")
+                                Text("🌕 ") + Text("浅色模式")
                             } else if colorMode == .dark {
-                                Text("🌑 深色模式")
+                                Text("🌑 ") + Text("深色模式")
                             }
                         }.frame(width: 120)
                     }.padding(.vertical, 6)
@@ -153,7 +153,7 @@ struct MacSettingsView: View {
                             Button {
                                 let service = NSSharingService(named: NSSharingService.Name.composeEmail)
                                 service?.recipients = ["834599524@qq.com"]
-                                service?.subject = "使用意见反馈"
+                                service?.subject = "使用意见反馈".localized
                                 service?.perform(withItems: [""])
                             } label: {
                                 HStack {

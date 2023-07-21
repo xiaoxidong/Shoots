@@ -13,7 +13,7 @@ struct ShootEmptyView: View {
     var body: some View {
         VStack(spacing: 16) {
             Image("empty")
-            Text(text)
+            Text(LocalizedStringKey(text))
                 .font(.system(size: 15, weight: .medium))
                 .foregroundColor(.shootGray)
         }
