@@ -18,7 +18,7 @@ struct UberaboutView: View {
         VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
                 HStack(alignment: .top) {
-                    AppIconView(appIconBackside: Image("uberaboutIconBack"), appIconFrontside: Image("uberaboutIconBack"))
+                    AppIconView(appIconBackside: Image("uberaboutOrgaLogo"), appIconFrontside: Image("uberaboutOrgaLogo"))
                         .padding(.top, 36)
                         .padding(.leading, 26)
 
@@ -50,19 +50,19 @@ struct UberaboutView: View {
 
                         Divider().padding(.trailing, 36)
                         about
-                        Divider().padding(.trailing, 36)
-                        Text("更多应用")
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                            .padding(.top, 16)
+//                        Divider().padding(.trailing, 36)
+//                        Text("更多应用")
+//                            .font(.body)
+//                            .foregroundColor(.secondary)
+//                            .padding(.top, 16)
                     }.frame(maxWidth: .infinity, alignment: .leading)
                 }
 
-                VStack(alignment: .leading, spacing: 36) {
-                    appsView(name: "Poke", content: "A simple but highly customizable UICollectionViewLayout for UICollectionView -- Simple SwiftUI views that let you make page-view effects.", image: "", url: "")
-                    appsView(name: "Poke", content: "A simple but highly customizable UICollectionViewLayout for UICollectionView -- Simple SwiftUI views that let you make page-view effects.", image: "", url: "")
-                    appsView(name: "Poke", content: "A simple but highly customizable UICollectionViewLayout for UICollectionView -- Simple SwiftUI views that let you make page-view effects.", image: "", url: "")
-                }.padding(.bottom, 36)
+//                VStack(alignment: .leading, spacing: 36) {
+//                    appsView(name: "Poke", content: "A simple but highly customizable UICollectionViewLayout for UICollectionView -- Simple SwiftUI views that let you make page-view effects.", image: "", url: "")
+//                    appsView(name: "Poke", content: "A simple but highly customizable UICollectionViewLayout for UICollectionView -- Simple SwiftUI views that let you make page-view effects.", image: "", url: "")
+//                    appsView(name: "Poke", content: "A simple but highly customizable UICollectionViewLayout for UICollectionView -- Simple SwiftUI views that let you make page-view effects.", image: "", url: "")
+//                }.padding(.bottom, 36)
             }
 
             bottomView
@@ -123,7 +123,7 @@ struct UberaboutView: View {
 
             HStack(spacing: 12) {
                 Button(action: {
-                    let url = URL(string: "https://productpoke.notion.site/Poke-fb2377abed624b189677b74d06618f11")!
+                    let url = URL(string: "https://productpoke.notion.site/b1b9e7130e504e289832732a33670e5c?pvs=4")!
                     NSWorkspace.shared.open(url)
                 }, label: {
                     Label(title: {

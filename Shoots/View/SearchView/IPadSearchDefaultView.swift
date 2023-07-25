@@ -12,15 +12,15 @@ struct IPadSearchDefaultView: View {
     @Binding var searchText: String
 
     let rows = [
-        GridItem(.fixed(90.00), spacing: 20),
-        GridItem(.fixed(90.00), spacing: 20),
+        GridItem(.fixed(120), spacing: 12),
+        GridItem(.fixed(120), spacing: 12),
     ]
     @EnvironmentObject var info: InfoViewModel
     @EnvironmentObject var search: SearchViewModel
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             ScrollView(.horizontal, showsIndicators: false) {
-                LazyHGrid(rows: rows, alignment: .center, spacing: 16) {
+                LazyHGrid(rows: rows, alignment: .center, spacing: 0) {
                     ForEach(info.suggestionApps) { app in
                         Button {
                             searchText = app.linkApplicationName
@@ -31,26 +31,26 @@ struct IPadSearchDefaultView: View {
                             VStack {
                                 if let logo = app.appLogoUrl {
                                     ImageView(urlString: logo, image: .constant(nil))
-                                        .frame(width: 66, height: 66)
-                                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                        .frame(width: 86, height: 86)
+                                        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
                                         .shadow(color: Color.gray.opacity(0.2), radius: 8, x: 0, y: 0)
                                 } else {
                                     Image("Instagram")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: 66, height: 66)
+                                        .frame(width: 86, height: 86)
                                         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                                 }
                                 Text(app.linkApplicationName)
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(.shootBlack)
-                                    .frame(width: 66)
+                                    .frame(width: 106)
                                     .lineLimit(1)
                             }
                         }.buttonStyle(.plain)
                     }
-                }.padding(.horizontal)
-                    .padding(.top)
+                }
+                .padding(.top)
             }
 
             // Tag
@@ -81,6 +81,7 @@ struct IPadSearchDefaultView: View {
                 }.buttonStyle(.plain)
             }.padding(.top)
                 .padding(.horizontal)
+                .frame(minHeight: 1009, alignment: .top)
         }
     }
 }

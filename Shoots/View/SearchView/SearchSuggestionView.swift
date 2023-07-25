@@ -16,67 +16,39 @@ struct SearchSuggestionView: View {
     @EnvironmentObject var info: InfoViewModel
     @EnvironmentObject var search: SearchViewModel
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
                 ForEach(apps) { app in
-                    Button {
+                    SuggestionButtonView(image: "app.badge.fill", name: app.linkApplicationName) {
                         searchText = app.linkApplicationName
                         search.appID = app.id
                         search.appStoreID = app.appStoreId
                         self.resignFirstResponder()
-                    } label: {
-                        HStack {
-                            Image(systemName: "app.badge.fill")
-                                .bold()
-                            Text(app.linkApplicationName)
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.shootBlack)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .bold()
-                                .foregroundColor(.shootGray)
-                        }
-                        .padding(.horizontal)
-                        .padding(.vertical, 12)
-                        .contentShape(Rectangle())
-                    }.buttonStyle(.plain)
+                    }
                 }
                 ForEach(patterns) { pattern in
-                    Button {
+                    SuggestionButtonView(image: "number", name: pattern.designPatternName) {
                         searchText = pattern.designPatternName
                         search.patternID = pattern.id
                         Task {
                             await search.getPatternPics(id: pattern.id)
                         }
                         self.resignFirstResponder()
-                    } label: {
-                        HStack {
-                            Image(systemName: "number")
-                                .bold()
-                            Text(pattern.designPatternName)
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.shootBlack)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .bold()
-                                .foregroundColor(.shootGray)
-                        }
-                        .padding(.horizontal)
-                        .padding(.vertical, 12)
-                        .contentShape(Rectangle())
-                    }.buttonStyle(.plain)
+                    }
                 }
-            }
-        }.frame(maxWidth: 1060)
+            }.padding(.bottom, 56)
+        }.frame(maxWidth: 860)
+            .frame(maxWidth: .infinity)
             .onChange(of: searchText) { newValue in
                 update(newValue: newValue)
             }
             .onAppear {
+                update(newValue: searchText)
                 #if os(iOS)
-                    update(newValue: searchText)
+//                update(newValue: searchText)
                 #else
-                    patterns = info.patterns.filter { $0.isOfficial == "1" }
-                    apps = info.apps.filter { $0.isOfficial == "1" }
+//                    patterns = info.patterns.filter { $0.isOfficial == "1" }
+//                    apps = info.apps.filter { $0.isOfficial == "1" }
                 #endif
             }
     }

@@ -16,12 +16,15 @@ struct MenuBarExtraView: View {
     @Environment(\.openWindow) var openWindow
     @AppStorage("showAI") var showAI = true
     @StateObject var home: HomeFeedViewModel = .init()
-
+    @EnvironmentObject var search: SearchViewModel
     var body: some View {
         VStack {
             HStack {
                 TextField("搜索应用或设计模式(􀆍 + 􀆔 + S)", text: $searchText)
                     .textFieldStyle(.plain)
+                    .onSubmit {
+                        search.search(text: searchText)
+                    }
                 Button {
                     NSApp.setActivationPolicy(.regular)
                     isMenuPresented.toggle()
@@ -67,11 +70,22 @@ struct MenuBarExtraView: View {
                 }.buttonStyle(.plain)
             }.padding([.horizontal, .top], 14)
 
-            ZStack {
-                feed
-                SearchView(searchText: $searchText, showSearchDefault: false)
+            if home.loading {
+                LoadingView()
+                    .frame(maxHeight: .infinity, alignment: .center)
+            } else {
+                if searchText != "" {
+                    SearchView(searchText: $searchText, showSearchDefault: true, showSearchSuggestion: true, showSearchBackground: false)
+                } else {
+                    feed
+                }
             }
-        }.onAppear {
+        }.onChange(of: searchText) { newValue in
+            if newValue == "" {
+                search.showResult = false
+            }
+        }
+        .onAppear {
             load()
         }
     }

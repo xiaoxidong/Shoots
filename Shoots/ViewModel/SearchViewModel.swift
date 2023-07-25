@@ -10,6 +10,7 @@ import SwiftUI
 
 class SearchViewModel: ObservableObject {
     @Published var update = false
+    @Published var loading = false
     @Published var searchResults: [Picture] = []
     @Published var appID: String? = nil {
         didSet {
@@ -71,6 +72,7 @@ class SearchViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.noMore = false
             self.footerRefreshing = false
+            self.loading = true
         }
         page = 1
 
@@ -86,6 +88,10 @@ class SearchViewModel: ObservableObject {
                 }
             case let .failure(error):
                 print("根据 ID 获取设计模式图片错误: \(error)")
+            }
+
+            DispatchQueue.main.async {
+                self.loading = false
             }
         }
     }
@@ -108,8 +114,11 @@ class SearchViewModel: ObservableObject {
 
     // 根据名称获取设计模式下的图片
     func getPatternNamePics(name: String) async {
-        noMore = false
-        footerRefreshing = false
+        DispatchQueue.main.async {
+            self.noMore = false
+            self.footerRefreshing = false
+            self.loading = true
+        }
         page = 1
 
         AF.request("\(baseURL)\(APIService.URLPath.patternPics.path)", method: .post, parameters: ["pageSize": numberPerpage, "pageNum": 1, "designPatternName": name], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: FeedResponseData.self) { response in
@@ -124,6 +133,10 @@ class SearchViewModel: ObservableObject {
                 }
             case let .failure(error):
                 print("根据名称获取设计模式下的图片错误: \(error)")
+            }
+
+            DispatchQueue.main.async {
+                self.loading = false
             }
         }
     }

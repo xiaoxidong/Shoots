@@ -387,10 +387,30 @@ struct ProView: View {
                         ActivityIndicatorView(isVisible: self.$showBuyLoadingIndicator, type: .arcs, text: "", width: 28)
                             .foregroundColor(.white)
                     } else {
-                        Text("支持开发者")
-                            .font(.system(size: 16, weight: .bold))
-                            .padding(.vertical, 12)
-                            .padding(.horizontal, 16)
+                        switch selected {
+                        case .drink:
+                            Text("支持开发者(\(drinkMoney))")
+                                .font(.system(size: 16, weight: .bold))
+                                .padding(.vertical, 12)
+                                .padding(.horizontal, 16)
+                        case .milk:
+                            Text("支持开发者(\(milkMoney))")
+                                .font(.system(size: 16, weight: .bold))
+                                .padding(.vertical, 12)
+                                .padding(.horizontal, 16)
+                        case .coffee:
+                            Text("支持开发者(\(coffeeMoney))")
+                                .font(.system(size: 16, weight: .bold))
+                                .padding(.vertical, 12)
+                                .padding(.horizontal, 16)
+                        case .rich:
+                            Text("支持开发者(\(richMoney))")
+                                .font(.system(size: 16, weight: .bold))
+                                .padding(.vertical, 12)
+                                .padding(.horizontal, 16)
+                        case .year:
+                            Text("None")
+                        }
                     }
                 }
                 .foregroundColor(Color.white)
@@ -537,7 +557,7 @@ struct ProView: View {
                     }
                 }) {
                     VStack(spacing: 16) {
-                        Image("coffee01")
+                        Image("gold")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 108, height: 108)

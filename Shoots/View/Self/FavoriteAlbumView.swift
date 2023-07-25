@@ -11,6 +11,7 @@ import SwiftUI
 struct FavoriteAlbumView: View {
     var id: String
     @Binding var name: String
+    let update: () -> Void
 
     @State var edit = false
     @State var showEditName = false
@@ -379,6 +380,7 @@ struct FavoriteAlbumView: View {
                     withAnimation(.spring()) {
                         removeFavorite = false
                     }
+                    update()
                 } label: {
                     Text("确认")
                         .font(.system(size: 14, weight: .medium))
@@ -443,6 +445,7 @@ struct FavoriteAlbumView: View {
                     withAnimation(.spring()) {
                         deleteFavorite = false
                     }
+                    update()
                 } label: {
                     Text("确认")
                         .font(.system(size: 14, weight: .medium))
@@ -465,7 +468,7 @@ struct FavoriteAlbumView: View {
 struct AlbumView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            FavoriteAlbumView(id: "", name: .constant(""))
+            FavoriteAlbumView(id: "", name: .constant("")) {}
             #if os(iOS)
                 .navigationBarTitleDisplayMode(.inline)
             #endif
@@ -475,7 +478,7 @@ struct AlbumView_Previews: PreviewProvider {
         .environmentObject(UserViewModel())
 
         NavigationView {
-            FavoriteAlbumView(id: "", name: .constant(""))
+            FavoriteAlbumView(id: "", name: .constant("")) {}
             #if os(iOS)
                 .navigationBarTitleDisplayMode(.inline)
             #endif

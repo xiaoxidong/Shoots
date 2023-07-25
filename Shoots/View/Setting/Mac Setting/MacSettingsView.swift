@@ -22,11 +22,11 @@ struct MacSettingsView: View {
 //                    Label("  Shoots AI  ", systemImage: "theatermask.and.paintbrush.fill")
 //                }
 //                .tag(1)
-//            UberaboutView(bundle: Bundle.main)
-//                .tabItem {
-//                    Label("  关于我们  ", systemImage: "app.badge.fill")
-//                }
-//                .tag(2)
+            UberaboutView(bundle: Bundle.main)
+                .tabItem {
+                    Label("  关于我们  ", systemImage: "app.badge.fill")
+                }
+                .tag(2)
         }.frame(width: 520, height: 520)
     }
 
@@ -135,7 +135,7 @@ struct MacSettingsView: View {
 
                     LabeledContent("评价应用：") {
                         Button {
-                            let urlString = "itms-apps://itunes.apple.com/app/id1140397642?action=write-review"
+                            let urlString = "itms-apps://itunes.apple.com/app/id1616477228?action=write-review"
                             let url = URL(string: urlString)
                             NSWorkspace.shared.open(url!)
                         } label: {
@@ -144,7 +144,7 @@ struct MacSettingsView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 14, height: 14)
-                                Text("五星好评")
+                                Text("评价应用")
                             }
                         }
                     }.padding(.vertical, 6)

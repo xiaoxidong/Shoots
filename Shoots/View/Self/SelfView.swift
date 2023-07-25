@@ -223,7 +223,11 @@ struct SelfView: View {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
                     ForEach(selfPic.apps) { app in
                         NavigationLink {
-                            AppAlbumView(id: app.id, name: app.linkApplicationName)
+                            AppAlbumView(id: app.id, name: app.linkApplicationName) {
+                                Task {
+                                    await selfPic.uploadPicGroup()
+                                }
+                            }
                         } label: {
                             FolderCardView(images: app.pics, name: app.linkApplicationName, picCount: app.countPics)
                         }
@@ -234,7 +238,11 @@ struct SelfView: View {
                     LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
                         ForEach(selfPic.apps) { app in
                             NavigationLink {
-                                AppAlbumView(id: app.id, name: app.linkApplicationName)
+                                AppAlbumView(id: app.id, name: app.linkApplicationName) {
+                                    Task {
+                                        await selfPic.uploadPicGroup()
+                                    }
+                                }
                             } label: {
                                 FolderCardView(images: app.pics, name: app.linkApplicationName, picCount: app.countPics)
                             }
@@ -256,8 +264,12 @@ struct SelfView: View {
                 }
             }.padding(.horizontal)
                 .sheet(isPresented: $showMacFolderView) {
-                    FavoriteAlbumView(id: "", name: .constant(""))
-                        .sheetFrameForMac()
+                    FavoriteAlbumView(id: "", name: .constant("")) {
+                        Task {
+                            await selfPic.getFavorites()
+                        }
+                    }
+                    .sheetFrameForMac()
                 }
         #endif
     }
@@ -279,7 +291,11 @@ struct SelfView: View {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
                     ForEach($selfPic.favorites) { $favorite in
                         NavigationLink {
-                            FavoriteAlbumView(id: favorite.id, name: $favorite.favoriteFileName)
+                            FavoriteAlbumView(id: favorite.id, name: $favorite.favoriteFileName) {
+                                Task {
+                                    await selfPic.getFavorites()
+                                }
+                            }
                         } label: {
                             FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
                         }
@@ -290,7 +306,11 @@ struct SelfView: View {
                     LazyHGrid(rows: rows, alignment: .center, spacing: 46) {
                         ForEach($selfPic.favorites) { $favorite in
                             NavigationLink {
-                                FavoriteAlbumView(id: favorite.id, name: $favorite.favoriteFileName)
+                                FavoriteAlbumView(id: favorite.id, name: $favorite.favoriteFileName) {
+                                    Task {
+                                        await selfPic.getFavorites()
+                                    }
+                                }
                             } label: {
                                 FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
                             }
@@ -312,8 +332,12 @@ struct SelfView: View {
                 }
             }.padding(.horizontal)
                 .sheet(isPresented: $showMacFolderView) {
-                    FavoriteAlbumView(id: "", name: .constant(""))
-                        .sheetFrameForMac()
+                    FavoriteAlbumView(id: "", name: .constant("")) {
+                        Task {
+                            await selfPic.getFavorites()
+                        }
+                    }
+                    .sheetFrameForMac()
                 }
         #endif
     }

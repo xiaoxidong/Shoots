@@ -294,10 +294,11 @@ struct ContentView: View {
                 uploadView, alignment: .bottom
             )
         #else
-            .searchable(text: $searchText, placement: .toolbar, prompt: "搜索应用或设计模式") {
-                    SearchSuggestionView(searchText: $searchText)
-                        .frame(minHeight: 240)
-                }
+            .searchable(text: $searchText, placement: .toolbar, prompt: "搜索应用或设计模式")
+//        {
+//                    SearchSuggestionView(searchText: $searchText)
+//                        .frame(maxHeight: 560)
+//                }
                 .onSubmit(of: .search) {
                     search.search(text: searchText)
                 }

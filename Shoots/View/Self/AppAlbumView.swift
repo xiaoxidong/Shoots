@@ -10,6 +10,7 @@ import SwiftUI
 struct AppAlbumView: View {
     var id: String
     var name: String
+    let update: () -> Void
 
     @State var edit = false
     @State var delete = false
@@ -262,6 +263,7 @@ struct AppAlbumView: View {
                     withAnimation(.spring()) {
                         delete = false
                     }
+                    update()
                 } label: {
                     Text("确认")
                         .font(.system(size: 14, weight: .medium))
@@ -283,7 +285,7 @@ struct AppAlbumView: View {
 
 struct AppAlbumView_Previews: PreviewProvider {
     static var previews: some View {
-        AppAlbumView(id: "", name: "")
+        AppAlbumView(id: "", name: "") {}
             .environmentObject(UserViewModel())
     }
 }

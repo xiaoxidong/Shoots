@@ -73,7 +73,7 @@ struct SettingView: View {
                     })
                     #endif
                     SettingCellView(image: "rate", text: "给我们一个五星评价") {
-                        let urlString = "itms-apps://itunes.apple.com/app/id1140397642?action=write-review"
+                        let urlString = "itms-apps://itunes.apple.com/app/id1616477228?action=write-review"
                         let url = URL(string: urlString)
                         UIApplication.shared.open(url!)
                     }

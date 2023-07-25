@@ -17,37 +17,25 @@ struct SearchResultView: View {
                 appView(id: id)
             }
         } else if let id = search.patternID {
-            if search.update {
-                patternView(id: id)
+            if search.loading {
+                LoadingView()
             } else {
-                patternView(id: id)
+                if search.update {
+                    patternView(id: id)
+                } else {
+                    patternView(id: id)
+                }
             }
         } else if let name = search.patternName {
-            ScrollView {
-                VStack(spacing: 0) {
-                    FeedView(shoots: search.patternFeed, showBackground: false)
-
-                    LoadMoreView(footerRefreshing: $search.footerRefreshing, noMore: $search.noMore, showBackground: false) {
-                        if self.search.page + 1 > self.search.mostPages {
-                            self.search.footerRefreshing = false
-                            self.search.noMore = true
-                        } else {
-                            Task {
-                                await search.nextPatternNamePage(name: name)
-                            }
-                        }
-                    }
+            if search.loading {
+                LoadingView()
+            } else {
+                if search.update {
+                    patternNameView(name: name)
+                } else {
+                    patternNameView(name: name)
                 }
-            }.enableRefresh()
-                .refreshable {
-                    // 首页下拉刷新
-                    Task {
-                        await search.getPatternNamePics(name: name)
-                    }
-                }
-                .frame(maxWidth: 860)
-                .frame(maxWidth: .infinity)
-                .background(Color.shootLight.opacity(0.06))
+            }
         }
     }
 
@@ -57,31 +45,73 @@ struct SearchResultView: View {
     }
 
     func patternView(id: String) -> some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                FeedView(shoots: search.patternFeed, showBackground: false)
+        Group {
+            if search.patternFeed.isEmpty {
+                ShootEmptyView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        FeedView(shoots: search.patternFeed, showBackground: false)
 
-                LoadMoreView(footerRefreshing: $search.footerRefreshing, noMore: $search.noMore, showBackground: false) {
-                    if self.search.page + 1 > self.search.mostPages {
-                        self.search.footerRefreshing = false
-                        self.search.noMore = true
-                    } else {
+                        LoadMoreView(footerRefreshing: $search.footerRefreshing, noMore: $search.noMore, showBackground: false) {
+                            if self.search.page + 1 > self.search.mostPages {
+                                self.search.footerRefreshing = false
+                                self.search.noMore = true
+                            } else {
+                                Task {
+                                    await search.nextPage(id: id)
+                                }
+                            }
+                        }
+                    }.frame(maxWidth: 860)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.shootLight.opacity(0.06))
+                }.enableRefresh()
+                    .refreshable {
+                        // 首页下拉刷新
                         Task {
-                            await search.nextPage(id: id)
+                            await search.getPatternPics(id: id)
                         }
                     }
-                }
-            }.frame(maxWidth: 860)
-                .frame(maxWidth: .infinity)
-                .background(Color.shootLight.opacity(0.06))
-        }.enableRefresh()
-            .refreshable {
-                // 首页下拉刷新
-                Task {
-                    await search.getPatternPics(id: id)
-                }
+                    .frame(maxWidth: 1060)
             }
-            .frame(maxWidth: 1060)
+        }
+    }
+
+    func patternNameView(name: String) -> some View {
+        Group {
+            if search.patternFeed.isEmpty {
+                ShootEmptyView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        FeedView(shoots: search.patternFeed, showBackground: false)
+
+                        LoadMoreView(footerRefreshing: $search.footerRefreshing, noMore: $search.noMore, showBackground: false) {
+                            if self.search.page + 1 > self.search.mostPages {
+                                self.search.footerRefreshing = false
+                                self.search.noMore = true
+                            } else {
+                                Task {
+                                    await search.nextPatternNamePage(name: name)
+                                }
+                            }
+                        }
+                    }
+                }.enableRefresh()
+                    .refreshable {
+                        // 首页下拉刷新
+                        Task {
+                            await search.getPatternNamePics(name: name)
+                        }
+                    }
+                    .frame(maxWidth: 860)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.shootLight.opacity(0.06))
+            }
+        }
     }
 }
 

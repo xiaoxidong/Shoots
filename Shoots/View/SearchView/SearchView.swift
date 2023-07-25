@@ -10,6 +10,8 @@ import SwiftUI
 struct SearchView: View {
     @Binding var searchText: String
     var showSearchDefault: Bool = true
+    var showSearchSuggestion: Bool = true
+    var showSearchBackground: Bool = true
 
     @EnvironmentObject var info: InfoViewModel
     @EnvironmentObject var search: SearchViewModel
@@ -18,17 +20,13 @@ struct SearchView: View {
             if search.showResult && !searchText.isEmpty {
                 SearchResultView()
             } else {
-                if showSearchDefault {
+                if showSearchSuggestion && searchText != "" {
+                    SearchSuggestionView(searchText: $searchText)
+                } else if showSearchDefault {
                     defaultView
                 }
-
-                #if os(iOS)
-                    if searchText != "" {
-                        SearchSuggestionView(searchText: $searchText)
-                    }
-                #endif
             }
-        }.background(Color.shootWhite)
+        }.background(showSearchBackground ? Color.shootWhite : .clear)
             .onChange(of: searchText) { newValue in
                 if newValue == "" {
                     search.showResult = false
@@ -65,7 +63,7 @@ struct SearchView: View {
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(.shootBlack)
                             }
-                        }
+                        }.buttonStyle(.plain)
                     }
                 }.padding(.horizontal)
                     .padding(.top)
@@ -94,7 +92,7 @@ struct SearchView: View {
                         }.padding(.top, 20)
                             .frame(maxWidth: .infinity)
                             .contentShape(Rectangle())
-                    }
+                    }.buttonStyle(.plain)
                 }
             }.padding(.top)
                 .padding(.bottom, 400)
