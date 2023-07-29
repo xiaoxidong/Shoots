@@ -3114,7 +3114,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3164,7 +3164,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3359,7 +3359,7 @@
 				CODE_SIGN_ENTITLEMENTS = Shoots_Mac/Shoots_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots_Mac/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3372,7 +3372,7 @@
 				INFOPLIST_FILE = "Shoots-Mac-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Shoots;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
-				INFOPLIST_KEY_LSUIElement = NO;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 -2024";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3398,7 +3398,7 @@
 				CODE_SIGN_ENTITLEMENTS = Shoots_Mac/Shoots_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots_Mac/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3411,7 +3411,7 @@
 				INFOPLIST_FILE = "Shoots-Mac-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Shoots;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
-				INFOPLIST_KEY_LSUIElement = NO;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 -2024";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

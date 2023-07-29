@@ -55,34 +55,35 @@ struct PrivacyView: View {
                         }
                         Group {
                             Spacer().frame(height: 10)
-                            Text("5. 删除账号").bold().font(.headline)
-                            Text("如果你希望不在保留您在 Shoots 的账号，可以在这里进入删除账号，注意删除之后将无法恢复。")
-                            Button("删除账号") {
-                                withAnimation(.spring()) {
-                                    showDelete.toggle()
-                                }
-                            }.foregroundColor(.blue)
-                                .bold()
-                                .alert(isPresented: $showDelete) {
-                                    Alert(title: Text("确认删除？"), message: Text("删除之后将无法恢复，确认删除？"), primaryButton: Alert.Button.cancel(), secondaryButton: Alert.Button.destructive(Text("删除"), action: {
-                                        Task {
-                                            await delete.delete(token: user.token) { success in
-                                                if success {
-                                                    user.login = false
-                                                    user.token = ""
-                                                    APIService.token = ""
-                                                    Task {
-                                                        await user.logout()
+                            Text("5. 联系我们").bold().font(.headline)
+                            Text("如果您对我们的隐私政策有任何疑问或建议，请随时通过设置页的联系我们与我们联系。")
+                            if user.login {
+                                Spacer().frame(height: 10)
+                                Text("6. 删除账号").bold().font(.headline)
+                                Text("如果你希望不在保留您在 Shoots 的账号，可以在这里进入删除账号，注意删除之后将无法恢复。")
+                                Button("删除账号") {
+                                    withAnimation(.spring()) {
+                                        showDelete.toggle()
+                                    }
+                                }.foregroundColor(.blue)
+                                    .bold()
+                                    .alert(isPresented: $showDelete) {
+                                        Alert(title: Text("确认删除？"), message: Text("删除之后将无法恢复，确认删除？"), primaryButton: Alert.Button.cancel(), secondaryButton: Alert.Button.destructive(Text("删除"), action: {
+                                            Task {
+                                                await delete.delete(token: user.token) { success in
+                                                    if success {
+                                                        user.login = false
+                                                        user.token = ""
+                                                        APIService.token = ""
+                                                        Task {
+                                                            await user.logout()
+                                                        }
                                                     }
                                                 }
                                             }
-                                        }
-                                    }))
-                                }
-
-                            Spacer().frame(height: 10)
-                            Text("6. 联系我们").bold().font(.headline)
-                            Text("如果您对我们的隐私政策有任何疑问或建议，请随时通过设置页的联系我们与我们联系。")
+                                        }))
+                                    }
+                            }
                         }
 
                     }.padding()
