@@ -125,7 +125,7 @@ struct ContentView: View {
             #if os(iOS)
                 .navigationTitle("Shoots")
             #else
-                .frame(minWidth: 280)
+                .frame(minWidth: 300)
             #endif
             homeFeed
         }

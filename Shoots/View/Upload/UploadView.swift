@@ -56,11 +56,13 @@ struct UploadView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                if shareExtension {
-                    bottomActions
-                        .padding(.bottom)
-                } else {
-                    bottomActions
+                if !uploadData.isEmpty {
+                    if shareExtension {
+                        bottomActions
+                            .padding(.bottom)
+                    } else {
+                        bottomActions
+                    }
                 }
             }
             .overlay(
@@ -71,15 +73,18 @@ struct UploadView: View {
             .toast(isPresenting: $showToast) {
                 AlertToast(displayMode: .alert, type: alertType, title: toastText)
             }
-            .onChange(of: uploadData) { _ in
-                withAnimation(.spring()) {
-                    updateIndicator.toggle()
+            .onChange(of: selection, perform: { _ in
+                if uploadData[selection].app == "" {
+                    appFocused = true
+                } else if uploadData[selection].pattern == "" {
+                    tagFocused = true
                 }
-            }
+            })
             .onAppear {
                 #if DEBUG
                     showBlurNewGuide = true
                 #endif
+                uploadData = uploadData
             }
     }
 
@@ -189,11 +194,15 @@ struct UploadView: View {
                         ForEach(tagRsults, id: \.self) { tag in
                             Button {
                                 if uploadData[selection].pattern == "" {
-                                    uploadData[selection].pattern = "\(tag.designPatternName),"
+                                    uploadData[selection].pattern = "\(tag.designPatternName)，"
                                 } else if !uploadData[selection].pattern.contains(tag.designPatternName) {
-                                    var new = uploadData[selection].pattern.components(separatedBy: ",")
+                                    var new = uploadData[selection].pattern.components(separatedBy: "，")
                                     new.removeLast()
-                                    uploadData[selection].pattern = new.joined(separator: ",") + ",\(tag.designPatternName),"
+                                    if new.isEmpty {
+                                        uploadData[selection].pattern = "\(tag.designPatternName)，"
+                                    } else {
+                                        uploadData[selection].pattern = new.joined(separator: "，") + "，\(tag.designPatternName)，"
+                                    }
                                 }
                             } label: {
                                 VStack(alignment: .center, spacing: 0) {
@@ -253,13 +262,9 @@ struct UploadView: View {
                     blurNew
                 }
         }
-        .fullScreenCover(isPresented: $showCombine, onDismiss: {
-            if selection > uploadData.count + 1 {
-                selection = uploadData.count
-            }
-        }, content: {
-            CombineSelectView(uploadImages: $uploadData)
-        })
+        .fullScreenCover(isPresented: $showCombine) {
+            CombineSelectView(uploadImages: $uploadData, selection: $selection, updateIndicator: $updateIndicator)
+        }
         .onAppear {
             appFocused = true
         }

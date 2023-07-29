@@ -32,9 +32,10 @@ struct ShootsApp: App {
                         NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: nil, queue: .main) { _ in
                             // 关闭窗口的时候，隐藏应用
                             // 由于设置里的下拉，也是窗口，不加这个判断会点击下拉关闭的时候会把窗口关闭，希望后续能有更好的解决办法。
-                            if NSApplication.shared.windows.count < 6 {
-                                NSApp.setActivationPolicy(.prohibited)
-                            }
+                            //                            if NSApplication.shared.windows.count < 6 {
+                            //                                NSApp.setActivationPolicy(.prohibited)
+                            //                            }
+                            // NSApp.setActivationPolicy(.prohibited)
                         }
                         configureShortcuts()
                     #endif
@@ -48,12 +49,6 @@ struct ShootsApp: App {
                         if let window = NSApplication.shared.windows.first, window.className == "SwiftUI.AppKitWindow" {
                             window.close()
                         }
-                        NotificationCenter.default.addObserver(forName: NSApplication.willTerminateNotification, object: nil, queue: .main) { _ in
-                            print("--------")
-                        }
-                    }
-                    .onDisappear {
-//                    NSApp.setActivationPolicy(.prohibited)
                     }
             }
 

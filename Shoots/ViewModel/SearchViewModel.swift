@@ -60,6 +60,7 @@ class SearchViewModel: ObservableObject {
         Task {
             await getPatternNamePics(name: text)
         }
+        update.toggle()
     }
 
     @Published var patternFeed: [Picture] = []

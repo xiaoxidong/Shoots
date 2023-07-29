@@ -66,17 +66,13 @@ struct SelfView: View {
     @ViewBuilder
     var content: some View {
         if selfPic.loading {
-            VStack {
-                Spacer()
-                LoadingView()
-                    .onAppear {
-                        Task {
-                            await selfPic.getFavorites()
-                            await selfPic.uploadPicGroup()
-                        }
+            LoadingView()
+                .onAppear {
+                    Task {
+                        await selfPic.getFavorites()
+                        await selfPic.uploadPicGroup()
                     }
-                Spacer()
-            }
+                }
         } else {
             if selfPic.apps.isEmpty && selfPic.favorites.isEmpty {
                 VStack {
@@ -96,7 +92,6 @@ struct SelfView: View {
                 tagView
                 if selfPic.loadingPattern {
                     LoadingView()
-                        .frame(maxHeight: .infinity, alignment: .center)
                 } else {
                     ScrollView {
                         VStack(spacing: 0) {
@@ -261,16 +256,17 @@ struct SelfView: View {
                     } label: {
                         FolderCardView(images: app.pics, name: app.linkApplicationName, picCount: app.countPics)
                     }.buttonStyle(.plain)
+                        .sheet(isPresented: $showMacFolderView) {
+                            AppAlbumView(id: app.id, name: app.linkApplicationName) {
+                                Task {
+                                    await selfPic.uploadPicGroup()
+                                }
+                            }
+                            .sheetFrameForMac()
+                        }
                 }
             }.padding(.horizontal)
-                .sheet(isPresented: $showMacFolderView) {
-                    FavoriteAlbumView(id: "", name: .constant("")) {
-                        Task {
-                            await selfPic.getFavorites()
-                        }
-                    }
-                    .sheetFrameForMac()
-                }
+
         #endif
     }
 
@@ -321,7 +317,7 @@ struct SelfView: View {
             }
         #else
             LazyVGrid(columns: columns, alignment: .center, spacing: 26) {
-                ForEach(selfPic.favorites) { favorite in
+                ForEach($selfPic.favorites) { $favorite in
                     Button {
                         id = favorite.id
                         name = favorite.favoriteFileName
@@ -329,16 +325,17 @@ struct SelfView: View {
                     } label: {
                         FolderCardView(images: favorite.pics, name: favorite.favoriteFileName, picCount: favorite.countPics)
                     }.buttonStyle(.plain)
+                        .sheet(isPresented: $showMacFolderView) {
+                            FavoriteAlbumView(id: favorite.id, name: $favorite.favoriteFileName) {
+                                Task {
+                                    await selfPic.getFavorites()
+                                }
+                            }
+                            .sheetFrameForMac()
+                        }
                 }
             }.padding(.horizontal)
-                .sheet(isPresented: $showMacFolderView) {
-                    FavoriteAlbumView(id: "", name: .constant("")) {
-                        Task {
-                            await selfPic.getFavorites()
-                        }
-                    }
-                    .sheetFrameForMac()
-                }
+
         #endif
     }
 

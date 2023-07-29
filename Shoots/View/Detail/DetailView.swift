@@ -372,7 +372,8 @@ struct DetailView: View {
             }
 
             if detail.loadingFavorites {
-                LoadingView().frame(height: 286)
+                LoadingView()
+                    .frame(height: 286)
             } else {
                 if detail.favorites.isEmpty {
                     ShootEmptyView(text: "系列为空")

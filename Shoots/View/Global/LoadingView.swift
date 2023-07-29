@@ -21,7 +21,7 @@ struct LoadingView: View {
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(.shootGray)
                 .padding(.leading, 12)
-        }
+        }.frame(maxHeight: .infinity, alignment: .center)
     }
 }
 

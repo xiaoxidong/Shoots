@@ -171,6 +171,8 @@
 		4E42A73D29D152EF00BEC185 /* MenuBarExtraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42A73B29D152EC00BEC185 /* MenuBarExtraView.swift */; };
 		4E4430492A6F986500835CA2 /* SuggestionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4430482A6F986500835CA2 /* SuggestionButtonView.swift */; };
 		4E44304A2A6F986500835CA2 /* SuggestionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4430482A6F986500835CA2 /* SuggestionButtonView.swift */; };
+		4E44306F2A74EF4D00835CA2 /* DeleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E44306E2A74EF4D00835CA2 /* DeleteViewModel.swift */; };
+		4E4430702A74EF4D00835CA2 /* DeleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E44306E2A74EF4D00835CA2 /* DeleteViewModel.swift */; };
 		4E49407929E3A7200058391E /* ZLPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E49403629E3A7200058391E /* ZLPhotoBrowser.bundle */; };
 		4E49407A29E3A7200058391E /* ZLImagePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49403829E3A7200058391E /* ZLImagePreviewController.swift */; };
 		4E49407B29E3A7200058391E /* ZLCameraConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49403929E3A7200058391E /* ZLCameraConfiguration.swift */; };
@@ -685,6 +687,7 @@
 		4E42A71629D1461B00BEC185 /* MacCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacCloseButton.swift; sourceTree = "<group>"; };
 		4E42A73B29D152EC00BEC185 /* MenuBarExtraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarExtraView.swift; sourceTree = "<group>"; };
 		4E4430482A6F986500835CA2 /* SuggestionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionButtonView.swift; sourceTree = "<group>"; };
+		4E44306E2A74EF4D00835CA2 /* DeleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteViewModel.swift; sourceTree = "<group>"; };
 		4E49403529E3A7200058391E /* ZLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoBrowser.h; sourceTree = "<group>"; };
 		4E49403629E3A7200058391E /* ZLPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLPhotoBrowser.bundle; sourceTree = "<group>"; };
 		4E49403829E3A7200058391E /* ZLImagePreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLImagePreviewController.swift; sourceTree = "<group>"; };
@@ -1963,6 +1966,7 @@
 				4E2F4D2F2A654D6D007C7683 /* Self */,
 				4EE7C0AB2A397B5200140FFD /* ReportViewModel.swift */,
 				4EE7C0CB2A3AB98A00140FFD /* SearchViewModel.swift */,
+				4E44306E2A74EF4D00835CA2 /* DeleteViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2413,6 +2417,7 @@
 				4E4940A329E3A7200058391E /* String+ZLPhotoBrowser.swift in Sources */,
 				4E4940AA29E3A7200058391E /* PHAsset+ZLPhotoBrowser.swift in Sources */,
 				4E99D1DF2A320D410086BFC2 /* Report.swift in Sources */,
+				4E44306F2A74EF4D00835CA2 /* DeleteViewModel.swift in Sources */,
 				4E49408B29E3A7200058391E /* ZLEditImageConfiguration.swift in Sources */,
 				4E54163F29CFFD800053BE9E /* IPadSearchDefaultView.swift in Sources */,
 				4E5CF6A529CD58D100A4E0DE /* ElegantVList.swift in Sources */,
@@ -2948,6 +2953,7 @@
 				4E63A85A2A258BE1001A0FD4 /* AppImageResponseData.swift in Sources */,
 				4E42A70229D132E700BEC185 /* FlickeringDotsIndicatorView.swift in Sources */,
 				4E42A70129D132E700BEC185 /* GrowingArcIndicatorView.swift in Sources */,
+				4E4430702A74EF4D00835CA2 /* DeleteViewModel.swift in Sources */,
 				4ED4B09B29D3E98B005D9758 /* MenuBarExtraAccess.swift in Sources */,
 				4E2B6EC12A189B6D000BC713 /* UserResponseData.swift in Sources */,
 				4E587F282A1BAC9D00907D9D /* LocalImageData.swift in Sources */,

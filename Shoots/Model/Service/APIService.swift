@@ -46,6 +46,7 @@ struct APIService {
         case selfAppPic
         case selfPatternPic
         case updateSelfInfo
+        case deactivate
 
         var path: String {
             switch self {
@@ -101,6 +102,8 @@ struct APIService {
                 return "/app/pic/pageByPatternIdForProfile"
             case .updateSelfInfo:
                 return "/app/user/profile/updateProfile"
+            case .deactivate:
+                return "/app/deactivate"
             }
         }
     }

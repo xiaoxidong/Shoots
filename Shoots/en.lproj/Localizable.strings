@@ -212,7 +212,12 @@
 "本软件收集的有关您的信息和资料将保存在您的设备本地。" = "The information and data collected by the Software about you will be stored locally on your device.";
 "4. 使用条款的变更" = "4. Changes to the Terms of Use";
 "当有新的使用条款跟新的时候，我们会在这个页面更新内容，已经之前版本的条款，您可以查看，这些条款更新之后就会立即生效。" = "When new terms of use are updated, we will update the content on this page with the terms of the previous version, which you can view, and these terms will be effective immediately after they are updated.";
-"5. 联系我们" = "5. Contact Us";
+"5. 删除账号" = "5. Delete Acount";
+"如果你希望不在保留您在 Shoots 的账号，可以在这里进入删除账号，注意删除之后将无法恢复。" = "If you wish to no longer keep your account with Shoots, you can go here to delete your account, note that you will not be able to recover it after deletion.";
+"删除账号" = "Delete Acount";
+"删除之后将无法恢复，确认删除？" = "Deletion will not be recoverable after deletion, confirm deletion?";
+"删除" = "Delete";
+"6. 联系我们" = "6. Contact Us";
 "如果您对我们的隐私政策有任何疑问或建议，请随时通过设置页的联系我们与我们联系。" = "If you have any questions or suggestions about our privacy policy, please feel free to get help through the Contact Us on the settings page.";
 
 

@@ -23,7 +23,6 @@ struct HomeView: View {
         ZStack {
             if home.loading {
                 LoadingView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .onChange(of: reachability.isConnectedToNetwork(), perform: { newValue in
                         // 第一次打开的时候没有网络授权，授权之后再次请求网络
                         if newValue {

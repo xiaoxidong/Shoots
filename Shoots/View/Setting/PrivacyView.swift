@@ -10,9 +10,12 @@ import SwiftUI
 struct PrivacyView: View {
     @Binding var showPrivacy: Bool
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var user: UserViewModel
+    @StateObject var delete = DeleteViewModel()
+    @State var showDelete = false
     var body: some View {
         ZStack {
-            Color("bg").edgesIgnoringSafeArea(.all)
+            Color.shootWhite.edgesIgnoringSafeArea(.all)
             VStack {
                 HStack {
                     Text("隐私协议")
@@ -42,15 +45,45 @@ struct PrivacyView: View {
                             Text("a. 本软件不会将您的信息披露给不受信任的第三方。")
                             Text("b. 根据法律的有关规定，或者行政或司法机构的要求，向第三方或者行政、司法机构披露。")
                         }
-                        Spacer().frame(height: 10)
-                        Text("3. 信息存储").bold().font(.headline)
-                        Text("本软件收集的有关您的信息和资料将保存在您的设备本地。")
-                        Spacer().frame(height: 10)
-                        Text("4. 使用条款的变更").bold().font(.headline)
-                        Text("当有新的使用条款跟新的时候，我们会在这个页面更新内容，已经之前版本的条款，您可以查看，这些条款更新之后就会立即生效。")
-                        Spacer().frame(height: 10)
-                        Text("5. 联系我们").bold().font(.headline)
-                        Text("如果您对我们的隐私政策有任何疑问或建议，请随时通过设置页的联系我们与我们联系。")
+                        Group {
+                            Spacer().frame(height: 10)
+                            Text("3. 信息存储").bold().font(.headline)
+                            Text("本软件收集的有关您的信息和资料将保存在您的设备本地。")
+                            Spacer().frame(height: 10)
+                            Text("4. 使用条款的变更").bold().font(.headline)
+                            Text("当有新的使用条款跟新的时候，我们会在这个页面更新内容，已经之前版本的条款，您可以查看，这些条款更新之后就会立即生效。")
+                        }
+                        Group {
+                            Spacer().frame(height: 10)
+                            Text("5. 删除账号").bold().font(.headline)
+                            Text("如果你希望不在保留您在 Shoots 的账号，可以在这里进入删除账号，注意删除之后将无法恢复。")
+                            Button("删除账号") {
+                                withAnimation(.spring()) {
+                                    showDelete.toggle()
+                                }
+                            }.foregroundColor(.blue)
+                                .bold()
+                                .alert(isPresented: $showDelete) {
+                                    Alert(title: Text("确认删除？"), message: Text("删除之后将无法恢复，确认删除？"), primaryButton: Alert.Button.cancel(), secondaryButton: Alert.Button.destructive(Text("删除"), action: {
+                                        Task {
+                                            await delete.delete(token: user.token) { success in
+                                                if success {
+                                                    user.login = false
+                                                    user.token = ""
+                                                    APIService.token = ""
+                                                    Task {
+                                                        await user.logout()
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }))
+                                }
+
+                            Spacer().frame(height: 10)
+                            Text("6. 联系我们").bold().font(.headline)
+                            Text("如果您对我们的隐私政策有任何疑问或建议，请随时通过设置页的联系我们与我们联系。")
+                        }
 
                     }.padding()
                         .font(.subheadline)

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CombineSelectView: View {
     @Binding var uploadImages: [LocalImageData]
+    @Binding var selection: Int
+    @Binding var updateIndicator: Bool
 
     @Environment(\.dismiss) var dismiss
     #if os(iOS)
@@ -66,6 +68,12 @@ struct CombineSelectView: View {
                                     }
                                 }
                                 uploadImages.append(combinedImage)
+                            }
+                            if selection > uploadImages.count - 1 {
+                                selection = 0
+                                withAnimation(.spring()) {
+                                    updateIndicator.toggle()
+                                }
                             }
                             dismiss()
                         }, isActive: $showCombine) {
@@ -139,11 +147,11 @@ struct CombineSelectView: View {
 
 struct CombineSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        CombineSelectView(uploadImages: .constant([]))
+        CombineSelectView(uploadImages: .constant([]), selection: .constant(0), updateIndicator: .constant(true))
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
 
-        CombineSelectView(uploadImages: .constant([]))
+        CombineSelectView(uploadImages: .constant([]), selection: .constant(0), updateIndicator: .constant(true))
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
     }

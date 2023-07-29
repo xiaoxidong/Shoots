@@ -56,7 +56,12 @@ struct MenuBarExtraView: View {
                 Button {
                     NSApp.setActivationPolicy(.regular)
                     isMenuPresented.toggle()
-                    openWindow(id: "main")
+
+                    if let window = NSApplication.shared.windows.filter({ $0.title == "Shoots" }).first {
+                        window.makeKeyAndOrderFront(nil)
+                    } else {
+                        openWindow(id: "main")
+                    }
                     NSApp.activate(ignoringOtherApps: true)
                 } label: {
                     Image("inwindow")
@@ -72,7 +77,6 @@ struct MenuBarExtraView: View {
 
             if home.loading {
                 LoadingView()
-                    .frame(maxHeight: .infinity, alignment: .center)
             } else {
                 if searchText != "" {
                     SearchView(searchText: $searchText, showSearchDefault: true, showSearchSuggestion: true, showSearchBackground: false)
