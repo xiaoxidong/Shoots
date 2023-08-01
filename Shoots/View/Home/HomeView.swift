@@ -71,23 +71,6 @@ struct HomeView: View {
                 // 首页下拉刷新
                 home.getHomeFirstPageFeed()
             }
-//            .simultaneousGesture(
-//                DragGesture()
-//                    .onChanged({ location in
-//                        print(location.translation.height)
-//                        if location.translation.height > 0 {
-//                            print("下")
-//                            withAnimation(.spring()) {
-//                                showNavigation = true
-//                            }
-//                        } else {
-//                            print("上")
-//                            withAnimation(.spring()) {
-//                                showNavigation = false
-//                            }
-//                        }
-//                    })
-//            )
     }
 
     func loadData() {

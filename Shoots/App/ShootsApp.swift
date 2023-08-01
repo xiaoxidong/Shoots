@@ -23,6 +23,7 @@ struct ShootsApp: App {
 
     @AppStorage("colorMode") private var colorMode: ShootColorScheme = .none
     @Environment(\.colorScheme) var colorScheme
+
     var body: some Scene {
         WindowGroup {
             content
@@ -49,6 +50,12 @@ struct ShootsApp: App {
                         if let window = NSApplication.shared.windows.first, window.className == "SwiftUI.AppKitWindow" {
                             window.close()
                         }
+                    }
+                    .onReceive(NotificationCenter.default.publisher(for: NSApplication.willBecomeActiveNotification)) { _ in
+                        NSApp.setActivationPolicy(.regular)
+                    }
+                    .onReceive(NotificationCenter.default.publisher(for: NSApplication.willResignActiveNotification)) { _ in
+                        NSApp.setActivationPolicy(.prohibited)
                     }
             }
 

@@ -440,6 +440,7 @@
 		4EC4F52E2A30CE9C0044EBF2 /* UserPatternResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */; };
 		4EC4F52F2A30CE9C0044EBF2 /* UserPatternResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */; };
 		4EC4F5302A30CF010044EBF2 /* UserPatternResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */; };
+		4EC938672A78F47F00CD5A90 /* ScrollGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC938662A78F47F00CD5A90 /* ScrollGesture.swift */; };
 		4ED4B08B29D3C0BA005D9758 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */; };
 		4ED4B08D29D3CAB1005D9758 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED4B08C29D3CAB1005D9758 /* Refresh */; };
 		4ED4B08E29D3CAC0005D9758 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */; };
@@ -921,6 +922,7 @@
 		4EB203382A10C7B9006A9A15 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		4EB203452A120FF6006A9A15 /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPatternResponseData.swift; sourceTree = "<group>"; };
+		4EC938662A78F47F00CD5A90 /* ScrollGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollGesture.swift; sourceTree = "<group>"; };
 		4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
 		4ED4B08F29D3D2ED005D9758 /* Shoots-Mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Shoots-Mac-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4ED4B09129D3E98B005D9758 /* NSWindow Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow Extensions.swift"; sourceTree = "<group>"; };
@@ -1934,6 +1936,7 @@
 				4E195EDF29C040C600E97522 /* ContentView.swift */,
 				4E2B6ED72A18ADBF000BC713 /* LoginView.swift */,
 				4E325BDD2A60EEB700FF1004 /* NewAppView.swift */,
+				4EC938662A78F47F00CD5A90 /* ScrollGesture.swift */,
 				4EE49F9D29C89A0F00B51F4B /* Home */,
 				4E99304929C9FE3000D99DA9 /* SearchView */,
 				4EE49F9E29C89A1C00B51F4B /* Detail */,
@@ -2394,6 +2397,7 @@
 				4EDDD66B29DC238E00C4E14D /* ZLEditImageViewController.swift in Sources */,
 				4E49409E29E3A7200058391E /* ZLPhotoPreviewPopInteractiveTransition.swift in Sources */,
 				4E5CF69629CD58D100A4E0DE /* SPAlertView.swift in Sources */,
+				4EC938672A78F47F00CD5A90 /* ScrollGesture.swift in Sources */,
 				4E58F92029CB38CE0087E902 /* ShootEmptyView.swift in Sources */,
 				4E5CF68629CD58D100A4E0DE /* GrowingCircleIndicatorView.swift in Sources */,
 				4E5CF69C29CD58D100A4E0DE /* SPAlertIconPreset.swift in Sources */,
@@ -3372,7 +3376,7 @@
 				INFOPLIST_FILE = "Shoots-Mac-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Shoots;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
-				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_LSUIElement = NO;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 -2024";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3411,7 +3415,7 @@
 				INFOPLIST_FILE = "Shoots-Mac-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Shoots;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
-				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_LSUIElement = NO;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 -2024";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -26,7 +26,7 @@ struct MenuBarExtraView: View {
                         search.search(text: searchText)
                     }
                 Button {
-//                    NSApp.setActivationPolicy(.regular)
+                    NSApp.setActivationPolicy(.regular)
                     isMenuPresented.toggle()
 
                     if #available(macOS 13, *) {
@@ -54,7 +54,7 @@ struct MenuBarExtraView: View {
                 }.buttonStyle(.plain)
 
                 Button {
-//                    NSApp.setActivationPolicy(.regular)
+                    NSApp.setActivationPolicy(.regular)
                     isMenuPresented.toggle()
 
                     if let window = NSApplication.shared.windows.filter({ $0.title == "Shoots" }).first {

@@ -131,11 +131,50 @@ struct ContentView: View {
         }
     }
 
-    var iOSHomeView: some View {
-        homeFeed
-            .navigationTitle("Shoots")
-            .toolbar(showNavigation ? .visible : .hidden, for: .automatic)
-    }
+    #if os(iOS)
+        var iOSHomeView: some View {
+            homeFeed
+                .navigationTitle("Shoots")
+                .toolbar(showNavigation ? .visible : .hidden, for: .automatic)
+                .animation(.easeIn(duration: 0.3), value: showNavigation)
+                .background {
+                    ScrollGesture { gesture in
+                        let offsetY = gesture.translation(in: gesture.view).y
+                        let velocityY = gesture.velocity(in: gesture.view).y
+
+                        if velocityY < 0 {
+                            // Up
+                            if -(velocityY / 5) > 60 && showNavigation {
+                                showNavigation = false
+                            }
+                        } else {
+                            // Down
+                            if (velocityY / 5) > 40 && !showNavigation {
+                                showNavigation = true
+                            }
+                        }
+                    }
+                }
+            // 下面的办法没有很好的处理向上滑动过程中在向下滑动这种
+            //            .simultaneousGesture(
+            //                DragGesture()
+            //                    .onChanged({ location in
+            //                        print(location.translation.height)
+            //                        if location.translation.height > 0 {
+            //                            print("下")
+            //                            withAnimation(.spring()) {
+            //                                showNavigation = true
+            //                            }
+            //                        } else {
+            //                            print("上")
+            //                            withAnimation(.spring()) {
+            //                                showNavigation = false
+            //                            }
+            //                        }
+            //                    })
+            //            )
+        }
+    #endif
 
     @State var uploadisActive = false
     @State var showMacSelf = false

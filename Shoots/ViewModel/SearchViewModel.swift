@@ -122,7 +122,7 @@ class SearchViewModel: ObservableObject {
         }
         page = 1
 
-        AF.request("\(baseURL)\(APIService.URLPath.patternPics.path)", method: .post, parameters: ["pageSize": numberPerpage, "pageNum": 1, "designPatternName": name], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: FeedResponseData.self) { response in
+        AF.request("\(baseURL)\(APIService.URLPath.searchPattern.path)", method: .post, parameters: ["pageSize": numberPerpage, "pageNum": 1, "designPatternName": name], encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: FeedResponseData.self) { response in
             switch response.result {
             case let .success(pattern):
                 self.patternFeed = pattern.rows
