@@ -5,13 +5,14 @@
 //  Created by XiaoDong Yuan on 2023/3/14.
 //
 
+import Photos
 import SwiftUI
 
 // 预览模式下无法选择相册上传图片，请在模拟器里查看上传操作。
 struct ContentView: View {
     @State var searchText: String = ""
 
-    @AppStorage("showHomeNew") var showHomeNew = true
+    @AppStorage("showHomeNew") var showHomeNew: Int = 0
     @AppStorage("showCustomUpload") var showCustomUpload = true
     @State var uploadOptions = false
     @State var showLogin = false
@@ -23,11 +24,15 @@ struct ContentView: View {
         @Environment(\.horizontalSizeClass) var horizontalSizeClass
         @Environment(\.verticalSizeClass) var verticalSizeClass
         @State var selectedImages: [UIImage] = []
+        @State var selectedAssets: [PHAsset] = []
         @State var uploadData: [LocalImageData] = []
         @State var showUploadAction = false
         @State var showToast = false
         @State var toastText = ""
         @State var alertType: AlertToast.AlertType = .success(Color.shootBlack)
+        @AppStorage("askToDelete") var askToDelete: Bool = true
+        @AppStorage("deletePicsUploaded") var deletePicsUploaded: Bool = false
+        @State var showAsk = false
     #endif
     var body: some View {
         NavigationView {
@@ -62,10 +67,18 @@ struct ContentView: View {
             CustomUploadView()
         })
         .overlay {
-            Color.black.opacity(uploadisActive ? 0.16 : 0)
-                .animation(.spring(), value: uploadisActive)
+            Color.black.opacity(uploadisActive || showAsk ? 0.16 : 0)
+                .animation(.spring(), value: uploadisActive || showAsk)
                 .ignoresSafeArea()
         }
+        .overlay(
+            Group {
+                if showAsk {
+                    askToDeleteView
+                        .transition(.scale(scale: 0.9).combined(with: .opacity))
+                }
+            }
+        )
         .fullScreenCover(isPresented: $uploadisActive, onDismiss: {
             withAnimation(.spring()) {
                 uploadisActive = false
@@ -74,13 +87,13 @@ struct ContentView: View {
             if !selectedImages.isEmpty {
                 Task {
                     selectedImages.forEach { image in
-                        uploadData.append(LocalImageData(image: image.pngData()!, app: "", pattern: "", fileName: "", fileSuffix: ""))
+                        uploadData.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: ""))
                     }
                     upload.toggle()
                 }
             }
         }, content: {
-            SelectPhotoView(show: $uploadisActive, selectedImages: $selectedImages)
+            SelectPhotoView(show: $uploadisActive, selectedImages: $selectedImages, selectedAssets: $selectedAssets)
                 .background(BackgroundClearView())
                 .ignoresSafeArea()
 
@@ -99,6 +112,15 @@ struct ContentView: View {
                                 uploadData.removeAll()
                                 toastText = "上传成功"
                                 showToast = true
+
+                                // 询问是否删除截图，并且记录选择结果
+                                if askToDelete {
+                                    withAnimation(.spring()) {
+                                        showAsk = true
+                                    }
+                                } else if deletePicsUploaded {
+                                    deleteUploadedImages()
+                                }
                             } else {}
                         }
                     }
@@ -116,7 +138,23 @@ struct ContentView: View {
             #endif
             // 如果自定义上传上传过，则不显示
             // 如果上传了 x 次，但是还是没有使用自定义上传，也不需要显示
+
+            if showHomeNew < 4 {
+                showHomeNew += 1
+            }
         }
+    }
+
+    func deleteUploadedImages() {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.deleteAssets(selectedAssets as NSFastEnumeration)
+        }, completionHandler: { success, error in
+            print(success ? "Success" : error)
+            if success {
+                toastText = "删除成功"
+                showToast = true
+            }
+        })
     }
 
     var iPadHomeView: some View {
@@ -137,42 +175,61 @@ struct ContentView: View {
                 .navigationTitle("Shoots")
                 .toolbar(showNavigation ? .visible : .hidden, for: .automatic)
                 .animation(.easeIn(duration: 0.3), value: showNavigation)
-                .background {
-                    ScrollGesture { gesture in
-                        let offsetY = gesture.translation(in: gesture.view).y
-                        let velocityY = gesture.velocity(in: gesture.view).y
+        }
 
-                        if velocityY < 0 {
-                            // Up
-                            if -(velocityY / 5) > 60 && showNavigation {
-                                showNavigation = false
-                            }
-                        } else {
-                            // Down
-                            if (velocityY / 5) > 40 && !showNavigation {
-                                showNavigation = true
-                            }
+        var askToDeleteView: some View {
+            VStack(spacing: 26) {
+                Text("删除已上传截图")
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.shootBlack)
+
+                VStack(spacing: 16) {
+                    Text("上传完成之后，删除截图相册内的截图？")
+
+                    Toggle(isOn: $deletePicsUploaded, label: {
+                        Text("每次都删除")
+                    }).toggleStyle(CheckToggleStyle())
+                }.font(.system(size: 15, weight: .medium))
+                    .foregroundColor(.shootGray)
+
+                HStack(spacing: 56) {
+                    Button {
+                        withAnimation(.spring()) {
+                            showAsk = false
+                            askToDelete = false
+                            deletePicsUploaded = false
                         }
-                    }
+                    } label: {
+                        Text("不在询问")
+                            .font(.system(size: 14, weight: .medium))
+                            .padding(.horizontal, 22)
+                            .padding(.vertical, 10)
+                            .foregroundColor(.white)
+                            .background(Color.shootBlack.opacity(0.4))
+                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    }.buttonStyle(.plain)
+                    Button {
+                        withAnimation(.spring()) {
+                            showAsk = false
+                            askToDelete = false
+                            deleteUploadedImages()
+                        }
+                    } label: {
+                        Text("删除")
+                            .font(.system(size: 14, weight: .medium))
+                            .padding(.horizontal, 22)
+                            .padding(.vertical, 10)
+                            .foregroundColor(.white)
+                            .background(Color.shootRed)
+                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    }.buttonStyle(.plain)
                 }
-            // 下面的办法没有很好的处理向上滑动过程中在向下滑动这种
-            //            .simultaneousGesture(
-            //                DragGesture()
-            //                    .onChanged({ location in
-            //                        print(location.translation.height)
-            //                        if location.translation.height > 0 {
-            //                            print("下")
-            //                            withAnimation(.spring()) {
-            //                                showNavigation = true
-            //                            }
-            //                        } else {
-            //                            print("上")
-            //                            withAnimation(.spring()) {
-            //                                showNavigation = false
-            //                            }
-            //                        }
-            //                    })
-            //            )
+            }.padding()
+                .padding(.vertical, 16)
+                .frame(maxWidth: 460)
+                .background(Color.shootWhite)
+                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .padding()
         }
     #endif
 
@@ -325,6 +382,8 @@ struct ContentView: View {
                 Group {
                     if !user.login {
                         LoginView(login: .constant(true), showBG: false) {}
+                            .offset(y: showNavigation ? 0 : 1000)
+                            .animation(.easeIn(duration: 1), value: showNavigation)
                     }
                 },
                 alignment: .bottom
@@ -476,7 +535,7 @@ struct ContentView: View {
 
     var homeNew: some View {
         Group {
-            Color.black.opacity(showHomeNew ? 0.4 : 0)
+            Color.black.opacity(showHomeNew == 3 ? 0.4 : 0)
                 .edgesIgnoringSafeArea(.all)
             VStack(spacing: 16) {
                 Image("doubleclick")
@@ -486,7 +545,7 @@ struct ContentView: View {
 
                 Button {
                     withAnimation(.spring()) {
-                        showHomeNew.toggle()
+                        showHomeNew = 10
                     }
                 } label: {
                     Text("知道了")
@@ -497,7 +556,7 @@ struct ContentView: View {
                         .background(LinearGradient(colors: [.pink, .yellow], startPoint: .leading, endPoint: .trailing))
                         .clipShape(Capsule())
                 }.padding(.top)
-            }.opacity(showHomeNew ? 1 : 0)
+            }.opacity(showHomeNew == 3 ? 1 : 0)
         }
     }
 }

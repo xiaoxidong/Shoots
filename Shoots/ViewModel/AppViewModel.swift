@@ -20,6 +20,25 @@ class AppViewModel: ObservableObject {
 
     // 应用基本信息
     func info(id: String) async {
+        let code = Locale.current.language.region?.identifier ?? "us"
+        AF.request("https://itunes.apple.com/\(code)/lookup?id=\(id)", method: .get, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: AppDetailInfo.self) { response in
+            switch response.result {
+            case let .success(object):
+                print(object)
+                if object.results.isEmpty {
+                    Task {
+                        await self.usInfo(id: id)
+                    }
+                } else {
+                    self.info = object.results.first
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
+
+    func usInfo(id: String) async {
         AF.request("https://itunes.apple.com/us/lookup?id=\(id)", method: .get, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: AppDetailInfo.self) { response in
             switch response.result {
             case let .success(object):

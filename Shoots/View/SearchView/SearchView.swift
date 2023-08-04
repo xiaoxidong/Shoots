@@ -71,7 +71,7 @@ struct SearchView: View {
 
             // Tag
             VStack(spacing: 0) {
-                ForEach(info.patterns) { pattern in
+                ForEach(info.suggestionPatterns) { pattern in
                     Button {
                         searchText = pattern.designPatternName
                         search.patternID = pattern.id

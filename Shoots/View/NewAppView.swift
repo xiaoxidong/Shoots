@@ -10,8 +10,10 @@ import SwiftUI
 struct NewAppView: View {
     let appID: String
 
+    @State var tags: [String] = ["Apple", "Shoots"]
     var body: some View {
-        Text("Hello, World!")
+//        Text("Hello, World!")
+        TagField(tags: $tags)
     }
 }
 

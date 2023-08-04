@@ -10,7 +10,12 @@ import SwiftUI
 struct LocalImageData: Equatable, Hashable {
     var image: Data
     var app: String
-    var pattern: String
+
     var fileName: String
     var fileSuffix: String
+    var tags: [String] = []
+
+    var pattern: String {
+        tags.joined(separator: ",")
+    }
 }

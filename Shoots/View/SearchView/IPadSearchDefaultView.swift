@@ -55,7 +55,7 @@ struct IPadSearchDefaultView: View {
 
             // Tag
             FlowLayout(mode: .vstack,
-                       items: info.patterns,
+                       items: info.suggestionPatterns,
                        itemSpacing: 4)
             { pattern in
                 Button {

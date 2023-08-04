@@ -10,6 +10,7 @@ import SwiftUI
 
 class InfoViewModel: ObservableObject {
     @Published var patterns: [Pattern] = Defaults().get(for: .localPatterns) ?? []
+    @Published var suggestionPatterns: [Pattern] = []
     @Published var apps: [AppInfo] = []
     @Published var suggestionApps: [AppInfo] = []
 
@@ -30,7 +31,8 @@ class InfoViewModel: ObservableObject {
         APIService.shared.GET(url: .pattern, params: nil) { (result: Result<PatternResponseData, APIService.APIError>) in
             switch result {
             case let .success(pattern):
-                self.patterns = pattern.data
+                self.patterns = pattern.data.sorted(by: { $0.isOfficial < $1.isOfficial })
+                self.suggestionPatterns = self.patterns.filter { $0.isOfficial == "1" }
                 Defaults().set(pattern.data, for: .localPatterns)
             case let .failure(error):
                 print("获取所有设计模式错误: \(error)")
@@ -43,7 +45,7 @@ class InfoViewModel: ObservableObject {
         APIService.shared.GET(url: .apps, params: nil) { (result: Result<AppResponseData, APIService.APIError>) in
             switch result {
             case let .success(apps):
-                self.apps = apps.data
+                self.apps = apps.data.sorted(by: { $0.isOfficial < $1.isOfficial })
                 Task {
                     for app in self.apps {
                         await self.logo(app: app) { url in

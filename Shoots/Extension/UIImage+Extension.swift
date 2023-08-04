@@ -16,7 +16,15 @@ extension UIImage {
             image = UIImage.imageByCombiningImage(firstImage: image, withImage: UIImage(data: singleImage.image)!)
         }
 
-        let local = LocalImageData(image: image.pngData()!, app: images[0].app, pattern: images[0].pattern, fileName: images[0].fileName, fileSuffix: images[0].fileSuffix)
+        var tags: [String] = []
+        images.forEach { i in
+            i.tags.forEach { tag in
+                if !tag.contains(tag) {
+                    tags.append(tag)
+                }
+            }
+        }
+        let local = LocalImageData(image: image.pngData()!, app: images[0].app, fileName: images[0].fileName, fileSuffix: images[0].fileSuffix, tags: tags)
         return local
     }
 

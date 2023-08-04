@@ -26,6 +26,22 @@ struct SettingView: View {
     @EnvironmentObject var user: UserViewModel
     @State var customUpload = false
     @State var logout = false
+    @AppStorage("askToDelete") var askToDelete: Bool = true
+    @AppStorage("deletePicsUploaded") var deletePicsUploaded: Bool = false
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    var padding: CGFloat {
+        #if os(iOS)
+            if horizontalSizeClass == .regular, verticalSizeClass == .compact {
+                return 56
+            } else {
+                return 16
+            }
+        #else
+            return 16
+        #endif
+    }
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
@@ -47,6 +63,26 @@ struct SettingView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 16)
                         .padding(.top, 36)
+
+                    VStack(spacing: 0) {
+                        HStack {
+                            Image("mode")
+                                .frame(width: 24, height: 24)
+                            Text("上传完成之后询问删除")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(Color.shootBlack)
+                            Spacer()
+                            Toggle(isOn: $askToDelete) {}.labelsHidden()
+                                .onChange(of: askToDelete) { newValue in
+                                    if newValue {
+                                        deletePicsUploaded = false
+                                    }
+                                }
+                        }.frame(height: 56)
+                            .contentShape(Rectangle())
+
+                        Divider()
+                    }.padding(.horizontal, padding)
                     SettingCellView(image: "mode", text: "外观设置") {
                         showModeSetting.toggle()
                     }

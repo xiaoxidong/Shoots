@@ -11,8 +11,8 @@ import SwiftUI
 struct SelectPhotoView: UIViewControllerRepresentable {
     @Binding var show: Bool
     @Binding var selectedImages: [UIImage]
+    @Binding var selectedAssets: [PHAsset]
 
-    @State var selectedAssets: [PHAsset] = []
     @State var selectedResults: [ZLResultModel] = []
     @State var takeSelectedAssetsSwitch = true
     @State var isOriginal = true

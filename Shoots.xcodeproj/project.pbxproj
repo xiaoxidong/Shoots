@@ -441,6 +441,10 @@
 		4EC4F52F2A30CE9C0044EBF2 /* UserPatternResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */; };
 		4EC4F5302A30CF010044EBF2 /* UserPatternResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */; };
 		4EC938672A78F47F00CD5A90 /* ScrollGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC938662A78F47F00CD5A90 /* ScrollGesture.swift */; };
+		4EC938692A7A05C400CD5A90 /* CheckToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC938682A7A05C400CD5A90 /* CheckToggleStyle.swift */; };
+		4EC939AB2A7D043600CD5A90 /* TagField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC939A92A7D043600CD5A90 /* TagField.swift */; };
+		4EC939AC2A7D043600CD5A90 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC939AA2A7D043600CD5A90 /* Model.swift */; };
+		4EC939AD2A7D0E8400CD5A90 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC939AA2A7D043600CD5A90 /* Model.swift */; };
 		4ED4B08B29D3C0BA005D9758 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */; };
 		4ED4B08D29D3CAB1005D9758 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED4B08C29D3CAB1005D9758 /* Refresh */; };
 		4ED4B08E29D3CAC0005D9758 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */; };
@@ -923,6 +927,9 @@
 		4EB203452A120FF6006A9A15 /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPatternResponseData.swift; sourceTree = "<group>"; };
 		4EC938662A78F47F00CD5A90 /* ScrollGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollGesture.swift; sourceTree = "<group>"; };
+		4EC938682A7A05C400CD5A90 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
+		4EC939A92A7D043600CD5A90 /* TagField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagField.swift; sourceTree = "<group>"; };
+		4EC939AA2A7D043600CD5A90 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
 		4ED4B08F29D3D2ED005D9758 /* Shoots-Mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Shoots-Mac-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4ED4B09129D3E98B005D9758 /* NSWindow Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow Extensions.swift"; sourceTree = "<group>"; };
@@ -1296,6 +1303,7 @@
 				4E9B289B2A68CD12002B54FA /* LoadingView.swift */,
 				4E9B289E2A68D73C002B54FA /* ErrorView.swift */,
 				4E58F91F29CB38CE0087E902 /* ShootEmptyView.swift */,
+				4EC938682A7A05C400CD5A90 /* CheckToggleStyle.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -1304,6 +1312,7 @@
 			isa = PBXGroup;
 			children = (
 				4E5CF6CD29CD59B200A4E0DE /* Global.swift */,
+				4EC939A82A7D043600CD5A90 /* TagField */,
 				4E5CF6CF29CD5AC000A4E0DE /* SwiftDate */,
 				4E5CF60029CD58D000A4E0DE /* ActivityIndicatorView */,
 				4E5CF62F29CD58D000A4E0DE /* AlertToast */,
@@ -1853,6 +1862,15 @@
 				4EA73AF829D5BB6A002901AE /* Bundle+Extension.swift */,
 			);
 			path = "Mac Setting";
+			sourceTree = "<group>";
+		};
+		4EC939A82A7D043600CD5A90 /* TagField */ = {
+			isa = PBXGroup;
+			children = (
+				4EC939A92A7D043600CD5A90 /* TagField.swift */,
+				4EC939AA2A7D043600CD5A90 /* Model.swift */,
+			);
+			path = TagField;
 			sourceTree = "<group>";
 		};
 		4ED4B09029D3E98B005D9758 /* MenuBarExtraAccess */ = {
@@ -2423,6 +2441,7 @@
 				4E99D1DF2A320D410086BFC2 /* Report.swift in Sources */,
 				4E44306F2A74EF4D00835CA2 /* DeleteViewModel.swift in Sources */,
 				4E49408B29E3A7200058391E /* ZLEditImageConfiguration.swift in Sources */,
+				4EC939AB2A7D043600CD5A90 /* TagField.swift in Sources */,
 				4E54163F29CFFD800053BE9E /* IPadSearchDefaultView.swift in Sources */,
 				4E5CF6A529CD58D100A4E0DE /* ElegantVList.swift in Sources */,
 				4EB203462A120FF6006A9A15 /* BaseURL.swift in Sources */,
@@ -2597,6 +2616,7 @@
 				4E5CF6BE29CD58D100A4E0DE /* Size.swift in Sources */,
 				4E58F92429CB47930087E902 /* ProView.swift in Sources */,
 				4E5CF66F29CD58D100A4E0DE /* SKProduct+LocalizedPrice.swift in Sources */,
+				4EC938692A7A05C400CD5A90 /* CheckToggleStyle.swift in Sources */,
 				4E5CF67729CD58D100A4E0DE /* PaymentsController.swift in Sources */,
 				4E5CF68429CD58D100A4E0DE /* RotatingDotsIndicatorView.swift in Sources */,
 				4E5CF6B729CD58D100A4E0DE /* SafariViewPresentationModifier.swift in Sources */,
@@ -2660,6 +2680,7 @@
 				4E49409729E3A7200058391E /* ZLPhotoBrowser.swift in Sources */,
 				4E4940DB29E3B5700058391E /* SelectPhotoView.swift in Sources */,
 				4E2B6EDC2A18B3EC000BC713 /* UploadData.swift in Sources */,
+				4EC939AC2A7D043600CD5A90 /* Model.swift in Sources */,
 				4EDDD63729DC0C5F00C4E14D /* ReportView.swift in Sources */,
 				4E5CF6B929CD58D100A4E0DE /* SafariView+View.swift in Sources */,
 				4E4940DF29E3E2740058391E /* BackgroundClearView.swift in Sources */,
@@ -2753,6 +2774,7 @@
 				4EF6647E29F4CB76005C3BD1 /* ZLImageEditorConfiguration+Chaining.swift in Sources */,
 				4E3BF03B29E6DFFA0024AB99 /* BackgroundClearView.swift in Sources */,
 				4EF664EF29F4D617005C3BD1 /* RotatingDotsIndicatorView.swift in Sources */,
+				4EC939AD2A7D0E8400CD5A90 /* Model.swift in Sources */,
 				4EF6648D29F4CB79005C3BD1 /* UIImage+ZLImageEditor.swift in Sources */,
 				4EF664E629F4D613005C3BD1 /* ActivityIndicatorView.swift in Sources */,
 				4EE7C0B72A397F8D00140FFD /* Pattern.swift in Sources */,

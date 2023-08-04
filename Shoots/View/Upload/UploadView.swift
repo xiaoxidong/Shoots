@@ -150,10 +150,10 @@ struct UploadView: View {
     }
 
     var tagRsults: [Pattern] {
-        if uploadData[selection].pattern.components(separatedBy: ",").last == "" {
+        if newTag == "" {
             return info.patterns
         } else {
-            return info.patterns.filter { $0.designPatternName.transToLowercasedPinYin().contains(uploadData[selection].pattern.components(separatedBy: ",").last?.transToLowercasedPinYin() ?? "") }
+            return info.patterns.filter { $0.designPatternName.transToLowercasedPinYin().contains(newTag.transToLowercasedPinYin()) }
         }
     }
 
@@ -166,22 +166,22 @@ struct UploadView: View {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
                         ForEach(appRsults) { app in
-                            Button {
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text(app.linkApplicationName)
+                                    .font(.system(size: 16, weight: .medium))
+                                    .foregroundColor(.shootBlack)
+                                    .padding(.vertical, 16)
+                                    .padding(.horizontal, 16)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+                                Divider()
+                            }
+                            .background(Color.shootWhite)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
                                 uploadData[selection].app = app.linkApplicationName
                                 appFocused = false
                                 tagFocused = true
-                            } label: {
-                                VStack(alignment: .leading, spacing: 0) {
-                                    Text(app.linkApplicationName)
-                                        .font(.system(size: 16, weight: .medium))
-                                        .foregroundColor(.shootBlack)
-                                        .padding(.vertical, 16)
-                                        .padding(.horizontal, 16)
-                                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-                                    Divider()
-                                }.frame(width: .infinity, alignment: .leading)
-                                    .background(Color.shootWhite)
-                                    .contentShape(Rectangle())
                             }
                         }
                     }
@@ -192,31 +192,23 @@ struct UploadView: View {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
                         ForEach(tagRsults, id: \.self) { tag in
-                            Button {
-                                if uploadData[selection].pattern == "" {
-                                    uploadData[selection].pattern = "\(tag.designPatternName)，"
-                                } else if !uploadData[selection].pattern.contains(tag.designPatternName) {
-                                    var new = uploadData[selection].pattern.components(separatedBy: "，")
-                                    new.removeLast()
-                                    if new.isEmpty {
-                                        uploadData[selection].pattern = "\(tag.designPatternName)，"
-                                    } else {
-                                        uploadData[selection].pattern = new.joined(separator: "，") + "，\(tag.designPatternName)，"
-                                    }
-                                }
-                            } label: {
-                                VStack(alignment: .center, spacing: 0) {
-                                    Text(tag.designPatternName)
-                                        .font(.system(size: 16, weight: .medium))
-                                        .foregroundColor(.shootBlack)
-                                        .padding(.vertical, 16)
-                                        .padding(.horizontal, 16)
-                                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-                                    Divider()
-                                }.frame(width: .infinity, alignment: .center)
+                            VStack(alignment: .center, spacing: 0) {
+                                Text(tag.designPatternName)
+                                    .font(.system(size: 16, weight: .medium))
+                                    .foregroundColor(.shootBlack)
+                                    .padding(.vertical, 16)
+                                    .padding(.horizontal, 16)
+                                    .frame(maxWidth: .infinity, alignment: .center)
                                     .background(Color.shootWhite)
-                                    .contentShape(Rectangle())
-                            }.buttonStyle(.plain)
+                                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+                                Divider()
+                            }.contentShape(Rectangle())
+                                .onTapGesture {
+                                    if !uploadData[selection].tags.contains(tag.designPatternName) {
+                                        uploadData[selection].tags.append(tag.designPatternName)
+                                    }
+                                    newTag = ""
+                                }
                         }
                     }
                 }.frame(maxHeight: 240)
@@ -232,8 +224,9 @@ struct UploadView: View {
                         .frame(width: 106)
                     Divider()
                         .frame(height: 36)
-                    TextField("设计模式，多个以逗号分隔", text: $uploadData[selection].pattern)
-                        .focused($tagFocused)
+//                    TextField("设计模式，多个以逗号分隔", text: $uploadData[selection].pattern)
+//                        .focused($tagFocused)
+                    tag
                         .font(.system(size: 14, weight: .medium))
                     Button {
                         showBluer.toggle()
@@ -335,6 +328,118 @@ struct UploadView: View {
                 // TODO: 后台上传截图
                 uploadAction()
             }
+        }
+    }
+
+    // MARK: - Tag
+
+//    @State public var tags: [String] = ["Apple", "Shoots"]
+    @State private var newTag: String = ""
+    @State var color: Color = .init(.sRGB, red: 50 / 255, green: 200 / 255, blue: 165 / 255)
+    var tag: some View {
+        VStack(spacing: 0) {
+            ScrollViewReader { scrollView in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(uploadData[selection].tags, id: \.self) { tag in
+                            HStack {
+                                Text(tag)
+                                    .fixedSize()
+                                    .foregroundColor(color.opacity(0.8))
+                                    .font(.system(size: 15, weight: .medium, design: .rounded))
+                                    .padding([.leading], 10)
+                                    .padding(.vertical, 5)
+                                Button(action: {
+                                    withAnimation {
+                                        uploadData[selection].tags.removeAll { $0 == tag }
+                                    }
+                                    newTag = ""
+                                }) {
+                                    Image(systemName: "xmark")
+                                        .foregroundColor(color.opacity(0.8))
+                                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                                        .padding([.trailing], 10)
+                                }
+                            }.background(color.opacity(0.1).cornerRadius(.infinity))
+                        }
+                        TextField("Enter 输入标签", text: $newTag, onEditingChanged: { _ in
+//                            appendNewTag()
+                        }, onCommit: {
+                            appendNewTag()
+                        })
+                        .focused($tagFocused)
+                        .onChange(of: newTag) { change in
+                            if change.isContainSpaceAndNewlines() {
+                                appendNewTag()
+                            }
+                            withAnimation(Animation.easeOut(duration: 0).delay(1)) {
+                                scrollView.scrollTo("TextField", anchor: .trailing)
+                            }
+                        }
+                        .onChange(of: uploadData[selection].tags, perform: { _ in
+                            newTag = ""
+                            withAnimation(Animation.easeOut(duration: 0).delay(1)) {
+                                scrollView.scrollTo("TextField", anchor: .trailing)
+                            }
+                        })
+                        .fixedSize()
+                        .disableAutocorrection(true)
+                        .autocapitalization(.none)
+                        .accentColor(color)
+                        .id("TextField")
+                        .padding(.trailing)
+                    }.padding()
+                }
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 5)
+//                        .stroke(color, lineWidth: style == .RoundedBorder ? 0.75 : 0)
+//                )
+            }
+//            .background(
+//                Color.gray.opacity(style == .Modern ? 0.07 : 0)
+//            )
+//            if style == .Modern {
+//                color.frame(height: 2).cornerRadius(1)
+//            }
+        }
+    }
+
+    func appendNewTag() {
+        var tag = newTag
+        if !isBlank(tag: tag) {
+            if tag.last == " " {
+                tag.removeLast()
+                if !isOverlap(tag: tag) {
+                    withAnimation {
+                        uploadData[selection].tags.append(tag)
+                    }
+                }
+            } else {
+                if !isOverlap(tag: tag) {
+                    withAnimation {
+                        uploadData[selection].tags.append(tag)
+                    }
+                }
+            }
+        }
+        newTag = ""
+        tagFocused = true
+    }
+
+    func isOverlap(tag: String) -> Bool {
+        if uploadData[selection].tags.contains(tag) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    func isBlank(tag: String) -> Bool {
+        let tmp = tag.trimmingCharacters(in: .whitespaces)
+        if tmp == "" {
+            return true
+        } else {
+            return false
         }
     }
 }
