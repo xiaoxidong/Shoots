@@ -19,7 +19,9 @@ struct ContentView: View {
     @State var customUpload = false
     @State var upload = false
     @State var showNavigation = true
-
+    @State var showToast = false
+    @State var toastText = ""
+    @State var alertType: AlertToast.AlertType = .success(Color.shootBlack)
     #if os(iOS)
         @Environment(\.horizontalSizeClass) var horizontalSizeClass
         @Environment(\.verticalSizeClass) var verticalSizeClass
@@ -27,9 +29,6 @@ struct ContentView: View {
         @State var selectedAssets: [PHAsset] = []
         @State var uploadData: [LocalImageData] = []
         @State var showUploadAction = false
-        @State var showToast = false
-        @State var toastText = ""
-        @State var alertType: AlertToast.AlertType = .success(Color.shootBlack)
         @AppStorage("askToDelete") var askToDelete: Bool = true
         @AppStorage("deletePicsUploaded") var deletePicsUploaded: Bool = false
         @State var showAsk = false
@@ -127,10 +126,10 @@ struct ContentView: View {
                 }
             }
         })
+        #endif
         .toast(isPresenting: $showToast) {
             AlertToast(displayMode: .alert, type: alertType, title: toastText)
         }
-        #endif
         .onAppear {
             // DEBUG 模式下显示自定义上传
             #if DEBUG
@@ -143,18 +142,6 @@ struct ContentView: View {
                 showHomeNew += 1
             }
         }
-    }
-
-    func deleteUploadedImages() {
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.deleteAssets(selectedAssets as NSFastEnumeration)
-        }, completionHandler: { success, error in
-            print(success ? "Success" : error)
-            if success {
-                toastText = "删除成功"
-                showToast = true
-            }
-        })
     }
 
     var iPadHomeView: some View {
@@ -230,6 +217,18 @@ struct ContentView: View {
                 .background(Color.shootWhite)
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                 .padding()
+        }
+
+        func deleteUploadedImages() {
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.deleteAssets(selectedAssets as NSFastEnumeration)
+            }, completionHandler: { success, error in
+                print(success ? "Success" : error)
+                if success {
+                    toastText = "删除成功"
+                    showToast = true
+                }
+            })
         }
     #endif
 
@@ -381,9 +380,15 @@ struct ContentView: View {
             .overlay(
                 Group {
                     if !user.login {
-                        LoginView(login: .constant(true), showBG: false) {}
-                            .offset(y: showNavigation ? 0 : 1000)
-                            .animation(.easeIn(duration: 1), value: showNavigation)
+                        LoginView(login: .constant(true), showBG: false, successAction: {
+                            toastText = "登录成功"
+                            showToast = true
+                        }, failAction: {
+                            toastText = "登录失败，请重试"
+                            showToast = true
+                        })
+                        .offset(y: showNavigation ? 0 : 1000)
+                        .animation(.easeIn(duration: 1), value: showNavigation)
                     }
                 },
                 alignment: .bottom
@@ -403,7 +408,13 @@ struct ContentView: View {
                 .overlay(
                     Group {
                         if showLogin {
-                            LoginView(login: $showLogin, showBG: true) {}
+                            LoginView(login: $showLogin, showBG: true, successAction: {
+                                toastText = "登录成功"
+                                showToast = true
+                            }, failAction: {
+                                toastText = "登录失败，请重试"
+                                showToast = true
+                            })
                         }
                     },
                     alignment: .bottom

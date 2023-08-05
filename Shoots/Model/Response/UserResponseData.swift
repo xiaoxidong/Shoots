@@ -13,6 +13,8 @@ struct UserResponseData: Codable {
     var data: Token
 
     struct Token: Codable {
+        var userName: String?
         var token: String
+        var avatar: String?
     }
 }

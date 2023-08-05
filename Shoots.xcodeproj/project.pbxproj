@@ -395,6 +395,7 @@
 		4E73A68A29D316BB009CFB5A /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 4E73A68929D316BB009CFB5A /* Introspect */; };
 		4E878ED429D191520027FDA9 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 4E878ED329D191520027FDA9 /* Refresh */; };
 		4E878ED529D192130027FDA9 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62A49229D158C400B09493 /* Data+Extension.swift */; };
+		4E8B59442A7E01840049FCF3 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59432A7E01840049FCF3 /* UploadView.swift */; };
 		4E99304029C9EBC400D99DA9 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99303F29C9EBC400D99DA9 /* FeedView.swift */; };
 		4E99304229C9F02000D99DA9 /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304129C9F02000D99DA9 /* FlowView.swift */; };
 		4E99304429C9F06300D99DA9 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304329C9F06300D99DA9 /* Flow.swift */; };
@@ -549,7 +550,6 @@
 		4EE7C0D42A3AFDA000140FFD /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304329C9F06300D99DA9 /* Flow.swift */; };
 		4EF6646E29F4C5CA005C3BD1 /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = 4EF6646D29F4C5CA005C3BD1 /* MASShortcut */; };
 		4EF6647129F4C65F005C3BD1 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4EF6647029F4C65F005C3BD1 /* LaunchAtLogin */; };
-		4EF6647329F4CAAE005C3BD1 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304C29CA075D00D99DA9 /* UploadView.swift */; };
 		4EF6647529F4CB3E005C3BD1 /* ImageBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDD68129DC24ED00C4E14D /* ImageBlurView.swift */; };
 		4EF6647629F4CB72005C3BD1 /* ImageStickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4940D829E3B2EA0058391E /* ImageStickerContainerView.swift */; };
 		4EF6647829F4CB76005C3BD1 /* ZLClipImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDD64929DC238E00C4E14D /* ZLClipImageViewController.swift */; };
@@ -908,6 +908,8 @@
 		4E63A8582A258BE1001A0FD4 /* AppImageResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImageResponseData.swift; sourceTree = "<group>"; };
 		4E63A85C2A25FB03001A0FD4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4E73A66E29D3122D009CFB5A /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
+		4E8B59432A7E01840049FCF3 /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
+		4E8B59452A7E07130049FCF3 /* ShareToUpload.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareToUpload.entitlements; sourceTree = "<group>"; };
 		4E99303F29C9EBC400D99DA9 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		4E99304129C9F02000D99DA9 /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
 		4E99304329C9F06300D99DA9 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
@@ -1160,10 +1162,12 @@
 		4E3BEFC929E6D1830024AB99 /* ShareToUpload */ = {
 			isa = PBXGroup;
 			children = (
+				4E8B59452A7E07130049FCF3 /* ShareToUpload.entitlements */,
 				4E3BEFCA29E6D1830024AB99 /* ShareViewController.swift */,
 				4E63A85C2A25FB03001A0FD4 /* LoginView.swift */,
 				4EA4E59D29F4F75A00936451 /* CustomShareNavigationController.swift */,
 				4E3BEFD729E6D82C0024AB99 /* UIHostingView.swift */,
+				4E8B59432A7E01840049FCF3 /* UploadView.swift */,
 				4EA4E59B29F4F73100936451 /* Editor */,
 				4EA4E59C29F4F74100936451 /* Extension */,
 				4E3BEFCF29E6D1830024AB99 /* Info.plist */,
@@ -2723,7 +2727,6 @@
 				4E63A84B2A2487C4001A0FD4 /* UploadImageResponseData.swift in Sources */,
 				4EF664E129F4D5C1005C3BD1 /* BottomActionsView.swift in Sources */,
 				4EE7C0C32A39810300140FFD /* UploadAblum.swift in Sources */,
-				4EF6647329F4CAAE005C3BD1 /* UploadView.swift in Sources */,
 				4EF664D829F4CF1C005C3BD1 /* ZLPhotoUIConfiguration.swift in Sources */,
 				4E37EB2B2A57AA310011BC63 /* AppDetailInfo.swift in Sources */,
 				4EF664CF29F4CCD7005C3BD1 /* ZLImageEditorUIConfiguration.swift in Sources */,
@@ -2793,6 +2796,7 @@
 				4EF6647829F4CB76005C3BD1 /* ZLClipImageViewController.swift in Sources */,
 				4EF6648529F4CB76005C3BD1 /* ZLAdjustSlider.swift in Sources */,
 				4EE7C09E2A39748A00140FFD /* AppViewModel.swift in Sources */,
+				4E8B59442A7E01840049FCF3 /* UploadView.swift in Sources */,
 				4EA4E59E29F4F75A00936451 /* CustomShareNavigationController.swift in Sources */,
 				4EF664E329F4D605005C3BD1 /* BlurView.swift in Sources */,
 				4EE7C0A62A39787500140FFD /* SelfViewModel.swift in Sources */,
@@ -3140,7 +3144,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3169,7 +3173,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -3190,7 +3194,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3219,7 +3223,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -3325,8 +3329,9 @@
 		4E3BEFD429E6D1840024AB99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareToUpload/ShareToUpload.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareToUpload/Info.plist;
@@ -3338,7 +3343,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots.ShareToUpload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -3352,8 +3357,9 @@
 		4E3BEFD529E6D1840024AB99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareToUpload/ShareToUpload.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareToUpload/Info.plist;
@@ -3365,7 +3371,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots.ShareToUpload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -3385,7 +3391,7 @@
 				CODE_SIGN_ENTITLEMENTS = Shoots_Mac/Shoots_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots_Mac/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3406,7 +3412,7 @@
 				);
 				LINKER_DISPLAYS_MANGLED_NAMES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_MODULE_NAME = Shoots;
 				PRODUCT_NAME = Shoots;
@@ -3424,7 +3430,7 @@
 				CODE_SIGN_ENTITLEMENTS = Shoots_Mac/Shoots_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots_Mac/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3445,7 +3451,7 @@
 				);
 				LINKER_DISPLAYS_MANGLED_NAMES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_MODULE_NAME = Shoots;
 				PRODUCT_NAME = Shoots;

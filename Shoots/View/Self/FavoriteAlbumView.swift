@@ -370,6 +370,7 @@ struct FavoriteAlbumView: View {
                                 alertType = .success(Color.shootBlack)
                                 showToast = true
                                 selected.removeAll()
+                                update()
                             } else {
                                 toastText = "移除失败，请重试"
                                 alertType = .error(.red)
@@ -380,7 +381,6 @@ struct FavoriteAlbumView: View {
                     withAnimation(.spring()) {
                         removeFavorite = false
                     }
-                    update()
                 } label: {
                     Text("确认")
                         .font(.system(size: 14, weight: .medium))
@@ -433,6 +433,7 @@ struct FavoriteAlbumView: View {
                                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                                     DispatchQueue.main.async {
                                         dismiss()
+                                        update()
                                     }
                                 }
                             } else {
@@ -445,7 +446,7 @@ struct FavoriteAlbumView: View {
                     withAnimation(.spring()) {
                         deleteFavorite = false
                     }
-                    update()
+
                 } label: {
                     Text("确认")
                         .font(.system(size: 14, weight: .medium))

@@ -253,6 +253,7 @@ struct AppAlbumView: View {
                                 toastText = "成功删除"
                                 alertType = .success(Color.shootBlack)
                                 showToast = true
+                                selected.removeAll()
                             } else {
                                 toastText = "删除失败，请重试"
                                 alertType = .error(.red)

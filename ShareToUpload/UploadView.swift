@@ -1,19 +1,18 @@
 //
 //  UploadView.swift
-//  Shoots
+//  ShareToUpload
 //
-//  Created by XiaoDong Yuan on 2023/3/21.
+//  Created by XiaoDong Yuan on 2023/8/5.
 //
 
-import Alamofire
 import SwiftUI
 
 struct UploadView: View {
-    @Binding var uploadData: [LocalImageData]
     let shareCancellAction: () -> Void
     let shareDoneAction: () -> Void
     let uploadAction: () -> Void
 
+    @State var uploadData: [LocalImageData] = []
     @Environment(\.dismiss) var dismiss
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
@@ -33,7 +32,7 @@ struct UploadView: View {
                 Image(uiImage: UIImage(data: uploadData[indice].image)!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: screen.width, height: screen.height)
+                    .frame(width: screen.width)
                     .ignoresSafeArea()
                     .tag(indice)
             }
@@ -43,7 +42,6 @@ struct UploadView: View {
                 appFocused = false
                 tagFocused = false
             }
-            .edgesIgnoringSafeArea(.all)
             .safeAreaInset(edge: .top) {
                 if horizontalSizeClass == .compact {
                     topActions
@@ -57,13 +55,9 @@ struct UploadView: View {
             .safeAreaInset(edge: .bottom) {
                 if !uploadData.isEmpty {
                     bottomActions
+                        .padding(.bottom)
                 }
             }
-            .overlay(
-                LoginView(login: $showLogin, successAction: {
-                    upload()
-                }, failAction: {}), alignment: .bottom
-            )
             .toast(isPresenting: $showToast) {
                 AlertToast(displayMode: .alert, type: alertType, title: toastText)
             }
@@ -78,10 +72,15 @@ struct UploadView: View {
                 #if DEBUG
                     showBlurNewGuide = true
                 #endif
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    if let data = Defaults().get(for: .shareImage) {
+                        uploadData = [data]
+                    } else {}
+                }
             }
     }
 
-    @State var showLogin = false
     var topActions: some View {
         VStack(spacing: 12) {
             HStack {
@@ -114,9 +113,8 @@ struct UploadView: View {
                     if !user.login {
                         appFocused = false
                         tagFocused = false
-                        withAnimation(.spring()) {
-                            showLogin.toggle()
-                        }
+                        toastText = "请先打开应用登录"
+                        showToast = true
                     } else {
                         upload()
                     }
@@ -129,7 +127,7 @@ struct UploadView: View {
                 }.frame(maxWidth: .infinity, alignment: .trailing)
             }.padding(.horizontal)
             Divider()
-        }.padding(.top, 0)
+        }.padding(.top, 16)
     }
 
     @State var showBluer = false
@@ -221,13 +219,13 @@ struct UploadView: View {
                         .frame(height: 36)
                     tag
                         .font(.system(size: 14, weight: .medium))
-                    Button {
-                        showBluer.toggle()
-                    } label: {
-                        Image("blur")
-                            .padding(4)
-                            .contentShape(Rectangle())
-                    }
+//                    Button {
+//                        showBluer.toggle()
+//                    } label: {
+//                        Image("blur")
+//                            .padding(4)
+//                            .contentShape(Rectangle())
+//                    }
 
                     Button {
                         showCombine.toggle()
@@ -302,10 +300,22 @@ struct UploadView: View {
             toastText = "请添加所属应用"
             showToast = true
         } else {
-            // 上传
-            dismiss()
-            // TODO: 后台上传截图
-            uploadAction()
+            // 上传截图
+            Task {
+                user.uploadImages(localDatas: uploadData) { pics in
+                    user.uploadPics(pics: pics) { success in
+                        if success {
+                            uploadData.removeAll()
+                            // 完成之后关闭
+                            shareDoneAction()
+                        } else {
+                            alertType = .error(.red)
+                            toastText = "上传失败，请重试"
+                            showToast = true
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -417,7 +427,7 @@ struct UploadView: View {
 struct UploadView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UploadView(uploadData: .constant([])) {} shareDoneAction: {} uploadAction: {}
+            UploadView {} shareDoneAction: {} uploadAction: {}
         }
         .previewDisplayName("Chinese")
         .environment(\.locale, .init(identifier: "zh-cn"))
@@ -425,7 +435,7 @@ struct UploadView_Previews: PreviewProvider {
         .environmentObject(UserViewModel())
 
         NavigationView {
-            UploadView(uploadData: .constant([])) {} shareDoneAction: {} uploadAction: {}
+            UploadView {} shareDoneAction: {} uploadAction: {}
         }
         .previewDisplayName("English")
         .environment(\.locale, .init(identifier: "en"))

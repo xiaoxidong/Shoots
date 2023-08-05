@@ -12,6 +12,7 @@ struct LoginView: View {
     @Binding var login: Bool
     var showBG: Bool = true
     let successAction: () -> Void
+    let failAction: () -> Void
 
     @EnvironmentObject var user: UserViewModel
     var body: some View {
@@ -85,20 +86,21 @@ struct LoginView: View {
                     let firstName = credentials.fullName?.givenName
                     let lastName = credentials.fullName?.familyName
 
-                    user.login(appleUserId: userID, identityToken: identityTokenString, email: email ?? "", fullName: "\(firstName ?? "") \(lastName ?? "")") { success in
-                        withAnimation(.spring()) {
-                            login.toggle()
-                        }
-                        if !success {
-                            // 提示登录失败
+                    user.login(appleUserId: userID, identityToken: identityTokenString, email: email ?? "", fullName: "\(firstName ?? "")\(lastName ?? "")") { success in
+                        if success {
+                            // 登录成功
+                            withAnimation(.spring()) {
+                                login.toggle()
+                            }
+                            successAction()
+                        } else {
+                            // 登录失败
+                            failAction()
                         }
                     }
                 case let .failure(error):
                     print("Authorization failed: " + error.localizedDescription)
-                    withAnimation(.spring()) {
-                        login.toggle()
-                        // 提示登录失败
-                    }
+                    failAction()
                 }
             })
             .signInWithAppleButtonStyle(.black)
@@ -127,7 +129,7 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(login: .constant(true)) {}
+        LoginView(login: .constant(true), successAction: {}, failAction: {})
             .environmentObject(UserViewModel())
     }
 }

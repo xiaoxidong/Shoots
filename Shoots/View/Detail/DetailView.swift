@@ -110,7 +110,17 @@ struct DetailView: View {
                 }
             )
             .overlay(
-                LoginView(login: $showLogin) {}, alignment: .bottom
+                Group {
+                    if !user.login {
+                        LoginView(login: .constant(true), showBG: false, successAction: {
+                            alertText = "登录成功"
+                            showAlert = true
+                        }, failAction: {
+                            alertText = "登录失败，请重试"
+                            showAlert = true
+                        })
+                    }
+                }, alignment: .bottom
             )
             .ignoresSafeArea()
         #if os(iOS)

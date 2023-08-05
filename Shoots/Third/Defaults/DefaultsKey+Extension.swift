@@ -12,4 +12,5 @@ extension DefaultsKey {
     static let login = Key<String>("login")
     static let localPatterns = Key<[Pattern]>("localPatterns")
     static let localApps = Key<[AppInfo]>("localApps")
+    static let shareImage = Key<LocalImageData>("shareImage")
 }

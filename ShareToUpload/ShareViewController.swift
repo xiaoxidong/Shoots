@@ -8,19 +8,22 @@
 import CoreServices
 import Social
 import SwiftUI
+import UniformTypeIdentifiers
 
 class CustomShareViewController: UIViewController {
-    private let typeImage = String(kUTTypeImage)
+    private let typeImage = UTType.image.identifier
 
-    var images: [UIImage] = []
+    var images: [LocalImageData] = []
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        let contentView = UploadView(uploadData: .constant([]), shareExtension: true) {
+        let contentView = UploadView {
             self.cancelAction()
         } shareDoneAction: {
             self.doneAction()
         } uploadAction: {}
+            .environmentObject(UserViewModel())
+            .environmentObject(InfoViewModel())
 
         view = UIHostingView(rootView: contentView)
         view.isOpaque = true
@@ -36,36 +39,52 @@ class CustomShareViewController: UIViewController {
     }
 
     func getItems() {
-        guard let extensionItem = extensionContext?.inputItems.first as? NSExtensionItem,
-              let itemProvider = extensionItem.attachments?.first
-        else {
-            extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
-            return
-        }
+//        guard let extensionItem = extensionContext?.inputItems.first as? NSExtensionItem, let itemProvider = extensionItem.attachments?.first else {
+//            extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+//            return
+//        }
 
         // Check if object is of type text
         // https://medium.com/@damisipikuda/how-to-receive-a-shared-content-in-an-ios-application-4d5964229701
-        if itemProvider.hasItemConformingToTypeIdentifier(typeImage) {
-            share()
-        } else {
-            print("Error: No url or text found")
-            extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+//        if itemProvider.hasItemConformingToTypeIdentifier(typeImage) {
+//            share()
+//        } else {
+//            print("Error: No url or text found")
+//            extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+//        }
+        let inputItem = extensionContext!.inputItems.first! as! NSExtensionItem
+        let attachment = inputItem.attachments!.first!
+        if attachment.hasItemConformingToTypeIdentifier(UTType.image.identifier) {
+            attachment.loadItem(forTypeIdentifier: UTType.image.identifier, options: [:]) { data, _ in
+                if let someURl = data as? URL {
+                    let image = UIImage(contentsOfFile: someURl.path)
+                    self.images.append(LocalImageData(image: image!.pngData()!, app: "", fileName: "", fileSuffix: ""))
+                } else if let someImage = data as? UIImage {
+//                    image = someImage
+                    Defaults().set(LocalImageData(image: someImage.pngData()!, app: "", fileName: "", fileSuffix: ""), for: .shareImage)
+                }
+            }
         }
     }
 
     func share() {
         let inputItem = extensionContext!.inputItems.first! as! NSExtensionItem
-        let attachment = inputItem.attachments!.first as! NSItemProvider
-        if attachment.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
+        let attachment = inputItem.attachments!.first!
+        if attachment.hasItemConformingToTypeIdentifier(UTType.image.identifier) {
             attachment.loadItem(forTypeIdentifier: kUTTypeImage as String, options: [:]) { data, _ in
                 var image: UIImage?
                 if let someURl = data as? URL {
-                    image = UIImage(contentsOfFile: someURl.path)
+                    let image = UIImage(contentsOfFile: someURl.path)
+                    self.images.append(LocalImageData(image: image!.pngData()!, app: "", fileName: "", fileSuffix: ""))
                 } else if let someImage = data as? UIImage {
-                    image = someImage
+//                    image = someImage
+                    self.images.append(LocalImageData(image: someImage.pngData()!, app: "", fileName: "", fileSuffix: ""))
                 }
             }
+        } else {
+            print("=====")
         }
+        print("=====")
     }
 
     private func setupNavBar() {

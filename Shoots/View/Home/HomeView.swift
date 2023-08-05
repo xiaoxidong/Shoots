@@ -78,6 +78,7 @@ struct HomeView: View {
                 // 首页下拉刷新
                 home.getHomeFirstPageFeed()
             }
+        #if os(iOS)
             .background {
                 ScrollGesture { gesture in
                     if !searching {
@@ -85,18 +86,19 @@ struct HomeView: View {
                         let velocityY = gesture.velocity(in: gesture.view).y
                         if velocityY < 0 {
                             // Up
-                            if -(velocityY / 5) > 60 && showNavigation {
+                            if -(velocityY / 5) > 60, showNavigation {
                                 showNavigation = false
                             }
                         } else {
                             // Down
-                            if (velocityY / 5) > 40 && !showNavigation {
+                            if (velocityY / 5) > 40, !showNavigation {
                                 showNavigation = true
                             }
                         }
                     }
                 }
             }
+        #endif
         // 下面的办法没有很好的处理向上滑动过程中在向下滑动这种
         //            .simultaneousGesture(
         //                DragGesture()
