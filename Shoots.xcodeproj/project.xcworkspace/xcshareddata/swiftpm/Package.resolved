@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "dynamicoverlay",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/faberNovel/DynamicOverlay",
+      "state" : {
+        "revision" : "e4e7fac411aeba779733ddf987e8a66fcad9e510",
+        "version" : "1.0.2"
+      }
+    },
+    {
       "identity" : "isscrolling",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fatbobman/IsScrolling",
@@ -43,6 +52,15 @@
       "state" : {
         "branch" : "master",
         "revision" : "6f2603c6b6cc18f64a799e5d2c9d3bbc467c413a"
+      }
+    },
+    {
+      "identity" : "overlaycontainer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/applidium/OverlayContainer.git",
+      "state" : {
+        "revision" : "f1c8fc38bb1ad9a810397f1d06f7026a35e0760c",
+        "version" : "3.5.2"
       }
     },
     {

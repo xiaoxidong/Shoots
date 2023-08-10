@@ -21,6 +21,7 @@ struct ImageDetail: Codable {
     var appLogoUrl: String?
     var isFavorite: Int?
     var userName: String?
+    var avatar: String?
     var uploadNum: String
     var favoriteNum: String
     var designPatternList: [PatternName]

@@ -20,7 +20,6 @@ class HomeFeedViewModel: ObservableObject {
     // 首页第一页数据
     func getHomeFirstPageFeed() {
         DispatchQueue.main.async {
-            self.loading = true
             self.noMore = false
             self.footerRefreshing = false
         }

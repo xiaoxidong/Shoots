@@ -396,6 +396,29 @@
 		4E878ED429D191520027FDA9 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 4E878ED329D191520027FDA9 /* Refresh */; };
 		4E878ED529D192130027FDA9 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62A49229D158C400B09493 /* Data+Extension.swift */; };
 		4E8B59442A7E01840049FCF3 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59432A7E01840049FCF3 /* UploadView.swift */; };
+		4E8B59502A813F940049FCF3 /* SelfInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B594F2A813F940049FCF3 /* SelfInfo.swift */; };
+		4E8B59512A813F940049FCF3 /* SelfInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B594F2A813F940049FCF3 /* SelfInfo.swift */; };
+		4E8B59532A813FCD0049FCF3 /* SelfInfoResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59522A813FCD0049FCF3 /* SelfInfoResponseData.swift */; };
+		4E8B59542A813FCD0049FCF3 /* SelfInfoResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59522A813FCD0049FCF3 /* SelfInfoResponseData.swift */; };
+		4E8B59552A8142010049FCF3 /* SelfInfoResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59522A813FCD0049FCF3 /* SelfInfoResponseData.swift */; };
+		4E8B59562A81422C0049FCF3 /* SelfInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B594F2A813F940049FCF3 /* SelfInfo.swift */; };
+		4E8B59582A814B270049FCF3 /* UploadAvatarResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59572A814B270049FCF3 /* UploadAvatarResponseData.swift */; };
+		4E8B59592A814B270049FCF3 /* UploadAvatarResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59572A814B270049FCF3 /* UploadAvatarResponseData.swift */; };
+		4E8B595A2A814B600049FCF3 /* UploadAvatarResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59572A814B270049FCF3 /* UploadAvatarResponseData.swift */; };
+		4E8B59612A828A0A0049FCF3 /* DynamicOverlay in Frameworks */ = {isa = PBXBuildFile; productRef = 4E8B59602A828A0A0049FCF3 /* DynamicOverlay */; };
+		4E8B59732A850ED70049FCF3 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59722A850ED70049FCF3 /* InfoView.swift */; };
+		4E8B59872A850EF10049FCF3 /* DeviceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59762A850EF10049FCF3 /* DeviceOrientation.swift */; };
+		4E8B59882A850EF10049FCF3 /* ImageMoveAndScaleSheet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59772A850EF10049FCF3 /* ImageMoveAndScaleSheet+Extensions.swift */; };
+		4E8B59892A850EF10049FCF3 /* SystemImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59782A850EF10049FCF3 /* SystemImagePicker.swift */; };
+		4E8B598A2A850EF10049FCF3 /* SystemPHPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59792A850EF10049FCF3 /* SystemPHPicker.swift */; };
+		4E8B598B2A850EF10049FCF3 /* ImageManipulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B597A2A850EF10049FCF3 /* ImageManipulation.swift */; };
+		4E8B598C2A850EF10049FCF3 /* ImageMoveAndScaleSheet+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B597B2A850EF10049FCF3 /* ImageMoveAndScaleSheet+ViewModel.swift */; };
+		4E8B598D2A850EF10049FCF3 /* ImageAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B597C2A850EF10049FCF3 /* ImageAttributes.swift */; };
+		4E8B598E2A850EF10049FCF3 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B597D2A850EF10049FCF3 /* ViewModifiers.swift */; };
+		4E8B598F2A850EF10049FCF3 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B597E2A850EF10049FCF3 /* Color+Extensions.swift */; };
+		4E8B59902A850EF10049FCF3 /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B597F2A850EF10049FCF3 /* Image+Extensions.swift */; };
+		4E8B59922A850EF10049FCF3 /* ImagePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59852A850EF10049FCF3 /* ImagePane.swift */; };
+		4E8B59932A850EF10049FCF3 /* ImageMoveAndScaleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59862A850EF10049FCF3 /* ImageMoveAndScaleSheet.swift */; };
 		4E99304029C9EBC400D99DA9 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99303F29C9EBC400D99DA9 /* FeedView.swift */; };
 		4E99304229C9F02000D99DA9 /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304129C9F02000D99DA9 /* FlowView.swift */; };
 		4E99304429C9F06300D99DA9 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304329C9F06300D99DA9 /* Flow.swift */; };
@@ -910,6 +933,22 @@
 		4E73A66E29D3122D009CFB5A /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
 		4E8B59432A7E01840049FCF3 /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 		4E8B59452A7E07130049FCF3 /* ShareToUpload.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareToUpload.entitlements; sourceTree = "<group>"; };
+		4E8B594F2A813F940049FCF3 /* SelfInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfInfo.swift; sourceTree = "<group>"; };
+		4E8B59522A813FCD0049FCF3 /* SelfInfoResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfInfoResponseData.swift; sourceTree = "<group>"; };
+		4E8B59572A814B270049FCF3 /* UploadAvatarResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarResponseData.swift; sourceTree = "<group>"; };
+		4E8B59722A850ED70049FCF3 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		4E8B59762A850EF10049FCF3 /* DeviceOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceOrientation.swift; sourceTree = "<group>"; };
+		4E8B59772A850EF10049FCF3 /* ImageMoveAndScaleSheet+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageMoveAndScaleSheet+Extensions.swift"; sourceTree = "<group>"; };
+		4E8B59782A850EF10049FCF3 /* SystemImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemImagePicker.swift; sourceTree = "<group>"; };
+		4E8B59792A850EF10049FCF3 /* SystemPHPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemPHPicker.swift; sourceTree = "<group>"; };
+		4E8B597A2A850EF10049FCF3 /* ImageManipulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManipulation.swift; sourceTree = "<group>"; };
+		4E8B597B2A850EF10049FCF3 /* ImageMoveAndScaleSheet+ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageMoveAndScaleSheet+ViewModel.swift"; sourceTree = "<group>"; };
+		4E8B597C2A850EF10049FCF3 /* ImageAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAttributes.swift; sourceTree = "<group>"; };
+		4E8B597D2A850EF10049FCF3 /* ViewModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		4E8B597E2A850EF10049FCF3 /* Color+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		4E8B597F2A850EF10049FCF3 /* Image+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
+		4E8B59852A850EF10049FCF3 /* ImagePane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePane.swift; sourceTree = "<group>"; };
+		4E8B59862A850EF10049FCF3 /* ImageMoveAndScaleSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMoveAndScaleSheet.swift; sourceTree = "<group>"; };
 		4E99303F29C9EBC400D99DA9 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		4E99304129C9F02000D99DA9 /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
 		4E99304329C9F06300D99DA9 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
@@ -1020,6 +1059,7 @@
 				4EDDD63529DC092200C4E14D /* Toast in Frameworks */,
 				4E0602622A3F586700508B8B /* Grid in Frameworks */,
 				4E5CF74929CD69D800A4E0DE /* CHIPageControl in Frameworks */,
+				4E8B59612A828A0A0049FCF3 /* DynamicOverlay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1141,10 +1181,12 @@
 				4E2B6EC62A189BA6000BC713 /* AppResponseData.swift */,
 				4E2B6ED02A189F65000BC713 /* FeedResponseData.swift */,
 				4E63A8482A2487C4001A0FD4 /* UploadImageResponseData.swift */,
+				4E8B59572A814B270049FCF3 /* UploadAvatarResponseData.swift */,
 				4E63A84C2A249ED0001A0FD4 /* FavoriteResponseData.swift */,
 				4EE7C08B2A3770D000140FFD /* UploadResponseData.swift */,
 				4E63A8582A258BE1001A0FD4 /* AppImageResponseData.swift */,
 				4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */,
+				4E8B59522A813FCD0049FCF3 /* SelfInfoResponseData.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1804,6 +1846,34 @@
 			path = "Foundation+Extras";
 			sourceTree = "<group>";
 		};
+		4E8B59742A850EDF0049FCF3 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				4E8B59722A850ED70049FCF3 /* InfoView.swift */,
+				4E8B59752A850EF10049FCF3 /* PhotoSelectAndCrop */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		4E8B59752A850EF10049FCF3 /* PhotoSelectAndCrop */ = {
+			isa = PBXGroup;
+			children = (
+				4E8B59762A850EF10049FCF3 /* DeviceOrientation.swift */,
+				4E8B59772A850EF10049FCF3 /* ImageMoveAndScaleSheet+Extensions.swift */,
+				4E8B59782A850EF10049FCF3 /* SystemImagePicker.swift */,
+				4E8B59792A850EF10049FCF3 /* SystemPHPicker.swift */,
+				4E8B597A2A850EF10049FCF3 /* ImageManipulation.swift */,
+				4E8B597B2A850EF10049FCF3 /* ImageMoveAndScaleSheet+ViewModel.swift */,
+				4E8B597C2A850EF10049FCF3 /* ImageAttributes.swift */,
+				4E8B597D2A850EF10049FCF3 /* ViewModifiers.swift */,
+				4E8B597E2A850EF10049FCF3 /* Color+Extensions.swift */,
+				4E8B597F2A850EF10049FCF3 /* Image+Extensions.swift */,
+				4E8B59852A850EF10049FCF3 /* ImagePane.swift */,
+				4E8B59862A850EF10049FCF3 /* ImageMoveAndScaleSheet.swift */,
+			);
+			path = PhotoSelectAndCrop;
+			sourceTree = "<group>";
+		};
 		4E99304929C9FE3000D99DA9 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1965,6 +2035,7 @@
 				4E99304E29CA076200D99DA9 /* Upload */,
 				4EE49F9F29C89A2800B51F4B /* App */,
 				4EE49FA029C89A3A00B51F4B /* Self */,
+				4E8B59742A850EDF0049FCF3 /* Info */,
 				4EE49FA429C89CB700B51F4B /* Setting */,
 				4E58F91E29CB372E0087E902 /* Global */,
 			);
@@ -2011,6 +2082,7 @@
 				4EE7C0C02A39810300140FFD /* UploadAblum.swift */,
 				4E63A8502A24B0F3001A0FD4 /* ImageDetail.swift */,
 				4E63A8542A24B66A001A0FD4 /* AppDetail.swift */,
+				4E8B594F2A813F940049FCF3 /* SelfInfo.swift */,
 				4E2B6EC22A189B82000BC713 /* Response */,
 				4EE7C0C42A39817B00140FFD /* Service */,
 				4EE7C0B32A397F3C00140FFD /* More */,
@@ -2124,7 +2196,6 @@
 				4E195ED729C040C600E97522 /* Frameworks */,
 				4E195ED829C040C600E97522 /* Resources */,
 				4E3BEFD629E6D1840024AB99 /* Embed Foundation Extensions */,
-				4E5D722B2A6A371B0082E325 /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -2143,6 +2214,7 @@
 				4EB203362A10C745006A9A15 /* Alamofire */,
 				4E2B6ED52A18A9C1000BC713 /* SDWebImageSwiftUI */,
 				4E0602612A3F586700508B8B /* Grid */,
+				4E8B59602A828A0A0049FCF3 /* DynamicOverlay */,
 			);
 			productName = Shoots;
 			productReference = 4E195EDA29C040C600E97522 /* Shoots.app */;
@@ -2272,6 +2344,7 @@
 				"zh-HK",
 				"zh-Hans",
 				"zh-Hant",
+				fr,
 			);
 			mainGroup = 4E195ED129C040C600E97522;
 			packageReferences = (
@@ -2287,6 +2360,7 @@
 				4EB203352A10C745006A9A15 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4E2B6ED42A18A9C1000BC713 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				4E0602602A3F586700508B8B /* XCRemoteSwiftPackageReference "swiftui-grid" */,
+				4E8B595F2A828A0A0049FCF3 /* XCRemoteSwiftPackageReference "DynamicOverlay" */,
 			);
 			productRefGroup = 4E195EDB29C040C600E97522 /* Products */;
 			projectDirPath = "";
@@ -2368,24 +2442,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftformat >/dev/null; then\nswiftformat .\nelse\necho \"error: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nexit 1\nfi\n";
 		};
-		4E5D722B2A6A371B0082E325 /* SwiftFormat */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftFormat;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftformat >/dev/null; then\nswiftformat .\nelse\necho \"error: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nexit 1\nfi\n\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2440,6 +2496,8 @@
 				4E195EE029C040C600E97522 /* ContentView.swift in Sources */,
 				4EE7C0C12A39810300140FFD /* UploadAblum.swift in Sources */,
 				4E99304629C9F2CC00D99DA9 /* FolderCardView.swift in Sources */,
+				4E8B59932A850EF10049FCF3 /* ImageMoveAndScaleSheet.swift in Sources */,
+				4E8B598F2A850EF10049FCF3 /* Color+Extensions.swift in Sources */,
 				4E4940A329E3A7200058391E /* String+ZLPhotoBrowser.swift in Sources */,
 				4E4940AA29E3A7200058391E /* PHAsset+ZLPhotoBrowser.swift in Sources */,
 				4E99D1DF2A320D410086BFC2 /* Report.swift in Sources */,
@@ -2465,6 +2523,7 @@
 				4EE7C0942A39654800140FFD /* Response.swift in Sources */,
 				4E5CF68729CD58D100A4E0DE /* FlickeringDotsIndicatorView.swift in Sources */,
 				4EE49F8929C87FFE00B51F4B /* Color+Extension.swift in Sources */,
+				4E8B59582A814B270049FCF3 /* UploadAvatarResponseData.swift in Sources */,
 				4EDDD66729DC238E00C4E14D /* ZLBaseStickerView.swift in Sources */,
 				4E5CF69229CD58D100A4E0DE /* BlurEffectModifier.swift in Sources */,
 				4EDDD67129DC238E00C4E14D /* ZLTextStickerView.swift in Sources */,
@@ -2492,6 +2551,8 @@
 				4E9B1F6729C7EA4F00A772CE /* DetailView.swift in Sources */,
 				4E5CF68F29CD58D100A4E0DE /* View+vibrancyEffect.swift in Sources */,
 				4E5CF67529CD58D100A4E0DE /* ProductsInfoController.swift in Sources */,
+				4E8B59922A850EF10049FCF3 /* ImagePane.swift in Sources */,
+				4E8B59892A850EF10049FCF3 /* SystemImagePicker.swift in Sources */,
 				4EDDD67529DC238E00C4E14D /* ZLEditToolCells.swift in Sources */,
 				4E49408429E3A7200058391E /* ZLFetchImageOperation.swift in Sources */,
 				4E5CF6CB29CD597900A4E0DE /* PrivacyView.swift in Sources */,
@@ -2509,6 +2570,7 @@
 				4EDDD68229DC24ED00C4E14D /* ImageBlurView.swift in Sources */,
 				4E5CF6FB29CD5AC000A4E0DE /* DateInRegion+Math.swift in Sources */,
 				4E37EB292A57A7E70011BC63 /* AppDetailInfo.swift in Sources */,
+				4E8B598C2A850EF10049FCF3 /* ImageMoveAndScaleSheet+ViewModel.swift in Sources */,
 				4E5CF6A729CD58D100A4E0DE /* PageState.swift in Sources */,
 				4E5CF6FF29CD5AC000A4E0DE /* Commons.swift in Sources */,
 				4E5CF72729CD617900A4E0DE /* IconView.swift in Sources */,
@@ -2517,7 +2579,9 @@
 				4E5CF6AA29CD58D100A4E0DE /* ElegantPagesManager.swift in Sources */,
 				4E5CF74D29CD749100A4E0DE /* CombineSelectView.swift in Sources */,
 				4E5CF6BC29CD58D100A4E0DE /* Version.swift in Sources */,
+				4E8B59532A813FCD0049FCF3 /* SelfInfoResponseData.swift in Sources */,
 				4EB203392A10C7B9006A9A15 /* UserViewModel.swift in Sources */,
+				4E8B59502A813F940049FCF3 /* SelfInfo.swift in Sources */,
 				4EDDD67E29DC238E00C4E14D /* String+ZLImageEditor.swift in Sources */,
 				4E49408929E3A7200058391E /* ZLPhotoPreviewSheet.swift in Sources */,
 				4E5CF6B229CD58D100A4E0DE /* Shared.swift in Sources */,
@@ -2535,6 +2599,7 @@
 				4E63A8492A2487C4001A0FD4 /* UploadImageResponseData.swift in Sources */,
 				4E5CF6C429CD58D100A4E0DE /* Triangle.swift in Sources */,
 				4E49408E29E3A7200058391E /* ZLPhotoUIConfiguration.swift in Sources */,
+				4E8B59872A850EF10049FCF3 /* DeviceOrientation.swift in Sources */,
 				4E5CF6AE29CD58D100A4E0DE /* Comparable+Clamped.swift in Sources */,
 				4E5CF72129CD60F500A4E0DE /* ActivityViewController.swift in Sources */,
 				4E2B6EC02A189B6D000BC713 /* UserResponseData.swift in Sources */,
@@ -2592,6 +2657,7 @@
 				4E5CF6B029CD58D100A4E0DE /* ElegantVPages.swift in Sources */,
 				4E010E2D29DB1ED600A4B231 /* FeedbackManager.swift in Sources */,
 				4E5CF70F29CD5AC000A4E0DE /* Date+Create.swift in Sources */,
+				4E8B59882A850EF10049FCF3 /* ImageMoveAndScaleSheet+Extensions.swift in Sources */,
 				4EE7C08C2A3770D000140FFD /* UploadResponseData.swift in Sources */,
 				4EE7C0B92A39803800140FFD /* AppInfo.swift in Sources */,
 				4E5CF67629CD58D100A4E0DE /* CompleteTransactionsController.swift in Sources */,
@@ -2651,6 +2717,7 @@
 				4E5CF67E29CD58D100A4E0DE /* ScalingDotsIndicatorView.swift in Sources */,
 				4E5CF67329CD58D100A4E0DE /* InAppReceipt.swift in Sources */,
 				4EE49F9829C8943000B51F4B /* SearchView.swift in Sources */,
+				4E8B598E2A850EF10049FCF3 /* ViewModifiers.swift in Sources */,
 				4E5CF69129CD58D100A4E0DE /* View+vibrancyEffectStyle.swift in Sources */,
 				4E5CF6C529CD58D100A4E0DE /* SlimRectangle.swift in Sources */,
 				4E5CF6AF29CD58D100A4E0DE /* ElegantPagesView.swift in Sources */,
@@ -2663,6 +2730,7 @@
 				4EE7C0CF2A3ABC6500140FFD /* SearchSuggestionView.swift in Sources */,
 				4E5CF6B629CD58D100A4E0DE /* SafariView.swift in Sources */,
 				4E4940D729E3A8E40058391E /* ZLEditVideoViewController.swift in Sources */,
+				4E8B59902A850EF10049FCF3 /* Image+Extensions.swift in Sources */,
 				4E5CF69E29CD58D100A4E0DE /* SPAlert.swift in Sources */,
 				4E5CF68C29CD58D100A4E0DE /* BlurEffectStyleKey.swift in Sources */,
 				4E5CF71229CD5AC000A4E0DE /* Formatter+Protocols.swift in Sources */,
@@ -2676,8 +2744,10 @@
 				4E5CF71429CD5AC000A4E0DE /* DateComponents+Extras.swift in Sources */,
 				4E5CF70D29CD5AC000A4E0DE /* Date+Math.swift in Sources */,
 				4EE7C0A42A39787500140FFD /* SelfViewModel.swift in Sources */,
+				4E8B598D2A850EF10049FCF3 /* ImageAttributes.swift in Sources */,
 				4E4940AB29E3A7200058391E /* UIColor+ZLPhotoBrowser.swift in Sources */,
 				4E5CF6BA29CD58D100A4E0DE /* DeviceMacOS.swift in Sources */,
+				4E8B59732A850ED70049FCF3 /* InfoView.swift in Sources */,
 				4E49408829E3A7200058391E /* ZLCustomAlertProtocol.swift in Sources */,
 				4E49407D29E3A7200058391E /* ZLPhotoManager.swift in Sources */,
 				4EE7C0A02A3974B300140FFD /* InfoViewModel.swift in Sources */,
@@ -2686,6 +2756,8 @@
 				4E2B6EDC2A18B3EC000BC713 /* UploadData.swift in Sources */,
 				4EC939AC2A7D043600CD5A90 /* Model.swift in Sources */,
 				4EDDD63729DC0C5F00C4E14D /* ReportView.swift in Sources */,
+				4E8B598B2A850EF10049FCF3 /* ImageManipulation.swift in Sources */,
+				4E8B598A2A850EF10049FCF3 /* SystemPHPicker.swift in Sources */,
 				4E5CF6B929CD58D100A4E0DE /* SafariView+View.swift in Sources */,
 				4E4940DF29E3E2740058391E /* BackgroundClearView.swift in Sources */,
 				4EDDD67829DC238E00C4E14D /* CGFloat+ZLImageEditor.swift in Sources */,
@@ -2740,11 +2812,13 @@
 				4EF6648B29F4CB79005C3BD1 /* UIView+ZLImageEditor.swift in Sources */,
 				4E3BF03F29E6E0990024AB99 /* UIImage+Extension.swift in Sources */,
 				4EF6647B29F4CB76005C3BD1 /* ZLInputTextViewController.swift in Sources */,
+				4E8B59552A8142010049FCF3 /* SelfInfoResponseData.swift in Sources */,
 				4EF664ED29F4D617005C3BD1 /* ArcsIndicatorView.swift in Sources */,
 				4EF664D629F4CEBE005C3BD1 /* ZLPhotoBrowser.swift in Sources */,
 				4EF6648E29F4CB79005C3BD1 /* Cell+ZLImageEditor.swift in Sources */,
 				4E99D1E12A320D410086BFC2 /* Report.swift in Sources */,
 				4E2B6EBD2A177A18000BC713 /* Defaults.swift in Sources */,
+				4E8B59562A81422C0049FCF3 /* SelfInfo.swift in Sources */,
 				4EF664F329F4D65F005C3BD1 /* View+Extension.swift in Sources */,
 				4E2B6EB82A17790B000BC713 /* BaseURL.swift in Sources */,
 				4EE7C09A2A39745C00140FFD /* DetailViewModel.swift in Sources */,
@@ -2784,6 +2858,7 @@
 				4EF664D529F4CEA6005C3BD1 /* ZLEditImageConfiguration.swift in Sources */,
 				4EF6649129F4CB79005C3BD1 /* Bundle+ZLImageEditor.swift in Sources */,
 				4EF6647629F4CB72005C3BD1 /* ImageStickerContainerView.swift in Sources */,
+				4E8B595A2A814B600049FCF3 /* UploadAvatarResponseData.swift in Sources */,
 				4E2B6EBC2A177A06000BC713 /* UserViewModel.swift in Sources */,
 				4EF6648429F4CB76005C3BD1 /* ZLEditToolCells.swift in Sources */,
 				4EF6647529F4CB3E005C3BD1 /* ImageBlurView.swift in Sources */,
@@ -2828,6 +2903,7 @@
 				4E42A6E929D1315500BEC185 /* SettingCellView.swift in Sources */,
 				4E42A72D29D14B2500BEC185 /* Date+Components.swift in Sources */,
 				4E42A70829D132E700BEC185 /* DefaultIndicatorView.swift in Sources */,
+				4E8B59592A814B270049FCF3 /* UploadAvatarResponseData.swift in Sources */,
 				4E42A72329D14B1700BEC185 /* Calendars.swift in Sources */,
 				4E42A6EB29D1315B00BEC185 /* ShootEmptyView.swift in Sources */,
 				4E42A71529D143A000BEC185 /* ProViews.swift in Sources */,
@@ -2899,6 +2975,7 @@
 				4E42A71229D1376A00BEC185 /* SlideOverCard.swift in Sources */,
 				4EE7C0BA2A39803800140FFD /* AppInfo.swift in Sources */,
 				4E42A72F29D14B2500BEC185 /* Date+Create.swift in Sources */,
+				4E8B59512A813F940049FCF3 /* SelfInfo.swift in Sources */,
 				4E42A70A29D1332400BEC185 /* ConfettiSwiftUI.swift in Sources */,
 				4E44304A2A6F986500835CA2 /* SuggestionButtonView.swift in Sources */,
 				4E42A6DA29D1314500BEC185 /* DetailView.swift in Sources */,
@@ -2945,6 +3022,7 @@
 				4E63A8522A24B0F3001A0FD4 /* ImageDetail.swift in Sources */,
 				4E42A70929D132E700BEC185 /* RotatingDotsIndicatorView.swift in Sources */,
 				4E42A6DB29D1314D00BEC185 /* FlowView.swift in Sources */,
+				4E8B59542A813FCD0049FCF3 /* SelfInfoResponseData.swift in Sources */,
 				4ED4B09E29D3E98B005D9758 /* MenuBarExtra Window Introspection.swift in Sources */,
 				4EA73B2029D5C161002901AE /* RestorePurchasesController.swift in Sources */,
 				4EB203472A120FF6006A9A15 /* BaseURL.swift in Sources */,
@@ -3144,7 +3222,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3194,7 +3272,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3561,6 +3639,14 @@
 				kind = branch;
 			};
 		};
+		4E8B595F2A828A0A0049FCF3 /* XCRemoteSwiftPackageReference "DynamicOverlay" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/faberNovel/DynamicOverlay";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		4EB203352A10C745006A9A15 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -3669,6 +3755,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E878ED229D191520027FDA9 /* XCRemoteSwiftPackageReference "Refresh" */;
 			productName = Refresh;
+		};
+		4E8B59602A828A0A0049FCF3 /* DynamicOverlay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E8B595F2A828A0A0049FCF3 /* XCRemoteSwiftPackageReference "DynamicOverlay" */;
+			productName = DynamicOverlay;
 		};
 		4EB203362A10C745006A9A15 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

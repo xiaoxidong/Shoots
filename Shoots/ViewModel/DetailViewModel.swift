@@ -8,7 +8,7 @@
 import SwiftUI
 
 class DetailViewModel: ObservableObject {
-    @Published var loading = false
+    @Published var loading = true
     @Published var detail: ImageDetail? = nil
     @Published var favorites: [Favorite] = []
 

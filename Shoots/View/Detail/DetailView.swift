@@ -46,15 +46,7 @@ struct DetailView: View {
                             showSave = false
                         }
                     } else {
-                        if detail.detail == nil {
-                            Task {
-                                await detail.getImageDetail(id: shoot.id) { _ in
-                                    withAnimation(.spring()) {
-                                        showDetail = true
-                                    }
-                                }
-                            }
-                        } else {
+                        withAnimation(.spring()) {
                             showDetail.toggle()
                         }
                     }
@@ -112,7 +104,7 @@ struct DetailView: View {
             .overlay(
                 Group {
                     if !user.login {
-                        LoginView(login: .constant(true), showBG: false, successAction: {
+                        LoginView(login: $showLogin, showBG: true, successAction: {
                             alertText = "登录成功"
                             showAlert = true
                         }, failAction: {
@@ -143,212 +135,229 @@ struct DetailView: View {
     @State var designTypes: [String] = []
     var infoView: some View {
         VStack(spacing: 16) {
-            if detail.loading {
-                LoadingView()
-            } else {
-                if let detail = detail.detail {
-                    // 顶部应用按钮
-                    Button {
-                        showApp.toggle()
-                    } label: {
-                        HStack {
-                            Text(detail.linkApplicationName ?? "应用")
-                                .font(.system(size: 18, weight: .bold))
-                                .foregroundColor(.shootBlack)
-                            Image("link")
-                        }
-                    }.buttonStyle(.plain)
-                        .sheet(isPresented: $showApp) {
-                            #if os(iOS)
-                                NavigationView {
-                                    AppView(id: shoot.linkApplicationId ?? "", appID: detail.appStoreId)
-                                        .navigationTitle(detail.linkApplicationName ?? "应用")
-                                        .navigationBarTitleDisplayMode(.inline)
-                                        .toolbar {
-                                            ToolbarItem(placement: .navigationBarTrailing) {
-                                                //                                    ShareLink(item: URL(string: shoot.app.url)!) {
-                                                //                                        Image(systemName: "square.and.arrow.up.fill")
-                                                //                                    }.tint(.shootRed)
-                                            }
-                                        }
+            if showDetail {
+                if detail.loading {
+                    LoadingView()
+                        .onAppear {
+                            Task {
+                                await detail.getImageDetail(id: shoot.id) { _ in
+    //                                withAnimation(.spring()) {
+    //                                    showDetail = true
+    //                                }
                                 }
-                            #else
-                                VStack {
-                                    HStack {
-                                        Text(detail.linkApplicationName ?? "图片详情")
-                                            .font(.largeTitle)
-                                            .bold()
-                                        Spacer()
-                                        MacCloseButton()
-                                    }.padding([.horizontal, .top], 36)
-                                    AppView(id: shoot.linkApplicationId ?? "", appID: detail.appStoreId)
-                                }.sheetFrameForMac()
-                            #endif
-                        }
-
-                    // 个人信息
-                    HStack(spacing: 8) {
-                        Image(systemName: "person.2.crop.square.stack")
-                            .font(.system(size: 30, weight: .regular))
-                            .foregroundColor(.shootBlack)
-
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(LocalizedStringKey(detail.userName ?? "上传用户"))
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.shootBlack)
-
-                            HStack(spacing: 4) {
-                                Image("upload")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 16, height: 16)
-
-                                Group {
-                                    Text("\(detail.uploadNum)")
-                                        + Text(" 图片")
-                                }
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.shootBlack)
-                                .padding(.trailing, 12)
-                                Image("saved")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 16, height: 16)
-                                Group {
-                                    Text("\(detail.favoriteNum)")
-                                        + Text(" 图片")
-                                }
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.shootBlack)
                             }
                         }
-                        Spacer()
-                    }
-
-                    // 设计模式
-                    FlowLayout(mode: .vstack,
-                               items: detail.designPatternList,
-                               itemSpacing: 4)
-                    { designPattern in
+                } else {
+                    if let detail = detail.detail {
+                        // 顶部应用按钮
                         Button {
-//                            search = designPattern.designPatternName
+                            showApp.toggle()
                         } label: {
-                            HStack(spacing: 2) {
-                                Image(systemName: "number")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(.shootBlue)
-                                Text(designPattern.designPatternName)
+                            HStack {
+                                Text(detail.linkApplicationName ?? "应用")
+                                    .font(.system(size: 18, weight: .bold))
+                                    .foregroundColor(.shootBlack)
+                                Image("link")
+                            }
+                        }.buttonStyle(.plain)
+                            .sheet(isPresented: $showApp) {
+                                #if os(iOS)
+                                    NavigationView {
+                                        AppView(id: shoot.linkApplicationId ?? "", appID: detail.appStoreId)
+                                            .navigationTitle(detail.linkApplicationName ?? "应用")
+                                            .navigationBarTitleDisplayMode(.inline)
+                                            .toolbar {
+                                                ToolbarItem(placement: .navigationBarTrailing) {
+                                                    //                                    ShareLink(item: URL(string: shoot.app.url)!) {
+                                                    //                                        Image(systemName: "square.and.arrow.up.fill")
+                                                    //                                    }.tint(.shootRed)
+                                                }
+                                            }
+                                    }
+                                #else
+                                    VStack {
+                                        HStack {
+                                            Text(detail.linkApplicationName ?? "图片详情")
+                                                .font(.largeTitle)
+                                                .bold()
+                                            Spacer()
+                                            MacCloseButton()
+                                        }.padding([.horizontal, .top], 36)
+                                        AppView(id: shoot.linkApplicationId ?? "", appID: detail.appStoreId)
+                                    }.sheetFrameForMac()
+                                #endif
+                            }
+
+                        // 个人信息
+                        HStack(spacing: 8) {
+                            if let url = detail.avatar {
+                                ImageView(urlString: url, image: .constant(nil))
+                                    .frame(width: 40, height: 40)
+                                    .clipShape(Circle())
+                            } else {
+                                Image(systemName: "person.2.crop.square.stack")
+                                    .font(.system(size: 30, weight: .regular))
+                                    .foregroundColor(.shootBlack)
+                            }
+
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(LocalizedStringKey(detail.userName ?? "上传用户"))
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundColor(.shootBlack)
+
+                                HStack(spacing: 4) {
+                                    Image("upload")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 16, height: 16)
+
+                                    Group {
+                                        Text("\(detail.uploadNum)")
+                                            + Text(" 图片")
+                                    }
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(.shootBlack)
-                            }.padding(.horizontal, 10)
-                                .padding(.vertical, 6)
-                                .background(Color.shootBlue.opacity(0.12))
-                                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                        }.buttonStyle(.plain)
-                    }
-
-                    // 操作按钮
-                    HStack {
-                        ActionTitleButtonView(systemImage: "sparkles.rectangle.stack.fill", title: "系列") {
-                            #if os(iOS)
-                                FeedbackManager.impact(style: .medium)
-                            #endif
-                            if user.login {
-                                withAnimation(.spring()) {
-                                    showDetail = false
-                                    showSave = true
-                                }
-                                Task {
-                                    await self.detail.getFavorites()
-                                }
-                            } else {
-                                withAnimation(.spring()) {
-                                    showDetail = false
-                                    showLogin = true
+                                    .padding(.trailing, 12)
+                                    Image("saved")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 16, height: 16)
+                                    Group {
+                                        Text("\(detail.favoriteNum)")
+                                            + Text(" 图片")
+                                    }
+                                    .font(.system(size: 14, weight: .medium))
+                                    .foregroundColor(.shootBlack)
                                 }
                             }
-                        }
-                        Spacer(minLength: 0)
-                        if let image = image {
-                            #if os(iOS)
-                                ShareLink(item: Image(uiImage: image), preview: SharePreview("Shoots", image: Image(uiImage: image))) {
-                                    VStack {
-                                        Image(systemName: "square.and.arrow.up.circle.fill")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: 30, height: 30)
-                                        Text("分享")
-                                            .font(.system(size: 14, weight: .medium))
-                                            .foregroundColor(.shootBlack)
-                                    }
-                                }.buttonStyle(.plain)
-                            #else
-                                ShareLink(item: Image(nsImage: image), preview: SharePreview("Shoots", image: Image(nsImage: image))) {
-                                    VStack {
-                                        Image(systemName: "square.and.arrow.up.circle.fill")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: 30, height: 30)
-                                        Text("分享")
-                                            .font(.system(size: 14, weight: .medium))
-                                            .foregroundColor(.shootBlack)
-                                    }
-                                }.buttonStyle(.plain)
-                            #endif
-                            Spacer(minLength: 0)
+                            Spacer()
                         }
 
-                        ActionTitleButtonView(systemImage: "square.and.arrow.down.fill", title: "下载") {
-                            if user.login {
+                        // 设计模式
+                        FlowLayout(mode: .vstack,
+                                   items: detail.designPatternList,
+                                   itemSpacing: 4)
+                        { designPattern in
+                            Button {
+    //                            search = designPattern.designPatternName
+                            } label: {
+                                HStack(spacing: 2) {
+                                    Image(systemName: "number")
+                                        .font(.system(size: 14, weight: .medium))
+                                        .foregroundColor(.shootBlue)
+                                    Text(designPattern.designPatternName)
+                                        .font(.system(size: 14, weight: .medium))
+                                        .foregroundColor(.shootBlack)
+                                }.padding(.horizontal, 10)
+                                    .padding(.vertical, 6)
+                                    .background(Color.shootBlue.opacity(0.12))
+                                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                            }.buttonStyle(.plain)
+                        }
+
+                        // 操作按钮
+                        HStack {
+                            ActionTitleButtonView(systemImage: "sparkles.rectangle.stack.fill", title: "系列") {
                                 #if os(iOS)
                                     FeedbackManager.impact(style: .medium)
-
-                                    let imageSaver = ImageSaver()
-                                    imageSaver.successHandler = {
-                                        alertText = "成功保存到相册"
-                                        alertType = .success(Color.shootBlack)
-                                        showAlert = true
-                                    }
-                                    imageSaver.errorHandler = {
-                                        print("保存失败: \($0.localizedDescription)")
-                                        alertText = "保存失败"
-                                        alertType = .error(.red)
-                                        showAlert = true
-                                    }
-
-                                    guard let url = URL(string: shoot.picUrl) else { return }
-                                    let task = URLSession.shared.dataTask(with: url) { data, _, _ in
-                                        guard let data = data else { return }
-                                        imageSaver.writeToPhotoAlbum(image: UIImage(data: data)!)
-                                    }
-                                    task.resume()
-
-                                #else
-                                    if let url = showSavePanel() {
-                                        savePNG(imageName: "s1", path: url)
-                                    }
                                 #endif
-                            } else {
-                                withAnimation(.spring()) {
-                                    showDetail = false
-                                    showLogin = true
+                                if user.login {
+                                    withAnimation(.spring()) {
+                                        showDetail = false
+                                        showSave = true
+                                    }
+                                    Task {
+                                        await self.detail.getFavorites()
+                                    }
+                                } else {
+                                    withAnimation(.spring()) {
+                                        showDetail = false
+                                        showLogin = true
+                                    }
                                 }
                             }
-                        }
-                        Spacer(minLength: 0)
-                        ActionTitleButtonView(systemImage: "exclamationmark.shield.fill", title: "举报") {
-                            showReport.toggle()
-                        }.sheet(isPresented: $showReport) {
-                            ReportView(shoot: shoot) {
-                                alertText = "反馈成功"
-                                alertType = .success(Color.shootBlack)
-                                showAlert = true
+                            Spacer(minLength: 0)
+                            if let image = image {
+                                #if os(iOS)
+                                    ShareLink(item: Image(uiImage: image), preview: SharePreview("Shoots", image: Image(uiImage: image))) {
+                                        VStack {
+                                            Image(systemName: "square.and.arrow.up.circle.fill")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: 30, height: 30)
+                                            Text("分享")
+                                                .font(.system(size: 14, weight: .medium))
+                                                .foregroundColor(.shootBlack)
+                                        }
+                                    }.buttonStyle(.plain)
+                                #else
+                                    ShareLink(item: Image(nsImage: image), preview: SharePreview("Shoots", image: Image(nsImage: image))) {
+                                        VStack {
+                                            Image(systemName: "square.and.arrow.up.circle.fill")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: 30, height: 30)
+                                            Text("分享")
+                                                .font(.system(size: 14, weight: .medium))
+                                                .foregroundColor(.shootBlack)
+                                        }
+                                    }.buttonStyle(.plain)
+                                #endif
+                                Spacer(minLength: 0)
                             }
-                            .sheetFrameForMac()
-                        }
-                    }.padding(.horizontal)
-                } else {
-                    ErrorView {}
+
+                            ActionTitleButtonView(systemImage: "square.and.arrow.down.fill", title: "下载") {
+                                if user.login {
+                                    #if os(iOS)
+                                        FeedbackManager.impact(style: .medium)
+
+                                        let imageSaver = ImageSaver()
+                                        imageSaver.successHandler = {
+                                            alertText = "成功保存到相册"
+                                            alertType = .success(Color.shootBlack)
+                                            showAlert = true
+                                        }
+                                        imageSaver.errorHandler = {
+                                            print("保存失败: \($0.localizedDescription)")
+                                            alertText = "保存失败"
+                                            alertType = .error(.red)
+                                            showAlert = true
+                                        }
+
+                                        guard let url = URL(string: shoot.picUrl) else { return }
+                                        let task = URLSession.shared.dataTask(with: url) { data, _, _ in
+                                            guard let data = data else { return }
+                                            imageSaver.writeToPhotoAlbum(image: UIImage(data: data)!)
+                                        }
+                                        task.resume()
+
+                                    #else
+                                        if let url = showSavePanel() {
+                                            savePNG(imageName: "s1", path: url)
+                                        }
+                                    #endif
+                                } else {
+                                    withAnimation(.spring()) {
+                                        showDetail = false
+                                        showLogin = true
+                                    }
+                                }
+                            }
+                            Spacer(minLength: 0)
+                            ActionTitleButtonView(systemImage: "exclamationmark.shield.fill", title: "举报") {
+                                showReport.toggle()
+                            }.sheet(isPresented: $showReport) {
+                                ReportView(shoot: shoot) {
+                                    alertText = "反馈成功"
+                                    alertType = .success(Color.shootBlack)
+                                    showAlert = true
+                                }
+                                .sheetFrameForMac()
+                            }
+                        }.padding(.horizontal)
+                    } else {
+                        ErrorView {}
+                    }
                 }
             }
         }.frame(maxWidth: 460, minHeight: 160)

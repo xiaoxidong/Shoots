@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingRateView: View {
     var body: some View {
         Button {
-            let urlString = "itms-apps://itunes.apple.com/app/id1610715711?action=write-review"
+            let urlString = "itms-apps://itunes.apple.com/app/id1616477228?action=write-review"
             let url = URL(string: urlString)
 
             #if os(iOS)

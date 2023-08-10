@@ -22,6 +22,9 @@ class UserViewModel: ObservableObject {
             Defaults().set("", for: .login)
         }
         login = Defaults().get(for: .login) == "" ? false : true
+        Task {
+            await getInfo()
+        }
     }
 
     // TODO: 第一次进入的时候当没网的时候，处理
@@ -40,7 +43,16 @@ class UserViewModel: ObservableObject {
                 APIService.token = user.data.token
                 Defaults().set(user.data.token, for: .login)
                 // TODO: 登录成功之后需要判断是否有头像，如果没有则跳出编辑页面
-
+                if user.data.userName == "" || user.data.avatar == nil {
+                    self.editInfo = true
+                    self.name = user.data.userName ?? ""
+                    self.avatar = user.data.avatar
+                }
+                #if DEBUG
+                self.editInfo = true
+                self.name = user.data.userName ?? ""
+                self.avatar = user.data.avatar
+                #endif
                 success(true)
             case let .failure(error):
                 print("登录报错: \(error)")
@@ -49,14 +61,47 @@ class UserViewModel: ObservableObject {
     }
 
     @Published var editInfo = false
-    func updateInfo(name: String, pic: String) async {
-        APIService.shared.POST(url: .updateSelfInfo, params: ["avatar": pic, "userName": name]) { (result: Result<UserResponseData, APIService.APIError>) in
+    @Published var name: String = ""
+    @Published var avatar: String? = nil
+    func updateInfo(name: String, _ success: @escaping (Bool) -> Void) async {
+        APIService.shared.POST(url: .updateSelfInfo, params: ["userName": name]) { (result: Result<Response, APIService.APIError>) in
             switch result {
             case .success:
                 print("更新成功")
                 self.editInfo = false
+                success(true)
             case let .failure(error):
                 print("更新信息报错: \(error)")
+                success(false)
+            }
+        }
+    }
+    
+    func uploadAvatar(image: Data, _ success: @escaping (Bool) -> Void) async {
+        AF.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(image, withName: "avatarfile", fileName: "avatarfile.png", mimeType: "image/png")
+        }, to: "\(baseURL)\(APIService.URLPath.avatar.path)", method: .post, headers: ["Content-Type": "multipart/form-data", "Authorization": "Bearer \(token)"])
+            .responseDecodable(of: Response.self) { response in
+                switch response.result {
+                case let .success(imageURL):
+                    print(imageURL)
+                    success(true)
+                case let .failure(error):
+                    print(error)
+                    success(false)
+                }
+            }
+    }
+    
+    func getInfo() async {
+        APIService.shared.GET(url: .selfInfo)  { (result: Result<SelfInfoResponseData, APIService.APIError>) in
+            switch result {
+            case .success(let user):
+                print("获取成功")
+                self.name = user.data.user.userName
+                self.avatar = user.data.user.avatar
+            case let .failure(error):
+                print("获取信息报错: \(error)")
             }
         }
     }

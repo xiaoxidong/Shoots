@@ -36,13 +36,13 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             #if os(iOS)
-                if horizontalSizeClass == .compact {
-                    iOSHomeView
-                } else {
-                    iPadHomeView
-                }
-            #else
+            if horizontalSizeClass == .compact {
+                iOSHomeView
+            } else {
                 iPadHomeView
+            }
+            #else
+            iPadHomeView
             #endif
         }
         .overlay(
@@ -126,6 +126,14 @@ struct ContentView: View {
                 }
             }
         })
+        .sheet(isPresented: $user.editInfo) {
+            InfoView() {
+                toastText = "更新成功"
+                showToast = true
+            }
+                .presentationDetents([.medium])
+                .interactiveDismissDisabled()
+        }
         #endif
         .toast(isPresenting: $showToast) {
             AlertToast(displayMode: .alert, type: alertType, title: toastText)
@@ -246,13 +254,19 @@ struct ContentView: View {
                             NavigationLink {
                                 SelfView()
                             } label: {
-                                Image("self")
-                                    .renderingMode(.template)
-                                    .foregroundColor(.shootBlack)
-                                    .padding(.vertical, 6)
-                                    .padding(.trailing, 6)
-                                    .contentShape(Rectangle())
-                                    .clipShape(Circle())
+                                if let avatar = user.avatar {
+                                    ImageView(urlString: avatar, image: .constant(nil))
+                                        .frame(width: 26, height: 26)
+                                        .clipShape(Circle())
+                                } else {
+                                    Image("self")
+                                        .renderingMode(.template)
+                                        .foregroundColor(.shootBlack)
+                                        .padding(.vertical, 6)
+                                        .padding(.trailing, 6)
+                                        .contentShape(Rectangle())
+                                        .clipShape(Circle())
+                                }
                             }
                         } else {
                             NavigationLink {
@@ -360,13 +374,19 @@ struct ContentView: View {
                             }
                         } label: {
                             // 登录和未登录状态设置
-                            Image("self")
-                                .renderingMode(.template)
-                                .resizable()
-                                .foregroundColor(.shootBlack)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 16, height: 16)
-                                .clipShape(Circle())
+                            if let avatar = user.avatar {
+                                ImageView(urlString: avatar, image: .constant(nil))
+                                    .frame(width: 26, height: 26)
+                                    .clipShape(Circle())
+                            } else {
+                                Image("self")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .foregroundColor(.shootBlack)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 16, height: 16)
+                                    .clipShape(Circle())
+                            }
                         }
                     }
                 #endif

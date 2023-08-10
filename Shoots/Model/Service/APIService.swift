@@ -45,8 +45,10 @@ struct APIService {
         case logout
         case selfAppPic
         case selfPatternPic
+        case selfInfo
         case updateSelfInfo
         case deactivate
+        case avatar
 
         var path: String {
             switch self {
@@ -100,10 +102,14 @@ struct APIService {
                 return "/app/application/picsForProfile"
             case .selfPatternPic:
                 return "/app/pic/pageByPatternIdForProfile"
+            case .selfInfo:
+                return "/app/user/profile"
             case .updateSelfInfo:
                 return "/app/user/profile/updateProfile"
             case .deactivate:
                 return "/app/deactivate"
+            case .avatar:
+                return "/system/user/profile/avatar"
             }
         }
     }
@@ -121,7 +127,7 @@ struct APIService {
         }
     }
 
-    public func GET<T: Codable>(url: URLPath, params: [String: String]?, completionHandler: @escaping (Result<T, APIError>) -> Void) {
+    public func GET<T: Codable>(url: URLPath, params: [String: String]? = nil, completionHandler: @escaping (Result<T, APIError>) -> Void) {
         AF.request("\(baseURL)\(url.path)", method: .get, parameters: params, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization": "Bearer \(APIService.token)"]).responseDecodable(of: T.self) { response in
             switch response.result {
             case let .success(object):

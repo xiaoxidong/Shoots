@@ -86,7 +86,14 @@ struct LoginView: View {
                     let firstName = credentials.fullName?.givenName
                     let lastName = credentials.fullName?.familyName
 
-                    user.login(appleUserId: userID, identityToken: identityTokenString, email: email ?? "", fullName: "\(firstName ?? "")\(lastName ?? "")") { success in
+                    let langStr = Locale.current.identifier
+                    var space = " "
+                    if langStr == "zh" || langStr == "zh-HK" {
+                        space = ""
+                    }
+                    
+                    let name = "\(firstName ?? "")\(space)\(lastName ?? "")"
+                    user.login(appleUserId: userID, identityToken: identityTokenString, email: email ?? "", fullName: name) { success in
                         if success {
                             // 登录成功
                             withAnimation(.spring()) {

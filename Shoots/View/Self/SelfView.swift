@@ -15,10 +15,11 @@ struct SelfView: View {
         @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
     @StateObject var selfPic: SelfViewModel = .init()
+    @EnvironmentObject var user: UserViewModel
+    @State var editInfo = false
     var body: some View {
         #if os(iOS)
             content
-                .navigationTitle("我的图片")
                 .navigationBarBackButtonHidden()
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -34,6 +35,29 @@ struct SelfView: View {
                                 .contentShape(Rectangle())
                         }
                     }
+                    
+                    ToolbarItem(placement: .principal) {
+                        Button {
+                            editInfo.toggle()
+                        } label: {
+                            HStack(spacing: 4) {
+                                if let avatar = user.avatar {
+                                    ImageView(urlString: avatar, image: .constant(nil))
+                                        .frame(width: 26, height: 26)
+                                        .clipShape(Circle())
+                                }
+                                
+                                Group {
+                                    if user.name != "" {
+                                        Text(user.name)
+                                    } else {
+                                        Text("我的图片")
+                                    }
+                                }.font(.system(size: 16, weight: .medium))
+                                    .foregroundColor(.shootGray)
+                            }
+                        }
+                    }
 
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink {
@@ -47,6 +71,17 @@ struct SelfView: View {
                                 .contentShape(Rectangle())
                         }
                     }
+                }
+                .sheet(isPresented: $editInfo) {
+                    InfoView() {
+//                        toastText = "更新成功"
+//                        showToast = true
+                        Task {
+                            await user.getInfo()
+                        }
+                    }
+                        .presentationDetents([.medium])
+                        .interactiveDismissDisabled()
                 }
         #else
             VStack {

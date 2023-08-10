@@ -66,7 +66,7 @@ struct SettingView: View {
 
                     VStack(spacing: 0) {
                         HStack {
-                            Image("mode")
+                            Image("delete")
                                 .frame(width: 24, height: 24)
                             Text("上传完成之后询问删除")
                                 .font(.system(size: 16, weight: .medium))

@@ -218,8 +218,8 @@
             filePath = "Shoots/Model/Service/APIService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "POST(url:params:completionHandler:)"
             landmarkType = "7">
             <Locations>
@@ -266,8 +266,8 @@
             filePath = "Shoots/Model/Service/APIService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "POST(url:params:completionHandler:)"
             landmarkType = "7">
             <Locations>
@@ -863,69 +863,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F1350C2C-8F6F-40C1-9537-CC154F77E60B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shoots/ViewModel/HomeFeedViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "getHomeFirstPageFeed()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F1350C2C-8F6F-40C1-9537-CC154F77E60B - 8ca4131ebd8a126e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Result&lt;Shoots.FeedResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.HomeFeedViewModel.getHomeFirstPageFeed() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/HomeFeedViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39"
-                  offsetFromSymbolStart = "1552">
-               </Location>
-               <Location
-                  uuid = "F1350C2C-8F6F-40C1-9537-CC154F77E60B - 8ca4131ebd8a126e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Result&lt;Shoots.FeedResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.HomeFeedViewModel.getHomeFirstPageFeed() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/HomeFeedViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39"
-                  offsetFromSymbolStart = "1260">
-               </Location>
-               <Location
-                  uuid = "F1350C2C-8F6F-40C1-9537-CC154F77E60B - 8ca4131ebd8a126e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Result&lt;Shoots.FeedResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.HomeFeedViewModel.getHomeFirstPageFeed() -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/HomeFeedViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39"
-                  offsetFromSymbolStart = "1251">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "01A188F8-0904-4443-BFE7-C1A72762B9B4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -933,147 +870,10 @@
             filePath = "Shoots/ViewModel/UserViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "uploadImages(localDatas:_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "01A188F8-0904-4443-BFE7-C1A72762B9B4 - c80cf32bfda64161"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "2108">
-               </Location>
-               <Location
-                  uuid = "01A188F8-0904-4443-BFE7-C1A72762B9B4 - d1f1d62d6e50f251"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;ShareToUpload.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (ShareToUpload.LocalImageData) -&gt; () in ShareToUpload.UserViewModel.uploadImages(localDatas: Swift.Array&lt;ShareToUpload.LocalImageData&gt;, _: (Swift.Array&lt;ShareToUpload.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ShareToUpload"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "2108">
-               </Location>
-               <Location
-                  uuid = "01A188F8-0904-4443-BFE7-C1A72762B9B4 - c80cf32bfda64161"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "2819">
-               </Location>
-               <Location
-                  uuid = "01A188F8-0904-4443-BFE7-C1A72762B9B4 - c80cf32bfda64161"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "2084">
-               </Location>
-               <Location
-                  uuid = "01A188F8-0904-4443-BFE7-C1A72762B9B4 - c80cf32bfda64370"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "2084">
-               </Location>
-               <Location
-                  uuid = "01A188F8-0904-4443-BFE7-C1A72762B9B4 - c80cf32bfda64370"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "2800">
-               </Location>
-               <Location
-                  uuid = "01A188F8-0904-4443-BFE7-C1A72762B9B4 - c80cf32bfda64370"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "2785">
-               </Location>
-               <Location
-                  uuid = "01A188F8-0904-4443-BFE7-C1A72762B9B4 - c80cf32bfda64370"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "2072">
-               </Location>
-               <Location
-                  uuid = "01A188F8-0904-4443-BFE7-C1A72762B9B4 - d1f1d62d6e50f040"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;ShareToUpload.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (ShareToUpload.LocalImageData) -&gt; () in ShareToUpload.UserViewModel.uploadImages(localDatas: Swift.Array&lt;ShareToUpload.LocalImageData&gt;, _: (Swift.Array&lt;ShareToUpload.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ShareToUpload"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "2072">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1086,147 +886,10 @@
             filePath = "Shoots/ViewModel/UserViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "uploadImages(localDatas:_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "65291BC7-C44D-44E2-896F-5BD0FC650924 - c80cf32bfda64e96"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "1328">
-               </Location>
-               <Location
-                  uuid = "65291BC7-C44D-44E2-896F-5BD0FC650924 - d1f1d62d6e50fda6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;ShareToUpload.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (ShareToUpload.LocalImageData) -&gt; () in ShareToUpload.UserViewModel.uploadImages(localDatas: Swift.Array&lt;ShareToUpload.LocalImageData&gt;, _: (Swift.Array&lt;ShareToUpload.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ShareToUpload"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "1328">
-               </Location>
-               <Location
-                  uuid = "65291BC7-C44D-44E2-896F-5BD0FC650924 - c80cf32bfda64e96"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "1742">
-               </Location>
-               <Location
-                  uuid = "65291BC7-C44D-44E2-896F-5BD0FC650924 - c80cf32bfda64e96"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "1224">
-               </Location>
-               <Location
-                  uuid = "65291BC7-C44D-44E2-896F-5BD0FC650924 - c80cf32bfda640e5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
-                  offsetFromSymbolStart = "1224">
-               </Location>
-               <Location
-                  uuid = "65291BC7-C44D-44E2-896F-5BD0FC650924 - c80cf32bfda640e5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
-                  offsetFromSymbolStart = "1613">
-               </Location>
-               <Location
-                  uuid = "65291BC7-C44D-44E2-896F-5BD0FC650924 - c80cf32bfda640e5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
-                  offsetFromSymbolStart = "1609">
-               </Location>
-               <Location
-                  uuid = "65291BC7-C44D-44E2-896F-5BD0FC650924 - c80cf32bfda640e5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
-                  offsetFromSymbolStart = "1212">
-               </Location>
-               <Location
-                  uuid = "65291BC7-C44D-44E2-896F-5BD0FC650924 - d1f1d62d6e50f3d5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;ShareToUpload.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (ShareToUpload.LocalImageData) -&gt; () in ShareToUpload.UserViewModel.uploadImages(localDatas: Swift.Array&lt;ShareToUpload.LocalImageData&gt;, _: (Swift.Array&lt;ShareToUpload.UploadData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ShareToUpload"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
-                  offsetFromSymbolStart = "1212">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2297,54 +1960,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C634914E-8771-46FF-A538-2F3BCDE4DA0E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shoots/ViewModel/UserViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "login(appleUserId:identityToken:email:fullName:_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C634914E-8771-46FF-A538-2F3BCDE4DA0E - 4c4d92d262d693ec"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Shoots.UserResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.UserViewModel.login(appleUserId: Swift.String, identityToken: Swift.String, email: Swift.String, fullName: Swift.String, _: (Swift.Bool) -&gt; ()) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "1228">
-               </Location>
-               <Location
-                  uuid = "C634914E-8771-46FF-A538-2F3BCDE4DA0E - 3a642a72bb07b848"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;ShareToUpload.UserResponseData, ShareToUpload.APIService.APIError&gt;) -&gt; () in ShareToUpload.UserViewModel.login(appleUserId: Swift.String, identityToken: Swift.String, email: Swift.String, fullName: Swift.String, _: (Swift.Bool) -&gt; ()) -&gt; ()"
-                  moduleName = "ShareToUpload"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "1228">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "14D12285-D20B-4AA0-B873-F2071D060332"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -2593,6 +2208,118 @@
                   offsetFromSymbolStart = "104">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FAF204CD-77F5-4DDF-ABFB-43633DCFBB24"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/UserViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "uploadAvatar(image:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "45940118-7456-4422-A0ED-648F2D825FAC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/UserViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "uploadAvatar(image:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "17D27D24-D01B-459F-938E-6755BDB026F7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/DetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getImageDetail(id:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E050A6A2-CA75-4DA5-A5FF-59962B45A978"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/UserViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "login(appleUserId:identityToken:email:fullName:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E050A6A2-CA75-4DA5-A5FF-59962B45A978 - cf96676c996dd8b7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.UserViewModel.login(appleUserId: Swift.String, identityToken: Swift.String, email: Swift.String, fullName: Swift.String, _: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "780">
+               </Location>
+               <Location
+                  uuid = "E050A6A2-CA75-4DA5-A5FF-59962B45A978 - 4c4d92d262d69311"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.UserResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.UserViewModel.login(appleUserId: Swift.String, identityToken: Swift.String, email: Swift.String, fullName: Swift.String, _: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "368">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6E53DBF5-9432-48EF-B553-E88EFC9E099E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/UserViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "login(appleUserId:identityToken:email:fullName:_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

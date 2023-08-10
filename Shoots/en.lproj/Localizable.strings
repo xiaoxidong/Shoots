@@ -226,3 +226,10 @@
 "注册即同意 " = "Agree to ";
 "Shoots 使用协议" = "Shoots Usage Agreement";
 "换行输入多个标签" = "Enter with New Tag";
+
+"上传完成之后询问删除" = "Ask to Delete after Uploading";
+"删除已上传截图" = "Delete Uploaded Screenshots";
+"上传完成之后，删除截图相册内的截图？" = "Delete screenshots in the screenshot album after uploading?";
+"每次都删除" = "Delete every time";
+"不在询问" = "Not inquiring";
+"删除成功" = "Deleted successfully";
