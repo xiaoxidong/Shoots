@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoadingView: View {
+    var text: String = "努力加载中..."
     var body: some View {
         VStack(spacing: 12) {
             #if os(iOS)
@@ -17,7 +18,7 @@ struct LoadingView: View {
                     .frame(width: 36, height: 36)
             #endif
 
-            Text("努力加载中...")
+            Text(LocalizedStringKey(text))
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(.shootGray)
                 .padding(.leading, 12)

@@ -7,19 +7,18 @@
 
 import UIKit
 
-///A class that enables determining if the user's device is in landscape or portrait position.
+/// A class that enables determining if the user's device is in landscape or portrait position.
 ///
-///Might be creating a memory leak.
+/// Might be creating a memory leak.
 
 final class DeviceOrientation: ObservableObject {
-    
     enum Orientation {
         case portrait
         case landscape
     }
-    
+
     @Published private(set) var orientation: Orientation = UIDevice.current.orientation.isLandscape ? .landscape : .portrait
-    
+
     init() {
         NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
             .compactMap { notification -> Orientation? in

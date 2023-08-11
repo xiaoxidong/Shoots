@@ -63,7 +63,9 @@ class UserViewModel: ObservableObject {
     @Published var editInfo = false
     @Published var name: String = ""
     @Published var avatar: String? = nil
+    @Published var updating = false
     func updateInfo(name: String, _ success: @escaping (Bool) -> Void) async {
+        updating = true
         APIService.shared.POST(url: .updateSelfInfo, params: ["userName": name]) { (result: Result<Response, APIService.APIError>) in
             switch result {
             case .success:
@@ -76,8 +78,9 @@ class UserViewModel: ObservableObject {
             }
         }
     }
-    
+
     func uploadAvatar(image: Data, _ success: @escaping (Bool) -> Void) async {
+        updating = true
         AF.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(image, withName: "avatarfile", fileName: "avatarfile.png", mimeType: "image/png")
         }, to: "\(baseURL)\(APIService.URLPath.avatar.path)", method: .post, headers: ["Content-Type": "multipart/form-data", "Authorization": "Bearer \(token)"])
@@ -86,17 +89,20 @@ class UserViewModel: ObservableObject {
                 case let .success(imageURL):
                     print(imageURL)
                     success(true)
+                    Task {
+                        await self.getInfo()
+                    }
                 case let .failure(error):
                     print(error)
                     success(false)
                 }
             }
     }
-    
+
     func getInfo() async {
-        APIService.shared.GET(url: .selfInfo)  { (result: Result<SelfInfoResponseData, APIService.APIError>) in
+        APIService.shared.GET(url: .selfInfo) { (result: Result<SelfInfoResponseData, APIService.APIError>) in
             switch result {
-            case .success(let user):
+            case let .success(user):
                 print("获取成功")
                 self.name = user.data.user.userName
                 self.avatar = user.data.user.avatar

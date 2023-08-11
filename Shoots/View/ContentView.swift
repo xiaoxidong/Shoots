@@ -36,13 +36,13 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             #if os(iOS)
-            if horizontalSizeClass == .compact {
-                iOSHomeView
-            } else {
-                iPadHomeView
-            }
+                if horizontalSizeClass == .compact {
+                    iOSHomeView
+                } else {
+                    iPadHomeView
+                }
             #else
-            iPadHomeView
+                iPadHomeView
             #endif
         }
         .overlay(
@@ -127,12 +127,19 @@ struct ContentView: View {
             }
         })
         .sheet(isPresented: $user.editInfo) {
-            InfoView() {
+            InfoView {
                 toastText = "更新成功"
                 showToast = true
             }
-                .presentationDetents([.medium])
-                .interactiveDismissDisabled()
+            .presentationDetents([.medium])
+            .interactiveDismissDisabled()
+        }
+        #else
+        .sheet(isPresented: $user.editInfo) {
+            InfoView {
+                toastText = "更新成功"
+                showToast = true
+            }.frame(width: 400, height: 400)
         }
         #endif
         .toast(isPresenting: $showToast) {
@@ -141,11 +148,11 @@ struct ContentView: View {
         .onAppear {
             // DEBUG 模式下显示自定义上传
             #if DEBUG
-                showCustomUpload = true
+            showCustomUpload = true
             #endif
             // 如果自定义上传上传过，则不显示
             // 如果上传了 x 次，但是还是没有使用自定义上传，也不需要显示
-
+            
             if showHomeNew < 4 {
                 showHomeNew += 1
             }
@@ -184,6 +191,11 @@ struct ContentView: View {
                     Toggle(isOn: $deletePicsUploaded, label: {
                         Text("每次都删除")
                     }).toggleStyle(CheckToggleStyle())
+                        .onChange(of: deletePicsUploaded, perform: { newValue in
+                            if newValue {
+                                askToDelete = false
+                            }
+                        })
                 }.font(.system(size: 15, weight: .medium))
                     .foregroundColor(.shootGray)
 
@@ -206,7 +218,6 @@ struct ContentView: View {
                     Button {
                         withAnimation(.spring()) {
                             showAsk = false
-                            askToDelete = false
                             deleteUploadedImages()
                         }
                     } label: {
@@ -249,131 +260,11 @@ struct ContentView: View {
         HomeView(searchText: $searchText, showNavigation: $showNavigation)
             .toolbar {
                 #if os(iOS)
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        if user.login {
-                            NavigationLink {
-                                SelfView()
-                            } label: {
-                                if let avatar = user.avatar {
-                                    ImageView(urlString: avatar, image: .constant(nil))
-                                        .frame(width: 26, height: 26)
-                                        .clipShape(Circle())
-                                } else {
-                                    Image("self")
-                                        .renderingMode(.template)
-                                        .foregroundColor(.shootBlack)
-                                        .padding(.vertical, 6)
-                                        .padding(.trailing, 6)
-                                        .contentShape(Rectangle())
-                                        .clipShape(Circle())
-                                }
-                            }
-                        } else {
-                            NavigationLink {
-                                SettingView()
-                            } label: {
-                                Image("setting")
-                                    .renderingMode(.template)
-                                    .foregroundColor(.shootBlue)
-                                    .padding(.vertical, 6)
-                                    .padding(.trailing, 6)
-                                    .contentShape(Rectangle())
-                            }
-                        }
-                    }
-
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            FeedbackManager.impact(style: .medium)
-                            withAnimation(.spring()) {
-                                uploadisActive = true
-                            }
-                            /*
-                             if showCustomUpload {
-                                 withAnimation(.spring()) {
-                                     uploadOptions.toggle()
-                                 }
-                             } else {
-                                 withAnimation(.spring()) {
-                                     uploadisActive = true
-                                 }
-                             }
-                              */
+                ToolbarItem(placement: .navigationBarLeading) {
+                    if user.login {
+                        NavigationLink {
+                            SelfView()
                         } label: {
-                            Image("upload")
-                                .padding(.vertical, 6)
-                                .padding(.leading, 6)
-                                .contentShape(Rectangle())
-                        }
-                        /*
-                         if showCustomUpload {
-                             if horizontalSizeClass == .compact {
-                                 Button {
-                                     FeedbackManager.impact(style: .medium)
-                                     withAnimation(.spring()) {
-                                         uploadOptions.toggle()
-                                     }
-                                 } label: {
-                                     Image("upload")
-                                         .padding(.vertical, 6)
-                                         .padding(.leading, 6)
-                                         .contentShape(Rectangle())
-                                 }
-                             } else {
-                                 Menu {
-                                     Button {
-                                         FeedbackManager.impact(style: .medium)
-                                         uploadisActive.toggle()
-                                     } label: {
-                                         Label("上传截图", image: "upload")
-                                     }
-
-                                     Button {
-                                         FeedbackManager.impact(style: .medium)
-                                         customUpload.toggle()
-                                     } label: {
-                                         Label("整理截图", image: "tags")
-                                     }
-                                 } label: {
-                                     Image("upload")
-                                         .padding(.vertical, 6)
-                                         .padding(.leading, 6)
-                                         .contentShape(Rectangle())
-                                 }
-                             }
-                         } else {
-                             Button {
-                                 FeedbackManager.impact(style: .medium)
-                                 if showCustomUpload {
-                                     withAnimation(.spring()) {
-                                         uploadOptions.toggle()
-                                     }
-                                 } else {
-                                     withAnimation(.spring()) {
-                                         uploadisActive = true
-                                     }
-                                 }
-                             } label: {
-                                 Image("upload")
-                                     .padding(.vertical, 6)
-                                     .padding(.leading, 6)
-                                     .contentShape(Rectangle())
-                             }
-                         }
-                         */
-                    }
-                #else
-                    ToolbarItem(placement: .navigation) {
-                        Button {
-                            if user.login {
-                                showMacSelf.toggle()
-                            } else {
-                                withAnimation(.spring()) {
-                                    showLogin.toggle()
-                                }
-                            }
-                        } label: {
-                            // 登录和未登录状态设置
                             if let avatar = user.avatar {
                                 ImageView(urlString: avatar, image: .constant(nil))
                                     .frame(width: 26, height: 26)
@@ -381,14 +272,134 @@ struct ContentView: View {
                             } else {
                                 Image("self")
                                     .renderingMode(.template)
-                                    .resizable()
                                     .foregroundColor(.shootBlack)
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 16, height: 16)
+                                    .padding(.vertical, 6)
+                                    .padding(.trailing, 6)
+                                    .contentShape(Rectangle())
                                     .clipShape(Circle())
                             }
                         }
+                    } else {
+                        NavigationLink {
+                            SettingView()
+                        } label: {
+                            Image("setting")
+                                .renderingMode(.template)
+                                .foregroundColor(.shootBlue)
+                                .padding(.vertical, 6)
+                                .padding(.trailing, 6)
+                                .contentShape(Rectangle())
+                        }
                     }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        FeedbackManager.impact(style: .medium)
+                        withAnimation(.spring()) {
+                            uploadisActive = true
+                        }
+                        /*
+                         if showCustomUpload {
+                         withAnimation(.spring()) {
+                         uploadOptions.toggle()
+                         }
+                         } else {
+                         withAnimation(.spring()) {
+                         uploadisActive = true
+                         }
+                         }
+                         */
+                    } label: {
+                        Image("upload")
+                            .padding(.vertical, 6)
+                            .padding(.leading, 6)
+                            .contentShape(Rectangle())
+                    }
+                    /*
+                     if showCustomUpload {
+                     if horizontalSizeClass == .compact {
+                     Button {
+                     FeedbackManager.impact(style: .medium)
+                     withAnimation(.spring()) {
+                     uploadOptions.toggle()
+                     }
+                     } label: {
+                     Image("upload")
+                     .padding(.vertical, 6)
+                     .padding(.leading, 6)
+                     .contentShape(Rectangle())
+                     }
+                     } else {
+                     Menu {
+                     Button {
+                     FeedbackManager.impact(style: .medium)
+                     uploadisActive.toggle()
+                     } label: {
+                     Label("上传截图", image: "upload")
+                     }
+                     
+                     Button {
+                     FeedbackManager.impact(style: .medium)
+                     customUpload.toggle()
+                     } label: {
+                     Label("整理截图", image: "tags")
+                     }
+                     } label: {
+                     Image("upload")
+                     .padding(.vertical, 6)
+                     .padding(.leading, 6)
+                     .contentShape(Rectangle())
+                     }
+                     }
+                     } else {
+                     Button {
+                     FeedbackManager.impact(style: .medium)
+                     if showCustomUpload {
+                     withAnimation(.spring()) {
+                     uploadOptions.toggle()
+                     }
+                     } else {
+                     withAnimation(.spring()) {
+                     uploadisActive = true
+                     }
+                     }
+                     } label: {
+                     Image("upload")
+                     .padding(.vertical, 6)
+                     .padding(.leading, 6)
+                     .contentShape(Rectangle())
+                     }
+                     }
+                     */
+                }
+                #else
+                ToolbarItem(placement: .navigation) {
+                    Button {
+                        if user.login {
+                            showMacSelf.toggle()
+                        } else {
+                            withAnimation(.spring()) {
+                                showLogin.toggle()
+                            }
+                        }
+                    } label: {
+                        // 登录和未登录状态设置
+                        if let avatar = user.avatar {
+                            ImageView(urlString: avatar, image: .constant(nil))
+                                .frame(width: 20, height: 20)
+                                .clipShape(Circle())
+                        } else {
+                            Image("self")
+                                .renderingMode(.template)
+                                .resizable()
+                                .foregroundColor(.shootBlack)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 16, height: 16)
+                                .clipShape(Circle())
+                        }
+                    }
+                }
                 #endif
             }
         #if os(iOS)
@@ -418,35 +429,35 @@ struct ContentView: View {
             )
         #else
             .searchable(text: $searchText, placement: .toolbar, prompt: "搜索应用或设计模式")
-//        {
-//                    SearchSuggestionView(searchText: $searchText)
-//                        .frame(maxHeight: 560)
-//                }
-                .onSubmit(of: .search) {
-                    search.search(text: searchText)
-                }
-                .overlay(
-                    Group {
-                        if showLogin {
-                            LoginView(login: $showLogin, showBG: true, successAction: {
-                                toastText = "登录成功"
-                                showToast = true
-                            }, failAction: {
-                                toastText = "登录失败，请重试"
-                                showToast = true
-                            })
-                        }
-                    },
-                    alignment: .bottom
-                )
-                .sheet(isPresented: $showMacSelf) {
-                    SelfView().sheetFrameForMac()
-                }
-                .sheet(isPresented: $showMacPro) {
-                    ProView().sheetFrameForMac()
-                }
+        //        {
+        //                    SearchSuggestionView(searchText: $searchText)
+        //                        .frame(maxHeight: 560)
+        //                }
+            .onSubmit(of: .search) {
+                search.search(text: searchText)
+            }
+            .overlay(
+                Group {
+                    if showLogin {
+                        LoginView(login: $showLogin, showBG: true, successAction: {
+                            toastText = "登录成功"
+                            showToast = true
+                        }, failAction: {
+                            toastText = "登录失败，请重试"
+                            showToast = true
+                        })
+                    }
+                },
+                alignment: .bottom
+            )
+            .sheet(isPresented: $showMacSelf) {
+                SelfView().sheetFrameForMac()
+            }
+            .sheet(isPresented: $showMacPro) {
+                ProView().sheetFrameForMac()
+            }
         #endif
-                .edgesIgnoringSafeArea(.bottom)
+            .edgesIgnoringSafeArea(.bottom)
     }
 
     #if os(iOS)
@@ -586,7 +597,8 @@ struct ContentView: View {
                         .padding(.vertical, 12)
                         .background(LinearGradient(colors: [.pink, .yellow], startPoint: .leading, endPoint: .trailing))
                         .clipShape(Capsule())
-                }.padding(.top)
+                }.buttonStyle(.plain)
+                .padding(.top)
             }.opacity(showHomeNew == 3 ? 1 : 0)
         }
     }

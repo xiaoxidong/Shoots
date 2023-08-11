@@ -419,6 +419,11 @@
 		4E8B59902A850EF10049FCF3 /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B597F2A850EF10049FCF3 /* Image+Extensions.swift */; };
 		4E8B59922A850EF10049FCF3 /* ImagePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59852A850EF10049FCF3 /* ImagePane.swift */; };
 		4E8B59932A850EF10049FCF3 /* ImageMoveAndScaleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59862A850EF10049FCF3 /* ImageMoveAndScaleSheet.swift */; };
+		4E8D79012A85D8FB004AD58F /* CropperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8D78FE2A85D8FB004AD58F /* CropperView.swift */; };
+		4E8D79022A85D8FB004AD58F /* CropperRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8D78FF2A85D8FB004AD58F /* CropperRatio.swift */; };
+		4E8D79032A85D8FB004AD58F /* ImageCropperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8D79002A85D8FB004AD58F /* ImageCropperView.swift */; };
+		4E8D79042A85DE02004AD58F /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B59722A850ED70049FCF3 /* InfoView.swift */; };
+		4E8D79062A85E27F004AD58F /* NSOpenPanel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8D79052A85E27F004AD58F /* NSOpenPanel+Extension.swift */; };
 		4E99304029C9EBC400D99DA9 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99303F29C9EBC400D99DA9 /* FeedView.swift */; };
 		4E99304229C9F02000D99DA9 /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304129C9F02000D99DA9 /* FlowView.swift */; };
 		4E99304429C9F06300D99DA9 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304329C9F06300D99DA9 /* Flow.swift */; };
@@ -949,6 +954,10 @@
 		4E8B597F2A850EF10049FCF3 /* Image+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
 		4E8B59852A850EF10049FCF3 /* ImagePane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePane.swift; sourceTree = "<group>"; };
 		4E8B59862A850EF10049FCF3 /* ImageMoveAndScaleSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMoveAndScaleSheet.swift; sourceTree = "<group>"; };
+		4E8D78FE2A85D8FB004AD58F /* CropperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropperView.swift; sourceTree = "<group>"; };
+		4E8D78FF2A85D8FB004AD58F /* CropperRatio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropperRatio.swift; sourceTree = "<group>"; };
+		4E8D79002A85D8FB004AD58F /* ImageCropperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCropperView.swift; sourceTree = "<group>"; };
+		4E8D79052A85E27F004AD58F /* NSOpenPanel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOpenPanel+Extension.swift"; sourceTree = "<group>"; };
 		4E99303F29C9EBC400D99DA9 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		4E99304129C9F02000D99DA9 /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
 		4E99304329C9F06300D99DA9 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
@@ -1850,6 +1859,7 @@
 			isa = PBXGroup;
 			children = (
 				4E8B59722A850ED70049FCF3 /* InfoView.swift */,
+				4E8D78FD2A85D8FB004AD58F /* ImageCropper */,
 				4E8B59752A850EF10049FCF3 /* PhotoSelectAndCrop */,
 			);
 			path = Info;
@@ -1872,6 +1882,16 @@
 				4E8B59862A850EF10049FCF3 /* ImageMoveAndScaleSheet.swift */,
 			);
 			path = PhotoSelectAndCrop;
+			sourceTree = "<group>";
+		};
+		4E8D78FD2A85D8FB004AD58F /* ImageCropper */ = {
+			isa = PBXGroup;
+			children = (
+				4E8D78FE2A85D8FB004AD58F /* CropperView.swift */,
+				4E8D78FF2A85D8FB004AD58F /* CropperRatio.swift */,
+				4E8D79002A85D8FB004AD58F /* ImageCropperView.swift */,
+			);
+			path = ImageCropper;
 			sourceTree = "<group>";
 		};
 		4E99304929C9FE3000D99DA9 /* SearchView */ = {
@@ -2093,6 +2113,7 @@
 		4EE49F8A29C8804400B51F4B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4E8D79052A85E27F004AD58F /* NSOpenPanel+Extension.swift */,
 				4EE49F8829C87FFE00B51F4B /* Color+Extension.swift */,
 				4EE7C0C92A3AB27F00140FFD /* UINavigationController+Extension.swift */,
 				4E5CF71929CD5B3E00A4E0DE /* View+Extension.swift */,
@@ -2284,7 +2305,6 @@
 				4E42A69629D12DA900BEC185 /* Sources */,
 				4E42A69729D12DA900BEC185 /* Frameworks */,
 				4E42A69829D12DA900BEC185 /* Resources */,
-				4E5D722A2A6A32EF0082E325 /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -2422,27 +2442,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4E5D722A2A6A32EF0082E325 /* SwiftFormat */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftFormat;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftformat >/dev/null; then\nswiftformat .\nelse\necho \"error: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nexit 1\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4E195ED629C040C600E97522 /* Sources */ = {
@@ -2902,6 +2901,7 @@
 				4EA73B1D29D5C161002901AE /* PaymentsController.swift in Sources */,
 				4E42A6E929D1315500BEC185 /* SettingCellView.swift in Sources */,
 				4E42A72D29D14B2500BEC185 /* Date+Components.swift in Sources */,
+				4E8D79012A85D8FB004AD58F /* CropperView.swift in Sources */,
 				4E42A70829D132E700BEC185 /* DefaultIndicatorView.swift in Sources */,
 				4E8B59592A814B270049FCF3 /* UploadAvatarResponseData.swift in Sources */,
 				4E42A72329D14B1700BEC185 /* Calendars.swift in Sources */,
@@ -2949,6 +2949,7 @@
 				4EA73B1929D5C161002901AE /* CompleteTransactionsController.swift in Sources */,
 				4E42A72E29D14B2500BEC185 /* Date+Math.swift in Sources */,
 				4E42A71729D1461B00BEC185 /* MacCloseButton.swift in Sources */,
+				4E8D79062A85E27F004AD58F /* NSOpenPanel+Extension.swift in Sources */,
 				4E42A6DD29D1314D00BEC185 /* FolderCardView.swift in Sources */,
 				4E010E1C29DB0D3600A4B231 /* AppIconPlaceholder.swift in Sources */,
 				4EE7C0BE2A3980C100140FFD /* Favorite.swift in Sources */,
@@ -2993,6 +2994,7 @@
 				4E42A70D29D1333300BEC185 /* Triangle.swift in Sources */,
 				4E2B6ED22A189F65000BC713 /* FeedResponseData.swift in Sources */,
 				4E42A6F129D1317200BEC185 /* Flow.swift in Sources */,
+				4E8D79032A85D8FB004AD58F /* ImageCropperView.swift in Sources */,
 				4EE7C0992A39745C00140FFD /* DetailViewModel.swift in Sources */,
 				4E42A6D729D1314100BEC185 /* MenuBarSearchView.swift in Sources */,
 				4EA73B1329D5C15B002901AE /* InAppProductQueryRequest.swift in Sources */,
@@ -3033,6 +3035,7 @@
 				4E42A6DC29D1314D00BEC185 /* AppView.swift in Sources */,
 				4E42A6DE29D1315000BEC185 /* SelfView.swift in Sources */,
 				4E42A70529D132E700BEC185 /* GradientIndicatorView.swift in Sources */,
+				4E8D79022A85D8FB004AD58F /* CropperRatio.swift in Sources */,
 				4E42A6FE29D1329200BEC185 /* Defaults.swift in Sources */,
 				4E42A71E29D14B1200BEC185 /* Region.swift in Sources */,
 				4E42A6FC29D1320600BEC185 /* String+Extension.swift in Sources */,
@@ -3046,6 +3049,7 @@
 				4EE7C0A12A3974B300140FFD /* InfoViewModel.swift in Sources */,
 				4E42A6D829D1314100BEC185 /* SearchView.swift in Sources */,
 				4E42A70329D132E700BEC185 /* OpacityDotsIndicatorView.swift in Sources */,
+				4E8D79042A85DE02004AD58F /* InfoView.swift in Sources */,
 				4E42A6F929D131FD00BEC185 /* Color+Extension.swift in Sources */,
 				4E010E1D29DB0D4400A4B231 /* UberaboutView.swift in Sources */,
 				4ED4B09C29D3E98B005D9758 /* Unused Code.swift in Sources */,

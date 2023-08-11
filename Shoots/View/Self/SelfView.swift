@@ -35,7 +35,7 @@ struct SelfView: View {
                                 .contentShape(Rectangle())
                         }
                     }
-                    
+
                     ToolbarItem(placement: .principal) {
                         Button {
                             editInfo.toggle()
@@ -46,7 +46,7 @@ struct SelfView: View {
                                         .frame(width: 26, height: 26)
                                         .clipShape(Circle())
                                 }
-                                
+
                                 Group {
                                     if user.name != "" {
                                         Text(user.name)
@@ -73,27 +73,51 @@ struct SelfView: View {
                     }
                 }
                 .sheet(isPresented: $editInfo) {
-                    InfoView() {
+                    InfoView {
 //                        toastText = "更新成功"
 //                        showToast = true
                         Task {
                             await user.getInfo()
                         }
                     }
-                        .presentationDetents([.medium])
-                        .interactiveDismissDisabled()
+                    .presentationDetents([.medium])
+                    .interactiveDismissDisabled()
                 }
         #else
             VStack {
                 HStack {
-                    Text("我的图片")
-                        .font(.largeTitle)
-                        .bold()
+                    Button {
+                        editInfo.toggle()
+                    } label: {
+                        HStack(spacing: 8) {
+                            if let avatar = user.avatar {
+                                ImageView(urlString: avatar, image: .constant(nil))
+                                    .frame(width: 36, height: 36)
+                                    .clipShape(Circle())
+                            }
+
+                            Group {
+                                if user.name != "" {
+                                    Text(user.name)
+                                } else {
+                                    Text("我的图片")
+                                }
+                            }
+                            .font(.title)
+                            .bold()
+                        }
+                    }.buttonStyle(.plain)
+                    
                     Spacer()
                     MacCloseButton()
                 }.padding(.top, 36)
                     .padding(.horizontal)
                 content
+            }.sheet(isPresented: $editInfo) {
+                InfoView {
+//                    toastText = "更新成功"
+//                    showToast = true
+                }.frame(width: 400, height: 400)
             }
         #endif
     }

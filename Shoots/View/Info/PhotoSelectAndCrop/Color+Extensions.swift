@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Dave Kondris on 30/05/21.
 //
@@ -8,7 +8,6 @@
 import SwiftUI
 
 public extension Color {
-
     static var label: Color {
         return Color(UIColor.label)
     }
@@ -42,7 +41,7 @@ public extension Color {
     }
 
     static var systemBackground: Color {
-           return Color(UIColor.systemBackground)
+        return Color(UIColor.systemBackground)
     }
 
     static var secondarySystemBackground: Color {

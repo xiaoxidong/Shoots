@@ -13,7 +13,6 @@ import UIKit
 ///   - rect: the CGRect to which the image will be cropped.
 /// - Returns: UIImage.
 func croppedImage(from image: UIImage, croppedTo rect: CGRect) -> UIImage {
-
     UIGraphicsBeginImageContext(rect.size)
     let context = UIGraphicsGetCurrentContext()
 

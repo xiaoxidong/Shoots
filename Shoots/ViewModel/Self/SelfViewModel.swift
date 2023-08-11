@@ -116,14 +116,14 @@ class SelfViewModel: ObservableObject {
             }
         }
     }
-    
+
     // 用户基本信息
     @Published var name: String = ""
     @Published var avatar: String? = nil
     func getInfo() async {
-        APIService.shared.GET(url: .selfInfo)  { (result: Result<SelfInfoResponseData, APIService.APIError>) in
+        APIService.shared.GET(url: .selfInfo) { (result: Result<SelfInfoResponseData, APIService.APIError>) in
             switch result {
-            case .success(let user):
+            case let .success(user):
                 print("获取成功")
                 self.name = user.data.user.userName
                 self.avatar = user.data.user.avatar

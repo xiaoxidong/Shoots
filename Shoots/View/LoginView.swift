@@ -91,7 +91,7 @@ struct LoginView: View {
                     if langStr == "zh" || langStr == "zh-HK" {
                         space = ""
                     }
-                    
+
                     let name = "\(firstName ?? "")\(space)\(lastName ?? "")"
                     user.login(appleUserId: userID, identityToken: identityTokenString, email: email ?? "", fullName: name) { success in
                         if success {

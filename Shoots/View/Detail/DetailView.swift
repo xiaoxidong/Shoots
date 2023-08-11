@@ -81,7 +81,8 @@ struct DetailView: View {
                                 .padding(.vertical, 12)
                                 .background(LinearGradient(colors: [.pink, .yellow], startPoint: .leading, endPoint: .trailing))
                                 .clipShape(Capsule())
-                        }.padding(.top)
+                        }.buttonStyle(.plain)
+                            .padding(.top)
                     }.opacity(showDetailNew ? 1 : 0)
                 }
             )
@@ -141,9 +142,9 @@ struct DetailView: View {
                         .onAppear {
                             Task {
                                 await detail.getImageDetail(id: shoot.id) { _ in
-    //                                withAnimation(.spring()) {
-    //                                    showDetail = true
-    //                                }
+                                    //                                withAnimation(.spring()) {
+                                    //                                    showDetail = true
+                                    //                                }
                                 }
                             }
                         }
@@ -239,7 +240,7 @@ struct DetailView: View {
                                    itemSpacing: 4)
                         { designPattern in
                             Button {
-    //                            search = designPattern.designPatternName
+                                //                            search = designPattern.designPatternName
                             } label: {
                                 HStack(spacing: 2) {
                                     Image(systemName: "number")

@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-
 extension Image {
     func imageDisplayStyle() -> some View {
-        return self
-            .resizable()
+        return resizable()
             .scaledToFill()
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .aspectRatio(contentMode: .fit)
