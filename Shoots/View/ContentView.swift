@@ -132,6 +132,7 @@ struct ContentView: View {
                 showToast = true
             }
             .presentationDetents([.medium])
+            .presentationDetents([.medium])
             .interactiveDismissDisabled()
         }
         #else
@@ -187,6 +188,8 @@ struct ContentView: View {
 
                 VStack(spacing: 16) {
                     Text("上传完成之后，删除截图相册内的截图？")
+                        .font(.system(size: 16, weight: .medium))
+                        .lineSpacing(4)
 
                     Toggle(isOn: $deletePicsUploaded, label: {
                         Text("每次都删除")
@@ -212,8 +215,9 @@ struct ContentView: View {
                             .padding(.horizontal, 22)
                             .padding(.vertical, 10)
                             .foregroundColor(.white)
+                            .textCase(.uppercase)
                             .background(Color.shootBlack.opacity(0.4))
-                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                            .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
                     }.buttonStyle(.plain)
                     Button {
                         withAnimation(.spring()) {
@@ -227,14 +231,14 @@ struct ContentView: View {
                             .padding(.vertical, 10)
                             .foregroundColor(.white)
                             .background(Color.shootRed)
-                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                            .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
                     }.buttonStyle(.plain)
                 }
             }.padding()
                 .padding(.vertical, 16)
                 .frame(maxWidth: 460)
                 .background(Color.shootWhite)
-                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
                 .padding()
         }
 
@@ -295,7 +299,7 @@ struct ContentView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        FeedbackManager.impact(style: .medium)
+                        FeedbackManager.impact(style: .soft)
                         withAnimation(.spring()) {
                             uploadisActive = true
                         }
@@ -320,7 +324,7 @@ struct ContentView: View {
                      if showCustomUpload {
                      if horizontalSizeClass == .compact {
                      Button {
-                     FeedbackManager.impact(style: .medium)
+                     FeedbackManager.impact(style: .soft)
                      withAnimation(.spring()) {
                      uploadOptions.toggle()
                      }
@@ -333,14 +337,14 @@ struct ContentView: View {
                      } else {
                      Menu {
                      Button {
-                     FeedbackManager.impact(style: .medium)
+                     FeedbackManager.impact(style: .soft)
                      uploadisActive.toggle()
                      } label: {
                      Label("上传截图", image: "upload")
                      }
                      
                      Button {
-                     FeedbackManager.impact(style: .medium)
+                     FeedbackManager.impact(style: .soft)
                      customUpload.toggle()
                      } label: {
                      Label("整理截图", image: "tags")
@@ -354,7 +358,7 @@ struct ContentView: View {
                      }
                      } else {
                      Button {
-                     FeedbackManager.impact(style: .medium)
+                     FeedbackManager.impact(style: .soft)
                      if showCustomUpload {
                      withAnimation(.spring()) {
                      uploadOptions.toggle()

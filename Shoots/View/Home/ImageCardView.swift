@@ -20,6 +20,11 @@ struct ImageCardView: View {
 
     var body: some View {
         ImageView(urlString: shoot.compressedPicUrl, image: .constant(nil))
+//            .overlay(
+//                Image(["gif", "new", ""].randomElement()!)
+//                    .padding(6)
+//                , alignment: .topTrailing
+//            )
             .sheet(isPresented: $showDetail) {
                 DetailView(shoot: shoot)
                     .sheetFrameForMac()

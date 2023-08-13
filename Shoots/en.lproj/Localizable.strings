@@ -224,6 +224,10 @@
 "努力加载中..." = "Loading...";
 "更新中..." = "Updating...";
 "登录应用" = "Log In";
+"编辑信息" = "Edit Info";
+"更新成功" = "Update Successfully";
+"裁剪头像" = "Crop Avatar";
+"输入昵称" = "Input username";
 "注册即同意 " = "Agree to ";
 "Shoots 使用协议" = "Shoots Usage Agreement";
 "换行输入多个标签" = "Enter with New Tag";
@@ -232,5 +236,6 @@
 "删除已上传截图" = "Delete Uploaded Screenshots";
 "上传完成之后，删除截图相册内的截图？" = "Delete screenshots in the screenshot album after uploading?";
 "每次都删除" = "Delete every time";
-"不在询问" = "Not inquiring";
-"删除成功" = "Deleted successfully";
+"不在询问" = "Don't Ask";
+"删除成功" = "Deleted Successfully";
+"系列为空" = "Collection is Empty";

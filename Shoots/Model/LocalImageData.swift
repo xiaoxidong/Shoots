@@ -10,6 +10,7 @@ import SwiftUI
 struct LocalImageData: Equatable, Hashable, Codable {
     var image: Data
     var app: String
+    var description: String = ""
 
     var fileName: String
     var fileSuffix: String

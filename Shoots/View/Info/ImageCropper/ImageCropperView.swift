@@ -17,7 +17,7 @@ public struct ImageCropperView: View {
             HStack {
                 MacCloseButton()
                 Spacer()
-                Text("裁剪图片")
+                Text("裁剪头像")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(.shootGray)
                 Spacer()

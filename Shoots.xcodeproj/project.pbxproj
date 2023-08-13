@@ -83,7 +83,7 @@
 		4E42A6D429D1313D00BEC185 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99303F29C9EBC400D99DA9 /* FeedView.swift */; };
 		4E42A6D529D1313D00BEC185 /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F8E29C8831500B51F4B /* ImageCardView.swift */; };
 		4E42A6D629D1314100BEC185 /* IPadSearchDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */; };
-		4E42A6D729D1314100BEC185 /* MenuBarSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304729C9FBCC00D99DA9 /* MenuBarSearchView.swift */; };
+		4E42A6D729D1314100BEC185 /* FullScreenSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304729C9FBCC00D99DA9 /* FullScreenSearchView.swift */; };
 		4E42A6D829D1314100BEC185 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9729C8943000B51F4B /* SearchView.swift */; };
 		4E42A6D929D1314500BEC185 /* ActionTitleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9229C88BA700B51F4B /* ActionTitleButtonView.swift */; };
 		4E42A6DA29D1314500BEC185 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B1F6629C7EA4F00A772CE /* DetailView.swift */; };
@@ -428,7 +428,7 @@
 		4E99304229C9F02000D99DA9 /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304129C9F02000D99DA9 /* FlowView.swift */; };
 		4E99304429C9F06300D99DA9 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304329C9F06300D99DA9 /* Flow.swift */; };
 		4E99304629C9F2CC00D99DA9 /* FolderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304529C9F2CC00D99DA9 /* FolderCardView.swift */; };
-		4E99304829C9FBCC00D99DA9 /* MenuBarSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304729C9FBCC00D99DA9 /* MenuBarSearchView.swift */; };
+		4E99304829C9FBCC00D99DA9 /* FullScreenSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304729C9FBCC00D99DA9 /* FullScreenSearchView.swift */; };
 		4E99304B29CA003100D99DA9 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304A29CA003100D99DA9 /* String+Extension.swift */; };
 		4E99304D29CA075D00D99DA9 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304C29CA075D00D99DA9 /* UploadView.swift */; };
 		4E99D1DF2A320D410086BFC2 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99D1DE2A320D410086BFC2 /* Report.swift */; };
@@ -962,7 +962,7 @@
 		4E99304129C9F02000D99DA9 /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
 		4E99304329C9F06300D99DA9 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		4E99304529C9F2CC00D99DA9 /* FolderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCardView.swift; sourceTree = "<group>"; };
-		4E99304729C9FBCC00D99DA9 /* MenuBarSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarSearchView.swift; sourceTree = "<group>"; };
+		4E99304729C9FBCC00D99DA9 /* FullScreenSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenSearchView.swift; sourceTree = "<group>"; };
 		4E99304A29CA003100D99DA9 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		4E99304C29CA075D00D99DA9 /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 		4E99D1DE2A320D410086BFC2 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
@@ -1899,7 +1899,7 @@
 			children = (
 				4EE49F9729C8943000B51F4B /* SearchView.swift */,
 				4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */,
-				4E99304729C9FBCC00D99DA9 /* MenuBarSearchView.swift */,
+				4E99304729C9FBCC00D99DA9 /* FullScreenSearchView.swift */,
 				4EE7C0CE2A3ABC6500140FFD /* SearchSuggestionView.swift */,
 				4E4430482A6F986500835CA2 /* SuggestionButtonView.swift */,
 				4EE7C0D12A3AC2A700140FFD /* SearchResultView.swift */,
@@ -2667,7 +2667,7 @@
 				4E58F91B29CB2FF40087E902 /* CustomUploadView.swift in Sources */,
 				4E58F92229CB43A80087E902 /* SettingCellView.swift in Sources */,
 				4E5CF71729CD5AC000A4E0DE /* Int+DateComponents.swift in Sources */,
-				4E99304829C9FBCC00D99DA9 /* MenuBarSearchView.swift in Sources */,
+				4E99304829C9FBCC00D99DA9 /* FullScreenSearchView.swift in Sources */,
 				4E49409A29E3A7200058391E /* ZLCameraCell.swift in Sources */,
 				4E5CF6C129CD58D100A4E0DE /* DefaultsKey+Extension.swift in Sources */,
 				4E2B6ED82A18ADBF000BC713 /* LoginView.swift in Sources */,
@@ -2996,7 +2996,7 @@
 				4E42A6F129D1317200BEC185 /* Flow.swift in Sources */,
 				4E8D79032A85D8FB004AD58F /* ImageCropperView.swift in Sources */,
 				4EE7C0992A39745C00140FFD /* DetailViewModel.swift in Sources */,
-				4E42A6D729D1314100BEC185 /* MenuBarSearchView.swift in Sources */,
+				4E42A6D729D1314100BEC185 /* FullScreenSearchView.swift in Sources */,
 				4EA73B1329D5C15B002901AE /* InAppProductQueryRequest.swift in Sources */,
 				4EA73B1829D5C161002901AE /* ProductsInfoController.swift in Sources */,
 				4E42A73729D14B2F00BEC185 /* TimeInterval+Formatter.swift in Sources */,
@@ -3226,7 +3226,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3255,7 +3255,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -3276,7 +3276,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3305,7 +3305,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -3413,7 +3413,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShareToUpload/ShareToUpload.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareToUpload/Info.plist;
@@ -3425,7 +3425,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots.ShareToUpload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -3441,7 +3441,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShareToUpload/ShareToUpload.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareToUpload/Info.plist;
@@ -3453,7 +3453,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots.ShareToUpload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -3473,7 +3473,7 @@
 				CODE_SIGN_ENTITLEMENTS = Shoots_Mac/Shoots_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots_Mac/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3512,7 +3512,7 @@
 				CODE_SIGN_ENTITLEMENTS = Shoots_Mac/Shoots_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots_Mac/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;

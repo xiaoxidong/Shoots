@@ -81,7 +81,6 @@ class SearchViewModel: ObservableObject {
             switch response.result {
             case let .success(pattern):
                 self.patternFeed = pattern.rows
-                self.objectWillChange.send()
                 self.mostPages = pattern.total / numberPerpage + 1
                 if pattern.rows.count < numberPerpage {
                     self.noMore = true

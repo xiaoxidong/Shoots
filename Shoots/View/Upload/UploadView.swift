@@ -40,8 +40,7 @@ struct UploadView: View {
         }.tabViewStyle(.page(indexDisplayMode: .never))
             .toolbar(.hidden, for: .navigationBar)
             .onTapGesture {
-                appFocused = false
-                tagFocused = false
+                textFocused = .none
             }
             .edgesIgnoringSafeArea(.all)
             .safeAreaInset(edge: .top) {
@@ -69,9 +68,9 @@ struct UploadView: View {
             }
             .onChange(of: selection, perform: { _ in
                 if uploadData[selection].app == "" {
-                    appFocused = true
+                    textFocused = .app
                 } else if uploadData[selection].pattern == "" {
-                    tagFocused = true
+                    textFocused = .tag
                 }
             })
             .onAppear {
@@ -83,7 +82,7 @@ struct UploadView: View {
 
     @State var showLogin = false
     var topActions: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 10) {
             HStack {
                 Button {
                     dismiss()
@@ -98,7 +97,7 @@ struct UploadView: View {
                 Spacer(minLength: 0)
                 if uploadData.count < 2 {
                     Text("上传图片")
-                        .font(.system(size: 14, weight: .medium))
+                        .font(.system(size: 15, weight: .bold))
                 } else {
                     if updateIndicator {
                         TitlePageControll(progress: selection, numberOfPages: uploadData.count, tintColor: UIColor(Color.shootBlack), currentPageTintColor: UIColor(Color.shootBlue))
@@ -112,8 +111,7 @@ struct UploadView: View {
                 Button {
                     // 如果未登录，先登录
                     if !user.login {
-                        appFocused = false
-                        tagFocused = false
+                        textFocused = .none
                         withAnimation(.spring()) {
                             showLogin.toggle()
                         }
@@ -129,10 +127,11 @@ struct UploadView: View {
                 }.frame(maxWidth: .infinity, alignment: .trailing)
             }.padding(.horizontal)
             Divider()
-        }.padding(.top, 0)
+        }
     }
 
     @State var showBluer = false
+    @State var showMessage = false
     @State var showCombine = false
     var appRsults: [AppInfo] {
         if uploadData[selection].app == "" {
@@ -150,69 +149,111 @@ struct UploadView: View {
         }
     }
 
-    @FocusState var appFocused: Bool
-    @FocusState var tagFocused: Bool
-
+    @FocusState var textFocused: TextFocuse?
+    @State var showFullEditor = false
+    enum TextFocuse {
+        case app
+        case tag
+        case text
+    }
     var bottomActions: some View {
         VStack(spacing: 0) {
-            if appFocused {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 0) {
-                        ForEach(appRsults) { app in
-                            VStack(alignment: .leading, spacing: 0) {
-                                Text(app.linkApplicationName)
-                                    .font(.system(size: 16, weight: .medium))
-                                    .foregroundColor(.shootBlack)
-                                    .padding(.vertical, 16)
-                                    .padding(.horizontal, 16)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-                                Divider()
+            ZStack(alignment: .bottom) {
+                VStack(spacing: 0) {
+                    HStack {
+                        Spacer()
+                        Text("输入描述信息")
+                            .font(.system(size: 15, weight: .medium))
+                            .foregroundColor(.shootGray)
+                        Spacer()
+                        Button {
+                            withAnimation(.spring()) {
+                                showFullEditor.toggle()
                             }
-                            .background(Color.shootWhite)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                uploadData[selection].app = app.linkApplicationName
-                                appFocused = false
-                                tagFocused = true
-                            }
-                        }
-                    }
-                }.frame(maxHeight: 240)
-                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-                    .shadow(color: Color.shootBlack.opacity(appFocused ? 0.06 : 0), x: 0, y: -6, blur: 10)
-            } else if tagFocused {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 0) {
-                        ForEach(tagRsults, id: \.self) { tag in
-                            VStack(alignment: .center, spacing: 0) {
-                                Text(tag.designPatternName)
-                                    .font(.system(size: 16, weight: .medium))
-                                    .foregroundColor(.shootBlack)
-                                    .padding(.vertical, 16)
-                                    .padding(.horizontal, 16)
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                                    .background(Color.shootWhite)
-                                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-                                Divider()
-                            }.contentShape(Rectangle())
-                                .onTapGesture {
-                                    if !uploadData[selection].tags.contains(tag.designPatternName) {
-                                        uploadData[selection].tags.append(tag.designPatternName)
-                                    }
-                                    newTag = ""
+                        } label: {
+                            Group {
+                                if showFullEditor {
+                                    Image("down")
+                                } else {
+                                    Image("up")
                                 }
+                            }.padding([.horizontal], 6)
+                                .contentShape(Rectangle())
                         }
                     }
-                }.frame(maxHeight: 240)
-                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-                    .shadow(color: Color.shootBlack.opacity(tagFocused ? 0.06 : 0), x: 0, y: -6, blur: 10)
+                    
+                    TextEditor(text: $uploadData[selection].description)
+                        .focused($textFocused, equals: .text)
+                        .font(.system(size: 16, weight: .medium))
+                        .lineSpacing(3)
+                        .accentColor(Color.shootBlue)
+                }
+                .padding(6)
+                .frame(height: showFullEditor ? nil : 110)
+                .frame(maxHeight: showFullEditor ? .infinity : nil)
+                .background(Color.white)
+                .opacity(textFocused == .text ? 1 : 0.001)
+                
+                if textFocused == .app {
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 0) {
+                            ForEach(appRsults) { app in
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text(app.linkApplicationName)
+                                        .font(.system(size: 16, weight: .medium))
+                                        .foregroundColor(.shootBlack)
+                                        .padding(.vertical, 16)
+                                        .padding(.horizontal, 16)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+                                    Divider()
+                                }
+                                .background(Color.shootWhite)
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    uploadData[selection].app = app.linkApplicationName
+                                    textFocused = .tag
+                                }
+                            }
+                        }
+                    }.frame(maxHeight: 240)
+                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+                        .shadow(color: Color.shootBlack.opacity(textFocused == .app ? 0.06 : 0), x: 0, y: -6, blur: 10)
+                        .transition(.scale(scale: 0.9, anchor: .bottom).combined(with: .opacity))
+                } else if textFocused == .tag {
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 0) {
+                            ForEach(tagRsults, id: \.self) { tag in
+                                VStack(alignment: .center, spacing: 0) {
+                                    Text(tag.designPatternName)
+                                        .font(.system(size: 16, weight: .medium))
+                                        .foregroundColor(.shootBlack)
+                                        .padding(.vertical, 16)
+                                        .padding(.horizontal, 16)
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                        .background(Color.shootWhite)
+                                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+                                    Divider()
+                                }.contentShape(Rectangle())
+                                    .onTapGesture {
+                                        if !uploadData[selection].tags.contains(tag.designPatternName) {
+                                            uploadData[selection].tags.append(tag.designPatternName)
+                                        }
+                                        newTag = ""
+                                    }
+                            }
+                        }
+                    }.frame(maxHeight: 240)
+                        .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+                        .shadow(color: Color.shootBlack.opacity(textFocused == .tag ? 0.06 : 0), x: 0, y: -6, blur: 10)
+                        .transition(.scale(scale: 0.9, anchor: .bottom).combined(with: .opacity))
+                }
             }
             VStack(spacing: 6) {
                 Divider()
-                HStack(spacing: 8) {
+                HStack(spacing: 0) {
                     TextField("应用名称", text: $uploadData[selection].app)
-                        .focused($appFocused)
+                        .focused($textFocused, equals: .app)
                         .font(.system(size: 14, weight: .medium))
                         .accentColor(Color.shootBlue)
                         .frame(width: 106)
@@ -222,10 +263,58 @@ struct UploadView: View {
                     tag
                         .font(.system(size: 14, weight: .medium))
                     Button {
+                        withAnimation(.spring()) {
+                            if textFocused == .text {
+                                textFocused = .app
+                            } else {
+                                textFocused = .text
+                            }
+                        }
+                    } label: {
+                        Image(textFocused == .text ? "messagefill" : "message")
+                            .padding(4)
+                            .padding(.horizontal, 4)
+                            .contentShape(Rectangle())
+                    }
+                    
+                    Menu {
+                        Button {
+                            
+                        } label: {
+                            Label("应用截图", systemImage: "photo.artframe")
+                        }
+                        Button {
+                            
+                        } label: {
+                            Label("设计更新", systemImage: "lasso")
+                        }
+                        Button {
+                            
+                        } label: {
+                            Label("用户体验", systemImage: "person.and.background.dotted")
+                        }
+                        Button {
+                            
+                        } label: {
+                            Label("交互细节", systemImage: "sun.min")
+                        }
+                    } label: {
+                        Image(systemName: "number")
+                            .font(.system(size: 22, weight: .medium))
+                            .padding(4)
+                            .padding(.horizontal, 4)
+                            .foregroundColor(.shootBlack)
+                            .contentShape(Rectangle())
+                    }
+
+                    
+                    
+                    Button {
                         showBluer.toggle()
                     } label: {
                         Image("blur")
                             .padding(4)
+                            .padding(.horizontal, 4)
                             .contentShape(Rectangle())
                     }
 
@@ -234,12 +323,13 @@ struct UploadView: View {
                     } label: {
                         Image("connect")
                             .padding(4)
+                            .padding(.horizontal, 4)
                             .contentShape(Rectangle())
                     }
                 }.padding(.horizontal, 8).padding(.bottom, 6)
             }
             .background(Color.shootWhite)
-            .shadow(color: Color.shootBlack.opacity(appFocused || tagFocused ? 0 : 0.06), x: 0, y: -6, blur: 10)
+            .shadow(color: Color.shootBlack.opacity(textFocused == .app || textFocused == .tag ? 0 : 0.06), x: 0, y: -6, blur: 10)
         }
         .fullScreenCover(isPresented: $showBluer) {
             ImageBlurView(image: $uploadData[selection].image)
@@ -252,7 +342,7 @@ struct UploadView: View {
             CombineSelectView(uploadImages: $uploadData, selection: $selection, updateIndicator: $updateIndicator)
         }
         .onAppear {
-            appFocused = true
+            textFocused = .app
         }
     }
 
@@ -342,14 +432,14 @@ struct UploadView: View {
                     TextField("换行输入多个标签", text: $newTag, onEditingChanged: { _ in
 //                            appendNewTag()
                     }, onCommit: {
-                        tagFocused = true
+                        textFocused = .tag
                         appendNewTag()
 
                         // TODO: 输入完成的时候，不隐藏键盘
                         // https://stackoverflow.com/questions/69225415/swiftui-stay-on-same-textfield-after-on-commit
                         // https://github.com/mobilinked/MbSwiftUIFirstResponder
                     })
-                    .focused($tagFocused)
+                    .focused($textFocused, equals: .tag)
                     .onChange(of: newTag) { change in
                         if change.isContainSpaceAndNewlines() {
                             appendNewTag()

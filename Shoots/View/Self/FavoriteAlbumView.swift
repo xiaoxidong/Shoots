@@ -427,7 +427,7 @@ struct FavoriteAlbumView: View {
                     Task {
                         await favoriteDetail.deleteFavorite(id: id) { success in
                             if success {
-                                toastText = "成功删除"
+                                toastText = "删除成功"
                                 alertType = .success(Color.shootBlack)
                                 showToast = true
                                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in

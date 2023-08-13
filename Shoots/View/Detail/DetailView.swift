@@ -15,7 +15,7 @@ struct DetailView: View {
     var shoot: Picture
 
     @State var showDetail = false
-    @State var search: String? = nil
+    @State var searchText: String? = nil
     @AppStorage("showDetailNew") var showDetailNew = true
     @State var showAlert = false
     @State var alertText = ""
@@ -24,11 +24,11 @@ struct DetailView: View {
     @StateObject var detail: DetailViewModel = .init()
     @State var showLogin = false
     #if os(iOS)
-        @State var image: UIImage? = nil
+    @State var image: UIImage? = nil
     #else
-        @State var image: NSImage? = nil
+    @State var image: NSImage? = nil
     #endif
-
+    @EnvironmentObject var search: SearchViewModel
     var body: some View {
         ScrollView(showsIndicators: false) {
             ImageView(urlString: shoot.compressedPicUrl, image: $image)
@@ -38,7 +38,7 @@ struct DetailView: View {
         }.background(Color.shootLight.opacity(0.1))
             .onTapGesture {
                 #if os(iOS)
-                    FeedbackManager.impact(style: .medium)
+                FeedbackManager.impact(style: .soft)
                 #endif
                 withAnimation(.spring()) {
                     if showSave {
@@ -52,6 +52,9 @@ struct DetailView: View {
                     }
                 }
             }
+//            .overlay(alignment: .topTrailing) {
+//                imageActionButtons
+//            }
             .overlay(alignment: .bottom) {
                 infoView
                     .offset(y: showDetail ? 0 : 1000)
@@ -115,25 +118,33 @@ struct DetailView: View {
                     }
                 }, alignment: .bottom
             )
+            .sheet(isPresented: $showPro) {
+                ProView()
+            }
             .ignoresSafeArea()
         #if os(iOS)
-            .fullScreenCover(item: $search) { search in
-                FullScreenSearchView(searchText: search)
+            .fullScreenCover(item: $searchText) { search in
+                SheetSearchView(searchText: search)
             }
         #else
             .overlay(alignment: .topTrailing) {
-                    MacCloseButton()
-                        .padding(26)
-                }
+                MacCloseButton()
+                    .padding(26)
+            }
+            .sheet(item: $searchText) { search in
+                SheetSearchView(searchText: search)
+            }
         #endif
-                .toast(isPresenting: $showAlert) {
-                    AlertToast(displayMode: .alert, type: alertType, title: alertText)
-                }
+            .toast(isPresenting: $showAlert) {
+                AlertToast(displayMode: .alert, type: alertType, title: alertText)
+            }
     }
 
     @State var showApp = false
     @State var showReport = false
     @State var designTypes: [String] = []
+    @State var showContent = false
+    @State var showPro = false
     var infoView: some View {
         VStack(spacing: 16) {
             if showDetail {
@@ -201,7 +212,7 @@ struct DetailView: View {
                                     .foregroundColor(.shootBlack)
                             }
 
-                            VStack(alignment: .leading, spacing: 8) {
+                            VStack(alignment: .leading, spacing: 6) {
                                 Text(LocalizedStringKey(detail.userName ?? "上传用户"))
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(.shootBlack)
@@ -234,33 +245,65 @@ struct DetailView: View {
                             Spacer()
                         }
 
-                        // 设计模式
-                        FlowLayout(mode: .vstack,
-                                   items: detail.designPatternList,
-                                   itemSpacing: 4)
-                        { designPattern in
-                            Button {
-                                //                            search = designPattern.designPatternName
-                            } label: {
-                                HStack(spacing: 2) {
-                                    Image(systemName: "number")
-                                        .font(.system(size: 14, weight: .medium))
-                                        .foregroundColor(.shootBlue)
-                                    Text(designPattern.designPatternName)
-                                        .font(.system(size: 14, weight: .medium))
-                                        .foregroundColor(.shootBlack)
-                                }.padding(.horizontal, 10)
-                                    .padding(.vertical, 6)
-                                    .background(Color.shootBlue.opacity(0.12))
-                                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                            }.buttonStyle(.plain)
+                        // 设计模式和描述
+                        VStack(spacing: 12) {
+                            FlowLayout(mode: .vstack,
+                                       items: detail.lists,
+                                       itemSpacing: 4)
+                            { designPattern in
+                                if designPattern.type == nil {
+                                    Button {
+                                        search.patternID = designPattern.id
+                                        searchText = designPattern.designPatternName
+                                        Task {
+                                            await search.getPatternPics(id: designPattern.id)
+                                        }
+                                    } label: {
+                                        HStack(spacing: 2) {
+                                            Image(systemName: "number")
+                                                .font(.system(size: 14, weight: .medium))
+                                                .foregroundColor(.shootBlue)
+                                            Text(designPattern.designPatternName)
+                                                .font(.system(size: 14, weight: .medium))
+                                                .foregroundColor(.shootBlack)
+                                        }.padding(.horizontal, 10)
+                                            .padding(.vertical, 6)
+                                            .background(Color.shootBlue.opacity(0.12))
+                                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                                    }.buttonStyle(.plain)
+                                } else {
+                                    Button {
+                                        showPro = true
+                                    } label: {
+                                        Text(designPattern.designPatternName)
+                                            .font(.system(size: 14, weight: .medium))
+                                            .foregroundColor(.shootBlack)
+                                            .padding(.horizontal, 10)
+                                            .padding(.vertical, 6)
+                                            .background(Color.shootRed.opacity(0.2))
+                                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                                    }.buttonStyle(.plain)
+                                }
+                            }
+                            
+                            Text("设计是个很好的内容，我们要学会好好的学习，才可以很好的做到更好的设计知识。")
+                                .font(.system(size: 15, weight: .medium))
+                                .fixedSize(horizontal: false, vertical: true)
+                                .foregroundColor(.shootGray)
+                                .lineSpacing(3)
+                                .blur(radius: showContent ? 0 : 4)
+                                .onTapGesture {
+                                    withAnimation(.spring()) {
+                                        showContent.toggle()
+                                    }
+                                }
                         }
-
+                        
                         // 操作按钮
                         HStack {
                             ActionTitleButtonView(systemImage: "sparkles.rectangle.stack.fill", title: "系列") {
                                 #if os(iOS)
-                                    FeedbackManager.impact(style: .medium)
+                                    FeedbackManager.impact(style: .soft)
                                 #endif
                                 if user.login {
                                     withAnimation(.spring()) {
@@ -310,7 +353,7 @@ struct DetailView: View {
                             ActionTitleButtonView(systemImage: "square.and.arrow.down.fill", title: "下载") {
                                 if user.login {
                                     #if os(iOS)
-                                        FeedbackManager.impact(style: .medium)
+                                        FeedbackManager.impact(style: .soft)
 
                                         let imageSaver = ImageSaver()
                                         imageSaver.successHandler = {
@@ -361,10 +404,10 @@ struct DetailView: View {
                     }
                 }
             }
-        }.frame(maxWidth: 460, minHeight: 160)
+        }
             .padding()
             .padding(.bottom)
-            .padding(.top, 8)
+            .frame(maxWidth: 460, minHeight: 160)
             .frame(maxWidth: .infinity)
             .background(Color.shootWhite)
             .clipShape(RoundedRectangle(cornerRadius: 36, style: .continuous))
@@ -372,8 +415,35 @@ struct DetailView: View {
             .contentShape(Rectangle())
     }
 
+    // 图片操作按钮
+    var imageActionButtons: some View {
+        HStack(spacing: 16) {
+            Button {
+                
+            } label: {
+                Image(systemName: "rectangle.stack.fill")
+                    .font(.system(size: 16, weight: .bold))
+                    .padding(8)
+                    .background(Color.shootWhite)
+                    .clipShape(Circle())
+                    .shadow(color: .shootLight.opacity(0.4), radius: 10, x: 0, y: 0)
+            }.buttonStyle(.plain)
+
+            Button {
+                
+            } label: {
+                Image(systemName: "rectangle.fill.on.rectangle.angled.fill")
+                    .font(.system(size: 16, weight: .bold))
+                    .padding(8)
+                    .background(Color.shootWhite)
+                    .clipShape(Circle())
+                    .shadow(color: .shootLight.opacity(0.4), radius: 10, x: 0, y: 0)
+            }.buttonStyle(.plain)
+        }.padding()
+    }
+    
+    
     @State var showSave = false
-    @State var images = [["s7", "s2", "s4"], ["s5", "s2", "s4"]]
     var saveView: some View {
         VStack {
             ZStack {
@@ -510,8 +580,9 @@ struct DetailView: View {
             .padding(.vertical)
             .frame(maxWidth: 460)
             .background(Color.shootWhite)
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
             .padding()
+            .ignoresSafeArea()
             .onAppear {
                 focused = true
             }

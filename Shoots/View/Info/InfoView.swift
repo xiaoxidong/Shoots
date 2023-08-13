@@ -42,8 +42,6 @@ struct InfoView: View {
     var iOS: some View {
         NavigationView {
             content
-                .navigationTitle("编辑信息")
-                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
@@ -55,6 +53,11 @@ struct InfoView: View {
                                 .contentShape(Rectangle())
                                 .foregroundColor(.shootGray)
                         }
+                    }
+                    ToolbarItem(placement: .principal) {
+                        Text("编辑信息")
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.shootBlack)
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         saveButton
@@ -176,7 +179,7 @@ struct InfoView: View {
                     await user.uploadAvatar(image: data) { success in
                         if success {
                             Task {
-                                await user.updateInfo(name: user.name) { success in
+                                await user.updateInfo(name: name) { success in
                                     if success {
                                         mode.wrappedValue.dismiss()
                                         self.user.name = self.name
@@ -204,7 +207,7 @@ struct InfoView: View {
                         await user.uploadAvatar(image: data) { success in
                             if success {
                                 Task {
-                                    await user.updateInfo(name: user.name) { success in
+                                    await user.updateInfo(name: name) { success in
                                         if success {
                                             mode.wrappedValue.dismiss()
                                             self.user.name = self.name
@@ -218,7 +221,7 @@ struct InfoView: View {
                     }
                 } else {
                     Task {
-                        await user.updateInfo(name: user.name) { success in
+                        await user.updateInfo(name: name) { success in
                             if success {
                                 mode.wrappedValue.dismiss()
                                 self.user.name = self.name

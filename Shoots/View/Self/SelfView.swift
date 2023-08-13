@@ -40,7 +40,7 @@ struct SelfView: View {
                         Button {
                             editInfo.toggle()
                         } label: {
-                            HStack(spacing: 4) {
+                            HStack(spacing: 6) {
                                 if let avatar = user.avatar {
                                     ImageView(urlString: avatar, image: .constant(nil))
                                         .frame(width: 26, height: 26)
@@ -53,7 +53,7 @@ struct SelfView: View {
                                     } else {
                                         Text("我的图片")
                                     }
-                                }.font(.system(size: 16, weight: .medium))
+                                }.font(.system(size: 16, weight: .bold))
                                     .foregroundColor(.shootGray)
                             }
                         }

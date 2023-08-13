@@ -12,6 +12,7 @@ struct Picture: Codable, Identifiable {
     var picUrl: String
     var linkApplicationId: String?
     var linkApplicationOfficialId: String?
+    var type: String? = "gif"
 
     var compressedPicUrl: String {
         picUrl + "?x-oss-process=image/format,heic"

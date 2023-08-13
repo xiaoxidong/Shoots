@@ -25,9 +25,16 @@ struct ImageDetail: Codable {
     var uploadNum: String
     var favoriteNum: String
     var designPatternList: [PatternName]
+    
+    var lists: [PatternName] {
+        var new = designPatternList
+        new.insert(PatternName(id: "", designPatternName: "最近更新", type: "type"), at: 0)
+        return new
+    }
 
     struct PatternName: Codable, Identifiable, Hashable {
         var id: String
         var designPatternName: String
+        var type: String?
     }
 }

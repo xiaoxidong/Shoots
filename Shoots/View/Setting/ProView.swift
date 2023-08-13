@@ -471,7 +471,7 @@ struct ProView: View {
             HStack(alignment: .bottom) {
                 Button(action: {
                     #if os(iOS)
-                        FeedbackManager.impact(style: .medium)
+                        FeedbackManager.impact(style: .soft)
                     #endif
                     withAnimation(.spring(response: 0.4, dampingFraction: 0.6, blendDuration: 0.4)) {
                         selected = .drink
@@ -498,7 +498,7 @@ struct ProView: View {
 
                 Button(action: {
                     #if os(iOS)
-                        FeedbackManager.impact(style: .medium)
+                        FeedbackManager.impact(style: .soft)
                     #endif
                     withAnimation(.spring(response: 0.4, dampingFraction: 0.6, blendDuration: 0.4)) {
                         selected = .milk
@@ -524,7 +524,7 @@ struct ProView: View {
 
                 Button(action: {
                     #if os(iOS)
-                        FeedbackManager.impact(style: .medium)
+                        FeedbackManager.impact(style: .soft)
                     #endif
                     withAnimation(.spring(response: 0.4, dampingFraction: 0.6, blendDuration: 0.4)) {
                         selected = .coffee
@@ -550,7 +550,7 @@ struct ProView: View {
 
                 Button(action: {
                     #if os(iOS)
-                        FeedbackManager.impact(style: .medium)
+                        FeedbackManager.impact(style: .soft)
                     #endif
                     withAnimation(.spring(response: 0.4, dampingFraction: 0.6, blendDuration: 0.4)) {
                         selected = .rich

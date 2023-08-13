@@ -1,5 +1,5 @@
 //
-//  SearchView.swift
+//  SheetSearchView.swift
 //  Shoots
 //
 //  Created by XiaoDong Yuan on 2023/3/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FullScreenSearchView: View {
+struct SheetSearchView: View {
     @State var searchText: String = ""
     @Environment(\.dismiss) var dismiss
     var body: some View {
@@ -15,13 +15,18 @@ struct FullScreenSearchView: View {
             VStack {
                 VStack {
                     HStack {
-                        TextField("输入搜索内容", text: $searchText)
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .padding(.leading, 4)
+                                .foregroundColor(.gray)
+                            TextField("搜索应用或设计模式", text: $searchText)
+                        }.padding(.vertical, 6)
+                            .background(.gray.opacity(0.16), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                         Button {
                             dismiss()
                         } label: {
                             Text("取消")
                                 .foregroundColor(.shootBlue)
-                                .bold()
                         }
                     }.padding(.horizontal)
                     Divider()
@@ -34,12 +39,12 @@ struct FullScreenSearchView: View {
     }
 }
 
-struct FullScreenSearchView_Previews: PreviewProvider {
+struct SheetSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        FullScreenSearchView()
+        SheetSearchView()
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
-        FullScreenSearchView()
+        SheetSearchView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
     }

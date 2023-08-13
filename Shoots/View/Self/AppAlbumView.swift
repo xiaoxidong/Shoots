@@ -250,7 +250,7 @@ struct AppAlbumView: View {
                     Task {
                         await selfAppDetail.deletePics(ids: selected) { success in
                             if success {
-                                toastText = "成功删除"
+                                toastText = "删除成功"
                                 alertType = .success(Color.shootBlack)
                                 showToast = true
                                 selected.removeAll()

@@ -86,13 +86,7 @@ struct LoginView: View {
                     let firstName = credentials.fullName?.givenName
                     let lastName = credentials.fullName?.familyName
 
-                    let langStr = Locale.current.identifier
-                    var space = " "
-                    if langStr == "zh" || langStr == "zh-HK" {
-                        space = ""
-                    }
-
-                    let name = "\(firstName ?? "")\(space)\(lastName ?? "")"
+                    let name = "\(firstName ?? "")\(lastName ?? "")"
                     user.login(appleUserId: userID, identityToken: identityTokenString, email: email ?? "", fullName: name) { success in
                         if success {
                             // 登录成功
@@ -116,9 +110,9 @@ struct LoginView: View {
             .padding(.horizontal)
             Button {
                 #if os(iOS)
-                    UIApplication.shared.open(url)
+                UIApplication.shared.open(url)
                 #else
-                    NSWorkspace.shared.open(url)
+                NSWorkspace.shared.open(url)
                 #endif
             } label: {
                 Text("注册即同意 ")
