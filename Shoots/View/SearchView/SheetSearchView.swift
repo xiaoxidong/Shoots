@@ -44,8 +44,12 @@ struct SheetSearchView_Previews: PreviewProvider {
         SheetSearchView()
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
+            .environmentObject(InfoViewModel())
+            .environmentObject(SearchViewModel())
         SheetSearchView()
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
+            .environmentObject(InfoViewModel())
+            .environmentObject(SearchViewModel())
     }
 }

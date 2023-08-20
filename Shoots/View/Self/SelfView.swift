@@ -11,8 +11,8 @@ struct SelfView: View {
     @State var showTag = false
     @Environment(\.dismiss) var dismiss
     #if os(iOS)
-        @Environment(\.horizontalSizeClass) var horizontalSizeClass
-        @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
     @StateObject var selfPic: SelfViewModel = .init()
     @EnvironmentObject var user: UserViewModel
@@ -73,15 +73,26 @@ struct SelfView: View {
                     }
                 }
                 .sheet(isPresented: $editInfo) {
-                    InfoView {
-//                        toastText = "更新成功"
-//                        showToast = true
-                        Task {
-                            await user.getInfo()
+                    if #available(iOS 16.0, *) {
+                        InfoView {
+    //                        toastText = "更新成功"
+    //                        showToast = true
+                            Task {
+                                await user.getInfo()
+                            }
                         }
+                        .presentationDetents([.medium])
+                        .interactiveDismissDisabled()
+                    } else {
+                        InfoView {
+    //                        toastText = "更新成功"
+    //                        showToast = true
+                            Task {
+                                await user.getInfo()
+                            }
+                        }
+                        .interactiveDismissDisabled()
                     }
-                    .presentationDetents([.medium])
-                    .interactiveDismissDisabled()
                 }
         #else
             VStack {

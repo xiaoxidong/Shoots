@@ -28,6 +28,16 @@ struct UploadView: View {
     @State var toastText = ""
     @State var alertType: AlertToast.AlertType = .success(Color.shootBlack)
     var body: some View {
+        if #available(iOS 16.0, *) {
+            content
+                .toolbar(.hidden, for: .navigationBar)
+        } else {
+            content
+                .navigationBarHidden(true)
+        }
+    }
+    
+    var content: some View {
         TabView(selection: $selection) {
             ForEach(uploadData.indices, id: \.self) { indice in
                 Image(uiImage: UIImage(data: uploadData[indice].image)!)
@@ -38,7 +48,6 @@ struct UploadView: View {
                     .tag(indice)
             }
         }.tabViewStyle(.page(indexDisplayMode: .never))
-            .toolbar(.hidden, for: .navigationBar)
             .onTapGesture {
                 textFocused = .none
             }

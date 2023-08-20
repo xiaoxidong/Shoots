@@ -52,9 +52,9 @@ struct DetailView: View {
                     }
                 }
             }
-//            .overlay(alignment: .topTrailing) {
-//                imageActionButtons
-//            }
+            .overlay(alignment: .topTrailing) {
+                imageActionButtons
+            }
             .overlay(alignment: .bottom) {
                 infoView
                     .offset(y: showDetail ? 0 : 1000)
@@ -323,6 +323,7 @@ struct DetailView: View {
                             Spacer(minLength: 0)
                             if let image = image {
                                 #if os(iOS)
+                                if #available(iOS 16.0, *) {
                                     ShareLink(item: Image(uiImage: image), preview: SharePreview("Shoots", image: Image(uiImage: image))) {
                                         VStack {
                                             Image(systemName: "square.and.arrow.up.circle.fill")
@@ -334,6 +335,9 @@ struct DetailView: View {
                                                 .foregroundColor(.shootBlack)
                                         }
                                     }.buttonStyle(.plain)
+                                } else {
+                                    // TODO:
+                                }
                                 #else
                                     ShareLink(item: Image(nsImage: image), preview: SharePreview("Shoots", image: Image(nsImage: image))) {
                                         VStack {

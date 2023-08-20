@@ -21,7 +21,7 @@ struct InfoView: View {
     @State private var showEditor = false
     @FocusState var focused: Bool
 
-    @Environment(\.presentationMode) var mode
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var user: UserViewModel
     @State private var name: String = ""
     var body: some View {
@@ -45,7 +45,7 @@ struct InfoView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
-                            mode.wrappedValue.dismiss()
+                            dismiss()
                         } label: {
                             Text("取消")
                                 .font(.system(size: 16, weight: .bold))
@@ -181,7 +181,7 @@ struct InfoView: View {
                             Task {
                                 await user.updateInfo(name: name) { success in
                                     if success {
-                                        mode.wrappedValue.dismiss()
+                                        dismiss()
                                         self.user.name = self.name
                                         user.updating = false
                                         action()
@@ -209,7 +209,7 @@ struct InfoView: View {
                                 Task {
                                     await user.updateInfo(name: name) { success in
                                         if success {
-                                            mode.wrappedValue.dismiss()
+                                            dismiss()
                                             self.user.name = self.name
                                             user.updating = false
                                             action()
@@ -223,7 +223,7 @@ struct InfoView: View {
                     Task {
                         await user.updateInfo(name: name) { success in
                             if success {
-                                mode.wrappedValue.dismiss()
+                                dismiss()
                                 self.user.name = self.name
                                 user.updating = false
                                 action()

@@ -23,21 +23,34 @@ struct ContentView: View {
     @State var toastText = ""
     @State var alertType: AlertToast.AlertType = .success(Color.shootBlack)
     #if os(iOS)
-        @Environment(\.horizontalSizeClass) var horizontalSizeClass
-        @Environment(\.verticalSizeClass) var verticalSizeClass
-        @State var selectedImages: [UIImage] = []
-        @State var selectedAssets: [PHAsset] = []
-        @State var uploadData: [LocalImageData] = []
-        @State var showUploadAction = false
-        @AppStorage("askToDelete") var askToDelete: Bool = true
-        @AppStorage("deletePicsUploaded") var deletePicsUploaded: Bool = false
-        @State var showAsk = false
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    @State var selectedImages: [UIImage] = []
+    @State var selectedAssets: [PHAsset] = []
+    @State var uploadData: [LocalImageData] = []
+    @State var showUploadAction = false
+    @AppStorage("askToDelete") var askToDelete: Bool = true
+    @AppStorage("deletePicsUploaded") var deletePicsUploaded: Bool = false
+    @State var showAsk = false
+    @State var showAudit = false
     #endif
     var body: some View {
         NavigationView {
             #if os(iOS)
                 if horizontalSizeClass == .compact {
                     iOSHomeView
+                        .overlay(
+                            Button(action: {
+                                FeedbackManager.impact(style: .soft)
+                                showAudit.toggle()
+                            }, label: {
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.system(size: 36))
+                                    .background(Color.white)
+                                    .clipShape(Circle())
+                            }).padding()
+                            , alignment: .bottomTrailing
+                        )
                 } else {
                     iPadHomeView
                 }
@@ -45,10 +58,10 @@ struct ContentView: View {
                 iPadHomeView
             #endif
         }
-        .overlay(
+        .overlay {
             homeNew
-        )
-        .overlay(
+        }
+        .overlay(alignment: .top) {
             Color.black
                 .frame(height: 200)
                 .opacity(uploadOptions ? 0.01 : 0)
@@ -57,9 +70,8 @@ struct ContentView: View {
                         uploadOptions = false
                         uploadisActive = false
                     }
-                },
-            alignment: .top
-        )
+                }
+        }
         #if os(iOS)
         .overlay(uploadingView, alignment: .bottom)
         .fullScreenCover(isPresented: $customUpload, content: {
@@ -70,14 +82,14 @@ struct ContentView: View {
                 .animation(.spring(), value: uploadisActive || showAsk)
                 .ignoresSafeArea()
         }
-        .overlay(
+        .overlay {
             Group {
                 if showAsk {
                     askToDeleteView
                         .transition(.scale(scale: 0.9).combined(with: .opacity))
                 }
             }
-        )
+        }
         .fullScreenCover(isPresented: $uploadisActive, onDismiss: {
             withAnimation(.spring()) {
                 uploadisActive = false
@@ -127,13 +139,22 @@ struct ContentView: View {
             }
         })
         .sheet(isPresented: $user.editInfo) {
-            InfoView {
-                toastText = "更新成功"
-                showToast = true
+            if #available(iOS 16.0, *) {
+                InfoView {
+                    toastText = "更新成功"
+                    showToast = true
+                }
+                .presentationDetents([.medium])
+                .interactiveDismissDisabled()
+            } else {
+                InfoView {
+                    toastText = "更新成功"
+                    showToast = true
+                }
             }
-            .presentationDetents([.medium])
-            .presentationDetents([.medium])
-            .interactiveDismissDisabled()
+        }
+        .fullScreenCover(isPresented: $showAudit) {
+            AuditView()
         }
         #else
         .sheet(isPresented: $user.editInfo) {
@@ -173,86 +194,92 @@ struct ContentView: View {
     }
 
     #if os(iOS)
-        var iOSHomeView: some View {
+    @ViewBuilder
+    var iOSHomeView: some View {
+        if #available(iOS 16.0, *) {
             homeFeed
                 .navigationTitle("Shoots")
                 .toolbar(showNavigation ? .visible : .hidden, for: .automatic)
                 .animation(.easeIn(duration: 0.3), value: showNavigation)
+        } else {
+            homeFeed
+                .navigationTitle("Shoots")
         }
-
-        var askToDeleteView: some View {
-            VStack(spacing: 26) {
-                Text("删除已上传截图")
+    }
+    
+    var askToDeleteView: some View {
+        VStack(spacing: 26) {
+            Text("删除已上传截图")
+                .font(.system(size: 16, weight: .medium))
+                .foregroundColor(.shootBlack)
+            
+            VStack(spacing: 16) {
+                Text("上传完成之后，删除截图相册内的截图？")
                     .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.shootBlack)
-
-                VStack(spacing: 16) {
-                    Text("上传完成之后，删除截图相册内的截图？")
-                        .font(.system(size: 16, weight: .medium))
-                        .lineSpacing(4)
-
-                    Toggle(isOn: $deletePicsUploaded, label: {
-                        Text("每次都删除")
-                    }).toggleStyle(CheckToggleStyle())
-                        .onChange(of: deletePicsUploaded, perform: { newValue in
-                            if newValue {
-                                askToDelete = false
-                            }
-                        })
-                }.font(.system(size: 15, weight: .medium))
-                    .foregroundColor(.shootGray)
-
-                HStack(spacing: 56) {
-                    Button {
-                        withAnimation(.spring()) {
-                            showAsk = false
+                    .lineSpacing(4)
+                
+                Toggle(isOn: $deletePicsUploaded, label: {
+                    Text("每次都删除")
+                }).toggleStyle(CheckToggleStyle())
+                    .onChange(of: deletePicsUploaded, perform: { newValue in
+                        if newValue {
                             askToDelete = false
-                            deletePicsUploaded = false
                         }
-                    } label: {
-                        Text("不在询问")
-                            .font(.system(size: 14, weight: .medium))
-                            .padding(.horizontal, 22)
-                            .padding(.vertical, 10)
-                            .foregroundColor(.white)
-                            .textCase(.uppercase)
-                            .background(Color.shootBlack.opacity(0.4))
-                            .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
-                    }.buttonStyle(.plain)
-                    Button {
-                        withAnimation(.spring()) {
-                            showAsk = false
-                            deleteUploadedImages()
-                        }
-                    } label: {
-                        Text("删除")
-                            .font(.system(size: 14, weight: .medium))
-                            .padding(.horizontal, 22)
-                            .padding(.vertical, 10)
-                            .foregroundColor(.white)
-                            .background(Color.shootRed)
-                            .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
-                    }.buttonStyle(.plain)
-                }
-            }.padding()
-                .padding(.vertical, 16)
-                .frame(maxWidth: 460)
-                .background(Color.shootWhite)
-                .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
-                .padding()
-        }
-
-        func deleteUploadedImages() {
-            PHPhotoLibrary.shared().performChanges({
-                PHAssetChangeRequest.deleteAssets(selectedAssets as NSFastEnumeration)
-            }, completionHandler: { success, error in
-                print(success ? "Success" : error)
-                if success {
-                    toastText = "删除成功"
-                    showToast = true
-                }
-            })
-        }
+                    })
+            }.font(.system(size: 15, weight: .medium))
+                .foregroundColor(.shootGray)
+            
+            HStack(spacing: 56) {
+                Button {
+                    withAnimation(.spring()) {
+                        showAsk = false
+                        askToDelete = false
+                        deletePicsUploaded = false
+                    }
+                } label: {
+                    Text("不在询问")
+                        .font(.system(size: 14, weight: .medium))
+                        .padding(.horizontal, 22)
+                        .padding(.vertical, 10)
+                        .foregroundColor(.white)
+                        .textCase(.uppercase)
+                        .background(Color.shootBlack.opacity(0.4))
+                        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+                }.buttonStyle(.plain)
+                Button {
+                    withAnimation(.spring()) {
+                        showAsk = false
+                        deleteUploadedImages()
+                    }
+                } label: {
+                    Text("删除")
+                        .font(.system(size: 14, weight: .medium))
+                        .padding(.horizontal, 22)
+                        .padding(.vertical, 10)
+                        .foregroundColor(.white)
+                        .background(Color.shootRed)
+                        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+                }.buttonStyle(.plain)
+            }
+        }.padding()
+            .padding(.vertical, 16)
+            .frame(maxWidth: 460)
+            .background(Color.shootWhite)
+            .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
+            .padding()
+    }
+    
+    func deleteUploadedImages() {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.deleteAssets(selectedAssets as NSFastEnumeration)
+        }, completionHandler: { success, error in
+            print(success ? "Success" : error)
+            if success {
+                toastText = "删除成功"
+                showToast = true
+            }
+        })
+    }
     #endif
 
     @State var uploadisActive = false
@@ -298,84 +325,107 @@ struct ContentView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        FeedbackManager.impact(style: .soft)
-                        withAnimation(.spring()) {
-                            uploadisActive = true
+                    if false {
+                        Button {
+                            FeedbackManager.impact(style: .soft)
+                            withAnimation(.spring()) {
+                                uploadisActive = true
+                            }
+                            /*
+                             if showCustomUpload {
+                             withAnimation(.spring()) {
+                             uploadOptions.toggle()
+                             }
+                             } else {
+                             withAnimation(.spring()) {
+                             uploadisActive = true
+                             }
+                             }
+                             */
+                        } label: {
+                            Image("upload")
+                                .padding(.vertical, 6)
+                                .padding(.leading, 6)
+                                .contentShape(Rectangle())
                         }
-                        /*
-                         if showCustomUpload {
-                         withAnimation(.spring()) {
-                         uploadOptions.toggle()
-                         }
-                         } else {
-                         withAnimation(.spring()) {
-                         uploadisActive = true
-                         }
-                         }
-                         */
-                    } label: {
-                        Image("upload")
-                            .padding(.vertical, 6)
-                            .padding(.leading, 6)
-                            .contentShape(Rectangle())
+                    } else {
+                        Menu {
+                            Button {
+                                FeedbackManager.impact(style: .soft)
+                                uploadisActive.toggle()
+                            } label: {
+                                Label("上传截图 ", image: "upload")
+                            }
+                            
+                            Button {
+                                FeedbackManager.impact(style: .soft)
+                                customUpload.toggle()
+                            } label: {
+                                Label("交互设计", image: "tags")
+                            }
+                        } label: {
+                            Image("upload")
+                                .padding(.vertical, 6)
+                                .padding(.leading, 6)
+                                .contentShape(Rectangle())
+                        }
                     }
                     /*
-                     if showCustomUpload {
-                     if horizontalSizeClass == .compact {
-                     Button {
-                     FeedbackManager.impact(style: .soft)
-                     withAnimation(.spring()) {
-                     uploadOptions.toggle()
-                     }
-                     } label: {
-                     Image("upload")
-                     .padding(.vertical, 6)
-                     .padding(.leading, 6)
-                     .contentShape(Rectangle())
-                     }
-                     } else {
-                     Menu {
-                     Button {
-                     FeedbackManager.impact(style: .soft)
-                     uploadisActive.toggle()
-                     } label: {
-                     Label("上传截图", image: "upload")
-                     }
-                     
-                     Button {
-                     FeedbackManager.impact(style: .soft)
-                     customUpload.toggle()
-                     } label: {
-                     Label("整理截图", image: "tags")
-                     }
-                     } label: {
-                     Image("upload")
-                     .padding(.vertical, 6)
-                     .padding(.leading, 6)
-                     .contentShape(Rectangle())
-                     }
-                     }
-                     } else {
-                     Button {
-                     FeedbackManager.impact(style: .soft)
-                     if showCustomUpload {
-                     withAnimation(.spring()) {
-                     uploadOptions.toggle()
-                     }
-                     } else {
-                     withAnimation(.spring()) {
-                     uploadisActive = true
-                     }
-                     }
-                     } label: {
-                     Image("upload")
-                     .padding(.vertical, 6)
-                     .padding(.leading, 6)
-                     .contentShape(Rectangle())
-                     }
-                     }
-                     */
+                    if showCustomUpload {
+                        if horizontalSizeClass == .compact {
+                            Button {
+                                FeedbackManager.impact(style: .soft)
+                                withAnimation(.spring()) {
+                                    uploadOptions.toggle()
+                                }
+                            } label: {
+                                Image("upload")
+                                    .padding(.vertical, 6)
+                                    .padding(.leading, 6)
+                                    .contentShape(Rectangle())
+                            }
+                        } else {
+                            Menu {
+                                Button {
+                                    FeedbackManager.impact(style: .soft)
+                                    uploadisActive.toggle()
+                                } label: {
+                                    Label("上传截图", image: "upload")
+                                }
+                                
+                                Button {
+                                    FeedbackManager.impact(style: .soft)
+                                    customUpload.toggle()
+                                } label: {
+                                    Label("整理截图", image: "tags")
+                                }
+                            } label: {
+                                Image("upload")
+                                    .padding(.vertical, 6)
+                                    .padding(.leading, 6)
+                                    .contentShape(Rectangle())
+                            }
+                        }
+                    } else {
+                        Button {
+                            FeedbackManager.impact(style: .soft)
+                            if showCustomUpload {
+                                withAnimation(.spring()) {
+                                    uploadOptions.toggle()
+                                }
+                            } else {
+                                withAnimation(.spring()) {
+                                    uploadisActive = true
+                                }
+                            }
+                        } label: {
+                            Image("upload")
+                                .padding(.vertical, 6)
+                                .padding(.leading, 6)
+                                .contentShape(Rectangle())
+                        }
+                    }
+                    */
                 }
                 #else
                 ToolbarItem(placement: .navigation) {
@@ -412,7 +462,7 @@ struct ContentView: View {
                 search.search(text: searchText)
                 self.resignFirstResponder()
             }
-            .overlay(
+            .overlay(alignment: .bottom) {
                 Group {
                     if !user.login {
                         LoginView(login: .constant(true), showBG: false, successAction: {
@@ -425,12 +475,11 @@ struct ContentView: View {
                         .offset(y: showNavigation ? 0 : 1000)
                         .animation(.easeIn(duration: 1), value: showNavigation)
                     }
-                },
-                alignment: .bottom
-            )
-            .overlay(
-                uploadView, alignment: .bottom
-            )
+                }
+            }
+            .overlay(alignment: .bottom) {
+                uploadView
+            }
         #else
             .searchable(text: $searchText, placement: .toolbar, prompt: "搜索应用或设计模式")
         //        {
@@ -440,7 +489,7 @@ struct ContentView: View {
             .onSubmit(of: .search) {
                 search.search(text: searchText)
             }
-            .overlay(
+            .overlay(alignment: .bottom) {
                 Group {
                     if showLogin {
                         LoginView(login: $showLogin, showBG: true, successAction: {
@@ -451,9 +500,8 @@ struct ContentView: View {
                             showToast = true
                         })
                     }
-                },
-                alignment: .bottom
-            )
+                }
+            }
             .sheet(isPresented: $showMacSelf) {
                 SelfView().sheetFrameForMac()
             }

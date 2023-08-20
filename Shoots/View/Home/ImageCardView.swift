@@ -16,15 +16,14 @@ struct ImageCardView: View {
     @AppStorage("homeModel") var homeModel = 0
     @AppStorage("showReviewAlert") var showReviewAlert = 0
     @State var showDetail: Bool = false
-    @Environment(\.requestReview) var requestReview
+//    @Environment(\.requestReview) var requestReview
 
     var body: some View {
         ImageView(urlString: shoot.compressedPicUrl, image: .constant(nil))
-//            .overlay(
-//                Image(["gif", "new", ""].randomElement()!)
-//                    .padding(6)
-//                , alignment: .topTrailing
-//            )
+            .overlay(alignment: .topTrailing) {
+                Image(["gif", "new", ""].randomElement()!)
+                    .padding(6)
+            }
             .sheet(isPresented: $showDetail) {
                 DetailView(shoot: shoot)
                     .sheetFrameForMac()
@@ -35,7 +34,7 @@ struct ImageCardView: View {
                     showReviewAlert += 1
                 } else if showReviewAlert == 10 {
                     // 显示引导评价
-                    requestReview()
+//                    requestReview()
                     showReviewAlert = 11
                 }
             }

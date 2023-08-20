@@ -25,7 +25,7 @@ struct SuggestionButtonView: View {
                     .foregroundColor(.shootBlack)
                 Spacer()
                 Image(systemName: "chevron.right")
-                    .bold()
+                    .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.shootGray)
             }
             .padding(.horizontal)

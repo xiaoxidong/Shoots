@@ -19,7 +19,6 @@ struct ShootsApp: App {
     @State var isInserted = true
     @State var isMenuPresented: Bool = false
     @AppStorage("statusIcon") var statusIcon: String = "photo.fill.on.rectangle.fill"
-    @Environment(\.openWindow) var openWindow
 
     @AppStorage("colorMode") private var colorMode: ShootColorScheme = .none
     @Environment(\.colorScheme) var colorScheme

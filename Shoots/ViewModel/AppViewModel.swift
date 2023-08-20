@@ -20,7 +20,12 @@ class AppViewModel: ObservableObject {
 
     // 应用基本信息
     func info(id: String) async {
-        let code = Locale.current.language.region?.identifier ?? "us"
+        var code = ""
+        if #available(iOS 16, *) {
+            code = Locale.current.language.region?.identifier ?? "us"
+        } else {
+            code = "us"
+        }
         AF.request("https://itunes.apple.com/\(code)/lookup?id=\(id)", method: .get, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: AppDetailInfo.self) { response in
             switch response.result {
             case let .success(object):

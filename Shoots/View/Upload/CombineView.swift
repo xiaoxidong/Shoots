@@ -142,7 +142,7 @@ struct CombineView: View {
                         }
                 }.frame(maxWidth: .infinity)
             }.padding(.vertical, 36)
-        }.scrollDisabled(scrollDisabled)
+        }//.scrollDisabled(scrollDisabled)
             .onLongPressGesture {
                 withAnimation(.spring()) {
                     move.toggle()

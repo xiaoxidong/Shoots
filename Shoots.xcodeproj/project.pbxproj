@@ -83,7 +83,7 @@
 		4E42A6D429D1313D00BEC185 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99303F29C9EBC400D99DA9 /* FeedView.swift */; };
 		4E42A6D529D1313D00BEC185 /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F8E29C8831500B51F4B /* ImageCardView.swift */; };
 		4E42A6D629D1314100BEC185 /* IPadSearchDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */; };
-		4E42A6D729D1314100BEC185 /* FullScreenSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304729C9FBCC00D99DA9 /* FullScreenSearchView.swift */; };
+		4E42A6D729D1314100BEC185 /* SheetSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304729C9FBCC00D99DA9 /* SheetSearchView.swift */; };
 		4E42A6D829D1314100BEC185 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9729C8943000B51F4B /* SearchView.swift */; };
 		4E42A6D929D1314500BEC185 /* ActionTitleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE49F9229C88BA700B51F4B /* ActionTitleButtonView.swift */; };
 		4E42A6DA29D1314500BEC185 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B1F6629C7EA4F00A772CE /* DetailView.swift */; };
@@ -428,7 +428,7 @@
 		4E99304229C9F02000D99DA9 /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304129C9F02000D99DA9 /* FlowView.swift */; };
 		4E99304429C9F06300D99DA9 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304329C9F06300D99DA9 /* Flow.swift */; };
 		4E99304629C9F2CC00D99DA9 /* FolderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304529C9F2CC00D99DA9 /* FolderCardView.swift */; };
-		4E99304829C9FBCC00D99DA9 /* FullScreenSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304729C9FBCC00D99DA9 /* FullScreenSearchView.swift */; };
+		4E99304829C9FBCC00D99DA9 /* SheetSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304729C9FBCC00D99DA9 /* SheetSearchView.swift */; };
 		4E99304B29CA003100D99DA9 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304A29CA003100D99DA9 /* String+Extension.swift */; };
 		4E99304D29CA075D00D99DA9 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99304C29CA075D00D99DA9 /* UploadView.swift */; };
 		4E99D1DF2A320D410086BFC2 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99D1DE2A320D410086BFC2 /* Report.swift */; };
@@ -474,6 +474,15 @@
 		4EC939AB2A7D043600CD5A90 /* TagField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC939A92A7D043600CD5A90 /* TagField.swift */; };
 		4EC939AC2A7D043600CD5A90 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC939AA2A7D043600CD5A90 /* Model.swift */; };
 		4EC939AD2A7D0E8400CD5A90 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC939AA2A7D043600CD5A90 /* Model.swift */; };
+		4EC9DBC12A920461007990B1 /* AuditPicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9DBC02A920461007990B1 /* AuditPicsViewModel.swift */; };
+		4EC9DBC32A9204A0007990B1 /* VerifyResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9DBC22A9204A0007990B1 /* VerifyResponseData.swift */; };
+		4EC9DBC52A9204DC007990B1 /* Audit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9DBC42A9204DC007990B1 /* Audit.swift */; };
+		4EC9DBC72A9205FB007990B1 /* AuditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9DBC62A9205FB007990B1 /* AuditView.swift */; };
+		4EC9DBCE2A9208B3007990B1 /* CardSwipeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9DBCA2A9208B3007990B1 /* CardSwipeDirection.swift */; };
+		4EC9DBCF2A9208B3007990B1 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9DBCB2A9208B3007990B1 /* CardView.swift */; };
+		4EC9DBD02A9208B3007990B1 /* CardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9DBCC2A9208B3007990B1 /* CardStack.swift */; };
+		4EC9DBD12A9208B3007990B1 /* CardStackConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9DBCD2A9208B3007990B1 /* CardStackConfiguration.swift */; };
+		4EC9DBD52A920B63007990B1 /* AuditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9DBD42A920B63007990B1 /* AuditCardView.swift */; };
 		4ED4B08B29D3C0BA005D9758 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */; };
 		4ED4B08D29D3CAB1005D9758 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 4ED4B08C29D3CAB1005D9758 /* Refresh */; };
 		4ED4B08E29D3CAC0005D9758 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */; };
@@ -962,7 +971,7 @@
 		4E99304129C9F02000D99DA9 /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
 		4E99304329C9F06300D99DA9 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		4E99304529C9F2CC00D99DA9 /* FolderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCardView.swift; sourceTree = "<group>"; };
-		4E99304729C9FBCC00D99DA9 /* FullScreenSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenSearchView.swift; sourceTree = "<group>"; };
+		4E99304729C9FBCC00D99DA9 /* SheetSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetSearchView.swift; sourceTree = "<group>"; };
 		4E99304A29CA003100D99DA9 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		4E99304C29CA075D00D99DA9 /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 		4E99D1DE2A320D410086BFC2 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
@@ -980,6 +989,15 @@
 		4EC938682A7A05C400CD5A90 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
 		4EC939A92A7D043600CD5A90 /* TagField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagField.swift; sourceTree = "<group>"; };
 		4EC939AA2A7D043600CD5A90 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		4EC9DBC02A920461007990B1 /* AuditPicsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditPicsViewModel.swift; sourceTree = "<group>"; };
+		4EC9DBC22A9204A0007990B1 /* VerifyResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyResponseData.swift; sourceTree = "<group>"; };
+		4EC9DBC42A9204DC007990B1 /* Audit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audit.swift; sourceTree = "<group>"; };
+		4EC9DBC62A9205FB007990B1 /* AuditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditView.swift; sourceTree = "<group>"; };
+		4EC9DBCA2A9208B3007990B1 /* CardSwipeDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardSwipeDirection.swift; sourceTree = "<group>"; };
+		4EC9DBCB2A9208B3007990B1 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		4EC9DBCC2A9208B3007990B1 /* CardStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStack.swift; sourceTree = "<group>"; };
+		4EC9DBCD2A9208B3007990B1 /* CardStackConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStackConfiguration.swift; sourceTree = "<group>"; };
+		4EC9DBD42A920B63007990B1 /* AuditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditCardView.swift; sourceTree = "<group>"; };
 		4ED4B08A29D3C0BA005D9758 /* LoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
 		4ED4B08F29D3D2ED005D9758 /* Shoots-Mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Shoots-Mac-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4ED4B09129D3E98B005D9758 /* NSWindow Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow Extensions.swift"; sourceTree = "<group>"; };
@@ -1196,6 +1214,7 @@
 				4E63A8582A258BE1001A0FD4 /* AppImageResponseData.swift */,
 				4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */,
 				4E8B59522A813FCD0049FCF3 /* SelfInfoResponseData.swift */,
+				4EC9DBC22A9204A0007990B1 /* VerifyResponseData.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1899,7 +1918,7 @@
 			children = (
 				4EE49F9729C8943000B51F4B /* SearchView.swift */,
 				4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */,
-				4E99304729C9FBCC00D99DA9 /* FullScreenSearchView.swift */,
+				4E99304729C9FBCC00D99DA9 /* SheetSearchView.swift */,
 				4EE7C0CE2A3ABC6500140FFD /* SearchSuggestionView.swift */,
 				4E4430482A6F986500835CA2 /* SuggestionButtonView.swift */,
 				4EE7C0D12A3AC2A700140FFD /* SearchResultView.swift */,
@@ -1965,6 +1984,27 @@
 				4EC939AA2A7D043600CD5A90 /* Model.swift */,
 			);
 			path = TagField;
+			sourceTree = "<group>";
+		};
+		4EC9DBC82A920886007990B1 /* Audit */ = {
+			isa = PBXGroup;
+			children = (
+				4EC9DBC62A9205FB007990B1 /* AuditView.swift */,
+				4EC9DBD42A920B63007990B1 /* AuditCardView.swift */,
+				4EC9DBC92A9208B3007990B1 /* CardStack */,
+			);
+			path = Audit;
+			sourceTree = "<group>";
+		};
+		4EC9DBC92A9208B3007990B1 /* CardStack */ = {
+			isa = PBXGroup;
+			children = (
+				4EC9DBCA2A9208B3007990B1 /* CardSwipeDirection.swift */,
+				4EC9DBCB2A9208B3007990B1 /* CardView.swift */,
+				4EC9DBCC2A9208B3007990B1 /* CardStack.swift */,
+				4EC9DBCD2A9208B3007990B1 /* CardStackConfiguration.swift */,
+			);
+			path = CardStack;
 			sourceTree = "<group>";
 		};
 		4ED4B09029D3E98B005D9758 /* MenuBarExtraAccess */ = {
@@ -2057,6 +2097,7 @@
 				4EE49FA029C89A3A00B51F4B /* Self */,
 				4E8B59742A850EDF0049FCF3 /* Info */,
 				4EE49FA429C89CB700B51F4B /* Setting */,
+				4EC9DBC82A920886007990B1 /* Audit */,
 				4E58F91E29CB372E0087E902 /* Global */,
 			);
 			path = View;
@@ -2083,6 +2124,7 @@
 				4EE7C0AB2A397B5200140FFD /* ReportViewModel.swift */,
 				4EE7C0CB2A3AB98A00140FFD /* SearchViewModel.swift */,
 				4E44306E2A74EF4D00835CA2 /* DeleteViewModel.swift */,
+				4EC9DBC02A920461007990B1 /* AuditPicsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2103,6 +2145,7 @@
 				4E63A8502A24B0F3001A0FD4 /* ImageDetail.swift */,
 				4E63A8542A24B66A001A0FD4 /* AppDetail.swift */,
 				4E8B594F2A813F940049FCF3 /* SelfInfo.swift */,
+				4EC9DBC42A9204DC007990B1 /* Audit.swift */,
 				4E2B6EC22A189B82000BC713 /* Response */,
 				4EE7C0C42A39817B00140FFD /* Service */,
 				4EE7C0B32A397F3C00140FFD /* More */,
@@ -2501,6 +2544,7 @@
 				4E4940AA29E3A7200058391E /* PHAsset+ZLPhotoBrowser.swift in Sources */,
 				4E99D1DF2A320D410086BFC2 /* Report.swift in Sources */,
 				4E44306F2A74EF4D00835CA2 /* DeleteViewModel.swift in Sources */,
+				4EC9DBC32A9204A0007990B1 /* VerifyResponseData.swift in Sources */,
 				4E49408B29E3A7200058391E /* ZLEditImageConfiguration.swift in Sources */,
 				4EC939AB2A7D043600CD5A90 /* TagField.swift in Sources */,
 				4E54163F29CFFD800053BE9E /* IPadSearchDefaultView.swift in Sources */,
@@ -2530,6 +2574,7 @@
 				4E5CF71529CD5AC000A4E0DE /* TimeInterval+Formatter.swift in Sources */,
 				4E5CF69429CD58D100A4E0DE /* EnvironmentValues+blurEffectStyle.swift in Sources */,
 				4E5CF6A029CD58D100A4E0DE /* BlurView.swift in Sources */,
+				4EC9DBC12A920461007990B1 /* AuditPicsViewModel.swift in Sources */,
 				4E5DE51A29C19680005495F0 /* HomeView.swift in Sources */,
 				4E5CF70029CD5AC000A4E0DE /* AssociatedValues.swift in Sources */,
 				4E49409C29E3A7200058391E /* ZLPhotoPreviewAnimatedTransition.swift in Sources */,
@@ -2555,6 +2600,7 @@
 				4EDDD67529DC238E00C4E14D /* ZLEditToolCells.swift in Sources */,
 				4E49408429E3A7200058391E /* ZLFetchImageOperation.swift in Sources */,
 				4E5CF6CB29CD597900A4E0DE /* PrivacyView.swift in Sources */,
+				4EC9DBCE2A9208B3007990B1 /* CardSwipeDirection.swift in Sources */,
 				4E49409B29E3A7200058391E /* ZLCustomCamera.swift in Sources */,
 				4E9B289F2A68D73C002B54FA /* ErrorView.swift in Sources */,
 				4E5CF69929CD58D100A4E0DE /* SPAlertIconHeartView.swift in Sources */,
@@ -2630,6 +2676,7 @@
 				4E5CF6A129CD58D100A4E0DE /* AlertToast.swift in Sources */,
 				4E5CF70129CD5AC000A4E0DE /* Locales.swift in Sources */,
 				4E07F81F29E0300800E72CCD /* UIImage+Extension.swift in Sources */,
+				4EC9DBD02A9208B3007990B1 /* CardStack.swift in Sources */,
 				4E5CF6C829CD594200A4E0DE /* RoundedCornersShape.swift in Sources */,
 				4EDDD67729DC238E00C4E14D /* ZLImageEditorDefine.swift in Sources */,
 				4E49409229E3A7200058391E /* ZLAddPhotoCell.swift in Sources */,
@@ -2659,6 +2706,7 @@
 				4E8B59882A850EF10049FCF3 /* ImageMoveAndScaleSheet+Extensions.swift in Sources */,
 				4EE7C08C2A3770D000140FFD /* UploadResponseData.swift in Sources */,
 				4EE7C0B92A39803800140FFD /* AppInfo.swift in Sources */,
+				4EC9DBC72A9205FB007990B1 /* AuditView.swift in Sources */,
 				4E5CF67629CD58D100A4E0DE /* CompleteTransactionsController.swift in Sources */,
 				4EE7C0A82A39796800140FFD /* FavoriteDetailViewModel.swift in Sources */,
 				4E49407C29E3A7200058391E /* ZLResultModel.swift in Sources */,
@@ -2667,7 +2715,7 @@
 				4E58F91B29CB2FF40087E902 /* CustomUploadView.swift in Sources */,
 				4E58F92229CB43A80087E902 /* SettingCellView.swift in Sources */,
 				4E5CF71729CD5AC000A4E0DE /* Int+DateComponents.swift in Sources */,
-				4E99304829C9FBCC00D99DA9 /* FullScreenSearchView.swift in Sources */,
+				4E99304829C9FBCC00D99DA9 /* SheetSearchView.swift in Sources */,
 				4E49409A29E3A7200058391E /* ZLCameraCell.swift in Sources */,
 				4E5CF6C129CD58D100A4E0DE /* DefaultsKey+Extension.swift in Sources */,
 				4E2B6ED82A18ADBF000BC713 /* LoginView.swift in Sources */,
@@ -2686,6 +2734,7 @@
 				4E58F92429CB47930087E902 /* ProView.swift in Sources */,
 				4E5CF66F29CD58D100A4E0DE /* SKProduct+LocalizedPrice.swift in Sources */,
 				4EC938692A7A05C400CD5A90 /* CheckToggleStyle.swift in Sources */,
+				4EC9DBD12A9208B3007990B1 /* CardStackConfiguration.swift in Sources */,
 				4E5CF67729CD58D100A4E0DE /* PaymentsController.swift in Sources */,
 				4E5CF68429CD58D100A4E0DE /* RotatingDotsIndicatorView.swift in Sources */,
 				4E5CF6B729CD58D100A4E0DE /* SafariViewPresentationModifier.swift in Sources */,
@@ -2698,12 +2747,14 @@
 				4E49409629E3A7200058391E /* ZLPhotoConfiguration.swift in Sources */,
 				4E99304B29CA003100D99DA9 /* String+Extension.swift in Sources */,
 				4EE7C0BD2A3980C100140FFD /* Favorite.swift in Sources */,
+				4EC9DBCF2A9208B3007990B1 /* CardView.swift in Sources */,
 				4E5CF74B29CD748600A4E0DE /* ShootBlurView.swift in Sources */,
 				4E587F272A1BAC9D00907D9D /* LocalImageData.swift in Sources */,
 				4E5CF69A29CD58D100A4E0DE /* SPAlertIconErrorView.swift in Sources */,
 				4E4940A429E3A7200058391E /* Bool+ZLPhotoBrowser.swift in Sources */,
 				4EE49F9A29C898CE00B51F4B /* SelfView.swift in Sources */,
 				4E5CF69829CD58D100A4E0DE /* SPAlertLayout.swift in Sources */,
+				4EC9DBD52A920B63007990B1 /* AuditCardView.swift in Sources */,
 				4EE2131729C8A80C007FAC6F /* FavoriteAlbumView.swift in Sources */,
 				4EDDD67029DC238E00C4E14D /* ZLWeakProxy.swift in Sources */,
 				4E49409429E3A7200058391E /* ZLThumbnailPhotoCell.swift in Sources */,
@@ -2744,6 +2795,7 @@
 				4E5CF70D29CD5AC000A4E0DE /* Date+Math.swift in Sources */,
 				4EE7C0A42A39787500140FFD /* SelfViewModel.swift in Sources */,
 				4E8B598D2A850EF10049FCF3 /* ImageAttributes.swift in Sources */,
+				4EC9DBC52A9204DC007990B1 /* Audit.swift in Sources */,
 				4E4940AB29E3A7200058391E /* UIColor+ZLPhotoBrowser.swift in Sources */,
 				4E5CF6BA29CD58D100A4E0DE /* DeviceMacOS.swift in Sources */,
 				4E8B59732A850ED70049FCF3 /* InfoView.swift in Sources */,
@@ -2996,7 +3048,7 @@
 				4E42A6F129D1317200BEC185 /* Flow.swift in Sources */,
 				4E8D79032A85D8FB004AD58F /* ImageCropperView.swift in Sources */,
 				4EE7C0992A39745C00140FFD /* DetailViewModel.swift in Sources */,
-				4E42A6D729D1314100BEC185 /* FullScreenSearchView.swift in Sources */,
+				4E42A6D729D1314100BEC185 /* SheetSearchView.swift in Sources */,
 				4EA73B1329D5C15B002901AE /* InAppProductQueryRequest.swift in Sources */,
 				4EA73B1829D5C161002901AE /* ProductsInfoController.swift in Sources */,
 				4E42A73729D14B2F00BEC185 /* TimeInterval+Formatter.swift in Sources */,
@@ -3251,10 +3303,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3301,10 +3353,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_NAME = "$(TARGET_NAME)";

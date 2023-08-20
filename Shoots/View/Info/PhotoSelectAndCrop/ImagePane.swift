@@ -93,7 +93,7 @@ public struct ImagePane: View {
         imageAttributes.image
             .resizable()
             .symbolRenderingMode(renderingMode)
-            .modifier(RenderingForegroundStyle(colors: colors, isGradient: isGradient, linearGradient: linearGradient))
+//            .modifier(RenderingForegroundStyle(colors: colors, isGradient: isGradient, linearGradient: linearGradient))
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .scaledToFill()
             .aspectRatio(contentMode: .fit)

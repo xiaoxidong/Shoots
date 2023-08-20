@@ -14,8 +14,8 @@ struct CombineSelectView: View {
 
     @Environment(\.dismiss) var dismiss
     #if os(iOS)
-        @Environment(\.horizontalSizeClass) var horizontalSizeClass
-        @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
 
     @State var combinedImage: LocalImageData? = nil

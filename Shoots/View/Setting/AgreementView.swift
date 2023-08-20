@@ -71,22 +71,22 @@ struct AgreementView: View {
     }
 
     #if os(iOS)
-        @Environment(\.horizontalSizeClass) var horizontalSizeClass
-        @Environment(\.verticalSizeClass) var verticalSizeClass
-        @Environment(\.dismiss) var dismiss
-        var closeButton: some View {
-            Group {
-                if horizontalSizeClass == .regular && verticalSizeClass == .compact {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 18))
-                            .foregroundColor(Color.shootRed)
-                    }.padding(.bottom, 12)
-                }
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.dismiss) var dismiss
+    var closeButton: some View {
+        Group {
+            if horizontalSizeClass == .regular && verticalSizeClass == .compact {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.system(size: 18))
+                        .foregroundColor(Color.shootRed)
+                }.padding(.bottom, 12)
             }
         }
+    }
     #endif
 }
 
