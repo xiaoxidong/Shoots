@@ -37,7 +37,6 @@ struct UploadView: View {
                     .tag(indice)
             }
         }.tabViewStyle(.page(indexDisplayMode: .never))
-            .toolbar(.hidden, for: .navigationBar)
             .onTapGesture {
                 appFocused = false
                 tagFocused = false
@@ -52,12 +51,21 @@ struct UploadView: View {
                         .background(Color.shootWhite)
                 }
             }
-            .safeAreaInset(edge: .bottom) {
+            .overlay(alignment: .bottom) {
                 if !uploadData.isEmpty {
                     bottomActions
-                        .padding(.bottom)
                 }
             }
+            .overlay(
+                Group {
+                    Color.black
+                        .opacity(user.uploading ? 0.2 : 0)
+                    if user.uploading {
+                        LoadingView(text: "正在上传...")
+                            .foregroundColor(.white)
+                    }
+                }
+            )
             .toast(isPresenting: $showToast) {
                 AlertToast(displayMode: .alert, type: alertType, title: toastText)
             }
@@ -151,9 +159,10 @@ struct UploadView: View {
     @FocusState var appFocused: Bool
     @FocusState var tagFocused: Bool
 
+    @State var showApp = true
     var bottomActions: some View {
         VStack(spacing: 0) {
-            if appFocused {
+            if showApp {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
                         ForEach(appRsults) { app in
@@ -164,7 +173,6 @@ struct UploadView: View {
                                     .padding(.vertical, 16)
                                     .padding(.horizontal, 16)
                                     .frame(maxWidth: .infinity, alignment: .leading)
-                                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
                                 Divider()
                             }
                             .background(Color.shootWhite)
@@ -177,9 +185,8 @@ struct UploadView: View {
                         }
                     }
                 }.frame(maxHeight: 240)
-                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
                     .shadow(color: Color.shootBlack.opacity(appFocused ? 0.06 : 0), x: 0, y: -6, blur: 10)
-            } else if tagFocused {
+            } else if !showApp {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
                         ForEach(tagRsults, id: \.self) { tag in
@@ -191,7 +198,6 @@ struct UploadView: View {
                                     .padding(.horizontal, 16)
                                     .frame(maxWidth: .infinity, alignment: .center)
                                     .background(Color.shootWhite)
-                                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
                                 Divider()
                             }.contentShape(Rectangle())
                                 .onTapGesture {
@@ -203,14 +209,16 @@ struct UploadView: View {
                         }
                     }
                 }.frame(maxHeight: 240)
-                    .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
                     .shadow(color: Color.shootBlack.opacity(tagFocused ? 0.06 : 0), x: 0, y: -6, blur: 10)
             }
             VStack(spacing: 6) {
                 Divider()
                 HStack(spacing: 8) {
-                    TextField("应用名称", text: $uploadData[selection].app)
-                        .focused($appFocused)
+                    TextField("应用名称", text: $uploadData[selection].app) { show in
+                        if show {
+                            showApp = true
+                        }
+                    }
                         .font(.system(size: 14, weight: .medium))
                         .accentColor(Color.shootBlue)
                         .frame(width: 106)
@@ -227,13 +235,13 @@ struct UploadView: View {
 //                            .contentShape(Rectangle())
 //                    }
 
-                    Button {
-                        showCombine.toggle()
-                    } label: {
-                        Image("connect")
-                            .padding(4)
-                            .contentShape(Rectangle())
-                    }
+//                    Button {
+//                        showCombine.toggle()
+//                    } label: {
+//                        Image("connect")
+//                            .padding(4)
+//                            .contentShape(Rectangle())
+//                    }
                 }.padding(.horizontal, 8).padding(.bottom, 6)
             }
             .background(Color.shootWhite)
@@ -250,7 +258,9 @@ struct UploadView: View {
             CombineSelectView(uploadImages: $uploadData, selection: $selection, updateIndicator: $updateIndicator)
         }
         .onAppear {
-            appFocused = true
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                appFocused = true
+            }
         }
     }
 
@@ -320,8 +330,6 @@ struct UploadView: View {
     }
 
     // MARK: - Tag
-
-//    @State public var tags: [String] = ["Apple", "Shoots"]
     @State private var newTag: String = ""
     var tag: some View {
         ScrollViewReader { scrollView in
@@ -350,7 +358,7 @@ struct UploadView: View {
                         }
                     }
                     TextField("换行输入多个标签", text: $newTag, onEditingChanged: { _ in
-//                            appendNewTag()
+                        showApp = false
                     }, onCommit: {
                         tagFocused = true
                         appendNewTag()

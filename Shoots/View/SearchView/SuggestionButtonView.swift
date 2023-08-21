@@ -20,7 +20,7 @@ struct SuggestionButtonView: View {
             HStack {
                 Image(systemName: image)
                     .font(.system(size: 22, weight: .bold))
-                Text(name)
+                Text(LocalizedStringKey(name))
                     .font(.system(size: 16, weight: .medium))
                     .foregroundColor(.shootBlack)
                 Spacer()

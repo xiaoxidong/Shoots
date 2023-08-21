@@ -59,7 +59,7 @@ struct IPadSearchDefaultView: View {
                        itemSpacing: 4)
             { pattern in
                 Button {
-                    searchText = pattern.designPatternName
+                    searchText = pattern.designPatternName.localized
                     search.patternID = pattern.id
                     Task {
                         await search.getPatternPics(id: pattern.id)
@@ -67,7 +67,7 @@ struct IPadSearchDefaultView: View {
                     self.resignFirstResponder()
                 } label: {
                     HStack(spacing: 2) {
-                        Text(pattern.designPatternName)
+                        Text(LocalizedStringKey(pattern.designPatternName))
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.shootBlack)
                             + Text(" (\(pattern.count))")

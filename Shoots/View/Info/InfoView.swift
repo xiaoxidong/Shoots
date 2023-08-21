@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
-struct InfoView: View {
+struct InfoView: View, DropDelegate {
     let action: () -> Void
 
     #if os(iOS)
@@ -24,6 +25,7 @@ struct InfoView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var user: UserViewModel
     @State private var name: String = ""
+    @State var dragOver = false
     var body: some View {
         #if os(iOS)
         iOS
@@ -97,42 +99,52 @@ struct InfoView: View {
     var content: some View {
         VStack(spacing: 26) {
             // TODO: 裁剪的时候如何是横版的图片，缩放的时候可能会出现白边的情况
-            Button {
-                #if os(iOS)
-                isShowingImagePicker.toggle()
-                #else
-                NSOpenPanel.openImage { (result) in
-                    if case let .success(image) = result {
-                        self.inputImage = image
-                        showEditor = true
+            VStack(spacing: 12) {
+                Button {
+                    #if os(iOS)
+                    isShowingImagePicker.toggle()
+                    #else
+                    NSOpenPanel.openImage { (result) in
+                        if case let .success(image) = result {
+                            self.inputImage = image
+                            showEditor = true
+                        }
                     }
-                }
-                #endif
-            } label: {
-                Group {
-                    if let image = cropImage {
-                        #if os(iOS)
-                        Image(uiImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                        #else
-                        Image(nsImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                        #endif
-                    } else if let url = user.avatar {
-                        ImageView(urlString: url, image: .constant(nil))
-                    } else {
-                        Image(systemName: "photo.circle.fill")
-                    }
-                }.frame(width: 206, height: 206)
-                    .background(Color("shootWhite"))
-                    .clipShape(Circle())
-                    .shadow(color: Color.gray.opacity(0.16), radius: 10, x: 0, y: 0)
-                // 支持拖拽添加
-                
-            }.buttonStyle(.plain)
-            .padding(.top)
+                    #endif
+                } label: {
+                    Group {
+                        if let image = cropImage {
+                            #if os(iOS)
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                            #else
+                            Image(nsImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                            #endif
+                        } else if let url = user.avatar {
+                            ImageView(urlString: url, image: .constant(nil))
+                        } else {
+                            Image(systemName: "photo.circle.fill")
+                        }
+                    }.frame(width: 206, height: 206)
+                        .background(Color("shootWhite"))
+                        .clipShape(Circle())
+                        .shadow(color: Color.gray.opacity(0.16), radius: 10, x: 0, y: 0)
+                }.buttonStyle(.plain)
+                .padding(.top)
+                .onDrop(of: [.image, .fileURL], delegate: self)
+    //            .dropDestination(for: Data.self) { items, location in
+    //                guard let item = items.first else { return false }
+    //                guard let uiImage = UIImage(data: item) else { return false }
+    //                self.inputImage = Image(uiImage: uiImage)
+    //                return true
+    //            }
+                Text("点击选择或拖拽图片添加")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(.shootGray)
+            }
 
             TextField("输入昵称", text: $name)
                 .multilineTextAlignment(.center)
@@ -241,6 +253,35 @@ struct InfoView: View {
         if inputImage != nil {
             showEditor.toggle()
         }
+    }
+    
+    func performDrop(info: DropInfo) -> Bool {
+        if info.hasItemsConforming(to: [.image, .jpeg, .tiff, .gif, .png, .icns, .bmp, .ico, .rawImage, .svg]) {
+            let providers = info.itemProviders(for: [.image, .jpeg, .tiff, .gif, .png, .icns, .bmp, .ico, .rawImage, .svg])
+            
+            let types: [UTType] = [.image, .png, .jpeg, .tiff, .gif, .icns, .ico, .rawImage, .bmp, .svg]
+            
+            for type in types {
+                for provider in providers {
+                    if provider.registeredTypeIdentifiers.contains(type.identifier) {
+                        provider.loadDataRepresentation(forTypeIdentifier: type.identifier) { data, error in
+                            if let data = data {
+                                DispatchQueue.main.async {
+                                    #if os(macOS)
+                                    self.inputImage = NSImage(data: data)
+                                    #else
+                                    self.inputImage = UIImage(data: data)
+                                    #endif
+                                    showEditor.toggle()
+                                }
+                            }
+                        }
+                        return true
+                    }
+                }
+            }
+        }
+        return false
     }
 }
 

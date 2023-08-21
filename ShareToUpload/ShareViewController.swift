@@ -28,6 +28,8 @@ class CustomShareViewController: UIViewController {
         view = UIHostingView(rootView: contentView)
         view.isOpaque = true
         view.backgroundColor = .systemBackground
+        
+        self.isModalInPresentation = true
     }
 
     override func viewDidLoad() {

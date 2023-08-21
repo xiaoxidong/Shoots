@@ -11,14 +11,21 @@ class AuditPicsViewModel: ObservableObject {
     @Published var auditFeed: [Audit] = []
     
     @Published var lastAuditPic: Audit? = nil
-    
+    @Published var loading = true
     // 首页第一页数据
     func getFirstPageFeed() async {
+        DispatchQueue.main.async {
+            self.loading = true
+        }
         APIService.shared.POST(url: .auditPics, params: ["pageSize": numberPerpage, "pageNum": 1, "isAudit": "1"]) { (result: Result<AuditResponseData, APIService.APIError>) in
             switch result {
             case let .success(feeds):
                 print(feeds)
-                self.auditFeed = feeds.rows
+                if feeds.rows.isEmpty {
+                    self.loading = false
+                } else {
+                    self.auditFeed = feeds.rows
+                }
             case let .failure(error):
                 print("审核信息流第一页错误: \(error)")
             }
@@ -31,6 +38,12 @@ class AuditPicsViewModel: ObservableObject {
                 switch response.result {
                 case .success:
                     success(true)
+                    if let index = self.auditFeed.firstIndex(of: audit) {
+                        self.auditFeed.remove(at: index)
+                        if self.auditFeed.isEmpty {
+                            self.loading = true
+                        }
+                    }
                     print(response)
                     self.lastAuditPic = audit
                 case let .failure(error):

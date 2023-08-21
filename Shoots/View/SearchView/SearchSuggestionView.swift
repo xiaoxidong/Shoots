@@ -54,8 +54,8 @@ struct SearchSuggestionView: View {
     }
 
     func update(newValue: String) {
-        patterns = info.patterns.filter { $0.designPatternName.lowercased().contains(newValue.lowercased()) }.sorted(by: { $0.isOfficial > $1.isOfficial })
-        apps = info.apps.filter { $0.linkApplicationName.lowercased().contains(newValue.lowercased()) }.sorted(by: { $0.isOfficial > $1.isOfficial })
+        patterns = info.patterns.filter { $0.designPatternName.localized.lowercased().contains(newValue.lowercased()) }.sorted(by: { $0.isOfficial > $1.isOfficial })
+        apps = info.apps.filter { $0.linkApplicationName.localized.lowercased().contains(newValue.lowercased()) }.sorted(by: { $0.isOfficial > $1.isOfficial })
     }
 }
 

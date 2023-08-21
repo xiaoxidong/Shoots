@@ -73,7 +73,7 @@ struct SearchView: View {
             VStack(spacing: 0) {
                 ForEach(info.suggestionPatterns) { pattern in
                     Button {
-                        searchText = pattern.designPatternName
+                        searchText = pattern.designPatternName.localized
                         search.patternID = pattern.id
                         Task {
                             await search.getPatternPics(id: pattern.id)
@@ -81,7 +81,7 @@ struct SearchView: View {
                         self.resignFirstResponder()
                     } label: {
                         VStack(spacing: 20) {
-                            Text(pattern.designPatternName)
+                            Text(LocalizedStringKey(pattern.designPatternName))
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(.shootBlack)
                                 + Text(" (\(pattern.count))")

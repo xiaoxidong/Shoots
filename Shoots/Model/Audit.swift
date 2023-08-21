@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Audit: Codable, Identifiable {
+struct Audit: Codable, Identifiable, Equatable {
     var id: String
     var picUrl: String
     var fileName: String

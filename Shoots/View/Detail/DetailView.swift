@@ -150,12 +150,10 @@ struct DetailView: View {
             if showDetail {
                 if detail.loading {
                     LoadingView()
+                        .frame(height: 160)
                         .onAppear {
                             Task {
                                 await detail.getImageDetail(id: shoot.id) { _ in
-                                    //                                withAnimation(.spring()) {
-                                    //                                    showDetail = true
-                                    //                                }
                                 }
                             }
                         }
@@ -254,7 +252,7 @@ struct DetailView: View {
                                 if designPattern.type == nil {
                                     Button {
                                         search.patternID = designPattern.id
-                                        searchText = designPattern.designPatternName
+                                        searchText = designPattern.designPatternName.localized
                                         Task {
                                             await search.getPatternPics(id: designPattern.id)
                                         }
@@ -263,7 +261,7 @@ struct DetailView: View {
                                             Image(systemName: "number")
                                                 .font(.system(size: 14, weight: .medium))
                                                 .foregroundColor(.shootBlue)
-                                            Text(designPattern.designPatternName)
+                                            Text(LocalizedStringKey(designPattern.designPatternName))
                                                 .font(.system(size: 14, weight: .medium))
                                                 .foregroundColor(.shootBlack)
                                         }.padding(.horizontal, 10)

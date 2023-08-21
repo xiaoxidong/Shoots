@@ -24,12 +24,7 @@ public struct ImageCropperView: View {
                 saveButton
             }.padding()
             
-            if let images = cropedImage {
-                Image(nsImage: images)
-                    .resizable()
-                    .scaledToFit()
-            }
-            else if let image = inputImage {
+            if let image = inputImage {
                 Image(nsImage: image)
                     .resizable()
                     .scaledToFit()
@@ -40,6 +35,7 @@ public struct ImageCropperView: View {
                             }))
                         }
                     )
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
     }

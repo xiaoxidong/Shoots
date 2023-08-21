@@ -173,6 +173,8 @@
 		4E44304A2A6F986500835CA2 /* SuggestionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4430482A6F986500835CA2 /* SuggestionButtonView.swift */; };
 		4E44306F2A74EF4D00835CA2 /* DeleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E44306E2A74EF4D00835CA2 /* DeleteViewModel.swift */; };
 		4E4430702A74EF4D00835CA2 /* DeleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E44306E2A74EF4D00835CA2 /* DeleteViewModel.swift */; };
+		4E480B642A934076007AC1D3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B289B2A68CD12002B54FA /* LoadingView.swift */; };
+		4E480B652A93407F007AC1D3 /* DNALoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E58F91C29CB37000087E902 /* DNALoading.swift */; };
 		4E49407929E3A7200058391E /* ZLPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E49403629E3A7200058391E /* ZLPhotoBrowser.bundle */; };
 		4E49407A29E3A7200058391E /* ZLImagePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49403829E3A7200058391E /* ZLImagePreviewController.swift */; };
 		4E49407B29E3A7200058391E /* ZLCameraConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49403929E3A7200058391E /* ZLCameraConfiguration.swift */; };
@@ -2854,6 +2856,7 @@
 				4E37EB2B2A57AA310011BC63 /* AppDetailInfo.swift in Sources */,
 				4EF664CF29F4CCD7005C3BD1 /* ZLImageEditorUIConfiguration.swift in Sources */,
 				4EF6648F29F4CB79005C3BD1 /* UIColor+ZLImageEditor.swift in Sources */,
+				4E480B652A93407F007AC1D3 /* DNALoading.swift in Sources */,
 				4EF664DC29F4D0B8005C3BD1 /* ZLEditImageModel.swift in Sources */,
 				4E63A84F2A249ED0001A0FD4 /* FavoriteResponseData.swift in Sources */,
 				4EF6648029F4CB76005C3BD1 /* ZLImageEditorLanguageDefine.swift in Sources */,
@@ -2927,6 +2930,7 @@
 				4EF664E329F4D605005C3BD1 /* BlurView.swift in Sources */,
 				4EE7C0A62A39787500140FFD /* SelfViewModel.swift in Sources */,
 				4EF6647A29F4CB76005C3BD1 /* ZLImageEditorUIConfiguration+Chaining.swift in Sources */,
+				4E480B642A934076007AC1D3 /* LoadingView.swift in Sources */,
 				4EE7C0BF2A3980C100140FFD /* Favorite.swift in Sources */,
 				4E3BF03829E6DFFA0024AB99 /* TitlePageControll.swift in Sources */,
 				4EF6648229F4CB76005C3BD1 /* ZLEnlargeButton.swift in Sources */,

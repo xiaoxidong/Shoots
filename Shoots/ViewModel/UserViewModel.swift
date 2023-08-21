@@ -9,19 +9,20 @@ import Alamofire
 import SwiftUI
 
 var numberPerpage: Int = 20
-
+var userToken = "userToken"
+var group = "group.shoots.shareGroup"
 class UserViewModel: ObservableObject {
     @Published var login: Bool = false
-    @Published var token: String = Defaults().get(for: .login) ?? ""
+    @Published var token: String = UserDefaults(suiteName: group)!.string(forKey: userToken) ?? ""
 
     @Published var uploading = false
     @Published var error = false
     @Published var uploadIndex = 1
     init() {
-        if Defaults().get(for: .login) == nil {
-            Defaults().set("", for: .login)
+        if UserDefaults(suiteName: group)!.string(forKey: userToken) == nil {
+            UserDefaults(suiteName: group)!.set("", forKey: userToken)
         }
-        login = Defaults().get(for: .login) == "" ? false : true
+        login = UserDefaults(suiteName: group)!.string(forKey: userToken) == "" ? false : true
         Task {
             await getInfo()
         }
@@ -41,7 +42,7 @@ class UserViewModel: ObservableObject {
                 self.login = true
                 self.token = user.data.token
                 APIService.token = user.data.token
-                Defaults().set(user.data.token, for: .login)
+                UserDefaults(suiteName: group)!.set(user.data.token, forKey: userToken)
                 // TODO: 登录成功之后需要判断是否有头像，如果没有则跳出编辑页面
                 if user.data.userName == "" || user.data.avatar == nil {
                     self.editInfo = true
@@ -80,7 +81,10 @@ class UserViewModel: ObservableObject {
     }
 
     func uploadAvatar(image: Data, _ success: @escaping (Bool) -> Void) async {
-        updating = true
+        DispatchQueue.main.async {
+            self.updating = true
+        }
+        
         AF.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(image, withName: "avatarfile", fileName: "avatarfile.png", mimeType: "image/png")
         }, to: "\(baseURL)\(APIService.URLPath.avatar.path)", method: .post, headers: ["Content-Type": "multipart/form-data", "Authorization": "Bearer \(token)"])
@@ -106,6 +110,7 @@ class UserViewModel: ObservableObject {
                 print("获取成功")
                 self.name = user.data.user.userName
                 self.avatar = user.data.user.avatar
+//                print(user.data.user.roles)
             case let .failure(error):
                 print("获取信息报错: \(error)")
             }
@@ -113,7 +118,6 @@ class UserViewModel: ObservableObject {
     }
 
     // MARK: 上传图片
-
     func uploadImages(localDatas: [LocalImageData], _ pics: @escaping ([UploadData]) -> Void) {
         var uploads: [UploadData] = []
         if !uploading {
@@ -174,7 +178,7 @@ class UserViewModel: ObservableObject {
                 self.login = false
                 self.token = ""
                 APIService.token = ""
-                Defaults().set("", for: .login)
+                UserDefaults(suiteName: group)!.set("", forKey: userToken)
             case let .failure(error):
                 print("退出登录错误: \(error)")
             }
