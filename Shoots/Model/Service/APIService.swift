@@ -11,7 +11,7 @@ import SwiftUI
 struct APIService {
     public static let shared = APIService()
 
-    public static var token: String = Defaults().get(for: .login) ?? ""
+    public static var token: String = UserDefaults(suiteName: group)!.string(forKey: userToken) ?? ""
 
     public enum APIError: Error {
         case noResponse

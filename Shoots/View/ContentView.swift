@@ -48,7 +48,7 @@ struct ContentView: View {
                                     .font(.system(size: 36))
                                     .background(Color.white)
                                     .clipShape(Circle())
-                            }).padding()
+                            }).padding([.trailing])
                             , alignment: .bottomTrailing
                         )
                 } else {

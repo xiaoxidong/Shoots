@@ -229,7 +229,7 @@ struct SelfView: View {
                                 await selfPic.getPatternPics(id: pattern.id)
                             }
                         } label: {
-                            Text(pattern.designPatternName)
+                            Text(LocalizedStringKey(pattern.designPatternName))
                                 .font(.system(size: selected == pattern.designPatternName ? 17 : 15, weight: selected == pattern.designPatternName ? .bold : .medium))
                                 .foregroundColor(selected == pattern.designPatternName ? .shootBlue : .shootBlack)
                                 .padding(.bottom, 12)
