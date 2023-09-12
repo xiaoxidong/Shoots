@@ -15,6 +15,10 @@ class UserViewModel: ObservableObject {
     @Published var login: Bool = false
     @Published var token: String = UserDefaults(suiteName: group)!.string(forKey: userToken) ?? ""
 
+    @Published var isAdmin = true
+    @Published var isPro = false
+    
+    
     @Published var uploading = false
     @Published var error = false
     @Published var uploadIndex = 1

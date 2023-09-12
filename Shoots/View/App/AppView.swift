@@ -14,6 +14,9 @@ struct AppView: View {
     var topPadding: CGFloat = 0
 
     @StateObject var app: AppViewModel = .init()
+    @EnvironmentObject var user: UserViewModel
+    
+    @State var selection: Int = 1
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -21,7 +24,59 @@ struct AppView: View {
                 if !app.flows.isEmpty {
                     flowView
                 }
-                imagesView
+                
+                if !user.isPro {
+                    Text("小课堂")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.shootBlack)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading)
+                        .padding(.bottom)
+                        .padding(.top, 26)
+                    
+                    new
+                }
+                
+                HStack(spacing: 12) {
+                    if user.isPro {
+                        Button {
+                            withAnimation(.spring()) {
+                                selection = 0
+                            }
+                        } label: {
+                            Text("小课堂")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(selection == 0 ? .shootBlue : .shootBlack)
+                        }.buttonStyle(.plain)
+                            .onAppear {
+                                withAnimation(.spring()) {
+                                    selection = 0
+                                }
+                            }
+                    }
+                    Button {
+                        withAnimation(.spring()) {
+                            selection = 1
+                        }
+                        #if DEBUG
+                        user.isPro = true
+                        #endif
+                    } label: {
+                        Text("应用截图")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(selection == 1 && user.isPro ? .shootBlue : .shootBlack)
+                    }.buttonStyle(.plain)
+                    Spacer()
+                }.animation(nil, value: selection)
+                    .padding(.leading)
+                    .padding(.bottom)
+                    .padding(.top, 26)
+                
+                if selection == 1 {
+                    imagesView
+                } else {
+                    TitleFeedView(shoots: pic)
+                }
             }.frame(maxWidth: 860)
                 .frame(maxWidth: .infinity)
         }.enableRefresh()
@@ -34,6 +89,35 @@ struct AppView: View {
             .task {
                 await loadData()
             }
+    }
+    var new: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ForEach(1...6, id: \.self) { index in
+                    Image("s\(index)")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 260)
+                        .overlay(alignment: .topTrailing) {
+                            Image(["gif", "new"].randomElement()!)
+                                .padding(6)
+                        }
+                }
+                
+                Color.shootGray
+                    .opacity(0.1)
+                    .frame(width: 160)
+                    .overlay(
+                        VStack(spacing: 12) {
+                            Image(systemName: "music.quarternote.3")
+                            Text("产看更多内容")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(.shootBlack)
+                        }
+                    )
+                
+            }.padding([.horizontal])
+        }
     }
 
     func loadData() async {
@@ -144,32 +228,24 @@ struct AppView: View {
         #endif
     }
 
+    @ViewBuilder
     var imagesView: some View {
-        VStack(spacing: 0) {
-            Text("应用截图")
-                .font(.system(size: 16, weight: .bold))
-                .foregroundColor(.shootBlack)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading)
-                .padding(.bottom)
-
-            if app.loading {
-                LoadingView()
+        if app.loading {
+            LoadingView()
+                .frame(height: 360)
+        } else {
+            if app.appFeed.isEmpty {
+                ShootEmptyView()
                     .frame(height: 360)
             } else {
-                if app.appFeed.isEmpty {
-                    ShootEmptyView()
-                        .frame(height: 360)
-                } else {
-                    FeedView(shoots: app.appFeed)
-                    LoadMoreView(footerRefreshing: $app.footerRefreshing, noMore: $app.noMore) {
-                        Task {
-                            await app.nextPage(id: id)
-                        }
+                FeedView(shoots: app.appFeed)
+                LoadMoreView(footerRefreshing: $app.footerRefreshing, noMore: $app.noMore) {
+                    Task {
+                        await app.nextPage(id: id)
                     }
                 }
             }
-        }.padding(.top, 26)
+        }
     }
 }
 
@@ -179,12 +255,14 @@ struct AppView_Previews: PreviewProvider {
             AppView(id: "", appID: "6446901002")
         }
         .previewDisplayName("Chinese")
+        .environmentObject(UserViewModel())
         .environment(\.locale, .init(identifier: "zh-cn"))
 
         NavigationView {
             AppView(id: "", appID: "6446901002")
         }
         .previewDisplayName("English")
+        .environmentObject(UserViewModel())
         .environment(\.locale, .init(identifier: "en"))
     }
 }

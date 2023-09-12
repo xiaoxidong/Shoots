@@ -759,8 +759,8 @@
             filePath = "Shoots/ViewModel/UserViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "uploadImages(localDatas:_:)"
             landmarkType = "7">
             <Locations>
@@ -807,8 +807,8 @@
             filePath = "Shoots/ViewModel/UserViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "uploadImages(localDatas:_:)"
             landmarkType = "7">
             <Locations>
@@ -2211,8 +2211,8 @@
             filePath = "Shoots/ViewModel/UserViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "uploadAvatar(image:_:)"
             landmarkType = "7">
             <Locations>
@@ -2259,8 +2259,8 @@
             filePath = "Shoots/ViewModel/UserViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "uploadAvatar(image:_:)"
             landmarkType = "7">
             <Locations>
@@ -2703,8 +2703,8 @@
             filePath = "Shoots/ViewModel/UserViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "getInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2719,8 +2719,8 @@
             filePath = "Shoots/ViewModel/UserViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "getInfo()"
             landmarkType = "7">
          </BreakpointContent>

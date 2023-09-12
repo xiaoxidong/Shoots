@@ -295,7 +295,7 @@ struct UploadView: View {
                         Button {
                             
                         } label: {
-                            Label("设计更新", systemImage: "lasso")
+                            Label("设计更新", systemImage: "flag.checkered")
                         }
                         Button {
                             
@@ -305,7 +305,7 @@ struct UploadView: View {
                         Button {
                             
                         } label: {
-                            Label("交互细节", systemImage: "sun.min")
+                            Label("交互细节", systemImage: "bolt.fill")
                         }
                     } label: {
                         Image(systemName: "number")

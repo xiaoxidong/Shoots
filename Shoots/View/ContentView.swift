@@ -4,7 +4,12 @@
 //
 //  Created by XiaoDong Yuan on 2023/3/14.
 //
-
+// 获取用户信息
+// 上传添加分类和描述
+// 首页
+// 详情页
+// 付费页及付费
+// 应用详情页
 import Photos
 import SwiftUI
 
@@ -325,22 +330,22 @@ struct ContentView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    if false {
+                    if !user.isAdmin {
                         Button {
                             FeedbackManager.impact(style: .soft)
                             withAnimation(.spring()) {
                                 uploadisActive = true
                             }
                             /*
-                             if showCustomUpload {
-                             withAnimation(.spring()) {
-                             uploadOptions.toggle()
-                             }
-                             } else {
-                             withAnimation(.spring()) {
-                             uploadisActive = true
-                             }
-                             }
+                            if showCustomUpload {
+                                withAnimation(.spring()) {
+                                    uploadOptions.toggle()
+                                }
+                            } else {
+                                withAnimation(.spring()) {
+                                    uploadisActive = true
+                                }
+                            }
                              */
                         } label: {
                             Image("upload")
@@ -361,7 +366,7 @@ struct ContentView: View {
                                 FeedbackManager.impact(style: .soft)
                                 customUpload.toggle()
                             } label: {
-                                Label("交互设计", image: "tags")
+                                Label("Gif 交互", image: "gif01")
                             }
                         } label: {
                             Image("upload")
