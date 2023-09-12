@@ -103,7 +103,7 @@ struct ContentView: View {
             if !selectedImages.isEmpty {
                 Task {
                     selectedImages.forEach { image in
-                        uploadData.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: ""))
+                        uploadData.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: "", chooseType: "3", picDescription: ""))
                     }
                     upload.toggle()
                 }

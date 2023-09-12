@@ -141,6 +141,8 @@ class UserViewModel: ObservableObject {
                         data.designPatternName = local.pattern
                         data.fileName = imageURL.data.fileName
                         data.fileSuffix = "PNG"
+                        data.chooseType = local.chooseType ?? "4"
+                        data.picDescription = local.picDescription
                         uploads.append(data)
 
                         if uploads.count == localDatas.count {

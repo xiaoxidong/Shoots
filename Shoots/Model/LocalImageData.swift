@@ -14,6 +14,8 @@ struct LocalImageData: Equatable, Hashable, Codable {
 
     var fileName: String
     var fileSuffix: String
+    var chooseType: String? = nil
+    var picDescription: String = ""
     var tags: [String] = []
 
     var pattern: String {

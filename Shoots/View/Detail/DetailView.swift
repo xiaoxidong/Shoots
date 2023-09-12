@@ -246,7 +246,7 @@ struct DetailView: View {
                         // 设计模式和描述
                         VStack(spacing: 12) {
                             FlowLayout(mode: .vstack,
-                                       items: detail.lists,
+                                       items: detail.designPatternList,
                                        itemSpacing: 4)
                             { designPattern in
                                 if designPattern.type == nil {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 class DetailViewModel: ObservableObject {
     @Published var loading = true
@@ -18,10 +19,10 @@ class DetailViewModel: ObservableObject {
             self.loading = true
         }
 
-        APIService.shared.GET(url: .imageDetail(id: id), params: nil) { (result: Result<ImageDetail, APIService.APIError>) in
+        APIService.shared.GET(url: .imageDetail(id: id), params: nil) { (result: Result<ImageDetailResponseData, APIService.APIError>) in
             switch result {
             case let .success(detail):
-                self.detail = detail
+                self.detail = detail.data
                 success(true)
             case let .failure(error):
                 print("图片详情错误: \(error)")

@@ -18,3 +18,9 @@ struct UserResponseData: Codable {
         var avatar: String?
     }
 }
+
+struct ImageDetailResponseData: Codable {
+    var code: Int
+    var msg: String
+    var data: ImageDetail
+}

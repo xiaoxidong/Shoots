@@ -21,8 +21,12 @@ struct ImageCardView: View {
     var body: some View {
         ImageView(urlString: shoot.compressedPicUrl, image: .constant(nil))
             .overlay(alignment: .topTrailing) {
-                Image(["gif", "new", ""].randomElement()!)
-                    .padding(6)
+                Group {
+                    if shoot.type != .image {
+                        Image(shoot.type.image)
+                            .padding(6)
+                    }
+                }
             }
             .sheet(isPresented: $showDetail) {
                 DetailView(shoot: shoot)

@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct UploadData: Codable {
-    var linkApplicationName: String = "ss"
-    var designPatternName: String = "ss"
+    var linkApplicationName: String = ""
+    var designPatternName: String = ""
     var picUrl: String
-    var fileName: String = "ss"
-    var fileSuffix: String = "ss"
+    var fileName: String = ""
+    var fileSuffix: String = ""
+    
+    var chooseType: String = "2"
+    var picDescription: String = "asdasd"
 }

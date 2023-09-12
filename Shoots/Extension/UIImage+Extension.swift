@@ -24,7 +24,7 @@ extension UIImage {
                 }
             }
         }
-        let local = LocalImageData(image: image.pngData()!, app: images[0].app, fileName: images[0].fileName, fileSuffix: images[0].fileSuffix, tags: tags)
+        let local = LocalImageData(image: image.pngData()!, app: images[0].app, fileName: images[0].fileName, fileSuffix: images[0].fileSuffix, chooseType: images[0].chooseType, picDescription: images[0].picDescription, tags: tags)
         return local
     }
 
