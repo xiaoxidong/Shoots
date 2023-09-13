@@ -21,20 +21,20 @@ struct InfoDetail: Codable {
     var email: String
     var avatar: String?
     var status: String
-//    var roles: [Role]?
+    var roles: [Role]?
 }
 
 struct Role: Codable {
-    var roleId: String?
+    var roleId: String
     var roleName: String?
     var roleKey: String?
-    var roleSort: String?
+    var roleSort: Int?
     var dataScope: String?
     var menuCheckStrictly: String?
     var deptCheckStrictly: String?
     var status: String?
     var remark: String?
     var createTime: String?
-    var flag: String?
-    var superAdmin: String?
+    var flag: Bool?
+    var superAdmin: Bool?
 }

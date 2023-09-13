@@ -645,6 +645,11 @@
 		4EF664F029F4D617005C3BD1 /* GrowingArcIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF60929CD58D000A4E0DE /* GrowingArcIndicatorView.swift */; };
 		4EF664F329F4D65F005C3BD1 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF664F229F4D65F005C3BD1 /* View+Extension.swift */; };
 		4EF664F429F4D6EE005C3BD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E195EE129C040C700E97522 /* Assets.xcassets */; };
+		4EF6C7882AB1409B003EEE2C /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF6C7872AB1409B003EEE2C /* Roles.swift */; };
+		4EF6C7892AB1409B003EEE2C /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF6C7872AB1409B003EEE2C /* Roles.swift */; };
+		4EF6C78A2AB142BA003EEE2C /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF6C7872AB1409B003EEE2C /* Roles.swift */; };
+		4EF6C78C2AB151CB003EEE2C /* SearchAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF6C78B2AB151CB003EEE2C /* SearchAppsView.swift */; };
+		4EF6C78D2AB151CB003EEE2C /* SearchAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF6C78B2AB151CB003EEE2C /* SearchAppsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1074,6 +1079,8 @@
 		4EF664DD29F4D0D7005C3BD1 /* ZLImageEditorLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLImageEditorLayout.swift; sourceTree = "<group>"; };
 		4EF664DF29F4D5C1005C3BD1 /* BottomActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomActionsView.swift; sourceTree = "<group>"; };
 		4EF664F229F4D65F005C3BD1 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		4EF6C7872AB1409B003EEE2C /* Roles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roles.swift; sourceTree = "<group>"; };
+		4EF6C78B2AB151CB003EEE2C /* SearchAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1935,6 +1942,7 @@
 			isa = PBXGroup;
 			children = (
 				4E99304C29CA075D00D99DA9 /* UploadView.swift */,
+				4EF6C78B2AB151CB003EEE2C /* SearchAppsView.swift */,
 				4E5CF74A29CD748600A4E0DE /* ShootBlurView.swift */,
 				4E5CF74C29CD749100A4E0DE /* CombineSelectView.swift */,
 				4E5CF74E29CD784F00A4E0DE /* CombineView.swift */,
@@ -2150,6 +2158,7 @@
 				4E63A8502A24B0F3001A0FD4 /* ImageDetail.swift */,
 				4E63A8542A24B66A001A0FD4 /* AppDetail.swift */,
 				4E8B594F2A813F940049FCF3 /* SelfInfo.swift */,
+				4EF6C7872AB1409B003EEE2C /* Roles.swift */,
 				4EC9DBC42A9204DC007990B1 /* Audit.swift */,
 				4E2B6EC22A189B82000BC713 /* Response */,
 				4EE7C0C42A39817B00140FFD /* Service */,
@@ -2546,6 +2555,7 @@
 				4E99304629C9F2CC00D99DA9 /* FolderCardView.swift in Sources */,
 				4E8B59932A850EF10049FCF3 /* ImageMoveAndScaleSheet.swift in Sources */,
 				4E8B598F2A850EF10049FCF3 /* Color+Extensions.swift in Sources */,
+				4EF6C7882AB1409B003EEE2C /* Roles.swift in Sources */,
 				4E4940A329E3A7200058391E /* String+ZLPhotoBrowser.swift in Sources */,
 				4E4940AA29E3A7200058391E /* PHAsset+ZLPhotoBrowser.swift in Sources */,
 				4E99D1DF2A320D410086BFC2 /* Report.swift in Sources */,
@@ -2782,6 +2792,7 @@
 				4E5CF6FE29CD5AC000A4E0DE /* SwiftDate.swift in Sources */,
 				4E195EDE29C040C600E97522 /* ShootsApp.swift in Sources */,
 				4E06025E2A3EEA0A00508B8B /* SelfAppViewModel.swift in Sources */,
+				4EF6C78C2AB151CB003EEE2C /* SearchAppsView.swift in Sources */,
 				4EDDD67629DC238E00C4E14D /* ZLImageEditorUIConfiguration.swift in Sources */,
 				4EE7C0982A39745C00140FFD /* DetailViewModel.swift in Sources */,
 				4EE7C0CF2A3ABC6500140FFD /* SearchSuggestionView.swift in Sources */,
@@ -2904,6 +2915,7 @@
 				4EF6647F29F4CB76005C3BD1 /* ZLImageEditorConfiguration.swift in Sources */,
 				4EE7C0922A39583400140FFD /* APIService.swift in Sources */,
 				4E63A85D2A25FB03001A0FD4 /* LoginView.swift in Sources */,
+				4EF6C78A2AB142BA003EEE2C /* Roles.swift in Sources */,
 				4EF6649029F4CB79005C3BD1 /* CGFloat+ZLImageEditor.swift in Sources */,
 				4E587F292A1BAC9D00907D9D /* LocalImageData.swift in Sources */,
 				4EF664E929F4D617005C3BD1 /* OpacityDotsIndicatorView.swift in Sources */,
@@ -2919,6 +2931,7 @@
 				4EF6647629F4CB72005C3BD1 /* ImageStickerContainerView.swift in Sources */,
 				4E8B595A2A814B600049FCF3 /* UploadAvatarResponseData.swift in Sources */,
 				4E2B6EBC2A177A06000BC713 /* UserViewModel.swift in Sources */,
+				4EF6C78D2AB151CB003EEE2C /* SearchAppsView.swift in Sources */,
 				4EF6648429F4CB76005C3BD1 /* ZLEditToolCells.swift in Sources */,
 				4EF6647529F4CB3E005C3BD1 /* ImageBlurView.swift in Sources */,
 				4EE7C0A22A3974B300140FFD /* InfoViewModel.swift in Sources */,
@@ -3047,6 +3060,7 @@
 				4EA73B1B29D5C161002901AE /* InAppReceiptVerificator.swift in Sources */,
 				4EA73B1129D5C11E002901AE /* ProView.swift in Sources */,
 				4E010E2129DB17F400A4B231 /* AddsView.swift in Sources */,
+				4EF6C7892AB1409B003EEE2C /* Roles.swift in Sources */,
 				4E1EBBA829D6758100636028 /* ShootsAIView.swift in Sources */,
 				4E42A72829D14B2100BEC185 /* TimePeriodCollection.swift in Sources */,
 				4E42A72429D14B1700BEC185 /* TimeStructures.swift in Sources */,

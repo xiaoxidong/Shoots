@@ -12,9 +12,22 @@ var numberPerpage: Int = 20
 var userToken = "userToken"
 var group = "group.shoots.shareGroup"
 class UserViewModel: ObservableObject {
-    @Published var login: Bool = false
+    @Published var login: Bool = false {
+        didSet {
+            if !login {
+                self.token = ""
+                APIService.token = ""
+                UserDefaults(suiteName: group)!.set("", forKey: userToken)
+                
+                isExamine = false
+                isAdmin = false
+            }
+        }
+    }
     @Published var token: String = UserDefaults(suiteName: group)!.string(forKey: userToken) ?? ""
 
+    // 内容审核
+    @Published var isExamine = false
     @Published var isAdmin = true
     @Published var isPro = false
     
@@ -27,8 +40,11 @@ class UserViewModel: ObservableObject {
             UserDefaults(suiteName: group)!.set("", forKey: userToken)
         }
         login = UserDefaults(suiteName: group)!.string(forKey: userToken) == "" ? false : true
-        Task {
-            await getInfo()
+        
+        if login {
+            Task {
+                await getInfo()
+            }
         }
     }
 
@@ -59,6 +75,10 @@ class UserViewModel: ObservableObject {
                 self.avatar = user.data.avatar
                 #endif
                 success(true)
+                
+                Task {
+                    await self.getInfo()
+                }
             case let .failure(error):
                 print("登录报错: \(error)")
             }
@@ -114,6 +134,10 @@ class UserViewModel: ObservableObject {
                 print("获取成功")
                 self.name = user.data.user.userName
                 self.avatar = user.data.user.avatar
+                
+                if let rolse = user.data.user.roles {
+                    self.isExamine = !rolse.filter({ $0.roleId == Roles.examine.id }).isEmpty
+                }
 //                print(user.data.user.roles)
             case let .failure(error):
                 print("获取信息报错: \(error)")
@@ -141,8 +165,9 @@ class UserViewModel: ObservableObject {
                         data.designPatternName = local.pattern
                         data.fileName = imageURL.data.fileName
                         data.fileSuffix = "PNG"
-                        data.chooseType = local.chooseType ?? "4"
+                        data.chooseType = local.chooseType.rawValue
                         data.picDescription = local.picDescription
+                        data.linkedPicId = local.linkedPicId
                         uploads.append(data)
 
                         if uploads.count == localDatas.count {
@@ -182,9 +207,6 @@ class UserViewModel: ObservableObject {
             switch result {
             case .success:
                 self.login = false
-                self.token = ""
-                APIService.token = ""
-                UserDefaults(suiteName: group)!.set("", forKey: userToken)
             case let .failure(error):
                 print("退出登录错误: \(error)")
             }

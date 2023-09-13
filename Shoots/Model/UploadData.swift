@@ -14,6 +14,7 @@ struct UploadData: Codable {
     var fileName: String = ""
     var fileSuffix: String = ""
     
-    var chooseType: String = "2"
-    var picDescription: String = "asdasd"
+    var chooseType: String = "4"
+    var picDescription: String = ""
+    var linkedPicId: String = ""
 }

@@ -21,11 +21,11 @@ struct Picture: Codable, Identifiable {
     
     // 1 交互细节、2 用户体验、3 设计更新、4 截图
     var type: ImageType {
-        if chooseType == "1" {
+        if chooseType == ImageType.gif.rawValue {
             return .gif
-        } else if chooseType == "2" {
+        } else if chooseType == ImageType.interaction.rawValue {
             return .interaction
-        } else if chooseType == "3" {
+        } else if chooseType == ImageType.new.rawValue {
             return .new
         } else {
             return .image
@@ -34,10 +34,10 @@ struct Picture: Codable, Identifiable {
 }
 
 enum ImageType: String, Codable {
-    case gif
-    case interaction
-    case new
-    case image
+    case gif = "1"
+    case interaction = "2"
+    case new = "3"
+    case image = "4"
     
     var image: String {
         switch self {
@@ -49,6 +49,46 @@ enum ImageType: String, Codable {
             return "new"
         case .image:
             return "gif"
+        }
+    }
+    
+    var uploadImage: String {
+        switch self {
+        case .gif:
+            return "number"
+        case .interaction:
+            return "person.and.background.dotted"
+        case .new:
+            return "flag.checkered"
+        case .image:
+            return "number"
+        }
+    }
+    
+    //1 交互细节、2 用户体验、3 设计更新、4 截图
+    var name: String {
+        switch self {
+        case .gif:
+            return "交互细节"
+        case .interaction:
+            return "用户体验"
+        case .new:
+            return "设计更新"
+        case .image:
+            return "截图"
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .gif:
+            return Color.pink.opacity(0.4)
+        case .interaction:
+            return Color.purple.opacity(0.4)
+        case .new:
+            return Color.blue.opacity(0.4)
+        case .image:
+            return Color.pink.opacity(0.4)
         }
     }
 }

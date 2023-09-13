@@ -4,10 +4,7 @@
 //
 //  Created by XiaoDong Yuan on 2023/3/14.
 //
-// 获取用户信息
-// 上传添加分类和描述
-// 首页
-// 详情页
+
 // 付费页及付费
 // 应用详情页
 import Photos
@@ -45,15 +42,19 @@ struct ContentView: View {
                 if horizontalSizeClass == .compact {
                     iOSHomeView
                         .overlay(
-                            Button(action: {
-                                FeedbackManager.impact(style: .soft)
-                                showAudit.toggle()
-                            }, label: {
-                                Image(systemName: "plus.circle.fill")
-                                    .font(.system(size: 36))
-                                    .background(Color.white)
-                                    .clipShape(Circle())
-                            }).padding([.trailing])
+                            Group {
+                                if user.isExamine {
+                                    Button(action: {
+                                        FeedbackManager.impact(style: .soft)
+                                        showAudit.toggle()
+                                    }, label: {
+                                        Image(systemName: "plus.circle.fill")
+                                            .font(.system(size: 36))
+                                            .background(Color.white)
+                                            .clipShape(Circle())
+                                    }).padding([.trailing])
+                                }
+                            }
                             , alignment: .bottomTrailing
                         )
                 } else {
@@ -95,6 +96,7 @@ struct ContentView: View {
                 }
             }
         }
+        // 选择图片
         .fullScreenCover(isPresented: $uploadisActive, onDismiss: {
             withAnimation(.spring()) {
                 uploadisActive = false
@@ -103,7 +105,7 @@ struct ContentView: View {
             if !selectedImages.isEmpty {
                 Task {
                     selectedImages.forEach { image in
-                        uploadData.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: "", chooseType: "3", picDescription: ""))
+                        uploadData.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: "", chooseType: .image, picDescription: ""))
                     }
                     upload.toggle()
                 }
@@ -114,6 +116,8 @@ struct ContentView: View {
                 .ignoresSafeArea()
 
         })
+        // 选择视频
+        
         .fullScreenCover(isPresented: $upload, onDismiss: {
             selectedImages.removeAll()
             uploadData.removeAll()

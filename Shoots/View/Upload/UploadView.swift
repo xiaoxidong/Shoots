@@ -10,6 +10,7 @@ import SwiftUI
 
 struct UploadView: View {
     @Binding var uploadData: [LocalImageData]
+    var isGif = false
     let shareCancellAction: () -> Void
     let shareDoneAction: () -> Void
     let uploadAction: () -> Void
@@ -82,6 +83,13 @@ struct UploadView: View {
                     textFocused = .tag
                 }
             })
+            .sheet(isPresented: $showSearchPic) {
+                SearchAppsView { name in
+                    uploadData[selection].app = name
+                } setIDAction: { id in
+                    uploadData[selection].linkedPicId = id
+                }
+            }
             .onAppear {
                 #if DEBUG
                     showBlurNewGuide = true
@@ -165,6 +173,8 @@ struct UploadView: View {
         case tag
         case text
     }
+    
+    @State var showSearchPic = false
     var bottomActions: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .bottom) {
@@ -191,7 +201,7 @@ struct UploadView: View {
                         }
                     }
                     
-                    TextEditor(text: $uploadData[selection].description)
+                    TextEditor(text: $uploadData[selection].picDescription)
                         .focused($textFocused, equals: .text)
                         .font(.system(size: 16, weight: .medium))
                         .lineSpacing(3)
@@ -266,6 +276,7 @@ struct UploadView: View {
                         .font(.system(size: 14, weight: .medium))
                         .accentColor(Color.shootBlue)
                         .frame(width: 106)
+                        .disabled(uploadData[selection].linkedPicId != "")
 
                     Divider()
                         .frame(height: 36)
@@ -286,36 +297,51 @@ struct UploadView: View {
                             .contentShape(Rectangle())
                     }
                     
-                    Menu {
-                        Button {
-                            
+                    if !isGif && user.isAdmin {
+                        Menu {
+                            Button {
+                                uploadData[selection].chooseType = .image
+                                uploadData[selection].linkedPicId = ""
+                            } label: {
+                                Label("应用截图", systemImage: "photo.artframe")
+                            }
+                            Button {
+                                uploadData[selection].chooseType = .new
+                                showSearchPic.toggle()
+                            } label: {
+                                Label("设计更新", systemImage: "flag.checkered")
+                            }
+                            Button {
+                                uploadData[selection].chooseType = .interaction
+                                uploadData[selection].linkedPicId = ""
+                            } label: {
+                                Label("用户体验", systemImage: "person.and.background.dotted")
+                            }
+                            //                        Button {
+                            //
+                            //                        } label: {
+                            //                            Label("交互细节", systemImage: "bolt.fill")
+                            //                        }
                         } label: {
-                            Label("应用截图", systemImage: "photo.artframe")
-                        }
-                        Button {
-                            
-                        } label: {
-                            Label("设计更新", systemImage: "flag.checkered")
-                        }
-                        Button {
-                            
-                        } label: {
-                            Label("用户体验", systemImage: "person.and.background.dotted")
-                        }
-                        Button {
-                            
-                        } label: {
-                            Label("交互细节", systemImage: "bolt.fill")
-                        }
-                    } label: {
-                        Image(systemName: "number")
-                            .font(.system(size: 22, weight: .medium))
-                            .padding(4)
-                            .padding(.horizontal, 4)
-                            .foregroundColor(.shootBlack)
-                            .contentShape(Rectangle())
+                            Image(systemName: uploadData[selection].chooseType.uploadImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 22, height: 22)
+                                .padding(4)
+                                .padding(.horizontal, 4)
+                                .foregroundColor(.shootBlack)
+                                .contentShape(Rectangle())
+                        }.overlay(
+                            Group {
+                                if uploadData[selection].linkedPicId != "" {
+                                    Circle()
+                                        .frame(width: 8, height: 8)
+                                        .foregroundColor(.shootRed)
+                                }
+                            }
+                            , alignment: .topTrailing
+                        )
                     }
-
                     
                     
                     Button {

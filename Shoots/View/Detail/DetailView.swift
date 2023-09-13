@@ -246,10 +246,22 @@ struct DetailView: View {
                         // 设计模式和描述
                         VStack(spacing: 12) {
                             FlowLayout(mode: .vstack,
-                                       items: detail.designPatternList,
+                                       items: detail.lists,
                                        itemSpacing: 4)
                             { designPattern in
-                                if designPattern.type == nil {
+                                if let type = designPattern.type {
+                                    Button {
+                                        showPro = true
+                                    } label: {
+                                        Text(designPattern.designPatternName)
+                                            .font(.system(size: 14, weight: .medium))
+                                            .foregroundColor(.shootBlack)
+                                            .padding(.horizontal, 10)
+                                            .padding(.vertical, 6)
+                                            .background(type.color)
+                                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                                    }.buttonStyle(.plain)
+                                } else {
                                     Button {
                                         search.patternID = designPattern.id
                                         searchText = designPattern.designPatternName.localized
@@ -267,18 +279,6 @@ struct DetailView: View {
                                         }.padding(.horizontal, 10)
                                             .padding(.vertical, 6)
                                             .background(Color.shootBlue.opacity(0.12))
-                                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                                    }.buttonStyle(.plain)
-                                } else {
-                                    Button {
-                                        showPro = true
-                                    } label: {
-                                        Text(designPattern.designPatternName)
-                                            .font(.system(size: 14, weight: .medium))
-                                            .foregroundColor(.shootBlack)
-                                            .padding(.horizontal, 10)
-                                            .padding(.vertical, 6)
-                                            .background(Color.shootRed.opacity(0.2))
                                             .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                                     }.buttonStyle(.plain)
                                 }
@@ -420,16 +420,16 @@ struct DetailView: View {
     // 图片操作按钮
     var imageActionButtons: some View {
         HStack(spacing: 16) {
-            Button {
-                
-            } label: {
-                Image(systemName: "rectangle.stack.fill")
-                    .font(.system(size: 16, weight: .bold))
-                    .padding(8)
-                    .background(Color.shootWhite)
-                    .clipShape(Circle())
-                    .shadow(color: .shootLight.opacity(0.4), radius: 10, x: 0, y: 0)
-            }.buttonStyle(.plain)
+//            Button {
+//                
+//            } label: {
+//                Image(systemName: "rectangle.stack.fill")
+//                    .font(.system(size: 16, weight: .bold))
+//                    .padding(8)
+//                    .background(Color.shootWhite)
+//                    .clipShape(Circle())
+//                    .shadow(color: .shootLight.opacity(0.4), radius: 10, x: 0, y: 0)
+//            }.buttonStyle(.plain)
 
             Button {
                 

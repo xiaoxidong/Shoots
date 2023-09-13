@@ -17,6 +17,7 @@ struct AppView: View {
     @EnvironmentObject var user: UserViewModel
     
     @State var selection: Int = 1
+    @State var showVip = false
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -89,6 +90,9 @@ struct AppView: View {
             .task {
                 await loadData()
             }
+            .sheet(isPresented: $showVip) {
+                ProView()
+            }
     }
     var new: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -115,6 +119,9 @@ struct AppView: View {
                                 .foregroundColor(.shootBlack)
                         }
                     )
+                    .onTapGesture {
+                        showVip.toggle()
+                    }
                 
             }.padding([.horizontal])
         }
