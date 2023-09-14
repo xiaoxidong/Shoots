@@ -10,31 +10,36 @@ import SwiftUI
 struct SheetSearchView: View {
     @State var searchText: String = ""
     @Environment(\.dismiss) var dismiss
+    @FocusState var focused: Bool
+    
     var body: some View {
         NavigationView {
-            VStack {
-                VStack {
-                    HStack {
+            // 搜索结果
+            SearchView(searchText: $searchText, showSearchBackground: false)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
                         HStack {
-                            Image(systemName: "magnifyingglass")
-                                .padding(.leading, 4)
-                                .foregroundColor(.gray)
-                            TextField("搜索应用或设计模式", text: $searchText)
-                        }.padding(.vertical, 6)
-                            .background(.gray.opacity(0.16), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        Button {
-                            dismiss()
-                        } label: {
-                            Text("取消")
-                                .foregroundColor(.shootBlue)
+                            HStack {
+                                Image(systemName: "magnifyingglass")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.shootGray)
+                                TextField("搜索应用或设计模式", text: $searchText)
+                                    .focused($focused)
+                            }.padding(.vertical, 6)
+//                                .background(.gray.opacity(0.16), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            Button {
+                                dismiss()
+                            } label: {
+                                Text("取消")
+                                    .foregroundColor(.shootBlue)
+                                    .bold()
+                            }
                         }
-                    }.padding(.horizontal)
-                    Divider()
+                    }
                 }
-
-                // 搜索结果
-                SearchView(searchText: $searchText)
-            }
+        }.onAppear {
+            focused = true
         }
     }
 }

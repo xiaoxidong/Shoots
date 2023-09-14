@@ -6,7 +6,9 @@
 //
 
 // 付费页及付费
-// 应用详情页
+// 应用详情页，显示付费内容
+// 图片详情页关联图片，描述
+
 import Photos
 import SwiftUI
 
@@ -479,6 +481,7 @@ struct ContentView: View {
                             showToast = true
                         }, failAction: {
                             toastText = "登录失败，请重试"
+                            alertType = .error()
                             showToast = true
                         })
                         .offset(y: showNavigation ? 0 : 1000)
@@ -506,6 +509,7 @@ struct ContentView: View {
                             showToast = true
                         }, failAction: {
                             toastText = "登录失败，请重试"
+                            alertType = .error()
                             showToast = true
                         })
                     }

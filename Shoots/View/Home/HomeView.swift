@@ -14,21 +14,15 @@ struct HomeView: View {
 
     @Environment(\.isSearching) var isSearching
     #if os(iOS)
-        @Environment(\.horizontalSizeClass) var horizontalSizeClass
-        @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
     @StateObject var home: HomeFeedViewModel = .init()
-    @State var reachability = Reachability()
+    @StateObject var reachability = Reachability()
     var body: some View {
         ZStack {
             if home.loading {
                 LoadingView()
-                    .onChange(of: reachability.isConnectedToNetwork(), perform: { newValue in
-                        // 第一次打开的时候没有网络授权，授权之后再次请求网络
-                        if newValue {
-                            loadData()
-                        }
-                    })
                     .task {
                         loadData()
                     }
@@ -52,6 +46,11 @@ struct HomeView: View {
                 #else
                     SearchView(searchText: $searchText, showSearchDefault: false)
                 #endif
+            }
+        }
+        .onChange(of: reachability.isConnected) { connection in
+            if connection {
+                loadData()
             }
         }
     }

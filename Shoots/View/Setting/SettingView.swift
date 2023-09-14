@@ -47,7 +47,7 @@ struct SettingView: View {
             VStack(spacing: 0) {
                 Group {
                     Divider()
-                    SettingCellView(image: "pro", text: "支持开发者") {
+                    SettingCellView(image: "pro", text: "Shoots Pro") {
                         showPro.toggle()
                     }
 //                    SettingCellView(image: "tags", text: "批量上传") {

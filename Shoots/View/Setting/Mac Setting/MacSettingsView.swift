@@ -40,7 +40,7 @@ struct MacSettingsView: View {
         ScrollView(showsIndicators: false) {
             Form {
                 Section {
-                    LabeledContent("支持开发者：") {
+                    LabeledContent("Shoots Pro：") {
                         Button {
                             showPro.toggle()
                         } label: {

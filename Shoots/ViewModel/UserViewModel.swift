@@ -27,10 +27,15 @@ class UserViewModel: ObservableObject {
     @Published var token: String = UserDefaults(suiteName: group)!.string(forKey: userToken) ?? ""
 
     // 内容审核
-    @Published var isExamine = false
+    #if DEBUG
+    @Published var isExamine = true
     @Published var isAdmin = true
+    @Published var isPro = true
+    #else
+    @Published var isExamine = false
+    @Published var isAdmin = false
     @Published var isPro = false
-    
+    #endif
     
     @Published var uploading = false
     @Published var error = false
@@ -138,7 +143,9 @@ class UserViewModel: ObservableObject {
                 if let rolse = user.data.user.roles {
                     self.isExamine = !rolse.filter({ $0.roleId == Roles.examine.id }).isEmpty
                 }
-//                print(user.data.user.roles)
+                if let rolse = user.data.user.roles {
+                    self.isAdmin = !rolse.filter({ $0.roleId == Roles.upload.id }).isEmpty
+                }
             case let .failure(error):
                 print("获取信息报错: \(error)")
             }

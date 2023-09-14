@@ -114,9 +114,9 @@ struct AppView: View {
                     .overlay(
                         VStack(spacing: 12) {
                             Image(systemName: "music.quarternote.3")
-                            Text("产看更多内容")
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundColor(.shootBlack)
+                            Text("查看更多内容")
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(.shootGray)
                         }
                     )
                     .onTapGesture {

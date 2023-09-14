@@ -51,11 +51,11 @@ struct SettingCellView: View {
 
 struct SettingCellView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingCellView(image: "pro", text: "支持开发者") {}
+        SettingCellView(image: "pro", text: "Shoots Pro") {}
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
 
-        SettingCellView(image: "pro", text: "支持开发者") {}
+        SettingCellView(image: "pro", text: "Shoots Pro") {}
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
     }

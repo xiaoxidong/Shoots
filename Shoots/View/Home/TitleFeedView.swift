@@ -53,11 +53,11 @@ struct TitleFeedView: View {
                             Image(shoot.picUrl)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: 160)
                             Text(shoot.id)
                                 .font(.system(size: 14, weight: .bold))
                                 .foregroundColor(.shootBlack)
-                                .lineLimit(4)
+                                .lineLimit(2)
+                                .frame(height: 56)
                         }
                     }
                 }

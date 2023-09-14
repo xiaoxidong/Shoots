@@ -92,14 +92,6 @@ struct FeedView: View {
             }
         }
     }
-
-    func loadMore() {
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-            footerRefreshing = false
-        }
-    }
-
-    func reload() {}
 }
 
 // struct FeedView_Previews: PreviewProvider {

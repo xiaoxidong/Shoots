@@ -17,6 +17,7 @@ struct DetailView: View {
     @State var showDetail = false
     @State var searchText: String? = nil
     @AppStorage("showDetailNew") var showDetailNew = true
+    @AppStorage("dayFree") var dayFree: Int = 0
     @State var showAlert = false
     @State var alertText = ""
     @State var alertType: AlertToast.AlertType = .success(Color.shootBlack)
@@ -40,15 +41,13 @@ struct DetailView: View {
                 #if os(iOS)
                 FeedbackManager.impact(style: .soft)
                 #endif
-                withAnimation(.spring()) {
-                    if showSave {
-                        withAnimation(.spring()) {
-                            showSave = false
-                        }
-                    } else {
-                        withAnimation(.spring()) {
-                            showDetail.toggle()
-                        }
+                if showSave {
+                    withAnimation(.spring()) {
+                        showSave = false
+                    }
+                } else {
+                    withAnimation(.spring()) {
+                        showDetail.toggle()
                     }
                 }
             }
@@ -57,7 +56,8 @@ struct DetailView: View {
             }
             .overlay(alignment: .bottom) {
                 infoView
-                    .offset(y: showDetail ? 0 : 1000)
+                    .offset(y: showDetail ? 0 : 100)
+                    .opacity(showDetail ? 1 : 0)
             }
             .overlay(alignment: .bottom) {
                 saveView
@@ -113,6 +113,7 @@ struct DetailView: View {
                             showAlert = true
                         }, failAction: {
                             alertText = "登录失败，请重试"
+                            alertType = .error()
                             showAlert = true
                         })
                     }
@@ -291,8 +292,13 @@ struct DetailView: View {
                                 .lineSpacing(3)
                                 .blur(radius: showContent ? 0 : 4)
                                 .onTapGesture {
-                                    withAnimation(.spring()) {
-                                        showContent.toggle()
+                                    freeClick()
+                                }
+                                .onAppear {
+                                    if shoot.type == .image || user.isPro {
+                                        withAnimation(.spring()) {
+                                            showContent = true
+                                        }
                                     }
                                 }
                         }
@@ -403,6 +409,7 @@ struct DetailView: View {
                         }.padding(.horizontal)
                     } else {
                         ErrorView {}
+                            .frame(minHeight: 160)
                     }
                 }
             }
@@ -615,6 +622,32 @@ struct DetailView: View {
             }
         }
     #endif
+    
+    func freeClick() {
+        if !showContent {
+            if let date = Defaults().get(for: .day) {
+                if dayFree < 5 {
+                    withAnimation(.spring()) {
+                        showContent = true
+                    }
+                    dayFree += 1
+                    // 提示本次查看免费
+                    alertText = "VIP 内容，今天还有 \(5 - dayFree) 次查看机会"
+                    showAlert = true
+                } else {
+                    showPro = true
+                }
+            } else {
+                Defaults().set(Date(), for: .day)
+                withAnimation(.spring()) {
+                    showContent = true
+                }
+                // 提示本次查看免费
+                alertText = "VIP 内容，本次查看免费，今天还有 4 次查看机会"
+                showAlert = true
+            }
+        }
+    }
 }
 
 struct DetailView_Previews: PreviewProvider {

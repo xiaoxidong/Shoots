@@ -438,6 +438,19 @@
 		4E99D1DF2A320D410086BFC2 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99D1DE2A320D410086BFC2 /* Report.swift */; };
 		4E99D1E02A320D410086BFC2 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99D1DE2A320D410086BFC2 /* Report.swift */; };
 		4E99D1E12A320D410086BFC2 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99D1DE2A320D410086BFC2 /* Report.swift */; };
+		4E9AFCCC2AB296EE0090A40B /* SuggestionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4430482A6F986500835CA2 /* SuggestionButtonView.swift */; };
+		4E9AFCCD2AB296F40090A40B /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7C0CB2A3AB98A00140FFD /* SearchViewModel.swift */; };
+		4E9AFCD02AB29A060090A40B /* SelectionFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AFCCF2AB29A060090A40B /* SelectionFeedView.swift */; };
+		4E9AFCD42AB29A6B0090A40B /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4E9AFCD32AB29A6B0090A40B /* SDWebImageSwiftUI */; };
+		4E9AFCD62AB29AAD0090A40B /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E40800C2A32B40C003B5322 /* ImageView.swift */; };
+		4E9AFCDA2AB29BA20090A40B /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 4E9AFCD92AB29BA20090A40B /* WaterfallGrid */; };
+		4E9AFCDC2AB29C5C0090A40B /* Grid in Frameworks */ = {isa = PBXBuildFile; productRef = 4E9AFCDB2AB29C5C0090A40B /* Grid */; };
+		4E9AFCDD2AB29C780090A40B /* SelectionFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AFCCF2AB29A060090A40B /* SelectionFeedView.swift */; };
+		4E9AFCE02AB2A5A90090A40B /* CardTapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AFCDF2AB2A5A90090A40B /* CardTapView.swift */; };
+		4E9AFCE12AB2A61A0090A40B /* CardTapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AFCDF2AB2A5A90090A40B /* CardTapView.swift */; };
+		4E9AFCE22AB2AAA10090A40B /* ShootEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E58F91F29CB38CE0087E902 /* ShootEmptyView.swift */; };
+		4E9AFCE42AB2BC6B0090A40B /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AFCE32AB2BC6B0090A40B /* WaveView.swift */; };
+		4E9AFCE52AB2BC6B0090A40B /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AFCE32AB2BC6B0090A40B /* WaveView.swift */; };
 		4E9B1F6729C7EA4F00A772CE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B1F6629C7EA4F00A772CE /* DetailView.swift */; };
 		4E9B289C2A68CD12002B54FA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B289B2A68CD12002B54FA /* LoadingView.swift */; };
 		4E9B289D2A68CD12002B54FA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B289B2A68CD12002B54FA /* LoadingView.swift */; };
@@ -985,6 +998,9 @@
 		4E99304A29CA003100D99DA9 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		4E99304C29CA075D00D99DA9 /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 		4E99D1DE2A320D410086BFC2 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		4E9AFCCF2AB29A060090A40B /* SelectionFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionFeedView.swift; sourceTree = "<group>"; };
+		4E9AFCDF2AB2A5A90090A40B /* CardTapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTapView.swift; sourceTree = "<group>"; };
+		4E9AFCE32AB2BC6B0090A40B /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
 		4E9B1F6629C7EA4F00A772CE /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		4E9B289B2A68CD12002B54FA /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4E9B289E2A68D73C002B54FA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
@@ -1120,7 +1136,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E9AFCD42AB29A6B0090A40B /* SDWebImageSwiftUI in Frameworks */,
+				4E9AFCDA2AB29BA20090A40B /* WaterfallGrid in Frameworks */,
 				4E3BF04229E6E11E0024AB99 /* CHIPageControl in Frameworks */,
+				4E9AFCDC2AB29C5C0090A40B /* Grid in Frameworks */,
 				4E2B6EBA2A177935000BC713 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2187,9 +2206,11 @@
 			children = (
 				4E5DE51929C19680005495F0 /* HomeView.swift */,
 				4E99303F29C9EBC400D99DA9 /* FeedView.swift */,
+				4E9AFCCF2AB29A060090A40B /* SelectionFeedView.swift */,
 				4E3116272AAFF7A7004B1FFD /* TitleFeedView.swift */,
 				4E73A66E29D3122D009CFB5A /* RefreshView.swift */,
 				4EE49F8E29C8831500B51F4B /* ImageCardView.swift */,
+				4E9AFCDF2AB2A5A90090A40B /* CardTapView.swift */,
 				4E010E1F29DB17F400A4B231 /* AddsView.swift */,
 			);
 			path = Home;
@@ -2236,6 +2257,7 @@
 				4E5CF71B29CD5EB400A4E0DE /* SettingRateView.swift */,
 				4E58F92129CB43A80087E902 /* SettingCellView.swift */,
 				4E58F92329CB47930087E902 /* ProView.swift */,
+				4E9AFCE32AB2BC6B0090A40B /* WaveView.swift */,
 				4E5CF6CA29CD597900A4E0DE /* AgreementView.swift */,
 				4E5CF6C929CD597900A4E0DE /* PrivacyView.swift */,
 				4E5CF71E29CD606000A4E0DE /* MailView.swift */,
@@ -2351,6 +2373,9 @@
 			packageProductDependencies = (
 				4E3BF04129E6E11E0024AB99 /* CHIPageControl */,
 				4E2B6EB92A177935000BC713 /* Alamofire */,
+				4E9AFCD32AB29A6B0090A40B /* SDWebImageSwiftUI */,
+				4E9AFCD92AB29BA20090A40B /* WaterfallGrid */,
+				4E9AFCDB2AB29C5C0090A40B /* Grid */,
 			);
 			productName = ShareToUpload;
 			productReference = 4E3BEFC829E6D1830024AB99 /* ShareToUpload.appex */;
@@ -2561,6 +2586,7 @@
 				4E99D1DF2A320D410086BFC2 /* Report.swift in Sources */,
 				4E44306F2A74EF4D00835CA2 /* DeleteViewModel.swift in Sources */,
 				4EC9DBC32A9204A0007990B1 /* VerifyResponseData.swift in Sources */,
+				4E9AFCD02AB29A060090A40B /* SelectionFeedView.swift in Sources */,
 				4E49408B29E3A7200058391E /* ZLEditImageConfiguration.swift in Sources */,
 				4EC939AB2A7D043600CD5A90 /* TagField.swift in Sources */,
 				4E54163F29CFFD800053BE9E /* IPadSearchDefaultView.swift in Sources */,
@@ -2703,6 +2729,7 @@
 				4E49407E29E3A7200058391E /* ZLPhotoModel.swift in Sources */,
 				4EE49F9129C887B800B51F4B /* AppView.swift in Sources */,
 				4E5CF6FD29CD5AC000A4E0DE /* DateInRegion.swift in Sources */,
+				4E9AFCE02AB2A5A90090A40B /* CardTapView.swift in Sources */,
 				4E5CF67B29CD58D100A4E0DE /* InAppReceiptVerificator.swift in Sources */,
 				4E5CF6FC29CD5AC000A4E0DE /* Region.swift in Sources */,
 				4E5CF67029CD58D100A4E0DE /* InAppProductQueryRequest.swift in Sources */,
@@ -2779,6 +2806,7 @@
 				4E9B28A52A6908B6002B54FA /* Collection+Extension.swift in Sources */,
 				4E5CF69F29CD58D100A4E0DE /* AlertActivityIndicatorView.swift in Sources */,
 				4E49409F29E3A7200058391E /* UIView+ZLPhotoBrowser.swift in Sources */,
+				4E9AFCE42AB2BC6B0090A40B /* WaveView.swift in Sources */,
 				4EDDD67229DC238E00C4E14D /* ZLProgressHUD.swift in Sources */,
 				4EDDD67C29DC238E00C4E14D /* Bundle+ZLImageEditor.swift in Sources */,
 				4E5CF67E29CD58D100A4E0DE /* ScalingDotsIndicatorView.swift in Sources */,
@@ -2884,6 +2912,7 @@
 				4EF6647B29F4CB76005C3BD1 /* ZLInputTextViewController.swift in Sources */,
 				4E8B59552A8142010049FCF3 /* SelfInfoResponseData.swift in Sources */,
 				4EF664ED29F4D617005C3BD1 /* ArcsIndicatorView.swift in Sources */,
+				4E9AFCE22AB2AAA10090A40B /* ShootEmptyView.swift in Sources */,
 				4EF664D629F4CEBE005C3BD1 /* ZLPhotoBrowser.swift in Sources */,
 				4EF6648E29F4CB79005C3BD1 /* Cell+ZLImageEditor.swift in Sources */,
 				4E99D1E12A320D410086BFC2 /* Report.swift in Sources */,
@@ -2911,6 +2940,7 @@
 				4EF664EB29F4D617005C3BD1 /* GrowingCircleIndicatorView.swift in Sources */,
 				4EF664E829F4D617005C3BD1 /* EqualizerIndicatorView.swift in Sources */,
 				4EF6647C29F4CB76005C3BD1 /* ZLTextStickerView.swift in Sources */,
+				4E9AFCDD2AB29C780090A40B /* SelectionFeedView.swift in Sources */,
 				4E3BF03D29E6E0460024AB99 /* Color+Extension.swift in Sources */,
 				4EF6647F29F4CB76005C3BD1 /* ZLImageEditorConfiguration.swift in Sources */,
 				4EE7C0922A39583400140FFD /* APIService.swift in Sources */,
@@ -2921,11 +2951,13 @@
 				4EF664E929F4D617005C3BD1 /* OpacityDotsIndicatorView.swift in Sources */,
 				4EF6647E29F4CB76005C3BD1 /* ZLImageEditorConfiguration+Chaining.swift in Sources */,
 				4E3BF03B29E6DFFA0024AB99 /* BackgroundClearView.swift in Sources */,
+				4E9AFCE12AB2A61A0090A40B /* CardTapView.swift in Sources */,
 				4EF664EF29F4D617005C3BD1 /* RotatingDotsIndicatorView.swift in Sources */,
 				4EC939AD2A7D0E8400CD5A90 /* Model.swift in Sources */,
 				4EF6648D29F4CB79005C3BD1 /* UIImage+ZLImageEditor.swift in Sources */,
 				4EF664E629F4D613005C3BD1 /* ActivityIndicatorView.swift in Sources */,
 				4EE7C0B72A397F8D00140FFD /* Pattern.swift in Sources */,
+				4E9AFCD62AB29AAD0090A40B /* ImageView.swift in Sources */,
 				4EF664D529F4CEA6005C3BD1 /* ZLEditImageConfiguration.swift in Sources */,
 				4EF6649129F4CB79005C3BD1 /* Bundle+ZLImageEditor.swift in Sources */,
 				4EF6647629F4CB72005C3BD1 /* ImageStickerContainerView.swift in Sources */,
@@ -2937,6 +2969,7 @@
 				4EE7C0A22A3974B300140FFD /* InfoViewModel.swift in Sources */,
 				4EF6648729F4CB76005C3BD1 /* ZLBaseStickerView.swift in Sources */,
 				4EE7C0962A39654800140FFD /* Response.swift in Sources */,
+				4E9AFCCD2AB296F40090A40B /* SearchViewModel.swift in Sources */,
 				4E9B28A72A690ABF002B54FA /* Collection+Extension.swift in Sources */,
 				4EF6648629F4CB76005C3BD1 /* ZLWeakProxy.swift in Sources */,
 				4E2B6EBE2A177A18000BC713 /* DefaultsKey+Extension.swift in Sources */,
@@ -2946,6 +2979,7 @@
 				4E8B59442A7E01840049FCF3 /* UploadView.swift in Sources */,
 				4EA4E59E29F4F75A00936451 /* CustomShareNavigationController.swift in Sources */,
 				4EF664E329F4D605005C3BD1 /* BlurView.swift in Sources */,
+				4E9AFCCC2AB296EE0090A40B /* SuggestionButtonView.swift in Sources */,
 				4EE7C0A62A39787500140FFD /* SelfViewModel.swift in Sources */,
 				4EF6647A29F4CB76005C3BD1 /* ZLImageEditorUIConfiguration+Chaining.swift in Sources */,
 				4E480B642A934076007AC1D3 /* LoadingView.swift in Sources */,
@@ -3081,6 +3115,7 @@
 				4E42A71D29D14B1200BEC185 /* DateInRegion+Create.swift in Sources */,
 				4ED4B09F29D3E98B005D9758 /* MenuBarExtraUtils.swift in Sources */,
 				4E42A6FF29D132E300BEC185 /* ActivityIndicatorView.swift in Sources */,
+				4E9AFCE52AB2BC6B0090A40B /* WaveView.swift in Sources */,
 				4EE7C0C22A39810300140FFD /* UploadAblum.swift in Sources */,
 				4E40800E2A32B40C003B5322 /* ImageView.swift in Sources */,
 				4E42A70029D132E700BEC185 /* EqualizerIndicatorView.swift in Sources */,
@@ -3840,6 +3875,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E8B595F2A828A0A0049FCF3 /* XCRemoteSwiftPackageReference "DynamicOverlay" */;
 			productName = DynamicOverlay;
+		};
+		4E9AFCD32AB29A6B0090A40B /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E2B6ED42A18A9C1000BC713 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		4E9AFCD92AB29BA20090A40B /* WaterfallGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EE49F8B29C8820F00B51F4B /* XCRemoteSwiftPackageReference "WaterfallGrid" */;
+			productName = WaterfallGrid;
+		};
+		4E9AFCDB2AB29C5C0090A40B /* Grid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E0602602A3F586700508B8B /* XCRemoteSwiftPackageReference "swiftui-grid" */;
+			productName = Grid;
 		};
 		4EB203362A10C745006A9A15 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

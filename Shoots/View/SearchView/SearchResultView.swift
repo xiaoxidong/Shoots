@@ -74,7 +74,6 @@ struct SearchResultView: View {
                             await search.getPatternPics(id: id)
                         }
                     }
-                    .frame(maxWidth: 1060)
             }
         }
     }

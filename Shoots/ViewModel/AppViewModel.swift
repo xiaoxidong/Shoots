@@ -75,7 +75,7 @@ class AppViewModel: ObservableObject {
     var mostPages: Int = 1
     @Published var footerRefreshing = false
     @Published var noMore = false
-    // 图片详情页获取所有的图片
+    // 应用详情页获取所有的图片
     func appPics(id: String) async {
         DispatchQueue.main.async {
             self.loading = true

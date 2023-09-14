@@ -13,4 +13,5 @@ extension DefaultsKey {
     static let localPatterns = Key<[Pattern]>("localPatterns")
     static let localApps = Key<[AppInfo]>("localApps")
     static let shareImage = Key<LocalImageData>("shareImage")
+    static let day = Key<Date>("day")
 }

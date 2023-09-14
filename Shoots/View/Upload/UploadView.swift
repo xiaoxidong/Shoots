@@ -196,7 +196,7 @@ struct UploadView: View {
                                 } else {
                                     Image("up")
                                 }
-                            }.padding([.horizontal], 6)
+                            }.padding(6)
                                 .contentShape(Rectangle())
                         }
                     }
@@ -210,7 +210,9 @@ struct UploadView: View {
                 .padding(6)
                 .frame(height: showFullEditor ? nil : 110)
                 .frame(maxHeight: showFullEditor ? .infinity : nil)
-                .background(Color.white)
+                .background(Color.white.shadow(color: .shootBlack.opacity(0.06), radius: 6, x: 0, y: -6))
+                .contentShape(Rectangle())
+                
                 .opacity(textFocused == .text ? 1 : 0.001)
                 
                 if textFocused == .app {
@@ -277,6 +279,13 @@ struct UploadView: View {
                         .accentColor(Color.shootBlue)
                         .frame(width: 106)
                         .disabled(uploadData[selection].linkedPicId != "")
+                        .overlay(
+                            Color.black.opacity(uploadData[selection].linkedPicId != "" ? 0.001 : 0)
+                                .onTapGesture {
+                                    toastText = "已经关联图片，无法修改应用名称！"
+                                    showToast = true
+                                }
+                        )
 
                     Divider()
                         .frame(height: 36)
@@ -305,12 +314,23 @@ struct UploadView: View {
                             } label: {
                                 Label("应用截图", systemImage: "photo.artframe")
                             }
-                            Button {
-                                uploadData[selection].chooseType = .new
-                                showSearchPic.toggle()
-                            } label: {
-                                Label("设计更新", systemImage: "flag.checkered")
+                            
+                            
+                            if uploadData[selection].linkedPicId != "" {
+                                Button(role: .destructive) {
+                                    uploadData[selection].linkedPicId = ""
+                                } label: {
+                                    Label("取消关联", systemImage: "flag.slash.fill")
+                                }
+                            } else {
+                                Button {
+                                    uploadData[selection].chooseType = .new
+                                    showSearchPic.toggle()
+                                } label: {
+                                    Label("设计更新", systemImage: "flag.checkered")
+                                }
                             }
+
                             Button {
                                 uploadData[selection].chooseType = .interaction
                                 uploadData[selection].linkedPicId = ""

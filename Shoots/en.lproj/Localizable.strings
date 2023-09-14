@@ -106,8 +106,6 @@
 "确认删除系列？" = "Confirmed Delete Collection?";
 
 // Setting
-"支持开发者" = "Support Developers";
-"支持开发者(%@)" = "Support Developers(%@)";
 "批量上传" = "Batch Upload";
 "基础设置" = "Basic Settings";
 "外观设置" = "Appearance Settings";
@@ -135,7 +133,6 @@
 
 // Mac Settings
 "  基础设置  " = "  Setting  ";
-"支持开发者：" = "Support Developers:";
 "买杯饮料" = "Buy a Drink";
 "外观设置：" = "Appearance Settings:";
 "状态栏图标：" = "Statusbar Icon:";
@@ -162,7 +159,7 @@
 "使用条款" = "Terms of Use";
 
 // VIP
-"获取更多的特殊权益" = "Get more Privileges";
+"无限制查看付费内容" = "Get more Privileges";
 " 按年付费确认订阅之后将会向您的 App Store 账户收取费用，按照年的时间长度收取您的费用。订阅服务将会在当前周期结束时自动续订并收取下一年的费用。" = " Yearly PaymentsConfirming your subscription will charge your App Store account for the length of the year. Subscriptions will automatically renew at the end of the current cycle and you will be charged for the next year.";
 " 取消自动续订需要在当前订阅周期结束前 24 小时完成，可以在下面的 App Store 订阅管理里查看，如果有任何问题，请联系我们。" = " Canceling an auto-renewal subscription needs to be done 24 hours before the end of the current subscription cycle, which can be viewed in the App Store Subscription Manager below, or if you have any questions, please contact us.";
 "隐私条款" = "Privacy";
