@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct UploadView: View {
+    @ObservedObject var dataVM: DataViewModel
     let shareCancellAction: () -> Void
     let shareDoneAction: () -> Void
     let uploadAction: () -> Void
 
-    @State var uploadData: [LocalImageData] = []
     @Environment(\.dismiss) var dismiss
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
@@ -27,16 +27,22 @@ struct UploadView: View {
     @State var toastText = ""
     @State var alertType: AlertToast.AlertType = .success(Color.shootBlack)
     var body: some View {
-        TabView(selection: $selection) {
-            ForEach(uploadData.indices, id: \.self) { indice in
-                Image(uiImage: UIImage(data: uploadData[indice].image)!)
+        ScrollView(showsIndicators: false) {
+            if !dataVM.images.isEmpty {
+                Image(uiImage: UIImage(data: dataVM.images[0].image)!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: screen.width)
-                    .ignoresSafeArea()
-                    .tag(indice)
+                    .onAppear {
+//                        if let image = UIImage(data: dataVM.images[0].image), image.size.width != screen.width && image.size.height != screen.height {
+//        //                            toastText = "分享的图片尺寸和当前设备不一样，无法上传"
+//                            toastText = "\(image.size.width) \(screen.width) \(image.size.height) \(screen.height)"
+//                            alertType = .error()
+//                            showToast = true
+//                        }
+                    }
             }
-        }.tabViewStyle(.page(indexDisplayMode: .never))
+        }
             .onTapGesture {
                 appFocused = false
                 tagFocused = false
@@ -52,7 +58,7 @@ struct UploadView: View {
                 }
             }
             .overlay(alignment: .bottom) {
-                if !uploadData.isEmpty {
+                if !dataVM.images.isEmpty {
                     bottomActions
                 }
             }
@@ -70,22 +76,16 @@ struct UploadView: View {
                 AlertToast(displayMode: .alert, type: alertType, title: toastText)
             }
             .onChange(of: selection, perform: { _ in
-                if uploadData[selection].app == "" {
+                if dataVM.images[selection].app == "" {
                     appFocused = true
-                } else if uploadData[selection].pattern == "" {
+                } else if dataVM.images[selection].pattern == "" {
                     tagFocused = true
                 }
             })
             .onAppear {
                 #if DEBUG
-                    showBlurNewGuide = true
+                showBlurNewGuide = true
                 #endif
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    if let data = Defaults().get(for: .shareImage) {
-                        uploadData = [data]
-                    } else {}
-                }
             }
     }
 
@@ -103,15 +103,15 @@ struct UploadView: View {
                         .contentShape(Rectangle())
                 }.frame(maxWidth: .infinity, alignment: .leading)
                 Spacer(minLength: 0)
-                if uploadData.count < 2 {
+                if dataVM.images.count < 2 {
                     Text("上传图片")
                         .font(.system(size: 14, weight: .medium))
                 } else {
                     if updateIndicator {
-                        TitlePageControll(progress: selection, numberOfPages: uploadData.count, tintColor: UIColor(Color.shootBlack), currentPageTintColor: UIColor(Color.shootBlue))
+                        TitlePageControll(progress: selection, numberOfPages: dataVM.images.count, tintColor: UIColor(Color.shootBlack), currentPageTintColor: UIColor(Color.shootBlue))
                             .frame(height: 24)
                     } else {
-                        TitlePageControll(progress: selection, numberOfPages: uploadData.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
+                        TitlePageControll(progress: selection, numberOfPages: dataVM.images.count, tintColor: UIColor(Color.shootLight), currentPageTintColor: UIColor(Color.shootBlue))
                             .frame(height: 24)
                     }
                 }
@@ -141,10 +141,10 @@ struct UploadView: View {
     @State var showBluer = false
     @State var showCombine = false
     var appRsults: [AppInfo] {
-        if uploadData[selection].app == "" {
+        if dataVM.images[selection].app == "" {
             return info.apps
         } else {
-            return info.apps.filter { $0.linkApplicationName.transToLowercasedPinYin().contains(uploadData[selection].app.transToLowercasedPinYin()) }
+            return info.apps.filter { $0.linkApplicationName.transToLowercasedPinYin().contains(dataVM.images[selection].app.transToLowercasedPinYin()) }
         }
     }
 
@@ -178,7 +178,7 @@ struct UploadView: View {
                             .background(Color.shootWhite)
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                uploadData[selection].app = app.linkApplicationName
+                                dataVM.images[selection].app = app.linkApplicationName
                                 appFocused = false
                                 tagFocused = true
                             }
@@ -201,8 +201,8 @@ struct UploadView: View {
                                 Divider()
                             }.contentShape(Rectangle())
                                 .onTapGesture {
-                                    if !uploadData[selection].tags.contains(tag.designPatternName) {
-                                        uploadData[selection].tags.append(tag.designPatternName)
+                                    if !dataVM.images[selection].tags.contains(tag.designPatternName) {
+                                        dataVM.images[selection].tags.append(tag.designPatternName)
                                     }
                                     newTag = ""
                                 }
@@ -214,11 +214,11 @@ struct UploadView: View {
             VStack(spacing: 6) {
                 Divider()
                 HStack(spacing: 8) {
-                    TextField("应用名称", text: $uploadData[selection].app) { show in
+                    TextField("应用名称", text: $dataVM.images[selection].app) { show in
                         if show {
                             showApp = true
                         }
-                    }
+                    }.focused($appFocused)
                         .font(.system(size: 14, weight: .medium))
                         .accentColor(Color.shootBlue)
                         .frame(width: 106)
@@ -248,14 +248,14 @@ struct UploadView: View {
             .shadow(color: Color.shootBlack.opacity(appFocused || tagFocused ? 0 : 0.06), x: 0, y: -6, blur: 10)
         }
         .fullScreenCover(isPresented: $showBluer) {
-            ImageBlurView(image: $uploadData[selection].image)
+            ImageBlurView(image: $dataVM.images[selection].image)
                 .ignoresSafeArea()
                 .overlay(alignment: .center) {
                     blurNew
                 }
         }
         .fullScreenCover(isPresented: $showCombine) {
-            CombineSelectView(uploadImages: $uploadData, selection: $selection, updateIndicator: $updateIndicator)
+            CombineSelectView(uploadImages: $dataVM.images, selection: $selection, updateIndicator: $updateIndicator)
         }
         .onAppear {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
@@ -303,19 +303,19 @@ struct UploadView: View {
     }
 
     func upload() {
-        if let index = uploadData.firstIndex(where: { $0.app == "" }) {
+        if dataVM.images[0].app == "" {
             // 提示需要填写应用名称
-            selection = index
+//            selection = index
             alertType = .error(.red)
             toastText = "请添加所属应用"
             showToast = true
         } else {
             // 上传截图
             Task {
-                user.uploadImages(localDatas: uploadData) { pics in
+                user.uploadImages(localDatas: dataVM.images) { pics in
                     user.uploadPics(pics: pics) { success in
                         if success {
-                            uploadData.removeAll()
+                            dataVM.images.removeAll()
                             // 完成之后关闭
                             shareDoneAction()
                         } else {
@@ -335,10 +335,10 @@ struct UploadView: View {
         ScrollViewReader { scrollView in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(uploadData[selection].tags, id: \.self) { tag in
+                    ForEach(dataVM.images[selection].tags, id: \.self) { tag in
                         Button(action: {
                             withAnimation {
-                                uploadData[selection].tags.removeAll { $0 == tag }
+                                dataVM.images[selection].tags.removeAll { $0 == tag }
                             }
                             newTag = ""
                         }) {
@@ -376,7 +376,7 @@ struct UploadView: View {
                             scrollView.scrollTo("TextField", anchor: .trailing)
                         }
                     }
-                    .onChange(of: uploadData[selection].tags, perform: { _ in
+                    .onChange(of: dataVM.images[selection].tags, perform: { _ in
                         newTag = ""
                         withAnimation(Animation.easeOut(duration: 0).delay(1)) {
                             scrollView.scrollTo("TextField", anchor: .trailing)
@@ -400,13 +400,13 @@ struct UploadView: View {
                 tag.removeLast()
                 if !isOverlap(tag: tag) {
                     withAnimation {
-                        uploadData[selection].tags.append(tag)
+                        dataVM.images[selection].tags.append(tag)
                     }
                 }
             } else {
                 if !isOverlap(tag: tag) {
                     withAnimation {
-                        uploadData[selection].tags.append(tag)
+                        dataVM.images[selection].tags.append(tag)
                     }
                 }
             }
@@ -415,7 +415,7 @@ struct UploadView: View {
     }
 
     func isOverlap(tag: String) -> Bool {
-        if uploadData[selection].tags.contains(tag) {
+        if dataVM.images[selection].tags.contains(tag) {
             return true
         } else {
             return false
@@ -432,22 +432,22 @@ struct UploadView: View {
     }
 }
 
-struct UploadView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            UploadView {} shareDoneAction: {} uploadAction: {}
-        }
-        .previewDisplayName("Chinese")
-        .environment(\.locale, .init(identifier: "zh-cn"))
-        .environmentObject(InfoViewModel())
-        .environmentObject(UserViewModel())
-
-        NavigationView {
-            UploadView {} shareDoneAction: {} uploadAction: {}
-        }
-        .previewDisplayName("English")
-        .environment(\.locale, .init(identifier: "en"))
-        .environmentObject(InfoViewModel())
-        .environmentObject(UserViewModel())
-    }
-}
+//struct UploadView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView {
+//            UploadView {} shareDoneAction: {} uploadAction: {}
+//        }
+//        .previewDisplayName("Chinese")
+//        .environment(\.locale, .init(identifier: "zh-cn"))
+//        .environmentObject(InfoViewModel())
+//        .environmentObject(UserViewModel())
+//
+//        NavigationView {
+//            UploadView {} shareDoneAction: {} uploadAction: {}
+//        }
+//        .previewDisplayName("English")
+//        .environment(\.locale, .init(identifier: "en"))
+//        .environmentObject(InfoViewModel())
+//        .environmentObject(UserViewModel())
+//    }
+//}

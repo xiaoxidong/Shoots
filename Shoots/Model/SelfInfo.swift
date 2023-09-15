@@ -25,7 +25,7 @@ struct InfoDetail: Codable {
 }
 
 struct Role: Codable {
-    var roleId: String
+    var roleId: String?
     var roleName: String?
     var roleKey: String?
     var roleSort: Int?

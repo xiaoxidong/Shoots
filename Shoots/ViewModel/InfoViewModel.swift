@@ -9,6 +9,8 @@ import Alamofire
 import SwiftUI
 
 class InfoViewModel: ObservableObject {
+    @Published var images: [LocalImageData] = []
+    
     @Published var patterns: [Pattern] = Defaults().get(for: .localPatterns) ?? []
     @Published var suggestionPatterns: [Pattern] = []
     @Published var apps: [AppInfo] = []

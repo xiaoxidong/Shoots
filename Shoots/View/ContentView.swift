@@ -105,12 +105,10 @@ struct ContentView: View {
             }
 
             if !selectedImages.isEmpty {
-                Task {
-                    selectedImages.forEach { image in
-                        uploadData.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: "", chooseType: .image, picDescription: ""))
-                    }
-                    upload.toggle()
+                selectedImages.forEach { image in
+                    uploadData.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: "", chooseType: .image, picDescription: ""))
                 }
+                upload.toggle()
             }
         }, content: {
             SelectPhotoView(show: $uploadisActive, selectedImages: $selectedImages, selectedAssets: $selectedAssets)
@@ -166,6 +164,9 @@ struct ContentView: View {
         }
         .fullScreenCover(isPresented: $showAudit) {
             AuditView()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            pasteImage()
         }
         #else
         .sheet(isPresented: $user.editInfo) {
@@ -526,118 +527,128 @@ struct ContentView: View {
     }
 
     #if os(iOS)
-        var uploadView: some View {
-            Group {
-                Color.black.opacity(uploadOptions ? 0.02 : 0)
-                    .onTapGesture {
+    var uploadView: some View {
+        Group {
+            Color.black.opacity(uploadOptions ? 0.02 : 0)
+                .onTapGesture {
+                    withAnimation(.spring()) {
+                        uploadOptions.toggle()
+                    }
+                }
+            VStack {
+                Spacer()
+                VStack(spacing: 22) {
+                    Text("选择操作")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(.shootBlack)
+                    Button(action: {
                         withAnimation(.spring()) {
                             uploadOptions.toggle()
+                            uploadisActive = true
                         }
-                    }
-                VStack {
-                    Spacer()
-                    VStack(spacing: 22) {
-                        Text("选择操作")
-                            .font(.system(size: 16, weight: .medium))
-                            .foregroundColor(.shootBlack)
-                        Button(action: {
-                            withAnimation(.spring()) {
-                                uploadOptions.toggle()
-                                uploadisActive = true
-                            }
-                        }, label: {
+                    }, label: {
+                        HStack {
+                            Image("uploadwhite")
+                                .resizable()
+                                .renderingMode(.template)
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(.white)
+                                .frame(width: 22, height: 22)
+                            Text("上传截图")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(.white)
+                        }.frame(maxWidth: .infinity)
+                            .padding(.vertical, 12)
+                            .background(LinearGradient(colors: [.yellow, .pink], startPoint: .leading, endPoint: .trailing))
+                            .clipShape(Capsule())
+                    })
+                    
+                    VStack(spacing: 8) {
+                        Button {
+                            customUpload.toggle()
+                        } label: {
                             HStack {
-                                Image("uploadwhite")
+                                Image("tags")
                                     .resizable()
                                     .renderingMode(.template)
                                     .aspectRatio(contentMode: .fit)
                                     .foregroundColor(.white)
                                     .frame(width: 22, height: 22)
-                                Text("上传截图")
+                                Text("整理截图")
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(.white)
                             }.frame(maxWidth: .infinity)
                                 .padding(.vertical, 12)
-                                .background(LinearGradient(colors: [.yellow, .pink], startPoint: .leading, endPoint: .trailing))
+                                .background(Color.shootYellow)
                                 .clipShape(Capsule())
-                        })
-
-                        VStack(spacing: 8) {
-                            Button {
-                                customUpload.toggle()
-                            } label: {
-                                HStack {
-                                    Image("tags")
-                                        .resizable()
-                                        .renderingMode(.template)
-                                        .aspectRatio(contentMode: .fit)
-                                        .foregroundColor(.white)
-                                        .frame(width: 22, height: 22)
-                                    Text("整理截图")
-                                        .font(.system(size: 16, weight: .bold))
-                                        .foregroundColor(.white)
-                                }.frame(maxWidth: .infinity)
-                                    .padding(.vertical, 12)
-                                    .background(Color.shootYellow)
-                                    .clipShape(Capsule())
-                            }
-                            Text("一次性快速整理之前截图")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.shootLight)
                         }
-                    }.frame(maxWidth: .infinity)
-                        .padding()
-                        .padding(.bottom)
-                        .padding(.top, 8)
-                        .background(Color.shootWhite)
-                        .clipShape(RoundedRectangle(cornerRadius: 36, style: .continuous))
-                        .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
-                        .contentShape(Rectangle())
-                        .offset(y: uploadOptions ? 0 : 1000)
-                }.frame(maxWidth: 660)
-            }
-        }
-
-        @ViewBuilder
-        var uploadingView: some View {
-            if user.uploading {
-                VStack(spacing: 12) {
-                    if !user.error {
-                        HStack(spacing: 12) {
-                            Text("上传图片")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.shootBlack)
-                            ProgressView()
-                        }
-
-                    } else {
-                        HStack(spacing: 12) {
-                            Text("上传失败")
-                                .foregroundColor(.shootBlack)
-                            Image(systemName: "exclamationmark.triangle.fill")
-                                .foregroundColor(.yellow)
-                            Spacer()
-
-                            Button(action: {}, label: {
-                                Text("重新上传")
-                            })
-                        }.font(.system(size: 16, weight: .bold))
+                        Text("一次性快速整理之前截图")
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundColor(.shootLight)
                     }
-                    ProgressView(value: CGFloat(user.uploadIndex), total: CGFloat(uploadData.count + 1), label: {}, currentValueLabel: {
-                        Text("正在上传")
-                    }).progressViewStyle(.linear)
+                }.frame(maxWidth: .infinity)
+                    .padding()
+                    .padding(.bottom)
+                    .padding(.top, 8)
+                    .background(Color.shootWhite)
+                    .clipShape(RoundedRectangle(cornerRadius: 36, style: .continuous))
+                    .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
+                    .contentShape(Rectangle())
+                    .offset(y: uploadOptions ? 0 : 1000)
+            }.frame(maxWidth: 660)
+        }
+    }
+    
+    @ViewBuilder
+    var uploadingView: some View {
+        if user.uploading {
+            VStack(spacing: 12) {
+                if !user.error {
+                    HStack(spacing: 12) {
+                        Text("上传图片")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(.shootBlack)
+                        ProgressView()
+                    }
+                    
+                } else {
+                    HStack(spacing: 12) {
+                        Text("上传失败")
+                            .foregroundColor(.shootBlack)
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundColor(.yellow)
+                        Spacer()
+                        
+                        Button(action: {}, label: {
+                            Text("重新上传")
+                        })
+                    }.font(.system(size: 16, weight: .bold))
                 }
-                .padding()
-                .padding(.bottom)
-                .padding(.top, 8)
-                .background(Color.shootWhite)
-                .clipShape(RoundedRectangle(cornerRadius: 36, style: .continuous))
-                .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
-                .contentShape(Rectangle())
-                .padding(.horizontal)
-                .frame(maxWidth: 660)
+                ProgressView(value: CGFloat(user.uploadIndex), total: CGFloat(uploadData.count + 1), label: {}, currentValueLabel: {
+                    Text("正在上传")
+                }).progressViewStyle(.linear)
+            }
+            .padding()
+            .padding(.bottom)
+            .padding(.top, 8)
+            .background(Color.shootWhite)
+            .clipShape(RoundedRectangle(cornerRadius: 36, style: .continuous))
+            .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
+            .contentShape(Rectangle())
+            .padding(.horizontal)
+            .frame(maxWidth: 660)
+        }
+    }
+    
+    func pasteImage() {
+        let pb = UIPasteboard.general
+        if pb.hasImages {
+            if let image = pb.image {
+                uploadData.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: "", chooseType: .image, picDescription: ""))
+                upload.toggle()
             }
         }
+    }
     #endif
 
     var homeNew: some View {

@@ -13,11 +13,12 @@ import UniformTypeIdentifiers
 class CustomShareViewController: UIViewController {
     private let typeImage = UTType.image.identifier
 
-    var images: [LocalImageData] = []
+    @State var images: [LocalImageData] = []
+    var dataVM = DataViewModel()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        let contentView = UploadView {
+        let contentView = UploadView(dataVM: self.dataVM) {
             self.cancelAction()
         } shareDoneAction: {
             self.doneAction()
@@ -58,12 +59,16 @@ class CustomShareViewController: UIViewController {
         let attachment = inputItem.attachments!.first!
         if attachment.hasItemConformingToTypeIdentifier(UTType.image.identifier) {
             attachment.loadItem(forTypeIdentifier: UTType.image.identifier, options: [:]) { data, _ in
-                if let someURl = data as? URL {
-                    let image = UIImage(contentsOfFile: someURl.path)
-                    self.images.append(LocalImageData(image: image!.pngData()!, app: "", fileName: "", fileSuffix: ""))
+                if let someURl = data as? URL, let image = UIImage(contentsOfFile: someURl.path) {
+//                    self.images.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: ""))
+//                    Defaults().set(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: ""), for: .shareImage)
+                    
+                    self.dataVM.images = [LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: "")]
+//                    self.dataVM.objectWillChange.send()
                 } else if let someImage = data as? UIImage {
 //                    image = someImage
-                    Defaults().set(LocalImageData(image: someImage.pngData()!, app: "", fileName: "", fileSuffix: ""), for: .shareImage)
+//                    Defaults().set(LocalImageData(image: someImage.pngData()!, app: "", fileName: "", fileSuffix: ""), for: .shareImage)
+                    self.dataVM.images = [LocalImageData(image: someImage.pngData()!, app: "", fileName: "", fileSuffix: "")]
                 }
             }
         }
