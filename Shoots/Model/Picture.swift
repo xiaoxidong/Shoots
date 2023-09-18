@@ -12,7 +12,7 @@ struct Picture: Codable, Identifiable {
     var picUrl: String
     var linkApplicationId: String?
     var linkApplicationOfficialId: String?
-    var chooseType: String?
+    var chooseType: String
 
     var compressedPicUrl: String {
         picUrl + "?x-oss-process=image/format,heic"
@@ -82,13 +82,13 @@ enum ImageType: String, Codable {
     var color: Color {
         switch self {
         case .gif:
-            return Color.pink.opacity(0.4)
+            return Color.pink.opacity(0.12)
         case .interaction:
-            return Color.purple.opacity(0.4)
+            return Color.purple.opacity(0.12)
         case .new:
-            return Color.blue.opacity(0.4)
+            return Color.blue.opacity(0.12)
         case .image:
-            return Color.pink.opacity(0.4)
+            return Color.pink.opacity(0.12)
         }
     }
 }

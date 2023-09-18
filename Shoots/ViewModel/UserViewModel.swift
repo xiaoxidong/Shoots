@@ -53,7 +53,6 @@ class UserViewModel: ObservableObject {
         }
     }
 
-    // TODO: 第一次进入的时候当没网的时候，处理
     // 登录
     func login(appleUserId: String, identityToken: String, email: String, fullName: String, _ success: @escaping (Bool) -> Void) {
         print(email)

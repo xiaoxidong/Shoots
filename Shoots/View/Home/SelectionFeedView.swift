@@ -69,7 +69,7 @@ struct SelectionFeedView: View {
 
 struct SelectionFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectionFeedView(shoots: [Picture(id: "", picUrl: "")]) { shoot in
+        SelectionFeedView(shoots: [Picture(id: "", picUrl: "", chooseType: "")]) { shoot in
             print("----")
         }
     }

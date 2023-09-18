@@ -172,17 +172,47 @@ public class ZLPhotoManager: NSObject {
             option.predicate = NSPredicate(format: "mediaType == %ld", PHAssetMediaType.image.rawValue)
         }
 
-        let smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumScreenshots, options: nil)
-        smartAlbums.enumerateObjects { collection, _, stop in
-            if collection.assetCollectionSubtype == .smartAlbumScreenshots {
+        if allowSelectImage {
+            let smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumScreenshots, options: nil)
+            smartAlbums.enumerateObjects { collection, _, stop in
+                if collection.assetCollectionSubtype == .smartAlbumScreenshots {
+                    let result = PHAsset.fetchAssets(in: collection, options: option)
+                    let albumModel = ZLAlbumListModel(title: self.getCollectionTitle(collection), result: result, collection: collection, option: option, isCameraRoll: true)
+                    completion(albumModel)
+
+                    stop.pointee = true
+                }
+            }
+        } else {
+            let smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumVideos, options: nil)
+            smartAlbums.enumerateObjects { collection, _, stop in
+                if collection.assetCollectionSubtype == .smartAlbumVideos {
+                    let result = PHAsset.fetchAssets(in: collection, options: option)
+                    let albumModel = ZLAlbumListModel(title: self.getCollectionTitle(collection), result: result, collection: collection, option: option, isCameraRoll: true)
+                    completion(albumModel)
+
+                    stop.pointee = true
+                }
+            }
+        }
+    }
+    /*
+    //        if !allowSelectImage {
+    //            option.predicate = NSPredicate(format: "mediaType == %ld", PHAssetMediaType.video.rawValue)
+    //        }
+    //        if !allowSelectVideo {
+    //            option.predicate = NSPredicate(format: "mediaType == %ld", PHAssetMediaType.image.rawValue)
+    //        }
+
+            let smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .any, options: nil)
+            smartAlbums.enumerateObjects { collection, _, stop in
                 let result = PHAsset.fetchAssets(in: collection, options: option)
                 let albumModel = ZLAlbumListModel(title: self.getCollectionTitle(collection), result: result, collection: collection, option: option, isCameraRoll: true)
                 completion(albumModel)
 
                 stop.pointee = true
             }
-        }
-    }
+    */
 
     @objc public class func getCameraRollAlbum(allowSelectImage: Bool, allowSelectVideo: Bool, completion: @escaping (ZLAlbumListModel) -> Void) {
         let option = PHFetchOptions()

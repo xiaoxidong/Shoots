@@ -42,6 +42,6 @@ struct CardTapView: View {
 
 struct CardTapView_Previews: PreviewProvider {
     static var previews: some View {
-        CardTapView(shoot: Picture(id: "", picUrl: ""))
+        CardTapView(shoot: Picture(id: "", picUrl: "", chooseType: ""))
     }
 }

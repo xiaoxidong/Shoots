@@ -10,8 +10,10 @@ import SwiftUI
 
 struct SelectPhotoView: UIViewControllerRepresentable {
     @Binding var show: Bool
+    var isImage: Bool = true
     @Binding var selectedImages: [UIImage]
     @Binding var selectedAssets: [PHAsset]
+    @Binding var videoURL: URL?
 
     @State var selectedResults: [ZLResultModel] = []
     @State var takeSelectedAssetsSwitch = true
@@ -75,6 +77,8 @@ struct SelectPhotoView: UIViewControllerRepresentable {
           */
 
         ZLPhotoConfiguration.default()
+            .allowSelectVideo(!isImage)
+            .allowSelectImage(isImage)
             // You can first determine whether the asset is allowed to be selected.
             .canSelectAsset { _ in
                 true
@@ -96,8 +100,19 @@ struct SelectPhotoView: UIViewControllerRepresentable {
         ac.selectImageBlock = { results, isOriginal in
 //            guard let `self` = self else { return }
             self.selectedResults = results
-            self.selectedImages = results.map { $0.image }
+            if isImage {
+                self.selectedImages = results.map { $0.image }
+            } else {
+                if let result = results.first {
+                    result.asset.getURL(completionHandler: { responseURL in
+                        videoURL = responseURL
+                    })
+                }
+            }
+            
             self.selectedAssets = results.map { $0.asset }
+            
+            
             self.isOriginal = true
 
             debugPrint("images: \(self.selectedImages)")
@@ -107,6 +122,7 @@ struct SelectPhotoView: UIViewControllerRepresentable {
 
             show = false
         }
+        
         ac.cancelBlock = {
             debugPrint("cancel select")
             show = false
@@ -128,4 +144,30 @@ struct SelectPhotoView: UIViewControllerRepresentable {
 //            self._showing = showing
 //        }
 //    }
+}
+
+
+extension PHAsset {
+    func getURL(completionHandler : @escaping ((_ responseURL : URL?) -> Void)){
+        if self.mediaType == .image {
+            let options: PHContentEditingInputRequestOptions = PHContentEditingInputRequestOptions()
+            options.canHandleAdjustmentData = {(adjustmeta: PHAdjustmentData) -> Bool in
+                return true
+            }
+            self.requestContentEditingInput(with: options, completionHandler: {(contentEditingInput: PHContentEditingInput?, info: [AnyHashable : Any]) -> Void in
+                completionHandler(contentEditingInput!.fullSizeImageURL as URL?)
+            })
+        } else if self.mediaType == .video {
+            let options: PHVideoRequestOptions = PHVideoRequestOptions()
+            options.version = .original
+            PHImageManager.default().requestAVAsset(forVideo: self, options: options, resultHandler: {(asset: AVAsset?, audioMix: AVAudioMix?, info: [AnyHashable : Any]?) -> Void in
+                if let urlAsset = asset as? AVURLAsset {
+                    let localVideoUrl: URL = urlAsset.url as URL
+                    completionHandler(localVideoUrl)
+                } else {
+                    completionHandler(nil)
+                }
+            })
+        }
+    }
 }

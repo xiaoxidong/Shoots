@@ -35,6 +35,7 @@ struct APIService {
         case uploadImage
         case deleteImage
         case imageDetail(id: String)
+        case imageLinked(id: String)
         case appDetail(id: String)
         case appPics
         case userPattern
@@ -85,6 +86,8 @@ struct APIService {
                 return "/app/pic/delete"
             case let .imageDetail(id):
                 return "/app/pic/detail/\(id)"
+            case let .imageLinked(id):
+                return "/app/pic/relationship/\(id)"
             case let .appDetail(id):
                 return "/app/application/detail/\(id)"
             case .appPics:

@@ -31,6 +31,7 @@ struct ContentView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @State var selectedImages: [UIImage] = []
     @State var selectedAssets: [PHAsset] = []
+    @State var videoURL: URL? = nil
     @State var uploadData: [LocalImageData] = []
     @State var showUploadAction = false
     @AppStorage("askToDelete") var askToDelete: Bool = true
@@ -76,7 +77,7 @@ struct ContentView: View {
                 .onTapGesture {
                     withAnimation(.spring()) {
                         uploadOptions = false
-                        uploadisActive = false
+                        uploadImageisActive = false
                     }
                 }
         }
@@ -86,8 +87,8 @@ struct ContentView: View {
             CustomUploadView()
         })
         .overlay {
-            Color.black.opacity(uploadisActive || showAsk ? 0.16 : 0)
-                .animation(.spring(), value: uploadisActive || showAsk)
+            Color.black.opacity(uploadImageisActive || showAsk ? 0.16 : 0)
+                .animation(.spring(), value: uploadImageisActive || showAsk)
                 .ignoresSafeArea()
         }
         .overlay {
@@ -99,9 +100,9 @@ struct ContentView: View {
             }
         }
         // 选择图片
-        .fullScreenCover(isPresented: $uploadisActive, onDismiss: {
+        .fullScreenCover(isPresented: $uploadImageisActive, onDismiss: {
             withAnimation(.spring()) {
-                uploadisActive = false
+                uploadImageisActive = false
             }
 
             if !selectedImages.isEmpty {
@@ -111,13 +112,17 @@ struct ContentView: View {
                 upload.toggle()
             }
         }, content: {
-            SelectPhotoView(show: $uploadisActive, selectedImages: $selectedImages, selectedAssets: $selectedAssets)
+            SelectPhotoView(show: $uploadImageisActive, selectedImages: $selectedImages, selectedAssets: $selectedAssets, videoURL: $videoURL)
                 .background(BackgroundClearView())
                 .ignoresSafeArea()
 
         })
         // 选择视频
-        
+        .fullScreenCover(isPresented: $uploadVidoisActive) {
+            SelectPhotoView(show: $uploadVidoisActive, isImage: false, selectedImages: $selectedImages, selectedAssets: $selectedAssets, videoURL: $videoURL)
+                .background(BackgroundClearView())
+                .ignoresSafeArea()
+        }
         .fullScreenCover(isPresented: $upload, onDismiss: {
             selectedImages.removeAll()
             uploadData.removeAll()
@@ -146,6 +151,11 @@ struct ContentView: View {
                     }
                 }
             }
+        })
+        .sheet(item: $videoURL, onDismiss: {
+            
+        }, content: { _ in
+            VideoEditor(videoURL: $videoURL, selectedImages: $selectedImages)
         })
         .sheet(isPresented: $user.editInfo) {
             if #available(iOS 16.0, *) {
@@ -294,7 +304,8 @@ struct ContentView: View {
     }
     #endif
 
-    @State var uploadisActive = false
+    @State var uploadImageisActive = false
+    @State var uploadVidoisActive = false
     @State var showMacSelf = false
     @State var showMacPro = false
     @EnvironmentObject var user: UserViewModel
@@ -341,7 +352,7 @@ struct ContentView: View {
                         Button {
                             FeedbackManager.impact(style: .soft)
                             withAnimation(.spring()) {
-                                uploadisActive = true
+                                uploadVidoisActive = true
                             }
                             /*
                             if showCustomUpload {
@@ -350,7 +361,7 @@ struct ContentView: View {
                                 }
                             } else {
                                 withAnimation(.spring()) {
-                                    uploadisActive = true
+                                    uploadImageisActive = true
                                 }
                             }
                              */
@@ -364,14 +375,14 @@ struct ContentView: View {
                         Menu {
                             Button {
                                 FeedbackManager.impact(style: .soft)
-                                uploadisActive.toggle()
+                                uploadImageisActive.toggle()
                             } label: {
                                 Label("上传截图 ", image: "upload")
                             }
                             
                             Button {
                                 FeedbackManager.impact(style: .soft)
-                                customUpload.toggle()
+                                uploadVidoisActive.toggle()
                             } label: {
                                 Label("Gif 交互", image: "gif01")
                             }
@@ -400,7 +411,7 @@ struct ContentView: View {
                             Menu {
                                 Button {
                                     FeedbackManager.impact(style: .soft)
-                                    uploadisActive.toggle()
+                                    uploadImageisActive.toggle()
                                 } label: {
                                     Label("上传截图", image: "upload")
                                 }
@@ -427,7 +438,7 @@ struct ContentView: View {
                                 }
                             } else {
                                 withAnimation(.spring()) {
-                                    uploadisActive = true
+                                    uploadImageisActive = true
                                 }
                             }
                         } label: {
@@ -544,7 +555,7 @@ struct ContentView: View {
                     Button(action: {
                         withAnimation(.spring()) {
                             uploadOptions.toggle()
-                            uploadisActive = true
+                            uploadImageisActive = true
                         }
                     }, label: {
                         HStack {

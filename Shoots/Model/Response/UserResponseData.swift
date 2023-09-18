@@ -19,8 +19,4 @@ struct UserResponseData: Codable {
     }
 }
 
-struct ImageDetailResponseData: Codable {
-    var code: Int
-    var msg: String
-    var data: ImageDetail
-}
+

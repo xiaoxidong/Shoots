@@ -104,14 +104,14 @@ struct TitleFeedView_Previews: PreviewProvider {
 }
 
 var pic: [Picture] = [
-    Picture(id: "Many of the links above are affiliate links. This means that I earn a small commission if you purchase the plugins or sign up for a subscription. It won't cost you any more but it helps me to keep making these tutorial videos for free.", picUrl: "s1"),
-    Picture(id: "Add your video to a circle in Final Cut Pro using only the built-in plugins.", picUrl: "s2"),
-    Picture(id: "Starting in iOS 15, the background materials for bars (navigation bar, tab bar, etc.) were removed giving more visual clarity to your content as stated in this WWDC 2021 video titled What's new in UIKit", picUrl: "s3"),
-    Picture(id: "When you set a background color, you will notice it will go behind the NavigationView for large and inline nav bars.", picUrl: "s4"),
-    Picture(id: "The background of a view, such as shape styles, will automatically expand into the safe areas it touches.", picUrl: "s5"),
-    Picture(id: "There is a new initializer introduced with iOS 15 that allows backgrounds to expand into safe areas. You could manually set the safe area edge but by default, it is set to all edges.", picUrl: "s6"),
-    Picture(id: "That Rectangle with the background HAS to touch the safe area edge.", picUrl: "s7"),
-    Picture(id: "The shape style (Color) is in a background modifier because the background accepts a ShapeStyle type.", picUrl: "s8"),
-    Picture(id: "The background touching the safe area edge should be the full width of the NavigationStack. The Rectangle shape expands horizontally to match the width of the device/NavigationStack.", picUrl: "s9"),
-    Picture(id: "The background touching the safe area edge should be the full width of the NavigationStack. The Rectangle shape expands horizontally to match the width of the device/NavigationStack.", picUrl: "s10")
+    Picture(id: "Many of the links above are affiliate links. This means that I earn a small commission if you purchase the plugins or sign up for a subscription. It won't cost you any more but it helps me to keep making these tutorial videos for free.", picUrl: "s1", chooseType: ""),
+    Picture(id: "Add your video to a circle in Final Cut Pro using only the built-in plugins.", picUrl: "s2", chooseType: ""),
+    Picture(id: "Starting in iOS 15, the background materials for bars (navigation bar, tab bar, etc.) were removed giving more visual clarity to your content as stated in this WWDC 2021 video titled What's new in UIKit", picUrl: "s3", chooseType: ""),
+    Picture(id: "When you set a background color, you will notice it will go behind the NavigationView for large and inline nav bars.", picUrl: "s4", chooseType: ""),
+    Picture(id: "The background of a view, such as shape styles, will automatically expand into the safe areas it touches.", picUrl: "s5", chooseType: ""),
+    Picture(id: "There is a new initializer introduced with iOS 15 that allows backgrounds to expand into safe areas. You could manually set the safe area edge but by default, it is set to all edges.", picUrl: "s6", chooseType: ""),
+    Picture(id: "That Rectangle with the background HAS to touch the safe area edge.", picUrl: "s7", chooseType: ""),
+    Picture(id: "The shape style (Color) is in a background modifier because the background accepts a ShapeStyle type.", picUrl: "s8", chooseType: ""),
+    Picture(id: "The background touching the safe area edge should be the full width of the NavigationStack. The Rectangle shape expands horizontally to match the width of the device/NavigationStack.", picUrl: "s9", chooseType: ""),
+    Picture(id: "The background touching the safe area edge should be the full width of the NavigationStack. The Rectangle shape expands horizontally to match the width of the device/NavigationStack.", picUrl: "s10", chooseType: "")
 ]

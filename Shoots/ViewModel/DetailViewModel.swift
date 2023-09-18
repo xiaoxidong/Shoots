@@ -32,6 +32,19 @@ class DetailViewModel: ObservableObject {
             }
         }
     }
+    
+    // 获取图片关联
+    @Published var linked: [ImageLinked] = []
+    func getImageLinked(id: String, _ success: @escaping ([ImageLinked]) -> Void) async {
+        APIService.shared.GET(url: .imageLinked(id: id), params: nil) { (result: Result<ImageLinkedResponseData, APIService.APIError>) in
+            switch result {
+            case let .success(detail):
+                success(detail.data)
+            case let .failure(error):
+                print("关联图片错误: \(error)")
+            }
+        }
+    }
 
     // 新建系列
     func addFavorites(name: String, _ success: @escaping (Bool) -> Void) async {

@@ -8,12 +8,13 @@
 import SwiftUI
 import SwiftUIFlowLayout
 #if os(iOS)
-    import Toast
+import Toast
 #endif
 
 struct DetailView: View {
-    var shoot: Picture
+    @State var shoots: [Picture]
 
+    @State var selection: Int = 0
     @State var showDetail = false
     @State var searchText: String? = nil
     @AppStorage("showDetailNew") var showDetailNew = true
@@ -31,28 +32,33 @@ struct DetailView: View {
     #endif
     @EnvironmentObject var search: SearchViewModel
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            ImageView(urlString: shoot.compressedPicUrl, image: $image)
-                .frame(maxWidth: 460)
-                .padding(.top)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        }.background(Color.shootLight.opacity(0.1))
-            .onTapGesture {
-                #if os(iOS)
-                FeedbackManager.impact(style: .soft)
-                #endif
-                if showSave {
-                    withAnimation(.spring()) {
-                        showSave = false
+        TabView(selection: $selection) {
+            ForEach(shoots.indices, id: \.self) { indice in
+                ScrollView(showsIndicators: false) {
+                    ImageView(urlString: shoots[indice].compressedPicUrl, image: $image)
+                        .frame(maxWidth: 460)
+                        .padding(.top)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                }.background(Color.shootLight.opacity(0.1))
+                    .tag(indice)
+                    .onTapGesture {
+                        #if os(iOS)
+                        FeedbackManager.impact(style: .soft)
+                        #endif
+                        if showSave {
+                            withAnimation(.spring()) {
+                                showSave = false
+                            }
+                        } else {
+                            withAnimation(.spring()) {
+                                showDetail.toggle()
+                            }
+                        }
                     }
-                } else {
-                    withAnimation(.spring()) {
-                        showDetail.toggle()
-                    }
-                }
             }
-            .overlay(alignment: .topTrailing) {
-                imageActionButtons
+        }.tabViewStyle(.page(indexDisplayMode: .never))
+            .overlay(alignment: .top) {
+                indicatorView
             }
             .overlay(alignment: .bottom) {
                 infoView
@@ -139,6 +145,36 @@ struct DetailView: View {
             .toast(isPresenting: $showAlert) {
                 AlertToast(displayMode: .alert, type: alertType, title: alertText)
             }
+            .onChange(of: selection, perform: { _ in
+                detail.loading = true
+                detail.detail = nil
+            })
+            .onAppear {
+                let id = shoots[0].id
+                Task {
+                    await detail.getImageLinked(id: id) { linked in
+                        let group = Dictionary(grouping: linked, by: { $0.bindOrToBind })
+                        
+                        if let befores = group["2"] {
+                            var array: [Picture] = []
+                            befores.forEach { pic in
+                                array.append(Picture(id: pic.id, picUrl: pic.picUrl, linkApplicationId: pic.linkApplicationId, linkApplicationOfficialId: pic.linkApplicationOfficialId, chooseType: pic.chooseType))
+                            }
+                            
+                            shoots.insert(contentsOf: array, at: 0)
+                            selection = shoots.count - 1
+                        }
+                        if let afters = group["1"] {
+                            var array: [Picture] = []
+                            afters.forEach { pic in
+                                array.append(Picture(id: pic.id, picUrl: pic.picUrl, linkApplicationId: pic.linkApplicationId, linkApplicationOfficialId: pic.linkApplicationOfficialId, chooseType: pic.chooseType))
+                            }
+                            
+                            shoots.append(contentsOf: array)
+                        }
+                    }
+                }
+            }
     }
 
     @State var showApp = false
@@ -153,8 +189,9 @@ struct DetailView: View {
                     LoadingView()
                         .frame(height: 160)
                         .onAppear {
+                            let id = shoots[selection].id
                             Task {
-                                await detail.getImageDetail(id: shoot.id) { _ in
+                                await detail.getImageDetail(id: id) { _ in
                                 }
                             }
                         }
@@ -174,7 +211,7 @@ struct DetailView: View {
                             .sheet(isPresented: $showApp) {
                                 #if os(iOS)
                                     NavigationView {
-                                        AppView(id: shoot.linkApplicationId ?? "", appID: detail.appStoreId)
+                                        AppView(id: shoots[selection].linkApplicationId ?? "", appID: detail.appStoreId)
                                             .navigationTitle(detail.linkApplicationName ?? "应用")
                                             .navigationBarTitleDisplayMode(.inline)
                                             .toolbar {
@@ -194,7 +231,7 @@ struct DetailView: View {
                                             Spacer()
                                             MacCloseButton()
                                         }.padding([.horizontal, .top], 36)
-                                        AppView(id: shoot.linkApplicationId ?? "", appID: detail.appStoreId)
+                                        AppView(id: shoots[selection].linkApplicationId ?? "", appID: detail.appStoreId)
                                     }.sheetFrameForMac()
                                 #endif
                             }
@@ -285,22 +322,24 @@ struct DetailView: View {
                                 }
                             }
                             
-                            Text("设计是个很好的内容，我们要学会好好的学习，才可以很好的做到更好的设计知识。")
-                                .font(.system(size: 15, weight: .medium))
-                                .fixedSize(horizontal: false, vertical: true)
-                                .foregroundColor(.shootGray)
-                                .lineSpacing(3)
-                                .blur(radius: showContent ? 0 : 4)
-                                .onTapGesture {
-                                    freeClick()
-                                }
-                                .onAppear {
-                                    if shoot.type == .image || user.isPro {
-                                        withAnimation(.spring()) {
-                                            showContent = true
+                            if let description = detail.description {
+                                Text(description)
+                                    .font(.system(size: 15, weight: .medium))
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .foregroundColor(.shootGray)
+                                    .lineSpacing(3)
+                                    .blur(radius: showContent ? 0 : 4)
+                                    .onTapGesture {
+                                        freeClick()
+                                    }
+                                    .onAppear {
+                                        if shoots[selection].type == .image || user.isPro {
+                                            withAnimation(.spring()) {
+                                                showContent = true
+                                            }
                                         }
                                     }
-                                }
+                            }
                         }
                         
                         // 操作按钮
@@ -376,7 +415,7 @@ struct DetailView: View {
                                             showAlert = true
                                         }
 
-                                        guard let url = URL(string: shoot.picUrl) else { return }
+                                        guard let url = URL(string: shoots[selection].picUrl) else { return }
                                         let task = URLSession.shared.dataTask(with: url) { data, _, _ in
                                             guard let data = data else { return }
                                             imageSaver.writeToPhotoAlbum(image: UIImage(data: data)!)
@@ -399,7 +438,7 @@ struct DetailView: View {
                             ActionTitleButtonView(systemImage: "exclamationmark.shield.fill", title: "举报") {
                                 showReport.toggle()
                             }.sheet(isPresented: $showReport) {
-                                ReportView(shoot: shoot) {
+                                ReportView(shoot: shoots[selection]) {
                                     alertText = "反馈成功"
                                     alertType = .success(Color.shootBlack)
                                     showAlert = true
@@ -423,25 +462,37 @@ struct DetailView: View {
             .shadow(color: Color.shootBlack.opacity(0.1), radius: 10, y: -6)
             .contentShape(Rectangle())
     }
-
-    // 图片操作按钮
-    var imageActionButtons: some View {
-        HStack(spacing: 16) {
-//            Button {
-//                
-//            } label: {
-//                Image(systemName: "rectangle.stack.fill")
-//                    .font(.system(size: 16, weight: .bold))
-//                    .padding(8)
-//                    .background(Color.shootWhite)
-//                    .clipShape(Circle())
-//                    .shadow(color: .shootLight.opacity(0.4), radius: 10, x: 0, y: 0)
-//            }.buttonStyle(.plain)
-
+    
+    @Environment(\.dismiss) var dismiss
+    var indicatorView: some View {
+        HStack {
+            Image(systemName: "xmark")
+                .font(.system(size: 16, weight: .bold))
+                .padding(8)
+                .background(Color.shootWhite)
+                .clipShape(Circle())
+                .hidden()
+            
+            Spacer()
+            if shoots.count > 1 {
+                HStack(spacing: 4) {
+                    ForEach(0..<shoots.count, id: \.self) { indice in
+                        Circle()
+                            .frame(width: 6, height: 6)
+                            .foregroundColor(selection == indice ? .shootRed : .shootGray)
+                            .animation(.spring(), value: selection)
+                    }
+                }.padding(.horizontal, 6)
+                    .padding(.vertical, 4)
+                .background(Color.shootWhite)
+                    .clipShape(Capsule(style: .continuous))
+                    .shadow(color: .shootGray.opacity(0.2), radius: 6, x: 0, y: 0)
+            }
+            Spacer()
             Button {
-                
+                dismiss()
             } label: {
-                Image(systemName: "rectangle.fill.on.rectangle.angled.fill")
+                Image(systemName: "xmark")
                     .font(.system(size: 16, weight: .bold))
                     .padding(8)
                     .background(Color.shootWhite)
@@ -450,8 +501,6 @@ struct DetailView: View {
             }.buttonStyle(.plain)
         }.padding()
     }
-    
-    
     @State var showSave = false
     var saveView: some View {
         VStack {
@@ -496,9 +545,10 @@ struct DetailView: View {
                                         }
                                     )
                                     .onTapGesture {
+                                        let id = shoots[selection].id
                                         // 收藏
                                         Task {
-                                            await detail.savePics(pics: [shoot.id], favoriteFileId: favorite.id) { _ in
+                                            await detail.savePics(pics: [id], favoriteFileId: favorite.id) { _ in
                                                 // 收藏成功
                                                 showSave = false
                                                 // 提示成功
@@ -652,11 +702,11 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(shoot: Picture(id: "", picUrl: ""))
+        DetailView(shoots: [Picture(id: "", picUrl: "", chooseType: "")])
             .previewDisplayName("Chinese")
             .environment(\.locale, .init(identifier: "zh-cn"))
             .environmentObject(UserViewModel())
-        DetailView(shoot: Picture(id: "", picUrl: ""))
+        DetailView(shoots: [Picture(id: "", picUrl: "", chooseType: "")])
             .previewDisplayName("English")
             .environment(\.locale, .init(identifier: "en"))
             .environmentObject(UserViewModel())

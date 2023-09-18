@@ -29,7 +29,7 @@ struct ImageCardView: View {
                 }
             }
             .sheet(isPresented: $showDetail) {
-                DetailView(shoot: shoot)
+                DetailView(shoots: [shoot])
                     .sheetFrameForMac()
             }
             .onTapGesture {
