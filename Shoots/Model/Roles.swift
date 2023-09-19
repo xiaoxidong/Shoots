@@ -14,9 +14,9 @@ enum Roles: Codable {
     var id: String {
         switch self {
         case .examine:
-            return "1699813565683048450"
+            return ""
         case .upload:
-            return "1703432003584278530"
+            return ""
         }
     }
 }
