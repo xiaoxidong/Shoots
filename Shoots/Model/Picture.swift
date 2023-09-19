@@ -17,6 +17,13 @@ struct Picture: Codable, Identifiable {
     var compressedPicUrl: String {
         picUrl + "?x-oss-process=image/format,heic"
         // "?x-oss-process=image/resize,l_923,h_600/format,heic"
+        //?x-oss-process=image/resize,w_200/format,webp
+    }
+    
+    var gifPicUrl: String {
+        picUrl + "?x-oss-process=image/resize,m_lfit,w_440"
+        // "?x-oss-process=image/resize,l_923,h_600/format,heic"
+        //?x-oss-process=image/resize,w_200/format,webp
     }
     
     // 1 交互细节、2 用户体验、3 设计更新、4 截图

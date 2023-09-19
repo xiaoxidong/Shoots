@@ -11,7 +11,6 @@ enum Roles: Codable {
     case examine // 审核
     case upload // 上传内容权限
     
-    #if DEBUG
     var id: String {
         switch self {
         case .examine:
@@ -20,14 +19,4 @@ enum Roles: Codable {
             return "1703432003584278530"
         }
     }
-    #else
-    var id: String {
-        switch self {
-        case .examine:
-            return ""
-        case .upload:
-            return ""
-        }
-    }
-    #endif
 }

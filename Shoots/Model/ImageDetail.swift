@@ -25,7 +25,7 @@ struct ImageDetail: Codable {
     var uploadNum: String
     var favoriteNum: String
     var designPatternList: [PatternName]
-    var chooseType: String? = ["1", "2", "3"].randomElement()!
+    var chooseType: String?
     var picDescription: String?
     
     // 1 交互细节、2 用户体验、3 设计更新、4 截图

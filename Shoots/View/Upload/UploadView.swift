@@ -7,19 +7,23 @@
 
 import Alamofire
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct UploadView: View {
     @Binding var uploadData: [LocalImageData]
-    var isGif = false
+    @Binding var gifURL: URL?
     let shareCancellAction: () -> Void
     let shareDoneAction: () -> Void
     let uploadAction: () -> Void
-
+    
+    var isGif: Bool {
+        gifURL != nil
+    }
     @Environment(\.dismiss) var dismiss
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @AppStorage("showBlurNew") var showBlurNewGuide = true
-
+    
     @State var updateIndicator = true
     let screen = UIScreen.main.bounds
     @State var selection: Int = 0
@@ -38,17 +42,59 @@ struct UploadView: View {
         }
     }
     
-    var content: some View {
-        TabView(selection: $selection) {
-            ForEach(uploadData.indices, id: \.self) { indice in
-                Image(uiImage: UIImage(data: uploadData[indice].image)!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: screen.width, height: screen.height)
-                    .ignoresSafeArea()
-                    .tag(indice)
+    var gifView: some View {
+        WebImage(url: gifURL)
+            // Supports options and context, like `.delayPlaceholder` to show placeholder only when error
+            .onSuccess { image, _, _ in
+                // Success
+                // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
             }
-        }.tabViewStyle(.page(indexDisplayMode: .never))
+            .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
+            .placeholder(Image(systemName: "photo")) // Placeholder Image
+            // Supports ViewBuilder as well
+            .placeholder {
+                Rectangle().foregroundColor(.gray)
+            }
+            .indicator(.activity) // Activity Indicator
+            .transition(.fade(duration: 0.5)) // Fade Transition with duration
+            .scaledToFit()
+            .onDisappear {
+                MediaPicker.cleanDirectory()
+                VideoUtil.cleanDirectory()
+                gifURL = nil
+            }
+    }
+    
+    @ViewBuilder
+    var content: some View {
+        Group {
+            if isGif {
+                ScrollView {
+                    gifView
+                }
+                .onAppear {
+                    if let gifURL {
+                        do {
+                            let data = try Data(contentsOf: gifURL)
+                            uploadData = [LocalImageData(image: data, app: "", fileName: "", fileSuffix: "GIF", chooseType: .gif)]
+                        } catch {
+                            print("Unable to load data: \(error)")
+                        }
+                    }
+                }
+            } else {
+                TabView(selection: $selection) {
+                    ForEach(uploadData.indices, id: \.self) { indice in
+                        Image(uiImage: UIImage(data: uploadData[indice].image)!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: screen.width, height: screen.height)
+                            .ignoresSafeArea()
+                            .tag(indice)
+                    }
+                }.tabViewStyle(.page(indexDisplayMode: .never))
+            }
+        }
             .onTapGesture {
                 textFocused = .none
             }
@@ -363,23 +409,24 @@ struct UploadView: View {
                         )
                     }
                     
-                    
-                    Button {
-                        showBluer.toggle()
-                    } label: {
-                        Image("blur")
-                            .padding(4)
-                            .padding(.horizontal, 4)
-                            .contentShape(Rectangle())
-                    }
-
-                    Button {
-                        showCombine.toggle()
-                    } label: {
-                        Image("connect")
-                            .padding(4)
-                            .padding(.horizontal, 4)
-                            .contentShape(Rectangle())
+                    if !isGif {
+                        Button {
+                            showBluer.toggle()
+                        } label: {
+                            Image("blur")
+                                .padding(4)
+                                .padding(.horizontal, 4)
+                                .contentShape(Rectangle())
+                        }
+                        
+                        Button {
+                            showCombine.toggle()
+                        } label: {
+                            Image("connect")
+                                .padding(4)
+                                .padding(.horizontal, 4)
+                                .contentShape(Rectangle())
+                        }
                     }
                 }.padding(.horizontal, 8).padding(.bottom, 6)
             }
@@ -562,7 +609,7 @@ struct UploadView: View {
 struct UploadView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UploadView(uploadData: .constant([])) {} shareDoneAction: {} uploadAction: {}
+            UploadView(uploadData: .constant([]), gifURL: .constant(nil)) {} shareDoneAction: {} uploadAction: {}
         }
         .previewDisplayName("Chinese")
         .environment(\.locale, .init(identifier: "zh-cn"))
@@ -570,7 +617,7 @@ struct UploadView_Previews: PreviewProvider {
         .environmentObject(UserViewModel())
 
         NavigationView {
-            UploadView(uploadData: .constant([])) {} shareDoneAction: {} uploadAction: {}
+            UploadView(uploadData: .constant([]), gifURL: .constant(nil)) {} shareDoneAction: {} uploadAction: {}
         }
         .previewDisplayName("English")
         .environment(\.locale, .init(identifier: "en"))

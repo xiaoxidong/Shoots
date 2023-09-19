@@ -32,34 +32,7 @@ struct DetailView: View {
     #endif
     @EnvironmentObject var search: SearchViewModel
     var body: some View {
-        TabView(selection: $selection) {
-            ForEach(shoots.indices, id: \.self) { indice in
-                ScrollView(showsIndicators: false) {
-                    ImageView(urlString: shoots[indice].compressedPicUrl, image: $image)
-                        .frame(maxWidth: 460)
-                        .padding(.top)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                }.background(Color.shootLight.opacity(0.1))
-                    .tag(indice)
-                    .onTapGesture {
-                        #if os(iOS)
-                        FeedbackManager.impact(style: .soft)
-                        #endif
-                        if showSave {
-                            withAnimation(.spring()) {
-                                showSave = false
-                            }
-                        } else {
-                            withAnimation(.spring()) {
-                                showDetail.toggle()
-                            }
-                        }
-                    }
-            }
-        }.tabViewStyle(.page(indexDisplayMode: .never))
-            .overlay(alignment: .top) {
-                indicatorView
-            }
+        content
             .overlay(alignment: .bottom) {
                 infoView
                     .offset(y: showDetail ? 0 : 100)
@@ -175,6 +148,101 @@ struct DetailView: View {
                     }
                 }
             }
+    }
+    
+    @ViewBuilder
+    var content: some View {
+        #if os(iOS)
+        TabView(selection: $selection) {
+            ForEach(shoots.indices, id: \.self) { indice in
+                ScrollView(showsIndicators: false) {
+                    ImageView(urlString: shoots[indice].type == .gif ? shoots[indice].gifPicUrl : shoots[indice].compressedPicUrl, isGif: shoots[indice].type == .gif, image: $image)
+                        .frame(maxWidth: 460)
+                        .padding(.top)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                }
+                .background(Color.shootLight.opacity(0.1))
+                    .tag(indice)
+                    .onTapGesture {
+                        #if os(iOS)
+                        FeedbackManager.impact(style: .soft)
+                        #endif
+                        if showSave {
+                            withAnimation(.spring()) {
+                                showSave = false
+                            }
+                        } else {
+                            withAnimation(.spring()) {
+                                showDetail.toggle()
+                            }
+                        }
+                    }
+            }
+        }.tabViewStyle(.page(indexDisplayMode: .never))
+            .overlay(alignment: .top) {
+                indicatorView
+            }
+        #else
+        if shoots.count == 1 {
+            ScrollView(showsIndicators: false) {
+                ImageView(urlString: shoots[0].type == .gif ? shoots[0].gifPicUrl : shoots[0].compressedPicUrl, isGif: shoots[0].type == .gif, image: $image)
+                    .frame(maxWidth: 460)
+                    .padding(.top)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            }.background(Color.shootLight.opacity(0.1))
+                .onTapGesture {
+                    #if os(iOS)
+                    FeedbackManager.impact(style: .soft)
+                    #else
+                    selection = 0
+                    #endif
+                    if showSave {
+                        withAnimation(.spring()) {
+                            showSave = false
+                        }
+                    } else {
+                        withAnimation(.spring()) {
+                            showDetail.toggle()
+                        }
+                    }
+                }
+        } else {
+            ScrollViewReader { value in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(shoots.indices, id: \.self) { indice in
+                            ScrollView(showsIndicators: false) {
+                                ImageView(urlString: shoots[indice].type == .gif ? shoots[indice].gifPicUrl : shoots[indice].compressedPicUrl, isGif: shoots[indice].type == .gif, image: $image)
+                                    .frame(maxWidth: 460)
+                                    .padding(.top)
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                            }.background(Color.shootLight.opacity(0.1))
+                                .id(indice)
+                                .onTapGesture {
+                                    #if os(iOS)
+                                    FeedbackManager.impact(style: .soft)
+                                    #else
+                                    selection = indice
+                                    #endif
+                                    if showSave {
+                                        withAnimation(.spring()) {
+                                            showSave = false
+                                        }
+                                    } else {
+                                        withAnimation(.spring()) {
+                                            showDetail.toggle()
+                                        }
+                                    }
+                                }
+                        }
+                    }
+                }
+                .onAppear {
+                    value.scrollTo(1, anchor: .center)
+                }
+            }
+        }
+        #endif
     }
 
     @State var showApp = false
@@ -322,10 +390,11 @@ struct DetailView: View {
                                 }
                             }
                             
-                            if let description = detail.description {
+                            if let description = detail.picDescription {
                                 Text(description)
                                     .font(.system(size: 15, weight: .medium))
                                     .fixedSize(horizontal: false, vertical: true)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                                     .foregroundColor(.shootGray)
                                     .lineSpacing(3)
                                     .blur(radius: showContent ? 0 : 4)

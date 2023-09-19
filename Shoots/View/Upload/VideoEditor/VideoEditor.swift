@@ -8,11 +8,12 @@
 import SwiftUI
 import AVFoundation
 import Photos
+import SDWebImageSwiftUI
 
 @available(iOS 14.0, macOS 11, *)
 public struct VideoEditor: View {
     @Binding var videoURL: URL?
-    @Binding var selectedImages: [UIImage]
+    @Binding var gifURL: URL?
     
     @StateObject private var videoUtil: VideoUtil = VideoUtil()
     @StateObject private var playerVM = PlayerViewModel()
@@ -27,12 +28,16 @@ public struct VideoEditor: View {
     @State private var exportedVideoURL: URL? = nil
     
     @Environment(\.dismiss) var dismiss
+    @State var show = false
+    @State var data: Data? = nil
+    @State var showToast = false
+    @State var toastText = "时间不能超过 3 秒"
     public var body: some View {
         ZStack {
             if videoURL != nil {
                 videoPlayer
             } else {
-                SpinnerView()
+                LoadingView()
             }
             videoOverlay
         }
@@ -40,18 +45,20 @@ public struct VideoEditor: View {
         .transition(.move(edge: .bottom))
         .overlay {
             if isExporting {
-                exportingOverlay
+                LoadingView()
             }
         }
         .onAppear(perform: initialiseOrResetEditor)
         .onDisappear {
-            playerVM.pause()
             cancelButtonActions()
         }
         .environmentObject(videoUtil)
         .environmentObject(playerVM)
         .onChange(of: videoURL) { newValue in
             initialiseOrResetEditor()
+        }
+        .toast(isPresenting: $showToast) {
+            AlertToast(displayMode: .alert, type: .error(), title: toastText)
         }
     }
     
@@ -69,24 +76,24 @@ public struct VideoEditor: View {
     var videoOverlay: some View {
         VStack(alignment: .center) {
             HStack(alignment: .top) {
-//                cancelButton
+                //                cancelButton
                 Spacer()
                 doneButton
-//                if isExportCompletedSuccessfully {
-//                    doneButton
-//                } else {
-//                    controlsButtons
-//                }
+                //                if isExportCompletedSuccessfully {
+                //                    doneButton
+                //                } else {
+                //                    controlsButtons
+                //                }
             }
             .padding(.top)
             Spacer()
-//            if isShowingSlider && !isExportCompletedSuccessfully {
-//
-//            }
+            //            if isShowingSlider && !isExportCompletedSuccessfully {
+            //
+            //            }
             
             VideoSliderView()
                 .background(Color.gray.opacity(0.001)) // somehow fixes slider issue
-//                .padding(.horizontal)
+            //                .padding(.horizontal)
         }
         .buttonStyle(.borderless)
         .foregroundColor(.white)
@@ -118,8 +125,20 @@ public struct VideoEditor: View {
     }
     
     var doneButton: some View {
-        EditorControlButton("checkmark.circle.fill", action: doneButtonActions)
-            .padding(.trailing)
+//        EditorControlButton("checkmark.circle.fill", action: doneButtonActions)
+//            .padding(.trailing)
+        
+        Button {
+            doneButtonActions()
+        } label: {
+            Text("完成")
+                .font(.system(size: 14, weight: .bold))
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .foregroundColor(.shootWhite)
+                .background(Color.shootBlue)
+                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        }.padding(.trailing)
     }
     
     var audioControlImage: String {
@@ -149,23 +168,16 @@ public struct VideoEditor: View {
     
     private func cancelButtonActions() {
         withAnimation {
-            if isExportCompletedSuccessfully {
-                initialiseOrResetEditor()
-            } else {
-                // delete from storage
-                playerVM.pause()
-                dismiss()
-                videoURL = nil
-                MediaPicker.cleanDirectory()
-                VideoUtil.cleanDirectory()
-            }
+            playerVM.pause()
+//            MediaPicker.cleanDirectory()
+//            VideoUtil.cleanDirectory()
         }
     }
     
     private func doneButtonActions() {
         if playerVM.endPlayingAt - playerVM.startPlayingAt > 3 {
             // 提示时间不能超过多少
-            
+            showToast.toggle()
         } else {
             playerVM.pause()
             withAnimation {
@@ -183,130 +195,93 @@ public struct VideoEditor: View {
     
     private func exportCompleted(_ result: VideoUtil.Result) {
         switch result {
-            case let .success(successURL):
-                exportedVideoURL = successURL
-//                playerVM.setCurrentItem(exportedVideoURL!)
-//                withAnimation {
-//                    isExporting = false
-//                    isExportCompletedSuccessfully = true
-//                }
-//                playerVM.startPlayingAt = .zero
-//                playerVM.play()
-//                print("Trim was a success")
-                
-            // URL to Gif
-            // Download the video and write it to temp storage
-            print("Downloading video…")
-            let data = try! Data(contentsOf: exportedVideoURL!)
-            let fileName = String(format: "%@_%@", ProcessInfo.processInfo.globallyUniqueString, "html5gif.mp4")
-            let fileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
-            try! data.write(to: fileURL, options: [.atomic])
-                
-            let frameRate: Int = 20
-            let duration: TimeInterval = 9.68
-            let totalFrames = Int(duration * TimeInterval(frameRate))
-            let delayBetweenFrames: TimeInterval = 1.0 / TimeInterval(frameRate)
+        case let .success(successURL):
+            exportedVideoURL = successURL
+            playerVM.setCurrentItem(exportedVideoURL!)
+            withAnimation {
+                isExporting = false
+                isExportCompletedSuccessfully = true
+            }
+            //                playerVM.startPlayingAt = .zero
+            //                playerVM.play()
+            //                print("Trim was a success")
             
-            var timeValues: [NSValue] = []
-            
-            for frameNumber in 0 ..< totalFrames {
-                let seconds = TimeInterval(delayBetweenFrames) * TimeInterval(frameNumber)
-                let time = CMTime(seconds: seconds, preferredTimescale: Int32(NSEC_PER_SEC))
-                timeValues.append(NSValue(time: time))
+            generateAnimatedGif()
+            // 隐藏浮层
+            //            dismiss()
+        case let .error(error):
+            withAnimation {
+                isExporting = false
+            }
+            print(error)
+            //                onCompletion(.failure(error))
+        }
+    }
+    
+    var frameRate = 20
+    func generateAnimatedGif() {
+        self.playerVM.player.pause()
+        guard let movie = self.playerVM.player.currentItem?.asset else {
+            print("error, no movie in player")
+            return
+        }
+        
+        let totalFrames = Int((playerVM.endPlayingAt - playerVM.startPlayingAt) * Double(frameRate))
+        print(playerVM.endPlayingAt - playerVM.startPlayingAt)
+        //create empty file to hold gif
+        let destinationFilename = String(NSUUID().uuidString + ".gif")
+        let destinationURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(destinationFilename)
+        
+        //metadata for gif file to describe it as an animated gif
+        let fileDictionary = [kCGImagePropertyGIFDictionary : [
+            kCGImagePropertyGIFLoopCount : 0]]
+        
+        //metadata to apply to each frame of the file (we'll use this in the completion block)
+        let frameDictionary = [kCGImagePropertyGIFDictionary : [
+            kCGImagePropertyGIFDelayTime: 1.0 / 20.0]]
+        
+        guard let animatedGifFile = CGImageDestinationCreateWithURL(destinationURL as CFURL, UTType.gif.identifier as CFString, totalFrames, nil) else {
+            print("error creating gif file")
+            return
+        }
+        CGImageDestinationSetProperties(animatedGifFile, fileDictionary as CFDictionary)
+        
+        //generate frames
+        let frameGenerator = AVAssetImageGenerator(asset: movie)
+        frameGenerator.requestedTimeToleranceBefore = CMTime(seconds: 0, preferredTimescale: 600)
+        frameGenerator.requestedTimeToleranceAfter = CMTime(seconds: 0, preferredTimescale: 600)
+        
+        var timeStamps = [NSValue]()
+        
+        for currentFrame in 0..<totalFrames {
+            let frameTime = Double(currentFrame) / Double(frameRate)
+            let timeStamp = CMTime(seconds: Double(frameTime), preferredTimescale: 600)
+            timeStamps.append(NSValue(time: timeStamp))
+        }
+        
+        //The completion handler never says when it's actually done so
+        //keeping track of the number of frames it's generated will let us know when to
+        //end the process and clean up
+        var framesGenerated = 0
+        
+        frameGenerator.generateCGImagesAsynchronously(forTimes: timeStamps) { requestedTime, frameImage, actualTime, result, error in
+            guard let frameImage = frameImage else {
+                print("no image")
+                return
             }
             
-            let asset = AVURLAsset(url: exportedVideoURL!)
-            let generator = AVAssetImageGenerator(asset: asset)
-            generator.requestedTimeToleranceBefore = CMTime(seconds: 0.05, preferredTimescale: 600)
-            generator.requestedTimeToleranceAfter = CMTime(seconds: 0.05, preferredTimescale: 600)
+            framesGenerated = framesGenerated + 1
+            CGImageDestinationAddImage(animatedGifFile, frameImage, frameDictionary as CFDictionary)
             
-            let sizeModifier: CGFloat = 0.1
-            generator.maximumSize = CGSize(width: 450.0 * sizeModifier, height: 563.0 * sizeModifier)
-            
-            // Set up resulting image
-            let fileProperties: [String: Any] = [
-                kCGImagePropertyGIFDictionary as String: [
-                    kCGImagePropertyGIFLoopCount as String: 0
-                ]
-            ]
-            
-            let frameProperties: [String: Any] = [
-                kCGImagePropertyGIFDictionary as String: [
-                    kCGImagePropertyGIFDelayTime: delayBetweenFrames
-                ]
-            ]
-
-            let resultingFilename = String(format: "%@_%@", ProcessInfo.processInfo.globallyUniqueString, "html5gif.gif")
-            let resultingFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(resultingFilename)
-            let destination = CGImageDestinationCreateWithURL(resultingFileURL as CFURL, UTType.gif.identifier as CFString, totalFrames, nil)!
-            CGImageDestinationSetProperties(destination, fileProperties as CFDictionary)
-            
-            print("Converting to GIF…")
-            var framesProcessed = 0
-            let startTime = CFAbsoluteTimeGetCurrent()
-            
-            generator.generateCGImagesAsynchronously(forTimes: timeValues) { (requestedTime, resultingImage, actualTime, result, error) in
-                guard let resultingImage = resultingImage else { return }
-                
-                framesProcessed += 1
-                
-                CGImageDestinationAddImage(destination, resultingImage, frameProperties as CFDictionary)
-                
-                if framesProcessed == totalFrames {
-                    let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-                    print("Done converting to GIF! Frames processed: \(framesProcessed) • Total time: \(timeElapsed) s.")
-                    
-                    // Save to Photos just to check…
-                    let result = CGImageDestinationFinalize(destination)
-                    print("Did it succeed?", result)
-                    
-                    if result {
-                        print("Saving to Photos…")
-
-                        PHPhotoLibrary.shared().performChanges({
-                            PHAssetCreationRequest.creationRequestForAssetFromImage(atFileURL: resultingFileURL)
-                        }) { (saved, err) in
-                            print("Saved?", saved)
-                        }
+            if framesGenerated == totalFrames {
+                if CGImageDestinationFinalize(animatedGifFile) {
+                    DispatchQueue.main.async {
+                        print("success \(destinationURL)")
+                        self.gifURL = destinationURL
+                        dismiss()
                     }
                 }
             }
-//            do {
-//                let data = try Data(contentsOf: exportedVideoURL!)
-//
-//                let fileName = String(format: "%@_%@", ProcessInfo.processInfo.globallyUniqueString, "html5gif.mp4")
-//                let fileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
-//
-//                try data.write(to: fileURL, options: [.atomic])
-//
-//                print("Downloaded, starting GIF conversion…")
-//
-//                let outfileName = String(format: "%@_%@", ProcessInfo.processInfo.globallyUniqueString, "outfile.gif")
-//                let outfileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(outfileName)
-//
-//                let startTime = CFAbsoluteTimeGetCurrent()
-//
-//                let _ = MobileFFmpeg.execute("-i \(fileURL.path) -vf fps=50,scale=450:-1 \(outfileURL.path)")
-//
-//                let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-//                print("Time elapsed: \(timeElapsed) s.")
-//
-//                PHPhotoLibrary.shared().performChanges({
-//                    PHAssetCreationRequest.creationRequestForAssetFromImage(atFileURL: outfileURL)
-//                }) { (saved, err) in
-//                    print("Saved?", saved)
-//                }
-//            } catch {
-//                print("Error was:", error)
-//            }
-            
-            // 隐藏浮层
-//            dismiss()
-            case let .error(error):
-                withAnimation {
-                    isExporting = false
-                }
-//                onCompletion(.failure(error))
         }
     }
     

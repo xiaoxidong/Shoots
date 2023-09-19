@@ -38,6 +38,7 @@ struct ContentView: View {
     @AppStorage("deletePicsUploaded") var deletePicsUploaded: Bool = false
     @State var showAsk = false
     @State var showAudit = false
+    @State var gifURL: URL? = nil
     #endif
     var body: some View {
         NavigationView {
@@ -87,8 +88,8 @@ struct ContentView: View {
             CustomUploadView()
         })
         .overlay {
-            Color.black.opacity(uploadImageisActive || showAsk ? 0.16 : 0)
-                .animation(.spring(), value: uploadImageisActive || showAsk)
+            Color.black.opacity(uploadImageisActive || uploadVidoisActive || showAsk ? 0.16 : 0)
+                .animation(.spring(), value: uploadImageisActive || uploadVidoisActive || showAsk)
                 .ignoresSafeArea()
         }
         .overlay {
@@ -101,13 +102,11 @@ struct ContentView: View {
         }
         // 选择图片
         .fullScreenCover(isPresented: $uploadImageisActive, onDismiss: {
-            withAnimation(.spring()) {
-                uploadImageisActive = false
-            }
+            uploadImageisActive = false
 
             if !selectedImages.isEmpty {
                 selectedImages.forEach { image in
-                    uploadData.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: "", chooseType: .image, picDescription: ""))
+                    uploadData.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: "PNG", chooseType: .image, picDescription: ""))
                 }
                 upload.toggle()
             }
@@ -118,16 +117,18 @@ struct ContentView: View {
 
         })
         // 选择视频
-        .fullScreenCover(isPresented: $uploadVidoisActive) {
+        .fullScreenCover(isPresented: $uploadVidoisActive, onDismiss: {
+            uploadVidoisActive = false
+        }, content: {
             SelectPhotoView(show: $uploadVidoisActive, isImage: false, selectedImages: $selectedImages, selectedAssets: $selectedAssets, videoURL: $videoURL)
                 .background(BackgroundClearView())
                 .ignoresSafeArea()
-        }
+        })
         .fullScreenCover(isPresented: $upload, onDismiss: {
             selectedImages.removeAll()
             uploadData.removeAll()
         }, content: {
-            UploadView(uploadData: $uploadData) {} shareDoneAction: {} uploadAction: {
+            UploadView(uploadData: $uploadData, gifURL: $gifURL) {} shareDoneAction: {} uploadAction: {
                 showUploadAction = true
 
                 Task {
@@ -153,9 +154,11 @@ struct ContentView: View {
             }
         })
         .sheet(item: $videoURL, onDismiss: {
-            
+            if gifURL != nil {
+                upload.toggle()
+            }
         }, content: { _ in
-            VideoEditor(videoURL: $videoURL, selectedImages: $selectedImages)
+            VideoEditor(videoURL: $videoURL, gifURL: $gifURL)
         })
         .sheet(isPresented: $user.editInfo) {
             if #available(iOS 16.0, *) {
@@ -352,7 +355,7 @@ struct ContentView: View {
                         Button {
                             FeedbackManager.impact(style: .soft)
                             withAnimation(.spring()) {
-                                uploadVidoisActive = true
+                                uploadImageisActive = true
                             }
                             /*
                             if showCustomUpload {
@@ -655,7 +658,7 @@ struct ContentView: View {
         let pb = UIPasteboard.general
         if pb.hasImages {
             if let image = pb.image {
-                uploadData.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: "", chooseType: .image, picDescription: ""))
+                uploadData.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: "PNG", chooseType: .image, picDescription: ""))
                 upload.toggle()
             }
         }

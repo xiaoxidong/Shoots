@@ -2208,6 +2208,51 @@
                   endingLineNumber = "128"
                   offsetFromSymbolStart = "768">
                </Location>
+               <Location
+                  uuid = "FAF204CD-77F5-4DDF-ABFB-43633DCFBB24 - 4ac0696dea2a8efd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Alamofire.DataResponse&lt;Shoots.Response, Alamofire.AFError&gt;) -&gt; () in Shoots.UserViewModel.uploadAvatar(image: Foundation.Data, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
+                  offsetFromSymbolStart = "803">
+               </Location>
+               <Location
+                  uuid = "FAF204CD-77F5-4DDF-ABFB-43633DCFBB24 - 4ac0696dea2a8efd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Alamofire.DataResponse&lt;Shoots.Response, Alamofire.AFError&gt;) -&gt; () in Shoots.UserViewModel.uploadAvatar(image: Foundation.Data, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
+                  offsetFromSymbolStart = "780">
+               </Location>
+               <Location
+                  uuid = "FAF204CD-77F5-4DDF-ABFB-43633DCFBB24 - 4ac0696dea2a8efd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Alamofire.DataResponse&lt;Shoots.Response, Alamofire.AFError&gt;) -&gt; () in Shoots.UserViewModel.uploadAvatar(image: Foundation.Data, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
+                  offsetFromSymbolStart = "785">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2330,6 +2375,51 @@
                   startingLineNumber = "122"
                   endingLineNumber = "122"
                   offsetFromSymbolStart = "452">
+               </Location>
+               <Location
+                  uuid = "45940118-7456-4422-A0ED-648F2D825FAC - 4ac0696dea2a8fb3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Alamofire.DataResponse&lt;Shoots.Response, Alamofire.AFError&gt;) -&gt; () in Shoots.UserViewModel.uploadAvatar(image: Foundation.Data, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "418">
+               </Location>
+               <Location
+                  uuid = "45940118-7456-4422-A0ED-648F2D825FAC - 4ac0696dea2a8fb3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Alamofire.DataResponse&lt;Shoots.Response, Alamofire.AFError&gt;) -&gt; () in Shoots.UserViewModel.uploadAvatar(image: Foundation.Data, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "472">
+               </Location>
+               <Location
+                  uuid = "45940118-7456-4422-A0ED-648F2D825FAC - 4ac0696dea2a8fb3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Alamofire.DataResponse&lt;Shoots.Response, Alamofire.AFError&gt;) -&gt; () in Shoots.UserViewModel.uploadAvatar(image: Foundation.Data, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "390">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2689,6 +2779,51 @@
                   endingLineNumber = "58"
                   offsetFromSymbolStart = "113">
                </Location>
+               <Location
+                  uuid = "326F0E33-EB9E-4548-B150-75933DEEDE03 - 960fbf6803077a44"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(Shoots.FeedView, Shoots.LoadMoreView)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, ignoresSafeAreaEdges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(minWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, minHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.refreshable(action: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0&gt; in Shoots.SearchResultView.patternView(id: Swift.String) -&gt; some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/SearchResultView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "391">
+               </Location>
+               <Location
+                  uuid = "326F0E33-EB9E-4548-B150-75933DEEDE03 - 960fbf6803077a44"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(Shoots.FeedView, Shoots.LoadMoreView)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, ignoresSafeAreaEdges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(minWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, minHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.refreshable(action: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0&gt; in Shoots.SearchResultView.patternView(id: Swift.String) -&gt; some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/SearchResultView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  uuid = "326F0E33-EB9E-4548-B150-75933DEEDE03 - b4e2f6ba3cb4a25f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(Shoots.FeedView, Shoots.LoadMoreView)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, ignoresSafeAreaEdges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(minWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, minHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.refreshable(action: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0&gt; in Shoots.SearchResultView.patternView(id: Swift.String) -&gt; some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/SearchResultView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "115">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2782,6 +2917,21 @@
                   endingLineNumber = "50"
                   offsetFromSymbolStart = "586">
                </Location>
+               <Location
+                  uuid = "D8CF6AAC-3722-41D2-846B-C563BF85CD94 - c511806e900d92b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(minWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, minHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.refreshable(action: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0&gt; in Shoots.SearchResultView.patternView(id: Swift.String) -&gt; some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/SearchView/SearchResultView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "662">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2845,6 +2995,51 @@
                   startingLineNumber = "275"
                   endingLineNumber = "275"
                   offsetFromSymbolStart = "234">
+               </Location>
+               <Location
+                  uuid = "444195AC-5D9D-4E0B-94BA-C686222FE700 - bdf0694584c30041"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Shoots.InfoView.performDrop(info: SwiftUI.DropInfo) -&gt; Swift.Bool"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Info/InfoView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "410">
+               </Location>
+               <Location
+                  uuid = "444195AC-5D9D-4E0B-94BA-C686222FE700 - bdf0694584c30041"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Shoots.InfoView.performDrop(info: SwiftUI.DropInfo) -&gt; Swift.Bool"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Info/InfoView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "352">
+               </Location>
+               <Location
+                  uuid = "444195AC-5D9D-4E0B-94BA-C686222FE700 - bdf0694584c30041"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Shoots.InfoView.performDrop(info: SwiftUI.DropInfo) -&gt; Swift.Bool"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Info/InfoView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "219">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -6257,6 +6452,21 @@
                   endingLineNumber = "226"
                   offsetFromSymbolStart = "596">
                </Location>
+               <Location
+                  uuid = "A9D89B42-E4F2-4BB3-A249-C3A9A3030485 - 3ddedcd90409b250"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static Shoots.ZLPhotoManager.getCameraRollAlbum(allowSelectImage: Swift.Bool, allowSelectVideo: Swift.Bool, completion: (Shoots.ZLAlbumListModel) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/Sources/General/ZLPhotoManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "226"
+                  endingLineNumber = "226"
+                  offsetFromSymbolStart = "725">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -6274,6 +6484,53 @@
             endingLineNumber = "151"
             landmarkName = "getPhotoAlbumList(ascending:allowSelectImage:allowSelectVideo:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "865F27F2-34E4-4314-A9A5-CCA61DF19BE0 - 6e2cded026dc8d81"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.PHCollection, Swift.Int, Swift.UnsafeMutablePointer&lt;ObjectiveC.ObjCBool&gt;) -&gt; () in closure #1 (__C.PHFetchResult&lt;__C.PHCollection&gt;) -&gt; () in static Shoots.ZLPhotoManager.getPhotoAlbumList(ascending: Swift.Bool, allowSelectImage: Swift.Bool, allowSelectVideo: Swift.Bool, completion: (Swift.Array&lt;Shoots.ZLAlbumListModel&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/Sources/General/ZLPhotoManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
+                  offsetFromSymbolStart = "865">
+               </Location>
+               <Location
+                  uuid = "865F27F2-34E4-4314-A9A5-CCA61DF19BE0 - 6e2cded026dc8d81"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.PHCollection, Swift.Int, Swift.UnsafeMutablePointer&lt;ObjectiveC.ObjCBool&gt;) -&gt; () in closure #1 (__C.PHFetchResult&lt;__C.PHCollection&gt;) -&gt; () in static Shoots.ZLPhotoManager.getPhotoAlbumList(ascending: Swift.Bool, allowSelectImage: Swift.Bool, allowSelectVideo: Swift.Bool, completion: (Swift.Array&lt;Shoots.ZLAlbumListModel&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/Sources/General/ZLPhotoManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
+                  offsetFromSymbolStart = "612">
+               </Location>
+               <Location
+                  uuid = "865F27F2-34E4-4314-A9A5-CCA61DF19BE0 - 6e2cded026dc8d81"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.PHCollection, Swift.Int, Swift.UnsafeMutablePointer&lt;ObjectiveC.ObjCBool&gt;) -&gt; () in closure #1 (__C.PHFetchResult&lt;__C.PHCollection&gt;) -&gt; () in static Shoots.ZLPhotoManager.getPhotoAlbumList(ascending: Swift.Bool, allowSelectImage: Swift.Bool, allowSelectVideo: Swift.Bool, completion: (Swift.Array&lt;Shoots.ZLAlbumListModel&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/Sources/General/ZLPhotoManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
+                  offsetFromSymbolStart = "620">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -6336,53 +6593,20 @@
                   endingLineNumber = "228"
                   offsetFromSymbolStart = "112">
                </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6893E5FB-35C1-4746-A5B0-7AFC6941241A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shoots/View/Upload/VideoEditor/VideoEditor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
-            landmarkName = "exportCompleted(_:)"
-            landmarkType = "7">
-            <Locations>
                <Location
-                  uuid = "6893E5FB-35C1-4746-A5B0-7AFC6941241A - 9cb9963d5d5166bd"
+                  uuid = "B7D4AB64-4C67-46FF-A3DF-56ED906D5338 - e8c088bb035f6208"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.CMTime, Swift.Optional&lt;__C.CGImageRef&gt;, __C.CMTime, __C.AVAssetImageGeneratorResult, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Shoots.VideoEditor.exportCompleted(Shoots.VideoUtil.Result) -&gt; ()"
+                  symbolName = "closure #1 (__C.PHAssetCollection, Swift.Int, Swift.UnsafeMutablePointer&lt;ObjectiveC.ObjCBool&gt;) -&gt; () in static Shoots.ZLPhotoManager.getCameraRollAlbum(allowSelectImage: Swift.Bool, allowSelectVideo: Swift.Bool, completion: (Shoots.ZLAlbumListModel) -&gt; ()) -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/VideoEditor/VideoEditor.swift"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/Sources/General/ZLPhotoManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "266"
-                  endingLineNumber = "266"
-                  offsetFromSymbolStart = "1668">
-               </Location>
-               <Location
-                  uuid = "6893E5FB-35C1-4746-A5B0-7AFC6941241A - 20727e10aec94028"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 (__C.CMTime, Swift.Optional&lt;__C.CGImageRef&gt;, __C.CMTime, __C.AVAssetImageGeneratorResult, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Shoots.VideoEditor.exportCompleted(Shoots.VideoUtil.Result) -&gt; ()"
-                  moduleName = "Shoots"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/VideoEditor/VideoEditor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "267"
-                  endingLineNumber = "267"
-                  offsetFromSymbolStart = "116">
+                  startingLineNumber = "228"
+                  endingLineNumber = "228"
+                  offsetFromSymbolStart = "265">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -6397,48 +6621,580 @@
             filePath = "Shoots/View/Upload/VideoEditor/VideoEditor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "doneButtonActions()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0F492807-E9D2-4211-8FDF-D22D97943F2C - cb342655a47af01e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.VideoEditor.doneButtonActions() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/VideoEditor/VideoEditor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "1208">
+               </Location>
+               <Location
+                  uuid = "0F492807-E9D2-4211-8FDF-D22D97943F2C - cb342655a47af01e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.VideoEditor.doneButtonActions() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/VideoEditor/VideoEditor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "656">
+               </Location>
+               <Location
+                  uuid = "0F492807-E9D2-4211-8FDF-D22D97943F2C - cb342655a47a8cba"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.VideoEditor.doneButtonActions() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/VideoEditor/VideoEditor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "168"
+                  endingLineNumber = "168"
+                  offsetFromSymbolStart = "656">
+               </Location>
+               <Location
+                  uuid = "0F492807-E9D2-4211-8FDF-D22D97943F2C - cb342655a47af306"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.VideoEditor.doneButtonActions() -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/VideoEditor/VideoEditor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "180"
+                  endingLineNumber = "180"
+                  offsetFromSymbolStart = "684">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "230EAF60-2072-496F-9327-7FD5761BBB33"
+            uuid = "1BB6F273-2559-4EC9-A86C-20ED2FE3A0F2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shoots/View/Upload/VideoEditor/VideoEditor.swift"
+            filePath = "Shoots/ViewModel/UserViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
-            landmarkName = "doneButtonActions()"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "uploadImages(localDatas:_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1BB6F273-2559-4EC9-A86C-20ED2FE3A0F2 - c80cf32bfda63ce2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "2111">
+               </Location>
+               <Location
+                  uuid = "1BB6F273-2559-4EC9-A86C-20ED2FE3A0F2 - c80cf32bfda63ce2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "1552">
+               </Location>
+               <Location
+                  uuid = "1BB6F273-2559-4EC9-A86C-20ED2FE3A0F2 - c80cf32bfda63ce2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "1564">
+               </Location>
+               <Location
+                  uuid = "1BB6F273-2559-4EC9-A86C-20ED2FE3A0F2 - c80cf32bfda63ce2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Shoots.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (Shoots.LocalImageData) -&gt; () in Shoots.UserViewModel.uploadImages(localDatas: Swift.Array&lt;Shoots.LocalImageData&gt;, _: (Swift.Array&lt;Shoots.UploadData&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "2107">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CB215C41-B30B-4D7C-91A5-6365A4FFB807"
+            uuid = "EB055C5B-E34F-4DA2-B7C6-491E52F176F0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shoots/View/Upload/VideoEditor/VideoEditor.swift"
+            filePath = "Shoots/ViewModel/UserViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
-            landmarkName = "exportCompleted(_:)"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "uploadPics(pics:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EB055C5B-E34F-4DA2-B7C6-491E52F176F0 - 71c937afbe5164c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.UserViewModel.uploadPics(pics: Swift.Array&lt;Shoots.UploadData&gt;, _: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "EB055C5B-E34F-4DA2-B7C6-491E52F176F0 - 71c937afbe5164c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.UserViewModel.uploadPics(pics: Swift.Array&lt;Shoots.UploadData&gt;, _: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "EB055C5B-E34F-4DA2-B7C6-491E52F176F0 - 71c937afbe5164c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.UserViewModel.uploadPics(pics: Swift.Array&lt;Shoots.UploadData&gt;, _: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "EB055C5B-E34F-4DA2-B7C6-491E52F176F0 - 71c937afbe5164c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.UserViewModel.uploadPics(pics: Swift.Array&lt;Shoots.UploadData&gt;, _: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "91">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "41694C78-6046-4F48-827C-0A33156A1A40"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/DetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getImageDetail(id:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "41694C78-6046-4F48-827C-0A33156A1A40 - 2206b2b124cb1733"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Result&lt;Shoots.ImageDetailResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.DetailViewModel.getImageDetail(id: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "3182">
+               </Location>
+               <Location
+                  uuid = "41694C78-6046-4F48-827C-0A33156A1A40 - 2206b2b124cb1733"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Result&lt;Shoots.ImageDetailResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.DetailViewModel.getImageDetail(id: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "1964">
+               </Location>
+               <Location
+                  uuid = "41694C78-6046-4F48-827C-0A33156A1A40 - 2206b2b124cb1733"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Result&lt;Shoots.ImageDetailResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.DetailViewModel.getImageDetail(id: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "1972">
+               </Location>
+               <Location
+                  uuid = "41694C78-6046-4F48-827C-0A33156A1A40 - 2206b2b124cb1733"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Result&lt;Shoots.ImageDetailResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.DetailViewModel.getImageDetail(id: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "3172">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DF7E5455-5C62-4983-BCBC-C1CEBED48F18"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/View/Upload/VideoEditor/VideoPlayerView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "DF7E5455-5C62-4983-BCBC-C1CEBED48F18 - 8f02ec51b0e33339"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in Shoots.VideoPlayerView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/VideoEditor/VideoPlayerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "DF7E5455-5C62-4983-BCBC-C1CEBED48F18 - 8f02ec51b0e333de"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in Shoots.VideoPlayerView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/VideoEditor/VideoPlayerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A2A5CCD6-337A-4378-AB06-C09E5E08FE09"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/View/Upload/VideoEditor/VideoPlayerView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "generateAnimatedGif()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "340FFA74-694A-4649-8717-7648D4A32828"
+            uuid = "227FED9D-28CF-497C-97EC-64047CD9B279"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/View/Detail/DetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "227FED9D-28CF-497C-97EC-64047CD9B279 - 62efa04bc880dad9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;Shoots.ImageLinked&gt;) -&gt; () in closure #1 @Sendable () async -&gt; () in closure #12 () -&gt; () in Shoots.DetailView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Detail/DetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "516">
+               </Location>
+               <Location
+                  uuid = "227FED9D-28CF-497C-97EC-64047CD9B279 - 76f8554b56eb3577"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.DetailView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Detail/DetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "133"
+                  endingLineNumber = "133"
+                  offsetFromSymbolStart = "3296">
+               </Location>
+               <Location
+                  uuid = "227FED9D-28CF-497C-97EC-64047CD9B279 - ede7797f48341955"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #9 (Swift.String) -&gt; Shoots.SheetSearchView in Shoots.DetailView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Detail/DetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "134"
+                  endingLineNumber = "134"
+                  offsetFromSymbolStart = "252">
+               </Location>
+               <Location
+                  uuid = "227FED9D-28CF-497C-97EC-64047CD9B279 - 62efa04bc880dad9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;Shoots.ImageLinked&gt;) -&gt; () in closure #1 @Sendable () async -&gt; () in closure #12 () -&gt; () in Shoots.DetailView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Detail/DetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "668">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8DDDE5FD-E27D-4AEF-8DAF-6753EDE170E9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/View/Detail/DetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "8DDDE5FD-E27D-4AEF-8DAF-6753EDE170E9 - f78716d7f0b7f71f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #12 () -&gt; () in Shoots.DetailView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Detail/DetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  uuid = "8DDDE5FD-E27D-4AEF-8DAF-6753EDE170E9 - 76f8554b56eb346e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shoots.DetailView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Detail/DetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "2884">
+               </Location>
+               <Location
+                  uuid = "8DDDE5FD-E27D-4AEF-8DAF-6753EDE170E9 - f7a02a695f1c0f42"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #7 () -&gt; Swift.Optional&lt;Shoots.LoginView&gt; in Shoots.DetailView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Detail/DetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "1336">
+               </Location>
+               <Location
+                  uuid = "8DDDE5FD-E27D-4AEF-8DAF-6753EDE170E9 - f78716d7f0b7f71f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #12 () -&gt; () in Shoots.DetailView.body.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Detail/DetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "192">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5D95CC2-155D-4918-8F06-B0D5E8DB9101"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shoots/ViewModel/DetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "getImageLinked(id:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B5D95CC2-155D-4918-8F06-B0D5E8DB9101 - d27bbb30aa8d903f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.ImageLinkedResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.DetailViewModel.getImageLinked(id: Swift.String, _: (Swift.Array&lt;Shoots.ImageLinked&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "418">
+               </Location>
+               <Location
+                  uuid = "B5D95CC2-155D-4918-8F06-B0D5E8DB9101 - d27bbb30aa8d903f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.ImageLinkedResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.DetailViewModel.getImageLinked(id: Swift.String, _: (Swift.Array&lt;Shoots.ImageLinked&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "316">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2698E991-0692-4E7E-B6B5-B7C80CA5BFFD"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -6451,22 +7207,22 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "340FFA74-694A-4649-8717-7648D4A32828 - a00837fb110c6e40"
+                  uuid = "2698E991-0692-4E7E-B6B5-B7C80CA5BFFD - d27bbb30aa8d9079"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Shoots.ImageLinkedResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.DetailViewModel.getImageLinked(id: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Shoots.ImageLinkedResponseData, Shoots.APIService.APIError&gt;) -&gt; () in Shoots.DetailViewModel.getImageLinked(id: Swift.String, _: (Swift.Array&lt;Shoots.ImageLinked&gt;) -&gt; ()) async -&gt; ()"
                   moduleName = "Shoots"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/DetailViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "444">
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "537">
                </Location>
                <Location
-                  uuid = "340FFA74-694A-4649-8717-7648D4A32828 - d27bbb30aa8d9079"
+                  uuid = "2698E991-0692-4E7E-B6B5-B7C80CA5BFFD - d27bbb30aa8d9079"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -6486,33 +7242,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1BB6F273-2559-4EC9-A86C-20ED2FE3A0F2"
+            uuid = "688C976F-B817-44CA-94D9-5B4B92A11FAA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shoots/ViewModel/UserViewModel.swift"
+            filePath = "Shoots/View/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "uploadImages(localDatas:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EB055C5B-E34F-4DA2-B7C6-491E52F176F0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shoots/ViewModel/UserViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
-            landmarkName = "uploadPics(pics:_:)"
-            landmarkType = "7">
+            startingLineNumber = "358"
+            endingLineNumber = "358"
+            landmarkName = "homeFeed"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "688C976F-B817-44CA-94D9-5B4B92A11FAA - 389a2b835f65150d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in closure #2 () -&gt; SwiftUI._ConditionalContent&lt;SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.contentShape&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.Shape&gt;(_: &#x3c4;_1_0, eoFill: Swift.Bool) -&gt; some&gt;&gt;.0&gt;, SwiftUI.Menu&lt;&lt;&lt;opaque return type of SwiftUI.View.contentShape&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.Shape&gt;(_: &#x3c4;_1_0, eoFill: Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.TupleView&lt;(SwiftUI.Button&lt;SwiftUI.Label&lt;SwiftUI.Text, SwiftUI.Image&gt;&gt;, SwiftUI.Button&lt;SwiftUI.Label&lt;SwiftUI.Text, SwiftUI.Image&gt;&gt;)&gt;&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of static SwiftUI.ToolbarContentBuilder.buildBlock&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_0_0: SwiftUI.ToolbarContent, &#x3c4;_0_1: SwiftUI.ToolbarContent&gt;(&#x3c4;_0_0, &#x3c4;_0_1) -&gt; some&gt;&gt;.0 in Shoots.ContentView.homeFeed.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "358"
+                  endingLineNumber = "358"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "688C976F-B817-44CA-94D9-5B4B92A11FAA - cc2eb7a074102436"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of static SwiftUI.ToolbarContentBuilder.buildBlock&lt;&#x3c4;_0_0 where &#x3c4;_0_0: SwiftUI.ToolbarContent&gt;(&#x3c4;_0_0) -&gt; some&gt;&gt;.0 in Shoots.ContentView.homeFeed.getter : some"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "457"
+                  endingLineNumber = "457"
+                  offsetFromSymbolStart = "1129">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -13,7 +13,7 @@ import SwiftUI
 class VideoUtil: ObservableObject {
     @Published var progress: Double = .zero
     @Published var videoImageFrames: [UnifiedImage] = []
-    private var asset: AVAsset?
+    var asset: AVAsset?
     private var timer: Timer?
     private(set) var exporter: AVAssetExportSession?
 

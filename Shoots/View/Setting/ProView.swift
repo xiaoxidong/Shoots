@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
+import StoreKit
 #if os(iOS)
 import MessageUI
-import StoreKit
 #endif
 
 struct ProView: View {
@@ -91,22 +91,13 @@ struct ProView: View {
     var titles: [Protext] = [.content, .number, .copy, .ai]
     var body: some View {
         ScrollView(showsIndicators: false) {
-            TabView(selection: $selectedTab) {
-                Image("01")
-                    .tag(0)
-                Image("02")
-                    .tag(1)
-                Image("03")
-                    .tag(2)
-                Image("03")
-                    .tag(3)
-            }.tabViewStyle(.page(indexDisplayMode: .never))
-                .frame(maxWidth: .infinity)
+            content
                 .frame(height: 360)
                 .background(LinearGradient(colors: [.pink, .purple, .yellow], startPoint: .topLeading, endPoint: .bottomTrailing))
                 .padding(.bottom)
                 .overlay(
                     WaveView(waveColor: .shootWhite, progress: 0.2)
+                    #if os(iOS)
                         .overlay(
                             HStack(spacing: 4) {
                                 ForEach(0...3, id: \.self) { index in
@@ -117,6 +108,7 @@ struct ProView: View {
                                 }
                             }, alignment: .bottom
                         )
+                    #endif
                     , alignment: .bottom
                 )
             
@@ -272,6 +264,31 @@ struct ProView: View {
                 timer?.invalidate()
                 autoScroll()
             }
+    }
+    
+    var content: some View {
+        #if os(iOS)
+        TabView(selection: $selectedTab) {
+            Image("01")
+                .tag(0)
+            Image("02")
+                .tag(1)
+            Image("03")
+                .tag(2)
+            Image("03")
+                .tag(3)
+        }.tabViewStyle(.page(indexDisplayMode: .never))
+            .frame(maxWidth: .infinity)
+        #else
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                Image("01")
+                Image("02")
+                Image("03")
+                Image("03")
+            }
+        }
+        #endif
     }
 
     var priceView: some View {
@@ -489,6 +506,11 @@ struct ProView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 8)
+        #if os(iOS)
+        .padding(.bottom, Device.isPad() ? 12 : 0)
+        #else
+        .padding(.bottom, 12)
+        #endif
         .background(Color.shootWhite)
         .shadow(color: .shootGray.opacity(0.1), radius: 10, x: 0, y: -4)
     }

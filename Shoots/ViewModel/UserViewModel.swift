@@ -160,7 +160,7 @@ class UserViewModel: ObservableObject {
         uploadIndex = 1
         localDatas.forEach { local in
             AF.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(local.image, withName: "file", fileName: "file.png", mimeType: "image/png")
+                multipartFormData.append(local.image, withName: "file", fileName: local.fileSuffix == "GIF" ? "file.gif" : "file.png", mimeType: local.fileSuffix == "GIF" ? "image/gif" :"image/png")
             }, to: "\(baseURL)\(APIService.URLPath.uploadImage.path)", method: .post, headers: ["Content-Type": "multipart/form-data", "Authorization": "Bearer \(token)"])
                 .responseDecodable(of: UploadImageResponseData.self) { response in
                     switch response.result {
@@ -170,7 +170,7 @@ class UserViewModel: ObservableObject {
                         data.linkApplicationName = local.app
                         data.designPatternName = local.pattern
                         data.fileName = imageURL.data.fileName
-                        data.fileSuffix = "PNG"
+                        data.fileSuffix = local.fileSuffix
                         data.chooseType = local.chooseType.rawValue
                         data.picDescription = local.picDescription
                         data.linkedPicId = local.linkedPicId

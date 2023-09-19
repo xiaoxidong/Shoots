@@ -58,6 +58,7 @@ final public class PlayerViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
 
+        player.isMuted = true
         addTimeObserver()
 
         NotificationCenter.default.addObserver(

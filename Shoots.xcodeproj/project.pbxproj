@@ -228,6 +228,8 @@
 		4E4940D929E3B2EA0058391E /* ImageStickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4940D829E3B2EA0058391E /* ImageStickerContainerView.swift */; };
 		4E4940DB29E3B5700058391E /* SelectPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4940DA29E3B5700058391E /* SelectPhotoView.swift */; };
 		4E4940DF29E3E2740058391E /* BackgroundClearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4940DE29E3E2740058391E /* BackgroundClearView.swift */; };
+		4E4F504D2AB93950000B4EDF /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4F504C2AB93950000B4EDF /* VideoPlayerView.swift */; };
+		4E4F504F2AB93986000B4EDF /* swish.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4E4F504E2AB93986000B4EDF /* swish.mp4 */; };
 		4E54163F29CFFD800053BE9E /* IPadSearchDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */; };
 		4E587F272A1BAC9D00907D9D /* LocalImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E587F262A1BAC9D00907D9D /* LocalImageData.swift */; };
 		4E587F282A1BAC9D00907D9D /* LocalImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E587F262A1BAC9D00907D9D /* LocalImageData.swift */; };
@@ -850,6 +852,8 @@
 		4E4940D829E3B2EA0058391E /* ImageStickerContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStickerContainerView.swift; sourceTree = "<group>"; };
 		4E4940DA29E3B5700058391E /* SelectPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoView.swift; sourceTree = "<group>"; };
 		4E4940DE29E3E2740058391E /* BackgroundClearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundClearView.swift; sourceTree = "<group>"; };
+		4E4F504C2AB93950000B4EDF /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		4E4F504E2AB93986000B4EDF /* swish.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = swish.mp4; sourceTree = "<group>"; };
 		4E54163E29CFFD800053BE9E /* IPadSearchDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadSearchDefaultView.swift; sourceTree = "<group>"; };
 		4E587F262A1BAC9D00907D9D /* LocalImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImageData.swift; sourceTree = "<group>"; };
 		4E58F91A29CB2FF40087E902 /* CustomUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUploadView.swift; sourceTree = "<group>"; };
@@ -2109,7 +2113,9 @@
 				4EB5F6CA2AB7CA0300ECB63A /* Shared */,
 				4EB5F6972AB7C8C400ECB63A /* VideoSliderView.swift */,
 				4EB5F6982AB7C8C400ECB63A /* VideoEditor.swift */,
+				4E4F504C2AB93950000B4EDF /* VideoPlayerView.swift */,
 				4EB5F6E52AB7D69B00ECB63A /* GifOperation.swift */,
+				4E4F504E2AB93986000B4EDF /* swish.mp4 */,
 				4EB5F6992AB7C8C400ECB63A /* VideoDownloader.swift */,
 				4EB5F69A2AB7C8C400ECB63A /* Sliders */,
 				4EB5F6B12AB7C8C400ECB63A /* VideoUtil.swift */,
@@ -2700,6 +2706,7 @@
 				4E195EE629C040C700E97522 /* Preview Assets.xcassets in Resources */,
 				4E010E2529DB1D4000A4B231 /* Localizable.strings in Resources */,
 				4E195EE229C040C700E97522 /* Assets.xcassets in Resources */,
+				4E4F504F2AB93986000B4EDF /* swish.mp4 in Resources */,
 				4E49407929E3A7200058391E /* ZLPhotoBrowser.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3111,6 +3118,7 @@
 				4EB5F6B82AB7C8C400ECB63A /* AnyRangeSliderStyle.swift in Sources */,
 				4EC4F52E2A30CE9C0044EBF2 /* UserPatternResponseData.swift in Sources */,
 				4E49409329E3A7200058391E /* ZLGeneralDefine.swift in Sources */,
+				4E4F504D2AB93950000B4EDF /* VideoPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3595,7 +3603,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3646,7 +3654,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3844,7 +3852,7 @@
 				CODE_SIGN_ENTITLEMENTS = Shoots_Mac/Shoots_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots_Mac/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3865,7 +3873,7 @@
 				);
 				LINKER_DISPLAYS_MANGLED_NAMES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_MODULE_NAME = Shoots;
 				PRODUCT_NAME = Shoots;
@@ -3883,7 +3891,7 @@
 				CODE_SIGN_ENTITLEMENTS = Shoots_Mac/Shoots_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots_Mac/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3904,7 +3912,7 @@
 				);
 				LINKER_DISPLAYS_MANGLED_NAMES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.productpoke.Shoots;
 				PRODUCT_MODULE_NAME = Shoots;
 				PRODUCT_NAME = Shoots;
