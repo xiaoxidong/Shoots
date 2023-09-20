@@ -7,7 +7,7 @@
 
 import SwiftUI
 #if os(macOS)
-    import MASShortcut
+import MASShortcut
 #endif
 
 @main

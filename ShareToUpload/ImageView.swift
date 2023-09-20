@@ -1,8 +1,8 @@
 //
 //  ImageView.swift
-//  Shoots
+//  ShareToUpload
 //
-//  Created by XiaoDong Yuan on 2023/6/9.
+//  Created by XiaoDong Yuan on 2023/9/20.
 //
 
 import SDWebImageSwiftUI
@@ -36,50 +36,6 @@ struct ImageView: View {
             .indicator(.activity) // Activity Indicator
             .transition(.fade(duration: 0.5)) // Fade Transition with duration
             .scaledToFit()
-            .overlay(
-                Group {
-                    if isGif && !isAnimating {
-                        Button {
-                            freeClick()
-                        } label: {
-                            Image("play")
-                                .shadow(color: Color.shootBlack.opacity(0.1), radius: 6, x: 0, y: 4)
-                        }.buttonStyle(.plain)
-                            .padding(.bottom, 56)
-                    }
-                }
-            )
-            .sheet(isPresented: $showPro) {
-                ProView().sheetFrameForMac()
-            }
-            .onAppear {
-                if !user.isPro {
-                    withAnimation(.spring()) {
-                        isAnimating = false
-                    }
-                }
-            }
-    }
-    
-    @AppStorage("dayFree") var dayFree: Int = 0
-    @State var showPro = false
-    func freeClick() {
-        if let date = Defaults().get(for: .day), date.isToday {
-            if dayFree < 5 {
-                withAnimation(.spring()) {
-                    isAnimating = true
-                }
-                dayFree += 1
-            } else {
-                showPro = true
-            }
-        } else {
-            Defaults().set(Date(), for: .day)
-            dayFree = 0
-            withAnimation(.spring()) {
-                isAnimating = true
-            }
-        }
     }
 }
 
@@ -88,3 +44,4 @@ struct ImageView_Previews: PreviewProvider {
         ImageView(urlString: "", isGif: true, image: .constant(nil))
     }
 }
+

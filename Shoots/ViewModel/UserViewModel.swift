@@ -30,7 +30,7 @@ class UserViewModel: ObservableObject {
     #if DEBUG
     @Published var isExamine = true
     @Published var isAdmin = true
-    @Published var isPro = true
+    @Published var isPro = false
     #else
     @Published var isExamine = false
     @Published var isAdmin = false

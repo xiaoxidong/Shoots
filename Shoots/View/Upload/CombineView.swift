@@ -12,7 +12,7 @@ struct CombineView: View {
     @Binding var combinedImage: LocalImageData?
     let action: () -> Void
 
-    @State var selected: UIImage? = nil
+    @State var selected: LocalImageData? = nil
     @State var topOffsets: [CGFloat] = [0, 0]
     @State var bottomOffsets: [CGFloat] = [0, 0]
     @State var orignalimages: [LocalImageData] = []
@@ -79,9 +79,13 @@ struct CombineView: View {
                         .frame(maxWidth: 560)
                         .overlay {
                             Group {
+                                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                    .stroke(Color.red, style: .init(lineWidth: 1, lineCap: .round, lineJoin: .round, miterLimit: 2, dash: [4], dashPhase: 4))
+                                    .padding(.top, topOffset)
+                                    .padding(.bottom, -bottomOffset)
+                                
                                 Color.red
                                     .opacity(0.06)
-                                    .border(Color.red, width: 1)
                                     .padding(.top, topOffset)
                                     .padding(.bottom, -bottomOffset)
                                 VStack {
@@ -131,13 +135,13 @@ struct CombineView: View {
                                                 }
                                         )
                                 }
-                            }.opacity(selected == UIImage(data: images[indice].image) ? 1 : 0)
+                            }.opacity(selected == images[indice] ? 1 : 0)
                         }
                         .padding(.horizontal, 12)
-                        .zIndex(selected == UIImage(data: images[indice].image) ? 1 : 0)
+                        .zIndex(selected == images[indice] ? 1 : 0)
                         .onTapGesture {
                             withAnimation(.spring()) {
-                                selected = UIImage(data: images[indice].image)
+                                selected = images[indice]
                             }
                         }
                 }.frame(maxWidth: .infinity)
@@ -173,25 +177,19 @@ struct CombineView: View {
 
         image = cropImage(image, toRect: rec, viewWidth: UIScreen.main.bounds.width - 24, viewHeight: height)!
 
-        orignalimages[indice].image = image.pngData()!
-        selected = image
+        images[indice].image = image.pngData()!
+        selected = images[indice]
     }
 
     func clipButton(top _: Bool) -> some View {
-        ZStack {
-            Rectangle()
-                .stroke(Color.white, style: StrokeStyle(lineWidth: 1, lineCap: .round, lineJoin: .round, miterLimit: 0.0, dash: [12.0], dashPhase: 7.5))
-                .frame(height: 1)
+        HStack(spacing: 0) {
+            Image("left")
+                .offset(x: -15)
                 .shadow(color: Color.black.opacity(0.2), x: 0, y: 0, blur: 12)
-            HStack(spacing: 0) {
-                Image("left")
-                    .offset(x: -15)
-                    .shadow(color: Color.black.opacity(0.2), x: 0, y: 0, blur: 12)
-                Spacer()
-                Image("right")
-                    .offset(x: 15)
-                    .shadow(color: Color.black.opacity(0.2), x: 0, y: 0, blur: 12)
-            }
+            Spacer()
+            Image("right")
+                .offset(x: 15)
+                .shadow(color: Color.black.opacity(0.2), x: 0, y: 0, blur: 12)
         }.contentShape(Rectangle())
     }
 

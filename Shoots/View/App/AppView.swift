@@ -26,35 +26,35 @@ struct AppView: View {
                     flowView
                 }
                 
-                if !user.isPro {
-                    Text("小课堂")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.shootBlack)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading)
-                        .padding(.bottom)
-                        .padding(.top, 26)
-                    
-                    new
-                }
+//                if !user.isPro {
+//                    Text("小课堂")
+//                        .font(.system(size: 16, weight: .bold))
+//                        .foregroundColor(.shootBlack)
+//                        .frame(maxWidth: .infinity, alignment: .leading)
+//                        .padding(.leading)
+//                        .padding(.bottom)
+//                        .padding(.top, 26)
+//
+//                    new
+//                }
                 
                 HStack(spacing: 12) {
-                    if user.isPro {
-                        Button {
-                            withAnimation(.spring()) {
-                                selection = 0
-                            }
-                        } label: {
-                            Text("小课堂")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(selection == 0 ? .shootBlue : .shootBlack)
-                        }.buttonStyle(.plain)
-                            .onAppear {
-                                withAnimation(.spring()) {
-                                    selection = 0
-                                }
-                            }
-                    }
+//                    if user.isPro {
+//                        Button {
+//                            withAnimation(.spring()) {
+//                                selection = 0
+//                            }
+//                        } label: {
+//                            Text("小课堂")
+//                                .font(.system(size: 16, weight: .bold))
+//                                .foregroundColor(selection == 0 ? .shootBlue : .shootBlack)
+//                        }.buttonStyle(.plain)
+//                            .onAppear {
+//                                withAnimation(.spring()) {
+//                                    selection = 0
+//                                }
+//                            }
+//                    }
                     Button {
                         withAnimation(.spring()) {
                             selection = 1
@@ -73,11 +73,12 @@ struct AppView: View {
                     .padding(.bottom)
                     .padding(.top, 26)
                 
-                if selection == 1 {
-                    imagesView
-                } else {
-                    TitleFeedView(shoots: pic)
-                }
+//                if selection == 1 {
+//                    imagesView
+//                } else {
+//                    TitleFeedView(shoots: pic)
+//                }
+                imagesView
             }.frame(maxWidth: 860)
                 .frame(maxWidth: .infinity)
         }.enableRefresh()

@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct LocalImageData: Equatable, Hashable, Codable {
+struct LocalImageData: Equatable, Hashable, Codable, Identifiable {
+    var id = UUID()
     var image: Data
     var app: String
 

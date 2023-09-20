@@ -178,7 +178,7 @@
 "没有任何付费信息，无法恢复！" = "No paid information";
 "每年支持 %@" = "Annual Support %@";
 "已经购买？" = "Already Purchased?";
-"恢复购买" = " Resumption";
+"恢复购买" = "  Resume";
 "一瓶饮料 (%@)" = "A Bottle of Drink (%@)";
 "一杯奶茶 (%@)" = "A Cup of Milk tea (%@)";
 "一杯咖啡 (%@)" = "A Cup of Coffee (%@)";
@@ -279,3 +279,37 @@
 "音频" = "Aduio";
 "视频" = "Video";
 "摄像头" = "Camera";
+
+
+
+
+"输入描述信息" = "Input description";
+"无限制浏览付费内容" = "Unlimited Browsing of Paid Content";
+"无限制管理截图数量" = "Unlimited Number of Screenshots";
+"复制粘贴原型组件" = "Copy and Paste Prototype Components";
+"使用 AI 进行原型设计" = "Prototyping with AI";
+"无限制查看付费内容，应用更新了什么，Gif 交互，设计小细节" = "Unlimited views of paid content, app updates, Gif interactions, design details";
+"普通用户最多可以上传 1000 张截图" = "Regular users can upload up to 1000 screenshots";
+"直接复制粘贴设计内容到各个设计工具，不仅仅是截图" = "Copy and paste design content directly into other design tool, not just screenshots";
+"描述你的需求，自动生成可交互的高保真原型" = "Describe your requirements and automatically generate interactive, high-fidelity prototypes";
+"免费用户每天 5 次查看" = "5 views per day for free users";
+"普通用户够用" = "Enough for average user";
+"即将上线" = "Coming soon";
+"即将即将上线" = "Coming soon soon";
+
+"每月" = "Per Month";
+"按月付费" = "Monthly";
+"7 天试用" = "7-Days Trial";
+
+"按年付费" = "Annual";
+"30 天试用" = "30-Days Trial";
+"%@ /月" = "%@ /Month";
+
+
+"永久买断" = "Lifetime";
+"40% 优惠" = "40% off";
+
+
+"免费试用 7 天" = "Start 7-days Free Trial";
+"免费试用 30 天" = "Start 30-days Free Trial";
+"立即购买，40% 优惠" = "Purchase with 40% OFF";

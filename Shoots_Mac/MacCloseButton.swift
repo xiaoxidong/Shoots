@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MacCloseButton: View {
+    var color: Color = .shootBlack
     @Environment(\.dismiss) var dismiss
 
     @State var hover = false
@@ -18,6 +19,7 @@ struct MacCloseButton: View {
             Image(systemName: "xmark")
                 .font(.system(size: 16, weight: .semibold))
                 .padding(8)
+                .foregroundColor(color)
                 .background(Color.shootBlue.opacity(hover ? 0.2 : 0))
                 .clipShape(Circle())
                 .shadow(radius: hover ? 12 : 0)

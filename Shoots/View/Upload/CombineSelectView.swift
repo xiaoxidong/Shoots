@@ -115,13 +115,19 @@ struct CombineSelectView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(maxWidth: .infinity, alignment: .top)
-                            .overlay(alignment: .bottomLeading) {
-                                Image(systemName: "checkmark.circle.fill")
+                            .overlay(alignment: .topTrailing) {
+                                Image(systemName: selected.contains(image) ? "circle.fill" : "checkmark.circle.fill")
+                                    .font(.system(size: 18))
                                     .padding(12)
-                                    .foregroundColor(selected.contains(image) ? Color.shootRed : Color.shootWhite)
-                                    .shadow(radius: 6)
+                                    .foregroundColor(Color.shootWhite)
+                                    .shadow(radius: 2)
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.system(size: 19))
+                                    .padding(12)
+                                    .foregroundColor(Color.shootRed)
+                                    .scaleEffect(selected.contains(image) ? 1 : 0, anchor: .center)
                             }
-                    })
+                    }).buttonStyle(.plain)
                 }
             }
         }

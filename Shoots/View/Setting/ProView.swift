@@ -27,6 +27,7 @@ struct ProView: View {
             return false
         }
     }
+    @State var selectedTab: Int = 0
     #endif
 
     @State var showBuyLoadingIndicator = false
@@ -40,7 +41,7 @@ struct ProView: View {
     @State var lifeHalfMoney = "¥198.00"
 
     @State var counter: Int = 0
-    @State var selectedTab: Int = 0
+   
     @State var showToast = false
     @State var toastText = ""
     @State var timer: Timer? = nil
@@ -58,7 +59,7 @@ struct ProView: View {
             case .number:
                 return "无限制管理截图数量"
             case .copy:
-                return "复制粘贴原型"
+                return "复制粘贴原型组件"
             case .ai:
                 return "使用 AI 进行原型设计"
             }
@@ -66,19 +67,19 @@ struct ProView: View {
         var subtitle: String {
             switch self {
             case .content:
-                return "查看设计更新，交互和细节等 VIP 内容"
+                return "无限制查看付费内容，应用更新了什么，Gif 交互，设计小细节"
             case .number:
                 return "普通用户最多可以上传 1000 张截图"
             case .copy:
-                return "直接复制粘贴原型到各个设计工具"
+                return "直接复制粘贴设计内容到各个设计工具，不仅仅是截图"
             case .ai:
-                return "使用 AI 进行原型到设计，简单易用"
+                return "描述你的需求，自动生成可交互的高保真原型"
             }
         }
         var indicator: String {
             switch self {
             case .content:
-                return "持续增加中"
+                return "免费用户每天 5 次查看"
             case .number:
                 return "普通用户够用"
             case .copy:
@@ -92,58 +93,9 @@ struct ProView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             content
-                .frame(height: 360)
-                .background(LinearGradient(colors: [.pink, .purple, .yellow], startPoint: .topLeading, endPoint: .bottomTrailing))
-                .padding(.bottom)
-                .overlay(
-                    WaveView(waveColor: .shootWhite, progress: 0.2)
-                    #if os(iOS)
-                        .overlay(
-                            HStack(spacing: 4) {
-                                ForEach(0...3, id: \.self) { index in
-                                    Circle()
-                                        .frame(width: 6, height: 6)
-                                        .foregroundColor(selectedTab == index ? .shootBlue : .shootGray.opacity(0.2))
-                                        .animation(.spring(), value: selectedTab)
-                                }
-                            }, alignment: .bottom
-                        )
-                    #endif
-                    , alignment: .bottom
-                )
-            
-            VStack(spacing: 8) {
-                Text(titles[selectedTab].indicator)
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(.shootWhite)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 8)
-                    .background(LinearGradient(colors: [.pink, .yellow, .green], startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .clipShape(Capsule())
-                    .animation(nil, value: selectedTab)
-                
-                Text(titles[selectedTab].title)
-                    .font(.system(size: 26, weight: .bold))
-                    .foregroundColor(.shootBlack)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                    .animation(nil, value: selectedTab)
-            }.frame(maxWidth: .infinity, alignment: .center)
-                .padding(.bottom, 8)
-                .padding(.top)
-                .padding(.horizontal)
-            
-            Text(titles[selectedTab].subtitle)
-                .font(.system(size: 15, weight: .medium))
-                .foregroundColor(.shootGray)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.bottom, 36)
-                .padding(.horizontal)
-                .animation(nil, value: selectedTab)
-            
-            
+            #if os(iOS)
+            iOSTitleView
+            #endif
             priceView
             Button {
                 showBuyLoadingIndicator = true
@@ -258,39 +210,191 @@ struct ProView: View {
             }
             .onAppear {
                 getInfo()
+                #if os(iOS)
                 autoScroll()
+                #endif
             }
+        #if os(iOS)
             .onChange(of: selectedTab) { newValue in
                 timer?.invalidate()
                 autoScroll()
             }
+        #else
+            .overlay (
+                MacCloseButton(color: .shootWhite).padding(), alignment: .topTrailing
+            )
+        #endif
     }
     
     var content: some View {
         #if os(iOS)
         TabView(selection: $selectedTab) {
             Image("01")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding(26)
                 .tag(0)
             Image("02")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding( 26)
                 .tag(1)
             Image("03")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding( 26)
                 .tag(2)
-            Image("03")
+            Image("04")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding(26)
                 .tag(3)
         }.tabViewStyle(.page(indexDisplayMode: .never))
             .frame(maxWidth: .infinity)
+            .frame(height: 360)
+            .background(LinearGradient(colors: [.pink, .purple, .yellow], startPoint: .topLeading, endPoint: .bottomTrailing))
+            .padding(.bottom)
+            .overlay(
+                WaveView(waveColor: .shootWhite, progress: 0.2)
+                    .overlay(
+                        HStack(spacing: 4) {
+                            ForEach(0...3, id: \.self) { index in
+                                Circle()
+                                    .frame(width: 6, height: 6)
+                                    .foregroundColor(selectedTab == index ? .shootBlue : .shootGray.opacity(0.2))
+                                    .animation(.spring(), value: selectedTab)
+                            }
+                        }, alignment: .bottom
+                    )
+                , alignment: .bottom
+            )
         #else
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                Image("01")
-                Image("02")
-                Image("03")
-                Image("03")
-            }
+            HStack(alignment: .bottom) {
+                VStack {
+                    Image("01")
+                    macTitleView(selectedTab: 0)
+                }.frame(maxWidth: 460)
+                VStack {
+                    Image("02")
+                    macTitleView(selectedTab: 1)
+                }.frame(maxWidth: 460)
+                VStack {
+                    Image("03")
+                    macTitleView(selectedTab: 2)
+                }.frame(maxWidth: 460)
+                VStack {
+                    Image("04")
+                    macTitleView(selectedTab: 3)
+                }.frame(maxWidth: 460)
+            }.padding(.top, 36)
         }
+        .background(LinearGradient(colors: [.pink, .purple, .yellow], startPoint: .topLeading, endPoint: .bottomTrailing))
+        .padding(.bottom)
+        .overlay(
+            WaveView(waveColor: .shootWhite, progress: 0.2)
+            , alignment: .bottom
+        )
         #endif
     }
-
+    #if os(iOS)
+    var iOSTitleView: some View {
+        Group {
+            VStack(spacing: 8) {
+                Text(LocalizedStringKey(titles[selectedTab].indicator))
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundColor(.shootWhite)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 8)
+                    .background(LinearGradient(colors: [.pink, .yellow, .green], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .clipShape(Capsule())
+                    .animation(nil, value: selectedTab)
+                
+                Text(LocalizedStringKey(titles[selectedTab].title))
+                    .font(.system(size: 22, weight: .bold))
+                    .foregroundColor(.shootBlack)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                    .animation(nil, value: selectedTab)
+            }.frame(maxWidth: .infinity, alignment: .center)
+                .padding(.bottom, 8)
+                .padding(.top)
+                .padding(.horizontal)
+            
+            if #available(iOS 16.0, macOS 15.0, *) {
+                Text(LocalizedStringKey(titles[selectedTab].subtitle))
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.shootGray)
+                    .lineLimit(3, reservesSpace: true)
+                    .lineSpacing(4)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.bottom, 36)
+                    .padding(.horizontal)
+                    .animation(nil, value: selectedTab)
+            } else {
+                Text(LocalizedStringKey(titles[selectedTab].subtitle))
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.shootGray)
+                    .multilineTextAlignment(.center)
+                    .lineSpacing(4)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.bottom, 36)
+                    .padding(.horizontal)
+                    .animation(nil, value: selectedTab)
+            }
+        }
+    }
+    #endif
+    
+    func macTitleView(selectedTab: Int = 0) -> some View {
+        Group {
+            VStack(spacing: 8) {
+                Text(LocalizedStringKey(titles[selectedTab].indicator))
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundColor(.shootWhite)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 8)
+                    .background(LinearGradient(colors: [.pink, .yellow, .green], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .clipShape(Capsule())
+                    .animation(nil, value: selectedTab)
+                
+                Text(LocalizedStringKey(titles[selectedTab].title))
+                    .font(.system(size: 22, weight: .bold))
+                    .foregroundColor(.shootWhite)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(1)
+                    .animation(nil, value: selectedTab)
+            }.frame(maxWidth: .infinity, alignment: .center)
+                .padding(.bottom, 8)
+                .padding(.top)
+                .padding(.horizontal)
+            
+            if #available(iOS 16.0, macOS 12.0, *) {
+                Text(LocalizedStringKey(titles[selectedTab].subtitle))
+                    .font(.system(size: 16, weight: .regular))
+                    .foregroundColor(.shootWhite)
+                    .lineLimit(3, reservesSpace: true)
+                    .lineSpacing(4)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.bottom, 36)
+                    .padding(.horizontal, 36)
+                    .animation(nil, value: selectedTab)
+            } else {
+                Text(LocalizedStringKey(titles[selectedTab].subtitle))
+                    .font(.system(size: 16, weight: .regular))
+                    .foregroundColor(.shootWhite)
+                    .multilineTextAlignment(.center)
+                    .lineSpacing(4)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.bottom, 36)
+                    .padding(.horizontal, 36)
+                    .animation(nil, value: selectedTab)
+            }
+        }
+    }
     var priceView: some View {
         VStack {
             HStack {
@@ -298,10 +402,12 @@ struct ProView: View {
                     //
                     #if os(iOS)
                     FeedbackManager.impact(style: .soft)
-                    #endif
                     withAnimation(.spring(response: 0.4, dampingFraction: 0.6, blendDuration: 0.4)) {
                         selected = .month
                     }
+                    #else
+                    selected = .month
+                    #endif
                 }, label: {
                     Color.shootBlue.opacity(selected == .month ? 0.2 : 0.1)
                         .frame(height: 140)
@@ -340,6 +446,7 @@ struct ProView: View {
                                     Text("7 天试用")
                                         .font(.system(size: 10, weight: .medium))
                                         .foregroundColor(.shootWhite)
+                                        .textCase(.uppercase)
                                         .padding(.horizontal, 6)
                                         .padding(.vertical, 4)
                                         .background(Color.shootBlue)
@@ -352,17 +459,19 @@ struct ProView: View {
                                 }
                             }, alignment: .top
                         )
-                })
+                }).buttonStyle(PlainButtonStyle())
                 
                 
                 Button(action: {
                     //
                     #if os(iOS)
                     FeedbackManager.impact(style: .soft)
-                    #endif
                     withAnimation(.spring(response: 0.4, dampingFraction: 0.6, blendDuration: 0.4)) {
                         selected = .year
                     }
+                    #else
+                    selected = .year
+                    #endif
                 }, label: {
                     Color.shootBlue.opacity(selected == .year ? 0.2 : 0.1)
                         .frame(height: 140)
@@ -400,6 +509,7 @@ struct ProView: View {
                                     Text("30 天试用")
                                         .font(.system(size: 10, weight: .medium))
                                         .foregroundColor(.shootWhite)
+                                        .textCase(.uppercase)
                                         .padding(.horizontal, 6)
                                         .padding(.vertical, 4)
                                         .background(Color.shootBlue)
@@ -412,16 +522,18 @@ struct ProView: View {
                                 }
                             }, alignment: .top
                         )
-                })
+                }).buttonStyle(PlainButtonStyle())
                 
                 Button(action: {
                     //
                     #if os(iOS)
                     FeedbackManager.impact(style: .soft)
-                    #endif
                     withAnimation(.spring(response: 0.4, dampingFraction: 0.6, blendDuration: 0.4)) {
                         selected = .life
                     }
+                    #else
+                    selected = .life
+                    #endif
                 }, label: {
                     Color.shootBlue.opacity(selected == .life ? 0.2 : 0.1)
                         .frame(height: 140)
@@ -458,6 +570,7 @@ struct ProView: View {
                             Text("40% 优惠")
                                 .font(.system(size: 10, weight: .medium))
                                 .foregroundColor(.shootWhite)
+                                .textCase(.uppercase)
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 4)
                                 .background(Color.shootRed)
@@ -469,7 +582,7 @@ struct ProView: View {
                                 ))
                             , alignment: .top
                         )
-                })
+                }).buttonStyle(PlainButtonStyle())
             }.padding(.horizontal, 10)
         }
     }
@@ -489,7 +602,7 @@ struct ProView: View {
                         ActivityIndicatorView(isVisible: self.$showBuyLoadingIndicator, type: .arcs, text: "", width: 28)
                             .foregroundColor(.white)
                     } else {
-                        Text(selected.buttonTitle)
+                        Text(LocalizedStringKey(selected.buttonTitle))
                             .font(.system(size: 16, weight: .bold))
                             .padding(.vertical, 12)
                             .padding(.horizontal, 16)
@@ -691,52 +804,10 @@ struct ProView: View {
             )
             .matchedGeometryEffect(id: "selection", in: selection)
     }
-
-    var imageView: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
-                VStack(spacing: 6) {
-                    Image("03")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.horizontal)
-                        .frame(height: 260)
-                    Text("优先获得 AI 设计功能")
-                        .font(.system(size: 15, weight: .medium))
-                        .foregroundColor(.shootBlack)
-                }
-
-                VStack(spacing: 6) {
-                    Image("02")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.horizontal)
-                        .frame(height: 260)
-
-                    Text("不限制截图的数量")
-                        .font(.system(size: 15, weight: .medium))
-                        .foregroundColor(.shootBlack)
-                }
-
-                VStack(spacing: 6) {
-                    Image("01")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.horizontal)
-                        .frame(height: 260)
-                    Text("更多高级功能")
-                        .font(.system(size: 15, weight: .medium))
-                        .foregroundColor(.shootBlack)
-                }
-            }
-            .padding(.top, 16)
-            .padding(.bottom, 26)
-        }.background(Color.shootLight.opacity(0.04))
-            .padding(.vertical)
-    }
     
+    #if os(iOS)
     func autoScroll() {
-        timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { _ in
             if selectedTab < 3 {
                 withAnimation(.linear(duration: 1)) {
                     selectedTab += 1
@@ -748,6 +819,7 @@ struct ProView: View {
             }
         }
     }
+    #endif
 }
 
 struct ProView_Previews: PreviewProvider {

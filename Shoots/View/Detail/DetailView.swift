@@ -99,7 +99,7 @@ struct DetailView: View {
                 }, alignment: .bottom
             )
             .sheet(isPresented: $showPro) {
-                ProView()
+                ProView().sheetFrameForMac()
             }
             .ignoresSafeArea()
         #if os(iOS)
@@ -134,7 +134,9 @@ struct DetailView: View {
                                 array.append(Picture(id: pic.id, picUrl: pic.picUrl, linkApplicationId: pic.linkApplicationId, linkApplicationOfficialId: pic.linkApplicationOfficialId, chooseType: pic.chooseType))
                             }
                             
-                            shoots.insert(contentsOf: array, at: 0)
+                            withAnimation(.spring()) {
+                                shoots.insert(contentsOf: array, at: 0)
+                            }
                             selection = shoots.count - 1
                         }
                         if let afters = group["1"] {
@@ -142,8 +144,9 @@ struct DetailView: View {
                             afters.forEach { pic in
                                 array.append(Picture(id: pic.id, picUrl: pic.picUrl, linkApplicationId: pic.linkApplicationId, linkApplicationOfficialId: pic.linkApplicationOfficialId, chooseType: pic.chooseType))
                             }
-                            
-                            shoots.append(contentsOf: array)
+                            withAnimation(.spring()) {
+                                shoots.append(contentsOf: array)
+                            }
                         }
                     }
                 }
@@ -390,7 +393,7 @@ struct DetailView: View {
                                 }
                             }
                             
-                            if let description = detail.picDescription {
+                            if let description = detail.picDescription, description != "" {
                                 Text(description)
                                     .font(.system(size: 15, weight: .medium))
                                     .fixedSize(horizontal: false, vertical: true)
@@ -744,14 +747,14 @@ struct DetailView: View {
     
     func freeClick() {
         if !showContent {
-            if let date = Defaults().get(for: .day) {
+            if let date = Defaults().get(for: .day), date.isToday {
                 if dayFree < 5 {
                     withAnimation(.spring()) {
                         showContent = true
                     }
                     dayFree += 1
                     // 提示本次查看免费
-                    alertText = "VIP 内容，今天还有 \(5 - dayFree) 次查看机会"
+                    alertText = "VIP 内容，今天还有 \(4 - dayFree) 次查看机会"
                     showAlert = true
                 } else {
                     showPro = true
@@ -761,6 +764,7 @@ struct DetailView: View {
                 withAnimation(.spring()) {
                     showContent = true
                 }
+                dayFree = 0
                 // 提示本次查看免费
                 alertText = "VIP 内容，本次查看免费，今天还有 4 次查看机会"
                 showAlert = true
