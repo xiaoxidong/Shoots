@@ -198,7 +198,7 @@ struct UploadView: View {
     @State var showCombine = false
     var appRsults: [AppInfo] {
         if uploadData[selection].app == "" {
-            return info.apps
+            return info.suggestionApps
         } else {
             return info.apps.filter { $0.linkApplicationName.transToLowercasedPinYin().contains(uploadData[selection].app.transToLowercasedPinYin()) }
         }

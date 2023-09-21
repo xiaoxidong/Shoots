@@ -62,13 +62,16 @@ class CustomShareViewController: UIViewController {
                 if let someURl = data as? URL, let image = UIImage(contentsOfFile: someURl.path) {
 //                    self.images.append(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: ""))
 //                    Defaults().set(LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: ""), for: .shareImage)
-                    
-                    self.dataVM.images = [LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: "")]
-//                    self.dataVM.objectWillChange.send()
+                    DispatchQueue.main.async {
+                        self.dataVM.images = [LocalImageData(image: image.pngData()!, app: "", fileName: "", fileSuffix: "")]
+                    }
                 } else if let someImage = data as? UIImage {
 //                    image = someImage
 //                    Defaults().set(LocalImageData(image: someImage.pngData()!, app: "", fileName: "", fileSuffix: ""), for: .shareImage)
-                    self.dataVM.images = [LocalImageData(image: someImage.pngData()!, app: "", fileName: "", fileSuffix: "")]
+                    
+                    DispatchQueue.main.async {
+                        self.dataVM.images = [LocalImageData(image: someImage.pngData()!, app: "", fileName: "", fileSuffix: "")]
+                    }
                 }
             }
         }
@@ -105,7 +108,7 @@ class CustomShareViewController: UIViewController {
     }
 
     @objc private func cancelAction() {
-        let error = NSError(domain: "some.bundle.identifier", code: 0, userInfo: [NSLocalizedDescriptionKey: "An error description"])
+        let error = NSError(domain: "com.productpoke.Shoots.ShareToUpload", code: 0, userInfo: [NSLocalizedDescriptionKey: "An error description"])
         extensionContext?.cancelRequest(withError: error)
     }
 

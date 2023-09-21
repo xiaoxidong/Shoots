@@ -530,6 +530,8 @@
 		4EB5F6F12AB7E65B00ECB63A /* ImageLinkedResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB5F6EB2AB7E52B00ECB63A /* ImageLinkedResponseData.swift */; };
 		4EB5F6F22AB7E65F00ECB63A /* ImageLinked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB5F6EE2AB7E55B00ECB63A /* ImageLinked.swift */; };
 		4EB5F6F32AB7E6D300ECB63A /* ImageDetailResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB5F6E82AB7E50000ECB63A /* ImageDetailResponseData.swift */; };
+		4EBBDF762ABBB00700FC1E61 /* GradientModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBBDF752ABBB00700FC1E61 /* GradientModifier.swift */; };
+		4EBBDF772ABBB00700FC1E61 /* GradientModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBBDF752ABBB00700FC1E61 /* GradientModifier.swift */; };
 		4EC4F52E2A30CE9C0044EBF2 /* UserPatternResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */; };
 		4EC4F52F2A30CE9C0044EBF2 /* UserPatternResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */; };
 		4EC4F5302A30CF010044EBF2 /* UserPatternResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */; };
@@ -1100,6 +1102,7 @@
 		4EB5F6E82AB7E50000ECB63A /* ImageDetailResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailResponseData.swift; sourceTree = "<group>"; };
 		4EB5F6EB2AB7E52B00ECB63A /* ImageLinkedResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLinkedResponseData.swift; sourceTree = "<group>"; };
 		4EB5F6EE2AB7E55B00ECB63A /* ImageLinked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLinked.swift; sourceTree = "<group>"; };
+		4EBBDF752ABBB00700FC1E61 /* GradientModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientModifier.swift; sourceTree = "<group>"; };
 		4EC4F52D2A30CE9C0044EBF2 /* UserPatternResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPatternResponseData.swift; sourceTree = "<group>"; };
 		4EC938662A78F47F00CD5A90 /* ScrollGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollGesture.swift; sourceTree = "<group>"; };
 		4EC938682A7A05C400CD5A90 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
@@ -2478,6 +2481,7 @@
 				4E5CF71B29CD5EB400A4E0DE /* SettingRateView.swift */,
 				4E58F92129CB43A80087E902 /* SettingCellView.swift */,
 				4E58F92329CB47930087E902 /* ProView.swift */,
+				4EBBDF752ABBB00700FC1E61 /* GradientModifier.swift */,
 				4E9AFCE32AB2BC6B0090A40B /* WaveView.swift */,
 				4E5CF6CA29CD597900A4E0DE /* AgreementView.swift */,
 				4E5CF6C929CD597900A4E0DE /* PrivacyView.swift */,
@@ -3062,6 +3066,7 @@
 				4E9B28A52A6908B6002B54FA /* Collection+Extension.swift in Sources */,
 				4E5CF69F29CD58D100A4E0DE /* AlertActivityIndicatorView.swift in Sources */,
 				4E49409F29E3A7200058391E /* UIView+ZLPhotoBrowser.swift in Sources */,
+				4EBBDF762ABBB00700FC1E61 /* GradientModifier.swift in Sources */,
 				4E9AFCE42AB2BC6B0090A40B /* WaveView.swift in Sources */,
 				4EDDD67229DC238E00C4E14D /* ZLProgressHUD.swift in Sources */,
 				4EDDD67C29DC238E00C4E14D /* Bundle+ZLImageEditor.swift in Sources */,
@@ -3289,6 +3294,7 @@
 				4ED4B09D29D3E98B005D9758 /* NSStatusItem Extensions.swift in Sources */,
 				4E42A72029D14B1700BEC185 /* Locales.swift in Sources */,
 				4E42A71F29D14B1200BEC185 /* DateInRegion.swift in Sources */,
+				4EBBDF772ABBB00700FC1E61 /* GradientModifier.swift in Sources */,
 				4E42A70629D132E700BEC185 /* GrowingCircleIndicatorView.swift in Sources */,
 				4EA73AF929D5BB6A002901AE /* Bundle+Extension.swift in Sources */,
 				4E42A73229D14B2A00BEC185 /* Formatter+Protocols.swift in Sources */,
@@ -3605,7 +3611,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3656,7 +3662,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shoots/Shoots.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3854,7 +3860,7 @@
 				CODE_SIGN_ENTITLEMENTS = Shoots_Mac/Shoots_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots_Mac/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3893,7 +3899,7 @@
 				CODE_SIGN_ENTITLEMENTS = Shoots_Mac/Shoots_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoots_Mac/Preview Content\"";
 				DEVELOPMENT_TEAM = H62DJYY3BW;
 				ENABLE_HARDENED_RUNTIME = YES;

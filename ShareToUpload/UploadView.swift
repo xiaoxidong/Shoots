@@ -93,6 +93,7 @@ struct UploadView: View {
         VStack(spacing: 12) {
             HStack {
                 Button {
+                    dataVM.images.removeAll()
                     dismiss()
                     shareCancellAction()
                 } label: {

@@ -252,7 +252,7 @@ struct ProView: View {
         }.tabViewStyle(.page(indexDisplayMode: .never))
             .frame(maxWidth: .infinity)
             .frame(height: 360)
-            .background(LinearGradient(colors: [.pink, .purple, .yellow], startPoint: .topLeading, endPoint: .bottomTrailing))
+            .background(LinearGradient(colors: [.pink.opacity(0.4), .purple.opacity(0.4), .yellow.opacity(0.4)], startPoint: .topLeading, endPoint: .bottomTrailing).padding(-20).blur(radius: 20))
             .padding(.bottom)
             .overlay(
                 WaveView(waveColor: .shootWhite, progress: 0.2)
@@ -289,7 +289,7 @@ struct ProView: View {
                 }.frame(maxWidth: 460)
             }.padding(.top, 36)
         }
-        .background(LinearGradient(colors: [.pink, .purple, .yellow], startPoint: .topLeading, endPoint: .bottomTrailing))
+        .background(LinearGradient(colors: [.pink.opacity(0.4), .purple.opacity(0.4), .yellow.opacity(0.4)], startPoint: .topLeading, endPoint: .bottomTrailing).padding(-20).blur(radius: 20))
         .padding(.bottom)
         .overlay(
             WaveView(waveColor: .shootWhite, progress: 0.2)
@@ -449,7 +449,7 @@ struct ProView: View {
                                         .textCase(.uppercase)
                                         .padding(.horizontal, 6)
                                         .padding(.vertical, 4)
-                                        .background(Color.shootBlue)
+                                        .modifier(GradientModifier(color: Color.shootBlue))
                                         .clipShape(Capsule())
                                         .offset(y: -14)
                                         .transition(AnyTransition.asymmetric(
@@ -512,7 +512,7 @@ struct ProView: View {
                                         .textCase(.uppercase)
                                         .padding(.horizontal, 6)
                                         .padding(.vertical, 4)
-                                        .background(Color.shootBlue)
+                                        .modifier(GradientModifier(color: Color.shootBlue))
                                         .clipShape(Capsule())
                                         .offset(y: -14)
                                         .transition(AnyTransition.asymmetric(
@@ -573,7 +573,7 @@ struct ProView: View {
                                 .textCase(.uppercase)
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 4)
-                                .background(Color.shootRed)
+                                .modifier(GradientModifier(color: Color.shootBlue))
                                 .clipShape(Capsule())
                                 .offset(y: -14)
                                 .transition(AnyTransition.asymmetric(
@@ -610,7 +610,7 @@ struct ProView: View {
                 }
                 .foregroundColor(Color.white)
                 .frame(maxWidth: showBuyLoadingIndicator ? nil : .infinity)
-                .background(Color.shootBlue)
+                .modifier(GradientModifier(color: Color.shootBlue))
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .frame(maxWidth: 414)
                 .contentShape(Rectangle())
@@ -848,9 +848,9 @@ enum Support: String {
         case .year:
             return "com.poke.preview.year"
         case .life:
-            return "com.poke.shoots.rich"
-        case .lifeHalf:
             return "com.poke.shoots.rich.half"
+        case .lifeHalf:
+            return "com.poke.shoots.rich"
         }
     }
     

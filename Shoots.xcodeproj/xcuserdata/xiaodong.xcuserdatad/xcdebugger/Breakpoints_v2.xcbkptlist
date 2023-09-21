@@ -2051,8 +2051,8 @@
             filePath = "ShareToUpload/ShareViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "share()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2067,8 +2067,8 @@
             filePath = "ShareToUpload/ShareViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "share()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2253,6 +2253,21 @@
                   endingLineNumber = "128"
                   offsetFromSymbolStart = "785">
                </Location>
+               <Location
+                  uuid = "FAF204CD-77F5-4DDF-ABFB-43633DCFBB24 - 58163bfbf5a51b26"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Alamofire.DataResponse&lt;ShareToUpload.Response, Alamofire.AFError&gt;) -&gt; () in ShareToUpload.UserViewModel.uploadAvatar(image: Foundation.Data, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "ShareToUpload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
+                  offsetFromSymbolStart = "768">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2420,6 +2435,21 @@
                   startingLineNumber = "122"
                   endingLineNumber = "122"
                   offsetFromSymbolStart = "390">
+               </Location>
+               <Location
+                  uuid = "45940118-7456-4422-A0ED-648F2D825FAC - 58163bfbf5a51a68"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Alamofire.DataResponse&lt;ShareToUpload.Response, Alamofire.AFError&gt;) -&gt; () in ShareToUpload.UserViewModel.uploadAvatar(image: Foundation.Data, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "ShareToUpload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "452">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -6357,6 +6387,36 @@
                   endingLineNumber = "71"
                   offsetFromSymbolStart = "1680">
                </Location>
+               <Location
+                  uuid = "5DFEE8A0-E838-4C2C-85CF-ED62FEF4CD0A - 244c0d6a7daed991"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;__C.NSSecureCoding&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ShareToUpload.CustomShareViewController.getItems() -&gt; ()"
+                  moduleName = "ShareToUpload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/ShareToUpload/ShareViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "2116">
+               </Location>
+               <Location
+                  uuid = "5DFEE8A0-E838-4C2C-85CF-ED62FEF4CD0A - 244c0d6a7daed9b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;__C.NSSecureCoding&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ShareToUpload.CustomShareViewController.getItems() -&gt; ()"
+                  moduleName = "ShareToUpload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/ShareToUpload/ShareViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "1672">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -6794,6 +6854,21 @@
                   endingLineNumber = "176"
                   offsetFromSymbolStart = "2268">
                </Location>
+               <Location
+                  uuid = "1BB6F273-2559-4EC9-A86C-20ED2FE3A0F2 - d1f1d62d6e508fd2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;ShareToUpload.UploadImageResponseData, Alamofire.AFError&gt;) -&gt; () in closure #1 (ShareToUpload.LocalImageData) -&gt; () in ShareToUpload.UserViewModel.uploadImages(localDatas: Swift.Array&lt;ShareToUpload.LocalImageData&gt;, _: (Swift.Array&lt;ShareToUpload.UploadData&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ShareToUpload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "1704">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -6872,6 +6947,21 @@
                   endingLineNumber = "195"
                   offsetFromSymbolStart = "91">
                </Location>
+               <Location
+                  uuid = "EB055C5B-E34F-4DA2-B7C6-491E52F176F0 - 2b9f193c8bdb8fd9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShareToUpload.UserViewModel.uploadPics(pics: Swift.Array&lt;ShareToUpload.UploadData&gt;, _: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "ShareToUpload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/UserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "136">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -6949,6 +7039,21 @@
                   startingLineNumber = "25"
                   endingLineNumber = "25"
                   offsetFromSymbolStart = "3172">
+               </Location>
+               <Location
+                  uuid = "41694C78-6046-4F48-827C-0A33156A1A40 - bad84cc79a9b5f72"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Result&lt;ShareToUpload.ImageDetailResponseData, ShareToUpload.APIService.APIError&gt;) -&gt; () in ShareToUpload.DetailViewModel.getImageDetail(id: Swift.String, _: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "ShareToUpload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "1972">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -7218,6 +7323,21 @@
                   endingLineNumber = "42"
                   offsetFromSymbolStart = "316">
                </Location>
+               <Location
+                  uuid = "B5D95CC2-155D-4918-8F06-B0D5E8DB9101 - ca1b763a5aaa774e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;ShareToUpload.ImageLinkedResponseData, ShareToUpload.APIService.APIError&gt;) -&gt; () in ShareToUpload.DetailViewModel.getImageLinked(id: Swift.String, _: (Swift.Array&lt;ShareToUpload.ImageLinked&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "ShareToUpload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "316">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -7265,6 +7385,131 @@
                   startingLineNumber = "44"
                   endingLineNumber = "44"
                   offsetFromSymbolStart = "416">
+               </Location>
+               <Location
+                  uuid = "2698E991-0692-4E7E-B6B5-B7C80CA5BFFD - ca1b763a5aaa7708"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;ShareToUpload.ImageLinkedResponseData, ShareToUpload.APIService.APIError&gt;) -&gt; () in ShareToUpload.DetailViewModel.getImageLinked(id: Swift.String, _: (Swift.Array&lt;ShareToUpload.ImageLinked&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "ShareToUpload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/ViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "416">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "37566F92-67B1-4D4C-8983-A9F6C5EBF621"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShareToUpload/ShareViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "getItems()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "28164B35-255E-4AE9-9939-F7DF6257A82C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShareToUpload/ShareViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "getItems()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B360BEB3-D7AC-40E0-A98A-325A15D4B51A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShareToUpload/ShareViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "getItems()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B360BEB3-D7AC-40E0-A98A-325A15D4B51A - 244c0d6a7daed932"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;__C.NSSecureCoding&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ShareToUpload.CustomShareViewController.getItems() -&gt; ()"
+                  moduleName = "ShareToUpload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/ShareToUpload/ShareViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "1264">
+               </Location>
+               <Location
+                  uuid = "B360BEB3-D7AC-40E0-A98A-325A15D4B51A - 244c0d6a7daed932"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;__C.NSSecureCoding&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ShareToUpload.CustomShareViewController.getItems() -&gt; ()"
+                  moduleName = "ShareToUpload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/ShareToUpload/ShareViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "1376">
+               </Location>
+               <Location
+                  uuid = "B360BEB3-D7AC-40E0-A98A-325A15D4B51A - 244c0d6a7daed932"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;__C.NSSecureCoding&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ShareToUpload.CustomShareViewController.getItems() -&gt; ()"
+                  moduleName = "ShareToUpload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/ShareToUpload/ShareViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "1636">
+               </Location>
+               <Location
+                  uuid = "B360BEB3-D7AC-40E0-A98A-325A15D4B51A - b8e094188cd3f022"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;__C.NSSecureCoding&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ShareToUpload.CustomShareViewController.getItems() -&gt; ()"
+                  moduleName = "ShareToUpload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/ShareToUpload/ShareViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "152">
                </Location>
             </Locations>
          </BreakpointContent>
