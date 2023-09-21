@@ -92,114 +92,117 @@ struct ProView: View {
     var titles: [Protext] = [.content, .number, .copy, .ai]
     var body: some View {
         ScrollView(showsIndicators: false) {
-            content
-            #if os(iOS)
-            iOSTitleView
-            #endif
-            priceView
-            Button {
-                showBuyLoadingIndicator = true
-                restore()
-            } label: {
-                HStack {
-                    Text("已经购买？")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(Color.shootBlack)
-                        + Text("恢复购买")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(Color.shootRed)
-                }
-                .padding(.vertical, 16)
-                .contentShape(Rectangle())
-            }.buttonStyle(PlainButtonStyle())
-            
-            VStack(alignment: .leading, spacing: 12) {
-                Group {
-                    Text("\(Image(systemName: "bell.circle.fill"))")
-                        .foregroundColor(Color.shootRed)
-                        + Text(" 按年付费确认订阅之后将会向您的 App Store 账户收取费用，按照年的时间长度收取您的费用。订阅服务将会在当前周期结束时自动续订并收取下一年的费用。")
-                        .foregroundColor(Color.shootBlack)
-                }
-                .lineSpacing(6)
-                .fixedSize(horizontal: false, vertical: true)
-
-                .font(.subheadline)
-                .multilineTextAlignment(.leading)
-                Group {
-                    Text("\(Image(systemName: "bell.circle.fill"))")
-                        .foregroundColor(Color.shootRed)
-                        + Text(" 取消自动续订需要在当前订阅周期结束前 24 小时完成，可以在下面的 App Store 订阅管理里查看，如果有任何问题，请联系我们。")
-                        .foregroundColor(Color.shootBlack)
-                }
-                .lineSpacing(6)
-                .fixedSize(horizontal: false, vertical: true)
-                .font(.subheadline)
-                .multilineTextAlignment(.leading)
-
-                VStack(spacing: 16) {
+            VStack(spacing: 0) {
+                content
+                #if os(iOS)
+                iOSTitleView
+                #endif
+                priceView
+                Button {
+                    showBuyLoadingIndicator = true
+                    restore()
+                } label: {
                     HStack {
-                        Spacer()
-                        Button(action: {
-                            self.showPrivacy = true
-                        }) {
-                            Text("隐私条款")
-                                .bold()
-                                .foregroundColor(Color.shootRed)
-                                .fixedSize()
-                        }.buttonStyle(.plain)
-                            .sheet(isPresented: self.$showPrivacy) {
-                                PrivacyView(showPrivacy: self.$showPrivacy)
-                            }
-
-                        Spacer()
-                        Text("·")
-                            .bold()
+                        Text("已经购买？")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(Color.shootBlack)
+                            + Text("恢复购买")
+                            .font(.system(size: 16, weight: .bold))
                             .foregroundColor(Color.shootRed)
-                            .fixedSize()
-                        Spacer()
+                    }
+                    .padding(.vertical, 16)
+                    .contentShape(Rectangle())
+                }.buttonStyle(PlainButtonStyle())
+                    .padding(.top)
+                
+                VStack(alignment: .leading, spacing: 12) {
+                    Group {
+                        Text("\(Image(systemName: "bell.circle.fill"))")
+                            .foregroundColor(Color.shootRed)
+                            + Text(" 按年付费确认订阅之后将会向您的 App Store 账户收取费用，按照年的时间长度收取您的费用。订阅服务将会在当前周期结束时自动续订并收取下一年的费用。")
+                            .foregroundColor(Color.shootBlack)
+                    }.font(.system(size: 14))
+                    .lineSpacing(6)
+                    .fixedSize(horizontal: false, vertical: true)
 
-                        Button(action: {
-                            let url = URL(string: "https://productpoke.notion.site/Shoots-e6565357d2704e3694aa622a0d854b46")!
-                            #if os(iOS)
-                                UIApplication.shared.open(url)
-                            #else
-                                NSWorkspace.shared.open(url)
-                            #endif
-                        }) {
-                            Text("使用协议")
-                                .bold()
-                                .foregroundColor(Color.shootRed)
-                                .fixedSize()
-                        }.buttonStyle(.plain)
+                    .font(.subheadline)
+                    .multilineTextAlignment(.leading)
+                    Group {
+                        Text("\(Image(systemName: "bell.circle.fill"))")
+                            .foregroundColor(Color.shootRed)
+                            + Text(" 取消自动续订需要在当前订阅周期结束前 24 小时完成，可以在下面的 App Store 订阅管理里查看，如果有任何问题，请联系我们。")
+                            .foregroundColor(Color.shootBlack)
+                    }.font(.system(size: 14))
+                    .lineSpacing(6)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .font(.subheadline)
+                    .multilineTextAlignment(.leading)
 
-                        Group {
+                    VStack(spacing: 16) {
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                self.showPrivacy = true
+                            }) {
+                                Text("隐私条款")
+                                    .bold()
+                                    .foregroundColor(Color.shootRed)
+                                    .fixedSize()
+                            }.buttonStyle(.plain)
+                                .sheet(isPresented: self.$showPrivacy) {
+                                    PrivacyView(showPrivacy: self.$showPrivacy)
+                                }
+
                             Spacer()
                             Text("·")
                                 .bold()
                                 .foregroundColor(Color.shootRed)
                                 .fixedSize()
                             Spacer()
+
                             Button(action: {
+                                let url = URL(string: "https://productpoke.notion.site/Shoots-e6565357d2704e3694aa622a0d854b46")!
                                 #if os(iOS)
-                                    UIApplication.shared.open(URL(string: "https://apps.apple.com/account/subscriptions")!)
+                                    UIApplication.shared.open(url)
                                 #else
-                                    NSWorkspace.shared.open(URL(string: "https://apps.apple.com/account/subscriptions")!)
+                                    NSWorkspace.shared.open(url)
                                 #endif
                             }) {
-                                Text("订阅管理")
+                                Text("使用协议")
                                     .bold()
                                     .foregroundColor(Color.shootRed)
                                     .fixedSize()
                             }.buttonStyle(.plain)
-                            Spacer()
+
+                            Group {
+                                Spacer()
+                                Text("·")
+                                    .bold()
+                                    .foregroundColor(Color.shootRed)
+                                    .fixedSize()
+                                Spacer()
+                                Button(action: {
+                                    #if os(iOS)
+                                        UIApplication.shared.open(URL(string: "https://apps.apple.com/account/subscriptions")!)
+                                    #else
+                                        NSWorkspace.shared.open(URL(string: "https://apps.apple.com/account/subscriptions")!)
+                                    #endif
+                                }) {
+                                    Text("订阅管理")
+                                        .bold()
+                                        .foregroundColor(Color.shootRed)
+                                        .fixedSize()
+                                }.buttonStyle(.plain)
+                                Spacer()
+                            }
                         }
-                    }
-                }.padding(.top, 10)
-            }
-            .padding()
-            #if os(iOS)
+                    }.padding(.top, 10)
+                }
+                .padding()
+                #if os(iOS)
                 .padding(.horizontal, iPhonelandscape ? 46 : 0)
-            #endif
+                #endif
+            }
         }.background(Color.shootWhite)
             .safeAreaInset(edge: .bottom) {
                 bottomButton
@@ -251,8 +254,9 @@ struct ProView: View {
                 .tag(3)
         }.tabViewStyle(.page(indexDisplayMode: .never))
             .frame(maxWidth: .infinity)
-            .frame(height: 360)
-            .background(LinearGradient(colors: [.pink.opacity(0.4), .purple.opacity(0.4), .yellow.opacity(0.4)], startPoint: .topLeading, endPoint: .bottomTrailing).padding(-20).blur(radius: 20))
+            .padding([.top, .horizontal])
+            .frame(height: 420)
+            .background(LinearGradient(colors: [.pink.opacity(0.4), .purple.opacity(0.4), .yellow.opacity(0.4)], startPoint: .topLeading, endPoint: .bottomTrailing).padding([.horizontal, .top], -20).blur(radius: 20))
             .padding(.bottom)
             .overlay(
                 WaveView(waveColor: .shootWhite, progress: 0.2)
@@ -289,7 +293,7 @@ struct ProView: View {
                 }.frame(maxWidth: 460)
             }.padding(.top, 36)
         }
-        .background(LinearGradient(colors: [.pink.opacity(0.4), .purple.opacity(0.4), .yellow.opacity(0.4)], startPoint: .topLeading, endPoint: .bottomTrailing).padding(-20).blur(radius: 20))
+        .background(LinearGradient(colors: [.pink.opacity(0.4), .purple.opacity(0.4), .yellow.opacity(0.4)], startPoint: .topLeading, endPoint: .bottomTrailing))
         .padding(.bottom)
         .overlay(
             WaveView(waveColor: .shootWhite, progress: 0.2)
@@ -299,7 +303,7 @@ struct ProView: View {
     }
     #if os(iOS)
     var iOSTitleView: some View {
-        Group {
+        VStack(spacing: 0) {
             VStack(spacing: 8) {
                 Text(LocalizedStringKey(titles[selectedTab].indicator))
                     .font(.system(size: 12, weight: .medium))
@@ -344,7 +348,7 @@ struct ProView: View {
                     .padding(.horizontal)
                     .animation(nil, value: selectedTab)
             }
-        }
+        }.background(Color.shootWhite)
     }
     #endif
     
@@ -362,7 +366,7 @@ struct ProView: View {
                 
                 Text(LocalizedStringKey(titles[selectedTab].title))
                     .font(.system(size: 22, weight: .bold))
-                    .foregroundColor(.shootWhite)
+                    .foregroundColor(.shootBlack)
                     .multilineTextAlignment(.center)
                     .lineLimit(1)
                     .animation(nil, value: selectedTab)
@@ -374,7 +378,7 @@ struct ProView: View {
             if #available(iOS 16.0, macOS 12.0, *) {
                 Text(LocalizedStringKey(titles[selectedTab].subtitle))
                     .font(.system(size: 16, weight: .regular))
-                    .foregroundColor(.shootWhite)
+                    .foregroundColor(.shootGray)
                     .lineLimit(3, reservesSpace: true)
                     .lineSpacing(4)
                     .multilineTextAlignment(.center)
@@ -385,7 +389,7 @@ struct ProView: View {
             } else {
                 Text(LocalizedStringKey(titles[selectedTab].subtitle))
                     .font(.system(size: 16, weight: .regular))
-                    .foregroundColor(.shootWhite)
+                    .foregroundColor(.shootGray)
                     .multilineTextAlignment(.center)
                     .lineSpacing(4)
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -573,7 +577,7 @@ struct ProView: View {
                                 .textCase(.uppercase)
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 4)
-                                .modifier(GradientModifier(color: Color.shootBlue))
+                                .modifier(GradientModifier(color: Color.shootRed))
                                 .clipShape(Capsule())
                                 .offset(y: -14)
                                 .transition(AnyTransition.asymmetric(

@@ -33,14 +33,6 @@ struct UploadView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: screen.width)
-                    .onAppear {
-//                        if let image = UIImage(data: dataVM.images[0].image), image.size.width != screen.width && image.size.height != screen.height {
-//        //                            toastText = "分享的图片尺寸和当前设备不一样，无法上传"
-//                            toastText = "\(image.size.width) \(screen.width) \(image.size.height) \(screen.height)"
-//                            alertType = .error()
-//                            showToast = true
-//                        }
-                    }
             }
         }
             .onTapGesture {

@@ -31,6 +31,20 @@
 		4E195EF029C040C800E97522 /* ShootsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EEF29C040C800E97522 /* ShootsTests.swift */; };
 		4E195EFA29C040C800E97522 /* ShootsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EF929C040C800E97522 /* ShootsUITests.swift */; };
 		4E195EFC29C040C800E97522 /* ShootsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */; };
+		4E1DA5822ABBC22F00C694F5 /* PageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA57F2ABBC22F00C694F5 /* PageData.swift */; };
+		4E1DA5832ABBC22F00C694F5 /* PageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA57F2ABBC22F00C694F5 /* PageData.swift */; };
+		4E1DA5842ABBC22F00C694F5 /* NewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA5802ABBC22F00C694F5 /* NewView.swift */; };
+		4E1DA5852ABBC22F00C694F5 /* NewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA5802ABBC22F00C694F5 /* NewView.swift */; };
+		4E1DA5862ABBC22F00C694F5 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA5812ABBC22F00C694F5 /* PageView.swift */; };
+		4E1DA5872ABBC22F00C694F5 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA5812ABBC22F00C694F5 /* PageView.swift */; };
+		4E1DA58E2ABBC24A00C694F5 /* ConcentricOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA5892ABBC24A00C694F5 /* ConcentricOnboardingView.swift */; };
+		4E1DA58F2ABBC24A00C694F5 /* ConcentricOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA5892ABBC24A00C694F5 /* ConcentricOnboardingView.swift */; };
+		4E1DA5902ABBC24A00C694F5 /* AnimatableShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA58C2ABBC24A00C694F5 /* AnimatableShape.swift */; };
+		4E1DA5912ABBC24A00C694F5 /* AnimatableShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA58C2ABBC24A00C694F5 /* AnimatableShape.swift */; };
+		4E1DA5922ABBC24A00C694F5 /* AnimationCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA58D2ABBC24A00C694F5 /* AnimationCompletion.swift */; };
+		4E1DA5932ABBC24A00C694F5 /* AnimationCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA58D2ABBC24A00C694F5 /* AnimationCompletion.swift */; };
+		4E1DA5952ABBC2F100C694F5 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA5942ABBC2F100C694F5 /* ContainerView.swift */; };
+		4E1DA5962ABBC2F100C694F5 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA5942ABBC2F100C694F5 /* ContainerView.swift */; };
 		4E1EBBA829D6758100636028 /* ShootsAIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EBBA729D6758100636028 /* ShootsAIView.swift */; };
 		4E2B6EB82A17790B000BC713 /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB203452A120FF6006A9A15 /* BaseURL.swift */; };
 		4E2B6EBA2A177935000BC713 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4E2B6EB92A177935000BC713 /* Alamofire */; };
@@ -778,6 +792,14 @@
 		4E195EF529C040C800E97522 /* ShootsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShootsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E195EF929C040C800E97522 /* ShootsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsUITests.swift; sourceTree = "<group>"; };
 		4E195EFB29C040C800E97522 /* ShootsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4E1DA57F2ABBC22F00C694F5 /* PageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageData.swift; sourceTree = "<group>"; };
+		4E1DA5802ABBC22F00C694F5 /* NewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewView.swift; sourceTree = "<group>"; };
+		4E1DA5812ABBC22F00C694F5 /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		4E1DA5892ABBC24A00C694F5 /* ConcentricOnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcentricOnboardingView.swift; sourceTree = "<group>"; };
+		4E1DA58A2ABBC24A00C694F5 /* ConcentricOnboarding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcentricOnboarding.h; sourceTree = "<group>"; };
+		4E1DA58C2ABBC24A00C694F5 /* AnimatableShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatableShape.swift; sourceTree = "<group>"; };
+		4E1DA58D2ABBC24A00C694F5 /* AnimationCompletion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationCompletion.swift; sourceTree = "<group>"; };
+		4E1DA5942ABBC2F100C694F5 /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		4E1EBBA729D6758100636028 /* ShootsAIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootsAIView.swift; sourceTree = "<group>"; };
 		4E2B6EBF2A189B6D000BC713 /* UserResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponseData.swift; sourceTree = "<group>"; };
 		4E2B6EC32A189B8F000BC713 /* PatternResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternResponseData.swift; sourceTree = "<group>"; };
@@ -1324,6 +1346,35 @@
 			path = ShootsUITests;
 			sourceTree = "<group>";
 		};
+		4E1DA57E2ABBC22F00C694F5 /* New */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DA57F2ABBC22F00C694F5 /* PageData.swift */,
+				4E1DA5802ABBC22F00C694F5 /* NewView.swift */,
+				4E1DA5812ABBC22F00C694F5 /* PageView.swift */,
+			);
+			path = New;
+			sourceTree = "<group>";
+		};
+		4E1DA5882ABBC24A00C694F5 /* ConcentricOnboarding */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DA5892ABBC24A00C694F5 /* ConcentricOnboardingView.swift */,
+				4E1DA58A2ABBC24A00C694F5 /* ConcentricOnboarding.h */,
+				4E1DA58B2ABBC24A00C694F5 /* Helpers */,
+			);
+			path = ConcentricOnboarding;
+			sourceTree = "<group>";
+		};
+		4E1DA58B2ABBC24A00C694F5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DA58C2ABBC24A00C694F5 /* AnimatableShape.swift */,
+				4E1DA58D2ABBC24A00C694F5 /* AnimationCompletion.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		4E2B6EC22A189B82000BC713 /* Response */ = {
 			isa = PBXGroup;
 			children = (
@@ -1515,6 +1566,7 @@
 			isa = PBXGroup;
 			children = (
 				4E5CF6CD29CD59B200A4E0DE /* Global.swift */,
+				4E1DA5882ABBC24A00C694F5 /* ConcentricOnboarding */,
 				4EC939A82A7D043600CD5A90 /* TagField */,
 				4E5CF6CF29CD5AC000A4E0DE /* SwiftDate */,
 				4E5CF60029CD58D000A4E0DE /* ActivityIndicatorView */,
@@ -2340,6 +2392,7 @@
 		4EE49F7A29C877BC00B51F4B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4E1DA5942ABBC2F100C694F5 /* ContainerView.swift */,
 				4E195EDF29C040C600E97522 /* ContentView.swift */,
 				4E2B6ED72A18ADBF000BC713 /* LoginView.swift */,
 				4E325BDD2A60EEB700FF1004 /* NewAppView.swift */,
@@ -2354,6 +2407,7 @@
 				4EE49FA429C89CB700B51F4B /* Setting */,
 				4EC9DBC82A920886007990B1 /* Audit */,
 				4E58F91E29CB372E0087E902 /* Global */,
+				4E1DA57E2ABBC22F00C694F5 /* New */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2806,6 +2860,7 @@
 				4EB5F6EF2AB7E55B00ECB63A /* ImageLinked.swift in Sources */,
 				4EE7C0C12A39810300140FFD /* UploadAblum.swift in Sources */,
 				4E99304629C9F2CC00D99DA9 /* FolderCardView.swift in Sources */,
+				4E1DA5862ABBC22F00C694F5 /* PageView.swift in Sources */,
 				4E8B59932A850EF10049FCF3 /* ImageMoveAndScaleSheet.swift in Sources */,
 				4E8B598F2A850EF10049FCF3 /* Color+Extensions.swift in Sources */,
 				4EF6C7882AB1409B003EEE2C /* Roles.swift in Sources */,
@@ -2989,6 +3044,7 @@
 				4E5CF6FC29CD5AC000A4E0DE /* Region.swift in Sources */,
 				4E5CF67029CD58D100A4E0DE /* InAppProductQueryRequest.swift in Sources */,
 				4EDDD66629DC238E00C4E14D /* ZLInputTextViewController.swift in Sources */,
+				4E1DA5822ABBC22F00C694F5 /* PageData.swift in Sources */,
 				4EDDD66A29DC238E00C4E14D /* ZLAdjustSlider.swift in Sources */,
 				4EE7C0B52A397F8D00140FFD /* Pattern.swift in Sources */,
 				4E5CF6B829CD58D100A4E0DE /* SafariViewPresenter.swift in Sources */,
@@ -3047,6 +3103,8 @@
 				4E5CF70829CD5AC000A4E0DE /* TimePeriodChain.swift in Sources */,
 				4E99304229C9F02000D99DA9 /* FlowView.swift in Sources */,
 				4E325BDE2A60EEB700FF1004 /* NewAppView.swift in Sources */,
+				4E1DA5842ABBC22F00C694F5 /* NewView.swift in Sources */,
+				4E1DA5922ABBC24A00C694F5 /* AnimationCompletion.swift in Sources */,
 				4E49409529E3A7200058391E /* ZLProgressView.swift in Sources */,
 				4E49409629E3A7200058391E /* ZLPhotoConfiguration.swift in Sources */,
 				4E99304B29CA003100D99DA9 /* String+Extension.swift in Sources */,
@@ -3063,6 +3121,7 @@
 				4EDDD67029DC238E00C4E14D /* ZLWeakProxy.swift in Sources */,
 				4E49409429E3A7200058391E /* ZLThumbnailPhotoCell.swift in Sources */,
 				4E5CF72929CD623600A4E0DE /* ShootColorScheme.swift in Sources */,
+				4E1DA58E2ABBC24A00C694F5 /* ConcentricOnboardingView.swift in Sources */,
 				4E9B28A52A6908B6002B54FA /* Collection+Extension.swift in Sources */,
 				4E5CF69F29CD58D100A4E0DE /* AlertActivityIndicatorView.swift in Sources */,
 				4E49409F29E3A7200058391E /* UIView+ZLPhotoBrowser.swift in Sources */,
@@ -3106,7 +3165,9 @@
 				4E8B598D2A850EF10049FCF3 /* ImageAttributes.swift in Sources */,
 				4EC9DBC52A9204DC007990B1 /* Audit.swift in Sources */,
 				4E4940AB29E3A7200058391E /* UIColor+ZLPhotoBrowser.swift in Sources */,
+				4E1DA5902ABBC24A00C694F5 /* AnimatableShape.swift in Sources */,
 				4E5CF6BA29CD58D100A4E0DE /* DeviceMacOS.swift in Sources */,
+				4E1DA5952ABBC2F100C694F5 /* ContainerView.swift in Sources */,
 				4E8B59732A850ED70049FCF3 /* InfoView.swift in Sources */,
 				4E49408829E3A7200058391E /* ZLCustomAlertProtocol.swift in Sources */,
 				4E49407D29E3A7200058391E /* ZLPhotoManager.swift in Sources */,
@@ -3319,12 +3380,14 @@
 				4E42A72929D14B2100BEC185 /* TimePeriodProtocol.swift in Sources */,
 				4EE7C0B62A397F8D00140FFD /* Pattern.swift in Sources */,
 				4E2B6EC52A189B8F000BC713 /* PatternResponseData.swift in Sources */,
+				4E1DA5962ABBC2F100C694F5 /* ContainerView.swift in Sources */,
 				4ED4B09A29D3E98B005D9758 /* Utilities.swift in Sources */,
 				4E42A6E529D1315500BEC185 /* IconView.swift in Sources */,
 				4E42A6D429D1313D00BEC185 /* FeedView.swift in Sources */,
 				4EA73B1729D5C161002901AE /* InAppReceipt.swift in Sources */,
 				4EE7C0D32A3AC2A700140FFD /* SearchResultView.swift in Sources */,
 				4E42A72229D14B1700BEC185 /* Zones.swift in Sources */,
+				4E1DA5852ABBC22F00C694F5 /* NewView.swift in Sources */,
 				4E42A6FD29D1329200BEC185 /* DefaultsKey+Extension.swift in Sources */,
 				4E63A8462A244205001A0FD4 /* Reachability.swift in Sources */,
 				4EA73B1929D5C161002901AE /* CompleteTransactionsController.swift in Sources */,
@@ -3390,6 +3453,8 @@
 				4ED4B09F29D3E98B005D9758 /* MenuBarExtraUtils.swift in Sources */,
 				4E42A6FF29D132E300BEC185 /* ActivityIndicatorView.swift in Sources */,
 				4E9AFCE52AB2BC6B0090A40B /* WaveView.swift in Sources */,
+				4E1DA5832ABBC22F00C694F5 /* PageData.swift in Sources */,
+				4E1DA5872ABBC22F00C694F5 /* PageView.swift in Sources */,
 				4EE7C0C22A39810300140FFD /* UploadAblum.swift in Sources */,
 				4E40800E2A32B40C003B5322 /* ImageView.swift in Sources */,
 				4E42A70029D132E700BEC185 /* EqualizerIndicatorView.swift in Sources */,
@@ -3419,6 +3484,7 @@
 				4EA73B1229D5C15B002901AE /* SKProduct+LocalizedPrice.swift in Sources */,
 				4E42A6DC29D1314D00BEC185 /* AppView.swift in Sources */,
 				4E42A6DE29D1315000BEC185 /* SelfView.swift in Sources */,
+				4E1DA5932ABBC24A00C694F5 /* AnimationCompletion.swift in Sources */,
 				4E42A70529D132E700BEC185 /* GradientIndicatorView.swift in Sources */,
 				4E8D79022A85D8FB004AD58F /* CropperRatio.swift in Sources */,
 				4E42A6FE29D1329200BEC185 /* Defaults.swift in Sources */,
@@ -3435,6 +3501,7 @@
 				4E42A6D829D1314100BEC185 /* SearchView.swift in Sources */,
 				4E42A70329D132E700BEC185 /* OpacityDotsIndicatorView.swift in Sources */,
 				4E8D79042A85DE02004AD58F /* InfoView.swift in Sources */,
+				4E1DA5912ABBC24A00C694F5 /* AnimatableShape.swift in Sources */,
 				4E42A6F929D131FD00BEC185 /* Color+Extension.swift in Sources */,
 				4E010E1D29DB0D4400A4B231 /* UberaboutView.swift in Sources */,
 				4ED4B09C29D3E98B005D9758 /* Unused Code.swift in Sources */,
@@ -3446,6 +3513,7 @@
 				4E42A6D929D1314500BEC185 /* ActionTitleButtonView.swift in Sources */,
 				4E42A72A29D14B2100BEC185 /* TimePeriodGroup.swift in Sources */,
 				4E42A72729D14B1D00BEC185 /* TimePeriod.swift in Sources */,
+				4E1DA58F2ABBC24A00C694F5 /* ConcentricOnboardingView.swift in Sources */,
 				4E42A72629D14B1D00BEC185 /* TimePeriod+Support.swift in Sources */,
 				4E63A85A2A258BE1001A0FD4 /* AppImageResponseData.swift in Sources */,
 				4E42A70229D132E700BEC185 /* FlickeringDotsIndicatorView.swift in Sources */,

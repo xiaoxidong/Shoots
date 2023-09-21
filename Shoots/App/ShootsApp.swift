@@ -38,6 +38,7 @@ struct ShootsApp: App {
                             // NSApp.setActivationPolicy(.prohibited)
                         }
                         configureShortcuts()
+                    setNewWindow()
                     #endif
                 }
         }
@@ -84,12 +85,18 @@ struct ShootsApp: App {
     @StateObject var info: InfoViewModel = .init()
     @StateObject var search: SearchViewModel = .init()
     var content: some View {
-        ContentView()
-            .environmentObject(user)
-            .environmentObject(info)
-            .environmentObject(search)
-            .preferredColorScheme(colorScheme)
-            .preferredColorScheme(colorMode.colorScheme)
+        Group {
+            #if os(iOS)
+            ContainerView()
+            #else
+            ContentView()
+            #endif
+        }
+        .environmentObject(user)
+        .environmentObject(info)
+        .environmentObject(search)
+        .preferredColorScheme(colorScheme)
+        .preferredColorScheme(colorMode.colorScheme)
     }
 
     #if os(macOS)
@@ -103,6 +110,13 @@ struct ShootsApp: App {
             })
         }
     #endif
+    
+    @AppStorage("showNew") var showNew: Bool = true
+    func setNewWindow() {
+        if showNew {
+            
+        }
+    }
 
     func setUp() {
         // 内购

@@ -89,6 +89,7 @@ struct DetailView: View {
                     if !user.login {
                         LoginView(login: $showLogin, showBG: true, successAction: {
                             alertText = "登录成功"
+                            alertType = .success()
                             showAlert = true
                         }, failAction: {
                             alertText = "登录失败，请重试"

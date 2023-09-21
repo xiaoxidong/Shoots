@@ -507,6 +507,7 @@ struct ContentView: View {
                     if !user.login {
                         LoginView(login: .constant(true), showBG: false, successAction: {
                             toastText = "登录成功"
+                            alertType = .success()
                             showToast = true
                         }, failAction: {
                             toastText = "登录失败，请重试"
@@ -535,6 +536,7 @@ struct ContentView: View {
                     if showLogin {
                         LoginView(login: $showLogin, showBG: true, successAction: {
                             toastText = "登录成功"
+                            alertType = .success()
                             showToast = true
                         }, failAction: {
                             toastText = "登录失败，请重试"
