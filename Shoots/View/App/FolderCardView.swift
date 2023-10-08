@@ -32,7 +32,6 @@ struct FolderCardView: View {
             }
             .frame(minWidth: 100, maxWidth: 200, minHeight: 120, maxHeight: 286)
             .padding(.top)
-//            .shadow(color: Color.shootLight.opacity(0.1), radius: 6)
             .overlay(alignment: .bottomLeading) {
                 Text("\(picCount) 张")
                     .font(.system(size: 14, weight: .bold))
@@ -50,10 +49,9 @@ struct FolderCardView: View {
                 .foregroundColor(.shootBlack)
                 .frame(maxWidth: 126)
                 .lineLimit(1)
-        }.onHover { hover in
-            withAnimation(.spring()) {
-                self.hover = hover
-            }
+        }.animation(.spring(), value: hover)
+        .onHover { hover in
+            self.hover = hover
         }
     }
 

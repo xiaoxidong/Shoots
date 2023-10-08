@@ -49,7 +49,7 @@ struct MacSettingsView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 14, height: 14)
-                                Text("买杯饮料")
+                                Text("Shoots Pro")
                             }
                         }
                     }.padding(.vertical, 6)

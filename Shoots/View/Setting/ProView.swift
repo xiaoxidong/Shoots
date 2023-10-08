@@ -50,6 +50,7 @@ struct ProView: View {
         case content
         case number
         case copy
+        case userflow
         case ai
         
         var title: String {
@@ -60,6 +61,8 @@ struct ProView: View {
                 return "无限制管理截图数量"
             case .copy:
                 return "复制粘贴原型组件"
+            case .userflow:
+                return "查看用户流程图片组"
             case .ai:
                 return "使用 AI 进行原型设计"
             }
@@ -72,10 +75,13 @@ struct ProView: View {
                 return "普通用户最多可以上传 1000 张截图"
             case .copy:
                 return "直接复制粘贴设计内容到各个设计工具，不仅仅是截图"
+            case .userflow:
+                return "一个流程里的操作按照顺序查看，了解更彻底"
             case .ai:
                 return "描述你的需求，自动生成可交互的高保真原型"
             }
         }
+        
         var indicator: String {
             switch self {
             case .content:
@@ -84,12 +90,14 @@ struct ProView: View {
                 return "普通用户够用"
             case .copy:
                 return "即将上线"
+            case .userflow:
+                return "知道从哪到哪"
             case .ai:
                 return "即将即将上线"
             }
         }
     }
-    var titles: [Protext] = [.content, .number, .copy, .ai]
+    var titles: [Protext] = [.content, .number, .copy, .userflow, .ai]
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
@@ -247,11 +255,16 @@ struct ProView: View {
                 .aspectRatio(contentMode: .fit)
                 .padding( 26)
                 .tag(2)
+            Image("05")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding( 26)
+                .tag(3)
             Image("04")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .padding(26)
-                .tag(3)
+                .tag(4)
         }.tabViewStyle(.page(indexDisplayMode: .never))
             .frame(maxWidth: .infinity)
             .padding([.top, .horizontal])
@@ -288,8 +301,12 @@ struct ProView: View {
                     macTitleView(selectedTab: 2)
                 }.frame(maxWidth: 460)
                 VStack {
+                    Image("05")
+                    macTitleView(selectedTab:3)
+                }.frame(maxWidth: 460)
+                VStack {
                     Image("04")
-                    macTitleView(selectedTab: 3)
+                    macTitleView(selectedTab: 4)
                 }.frame(maxWidth: 460)
             }.padding(.top, 36)
         }
@@ -644,9 +661,10 @@ struct ProView: View {
                         monthMoney = product.localizedPrice!
                         
                     } else if product.productIdentifier == Support.life.id {
-                        lifeMoney = product.localizedPrice!
-                    } else if product.productIdentifier == Support.lifeHalf.id {
                         lifeHalfMoney = product.localizedPrice!
+                        
+                    } else if product.productIdentifier == Support.lifeHalf.id {
+                        lifeMoney = product.localizedPrice!
                     }
 
                     let priceString = product.localizedPrice!

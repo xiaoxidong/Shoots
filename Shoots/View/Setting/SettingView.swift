@@ -35,7 +35,6 @@ struct SettingView: View {
         } else {
             return 16
         }
-        return 16
     }
     
     var body: some View {
@@ -46,9 +45,9 @@ struct SettingView: View {
                     SettingCellView(image: "pro", text: "Shoots Pro") {
                         showPro.toggle()
                     }
-                    SettingCellView(image: "pro", text: "New") {
-                        showNew.toggle()
-                    }
+//                    SettingCellView(image: "pro", text: "New") {
+//                        showNew.toggle()
+//                    }
                     //                    SettingCellView(image: "tags", text: "批量上传") {
                     //                        withAnimation(.spring()) {
                     //                            customUpload.toggle()

@@ -112,7 +112,7 @@
 "应用图标" = "App Icon";
 "支持我们" = "Support Us";
 "分享给好友" = "Share with Friends";
-"给我们一个五星评价" = "Give us a five-star rating";
+"给我们一个五星评价" = "Give us a Five-Star Rating";
 "问题反馈" = "Question Feedback";
 "新浪微博" = "Sina Weibo";
 "用户隐私" = "Privacy";
@@ -133,7 +133,6 @@
 
 // Mac Settings
 "  基础设置  " = "  Setting  ";
-"买杯饮料" = "Buy a Drink";
 "外观设置：" = "Appearance Settings:";
 "状态栏图标：" = "Statusbar Icon:";
 "图标" = "Icon";
@@ -296,6 +295,11 @@
 "普通用户够用" = "Enough for average user";
 "即将上线" = "Coming soon";
 "即将即将上线" = "Coming soon soon";
+
+"查看用户流程图片组" = "View User Flow";
+"一个流程里的操作按照顺序查看，了解更彻底" = "The operations in a process are viewed in sequence for a more thorough understanding";
+"知道从哪到哪" = "From One to Another";
+
 
 "每月" = "Per Month";
 "按月付费" = "Monthly";

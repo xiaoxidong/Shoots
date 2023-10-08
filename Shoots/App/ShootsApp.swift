@@ -24,7 +24,7 @@ struct ShootsApp: App {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some Scene {
-        WindowGroup {
+        WindowGroup(id: "sa") {
             content
                 .onAppear {
                     #if os(macOS)
@@ -36,8 +36,10 @@ struct ShootsApp: App {
                             //                                NSApp.setActivationPolicy(.prohibited)
                             //                            }
                             // NSApp.setActivationPolicy(.prohibited)
+                            NSApp.setActivationPolicy(.prohibited)
                         }
                         configureShortcuts()
+                    
                     setNewWindow()
                     #endif
                 }
@@ -87,11 +89,11 @@ struct ShootsApp: App {
     var content: some View {
         Group {
             #if os(iOS)
-            ContainerView()
+            ContentView()
             #else
             ContentView()
             #endif
-        }
+        }.frame(minWidth: 400, idealWidth: 800, maxWidth: .infinity, minHeight: 300, idealHeight: 600, maxHeight: .infinity)
         .environmentObject(user)
         .environmentObject(info)
         .environmentObject(search)

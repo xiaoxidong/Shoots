@@ -13,6 +13,7 @@ struct Picture: Codable, Identifiable {
     var linkApplicationId: String?
     var linkApplicationOfficialId: String?
     var chooseType: String?
+//    var linkedOrBeLinked: LinkedOrBeLinked? = nil
 
     var compressedPicUrl: String {
         picUrl + "?x-oss-process=image/format,heic"
@@ -38,6 +39,12 @@ struct Picture: Codable, Identifiable {
             return .image
         }
     }
+}
+
+enum LinkedOrBeLinked: String, Codable {
+    case linked
+    case beLinked
+
 }
 
 enum ImageType: String, Codable {

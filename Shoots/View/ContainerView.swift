@@ -17,7 +17,7 @@ struct ContainerView: View {
             } else {
                 ContentView()
             }
-        }
+        }.sheetFrameForMac()
     }
 }
 

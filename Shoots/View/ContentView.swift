@@ -481,19 +481,19 @@ struct ContentView: View {
                     }
                 }
                 
-                if !user.isPro {
-                    ToolbarItem(placement: .automatic) {
-                        Button {
-                            showMacPro.toggle()
-                        } label: {
-                            Image("pro")
-                                .resizable()
-                                .foregroundColor(.shootBlack)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 20, height: 20)
-                        }
-                    }
-                }
+//                if !user.isPro {
+//                    ToolbarItem(placement: .automatic) {
+//                        Button {
+//                            showMacPro.toggle()
+//                        } label: {
+//                            Image("pro")
+//                                .resizable()
+//                                .foregroundColor(.shootBlack)
+//                                .aspectRatio(contentMode: .fit)
+//                                .frame(width: 20, height: 20)
+//                        }
+//                    }
+//                }
                 #endif
             }
         #if os(iOS)
