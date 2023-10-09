@@ -14,9 +14,9 @@ struct SettingRateView: View {
             let url = URL(string: urlString)
 
             #if os(iOS)
-                UIApplication.shared.open(url!)
+            UIApplication.shared.open(url!)
             #else
-                NSWorkspace.shared.open(url!)
+            NSWorkspace.shared.open(url!)
             #endif
         } label: {
             HStack {

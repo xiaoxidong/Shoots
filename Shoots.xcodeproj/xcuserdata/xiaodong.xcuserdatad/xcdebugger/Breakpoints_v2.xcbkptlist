@@ -6527,6 +6527,21 @@
                   endingLineNumber = "226"
                   offsetFromSymbolStart = "725">
                </Location>
+               <Location
+                  uuid = "A9D89B42-E4F2-4BB3-A249-C3A9A3030485 - 3ddedcd90409b250"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static Shoots.ZLPhotoManager.getCameraRollAlbum(allowSelectImage: Swift.Bool, allowSelectVideo: Swift.Bool, completion: (Shoots.ZLAlbumListModel) -&gt; ()) -&gt; ()"
+                  moduleName = "Shoots"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaodong/Documents/Project/Shoots/Shoots/View/Upload/Sources/General/ZLPhotoManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "226"
+                  endingLineNumber = "226"
+                  offsetFromSymbolStart = "736">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>

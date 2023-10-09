@@ -24,6 +24,7 @@
 		4E0602622A3F586700508B8B /* Grid in Frameworks */ = {isa = PBXBuildFile; productRef = 4E0602612A3F586700508B8B /* Grid */; };
 		4E0602642A40341100508B8B /* Grid in Frameworks */ = {isa = PBXBuildFile; productRef = 4E0602632A40341100508B8B /* Grid */; };
 		4E07F81F29E0300800E72CCD /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07F81E29E0300800E72CCD /* UIImage+Extension.swift */; };
+		4E173A442AD38871001134D5 /* Diagnostics in Frameworks */ = {isa = PBXBuildFile; productRef = 4E173A432AD38871001134D5 /* Diagnostics */; };
 		4E195EDE29C040C600E97522 /* ShootsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EDD29C040C600E97522 /* ShootsApp.swift */; };
 		4E195EE029C040C600E97522 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E195EDF29C040C600E97522 /* ContentView.swift */; };
 		4E195EE229C040C700E97522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E195EE129C040C700E97522 /* Assets.xcassets */; };
@@ -1222,6 +1223,7 @@
 				4E2B6ED62A18A9C1000BC713 /* SDWebImageSwiftUI in Frameworks */,
 				4EE49F9629C88E2B00B51F4B /* SwiftUIFlowLayout in Frameworks */,
 				4EB203372A10C745006A9A15 /* Alamofire in Frameworks */,
+				4E173A442AD38871001134D5 /* Diagnostics in Frameworks */,
 				4EE49F8D29C8820F00B51F4B /* WaterfallGrid in Frameworks */,
 				4E73A68A29D316BB009CFB5A /* Introspect in Frameworks */,
 				4E878ED429D191520027FDA9 /* Refresh in Frameworks */,
@@ -2595,6 +2597,7 @@
 				4E2B6ED52A18A9C1000BC713 /* SDWebImageSwiftUI */,
 				4E0602612A3F586700508B8B /* Grid */,
 				4E8B59602A828A0A0049FCF3 /* DynamicOverlay */,
+				4E173A432AD38871001134D5 /* Diagnostics */,
 			);
 			productName = Shoots;
 			productReference = 4E195EDA29C040C600E97522 /* Shoots.app */;
@@ -2743,6 +2746,7 @@
 				4E2B6ED42A18A9C1000BC713 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				4E0602602A3F586700508B8B /* XCRemoteSwiftPackageReference "swiftui-grid" */,
 				4E8B595F2A828A0A0049FCF3 /* XCRemoteSwiftPackageReference "DynamicOverlay" */,
+				4E173A422AD38871001134D5 /* XCRemoteSwiftPackageReference "Diagnostics" */,
 			);
 			productRefGroup = 4E195EDB29C040C600E97522 /* Products */;
 			projectDirPath = "";
@@ -4066,6 +4070,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		4E173A422AD38871001134D5 /* XCRemoteSwiftPackageReference "Diagnostics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WeTransfer/Diagnostics";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		4E2B6ED42A18A9C1000BC713 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
@@ -4174,6 +4186,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E0602602A3F586700508B8B /* XCRemoteSwiftPackageReference "swiftui-grid" */;
 			productName = Grid;
+		};
+		4E173A432AD38871001134D5 /* Diagnostics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E173A422AD38871001134D5 /* XCRemoteSwiftPackageReference "Diagnostics" */;
+			productName = Diagnostics;
 		};
 		4E2B6EB92A177935000BC713 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

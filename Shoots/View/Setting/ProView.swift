@@ -35,7 +35,7 @@ struct ProView: View {
     @State var selected: Support = .year
     
     @State var monthMoney = "¥12.00"
-    @State var yearMoneyString = ""
+    @State var yearMoneyString = "¥8.00"
     @State var yearMoney = "¥98.00"
     @State var lifeMoney = "¥348.00"
     @State var lifeHalfMoney = "¥198.00"
@@ -275,7 +275,7 @@ struct ProView: View {
                 WaveView(waveColor: .shootWhite, progress: 0.2)
                     .overlay(
                         HStack(spacing: 4) {
-                            ForEach(0...3, id: \.self) { index in
+                            ForEach(0...4, id: \.self) { index in
                                 Circle()
                                     .frame(width: 6, height: 6)
                                     .foregroundColor(selectedTab == index ? .shootBlue : .shootGray.opacity(0.2))

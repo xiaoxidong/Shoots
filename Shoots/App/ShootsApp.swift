@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Diagnostics
 #if os(macOS)
 import MASShortcut
 #endif
@@ -137,6 +138,12 @@ struct ShootsApp: App {
                     fatalError()
                 }
             }
+        }
+        
+        do {
+            try DiagnosticsLogger.setup()
+        } catch {
+            print("Failed to setup the Diagnostics Logger")
         }
     }
 }

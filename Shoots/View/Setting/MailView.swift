@@ -7,6 +7,7 @@
 
 import MessageUI
 import SwiftUI
+import Diagnostics
 
 struct MailView: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentation
@@ -49,6 +50,9 @@ struct MailView: UIViewControllerRepresentable {
         vc.setToRecipients(["834599524@qq.com"])
         vc.setSubject("Shoots 使用意见反馈".localized)
         vc.mailComposeDelegate = context.coordinator
+        
+        let report = DiagnosticsReporter.create()
+        vc.addDiagnosticReport(report)
         return vc
     }
 

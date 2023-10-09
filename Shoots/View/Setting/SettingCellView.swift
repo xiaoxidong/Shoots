@@ -12,18 +12,18 @@ struct SettingCellView: View {
     var text: String
     let action: () -> Void
     #if os(iOS)
-        @Environment(\.horizontalSizeClass) var horizontalSizeClass
-        @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     #endif
     var padding: CGFloat {
         #if os(iOS)
-            if horizontalSizeClass == .regular, verticalSizeClass == .compact {
-                return 56
-            } else {
-                return 16
-            }
-        #else
+        if horizontalSizeClass == .regular, verticalSizeClass == .compact {
+            return 56
+        } else {
             return 16
+        }
+        #else
+        return 16
         #endif
     }
 
@@ -36,7 +36,7 @@ struct SettingCellView: View {
                     Image(image)
                         .frame(width: 24, height: 24)
                     Text(LocalizedStringKey(text))
-                        .font(.system(size: 16, weight: .medium))
+                        .font(.system(size: 15, weight: .medium))
                         .foregroundColor(Color.shootBlack)
                     Spacer()
                 }.frame(height: 56)

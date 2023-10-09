@@ -19,12 +19,30 @@
       }
     },
     {
+      "identity" : "diagnostics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/WeTransfer/Diagnostics",
+      "state" : {
+        "revision" : "c3816d37ff6993b7de46aff3370354c4cadca7c8",
+        "version" : "4.5.0"
+      }
+    },
+    {
       "identity" : "dynamicoverlay",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/faberNovel/DynamicOverlay",
       "state" : {
         "revision" : "e4e7fac411aeba779733ddf987e8a66fcad9e510",
         "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "exceptioncatcher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/ExceptionCatcher",
+      "state" : {
+        "revision" : "a7acaf40f8bd67a1f3a05a14de5b6a861ac3d1ac",
+        "version" : "2.0.1"
       }
     },
     {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Diagnostics
 #if os(iOS)
 import MessageUI
 #endif
@@ -67,7 +68,7 @@ struct SettingView: View {
                             Image("delete")
                                 .frame(width: 24, height: 24)
                             Text("上传完成之后询问删除")
-                                .font(.system(size: 16, weight: .medium))
+                                .font(.system(size: 15, weight: .medium))
                                 .foregroundColor(Color.shootBlack)
                             Spacer()
                             Toggle(isOn: $askToDelete) {}.labelsHidden()
@@ -114,6 +115,10 @@ struct SettingView: View {
                             self.showMail = true
                         } else {
                             showToast = true
+                            #if DEBUG
+                            let report = DiagnosticsReporter.create()
+                            report.saveToDesktop()
+                            #endif
                         }
                     }
                     .sheet(isPresented: self.$showMail) {
