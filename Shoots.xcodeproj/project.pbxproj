@@ -73,13 +73,13 @@
 		4E2B6EDC2A18B3EC000BC713 /* UploadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B6EDB2A18B3EC000BC713 /* UploadData.swift */; };
 		4E2B6EDD2A18B3EC000BC713 /* UploadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B6EDB2A18B3EC000BC713 /* UploadData.swift */; };
 		4E2B6EDE2A18B3EE000BC713 /* UploadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B6EDB2A18B3EC000BC713 /* UploadData.swift */; };
+		4E2D32DA2AD54A9E00613311 /* CustomShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2D32D92AD54A9E00613311 /* CustomShareViewController.swift */; };
 		4E3116282AAFF7A7004B1FFD /* TitleFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3116272AAFF7A7004B1FFD /* TitleFeedView.swift */; };
 		4E3116292AAFF7A7004B1FFD /* TitleFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3116272AAFF7A7004B1FFD /* TitleFeedView.swift */; };
 		4E325BDE2A60EEB700FF1004 /* NewAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E325BDD2A60EEB700FF1004 /* NewAppView.swift */; };
 		4E37EB292A57A7E70011BC63 /* AppDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37EB282A57A7E70011BC63 /* AppDetailInfo.swift */; };
 		4E37EB2A2A57A7E70011BC63 /* AppDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37EB282A57A7E70011BC63 /* AppDetailInfo.swift */; };
 		4E37EB2B2A57AA310011BC63 /* AppDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37EB282A57A7E70011BC63 /* AppDetailInfo.swift */; };
-		4E3BEFCB29E6D1830024AB99 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3BEFCA29E6D1830024AB99 /* ShareViewController.swift */; };
 		4E3BEFD229E6D1830024AB99 /* ShareToUpload.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4E3BEFC829E6D1830024AB99 /* ShareToUpload.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4E3BEFD829E6D82C0024AB99 /* UIHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3BEFD729E6D82C0024AB99 /* UIHostingView.swift */; };
 		4E3BF03629E6DFFA0024AB99 /* CombineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CF74E29CD784F00A4E0DE /* CombineView.swift */; };
@@ -809,11 +809,11 @@
 		4E2B6ED02A189F65000BC713 /* FeedResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedResponseData.swift; sourceTree = "<group>"; };
 		4E2B6ED72A18ADBF000BC713 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4E2B6EDB2A18B3EC000BC713 /* UploadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadData.swift; sourceTree = "<group>"; };
+		4E2D32D92AD54A9E00613311 /* CustomShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShareViewController.swift; sourceTree = "<group>"; };
 		4E3116272AAFF7A7004B1FFD /* TitleFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleFeedView.swift; sourceTree = "<group>"; };
 		4E325BDD2A60EEB700FF1004 /* NewAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAppView.swift; sourceTree = "<group>"; };
 		4E37EB282A57A7E70011BC63 /* AppDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailInfo.swift; sourceTree = "<group>"; };
 		4E3BEFC829E6D1830024AB99 /* ShareToUpload.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareToUpload.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E3BEFCA29E6D1830024AB99 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		4E3BEFCF29E6D1830024AB99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E3BEFD729E6D82C0024AB99 /* UIHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHostingView.swift; sourceTree = "<group>"; };
 		4E40800C2A32B40C003B5322 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
@@ -1413,8 +1413,8 @@
 			isa = PBXGroup;
 			children = (
 				4E8B59452A7E07130049FCF3 /* ShareToUpload.entitlements */,
-				4E3BEFCA29E6D1830024AB99 /* ShareViewController.swift */,
 				4E9AFCE62AB3F1200090A40B /* DateViewModel.swift */,
+				4E2D32D92AD54A9E00613311 /* CustomShareViewController.swift */,
 				4E63A85C2A25FB03001A0FD4 /* LoginView.swift */,
 				4EA4E59D29F4F75A00936451 /* CustomShareNavigationController.swift */,
 				4E3BEFD729E6D82C0024AB99 /* UIHostingView.swift */,
@@ -3219,7 +3219,6 @@
 				4EE7C0D42A3AFDA000140FFD /* Flow.swift in Sources */,
 				4EF664E529F4D605005C3BD1 /* AlertActivityIndicatorView.swift in Sources */,
 				4E63A8472A244205001A0FD4 /* Reachability.swift in Sources */,
-				4E3BEFCB29E6D1830024AB99 /* ShareViewController.swift in Sources */,
 				4EB5F6F32AB7E6D300ECB63A /* ImageDetailResponseData.swift in Sources */,
 				4EF664EA29F4D617005C3BD1 /* GradientIndicatorView.swift in Sources */,
 				4EF6648829F4CB76005C3BD1 /* ZLImageStickerView.swift in Sources */,
@@ -3274,6 +3273,7 @@
 				4EF664EB29F4D617005C3BD1 /* GrowingCircleIndicatorView.swift in Sources */,
 				4EF664E829F4D617005C3BD1 /* EqualizerIndicatorView.swift in Sources */,
 				4EF6647C29F4CB76005C3BD1 /* ZLTextStickerView.swift in Sources */,
+				4E2D32DA2AD54A9E00613311 /* CustomShareViewController.swift in Sources */,
 				4E3BF03D29E6E0460024AB99 /* Color+Extension.swift in Sources */,
 				4EF6647F29F4CB76005C3BD1 /* ZLImageEditorConfiguration.swift in Sources */,
 				4EE7C0922A39583400140FFD /* APIService.swift in Sources */,

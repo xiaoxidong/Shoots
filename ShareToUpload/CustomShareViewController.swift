@@ -13,7 +13,6 @@ import UniformTypeIdentifiers
 class CustomShareViewController: UIViewController {
     private let typeImage = UTType.image.identifier
 
-    @State var images: [LocalImageData] = []
     var dataVM = DataViewModel()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -23,8 +22,6 @@ class CustomShareViewController: UIViewController {
         } shareDoneAction: {
             self.doneAction()
         } uploadAction: {}
-            .environmentObject(UserViewModel())
-            .environmentObject(InfoViewModel())
 
         view = UIHostingView(rootView: contentView)
         view.isOpaque = true
@@ -77,25 +74,25 @@ class CustomShareViewController: UIViewController {
         }
     }
 
-    func share() {
-        let inputItem = extensionContext!.inputItems.first! as! NSExtensionItem
-        let attachment = inputItem.attachments!.first!
-        if attachment.hasItemConformingToTypeIdentifier(UTType.image.identifier) {
-            attachment.loadItem(forTypeIdentifier: kUTTypeImage as String, options: [:]) { data, _ in
-                var image: UIImage?
-                if let someURl = data as? URL {
-                    let image = UIImage(contentsOfFile: someURl.path)
-                    self.images.append(LocalImageData(image: image!.pngData()!, app: "", fileName: "", fileSuffix: ""))
-                } else if let someImage = data as? UIImage {
-//                    image = someImage
-                    self.images.append(LocalImageData(image: someImage.pngData()!, app: "", fileName: "", fileSuffix: ""))
-                }
-            }
-        } else {
-            print("=====")
-        }
-        print("=====")
-    }
+//    func share() {
+//        let inputItem = extensionContext!.inputItems.first! as! NSExtensionItem
+//        let attachment = inputItem.attachments!.first!
+//        if attachment.hasItemConformingToTypeIdentifier(UTType.image.identifier) {
+//            attachment.loadItem(forTypeIdentifier: kUTTypeImage as String, options: [:]) { data, _ in
+//                var image: UIImage?
+//                if let someURl = data as? URL {
+//                    let image = UIImage(contentsOfFile: someURl.path)
+//                    self.images.append(LocalImageData(image: image!.pngData()!, app: "", fileName: "", fileSuffix: ""))
+//                } else if let someImage = data as? UIImage {
+////                    image = someImage
+//                    self.images.append(LocalImageData(image: someImage.pngData()!, app: "", fileName: "", fileSuffix: ""))
+//                }
+//            }
+//        } else {
+//            print("=====")
+//        }
+//        print("=====")
+//    }
 
     private func setupNavBar() {
         navigationItem.title = ""
